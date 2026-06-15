@@ -1,0 +1,141 @@
+# syntax=docker.io/docker/dockerfile:1
+#
+# Single-image build: nginx (public) + web SSR + API server
+# - nginx listens on :3000
+# - web SSR listens on :3001 (internal)
+# - API server listens on :4096 (internal)
+#
+# Build context: guepard-console-v3 repo root
+
+FROM node:22-slim AS base
+WORKDIR /app
+ENV CI=true
+
+FROM base AS deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN corepack enable pnpm
+RUN npm install -g turbo bun
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY turbo.json tsconfig.json ./
+COPY packages/ ./packages/
+COPY tooling/ ./tooling/
+COPY apps/web/ ./apps/web/
+COPY apps/server/ ./apps/server/
+
+RUN echo "node-linker=hoisted" >> .npmrc
+RUN pnpm install --frozen-lockfile
+
+FROM deps AS builder
+# Build web (TanStack Start) + extension registry/assets
+ENV NODE_OPTIONS=--max-old-space-size=8192
+ENV TURBO_CONCURRENCY=1
+# Skip TanStack Start prerender during image build.
+# Prerender executes SSR routes at build time and requires secrets like
+# SUPABASE_SECRET_KEY, which must only be provided at runtime.
+# (We also set it inline on the build command to ensure Turbo inherits it.)
+ENV GUEPARD_SKIP_PRERENDER=1
+ARG VITE_APP_VERSION
+ARG VITE_APP_GIT_HASH
+ARG VITE_SITE_URL
+ARG VITE_SUPABASE_URL
+ARG VITE_AUTH_PASSWORD
+ARG VITE_DATABASE_PROVIDER
+ARG VITE_DEFAULT_THEME_MODE
+ARG VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX
+ARG VITE_PRODUCT_NAME
+ARG VITE_SITE_DESCRIPTION
+ARG VITE_SITE_TITLE
+ARG VITE_THEME_COLOR
+ARG VITE_WORKING_DIR
+ARG VITE_STRIPE_PUBLISHABLE_KEY
+ARG VITE_SUPABASE_ANON_KEY
+ARG VITE_SENTRY_DSN
+ARG VITE_API_URL=/api
+ARG VITE_CHAT_API_URL
+
+ENV VITE_APP_VERSION=$VITE_APP_VERSION
+ENV VITE_APP_GIT_HASH=$VITE_APP_GIT_HASH
+ENV VITE_SITE_URL=$VITE_SITE_URL
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_AUTH_PASSWORD=$VITE_AUTH_PASSWORD
+ENV VITE_DATABASE_PROVIDER=$VITE_DATABASE_PROVIDER
+ENV VITE_DEFAULT_THEME_MODE=$VITE_DEFAULT_THEME_MODE
+ENV VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX=$VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX
+ENV VITE_PRODUCT_NAME=$VITE_PRODUCT_NAME
+ENV VITE_SITE_DESCRIPTION=$VITE_SITE_DESCRIPTION
+ENV VITE_SITE_TITLE=$VITE_SITE_TITLE
+ENV VITE_THEME_COLOR=$VITE_THEME_COLOR
+ENV VITE_WORKING_DIR=$VITE_WORKING_DIR
+ENV VITE_STRIPE_PUBLISHABLE_KEY=$VITE_STRIPE_PUBLISHABLE_KEY
+ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_CHAT_API_URL=$VITE_CHAT_API_URL
+
+ # Build extensions registry/assets BEFORE web build so the registry.json is bundled into the app.
+ RUN pnpm extensions:build
+ RUN GUEPARD_SKIP_PRERENDER=1 turbo run build --filter=web...
+ # TanStack Start SSR can crash when activeMatchesSnapshot is missing from router stores.
+ RUN node -e "const fs=require('fs');const p='/app/apps/web/dist/server/server.js';if(!fs.existsSync(p)){process.exit(0);}let s=fs.readFileSync(p,'utf8');const from='...opts.router.stores.activeMatchesSnapshot.state.map((match)=>{';const to='...(opts.router.stores.activeMatchesSnapshot?.state ?? opts.router.stores.matches?.state ?? []).map((match)=>{';if(s.includes(from)){s=s.replace(from,to);fs.writeFileSync(p,s,'utf8');console.log('[docker] patched getStartResponseHeaders (activeMatchesSnapshot)');}else{console.warn('[docker] SSR activeMatchesSnapshot pattern not found; build output changed');}"
+
+# Build domain + compile server JS (Bun runtime runs JS, not TS)
+RUN pnpm -C packages/domain build
+RUN pnpm -C apps/server exec tsc -p tsconfig.build.json
+
+FROM builder AS prod_deps
+# Dev-first image: keep deps unpruned to avoid runtime misses in k3s dev.
+# We can optimize image size later once the k8s deployment is stable.
+RUN true
+
+FROM base AS runner
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash ca-certificates curl nginx \
+  && rm -rf /var/lib/apt/lists/*
+
+# pnpm (needed to rehydrate workspace links + run web server)
+RUN corepack enable pnpm
+
+# bun runtime (for apps/server)
+RUN npm install -g bun
+
+# App files
+COPY --from=prod_deps /app/package.json ./package.json
+COPY --from=prod_deps /app/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=prod_deps /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=prod_deps /app/.npmrc ./.npmrc
+COPY --from=prod_deps /app/node_modules ./node_modules
+COPY --from=prod_deps /app/packages ./packages
+COPY --from=prod_deps /app/apps/server ./apps/server
+COPY --from=prod_deps /app/apps/web/package.json ./apps/web/package.json
+COPY --from=prod_deps /app/apps/web/dist ./apps/web/dist
+COPY --from=prod_deps /app/apps/web/public ./apps/web/public
+
+# Ensure runtime imports of @guepard/domain use compiled JS (Bun TS decorators break class-transformer).
+RUN node -e "const fs=require('fs');const p='packages/domain/package.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));const rw=(v)=>typeof v==='string'?v.replace('./src/','./dist/').replace(/\\.ts$/,'\\.js'):v;const walk=(o)=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){const v=o[k];if(typeof v==='string')o[k]=rw(v);else if(v&&typeof v==='object'){walk(v);}}};walk(j.exports);fs.writeFileSync(p, JSON.stringify(j,null,2));"
+
+# Rehydrate pnpm symlinks in the runtime layer (Bun/Node need real links).
+# Keep dev deps too (SSR can import them).
+RUN pnpm -r install --frozen-lockfile --ignore-scripts
+
+COPY docker/full/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/full/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
+
+ENV CONSOLE_PORT=3000
+ENV WEB_INTERNAL_PORT=3001
+ENV API_INTERNAL_PORT=4096
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
+ENV SERVER_API_URL=/api
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=10 \
+  CMD curl -fsS http://127.0.0.1:3000/healthz || exit 1
+
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
+

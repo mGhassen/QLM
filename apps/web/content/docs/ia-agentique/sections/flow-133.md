@@ -1,0 +1,3 @@
+Le provisionnement manuel sur services managés (base cloud ou instance sur Kubernetes) est universel et flexible mais ne passe pas à l'échelle agentique : le coût et la pénibilité croissent avec chaque environnement. Les services de branching ont apporté un modèle apprécié des développeurs, mais souvent liés à un seul moteur et un seul cloud, sans masquage d'entreprise.
+
+Les suites de virtualisation d'entreprise ont résolu la largeur et la gouvernance pour une génération précédente, mais elles sont lourdes à adopter et n'ont pas été pensées pour qu'un agent se pilote lui-même. Le DataOps agentique est la synthèse : la gouvernance de l'entreprise, l'ergonomie du branching, et une interface native pour agents qu'aucune approche précédente n'offre.

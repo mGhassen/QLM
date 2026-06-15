@@ -1,0 +1,87 @@
+{
+  "list": {
+    "title": "Topology",
+    "description": "System-wide compute control plane. Aggregated fleet health, capacity pressure, and structural distribution across pools and zones.",
+    "searchPlaceholder": "Filter pools by provider, region, or cluster…",
+    "viewMode": "View mode",
+    "viewPools": "Pool view",
+    "viewHosts": "Host map"
+  },
+  "hostMap": {
+    "tileAriaLabel": "{{name}} — {{status}}"
+  },
+  "empty": {
+    "title": "No compute attached",
+    "description": "Once nodes are provisioned in this project they will appear here, grouped by provider, region, and cluster.",
+    "filteredTitle": "No pools match",
+    "filteredDescription": "Adjust the filter to see your fleet."
+  },
+  "error": {
+    "title": "Couldn't load topology",
+    "description": "There was an error fetching fleet data.",
+    "retry": "Try again"
+  },
+  "fleet": {
+    "attention": {
+      "title": "Attention",
+      "subtitle_one": "node needs attention",
+      "subtitle_other": "nodes need attention",
+      "empty": "All nodes healthy"
+    },
+    "distribution": "Health distribution",
+    "structure": "Structure",
+    "capacity": "Capacity",
+    "providers": "Providers",
+    "regions": "Regions",
+    "clusters": "Clusters",
+    "totalMemory": "Total memory",
+    "totalCpu": "Total CPU",
+    "avgUtil": "Avg utilization"
+  },
+  "pool": {
+    "unknownProvider": "On-prem / unknown",
+    "nodes": "Nodes",
+    "totalCpu": "vCPU",
+    "totalMemory": "Memory",
+    "cpuPressure": "CPU pressure",
+    "memPressure": "Memory pressure",
+    "nodesCount_one": "{{count}} node",
+    "nodesCount_other": "{{count}} nodes"
+  },
+  "poolSheet": {
+    "noCluster": "Unclustered",
+    "regions": "Region",
+    "nodes": "Nodes in pool",
+    "drillInto": "Inspect in Infrastructure"
+  },
+  "pressure": {
+    "title": "Pressure points",
+    "highCpu": "High CPU",
+    "highMem": "High memory",
+    "unreachable": "Unreachable",
+    "failing": "Failing",
+    "criticalHealth": "Critical health",
+    "more_one": "+{{count}} more",
+    "more_other": "+{{count}} more"
+  },
+  "health": {
+    "healthy": "Healthy",
+    "degraded": "Degraded",
+    "critical": "Critical",
+    "unknown": "Unknown"
+  },
+  "lifecycle": {
+    "provisioning": "Provisioning",
+    "active": "Active",
+    "stopping": "Stopping",
+    "stopped": "Stopped",
+    "terminating": "Terminating",
+    "terminated": "Terminated"
+  },
+  "units": {
+    "vcpu": "vCPU",
+    "gb": "GB",
+    "vcpuCount_one": "{{count}} vCPU",
+    "vcpuCount_other": "{{count}} vCPU"
+  }
+}

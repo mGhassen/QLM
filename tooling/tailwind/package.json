@@ -1,0 +1,27 @@
+{
+  "name": "@guepard/tailwind-config",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "vite.js",
+    "vite.d.ts"
+  ],
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check \"**/*.{js,ts,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "4.1.16",
+    "tailwindcss": "4.1.16"
+  },
+  "devDependencies": {
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "prettier": "^3.6.2",
+    "typescript": "catalog:"
+  },
+  "prettier": "@guepard/prettier-config"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@guepard/policies",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@guepard/eslint-config": "workspace:*",
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/shared": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "zod": "catalog:"
+  },
+  "prettier": "@guepard/prettier-config"
+}

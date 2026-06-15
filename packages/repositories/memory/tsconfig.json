@@ -1,0 +1,14 @@
+{
+  "extends": "@guepard/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "paths": {
+      "@guepard/domain/*": ["../domain/src/*"]
+    }
+  },
+  "include": ["src/**/*", "__tests__/**/*"],
+  "exclude": ["node_modules"]
+}
+

@@ -1,0 +1,13 @@
+{
+  "memberName": "Name",
+  "emailLabel": "Email",
+  "roleLabel": "Role",
+  "joinedAtLabel": "Joined",
+  "youLabel": "You",
+  "primaryOwnerLabel": "Primary owner",
+  "emailPlaceholder": "member@example.com",
+  "selectRolePlaceholder": "Role",
+  "removeInviteButtonLabel": "Remove invite",
+  "updateRoleDescription": "Select the new role for this member.",
+  "roleMustBeDifferent": "Please choose a different role."
+}

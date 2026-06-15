@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "label": "Settings"
+  },
+  "dialog": {
+    "title": "Settings",
+    "close": "Close settings",
+    "discardGuard": "Discard unsaved changes?"
+  },
+  "nav": {
+    "profile": "Profile",
+    "personalTokens": "Personal tokens"
+  }
+}

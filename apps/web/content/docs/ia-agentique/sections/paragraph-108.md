@@ -1,0 +1,1 @@
+Guepard est facturé en redevance de plateforme indexée sur le volume de données géré et le nombre de nœuds orchestrés, plus l'accompagnement la première année. Six des dix organisations modélisées ont aussi attribué un gain de chiffre d'affaires aux mises en production plus rapides, environ 4,5 M€ par an.

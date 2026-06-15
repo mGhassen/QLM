@@ -1,0 +1,56 @@
+{
+  "list_title": "Notebooks",
+  "search_placeholder": "Search notebooks...",
+  "no_notebooks": "No notebooks found",
+  "no_notebooks_description": "Try adjusting your search query",
+  "no_notebooks_empty": "No notebooks have been created yet",
+  "new_notebook": "New Notebook",
+  "create_notebook": "Create new notebook",
+  "view_all_notebooks": "View all notebooks",
+  "created": "Created",
+  "created_by": "Created by",
+  "grid_view": "Grid",
+  "table_view": "Table",
+  "sort_by": "Sort By",
+  "date": "Date",
+  "name": "Name",
+  "asc": "ASC",
+  "desc": "DESC",
+  "previous": "Previous",
+  "next": "Next",
+  "agent": {
+    "button": "Agent",
+    "shortcut": "⌘L",
+    "comingSoon": "Agent is coming soon"
+  },
+  "unsaved": "Unsaved changes",
+  "editTitle": "Edit title",
+  "cell": {
+    "type": {
+      "sql": "SQL",
+      "markdown": "MD",
+      "prompt": "PROMPT"
+    },
+    "actions": {
+      "run": "Run cell (⌘↵)",
+      "runPickDatasource": "Select a datasource to run",
+      "toggleAi": "Toggle AI assistant",
+      "format": "Format cell",
+      "copy": "Copy code",
+      "copied": "Copied",
+      "delete": "Delete cell",
+      "more": "More actions",
+      "duplicate": "Duplicate cell",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "fullView": "Full view",
+      "addTitle": "Add cell title"
+    }
+  },
+  "divider": {
+    "add": "Add cell",
+    "addCode": "Code",
+    "addMarkdown": "Markdown",
+    "addPrompt": "Prompt"
+  }
+}

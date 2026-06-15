@@ -1,0 +1,26 @@
+{
+  "extends": "@guepard/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noEmit": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "rootDirs": [".", "./.react-router/types"]
+  },
+  "include": [
+    "*.ts",
+    "*.tsx",
+    "app/**/*.{ts,tsx}",
+    "config/**/*.{ts,tsx}",
+    "components/**/*",
+    "lib/**/*.ts",
+    "src",
+    "__tests__",
+    ".react-router/types/**/*",
+    "types/**/*"
+  ],
+  "exclude": ["node_modules"]
+}

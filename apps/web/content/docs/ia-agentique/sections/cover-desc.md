@@ -1,0 +1,1 @@
+État des lieux des transformations en cours, des risques et des conditions de succès à réunir à chaque niveau de l'entreprise. Définition des leviers permettant de maximiser la création de valeur tout en optimisant les coûts et le retour sur investissement.

@@ -1,0 +1,1 @@
+Pour situer l'impact de l'IA, considérons l'entreprise par niveaux. De la stratégie au socle technique, chacun suit une évolution propre. Et chacun laisse apparaître, à mesure que l'IA accélère, un maillon manquant : une étape restée manuelle, un rôle non défini, une décision privée de donnée.

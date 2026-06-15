@@ -1,0 +1,23 @@
+{
+  "name": "e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "E2E_BASE_URL=http://localhost:3000 E2E_REUSE_SERVER=true MAILPIT_URL=http://127.0.0.1:18788 playwright test --headed",
+    "test:report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+  },
+  "devDependencies": {
+    "@guepard/eslint-config": "workspace:*",
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "catalog:",
+    "eslint": "^9.39.0",
+    "typescript": "catalog:"
+  }
+}

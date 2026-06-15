@@ -1,0 +1,1 @@
+Avant d'automatiser sa couche de données, l'équipe ne pouvait lancer qu'un test par jour, chaque test se disputant le même environnement partagé. Le passage à trente-neuf tests quotidiens, une multiplication par trente-neuf du débit, a permis de soutenir une croissance d'environ dix fois sans augmentation proportionnelle de l'infrastructure ou des effectifs.

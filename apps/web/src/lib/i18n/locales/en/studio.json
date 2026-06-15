@@ -1,0 +1,15 @@
+{
+  "import": {
+    "button": "Import",
+    "dialogTitle": "Import document",
+    "chooseFile": "Choose file",
+    "noFileSelected": "No file selected",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Optional title override",
+    "acceptedFormats": "HTML or PDF, up to 20 MB",
+    "submit": "Import",
+    "importing": "Importing…",
+    "error": "Import failed",
+    "cancel": "Cancel"
+  }
+}

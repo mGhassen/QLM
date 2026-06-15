@@ -1,0 +1,10 @@
+{
+  "extends": "@guepard/tsconfig/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src", "__tests__", "vitest.config.ts"],
+  "exclude": ["node_modules"]
+}

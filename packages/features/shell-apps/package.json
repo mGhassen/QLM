@@ -1,0 +1,34 @@
+{
+  "name": "@guepard/shell-apps",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier --check \"**/*.{ts,tsx}\"",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@guepard/ui": "workspace:*",
+    "lucide-react": "^0.552.0"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-i18next": "^16.2.3"
+  },
+  "devDependencies": {
+    "@guepard/eslint-config": "workspace:*",
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "@types/react": "catalog:",
+    "eslint": "^9.39.0",
+    "react": "catalog:",
+    "react-i18next": "^16.2.3",
+    "typescript": "catalog:"
+  },
+  "prettier": "@guepard/prettier-config"
+}

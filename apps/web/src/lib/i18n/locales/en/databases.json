@@ -1,0 +1,157 @@
+{
+  "list": {
+    "title": "Databases",
+    "description": "Managed database deployments",
+    "searchPlaceholder": "Search databases...",
+    "empty": "No databases yet",
+    "emptyDescription": "No managed databases found for this project.",
+    "emptyRows": "No databases match the current filters",
+    "filteredTitle": "No results",
+    "filteredDescription": "No databases match the current search and filters.",
+    "clearFilters": "Clear filters",
+    "create": "New Database",
+    "configureShortcuts": "Configure shortcuts",
+    "quickFilters": "Quick filters",
+    "errorTitle": "Could not load databases",
+    "errorMessage": "Failed to load databases",
+    "selectAll": "Select all databases",
+    "selectRow": "Select database"
+  },
+  "col": {
+    "name": "Name",
+    "provider": "Provider",
+    "version": "Version",
+    "status": "Status",
+    "compute": "Compute",
+    "fqdn": "Host",
+    "port": "Port",
+    "actions": "Actions"
+  },
+  "columns": {
+    "reorderAria": "Reorder column",
+    "resizeAria": "Resize column"
+  },
+  "provider": {
+    "postgres": "PostgreSQL",
+    "mysql": "MySQL",
+    "redis": "Redis",
+    "mongodb": "MongoDB"
+  },
+  "status": {
+    "init": "Init",
+    "pending": "Pending",
+    "in_progress": "Deploying",
+    "created": "Running",
+    "error": "Error",
+    "deleted": "Deleted"
+  },
+  "detail": {
+    "section": {
+      "overview": "Overview"
+    },
+    "copyValue": "Copy value",
+    "copiedValue": "Copied",
+    "compute": {
+      "title": "Compute",
+      "cpu": "CPU",
+      "memory": "Memory",
+      "tier": "Performance Tier",
+      "status": "Compute Status"
+    },
+    "profile": {
+      "title": "Profile",
+      "provider": "Provider",
+      "version": "Version",
+      "fqdn": "Host",
+      "port": "Port",
+      "username": "DB User",
+      "privileges": "Privileges",
+      "superuser": "Superuser"
+    },
+    "disk": {
+      "title": "Storage",
+      "config": "Config Flags",
+      "configEmpty": "No config flags",
+      "snapshots": "Snapshots"
+    },
+    "notFound": {
+      "title": "Database not found",
+      "description": "The database you're looking for no longer exists or you don't have access to it."
+    }
+  },
+  "actions": {
+    "delete": "Delete",
+    "create": "New Database",
+    "openInTab": "Open in tab",
+    "view": "View details",
+    "retry": "Retry"
+  },
+  "pagination": {
+    "page": "Page {{current}} of {{total}}",
+    "prev": "Previous page",
+    "next": "Next page",
+    "showing": "{{from}}–{{to}} of {{total}}",
+    "ofTotal": "of {{total}} total",
+    "rowsPerPage": "Rows per page",
+    "colsPerRow": "Cols"
+  },
+  "bulk": {
+    "selectedCount": "{{count}} selected",
+    "selectedAll": "All selected",
+    "selectedWord": "Selected",
+    "overflow": "More actions",
+    "clearSelection": "Clear selection",
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "deleteSuccess": "{{count}} database(s) deleted",
+    "deleteFailed": "Failed to delete selected databases"
+  },
+  "filters": {
+    "clear": "Clear",
+    "removeRule": "Remove filter rule"
+  },
+  "options": "Options",
+  "refresh": "Refresh",
+  "trigger": "Add filter",
+  "addRule": "Add rule",
+  "clear": "Clear",
+  "filterEmpty": "No filters",
+  "any": "Any",
+  "selectedCount": "{{count}} selected",
+  "apply": "Apply",
+  "cancel": "Cancel",
+  "maxRules": "Max {{max}} rules",
+  "label": "Columns",
+  "reset": "Reset",
+  "deleteConfirmTitle": "Delete database",
+  "deleteConfirmDescription": "Permanently delete {{name}}. This action cannot be undone.",
+  "deleteConfirm": "Delete",
+  "deleteNamePrompt": "Type the database name to confirm",
+  "deleteSuccess": "Database deleted",
+  "deleteFailed": "Failed to delete database",
+  "copyIds": "Copy IDs",
+  "copyJson": "Copy as JSON",
+  "exportCsv": "Export CSV",
+  "copyIdsSuccess": "{{count}} ID(s) copied",
+  "copyJsonSuccess": "Copied JSON",
+  "exportCsvSuccess": "Exported {{count}} row(s)",
+  "error": {
+    "title": "Could not load databases",
+    "description": "An error occurred while loading databases. Please try again.",
+    "retry": "Retry"
+  },
+  "empty": {
+    "title": "No databases yet",
+    "description": "Create your first managed database deployment.",
+    "cta": "New Database",
+    "docs": "Documentation",
+    "filteredTitle": "No results",
+    "filteredDescription": "No databases match the current search and filters.",
+    "clearFilters": "Clear filters"
+  },
+  "attentionContext": {
+    "banner": "Filtered from attention view",
+    "dismiss": "Dismiss"
+  },
+  "backToList": "Back to Databases"
+}

@@ -1,0 +1,21 @@
+{
+  "app": {
+    "title": "Project settings"
+  },
+  "sections": {
+    "general": {
+      "title": "General",
+      "fields": {
+        "name": "Name"
+      },
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Project updated.",
+      "loading": "Loading project…",
+      "error": {
+        "saveFailed": "Couldn't save project settings. Try again.",
+        "loadFailed": "Couldn't load this project."
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@guepard/app-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./manifest": "./src/manifest.ts"
+  },
+  "dependencies": {
+    "@guepard/shell-contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@guepard/tsconfig": "workspace:*",
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:"
+  }
+}

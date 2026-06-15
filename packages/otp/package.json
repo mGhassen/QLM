@@ -1,0 +1,44 @@
+{
+  "name": "@guepard/otp",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier --check \"**/*.{ts,tsx}\"",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@guepard/prettier-config",
+  "exports": {
+    ".": "./src/api/index.server.ts",
+    "./action": "./src/server/actions.server.ts",
+    "./components": "./src/components/index.ts"
+  },
+  "devDependencies": {
+    "@guepard/email-templates": "workspace:*",
+    "@guepard/eslint-config": "workspace:*",
+    "@guepard/mailers": "workspace:*",
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/shared": "workspace:*",
+    "@guepard/supabase": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "@guepard/ui": "workspace:*",
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@supabase/supabase-js": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "^19.2.2",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "^7.66.0",
+    "react-router": "^7.9.5",
+    "zod": "catalog:"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+}

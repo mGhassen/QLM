@@ -1,0 +1,1 @@
+La valeur se répartit en quatre catégories : infrastructure, productivité IT, vélocité de développement, et risque et conformité. L'accélération du chiffre d'affaires est traitée à part. La Figure 3 montre l'effet agrégé sur le coût annuel total des opérations de données.

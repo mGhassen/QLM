@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "Organization settings"
+  },
+  "sections": {
+    "general": {
+      "title": "General",
+      "fields": {
+        "name": "Name",
+        "hideSidebar": {
+          "label": "Hide project sidebar",
+          "description": "Remove the left sidebar for everyone in this organization. The organization menu and your profile move to the tab bar."
+        }
+      },
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Organization updated.",
+      "loading": "Loading organization…",
+      "error": {
+        "saveFailed": "Couldn't save organization settings. Try again.",
+        "loadFailed": "Couldn't load this organization."
+      }
+    },
+    "members": {
+      "title": "Members",
+      "inviteButton": "Invite members",
+      "searchPlaceholder": "Search by name or email",
+      "loading": "Loading members…",
+      "columns": {
+        "member": "Member",
+        "role": "Role",
+        "joined": "Joined"
+      },
+      "empty": {
+        "title": "No members yet",
+        "description": "Invite teammates to collaborate on this organization."
+      },
+      "noAccess": {
+        "title": "You don't have access to this organization",
+        "description": "Ask an administrator to add you to the organization."
+      },
+      "error": {
+        "loadFailed": "Couldn't load the organization."
+      }
+    },
+    "billing": {
+      "title": "Billing",
+      "loading": "Loading billing…",
+      "error": {
+        "loadFailed": "Couldn't load billing for this organization."
+      }
+    },
+    "usage": {
+      "title": "Usage",
+      "description": "See current balance and credits consumed.",
+      "refresh": "Refresh",
+      "loading": "Loading consumption summary…",
+      "currentBalance": "Current balance",
+      "consumedInPeriod": "Consumed in period",
+      "totalConsumed": "Total consumed",
+      "totalPurchased": "Total purchased",
+      "topUsersByCredits": "Top users by credits",
+      "topProjectsByCredits": "Top projects by credits",
+      "noUserConsumption": "No user consumption yet.",
+      "noProjectConsumption": "No project consumption yet.",
+      "error": {
+        "loadFailed": "Couldn't load usage for this organization."
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+Les schémas ci-dessous ne sont pas hypothétiques. Ils sont déjà en production dans des organisations qui ont automatisé leur couche de données, et ils illustrent comment les agents consomment réellement les environnements. Dans chaque cas, la capacité habilitante est la même : un environnement créé en quelques secondes, totalement isolé, supprimé sans laisser de trace.

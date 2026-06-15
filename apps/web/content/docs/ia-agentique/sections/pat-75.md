@@ -1,0 +1,1 @@
+**Environnements par demande de fusion.** Chaque changement reçoit un environnement éphémère de pleine fidélité, créé à l'ouverture et détruit à la fusion. Les contrôles voient ce que verra la production.

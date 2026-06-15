@@ -1,0 +1,1 @@
+Notre analyse repose sur quatre hypothèses structurantes à l'horizon 2030. Nous les formulons explicitement afin que chaque dirigeant puisse les confronter à la trajectoire de son organisation. Elles indiquent une direction plus qu'une valeur ponctuelle et fixent le cap vers lequel convergent les constats de ce rapport.

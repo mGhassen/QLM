@@ -1,0 +1,1 @@
+Ce rapport analyse comment l'IA agentique transforme la chaîne d'ingénierie des entreprises, du développement à la production. Il décrit la nouvelle cadence imposée par les agents, les conditions à réunir à chaque niveau de l'organisation, et la valeur que captent les entreprises qui s'y préparent.

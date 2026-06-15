@@ -1,0 +1,1 @@
+Cette chaîne repose sur une matière première : les données. En production, elles sont riches, sécurisées et gouvernées avec soin. Hors production, elles alimentent le développement, les tests, l'analytique et, de plus en plus, l'IA. Les pratiques y sont établies de longue date et reposent sur trois grands principes.

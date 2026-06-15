@@ -1,0 +1,11 @@
+{
+  "invalidVerificationCodeHeading": "Invalid verification code",
+  "invalidVerificationCodeDescription": "The code you entered is not valid. Please try again.",
+  "verifyActivationCodeDescription": "Enter the 6-digit code from your authenticator app.",
+  "verifyingCode": "Verifying...",
+  "submitVerificationCode": "Submit verification code",
+  "loadingFactors": "Loading security factors...",
+  "factorsListError": "Could not load factors",
+  "factorsListErrorDescription": "Please sign in again and retry.",
+  "selectFactor": "Choose a verification method"
+}

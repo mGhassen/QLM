@@ -1,0 +1,48 @@
+/* Studio shell chrome — maps editor UI to Rasm design tokens */
+
+.doc-studio {
+  --studio-radius: 0px;
+}
+
+.doc-studio [data-studio-chrome] :where(.rounded-lg, .rounded-md, .rounded-xl, .rounded-full, .rounded) {
+  border-radius: var(--studio-radius) !important;
+}
+
+.doc-studio .studio-canvas {
+  background: hsl(var(--env-canvas-bg));
+  scroll-behavior: auto;
+  overscroll-behavior-y: contain;
+}
+
+.doc-studio .studio-editor-toolbar.anchored,
+.doc-studio .studio-editor-toolbar.floating {
+  background: hsl(var(--popover));
+  border-color: hsl(var(--border));
+  color: hsl(var(--popover-foreground));
+}
+
+.doc-studio .studio-editor-toolbar:not(.anchored):not(.floating) {
+  background: hsl(var(--muted) / 0.35);
+  border-color: hsl(var(--border-subtle));
+}
+
+.doc-studio .studio-breadcrumb {
+  background: hsl(var(--sidebar));
+  border-color: hsl(var(--sidebar-border));
+  color: hsl(var(--sidebar-foreground) / 0.65);
+}
+
+.doc-studio .studio-secondary-panel {
+  animation: studio-panel-in 0.14s ease-out;
+}
+
+@keyframes studio-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

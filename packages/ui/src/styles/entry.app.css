@@ -1,0 +1,13 @@
+/*
+ * Consumer entry: import after `@import "tailwindcss"` in the app.
+ * Order: theme bridge → tokens → extras → base → utilities → @utility → feature CSS.
+ */
+@import './partials/theme-bridge.css';
+@import './partials/tokens.css';
+@import './partials/theme-extras.css';
+@import './partials/base.css';
+@import './partials/utilities.css';
+@import './partials/theme.utilities.css';
+@import './partials/markdoc.css';
+@import './partials/guepard.css';
+@import './partials/entity-flash.css';

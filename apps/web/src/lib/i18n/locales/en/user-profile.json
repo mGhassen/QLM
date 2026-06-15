@@ -1,0 +1,66 @@
+{
+  "sectionTitle": "Profile",
+  "picture": {
+    "title": "Your Profile Picture",
+    "description": "Please choose a photo to upload as your profile picture.",
+    "upload": "Upload",
+    "clear": "Clear",
+    "updating": "Updating profile picture…",
+    "updated": "Profile picture updated",
+    "error": "Could not update profile picture",
+    "invalidType": "Please choose a PNG, JPEG, WEBP, or GIF image.",
+    "tooLarge": "Image must be 2 MB or smaller."
+  },
+  "name": {
+    "title": "Your Name",
+    "description": "Update your name to be displayed on your profile.",
+    "label": "Your Name",
+    "submit": "Update Profile",
+    "updated": "Profile updated",
+    "required": "Please enter a name."
+  },
+  "password": {
+    "title": "Update your Password",
+    "description": "Update your password to keep your account secure.",
+    "current": "Current password",
+    "next": "New password",
+    "confirm": "Confirm new password",
+    "submit": "Update Password",
+    "updated": "Password updated",
+    "invalidCurrent": "Current password is incorrect.",
+    "tooShort": "New password must be at least 8 characters.",
+    "sameAsCurrent": "New password must differ from the current password.",
+    "mismatch": "New password and confirmation do not match.",
+    "required": "Please fill in all password fields.",
+    "noIdentityLinked": "You cannot update your password because your account is not linked to any."
+  },
+  "mfa": {
+    "title": "Multi-Factor Authentication",
+    "description": "Set up Multi-Factor Authentication method to further secure your account.",
+    "emptyCalloutTitle": "Secure your account with Multi-Factor Authentication",
+    "emptyCalloutDescription": "Set up Multi-Factor Authentication method to further secure your account.",
+    "setupButton": "Setup a new Factor",
+    "factorsHeading": "Active factors",
+    "remove": "Remove",
+    "enabled": "MFA enabled",
+    "enrollError": "Could not start MFA enrollment.",
+    "verifyError": "That code didn't work. Please try again.",
+    "unenrollConfirm": "Confirm your password to remove this factor.",
+    "unenrollRemoved": "Factor removed.",
+    "unenrollError": "Could not remove factor.",
+    "dialog": {
+      "nameTitle": "Name your factor",
+      "nameLabel": "Factor name",
+      "nameHint": "A label to recognise this factor later (e.g. iPhone Authenticator).",
+      "qrTitle": "Scan the QR code",
+      "qrHint": "Scan with your authenticator app, or copy the secret below.",
+      "manualSecret": "Manual entry secret",
+      "otpTitle": "Enter the 6-digit code",
+      "otpDescription": "Open your authenticator app and enter the current code.",
+      "verifying": "Verifying…",
+      "enable": "Enable Factor",
+      "cancel": "Cancel",
+      "next": "Next"
+    }
+  }
+}

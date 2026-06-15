@@ -1,0 +1,190 @@
+name: guepard-extensions-test
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "55432:5432"
+    environment:
+      POSTGRES_USER: guepard
+      POSTGRES_PASSWORD: guepard
+      POSTGRES_DB: extensions
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init/postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U guepard -d extensions"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    ports:
+      - "53306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: extensions
+      MYSQL_USER: guepard
+      MYSQL_PASSWORD: guepard
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init/mysql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD --silent",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  mongodb:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "57017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: extensions
+    volumes:
+      - mongodb-data:/data/db
+      - ./init/mongodb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh --quiet --username root --password root --authenticationDatabase admin --eval \"db.adminCommand('ping').ok\" | grep 1",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    restart: unless-stopped
+    ports:
+      - "18123:8123"
+      - "19090:9000"
+    environment:
+      CLICKHOUSE_DB: extensions
+      CLICKHOUSE_USER: guepard
+      CLICKHOUSE_PASSWORD: guepard
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./init/clickhouse:/docker-entrypoint-initdb.d:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "clickhouse-client",
+          "--user",
+          "guepard",
+          "--password",
+          "guepard",
+          "--query",
+          "SELECT 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  seed-files:
+    image: alpine:3.20
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        cat <<'EOF' >/data/extensions.csv
+        id,name,amount,city
+        1,alpha,100.50,Paris
+        2,beta,42.00,Dakar
+        3,gamma,18.75,Montreal
+        EOF
+
+        cat <<'EOF' >/data/extensions.json
+        [{"id":1,"name":"alpha","active":true},{"id":2,"name":"beta","active":false}]
+        EOF
+    volumes:
+      - files-data:/data
+
+  seed-parquet:
+    image: duckdb/duckdb:latest
+    depends_on:
+      seed-files:
+        condition: service_completed_successfully
+    command:
+      - duckdb
+      - /tmp/seed.duckdb
+      - "CREATE OR REPLACE TABLE online_files AS SELECT * FROM read_csv_auto('/data/extensions.csv'); COPY online_files TO '/data/extensions.parquet' (FORMAT PARQUET);"
+    volumes:
+      - files-data:/data
+
+  http-files:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      seed-parquet:
+        condition: service_completed_successfully
+    ports:
+      - "18080:80"
+    volumes:
+      - files-data:/usr/share/nginx/html:ro
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+      seed-parquet:
+        condition: service_completed_successfully
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        mc alias set local http://minio:9000 minio minio123
+        mc mb --ignore-existing local/extensions-files
+        mc cp /seed/extensions.csv local/extensions-files/extensions.csv
+        mc cp /seed/extensions.json local/extensions-files/extensions.json
+        mc cp /seed/extensions.parquet local/extensions-files/extensions.parquet
+        mc anonymous set public local/extensions-files
+    volumes:
+      - files-data:/seed:ro
+    restart: "no"
+
+volumes:
+  postgres-data:
+  mysql-data:
+  mongodb-data:
+  clickhouse-data:
+  minio-data:
+  files-data:

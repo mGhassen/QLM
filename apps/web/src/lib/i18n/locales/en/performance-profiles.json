@@ -1,0 +1,104 @@
+{
+  "list": {
+    "title": "Performance Profiles",
+    "description": "CPU / memory presets for compute instances",
+    "searchPlaceholder": "Search profiles...",
+    "empty": "No profiles",
+    "emptyDescription": "No performance profiles found.",
+    "emptyRows": "No profiles match the current filters",
+    "errorTitle": "Could not load profiles",
+    "errorMessage": "Failed to load performance profiles",
+    "configureShortcuts": "Configure shortcuts",
+    "quickFilters": "Quick filters"
+  },
+  "col": {
+    "name": "Profile",
+    "profileId": "Profile ID",
+    "provider": "Provider",
+    "version": "Version",
+    "cpu": "CPU",
+    "memory": "Memory",
+    "default": "Default",
+    "active": "Active",
+    "actions": "Actions"
+  },
+  "columns": {
+    "reorderAria": "Reorder column",
+    "resizeAria": "Resize column"
+  },
+  "detail": {
+    "specs": {
+      "title": "Specs",
+      "cpu": "Min CPU",
+      "memory": "Min Memory",
+      "provider": "Provider",
+      "version": "Version",
+      "default": "Default",
+      "active": "Active"
+    },
+    "config": {
+      "title": "Config Flags",
+      "empty": "No config flags"
+    },
+    "notFound": {
+      "title": "Profile not found",
+      "description": "The performance profile you're looking for no longer exists or you don't have access to it."
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "provider": {
+    "postgres": "PostgreSQL",
+    "mysql": "MySQL",
+    "redis": "Redis",
+    "mongodb": "MongoDB"
+  },
+  "actions": {
+    "retry": "Retry",
+    "view": "View details",
+    "openInTab": "Open in tab"
+  },
+  "pagination": {
+    "page": "Page {{current}} of {{total}}",
+    "prev": "Previous page",
+    "next": "Next page",
+    "showing": "{{from}}–{{to}} of {{total}}",
+    "rowsPerPage": "Rows per page"
+  },
+  "filters": {
+    "clear": "Clear",
+    "removeRule": "Remove filter rule"
+  },
+  "options": "Options",
+  "refresh": "Refresh",
+  "trigger": "Add filter",
+  "addRule": "Add rule",
+  "clear": "Clear",
+  "filterEmpty": "No filters",
+  "any": "Any",
+  "selectedCount": "{{count}} selected",
+  "apply": "Apply",
+  "cancel": "Cancel",
+  "maxRules": "Max {{max}} rules",
+  "label": "Columns",
+  "reset": "Reset",
+  "error": {
+    "title": "Could not load profiles",
+    "description": "An error occurred while loading performance profiles. Please try again.",
+    "retry": "Retry"
+  },
+  "empty": {
+    "title": "No performance profiles",
+    "description": "No profiles are available for this project.",
+    "filteredTitle": "No results",
+    "filteredDescription": "No profiles match the current search and filters.",
+    "clearFilters": "Clear filters"
+  },
+  "backToList": "Back to Profiles",
+  "bulk": {
+    "selectAll": "Select all profiles",
+    "selectRow": "Select profile"
+  }
+}

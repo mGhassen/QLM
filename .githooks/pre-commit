@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Two gates:
+#  1. DB-types drift — fires on any branch, staged-only.
+#  2. Full clean-install-check + audit — fires only when committing to main.
+#
+# Bypass either in a pinch with `git commit --no-verify` (and accept the
+# consequences).
+
+set -euo pipefail
+
+branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
+
+# ---------------------------------------------------------------------------
+# Gate 1 — DB-types drift (all branches)
+# If any schema file is staged but neither database.types.ts is, the author
+# forgot `pnpm supabase:web:typegen` after changing the schema.
+# ---------------------------------------------------------------------------
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+
+schema_changed=false
+types_changed=false
+
+while IFS= read -r f; do
+  case "$f" in
+    apps/web/supabase/schemas/*.sql)
+      schema_changed=true
+      ;;
+    packages/supabase/src/database.types.ts | apps/web/lib/database.types.ts)
+      types_changed=true
+      ;;
+  esac
+done <<< "$staged"
+
+if [ "$schema_changed" = true ] && [ "$types_changed" = false ]; then
+  echo ""
+  echo "[pre-commit] ✖ schema changed but database.types.ts was not regenerated."
+  echo "[pre-commit]   Run: pnpm supabase:web:reset && pnpm supabase:web:typegen"
+  echo "[pre-commit]   Then stage the updated types files and commit again."
+  exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# Gate 2 — full check (main only)
+# ---------------------------------------------------------------------------
+if [ "$branch" != "main" ]; then
+  exit 0
+fi
+
+echo "[pre-commit] on main — running clean:workspaces + install + check before allowing this commit..."
+
+if ! pnpm -w clean:workspaces; then
+  echo ""
+  echo "[pre-commit] ✖ pnpm clean:workspaces failed on main."
+  exit 1
+fi
+
+if ! pnpm install; then
+  echo ""
+  echo "[pre-commit] ✖ pnpm install failed on main."
+  exit 1
+fi
+
+if ! pnpm -w check; then
+  echo ""
+  echo "[pre-commit] ✖ pnpm check failed on main."
+  echo "[pre-commit] Fix the errors above, or move the commit to a story branch."
+  echo "[pre-commit] Use --no-verify only if you know exactly why."
+  exit 1
+fi
+
+echo "[pre-commit] ✓ check green — commit allowed."

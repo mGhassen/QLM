@@ -1,0 +1,56 @@
+{
+  "title": "Predictions",
+  "tagline": "Understand your data before you train on it.",
+  "list": {
+    "empty": {
+      "title": "No datasources yet",
+      "description": "Connect a datasource in the Datasources app to take your first snapshot.",
+      "cta": "Open Datasources"
+    }
+  },
+  "card": {
+    "snapshot": {
+      "none": "No snapshot yet",
+      "takenAt": "Latest snapshot {{when}}"
+    },
+    "action": {
+      "take": "Take snapshot",
+      "open": "Open latest",
+      "history": "View snapshots"
+    }
+  },
+  "snapshot": {
+    "title": "{{name}} · v{{version}}",
+    "takenAt": "Taken {{when}} by {{user}}",
+    "tab": {
+      "schema": "Schema",
+      "agent": "Ask agent"
+    },
+    "schema": {
+      "empty": "Snapshot has no tables.",
+      "pickTable": "Pick a table on the left to inspect its columns and relationships."
+    }
+  },
+  "agent": {
+    "empty": {
+      "title": "Ask me about this schema",
+      "suggestion1": "Which tables join through which keys?",
+      "suggestion2": "Which columns look like timestamps?",
+      "suggestion3": "Where would target labels for a churn task live?"
+    },
+    "composer": {
+      "placeholder": "Ask a question about this schema...",
+      "send": "Send"
+    },
+    "error": {
+      "generic": "The agent is unavailable. Try again."
+    }
+  },
+  "toast": {
+    "snapshot": {
+      "success": "Snapshot taken.",
+      "failure": "Failed to take snapshot.",
+      "tooLarge": "Schema is too large to snapshot."
+    }
+  }
+}

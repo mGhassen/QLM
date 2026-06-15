@@ -1,0 +1,178 @@
+/**
+ * Shared helpers for @guepard/integrations Storybook stories.
+ *
+ * Provides:
+ *  - A pre-initialised i18next instance with inline English translations
+ *    covering every `integrations.*` key used by the components.
+ *  - `withIntegrationsProviders` — a Storybook Decorator that wraps each
+ *    story in I18nextProvider so stories render without external setup.
+ *
+ * Note: the real English catalog lands in step 13 under
+ * `packages/i18n/src/locales/en/integrations.json`. This file is the
+ * Storybook-local mirror so that stage-A validation does not depend on
+ * step 13's work. The keys MUST stay in sync with §11 of the spec.
+ */
+import * as React from 'react';
+
+import type { Decorator } from '@storybook/react';
+import i18next from 'i18next';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+
+const integrationsEn = {
+  nav: {
+    label: 'Integrations',
+  },
+  list: {
+    title: 'Integrations',
+    newCta: 'New integration',
+    searchPlaceholder: 'Search integrations…',
+    loadError: 'Could not load integrations',
+    emptyState: {
+      heading: 'No integrations yet',
+      headingFiltered: 'No integrations match your search',
+      body: 'Connect an AWS or GCP account to this project to enable dataplane nodes and ingestion later.',
+      bodyFiltered: 'Try a different search.',
+      cta: 'New integration',
+    },
+    columns: {
+      provider: 'Provider',
+      name: 'Name',
+      region: 'Region',
+      status: 'Status',
+      lastTested: 'Last tested',
+      actions: 'Actions',
+    },
+    lastTestedNever: 'Never',
+  },
+  new: {
+    title: 'New integration',
+    providerPicker: {
+      heading: 'Which cloud do you want to connect?',
+      awsLabel: 'AWS',
+      awsDescription: 'Access key credentials',
+      gcpLabel: 'Google Cloud',
+      gcpDescription: 'Service account JSON',
+      comingSoonLabel: 'More coming soon',
+      comingSoonDescription: 'Supabase, Neon, Azure, …',
+    },
+  },
+  form: {
+    nameLabel: 'Name',
+    namePlaceholder: 'e.g. prod-aws',
+    defaultRegionLabel: 'Default region',
+    defaultRegionPlaceholder: 'Select a region',
+    saveCta: 'Save',
+    testCta: 'Test connection',
+    testingCta: 'Testing…',
+    aws: {
+      accessKeyIdLabel: 'Access key id',
+      accessKeyIdPlaceholder: 'AKIAIOSFODNN7EXAMPLE',
+      secretAccessKeyLabel: 'Secret access key',
+      sessionTokenLabel: 'Session token (optional)',
+      accountHintReadonly: 'AWS account (detected after test)',
+    },
+    gcp: {
+      serviceAccountJsonLabel: 'Service account JSON',
+      serviceAccountJsonPlaceholder:
+        '{\n  "type": "service_account",\n  "project_id": "…",\n  …\n}',
+      projectIdReadonly: 'Project id (from JSON)',
+    },
+    validation: {
+      nameRequired: 'Name is required.',
+      nameTooLong: 'Name must be 60 characters or fewer.',
+      accessKeyIdRequired: 'Access key id is required.',
+      accessKeyIdInvalid:
+        'Must look like AKIA… or ASIA… followed by 16 uppercase alphanumerics.',
+      secretAccessKeyRequired: 'Secret access key is required.',
+      defaultRegionRequired: 'Default region is required.',
+      serviceAccountJsonRequired: 'Service account JSON is required.',
+      serviceAccountJsonInvalid:
+        'Must be a valid service account JSON with type="service_account".',
+    },
+  },
+  detail: {
+    providerLabel: 'Provider',
+    accountLabel: 'Account',
+    defaultRegionLabel: 'Default region',
+    statusLabel: 'Status',
+    createdByLabel: 'Created by',
+    regionsHeading: 'Available regions',
+    testCta: 'Test',
+    testingCta: 'Testing…',
+    rotateCta: 'Rotate credentials',
+    renameCta: 'Rename',
+    deleteCta: 'Delete',
+    retryCta: 'Retry',
+  },
+  test: {
+    status: {
+      success: 'Connected',
+      failed: 'Failed',
+      untested: 'Never tested',
+    },
+    successBanner: 'Connected as {{identity}}',
+    error: {
+      invalid_credentials: 'The credentials were rejected by the provider.',
+      permission_denied: 'The credentials lack the required permissions.',
+      network: 'Could not reach the provider.',
+      rateLimited: 'Too many test attempts. Try again in {{seconds}}s.',
+      unknown: 'Test failed: {{message}}',
+    },
+  },
+  regions: {
+    empty: 'No regions returned for these credentials.',
+    loadError: 'Could not load regions.',
+  },
+  rotate: {
+    title: 'Rotate credentials',
+    body: 'Paste new credentials. Old credentials are forgotten and the connection status is reset until you test again.',
+  },
+  rename: {
+    title: 'Rename integration',
+    body: 'Pick a new name. The slug in the URL stays the same.',
+  },
+  delete: {
+    title: 'Delete integration',
+    body: 'This removes the integration row and forgets its stored credentials. Type the name to confirm.',
+    confirmLabel: 'Type {{name}} to confirm',
+    confirmCta: 'Delete',
+    cancelCta: 'Cancel',
+  },
+  toast: {
+    created: 'Integration created',
+    updated: 'Integration updated',
+    rotated: 'Credentials rotated',
+    deleted: 'Integration deleted',
+  },
+  perm: {
+    denied:
+      "You don't have the integrations.manage permission on this organisation.",
+  },
+  provider: {
+    aws: 'AWS',
+    gcp: 'Google Cloud',
+  },
+};
+
+export const storybookI18n = i18next.createInstance();
+
+storybookI18n.use(initReactI18next).init({
+  lng: 'en',
+  fallbackLng: 'en',
+  defaultNS: 'integrations',
+  ns: ['integrations'],
+  interpolation: { escapeValue: false },
+  resources: {
+    en: {
+      integrations: integrationsEn,
+    },
+  },
+} as Parameters<typeof storybookI18n.init>[0]);
+
+export const withIntegrationsProviders: Decorator = (
+  Story: React.ComponentType,
+) => (
+  <I18nextProvider i18n={storybookI18n}>
+    <Story />
+  </I18nextProvider>
+);

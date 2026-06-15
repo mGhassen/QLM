@@ -1,0 +1,1 @@
+Les entreprises affrontent le problème de l'une de quatre grandes façons. Nous les décrivons par approche plutôt que par fournisseur, car le choix stratégique porte sur la capacité, non sur la marque. La comparaison est directionnelle.

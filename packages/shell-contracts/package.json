@@ -1,0 +1,27 @@
+{
+  "name": "@guepard/shell-contracts",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./manifest": "./src/manifest.ts",
+    "./nav": "./src/nav.ts",
+    "./tabs": "./src/tabs.ts",
+    "./tab-id": "./src/tab-id.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@guepard/domain": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@guepard/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

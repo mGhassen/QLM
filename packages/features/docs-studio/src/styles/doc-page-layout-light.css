@@ -1,0 +1,5 @@
+/* Doc page layout — always light; independent of app .dark theme */
+
+.doc-studio .doc-shell {
+  color-scheme: light;
+}

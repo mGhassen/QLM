@@ -1,0 +1,255 @@
+{
+  "page": {
+    "title": "Infrastructure",
+    "description": "Aggregate view of compute resources, clusters, and providers in this project."
+  },
+  "tabs": {
+    "state": "State",
+    "activity": "Activity",
+    "settings": "Settings"
+  },
+  "overview": {
+    "stat": {
+      "totalNodes": "Total nodes",
+      "running": "Running",
+      "issues": "Issues",
+      "totalCpu": "Total vCPU",
+      "totalMemory": "Total memory"
+    },
+    "partialMetrics": "Telemetry unavailable for some nodes",
+    "providers": {
+      "title": "Providers",
+      "nodes_one": "{{count}} node",
+      "nodes_other": "{{count}} nodes",
+      "viewAll": "View provider"
+    },
+    "regions": {
+      "title": "Regions",
+      "col": {
+        "region": "Region",
+        "nodes": "Nodes",
+        "running": "Running",
+        "vcpu": "vCPU",
+        "memory": "Memory"
+      },
+      "empty": "No regions yet"
+    }
+  },
+  "clusters": {
+    "title": "Clusters",
+    "description": "Nodes grouped by their cluster assignment.",
+    "empty": {
+      "title": "No clusters yet",
+      "description": "Assign a cluster name to your nodes to group them here.",
+      "cta": "Manage nodes"
+    },
+    "unclustered": "Unclustered",
+    "col": {
+      "cluster": "Cluster",
+      "nodes": "Nodes",
+      "running": "Running",
+      "vcpu": "vCPU",
+      "memory": "Memory",
+      "providers": "Providers",
+      "regions": "Regions",
+      "health": "Health"
+    },
+    "card": {
+      "nodes_one": "{{count}} node",
+      "nodes_other": "{{count}} nodes",
+      "running_one": "{{count}} running",
+      "running_other": "{{count}} running",
+      "viewDetails": "View cluster"
+    },
+    "details": {
+      "title": "Cluster details",
+      "section": {
+        "resources": "Resources",
+        "breakdown": "Status breakdown",
+        "infrastructure": "Infrastructure"
+      },
+      "stat": {
+        "vcpu": "vCPU",
+        "memory": "Memory"
+      },
+      "row": {
+        "nodes": "Total nodes",
+        "running": "Running",
+        "stopped": "Stopped",
+        "error": "Error",
+        "draining": "Draining",
+        "providers": "Providers",
+        "regions": "Regions"
+      },
+      "viewInNodes": "View in Nodes",
+      "close": "Close",
+      "partialTelemetry": "Partial telemetry"
+    }
+  },
+  "providers": {
+    "title": "Providers",
+    "description": "Cloud providers and regions detected from node metadata.",
+    "empty": {
+      "title": "No providers detected",
+      "description": "Add provider metadata to your nodes to see them grouped here.",
+      "cta": "Manage nodes"
+    },
+    "integration": {
+      "connected": "Connected",
+      "notConnected": "Not connected",
+      "connect": "Connect"
+    },
+    "col": {
+      "region": "Region",
+      "nodes": "Nodes",
+      "running": "Running",
+      "vcpu": "vCPU",
+      "memory": "Memory"
+    },
+    "viewNodes": "View nodes",
+    "filter": {
+      "all": "All providers",
+      "count_one": "{{count}} provider",
+      "count_other": "{{count}} providers"
+    }
+  },
+  "settings": {
+    "title": "Compute Control Plane",
+    "description": "Manage compute tier and disk configuration for this project.",
+    "compute": {
+      "title": "Compute size",
+      "description": "Hardware resources allocated to your database instances.",
+      "docs": "Documentation",
+      "showAll": "Show all sizes",
+      "allSizes": "All compute sizes",
+      "allDescription": "Compare tiers and switch without leaving this page.",
+      "dedicated": "Dedicated",
+      "shared": "Shared",
+      "memoryLabel": "Memory",
+      "connectionsLabel": "Connections",
+      "storageLabel": "Storage",
+      "memory": "{{gb}} GB RAM",
+      "connections": "{{count}} max connections",
+      "maxDb": "Up to {{gb}} GB database"
+    },
+    "disk": {
+      "title": "Disk size",
+      "used": "{{used}} GB used of {{total}} GB",
+      "planIncludes": "Your plan includes {{total}} GB of disk size for gp3.",
+      "docs": "Documentation",
+      "type": "Disk type",
+      "typeMaxIops": "Up to {{iops}} IOPS",
+      "typeMaxSize": "Up to {{tb}} TB",
+      "iops": "IOPS",
+      "iopsRange": "{{min}}–{{max}}",
+      "throughput": "Throughput (MB/s)",
+      "throughputRange": "{{min}}–{{max}} MB/s",
+      "advanced": "Advanced disk settings",
+      "advancedDescription": "Configure autoscaling thresholds for disk growth.",
+      "autoscaleGrowth": "Growth percent",
+      "autoscaleGrowthHint": "% of current disk to grow by when threshold is reached",
+      "autoscaleMin": "Minimum increment",
+      "autoscaleMinHint": "Minimum GB to add per autoscale event",
+      "autoscaleMax": "Maximum disk size",
+      "autoscaleMaxHint": "Disk will not grow beyond this limit",
+      "note": "Disk size includes the database ({{db}} GB), write-ahead log ({{wal}} GB), and system files ({{sys}} GB). Data refreshes every 5 minutes.",
+      "spendCapAlert": "Disable spend cap to manage disk configuration and access IOPS and throughput controls.",
+      "spendCapDisabled": "Spend cap disabled",
+      "enableSpendCap": "Enable spend cap",
+      "disableSpendCap": "Disable spend cap",
+      "db": "Database",
+      "wal": "WAL",
+      "system": "System",
+      "available": "Available space"
+    },
+    "tier": {
+      "nano": "NANO",
+      "micro": "MICRO",
+      "small": "SMALL",
+      "medium": "MEDIUM",
+      "large": "LARGE",
+      "xl": "XL"
+    }
+  },
+  "replicas": {
+    "title": "Read Replicas",
+    "description": "Deploy read replicas in additional regions for analytics isolation or geo-distribution.",
+    "add": "Add replica",
+    "remove": "Remove replica",
+    "loadBalancer": "Load balancer endpoint",
+    "empty": {
+      "title": "No read replicas",
+      "description": "Add a read replica to distribute read traffic across regions."
+    },
+    "status": {
+      "available": "Available",
+      "provisioning": "Provisioning",
+      "degraded": "Degraded",
+      "error": "Error"
+    },
+    "sheet": {
+      "title": "Add read replica",
+      "description": "Choose a region and compute size for the new replica.",
+      "region": "Region",
+      "computeSize": "Compute size",
+      "cancel": "Cancel",
+      "confirm": "Add replica"
+    }
+  },
+  "nodesTab": {
+    "cluster": "Nodes · {{name}}",
+    "provider": "Nodes · {{name}}"
+  },
+  "activity": {
+    "title": "Activity",
+    "description": "Server utilization and disk performance over time.",
+    "source": {
+      "label": "Source",
+      "primary": "Primary Database",
+      "replica": "Read Replica"
+    },
+    "range": {
+      "7d": "Last 7 days",
+      "14d": "Last 14 days",
+      "30d": "Last 30 days"
+    },
+    "cpu": {
+      "title": "CPU",
+      "description": "Max CPU usage of your server.",
+      "chartTitle": "Max CPU utilization per day",
+      "sharedNote": "Your compute instance has Shared CPU cores.",
+      "dedicatedNote": "Your compute instance has Dedicated CPU cores."
+    },
+    "memory": {
+      "title": "Memory",
+      "description": "Memory usage of your server.",
+      "chartTitle": "Max memory utilization per day",
+      "note": "You may observe elevated memory usage even with little to no load. Postgres and background services contribute to baseline memory usage."
+    },
+    "diskIo": {
+      "title": "Disk IO Bandwidth",
+      "description": "Disk performance is determined by your compute tier's IO bandwidth.",
+      "chartTitle": "Disk IO consumed per day",
+      "note": "Smaller instances can burst above baseline throughput for short periods. Beyond that, performance reverts to baseline.",
+      "overview": "Overview",
+      "instance": "Current compute instance",
+      "baseline": "Baseline IO Bandwidth",
+      "maximum": "Maximum IO Bandwidth (burst limit)",
+      "burstTime": "Daily burst time limit",
+      "mbps": "{{value}} Mbps",
+      "mins": "{{value}} mins"
+    }
+  },
+  "errors": {
+    "nodesLoad": "Couldn't load node data",
+    "retry": "Retry"
+  },
+  "units": {
+    "vcpu": "vCPU",
+    "gb": "GB",
+    "nodes_one": "{{count}} node",
+    "nodes_other": "{{count}} nodes",
+    "regions_one": "{{count}} region",
+    "regions_other": "{{count}} regions"
+  }
+}

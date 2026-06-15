@@ -1,0 +1,97 @@
+name: Desktop CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/desktop/**'
+      - 'apps/server/**'
+      - 'packages/**'
+      - '.github/workflows/desktop-ci.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'apps/desktop/**'
+      - 'apps/server/**'
+      - 'packages/**'
+      - '.github/workflows/desktop-ci.yml'
+
+concurrency:
+  group: desktop-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Desktop (${{ matrix.os }})
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+          # Windows runners are best-effort for now — tooling parity for
+          # Bun's `--compile` + keyring-native features on Windows runners
+          # still needs shake-out. Don't block PRs on Windows red.
+          - os: windows-latest
+            continue-on-error: true
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Install Linux native deps
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            libxdo-dev
+
+      - name: Install workspace deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build sidecar binary
+        run: pnpm --filter server build:desktop
+
+      - name: Rust format check
+        working-directory: apps/desktop/src-tauri
+        run: cargo fmt --check
+
+      - name: Rust clippy
+        working-directory: apps/desktop/src-tauri
+        run: cargo clippy --release --tests -- -D warnings
+
+      - name: Rust tests
+        working-directory: apps/desktop/src-tauri
+        run: cargo test
+
+      - name: Rust release build
+        working-directory: apps/desktop/src-tauri
+        run: cargo build --release

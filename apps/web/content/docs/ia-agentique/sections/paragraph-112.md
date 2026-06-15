@@ -1,0 +1,1 @@
+*Par segment : les entreprises régulées captent les plus grandes économies d'infrastructure et de conformité ; les acteurs à forte croissance captent la rentabilité la plus rapide ; le mid-market se situe entre les deux. Dans tous les cas, la rentabilité arrive dans les deux premiers trimestres.*

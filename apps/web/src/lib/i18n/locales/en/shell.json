@@ -1,0 +1,130 @@
+{
+  "topbar": {
+    "trigger": {
+      "ariaLabel": "Switch project or organization"
+    }
+  },
+  "appsPicker": {
+    "triggerTitle": "Apps",
+    "triggerAria": "Browse and pin apps",
+    "title": "Apps",
+    "subtitle": "Open an app or pin it to the sidebar.",
+    "pin": "Pin {{app}} to sidebar",
+    "unpin": "Unpin {{app}} from sidebar"
+  },
+  "dropdown": {
+    "section": {
+      "project": "PROJECT",
+      "organization": "ORGANIZATION"
+    },
+    "shortcut": {
+      "projectSettings": "Project settings",
+      "inviteMembers": "Invite members",
+      "billing": "Billing",
+      "organizationSettings": "Organization settings"
+    }
+  },
+  "submenu": {
+    "project": {
+      "searchPlaceholder": "Search projects…",
+      "newProject": "New project"
+    },
+    "org": {
+      "searchPlaceholder": "Search organizations…",
+      "newOrganization": "New organization",
+      "role": {
+        "owner": "owner",
+        "admin": "admin",
+        "member": "member"
+      }
+    }
+  },
+  "dialog": {
+    "newProject": {
+      "title": "Create a new project",
+      "nameLabel": "Name",
+      "slugLabel": "Slug",
+      "submit": "Create project",
+      "cancel": "Cancel",
+      "error": {
+        "nameRequired": "Project name is required.",
+        "slugTaken": "This slug is already used by another project."
+      }
+    },
+    "newOrganization": {
+      "title": "Create a new organization",
+      "nameLabel": "Name",
+      "slugLabel": "Slug",
+      "submit": "Create organization",
+      "cancel": "Cancel",
+      "error": {
+        "nameRequired": "Organization name is required.",
+        "slugTaken": "This slug is already used by another organization."
+      }
+    }
+  },
+  "errors": {
+    "loadFailed": "Couldn't load projects or organizations. Try again."
+  },
+  "newTab": {
+    "title": "New Tab",
+    "subtitle": "Navigate to a section or search for an app.",
+    "searchPlaceholder": "Search apps…",
+    "noResults": "No apps match your search.",
+    "pinnedSection": "Quick Access",
+    "openInBackground": "Open in background"
+  },
+  "tabGroup": {
+    "selected": "selected",
+    "groupSelected": "Group {{count}} tabs",
+    "unnamedGroup": "Unnamed group",
+    "contextMenu": {
+      "addToGroup": "Add to group",
+      "newGroup": "New group",
+      "removeFromGroup": "Remove from group",
+      "moveToGroup": "Move to group",
+      "ungroupAll": "Ungroup all",
+      "renameGroup": "Rename group",
+      "collapse": "Collapse group",
+      "expand": "Expand group",
+      "closeGroup": "Close group",
+      "pinGroup": "Pin group"
+    },
+    "colors": {
+      "grey": "Grey",
+      "blue": "Blue",
+      "red": "Red",
+      "yellow": "Yellow",
+      "green": "Green",
+      "pink": "Pink",
+      "purple": "Purple",
+      "cyan": "Cyan"
+    }
+  },
+  "tabSwitcher": {
+    "title": "Switch Tab",
+    "hint": "Release Ctrl to open"
+  },
+  "quickTabSwitcher": {
+    "title": "Open Tab",
+    "placeholder": "Search open tabs…",
+    "noResults": "No tabs match"
+  },
+  "tab": {
+    "provider": {
+      "aws": "AWS",
+      "gcp": "GCP",
+      "azure": "Azure",
+      "on-premise": "On-Prem",
+      "unknown": "Unknown"
+    },
+    "app": {
+      "infrastructure": "Infrastructure",
+      "topology": "Topology",
+      "databases": "Databases",
+      "performance-profiles": "Perf Profiles"
+    },
+    "attention": "Needs Attention",
+    "unclustered": "Unclustered"
+  }
+}

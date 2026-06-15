@@ -1,0 +1,1 @@
+**Codage assisté et autonome.** L'agent dispose de compétences pour brancher, instantanéifier et revenir en arrière sur les données, en parallèle du code. Le versioning des données devient un élément de premier plan de la boucle de codage.

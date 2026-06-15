@@ -1,0 +1,1 @@
+Le tableau ci-dessous met ces niveaux en regard. À gauche, l'évolution que l'IA enclenche. À droite, le maillon qui en limite encore le rendement. Le constat de la Section 1 se généralise ainsi à toute l'organisation.

@@ -1,0 +1,434 @@
+{
+  "list": {
+    "title": "Nodes",
+    "description": "Compute capacity for this project. Manage, inspect, and retire individual nodes.",
+    "searchPlaceholder": "Search by name, ID, or tag…",
+    "create": "New node",
+    "emptyRows": "No nodes match the current view.",
+    "showing": "Showing {{shown}} of {{total}} nodes",
+    "total": "{{total}} nodes",
+    "ofTotal": "of {{total}} total",
+    "refresh": "Refresh",
+    "viewList": "List view",
+    "viewGrid": "Grid view",
+    "options": "Options",
+    "configureShortcuts": "Configure quick filters",
+    "quickFilters": "Quick filters",
+    "lastUpdated": "Updated {{when}}",
+    "autoRefreshOn": "Live",
+    "autoRefreshOff": "Paused",
+    "autoRefreshEnable": "Enable auto-refresh (every 30s)",
+    "autoRefreshDisable": "Disable auto-refresh"
+  },
+  "common": {
+    "none": "—"
+  },
+  "kind": {
+    "standard-2": "Standard · 2 vCPU",
+    "standard-4": "Standard · 4 vCPU",
+    "standard-8": "Standard · 8 vCPU",
+    "highmem-4": "High Memory · 4 vCPU",
+    "highmem-8": "High Memory · 8 vCPU",
+    "highcpu-8": "High CPU · 8 vCPU"
+  },
+  "col": {
+    "name": "Name",
+    "nodeId": "Node ID",
+    "region": "Region",
+    "kind": "Specs",
+    "lifecycle": "Lifecycle",
+    "cpu": "vCPUs",
+    "memory": "Memory",
+    "provider": "Provider",
+    "providerLegend": {
+      "title": "Provider icons",
+      "aria": "Explain provider icons"
+    },
+    "cluster": "Cluster",
+    "ip": "Private IP",
+    "owner": "Owner",
+    "lastSeen": "Last seen",
+    "lastSeenNever": "Never",
+    "tags": "Tags",
+    "created": "Created",
+    "updated": "Last updated",
+    "actions": "Actions",
+    "health": "Health"
+  },
+  "attentionContext": {
+    "banner": "Showing nodes needing attention — critical or degraded health",
+    "dismiss": "Clear filter"
+  },
+  "provider": {
+    "aws": "AWS",
+    "gcp": "GCP",
+    "azure": "Azure",
+    "on-premise": "On-Premise"
+  },
+  "filters": {
+    "trigger": "Filters",
+    "addRule": "Add rule",
+    "clear": "Clear all",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "any": "Any",
+    "selectedCount_one": "{{count}} selected",
+    "selectedCount_other": "{{count}} selected",
+    "empty": "No filters yet. Add one to narrow the list.",
+    "removeRule": "Remove filter",
+    "maxRules": "Maximum of {{max}} filters reached."
+  },
+  "columns": {
+    "label": "Columns",
+    "reset": "Reset to defaults",
+    "reorderAria": "Reorder columns",
+    "resizeAria": "Resize column"
+  },
+  "pagination": {
+    "page": "Page {{current}} of {{total}}",
+    "prev": "Previous page",
+    "next": "Next page",
+    "showing": "{{from}}–{{to}} of {{total}}",
+    "ofTotal": "of {{total}} total",
+    "rowsPerPage": "per page",
+    "colsPerRow": "per row"
+  },
+  "bulk": {
+    "selectedCount_one": "{{count}} selected",
+    "selectedCount_other": "{{count}} selected",
+    "selectedWord": "Selected",
+    "selectedAll": "All selected",
+    "selectAll": "Select all nodes",
+    "selectRow": "Select node",
+    "clearSelection": "Clear selection",
+    "overflow": "More actions",
+    "copyIds": "Copy IDs",
+    "copyIdsSuccess_one": "Copied {{count}} ID",
+    "copyIdsSuccess_other": "Copied {{count}} IDs",
+    "copyJson": "Copy JSON",
+    "copyJsonSuccess_one": "Copied 1 node as JSON",
+    "copyJsonSuccess_other": "Copied {{count}} nodes as JSON",
+    "exportCsv": "Export CSV",
+    "exportCsvSuccess_one": "Exported 1 node",
+    "exportCsvSuccess_other": "Exported {{count}} nodes",
+    "start": "Start",
+    "startSuccess_one": "Started {{count}} node",
+    "startSuccess_other": "Started {{count}} nodes",
+    "startFailed": "Failed to start some nodes.",
+    "startNoneEligible": "All selected nodes are already running or draining.",
+    "stop": "Stop",
+    "stopSuccess_one": "Stopped {{count}} node",
+    "stopSuccess_other": "Stopped {{count}} nodes",
+    "stopFailed": "Failed to stop some nodes.",
+    "stopNoneEligible": "All selected nodes are already stopped.",
+    "drain": "Drain",
+    "drainSuccess_one": "Draining {{count}} node",
+    "drainSuccess_other": "Draining {{count}} nodes",
+    "drainFailed": "Failed to drain some nodes.",
+    "drainNoneEligible": "Only running nodes can be drained. None of the selected nodes are running.",
+    "drainCancelSuccess_one": "Drain cancelled on {{count}} node",
+    "drainCancelSuccess_other": "Drain cancelled on {{count}} nodes",
+    "drainCancelFailed": "Failed to cancel drain.",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete selected nodes?",
+    "deleteConfirmDescription_one": "This will permanently delete 1 node. This cannot be undone.",
+    "deleteConfirmDescription_other": "This will permanently delete {{count}} nodes. This cannot be undone.",
+    "deleteConfirm": "Delete",
+    "deleteSuccess_one": "Deleted 1 node",
+    "deleteSuccess_other": "Deleted {{count}} nodes",
+    "deleteFailed": "Failed to delete the selected nodes.",
+    "deletePartial": "{{succeeded}} deleted, {{failed}} failed"
+  },
+  "empty": {
+    "title": "No nodes yet",
+    "description": "Create your first compute node to start running workloads in this project.",
+    "cta": "New node",
+    "docs": "View docs",
+    "filteredTitle": "Nothing matches your filters",
+    "filteredDescription": "Try clearing filters or broadening the search.",
+    "clearFilters": "Clear filters and search"
+  },
+  "error": {
+    "title": "Couldn't load nodes",
+    "description": "The API returned an error. Retry or try again in a moment.",
+    "retry": "Retry"
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "view": "Quick view",
+    "openInTab": "Open in tab",
+    "start": "Start",
+    "stop": "Stop",
+    "drain": "Drain",
+    "cancelDrain": "Cancel drain",
+    "delete": "Delete",
+    "select": "Select"
+  },
+  "create": {
+    "title": "New node",
+    "description": "Add a compute node to this project.",
+    "submit": "Create node",
+    "cancel": "Cancel",
+    "creating": "Creating…",
+    "success": "Node created",
+    "failed": "Failed to create node.",
+    "field": {
+      "name": "Name",
+      "namePlaceholder": "e.g. prod-node-01",
+      "kind": "Type",
+      "region": "Region",
+      "cpu": "vCPUs",
+      "cpuPlaceholder": "e.g. 4",
+      "memory": "Memory (GB)",
+      "memoryPlaceholder": "e.g. 16",
+      "provider": "Provider",
+      "cluster": "Cluster",
+      "clusterPlaceholder": "e.g. prod-cluster-01",
+      "ip": "Private IP",
+      "ipPlaceholder": "e.g. 10.0.0.1",
+      "owner": "Owner",
+      "ownerPlaceholder": "e.g. team-platform",
+      "tags": "Tags",
+      "tagsPlaceholder": "Type and press Enter or comma"
+    }
+  },
+  "edit": {
+    "button": "Edit node",
+    "submit": "Save changes",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "success": "Node updated",
+    "failed": "Failed to update node.",
+    "field": {
+      "name": "Name",
+      "lifecycle": "Lifecycle",
+      "kind": "Type",
+      "region": "Region",
+      "cpu": "vCPUs",
+      "cpuPlaceholder": "e.g. 4",
+      "memory": "Memory (GB)",
+      "memoryPlaceholder": "e.g. 16",
+      "provider": "Provider",
+      "cluster": "Cluster",
+      "clusterPlaceholder": "e.g. prod-cluster-01",
+      "ip": "Private IP",
+      "ipPlaceholder": "e.g. 10.0.0.1",
+      "owner": "Owner",
+      "ownerPlaceholder": "e.g. team-platform",
+      "tags": "Tags",
+      "tagsPlaceholder": "Type and press Enter or comma"
+    }
+  },
+  "card": {
+    "select": "Select node",
+    "viewDetails": "View details",
+    "actions": "Node actions",
+    "createdRelative": "Created {{when}}"
+  },
+  "details": {
+    "title": "Node details",
+    "section": {
+      "specs": "Specs",
+      "infrastructure": "Infrastructure",
+      "metrics": "Metrics (24h)",
+      "tags": "Tags"
+    },
+    "metricsCpu": "CPU %",
+    "metricsMem": "Memory %",
+    "metricsAriaLabel": "24h CPU and memory utilization",
+    "metricsUnavailable": "No metrics available",
+    "metricsMockNotice": "Mock data",
+    "noTags": "No tags on this node.",
+    "copyId": "Copy ID",
+    "idCopied": "Node ID copied",
+    "delete": "Delete node",
+    "deleteConfirmTitle": "Delete this node?",
+    "deleteConfirmDescription": "\"{{name}}\" will be permanently removed. This cannot be undone.",
+    "deleteDangerHint": "Permanently removes this node from the project. This action cannot be undone.",
+    "deleteNamePrompt": "Type the node name to confirm",
+    "deleteNamePlaceholder": "Node name",
+    "deleteConfirm": "Delete node",
+    "deleteSuccess": "Node deleted",
+    "deleteFailed": "Failed to delete this node.",
+    "errorTitle": "Failed to load node",
+    "notFound": "This node no longer exists.",
+    "jsonCopied": "Node JSON copied",
+    "toast": {
+      "starting": "Starting node {{name}}...",
+      "stopping": "Stopping node {{name}}...",
+      "draining": "Draining node {{name}}..."
+    }
+  },
+  "detail": {
+    "backToList": "Back to list",
+    "tabs": {
+      "services": "Services",
+      "storage": "Storage",
+      "cpu": "CPU",
+      "memory": "Memory"
+    },
+    "cpu": {
+      "utilization": "CPU utilization",
+      "specs": "Specs",
+      "kind": "Machine kind",
+      "region": "Region",
+      "history": "Last 24 hours"
+    },
+    "memory": {
+      "utilization": "Memory utilization",
+      "specs": "Specs",
+      "history": "Last 24 hours"
+    },
+    "storage": {
+      "volumes": "Volumes",
+      "empty": {
+        "title": "No volume data",
+        "description": "Storage breakdown will appear here once disk metrics are wired into the agent."
+      }
+    },
+    "services": {
+      "workloads": "Running workloads",
+      "empty": {
+        "title": "No services reported",
+        "description": "Services running on this node will appear here when the orchestrator reports them."
+      }
+    },
+    "summary": {
+      "title": "Live utilization",
+      "disk": "Disk",
+      "diskLine": "{{used}}% of {{total}} GB",
+      "noDisk": "No disk telemetry yet"
+    },
+    "chart": {
+      "caption": "CPU and memory over the last 24 hours."
+    },
+    "specsPanel": {
+      "title": "Identity",
+      "kind": "Machine type",
+      "created": "Created",
+      "updated": "Last updated",
+      "owner": "Owner",
+      "nodeId": "Node ID"
+    },
+    "footer": {
+      "stateAsOf": "Snapshot as of {{when}}"
+    },
+    "copyField": "Copy {{field}}",
+    "copied": "Copied",
+    "notFound": {
+      "title": "Node not found",
+      "description": "The node you tried to open no longer exists or was deleted."
+    }
+  },
+  "units": {
+    "vcpu": "vCPU",
+    "gb": "GB",
+    "vcpuCount": "{{count}} vCPU",
+    "gbCount": "{{count}} GB"
+  },
+  "aria": {
+    "cpuHeatBar": "{{count}} vCPU ({{util}}% util)",
+    "memoryHeatBar": "{{count}} GB ({{util}}% util)",
+    "lastSeen": "Last seen: {{when}}"
+  },
+  "labels": {
+    "lastSeenPrefix": "Last seen:"
+  },
+  "health": {
+    "healthy": "Healthy",
+    "degraded": "Degraded",
+    "down": "Down",
+    "critical": "Critical",
+    "unknown": "Unknown"
+  },
+  "lifecycle": {
+    "provisioning": "Provisioning",
+    "active": "Active",
+    "stopping": "Stopping",
+    "stopped": "Stopped",
+    "terminating": "Terminating",
+    "terminated": "Terminated"
+  },
+  "orchestration": {
+    "unknown": "Unknown",
+    "initializing": "Initializing",
+    "ready": "Ready",
+    "down": "Down",
+    "disconnected": "Disconnected"
+  },
+  "eligibility": {
+    "eligible": "Eligible",
+    "ineligible": "Ineligible",
+    "toggle": "Toggle eligibility",
+    "tooltipEligible": "Scheduler can place new workloads here.",
+    "tooltipIneligible": "Cordoned — scheduler skips this node."
+  },
+  "drain": {
+    "title": "Drain node",
+    "description": "Stop scheduling new work and migrate existing workloads off this node.",
+    "deadline": "Deadline",
+    "deadlineNone": "No deadline",
+    "deadlinePresets": {
+      "fifteenMinutes": "15 minutes",
+      "thirtyMinutes": "30 minutes",
+      "oneHour": "1 hour",
+      "fourHours": "4 hours",
+      "none": "No deadline"
+    },
+    "ignoreSystemJobs": "Ignore system jobs",
+    "ignoreSystemJobsHelp": "Leave critical platform jobs running while user workloads drain.",
+    "force": "Force drain",
+    "forceHelp": "Skip the soft deadline if migrations stall.",
+    "setIneligibleOnStart": "Mark ineligible while draining",
+    "setIneligibleOnStartHelp": "Default — orchestration scheduler stops placing new work here.",
+    "start": "Start drain",
+    "cancel": "Cancel drain",
+    "submit": "Drain",
+    "submitting": "Draining…",
+    "banner": {
+      "draining": "Draining",
+      "deadline": "Completes in {{remaining}}",
+      "deadlineNone": "No deadline set — drain runs until cancelled.",
+      "stalled": "Drain stalled — orchestrator hasn't reported progress.",
+      "cancel": "Cancel drain"
+    },
+    "confirm": {
+      "title": "Drain {{name}}?",
+      "body": "Existing workloads will be migrated. New work will not land here until the drain is cancelled or the lifecycle is restored."
+    }
+  },
+  "displayState": {
+    "running": "Running",
+    "pending": "Pending",
+    "degraded": "Degraded",
+    "critical": "Critical",
+    "draining": "Draining",
+    "ineligible": "Ineligible",
+    "unreachable": "Unreachable",
+    "inactive": "Inactive"
+  },
+  "palette": {
+    "placeholder": "Search nodes, filters, actions…",
+    "empty": "No results.",
+    "actionsHeading": "Actions",
+    "filterLifecycleHeading": "Toggle lifecycle filter",
+    "filterProviderHeading": "Toggle provider filter",
+    "jumpHeading": "Jump to node",
+    "viewList": "Switch to list view",
+    "viewGrid": "Switch to grid view"
+  },
+  "errors": {
+    "conflictStale": "Node was changed elsewhere — reloading"
+  },
+  "storage": {
+    "title": "Storage",
+    "utilization": "Utilization",
+    "specs": "Specs",
+    "totalDisk": "Disk",
+    "gb": "GB",
+    "empty": {
+      "title": "No volumes attached",
+      "description": "Storage volumes for this node will appear here once provisioned."
+    }
+  }
+}

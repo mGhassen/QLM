@@ -1,0 +1,1402 @@
+{
+  "version": 1,
+  "layoutMode": "paginated",
+  "pageFormat": "a4",
+  "chrome": {
+    "headerLeft": "IA agentique",
+    "headerRight": "Guepard Strategic Research",
+    "footerLeft": "guepard.run",
+    "footerRight": "Page {{page}}",
+    "showOnCover": false
+  },
+  "theme": {
+    "brand": "#ffcb51",
+    "ink": "#161616",
+    "surface": "#ffffff",
+    "bg": "#f2f2f2",
+    "eyebrow": "#6a9955"
+  },
+  "blocks": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "children": [
+        {
+          "id": "cover-brand",
+          "type": "brand",
+          "contentRef": "sections/cover-brand.md"
+        },
+        {
+          "id": "cover-body",
+          "type": "coverBody",
+          "children": [
+            {
+              "id": "cover-kicker",
+              "type": "paragraph",
+              "props": {
+                "className": "kicker"
+              },
+              "contentRef": "sections/cover-kicker.md"
+            },
+            {
+              "id": "cover-title",
+              "type": "subheading",
+              "props": {
+                "level": 1
+              },
+              "contentRef": "sections/cover-title.md"
+            },
+            {
+              "id": "cover-subt",
+              "type": "coverSubt",
+              "contentRef": "sections/cover-subt.md"
+            },
+            {
+              "id": "cover-desc",
+              "type": "paragraph",
+              "props": {
+                "className": "cover-desc"
+              },
+              "contentRef": "sections/cover-desc.md"
+            },
+            {
+              "id": "cover-panel",
+              "type": "grid",
+              "props": {
+                "cols": 2,
+                "className": "cover-panel",
+                "colWidths": [
+                  1.15,
+                  1
+                ],
+                "gap": 7
+              },
+              "children": [
+                {
+                  "id": "cover-about",
+                  "type": "card",
+                  "props": {
+                    "variant": "t-ink",
+                    "title": "À propos de ce rapport",
+                    "className": "cover-panel-block cover-about"
+                  },
+                  "contentRef": "sections/cover-about.md"
+                },
+                {
+                  "id": "cover-toc",
+                  "type": "flow",
+                  "contentRef": "sections/cover-toc.md"
+                }
+              ]
+            },
+            {
+              "id": "cover-foot-left",
+              "type": "paragraph",
+              "contentRef": "sections/cover-foot-left.md"
+            },
+            {
+              "id": "cover-foot-right",
+              "type": "paragraph",
+              "props": {
+                "className": "cover-foot-right"
+              },
+              "contentRef": "sections/cover-foot-right.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "synthese",
+      "type": "section",
+      "props": {
+        "id": "synthese",
+        "pageBreak": true
+      },
+      "children": [
+        {
+          "id": "seclabel-1",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-1.md"
+        },
+        {
+          "id": "opener-2",
+          "type": "opener",
+          "props": {},
+          "contentRef": "sections/opener-2.md"
+        },
+        {
+          "id": "split-5",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-3",
+              "type": "main",
+              "contentRef": "sections/main-3.md"
+            },
+            {
+              "id": "rail-4",
+              "type": "rail",
+              "props": {
+                "variant": "dark"
+              },
+              "contentRef": "sections/rail-4.md"
+            }
+          ]
+        },
+        {
+          "id": "alert-6",
+          "type": "alert",
+          "props": {
+            "variant": "insight",
+            "tag": "La thèse en une phrase",
+            "big": true
+          },
+          "contentRef": "sections/alert-6.md"
+        },
+        {
+          "id": "flow-7",
+          "type": "flow",
+          "contentRef": "sections/flow-7.md"
+        }
+      ]
+    },
+    {
+      "id": "hypotheses",
+      "type": "section",
+      "props": {
+        "id": "hypotheses",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-8",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-8.md"
+        },
+        {
+          "id": "opener-9",
+          "type": "opener",
+          "props": {},
+          "contentRef": "sections/opener-9.md"
+        },
+        {
+          "id": "paragraph-10",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-10.md"
+        },
+        {
+          "id": "grid-15",
+          "type": "grid",
+          "props": {
+            "cols": 2
+          },
+          "children": [
+            {
+              "id": "card-11",
+              "type": "card",
+              "props": {
+                "variant": "t-yellow"
+              },
+              "contentRef": "sections/card-11.md"
+            },
+            {
+              "id": "card-12",
+              "type": "card",
+              "props": {
+                "variant": "t-yellow"
+              },
+              "contentRef": "sections/card-12.md"
+            },
+            {
+              "id": "card-13",
+              "type": "card",
+              "props": {
+                "variant": "t-yellow"
+              },
+              "contentRef": "sections/card-13.md"
+            },
+            {
+              "id": "card-14",
+              "type": "card",
+              "props": {
+                "variant": "t-yellow"
+              },
+              "contentRef": "sections/card-14.md"
+            }
+          ]
+        },
+        {
+          "id": "alert-16",
+          "type": "alert",
+          "props": {
+            "variant": "read",
+            "tag": "Définition",
+            "big": false
+          },
+          "contentRef": "sections/alert-16.md"
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "type": "section",
+      "props": {
+        "id": "s1",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-17",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-17.md"
+        },
+        {
+          "id": "opener-18",
+          "type": "opener",
+          "props": {
+            "number": "1"
+          },
+          "contentRef": "sections/opener-18.md"
+        },
+        {
+          "id": "flow-19",
+          "type": "flow",
+          "contentRef": "sections/flow-19.md"
+        },
+        {
+          "id": "subheading-20",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-20.md"
+        },
+        {
+          "id": "paragraph-21",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-21.md"
+        },
+        {
+          "id": "grid-25",
+          "type": "grid",
+          "props": {
+            "cols": 3
+          },
+          "children": [
+            {
+              "id": "card-22",
+              "type": "card",
+              "props": {
+                "variant": "t-ink"
+              },
+              "contentRef": "sections/card-22.md"
+            },
+            {
+              "id": "card-23",
+              "type": "card",
+              "props": {
+                "variant": "t-ink"
+              },
+              "contentRef": "sections/card-23.md"
+            },
+            {
+              "id": "card-24",
+              "type": "card",
+              "props": {
+                "variant": "t-ink"
+              },
+              "contentRef": "sections/card-24.md"
+            }
+          ]
+        },
+        {
+          "id": "split-28",
+          "type": "split",
+          "props": {
+            "reverse": true,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-26",
+              "type": "main",
+              "contentRef": "sections/main-26.md"
+            },
+            {
+              "id": "rail-27",
+              "type": "rail",
+              "props": {
+                "variant": "note",
+                "heading": "Repères"
+              },
+              "contentRef": "sections/rail-27.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "type": "section",
+      "props": {
+        "id": "s2",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-29",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-29.md"
+        },
+        {
+          "id": "opener-30",
+          "type": "opener",
+          "props": {
+            "number": "2"
+          },
+          "contentRef": "sections/opener-30.md"
+        },
+        {
+          "id": "paragraph-31",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-31.md"
+        },
+        {
+          "id": "paragraph-32",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-32.md"
+        },
+        {
+          "id": "levels-45",
+          "type": "levels",
+          "props": {
+            "headers": [
+              "Ce que l'IA change",
+              "Le maillon manquant"
+            ],
+            "highlightLastHeader": true,
+            "colFlex": [
+              1,
+              1
+            ]
+          },
+          "children": [
+            {
+              "id": "level-35",
+              "type": "level",
+              "props": {
+                "level": 1,
+                "name": "Stratégie",
+                "highlightCol": true
+              },
+              "children": [
+                {
+                  "id": "lvlcol-33",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-33.md"
+                },
+                {
+                  "id": "lvlcol-34",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-34.md"
+                }
+              ]
+            },
+            {
+              "id": "level-38",
+              "type": "level",
+              "props": {
+                "level": 2,
+                "name": "Organisation",
+                "highlightCol": true
+              },
+              "children": [
+                {
+                  "id": "lvlcol-36",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-36.md"
+                },
+                {
+                  "id": "lvlcol-37",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-37.md"
+                }
+              ]
+            },
+            {
+              "id": "level-41",
+              "type": "level",
+              "props": {
+                "level": 3,
+                "name": "Opérations",
+                "highlightCol": true
+              },
+              "children": [
+                {
+                  "id": "lvlcol-39",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-39.md"
+                },
+                {
+                  "id": "lvlcol-40",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-40.md"
+                }
+              ]
+            },
+            {
+              "id": "level-44",
+              "type": "level",
+              "props": {
+                "level": 4,
+                "name": "Socle : systèmes et données",
+                "highlightCol": true
+              },
+              "children": [
+                {
+                  "id": "lvlcol-42",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-42.md"
+                },
+                {
+                  "id": "lvlcol-43",
+                  "type": "lvlcol",
+                  "contentRef": "sections/lvlcol-43.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "subheading-46",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-46.md"
+        },
+        {
+          "id": "paragraph-47",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-47.md"
+        },
+        {
+          "id": "vm-50",
+          "type": "vm",
+          "children": [
+            {
+              "id": "vmcol-48",
+              "type": "vmcol",
+              "contentRef": "sections/vmcol-48.md"
+            },
+            {
+              "id": "vmcol-49",
+              "type": "vmcol",
+              "contentRef": "sections/vmcol-49.md"
+            }
+          ]
+        },
+        {
+          "id": "alert-51",
+          "type": "alert",
+          "props": {
+            "variant": "insight",
+            "tag": "Ce qu'il faut retenir",
+            "big": true
+          },
+          "contentRef": "sections/alert-51.md"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "section",
+      "props": {
+        "id": "s3",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-52",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-52.md"
+        },
+        {
+          "id": "opener-53",
+          "type": "opener",
+          "props": {
+            "number": "3"
+          },
+          "contentRef": "sections/opener-53.md"
+        },
+        {
+          "id": "split-56",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-54",
+              "type": "main",
+              "contentRef": "sections/main-54.md"
+            },
+            {
+              "id": "rail-55",
+              "type": "rail",
+              "props": {
+                "variant": "note",
+                "heading": "La cadence, enjeu concurrentiel"
+              },
+              "contentRef": "sections/rail-55.md"
+            }
+          ]
+        },
+        {
+          "id": "subheading-57",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-57.md"
+        },
+        {
+          "id": "paragraph-58",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-58.md"
+        },
+        {
+          "id": "grid-67",
+          "type": "grid",
+          "props": {
+            "cols": 4
+          },
+          "children": [
+            {
+              "id": "card-59",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-59.md"
+            },
+            {
+              "id": "card-60",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-60.md"
+            },
+            {
+              "id": "card-61",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-61.md"
+            },
+            {
+              "id": "card-62",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-62.md"
+            },
+            {
+              "id": "card-63",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-63.md"
+            },
+            {
+              "id": "card-64",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-64.md"
+            },
+            {
+              "id": "card-65",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-65.md"
+            },
+            {
+              "id": "card-66",
+              "type": "card",
+              "props": {
+                "variant": "req"
+              },
+              "contentRef": "sections/card-66.md"
+            }
+          ]
+        },
+        {
+          "id": "hero-68",
+          "type": "hero",
+          "props": {
+            "tag": "Le maillon à mettre au diapason"
+          },
+          "contentRef": "sections/hero-68.md"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "type": "section",
+      "props": {
+        "id": "s4",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-69",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-69.md"
+        },
+        {
+          "id": "opener-70",
+          "type": "opener",
+          "props": {
+            "number": "4"
+          },
+          "contentRef": "sections/opener-70.md"
+        },
+        {
+          "id": "paragraph-71",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-71.md"
+        },
+        {
+          "id": "subheading-72",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-72.md"
+        },
+        {
+          "id": "grid-80",
+          "type": "grid",
+          "props": {
+            "cols": 2
+          },
+          "children": [
+            {
+              "id": "pat-73",
+              "type": "pat",
+              "props": {
+                "number": "1"
+              },
+              "contentRef": "sections/pat-73.md"
+            },
+            {
+              "id": "pat-74",
+              "type": "pat",
+              "props": {
+                "number": "2"
+              },
+              "contentRef": "sections/pat-74.md"
+            },
+            {
+              "id": "pat-75",
+              "type": "pat",
+              "props": {
+                "number": "3"
+              },
+              "contentRef": "sections/pat-75.md"
+            },
+            {
+              "id": "pat-76",
+              "type": "pat",
+              "props": {
+                "number": "4"
+              },
+              "contentRef": "sections/pat-76.md"
+            },
+            {
+              "id": "pat-77",
+              "type": "pat",
+              "props": {
+                "number": "5"
+              },
+              "contentRef": "sections/pat-77.md"
+            },
+            {
+              "id": "pat-78",
+              "type": "pat",
+              "props": {
+                "number": "6"
+              },
+              "contentRef": "sections/pat-78.md"
+            },
+            {
+              "id": "pat-79",
+              "type": "pat",
+              "props": {
+                "number": "7"
+              },
+              "contentRef": "sections/pat-79.md"
+            }
+          ]
+        },
+        {
+          "id": "quote-81",
+          "type": "quote",
+          "props": {
+            "variant": "pull"
+          },
+          "contentRef": "sections/quote-81.md"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "type": "section",
+      "props": {
+        "id": "s5",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-82",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-82.md"
+        },
+        {
+          "id": "opener-83",
+          "type": "opener",
+          "props": {
+            "number": "5"
+          },
+          "contentRef": "sections/opener-83.md"
+        },
+        {
+          "id": "hero-84",
+          "type": "hero",
+          "props": {
+            "tag": "DataOps agentique"
+          },
+          "contentRef": "sections/hero-84.md"
+        },
+        {
+          "id": "split-87",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-85",
+              "type": "main",
+              "contentRef": "sections/main-85.md"
+            },
+            {
+              "id": "rail-86",
+              "type": "rail",
+              "props": {
+                "variant": "note",
+                "heading": "Quatre capacités"
+              },
+              "contentRef": "sections/rail-86.md"
+            }
+          ]
+        },
+        {
+          "id": "table-88",
+          "type": "table",
+          "props": {
+            "title": "Tableau 1 · Le modèle de maturité des données agentiques",
+            "variant": "text"
+          },
+          "contentRef": "sections/table-88.md"
+        },
+        {
+          "id": "engines-89",
+          "type": "engines",
+          "contentRef": "sections/engines-89.md"
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "type": "section",
+      "props": {
+        "id": "s6",
+        "pageBreak": true
+      },
+      "children": [
+        {
+          "id": "seclabel-90",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-90.md"
+        },
+        {
+          "id": "opener-91",
+          "type": "opener",
+          "props": {
+            "number": "6"
+          },
+          "contentRef": "sections/opener-91.md"
+        },
+        {
+          "id": "alert-92",
+          "type": "alert",
+          "props": {
+            "variant": "read",
+            "tag": "Comment lire cette section",
+            "big": false
+          },
+          "contentRef": "sections/alert-92.md"
+        },
+        {
+          "id": "table-93",
+          "type": "table",
+          "props": {
+            "title": "Tableau 2 · Démographie du panel modélisé (composite)",
+            "variant": ""
+          },
+          "contentRef": "sections/table-93.md"
+        },
+        {
+          "id": "split-96",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-94",
+              "type": "main",
+              "contentRef": "sections/main-94.md"
+            },
+            {
+              "id": "rail-95",
+              "type": "rail",
+              "props": {
+                "variant": "dark"
+              },
+              "contentRef": "sections/rail-95.md"
+            }
+          ]
+        },
+        {
+          "id": "subheading-97",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-97.md"
+        },
+        {
+          "id": "paragraph-98",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-98.md"
+        },
+        {
+          "id": "figure-99",
+          "type": "figure",
+          "props": {
+            "src": "/docs/ia-agentique/figure-1.png",
+            "caption": "Figure 3. Le coût annuel total des opérations de données passe de 18,6 à 8,4 millions d'euros, soit -55 %, la chute la plus forte portant sur l'infrastructure.",
+            "wide": false
+          },
+          "contentRef": "sections/figure-99.md"
+        },
+        {
+          "id": "table-100",
+          "type": "table",
+          "props": {
+            "title": "Tableau 3 · Réduction du coût d'infrastructure",
+            "variant": "hl"
+          },
+          "contentRef": "sections/table-100.md"
+        },
+        {
+          "id": "table-101",
+          "type": "table",
+          "props": {
+            "title": "Tableau 4 · Productivité des équipes IT (ETP récupérés)",
+            "variant": "hl"
+          },
+          "contentRef": "sections/table-101.md"
+        },
+        {
+          "id": "subheading-102",
+          "type": "subheading",
+          "props": {
+            "level": 3
+          },
+          "contentRef": "sections/subheading-102.md"
+        },
+        {
+          "id": "split-105",
+          "type": "split",
+          "props": {
+            "reverse": true,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-103",
+              "type": "main",
+              "contentRef": "sections/main-103.md"
+            },
+            {
+              "id": "rail-104",
+              "type": "rail",
+              "props": {
+                "variant": "img",
+                "src": "/docs/ia-agentique/figure-2.png"
+              },
+              "contentRef": "sections/rail-104.md"
+            }
+          ]
+        },
+        {
+          "id": "table-106",
+          "type": "table",
+          "props": {
+            "title": "Tableau 5 · Réduction du risque et de la charge de conformité",
+            "variant": "hl"
+          },
+          "contentRef": "sections/table-106.md"
+        },
+        {
+          "id": "subheading-107",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-107.md"
+        },
+        {
+          "id": "paragraph-108",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-108.md"
+        },
+        {
+          "id": "split-111",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-109",
+              "type": "main",
+              "contentRef": "sections/main-109.md"
+            },
+            {
+              "id": "rail-110",
+              "type": "rail",
+              "props": {
+                "variant": "quote",
+                "heading": ""
+              },
+              "contentRef": "sections/rail-110.md"
+            }
+          ]
+        },
+        {
+          "id": "paragraph-112",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-112.md"
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "type": "section",
+      "props": {
+        "id": "s7",
+        "pageBreak": true
+      },
+      "children": [
+        {
+          "id": "seclabel-113",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-113.md"
+        },
+        {
+          "id": "opener-114",
+          "type": "opener",
+          "props": {
+            "number": "7"
+          },
+          "contentRef": "sections/opener-114.md"
+        },
+        {
+          "id": "subheading-115",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-115.md"
+        },
+        {
+          "id": "quote-116",
+          "type": "quote",
+          "props": {
+            "variant": "cquote"
+          },
+          "contentRef": "sections/quote-116.md"
+        },
+        {
+          "id": "split-119",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-117",
+              "type": "main",
+              "contentRef": "sections/main-117.md"
+            },
+            {
+              "id": "rail-118",
+              "type": "rail",
+              "props": {
+                "variant": "dark"
+              },
+              "contentRef": "sections/rail-118.md"
+            }
+          ]
+        },
+        {
+          "id": "subheading-120",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-120.md"
+        },
+        {
+          "id": "split-123",
+          "type": "split",
+          "props": {
+            "reverse": false,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-121",
+              "type": "main",
+              "contentRef": "sections/main-121.md"
+            },
+            {
+              "id": "rail-122",
+              "type": "rail",
+              "props": {
+                "variant": "quote",
+                "heading": ""
+              },
+              "contentRef": "sections/rail-122.md"
+            }
+          ]
+        },
+        {
+          "id": "subheading-124",
+          "type": "subheading",
+          "props": {
+            "level": 2
+          },
+          "contentRef": "sections/subheading-124.md"
+        },
+        {
+          "id": "split-127",
+          "type": "split",
+          "props": {
+            "reverse": true,
+            "mainFlex": 1.75,
+            "railFlex": 1
+          },
+          "children": [
+            {
+              "id": "main-125",
+              "type": "main",
+              "contentRef": "sections/main-125.md"
+            },
+            {
+              "id": "rail-126",
+              "type": "rail",
+              "props": {
+                "variant": "quote",
+                "heading": ""
+              },
+              "contentRef": "sections/rail-126.md"
+            }
+          ]
+        },
+        {
+          "id": "alert-128",
+          "type": "alert",
+          "props": {
+            "variant": "read",
+            "tag": "Le fil conducteur",
+            "big": false
+          },
+          "contentRef": "sections/alert-128.md"
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "type": "section",
+      "props": {
+        "id": "s8",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-129",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-129.md"
+        },
+        {
+          "id": "opener-130",
+          "type": "opener",
+          "props": {
+            "number": "8"
+          },
+          "contentRef": "sections/opener-130.md"
+        },
+        {
+          "id": "paragraph-131",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-131.md"
+        },
+        {
+          "id": "table-132",
+          "type": "table",
+          "props": {
+            "title": "Tableau 6 · Comparaison directionnelle des approches, par capacité",
+            "variant": "text hl-last"
+          },
+          "contentRef": "sections/table-132.md"
+        },
+        {
+          "id": "flow-133",
+          "type": "flow",
+          "contentRef": "sections/flow-133.md"
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "type": "section",
+      "props": {
+        "id": "s9",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-134",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-134.md"
+        },
+        {
+          "id": "opener-135",
+          "type": "opener",
+          "props": {
+            "number": "9"
+          },
+          "contentRef": "sections/opener-135.md"
+        },
+        {
+          "id": "paragraph-136",
+          "type": "paragraph",
+          "props": {
+            "justify": true
+          },
+          "contentRef": "sections/paragraph-136.md"
+        },
+        {
+          "id": "grid-140",
+          "type": "grid",
+          "props": {
+            "cols": 3
+          },
+          "children": [
+            {
+              "id": "phase-137",
+              "type": "phase",
+              "props": {
+                "title": "90 premiers jours : diagnostiquer"
+              },
+              "contentRef": "sections/phase-137.md"
+            },
+            {
+              "id": "phase-138",
+              "type": "phase",
+              "props": {
+                "title": "Trimestres 2 et 3 : prouver"
+              },
+              "contentRef": "sections/phase-138.md"
+            },
+            {
+              "id": "phase-139",
+              "type": "phase",
+              "props": {
+                "title": "Trimestre 4 et au-delà : passer à l'échelle"
+              },
+              "contentRef": "sections/phase-139.md"
+            }
+          ]
+        },
+        {
+          "id": "alert-141",
+          "type": "alert",
+          "props": {
+            "variant": "insight",
+            "tag": "À quoi ressemble le succès en 2030",
+            "big": false
+          },
+          "contentRef": "sections/alert-141.md"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "section",
+      "props": {
+        "id": "s10",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-142",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-142.md"
+        },
+        {
+          "id": "opener-143",
+          "type": "opener",
+          "props": {
+            "number": "10"
+          },
+          "contentRef": "sections/opener-143.md"
+        },
+        {
+          "id": "flow-144",
+          "type": "flow",
+          "contentRef": "sections/flow-144.md"
+        },
+        {
+          "id": "hero-145",
+          "type": "hero",
+          "props": {
+            "tag": "La promesse"
+          },
+          "contentRef": "sections/hero-145.md"
+        },
+        {
+          "id": "alert-146",
+          "type": "alert",
+          "props": {
+            "variant": "read",
+            "tag": "Poursuivre la conversation",
+            "big": false
+          },
+          "contentRef": "sections/alert-146.md"
+        }
+      ]
+    },
+    {
+      "id": "annexe",
+      "type": "section",
+      "props": {
+        "id": "annexe",
+        "pageBreak": false
+      },
+      "children": [
+        {
+          "id": "seclabel-147",
+          "type": "seclabel",
+          "contentRef": "sections/seclabel-147.md"
+        },
+        {
+          "id": "opener-148",
+          "type": "opener",
+          "props": {},
+          "contentRef": "sections/opener-148.md"
+        },
+        {
+          "id": "flow-149",
+          "type": "flow",
+          "contentRef": "sections/flow-149.md"
+        },
+        {
+          "id": "alert-150",
+          "type": "alert",
+          "props": {
+            "variant": "insight",
+            "tag": "Guepard Strategic Research",
+            "big": false
+          },
+          "contentRef": "sections/alert-150.md"
+        }
+      ]
+    }
+  ]
+}

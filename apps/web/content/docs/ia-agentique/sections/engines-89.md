@@ -1,0 +1,1 @@
+**Moteurs pris en charge :** PostgreSQL, MySQL, MariaDB, Oracle, SQL Server, MongoDB, DuckDB et ClickHouse, sur site, en cloud ou en hybride. C'est l'interface native pour agents qui rend le modèle agentique plutôt que simplement automatisé.

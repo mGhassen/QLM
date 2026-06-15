@@ -1,0 +1,71 @@
+{
+  "newDatasource": "New Data Source",
+  "new_pageTitle": "Connect to {{name}}",
+  "new_pageSubtitle": "Select a data source to connect to.",
+  "nameLabel": "Datasource Name",
+  "list_title": "Datasources",
+  "searchPlaceholder": "Search datasources...",
+  "browserSearchPlaceholder": "Search datasources...",
+  "browserEmptyTitle": "No datasources found",
+  "browserEmptyDescription": "Try adjusting your filters or search query, or request a new datasource type.",
+  "requestDatasource": "Request a new datasource",
+  "clearSearch": "Clear search",
+  "editNameAriaLabel": "Edit name",
+  "randomizeName": "Randomize name",
+  "confirmName": "Save name",
+  "untitled": "Untitled",
+  "emptyTitle": "No datasources found",
+  "emptySearch": "Try a different search.",
+  "emptyDescription": "Connect your first data source to get started.",
+  "testConnection": "Test Connection",
+  "testing": "Testing...",
+  "cancel": "Cancel",
+  "connect": "Connect",
+  "connecting": "Connecting...",
+  "previous": "Previous",
+  "next": "Next",
+  "loading": "Loading...",
+  "notFound": "Datasource not found",
+  "notFoundError": "Datasource not found",
+  "formNotReady": "Form not ready yet",
+  "connectionTestSuccess": "Connection test successful",
+  "connectionTestFailed": "Connection test failed",
+  "connectionTestError": "Failed to test connection",
+  "saveSuccess": "Connection configuration saved successfully",
+  "saveFailed": "Failed to save connection configuration",
+  "update": "Update",
+  "updating": "Updating...",
+  "updateSuccess": "Datasource updated successfully",
+  "updateFailed": "Failed to update datasource",
+  "delete": "Delete",
+  "deleteButton": "Delete",
+  "deleting": "Deleting...",
+  "deleteSuccess": "Datasource deleted successfully",
+  "deleteFailed": "Failed to delete datasource",
+  "deleteMissingId": "Missing datasource identifier",
+  "deleteConfirmTitle": "Delete datasource?",
+  "deleteConfirmDescription": "This action will permanently remove {{name}} and any associated playground data. This cannot be undone.",
+  "view_pageTitle": "Edit {{name}} Connection",
+  "docsLink": "View documentation",
+  "detail": {
+    "schema": "Schema",
+    "tables": "Tables",
+    "settings": "Settings"
+  },
+  "schema": {
+    "error": "Failed to load datasource metadata."
+  },
+  "tables": {
+    "title": "Tables",
+    "error": "Failed to load tables",
+    "filter": {
+      "all": "All schemas",
+      "schema": "Filter by schema"
+    }
+  },
+  "card": {
+    "created": "Created",
+    "createdBy": "Created by",
+    "view": "View"
+  }
+}

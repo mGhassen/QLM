@@ -1,0 +1,73 @@
+@layer base {
+  * {
+    @apply border-border-subtle;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 11.5px;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  h1,
+  .text-4xl,
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  h2,
+  .text-2xl {
+    font-size: 1.2rem !important;
+  }
+
+  h3,
+  .text-xl {
+    font-size: 1.05rem !important;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 0.95rem !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: theme(--color-muted-foreground);
+  }
+
+  /* Sharp scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    /* Track should follow the app surface color. */
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) hsl(var(--background));
+  }
+
+  /* Hide scrollbars for nested scroll containers inside the chat scroller */
+  .ds-chat-scroller * {
+    scrollbar-width: none;
+  }
+
+  .ds-chat-scroller *::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,131 @@
+@layer utilities {
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .no-default-hover-elevate {}
+
+  .no-default-active-elevate {}
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after {
+    inset: -1px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Diagonal hatched stripe — follows theme (tab strip, banners, panel chrome). */
+  .stripe-bg {
+    background-image: repeating-linear-gradient(45deg,
+        transparent,
+        transparent 4px,
+        hsl(var(--border) / 0.45) 4px,
+        hsl(var(--border) / 0.45) 5px);
+    background-color: hsl(var(--muted) / 0.35);
+  }
+
+  .border-subtle-frame {
+    position: relative;
+    border: 1px solid hsl(var(--border-subtle));
+  }
+
+  /* Thin L-shaped corner accents (1px), same family as border — no radial “glow”. */
+  .border-subtle-frame::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 0 0 / var(--border-corner-arm) 1px no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 0 0 / 1px var(--border-corner-arm) no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 100% 0 / var(--border-corner-arm) 1px no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 100% 0 / 1px var(--border-corner-arm) no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 0 100% / var(--border-corner-arm) 1px no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 0 100% / 1px var(--border-corner-arm) no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 100% 100% / var(--border-corner-arm) 1px no-repeat,
+      linear-gradient(hsl(var(--border-corner-highlight)), hsl(var(--border-corner-highlight))) 100% 100% / 1px var(--border-corner-arm) no-repeat;
+  }
+
+  /* Hover: edge border matches ::after corner accent (same token). */
+  /* Industrial Moderna specialized utilities */
+  .industrial-button {
+    @apply h-10 shrink-0 gap-2 px-6 rounded-none border-2 border-foreground bg-foreground text-background font-bold tracking-tight text-xs transition-colors hover:bg-primary hover:text-primary-foreground hover:border-transparent cursor-pointer disabled:grayscale disabled:opacity-50;
+    box-shadow: none;
+  }
+
+  .industrial-button:hover {
+    box-shadow: none;
+  }
+
+  .industrial-button:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+  }
+
+  .industrial-shadow {
+    box-shadow: 4px 4px 0px 0px hsla(var(--foreground) / 0.2);
+  }
+}

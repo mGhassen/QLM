@@ -1,0 +1,23 @@
+/*
+ * Storybook / full Tailwind entry: same design tokens as entry.app.css + engine + scan paths.
+ */
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+/* All TS/TSX under packages/ui/src (components, presentation, etc.) */
+@source '../**/*.{ts,tsx}';
+
+/* Feature packages (e.g. ops) — Tailwind utilities used outside packages/ui */
+@source '../../../features/**/*.{ts,tsx}';
+
+@variant dark (&:where(.dark, .dark *));
+
+@import './partials/theme-bridge.css';
+@import './partials/tokens.css';
+@import './partials/theme-extras.css';
+@import './partials/base.css';
+@import './partials/utilities.css';
+@import './partials/theme.utilities.css';
+@import './partials/markdoc.css';
+@import './partials/guepard.css';

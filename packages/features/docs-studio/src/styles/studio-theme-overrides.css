@@ -1,0 +1,350 @@
+/* Overrides for docs-print.css studio chrome — token-backed, theme-aware */
+
+.doc-studio {
+  --studio-radius: 0px;
+}
+
+.doc-studio .studio-canvas {
+  background: hsl(var(--env-canvas-bg));
+}
+
+@media screen {
+  .doc-studio .doc-shell {
+    background: transparent;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .doc-studio .doc-shell.layout-paginated {
+    padding-bottom: 64px;
+  }
+}
+
+.doc-studio .studio-panel-editor .ProseMirror {
+  color: hsl(var(--foreground));
+}
+
+.doc-studio .studio-panel-editor .studio-editor-toolbar {
+  border-bottom-color: hsl(var(--border));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-toolbar {
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-md);
+  border-radius: 0;
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-toolbar button,
+.doc-studio .studio-block-chrome-dock .studio-block-info > button {
+  color: hsl(var(--muted-foreground));
+  border-radius: 0;
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-toolbar button:hover,
+.doc-studio .studio-block-chrome-dock .studio-block-info > button:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-toolbar button.active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-toolbar button.danger:hover {
+  background: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-label {
+  border-right-color: hsl(var(--border));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-info-popover {
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border-color: hsl(var(--border));
+  box-shadow: var(--shadow-lg);
+}
+
+.doc-studio .studio-block-chrome-dock .studio-insert-menu,
+.doc-studio .studio-insert-menu,
+.doc-studio .studio-slash-menu {
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border-color: hsl(var(--border));
+  box-shadow: var(--shadow-lg);
+}
+
+.doc-studio .studio-block-chrome-dock .studio-insert-menu .studio-insert-item:hover,
+.doc-studio .studio-insert-menu .studio-insert-item:hover,
+.doc-studio .studio-slash-menu-item.active,
+.doc-studio .studio-slash-menu-item:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.doc-studio .studio-floating-toolbar,
+.doc-studio .studio-editor-toolbar.floating,
+.doc-studio .studio-editor-toolbar.anchored {
+  background: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border-color: hsl(var(--border));
+  border-radius: 0;
+}
+
+.doc-studio .studio-drag-overlay {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+.doc-studio .studio-preset-card {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+  border-radius: 0;
+}
+
+.doc-studio .studio-preset-card:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  background: hsl(var(--accent));
+}
+
+.doc-studio .studio-preset-label {
+  color: hsl(var(--sidebar-foreground) / 0.8);
+}
+
+.doc-studio .studio-preset-thumb {
+  background: hsl(var(--muted));
+  border-radius: 0;
+}
+
+/* ── Insert menus & buttons ─────────────────────────────────────────── */
+
+.doc-studio .studio-insert-menu .studio-insert-item,
+.doc-studio .studio-block-chrome-dock .studio-insert-menu .studio-insert-item {
+  color: hsl(var(--popover-foreground));
+}
+
+.doc-studio .studio-insert-menu .studio-insert-item:hover,
+.doc-studio .studio-block-chrome-dock .studio-insert-menu .studio-insert-item:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-insert-btn {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--card));
+  box-shadow: var(--shadow-md);
+}
+
+.doc-studio .studio-block-chrome-dock .studio-inline-insert-toolbar {
+  border-left-color: hsl(var(--border));
+}
+
+/* ── Block toolbar extras ─────────────────────────────────────────── */
+
+.doc-studio .studio-block-chrome-dock .studio-block-info-type {
+  color: hsl(var(--popover-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-block-info-id {
+  color: hsl(var(--muted-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-canvas-drag-handle {
+  color: hsl(var(--muted-foreground));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-canvas-drag-handle:hover,
+.doc-studio .studio-block-chrome-dock .studio-canvas-drag-handle.dragging {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* ── Transform / resize handles (primary, not blue) ───────────────── */
+
+.doc-studio .studio-block-chrome-dock .studio-transform-handle {
+  background: hsl(var(--card));
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary) / 0.25);
+}
+
+.doc-studio .studio-block-chrome-dock .studio-transform-handle:hover,
+.doc-studio .studio-block-chrome-dock .studio-transform-handle:active {
+  background: hsl(var(--primary));
+}
+
+.doc-studio .studio-block-chrome-dock .studio-transform-move {
+  background: hsl(var(--card));
+  border-color: hsl(var(--primary) / 0.75);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-studio .studio-block-chrome-dock .studio-transform-move::before {
+  background: repeating-linear-gradient(
+    to bottom,
+    hsl(var(--primary) / 0.75) 0,
+    hsl(var(--primary) / 0.75) 1.5px,
+    transparent 1.5px,
+    transparent 3px
+  );
+}
+
+/* ── Slash menu ───────────────────────────────────────────────────── */
+
+.doc-studio .studio-slash-menu-header {
+  color: hsl(var(--muted-foreground));
+  border-bottom-color: hsl(var(--border));
+}
+
+.doc-studio .studio-slash-menu-item {
+  color: hsl(var(--popover-foreground));
+}
+
+.doc-studio .studio-slash-menu-item:hover,
+.doc-studio .studio-slash-menu-item.active {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.doc-studio .studio-slash-menu-empty {
+  color: hsl(var(--muted-foreground));
+}
+
+/* ── Settings drawer & popovers ─────────────────────────────────────── */
+
+.doc-studio .studio-settings-backdrop {
+  background: hsl(var(--background) / 0.6);
+}
+
+.doc-studio .studio-settings-drawer,
+.doc-studio .studio-advanced-panel {
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  box-shadow: var(--shadow-lg);
+}
+
+.doc-studio .studio-settings-drawer-header {
+  border-bottom-color: hsl(var(--border));
+}
+
+.doc-studio .studio-settings-close {
+  color: hsl(var(--muted-foreground));
+}
+
+.doc-studio .studio-settings-close:hover {
+  color: hsl(var(--foreground));
+  background: hsl(var(--accent));
+}
+
+.doc-studio .studio-popover-input {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+/* ── Color swatch ─────────────────────────────────────────────────── */
+
+.doc-studio .studio-color-swatch.active {
+  outline-color: hsl(var(--primary));
+}
+
+/* ── Preset picker (left panel) ───────────────────────────────────── */
+
+.doc-studio .studio-preset-card {
+  background: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.doc-studio .studio-preset-card:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  background: hsl(var(--accent));
+}
+
+.doc-studio .studio-preset-thumb {
+  background: hsl(var(--muted));
+}
+
+.doc-studio .preset-thumb-split {
+  background: linear-gradient(
+    to right,
+    hsl(var(--muted-foreground) / 0.25) 65%,
+    hsl(var(--muted) / 0.5) 65%
+  );
+}
+
+.doc-studio .preset-thumb-2col {
+  background: linear-gradient(
+    to right,
+    hsl(var(--muted-foreground) / 0.2) 50%,
+    transparent 50%
+  );
+}
+
+.doc-studio .preset-thumb-3col {
+  background: linear-gradient(
+    to right,
+    hsl(var(--muted-foreground) / 0.2) 33%,
+    transparent 33%,
+    transparent 66%,
+    hsl(var(--muted-foreground) / 0.2) 66%
+  );
+}
+
+.doc-studio .preset-thumb-stack {
+  background: repeating-linear-gradient(
+    to bottom,
+    hsl(var(--muted-foreground) / 0.2) 0 8px,
+    transparent 8px 12px
+  );
+}
+
+.doc-studio .preset-thumb-flow {
+  background: linear-gradient(
+    to right,
+    hsl(var(--muted-foreground) / 0.15) 48%,
+    hsl(var(--muted) / 0.4) 48%
+  );
+}
+
+.doc-studio .preset-thumb-hero {
+  background: hsl(var(--primary) / 0.35);
+}
+
+.doc-studio .preset-thumb-cover {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--muted-foreground) / 0.2),
+    hsl(var(--muted) / 0.5)
+  );
+}
+
+.doc-studio .preset-thumb-section {
+  border-top-color: hsl(var(--border));
+}
+
+.doc-studio .preset-thumb-kpi {
+  background: repeating-linear-gradient(
+    to right,
+    hsl(var(--muted-foreground) / 0.2) 0 28%,
+    transparent 28% 33%
+  );
+}
+
+.doc-studio .preset-thumb-levels {
+  background: repeating-linear-gradient(
+    to bottom,
+    hsl(var(--muted-foreground) / 0.15) 0 10px,
+    transparent 10px 14px
+  );
+}
+
+/* ── Style panel tag ──────────────────────────────────────────────── */
+
+.doc-studio .wf-class-tag {
+  color: hsl(var(--primary-foreground));
+}
+

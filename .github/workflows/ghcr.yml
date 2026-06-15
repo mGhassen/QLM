@@ -1,0 +1,165 @@
+name: build-console-full-ghcr
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_NAME: guepard-console-full
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Login GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push
+        shell: bash
+        env:
+          # Build-time public config (Vite). Populate these in GitHub Actions secrets.
+          # List derived from apps/web/.env (VITE_* only).
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_AUTH_MAGIC_LINK: ${{ secrets.VITE_AUTH_MAGIC_LINK }}
+          VITE_AUTH_PASSWORD: ${{ secrets.VITE_AUTH_PASSWORD }}
+          VITE_BILLING_PROVIDER: ${{ secrets.VITE_BILLING_PROVIDER }}
+          VITE_CAPTCHA_SITE_KEY: ${{ secrets.VITE_CAPTCHA_SITE_KEY }}
+          VITE_CHAT_API_URL: ${{ secrets.VITE_CHAT_API_URL }}
+          VITE_CMS_CLIENT: ${{ secrets.VITE_CMS_CLIENT }}
+          VITE_DATABASE_PATH: ${{ secrets.VITE_DATABASE_PATH }}
+          VITE_DATABASE_PROVIDER: ${{ secrets.VITE_DATABASE_PROVIDER }}
+          VITE_DB_NAME: ${{ secrets.VITE_DB_NAME }}
+          VITE_DEFAULT_THEME_MODE: ${{ secrets.VITE_DEFAULT_THEME_MODE }}
+          VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX: ${{ secrets.VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX }}
+          VITE_ENABLE_TELEMETRY: ${{ secrets.VITE_ENABLE_TELEMETRY }}
+          VITE_KEYSTATIC_CONTENT_PATH: ${{ secrets.VITE_KEYSTATIC_CONTENT_PATH }}
+          VITE_LOCALE: ${{ secrets.VITE_LOCALE }}
+          VITE_LOCALES_PATH: ${{ secrets.VITE_LOCALES_PATH }}
+          VITE_POSTHOG_HOST: ${{ secrets.VITE_POSTHOG_HOST }}
+          VITE_POSTHOG_INGESTION_URL: ${{ secrets.VITE_POSTHOG_INGESTION_URL }}
+          VITE_POSTHOG_KEY: ${{ secrets.VITE_POSTHOG_KEY }}
+          VITE_PRODUCT_NAME: ${{ secrets.VITE_PRODUCT_NAME }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_SENTRY_ORG: ${{ secrets.VITE_SENTRY_ORG }}
+          VITE_SENTRY_PROJECT: ${{ secrets.VITE_SENTRY_PROJECT }}
+          VITE_SITE_DESCRIPTION: ${{ secrets.VITE_SITE_DESCRIPTION }}
+          VITE_SITE_TITLE: ${{ secrets.VITE_SITE_TITLE }}
+          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
+          VITE_STORAGE_ADAPTER: ${{ secrets.VITE_STORAGE_ADAPTER }}
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_THEME_COLOR: ${{ secrets.VITE_THEME_COLOR }}
+          VITE_THEME_COLOR_DARK: ${{ secrets.VITE_THEME_COLOR_DARK }}
+          VITE_WORKING_DIR: ${{ secrets.VITE_WORKING_DIR }}
+        run: |
+          set -euo pipefail
+          OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          IMG="ghcr.io/${OWNER}/${{ env.IMAGE_NAME }}"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+
+          BUILD_ARGS=()
+          required_vars=(
+            VITE_SITE_URL
+            VITE_SUPABASE_URL
+            VITE_SUPABASE_ANON_KEY
+          )
+          for k in "${required_vars[@]}"; do
+            if [[ -z "${!k:-}" ]]; then
+              echo "Missing required secret: $k" >&2
+              exit 1
+            fi
+          done
+
+          allow_empty_vars=(
+            VITE_CAPTCHA_SITE_KEY
+            VITE_POSTHOG_HOST
+            VITE_POSTHOG_INGESTION_URL
+            VITE_POSTHOG_KEY
+            VITE_SENTRY_DSN
+            VITE_SENTRY_ORG
+            VITE_SENTRY_PROJECT
+            VITE_STRIPE_PUBLISHABLE_KEY
+            VITE_CHAT_API_URL
+          )
+
+          vite_vars=(
+            VITE_API_URL
+            VITE_AUTH_MAGIC_LINK
+            VITE_AUTH_PASSWORD
+            VITE_BILLING_PROVIDER
+            VITE_CAPTCHA_SITE_KEY
+            VITE_CHAT_API_URL
+            VITE_CMS_CLIENT
+            VITE_DATABASE_PATH
+            VITE_DATABASE_PROVIDER
+            VITE_DB_NAME
+            VITE_DEFAULT_THEME_MODE
+            VITE_DISPLAY_TERMS_AND_CONDITIONS_CHECKBOX
+            VITE_ENABLE_TELEMETRY
+            VITE_KEYSTATIC_CONTENT_PATH
+            VITE_LOCALE
+            VITE_LOCALES_PATH
+            VITE_POSTHOG_HOST
+            VITE_POSTHOG_INGESTION_URL
+            VITE_POSTHOG_KEY
+            VITE_PRODUCT_NAME
+            VITE_SENTRY_DSN
+            VITE_SENTRY_ORG
+            VITE_SENTRY_PROJECT
+            VITE_SITE_DESCRIPTION
+            VITE_SITE_TITLE
+            VITE_SITE_URL
+            VITE_STORAGE_ADAPTER
+            VITE_STRIPE_PUBLISHABLE_KEY
+            VITE_SUPABASE_ANON_KEY
+            VITE_SUPABASE_URL
+            VITE_THEME_COLOR
+            VITE_THEME_COLOR_DARK
+            VITE_WORKING_DIR
+          )
+
+          for k in "${vite_vars[@]}"; do
+            v="${!k:-}"
+            if [[ -n "$v" ]]; then
+              BUILD_ARGS+=(--build-arg "${k}=${v}")
+              continue
+            fi
+            for a in "${allow_empty_vars[@]}"; do
+              if [[ "$a" == "$k" ]]; then
+                BUILD_ARGS+=(--build-arg "${k}=")
+                break
+              fi
+            done
+          done
+
+          # defaults
+          if [[ -z "${VITE_API_URL:-}" ]]; then
+            BUILD_ARGS+=(--build-arg "VITE_API_URL=/api")
+          fi
+
+          BUILD_ARGS+=(--build-arg "VITE_APP_GIT_HASH=${SHORT_SHA}")
+          docker buildx build \
+            -f Dockerfile.full \
+            --platform linux/amd64 \
+            "${BUILD_ARGS[@]}" \
+            -t "${IMG}:sha-${SHORT_SHA}" \
+            -t "${IMG}:run-${GITHUB_RUN_ID}" \
+            -t "${IMG}:latest" \
+            --cache-from type=gha \
+            --cache-to type=gha,mode=max \
+            --push \
+            .

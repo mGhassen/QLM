@@ -1,0 +1,33 @@
+{
+  "firstRun": {
+    "title": "Choose a server",
+    "subtitle": "Select where this app should connect.",
+    "cloudOption": "Cloud (rasm.ai)",
+    "cloudDescription": "Connect to Rasm's hosted service.",
+    "customOption": "Custom server URL",
+    "customDescription": "Connect to your organization's deployment.",
+    "localOption": "Local",
+    "localDescription": "Use the bundled server running on this machine.",
+    "urlPlaceholder": "https://rasm.your-company.com",
+    "urlInvalid": "Enter a valid HTTPS URL.",
+    "mdmBanner": "Your IT team configured this URL.",
+    "continue": "Continue"
+  },
+  "settings": {
+    "server": {
+      "title": "Server",
+      "currentLabel": "Connected to",
+      "mdmBadge": "Set by your IT team",
+      "changeAction": "Change server",
+      "changeWarningTitle": "Sign out and change server?",
+      "changeWarningBody": "This will sign you out, clear local credentials for the current server, and connect to a new one.",
+      "changeWarningConfirm": "Sign out and change",
+      "changeWarningCancel": "Cancel",
+      "newUrlLabel": "New server URL",
+      "tlsInsecureBanner": "Insecure TLS allowed — for development only. Disable allowInsecureTls in config.json before production use."
+    }
+  },
+  "errors": {
+    "tlsFailed": "Could not establish a secure connection to {{url}}."
+  }
+}

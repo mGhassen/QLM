@@ -1,0 +1,31 @@
+{
+  "name": "@guepard/resend",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier --check \"**/*.{ts,tsx}\"",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@guepard/prettier-config",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@guepard/eslint-config": "workspace:*",
+    "@guepard/mailers-shared": "workspace:*",
+    "@guepard/prettier-config": "workspace:*",
+    "@guepard/tailwind-config": "workspace:*",
+    "@guepard/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "zod": "catalog:"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+}

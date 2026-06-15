@@ -1,0 +1,58 @@
+{
+  "name": "@guepard/extension-json-online",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/driver.js",
+  "types": "./dist/driver.d.ts",
+  "exports": {
+    ".": {
+      "bun": "./src/driver.ts",
+      "types": "./dist/driver.d.ts",
+      "default": "./dist/driver.js"
+    },
+    "./schema": "./dist/schema.js"
+  },
+  "scripts": {
+    "lint": "echo \"no lint configured\"",
+    "test": "vitest run --coverage --passWithNoTests",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "contributes": {
+    "datasources": [
+      {
+        "id": "json-online",
+        "name": "JSON (Online)",
+        "description": "Connect to public JSON files via URL",
+        "tags": [
+          "Files"
+        ],
+        "icon": "media/json.svg",
+        "supportsPreview": true,
+        "previewUrlKind": "data-file",
+        "previewDataFormat": "json",
+        "drivers": [
+          "json-online.duckdb"
+        ]
+      }
+    ],
+    "drivers": [
+      {
+        "id": "json-online.duckdb",
+        "name": "DuckDB (Node)",
+        "description": "Node runtime DuckDB driver for JSON files",
+        "runtime": "node",
+        "entry": "./dist/driver.js"
+      }
+    ]
+  },
+  "dependencies": {
+    "@duckdb/node-api": "1.4.2-r.1",
+    "@guepard/extensions-sdk": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,7 @@
+**Approche.** Ce document suit la structure d'une analyse indépendante de valeur métier. Nous avons assemblé une organisation composite modélisée pour représenter un panel d'adoptants à travers trois segments (entreprise régulée, éditeur mid-market, entreprise à forte croissance nativement IA), pondéré vers la France. Les entrées proviennent de métriques rapportées par les clients et mesurées via le cadre DORA, complétées par des hypothèses prudentes.
+
+Le modèle utilise une structure avant et après sur quatre catégories de coûts, plus une estimation distincte de contribution au chiffre d'affaires. La productivité est valorisée à 110 000 € chargés. La valeur actuelle nette est calculée sur trois ans à un taux d'actualisation de 12 %, avec une montée en charge la première année. Le seuil de rentabilité est le point où le bénéfice cumulé actualisé égale l'investissement cumulé actualisé.
+
+**Chiffres illustratifs.** Ils décrivent la forme et l'ampleur de la valeur sur un panel représentatif, et ne constituent pas un résultat garanti pour une organisation donnée. Une évaluation sur mesure est disponible sur demande.
+
+**Preuves.** La citation d'Airspace est tirée des propos de l'entreprise. Les profils A et B sont des agrégations anonymisées ; leurs verbatims sont représentatifs et leurs chiffres illustratifs. La Section 8 compare des approches, pas des produits nommés ; les éléments d'infrastructure cités le sont comme contexte, jamais comme concurrents. Les totaux peuvent ne pas correspondre exactement à la somme des lignes en raison des arrondis.

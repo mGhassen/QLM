@@ -1,0 +1,1 @@
+**Préparation des données d'évaluation et de réglage.** Évaluation, fine-tuning et recherche augmentée exigent des jeux masqués, versionnés et reproductibles. Les provisionner à la demande, traçabilité intacte, transforme une corvée d'ingénierie en étape self-service.

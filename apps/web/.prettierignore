@@ -1,0 +1,4 @@
+# React Router auto-generated files
+.tanstack/
+src/routeTree.gen.ts
+

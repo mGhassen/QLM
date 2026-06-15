@@ -1,0 +1,49 @@
+.doc-studio {
+  --studio-radius: 0px;
+}
+
+.doc-studio [data-studio-chrome] :where(.rounded-lg, .rounded-md, .rounded-xl, .rounded-full, .rounded) {
+  border-radius: var(--studio-radius) !important;
+}
+
+.doc-studio :where(.studio-editor-toolbar, .studio-drag-overlay) :where(.rounded-lg, .rounded-md, .rounded-xl, .rounded-full, .rounded),
+.doc-studio .studio-drag-overlay:where(.rounded-lg, .rounded-md, .rounded-xl, .rounded-full, .rounded) {
+  border-radius: var(--studio-radius) !important;
+}
+
+.doc-studio :where(
+  .studio-block-chrome-dock .studio-block-toolbar,
+  .studio-block-chrome-dock .studio-block-info-popover,
+  .studio-block-chrome-dock .studio-insert-menu,
+  .studio-block-chrome-dock .studio-block-toolbar button,
+  .studio-block-chrome-dock .studio-block-info > button,
+  .studio-block-chrome-dock .studio-inline-insert-toolbar > button,
+  .studio-block-chrome-dock .studio-block-toolbar-expanded,
+  .studio-floating-toolbar,
+  .studio-floating-toolbar button,
+  .studio-floating-select,
+  .studio-token-chip,
+  .studio-slash-menu,
+  .studio-preset-card,
+  .studio-preset-thumb,
+  .doc-page .studio-toc-chrome,
+  .doc-page .studio-toc-chrome button,
+  .doc-page .studio-toc-edit-panel
+) {
+  border-radius: var(--studio-radius);
+}
+
+.doc-studio .studio-secondary-panel {
+  animation: studio-panel-in 0.14s ease-out;
+}
+
+@keyframes studio-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

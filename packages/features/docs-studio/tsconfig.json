@@ -1,0 +1,14 @@
+{
+  "extends": "@guepard/tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noUncheckedIndexedAccess": false,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "paths": {
+      "#/*": ["./src/*"]
+    },
+    "types": ["node", "react", "react-dom"]
+  },
+  "include": ["*.ts", "*.tsx", "src"],
+  "exclude": ["node_modules"]
+}

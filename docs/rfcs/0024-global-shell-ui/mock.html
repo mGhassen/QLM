@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Global UI — Shell + Topbar Dropdown Mock</title>
+    <style>
+      :root {
+        --bg: #fafaf9;
+        --surface: #ffffff;
+        --border: #e7e5e4;
+        --border-strong: #d6d3d1;
+        --text: #1c1917;
+        --text-muted: #78716c;
+        --text-subtle: #a8a29e;
+        --accent: #f59e0b;
+        --accent-soft: #fef3c7;
+        --hover: #f5f5f4;
+        --active: #fef3c7;
+        --radius: 8px;
+        --radius-sm: 6px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      /* ================= App shell ================= */
+      .app {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        grid-template-rows: 52px 1fr;
+        height: 100vh;
+      }
+
+      .topbar {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        gap: 12px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+        position: relative;
+        z-index: 20;
+      }
+
+      .sidebar {
+        border-right: 1px solid var(--border);
+        background: var(--surface);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .main {
+        overflow: auto;
+        background: var(--bg);
+      }
+
+      /* ================= Topbar trigger ================= */
+      .trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px 6px 8px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--text);
+        font-family: inherit;
+      }
+      .trigger:hover,
+      .trigger[aria-expanded='true'] {
+        background: var(--hover);
+      }
+      .trigger .logo {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: var(--accent);
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 12px;
+      }
+      .trigger .caret {
+        color: var(--text-muted);
+        font-size: 10px;
+      }
+
+      .topbar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+      }
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+      }
+      .icon-btn:hover {
+        background: var(--hover);
+      }
+
+      /* ================= Dropdown ================= */
+      .dropdown,
+      .submenu {
+        position: absolute;
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius);
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.08),
+          0 2px 6px rgba(0, 0, 0, 0.05);
+        padding: 6px;
+        z-index: 30;
+        width: 280px;
+        opacity: 0;
+        transform: translateY(-4px);
+        pointer-events: none;
+        transition:
+          opacity 120ms ease,
+          transform 120ms ease;
+      }
+      .dropdown.open,
+      .submenu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .dropdown {
+        top: 48px;
+        left: 12px;
+      }
+      .submenu {
+        top: 48px;
+        left: 300px;
+      }
+
+      .section-label {
+        padding: 8px 10px 4px;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-subtle);
+        font-weight: 600;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 10px;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        color: var(--text);
+        user-select: none;
+      }
+      .row:hover {
+        background: var(--hover);
+      }
+      .row.active {
+        background: var(--active);
+      }
+      .row .row-icon {
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .row .row-icon.logo-g {
+        background: #a78bfa;
+        color: white;
+      }
+      .row .row-icon.logo-o {
+        background: var(--accent);
+        color: white;
+      }
+      .row .row-label {
+        flex: 1;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .row .row-chevron {
+        color: var(--text-subtle);
+        font-size: 12px;
+      }
+      .row .row-lucide {
+        color: var(--text-muted);
+      }
+      .row.has-submenu[aria-expanded='true'] {
+        background: var(--hover);
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 6px 0;
+      }
+
+      /* ================= Submenu internals ================= */
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        margin: 2px 2px 6px;
+        font-size: 13px;
+      }
+      .search input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 13px;
+        color: var(--text);
+        background: transparent;
+        font-family: inherit;
+      }
+      .search input::placeholder {
+        color: var(--text-subtle);
+      }
+      .search > span {
+        color: var(--text-muted);
+      }
+      .role-badge {
+        font-size: 11px;
+        padding: 2px 6px;
+        background: var(--hover);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .check {
+        color: var(--accent);
+        font-weight: 700;
+        width: 12px;
+        display: inline-block;
+      }
+      .check.hidden {
+        visibility: hidden;
+      }
+      .new-row {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .new-row .row-icon {
+        background: var(--hover);
+        color: var(--text-muted);
+        border: 1px dashed var(--border-strong);
+      }
+
+      /* ================= Main sidebar ================= */
+      .side-nav {
+        padding: 12px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .side-section {
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-subtle);
+        padding: 10px 10px 4px;
+        font-weight: 600;
+      }
+      .side-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 10px;
+        border-radius: var(--radius-sm);
+        color: var(--text);
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .side-item:hover {
+        background: var(--hover);
+      }
+      .side-item.active {
+        background: var(--active);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .side-item .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--text-subtle);
+      }
+
+      .sidebar-footer {
+        padding: 10px 8px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #c4b5fd;
+        color: #4c1d95;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 12px;
+      }
+
+      /* ================= App view (inside main) ================= */
+      .app-view {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        height: 100%;
+      }
+      .app-view.no-inner-nav {
+        grid-template-columns: 1fr;
+      }
+      .app-inner-sidebar {
+        border-right: 1px solid var(--border);
+        background: var(--surface);
+        padding: 16px 10px;
+        overflow: auto;
+      }
+      .app-inner-title {
+        padding: 4px 10px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .app-inner-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 10px;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--text);
+      }
+      .app-inner-item:hover {
+        background: var(--hover);
+      }
+      .app-inner-item.active {
+        background: var(--active);
+        font-weight: 600;
+      }
+      .app-content {
+        padding: 24px 28px;
+        overflow: auto;
+      }
+
+      /* ================= Cards / content ================= */
+      .breadcrumb {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+      .page-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        margin: 0 0 20px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        max-width: 720px;
+        margin-bottom: 16px;
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .card p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .field label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+      .field input {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        font-family: inherit;
+      }
+      .muted {
+        color: var(--text-muted);
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 16px;
+      }
+      .kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        background: var(--hover);
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 4px;
+        padding: 1px 5px;
+      }
+      .table {
+        width: 100%;
+        max-width: 720px;
+        border-collapse: collapse;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        font-size: 13px;
+      }
+      .table th,
+      .table td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      .table th {
+        font-size: 12px;
+        color: var(--text-muted);
+        background: var(--bg);
+        font-weight: 500;
+      }
+      .table tr:last-child td {
+        border-bottom: none;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 500;
+        background: var(--accent-soft);
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <!-- ================= Topbar ================= -->
+      <header class="topbar">
+        <button
+          id="trigger"
+          class="trigger"
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
+          <span class="logo">G</span>
+          <span class="caret">▾</span>
+          <span id="trigger-label">Guepard Console</span>
+        </button>
+        <div class="topbar-right">
+          <span class="icon-btn" title="Search">⌕</span>
+          <span class="icon-btn" title="Notifications">🔔</span>
+        </div>
+      </header>
+
+      <!-- ================= Sidebar ================= -->
+      <aside class="sidebar">
+        <div class="side-nav" id="side-nav">
+          <div class="side-section">Project</div>
+          <div class="side-item" data-app="home">
+            <span class="dot"></span>Overview
+          </div>
+          <div class="side-item" data-app="notebooks">
+            <span class="dot"></span>Notebooks
+          </div>
+          <div class="side-item" data-app="datasources">
+            <span class="dot"></span>Datasources
+          </div>
+          <div class="side-item" data-app="query">
+            <span class="dot"></span>Query
+          </div>
+
+          <div class="side-section">Apps</div>
+          <div class="side-item" data-app="organization">
+            <span class="dot"></span>Organization
+          </div>
+          <div class="side-item" data-app="project-settings">
+            <span class="dot"></span>Project settings
+          </div>
+          <div class="side-item" data-app="extensions">
+            <span class="dot"></span>Extensions
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          <span class="avatar">H</span>
+          <div style="display: flex; flex-direction: column">
+            <span style="font-weight: 600; font-size: 13px">Hani</span>
+            <span style="font-size: 11px; color: var(--text-muted)"
+              >hc@guepard.run</span
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- ================= Main ================= -->
+      <section class="main" id="main"></section>
+
+      <!-- ================= Dropdown ================= -->
+      <div id="dropdown" class="dropdown" role="menu">
+        <div class="section-label">PROJECT</div>
+        <div
+          class="row has-submenu active"
+          data-submenu="project"
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
+          <span class="row-icon logo-g">G</span>
+          <span class="row-label">Guepard Console</span>
+          <span class="row-chevron">›</span>
+        </div>
+        <div class="row" data-action="project-settings">
+          <span class="row-icon row-lucide">⚙</span>
+          <span class="row-label">Project settings</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-label">ORGANIZATION</div>
+        <div
+          class="row has-submenu"
+          data-submenu="org"
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
+          <span class="row-icon logo-o">◆</span>
+          <span class="row-label">Guepard</span>
+          <span class="row-chevron">›</span>
+        </div>
+        <div class="row" data-action="invite-members">
+          <span class="row-icon row-lucide">＋</span>
+          <span class="row-label">Invite members</span>
+        </div>
+        <div class="row" data-action="billing">
+          <span class="row-icon row-lucide">🧾</span>
+          <span class="row-label">Billing &amp; usage</span>
+        </div>
+        <div class="row" data-action="org-settings">
+          <span class="row-icon row-lucide">⚙</span>
+          <span class="row-label">Organization settings</span>
+        </div>
+      </div>
+
+      <!-- ================= Submenu: projects ================= -->
+      <div
+        id="submenu-project"
+        class="submenu"
+        role="menu"
+        aria-label="Switch project"
+      >
+        <div class="search">
+          <span>⌕</span>
+          <input
+            type="text"
+            placeholder="Search projects…"
+            data-filter="project"
+          />
+        </div>
+        <div class="submenu-list" data-list="project"></div>
+        <div class="divider"></div>
+        <div class="row new-row" data-action="new-project">
+          <span class="check hidden">✓</span>
+          <span class="row-icon">＋</span>
+          <span class="row-label">New project</span>
+        </div>
+      </div>
+
+      <!-- ================= Submenu: orgs ================= -->
+      <div
+        id="submenu-org"
+        class="submenu"
+        role="menu"
+        aria-label="Switch organization"
+      >
+        <div class="search">
+          <span>⌕</span>
+          <input
+            type="text"
+            placeholder="Search organizations…"
+            data-filter="org"
+          />
+        </div>
+        <div class="submenu-list" data-list="org"></div>
+        <div class="divider"></div>
+        <div class="row new-row" data-action="new-org">
+          <span class="check hidden">✓</span>
+          <span class="row-icon">＋</span>
+          <span class="row-label">New organization</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ================= Data =================
+      const state = {
+        activeOrgId: 'guepard',
+        activeProjectId: 'guepard-console',
+        activeApp: 'organization', // home | organization | project-settings | org-settings | notebooks | ...
+        activeSection: null, // section slug within the active app
+        orgs: [
+          {
+            id: 'guepard',
+            name: 'Guepard',
+            role: 'owner',
+            color: '#f59e0b',
+            initial: '◆',
+          },
+          {
+            id: 'acme',
+            name: 'Acme Corp',
+            role: 'member',
+            color: '#64748b',
+            initial: 'A',
+          },
+          {
+            id: 'side',
+            name: 'Side Project Inc',
+            role: 'admin',
+            color: '#10b981',
+            initial: 'S',
+          },
+        ],
+        projectsByOrg: {
+          guepard: [
+            { id: 'guepard-console', name: 'Guepard Console', initial: 'G' },
+            { id: 'guepard-website', name: 'Guepard Website', initial: 'W' },
+            { id: 'docs-site', name: 'Docs Site', initial: 'D' },
+          ],
+          acme: [
+            { id: 'acme-app', name: 'Acme App', initial: 'A' },
+            { id: 'acme-admin', name: 'Acme Admin', initial: 'A' },
+          ],
+          side: [{ id: 'side-api', name: 'Side API', initial: 'S' }],
+        },
+      };
+
+      // ================= Apps with their own internal nav =================
+      const APPS = {
+        home: {
+          label: 'Overview',
+          render: () => renderHome(),
+        },
+        organization: {
+          label: 'Organization',
+          render: () => renderOrgLanding(),
+        },
+        'project-settings': {
+          label: 'Project settings',
+          sections: [
+            { id: 'general', label: 'General' },
+            { id: 'integrations', label: 'Integrations' },
+            { id: 'api-keys', label: 'API keys' },
+            { id: 'environment', label: 'Environment' },
+            { id: 'danger', label: 'Danger zone' },
+          ],
+          render: (section) => renderProjectSettings(section),
+        },
+        'org-settings': {
+          label: 'Organization settings',
+          sections: [
+            { id: 'general', label: 'General' },
+            { id: 'members', label: 'Members' },
+            { id: 'billing', label: 'Billing & usage' },
+            { id: 'api-keys', label: 'API keys' },
+            { id: 'security', label: 'Security' },
+            { id: 'danger', label: 'Danger zone' },
+          ],
+          render: (section) => renderOrgSettings(section),
+        },
+      };
+
+      // ================= Elements =================
+      const trigger = document.getElementById('trigger');
+      const triggerLabel = document.getElementById('trigger-label');
+      const dropdown = document.getElementById('dropdown');
+      const main = document.getElementById('main');
+      const submenus = {
+        project: document.getElementById('submenu-project'),
+        org: document.getElementById('submenu-org'),
+      };
+      const submenuParents = document.querySelectorAll('.row.has-submenu');
+
+      // ================= Helpers =================
+      function currentOrg() {
+        return state.orgs.find((o) => o.id === state.activeOrgId);
+      }
+      function currentProject() {
+        return (state.projectsByOrg[state.activeOrgId] || []).find(
+          (p) => p.id === state.activeProjectId,
+        );
+      }
+
+      // ================= Rendering: shell pieces =================
+      function renderTrigger() {
+        const p = currentProject();
+        triggerLabel.textContent = p ? p.name : '—';
+      }
+
+      function renderSidebarActive() {
+        document
+          .querySelectorAll('.side-nav .side-item')
+          .forEach((el) =>
+            el.classList.toggle(
+              'active',
+              el.dataset.app === state.activeApp,
+            ),
+          );
+      }
+
+      function renderDropdownActiveRows() {
+        const org = currentOrg();
+        const proj = currentProject();
+        const projRow = dropdown.querySelector('[data-submenu="project"]');
+        const orgRow = dropdown.querySelector('[data-submenu="org"]');
+        if (proj) {
+          projRow.querySelector('.row-label').textContent = proj.name;
+          projRow.querySelector('.row-icon').textContent = proj.initial;
+        }
+        if (org) {
+          orgRow.querySelector('.row-label').textContent = org.name;
+          orgRow.querySelector('.row-icon').textContent = org.initial;
+          orgRow.querySelector('.row-icon').style.background = org.color;
+        }
+      }
+
+      function renderProjectsList(filter = '') {
+        const list = submenus.project.querySelector('[data-list="project"]');
+        const projects = state.projectsByOrg[state.activeOrgId] || [];
+        const q = filter.trim().toLowerCase();
+        list.innerHTML = '';
+        projects
+          .filter((p) => !q || p.name.toLowerCase().includes(q))
+          .forEach((p) => {
+            const active = p.id === state.activeProjectId;
+            const row = document.createElement('div');
+            row.className = 'row';
+            row.dataset.projectId = p.id;
+            row.innerHTML = `
+              <span class="check ${active ? '' : 'hidden'}">✓</span>
+              <span class="row-icon logo-g">${p.initial}</span>
+              <span class="row-label">${p.name}</span>
+            `;
+            row.addEventListener('click', () => selectProject(p.id));
+            list.appendChild(row);
+          });
+      }
+
+      function renderOrgsList(filter = '') {
+        const list = submenus.org.querySelector('[data-list="org"]');
+        const q = filter.trim().toLowerCase();
+        list.innerHTML = '';
+        state.orgs
+          .filter((o) => !q || o.name.toLowerCase().includes(q))
+          .forEach((o) => {
+            const active = o.id === state.activeOrgId;
+            const row = document.createElement('div');
+            row.className = 'row';
+            row.dataset.orgId = o.id;
+            row.innerHTML = `
+              <span class="check ${active ? '' : 'hidden'}">✓</span>
+              <span class="row-icon logo-o" style="background:${o.color}">${o.initial}</span>
+              <span class="row-label">${o.name}</span>
+              <span class="role-badge">${o.role}</span>
+            `;
+            row.addEventListener('click', () => selectOrg(o.id));
+            list.appendChild(row);
+          });
+      }
+
+      // ================= Rendering: main (apps) =================
+      function renderMain() {
+        const app = APPS[state.activeApp] || APPS.home;
+        if (app.sections && app.sections.length) {
+          renderAppWithInnerNav(app);
+        } else {
+          main.innerHTML = `<div class="app-view no-inner-nav"><div class="app-content">${app.render ? app.render() : ''}</div></div>`;
+        }
+      }
+
+      function renderAppWithInnerNav(app) {
+        const section =
+          app.sections.find((s) => s.id === state.activeSection) ||
+          app.sections[0];
+        state.activeSection = section.id;
+        const navHtml = app.sections
+          .map(
+            (s) => `
+          <div class="app-inner-item ${s.id === section.id ? 'active' : ''}" data-section="${s.id}">
+            ${s.label}
+          </div>
+        `,
+          )
+          .join('');
+
+        main.innerHTML = `
+          <div class="app-view">
+            <aside class="app-inner-sidebar">
+              <div class="app-inner-title">${app.label}</div>
+              ${navHtml}
+            </aside>
+            <div class="app-content">${app.render(section.id)}</div>
+          </div>
+        `;
+
+        main.querySelectorAll('.app-inner-item').forEach((el) => {
+          el.addEventListener('click', () => {
+            state.activeSection = el.dataset.section;
+            renderMain();
+          });
+        });
+      }
+
+      // ================= App content templates =================
+      function renderHome() {
+        const p = currentProject();
+        const o = currentOrg();
+        return `
+          <div class="breadcrumb">${o.name} / ${p.name}</div>
+          <h1 class="page-title">Overview</h1>
+          <p class="page-sub">Shell layout with the project nav on the left. Try the topbar dropdown.</p>
+          <div class="card">
+            <h3>Interactive mock</h3>
+            <p>Click the topbar trigger, then Project settings / Organization settings / Invite members / Billing &amp; usage to see each settings app render with its own internal sidebar.</p>
+          </div>
+        `;
+      }
+
+      function renderOrgLanding() {
+        const o = currentOrg();
+        return `
+          <div class="breadcrumb">${o.name}</div>
+          <h1 class="page-title">Organization · ${o.name}</h1>
+          <p class="page-sub">The Organization app is a plugin in the project shell — it renders inside the same sidebar and topbar.</p>
+          <div class="card">
+            <h3>Members overview</h3>
+            <p>3 members · 1 owner · 1 admin · 1 member. Manage via Organization settings → Members.</p>
+          </div>
+        `;
+      }
+
+      function renderProjectSettings(section) {
+        const p = currentProject();
+        const title = APPS['project-settings'].sections.find(
+          (s) => s.id === section,
+        ).label;
+        const bodies = {
+          general: `
+            <div class="card">
+              <h3>Project name</h3>
+              <div class="field">
+                <label>Name</label>
+                <input value="${p.name}" />
+              </div>
+              <div class="field">
+                <label>Slug</label>
+                <input value="${p.id}" />
+              </div>
+            </div>
+          `,
+          integrations: `
+            <div class="card"><h3>Integrations</h3><p>GitHub, Linear, PagerDuty. None connected yet.</p></div>
+          `,
+          'api-keys': `
+            <table class="table">
+              <thead><tr><th>Name</th><th>Last used</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>ci-token</td><td>2h ago</td><td><span class="pill">active</span></td></tr>
+                <tr><td>local-dev</td><td>3d ago</td><td><span class="pill">active</span></td></tr>
+              </tbody>
+            </table>
+          `,
+          environment: `
+            <div class="card"><h3>Environment variables</h3><p>Project-scoped secrets. Managed via the server.</p></div>
+          `,
+          danger: `
+            <div class="card"><h3 style="color:#b91c1c">Delete project</h3><p>This action cannot be undone.</p></div>
+          `,
+        };
+        return `
+          <div class="breadcrumb">${currentOrg().name} / ${p.name} / Project settings</div>
+          <h1 class="page-title">${title}</h1>
+          <p class="page-sub">Configure settings for <strong>${p.name}</strong>.</p>
+          ${bodies[section] || ''}
+        `;
+      }
+
+      function renderOrgSettings(section) {
+        const o = currentOrg();
+        const title = APPS['org-settings'].sections.find(
+          (s) => s.id === section,
+        ).label;
+        const bodies = {
+          general: `
+            <div class="card">
+              <h3>Organization name</h3>
+              <div class="field">
+                <label>Name</label>
+                <input value="${o.name}" />
+              </div>
+              <div class="field">
+                <label>Slug</label>
+                <input value="${o.id}" />
+              </div>
+            </div>
+          `,
+          members: `
+            <div class="card">
+              <h3>Invite members</h3>
+              <div class="field">
+                <label>Email</label>
+                <input placeholder="teammate@company.com" />
+              </div>
+            </div>
+            <table class="table">
+              <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+              <tbody>
+                <tr><td>Hani</td><td>hc@guepard.run</td><td><span class="pill">owner</span></td></tr>
+                <tr><td>Alex</td><td>alex@guepard.run</td><td><span class="pill">admin</span></td></tr>
+                <tr><td>Sam</td><td>sam@guepard.run</td><td><span class="pill">member</span></td></tr>
+              </tbody>
+            </table>
+          `,
+          billing: `
+            <div class="card"><h3>Plan · Pro</h3><p>$99 / month · billed annually. Next invoice: May 16, 2026.</p></div>
+            <table class="table">
+              <thead><tr><th>Resource</th><th>Used</th><th>Limit</th></tr></thead>
+              <tbody>
+                <tr><td>Projects</td><td>3</td><td>10</td></tr>
+                <tr><td>Seats</td><td>3</td><td>25</td></tr>
+                <tr><td>Storage</td><td>14 GB</td><td>100 GB</td></tr>
+              </tbody>
+            </table>
+          `,
+          'api-keys': `
+            <table class="table">
+              <thead><tr><th>Name</th><th>Scope</th><th>Last used</th></tr></thead>
+              <tbody>
+                <tr><td>backup-bot</td><td>org:read</td><td>1d ago</td></tr>
+              </tbody>
+            </table>
+          `,
+          security: `
+            <div class="card"><h3>SSO</h3><p>SAML configured · enforced for all members.</p></div>
+            <div class="card"><h3>Audit log</h3><p>Last 90 days available. Export as CSV.</p></div>
+          `,
+          danger: `
+            <div class="card"><h3 style="color:#b91c1c">Delete organization</h3><p>All projects and data will be deleted. This cannot be undone.</p></div>
+          `,
+        };
+        return `
+          <div class="breadcrumb">${o.name} / Organization settings</div>
+          <h1 class="page-title">${title}</h1>
+          <p class="page-sub">Configure settings for <strong>${o.name}</strong>.</p>
+          ${bodies[section] || ''}
+        `;
+      }
+
+      // ================= Navigation =================
+      function openApp(appId, section = null) {
+        state.activeApp = appId;
+        state.activeSection = section;
+        renderSidebarActive();
+        renderMain();
+        closeAll();
+      }
+
+      function selectProject(id) {
+        state.activeProjectId = id;
+        renderDropdownActiveRows();
+        renderTrigger();
+        renderProjectsList();
+        renderMain();
+        closeAll();
+      }
+
+      function selectOrg(id) {
+        if (id === state.activeOrgId) {
+          closeAll();
+          return;
+        }
+        state.activeOrgId = id;
+        // "last-used project per org" — mock uses first project as stand-in
+        const first = (state.projectsByOrg[id] || [])[0];
+        state.activeProjectId = first ? first.id : null;
+        renderDropdownActiveRows();
+        renderTrigger();
+        renderProjectsList();
+        renderOrgsList();
+        renderMain();
+        closeAll();
+      }
+
+      // ================= Menu open / close =================
+      function openDropdown() {
+        dropdown.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+      function closeDropdown() {
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+        closeSubmenus();
+      }
+      function closeSubmenus() {
+        Object.values(submenus).forEach((s) => s.classList.remove('open'));
+        submenuParents.forEach((p) => p.setAttribute('aria-expanded', 'false'));
+      }
+      function closeAll() {
+        closeSubmenus();
+        closeDropdown();
+      }
+      function openSubmenu(kind, parentRow) {
+        closeSubmenus();
+        submenus[kind].classList.add('open');
+        parentRow.setAttribute('aria-expanded', 'true');
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (dropdown.classList.contains('open')) closeDropdown();
+        else openDropdown();
+      });
+
+      submenuParents.forEach((row) => {
+        row.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const kind = row.dataset.submenu;
+          const open = row.getAttribute('aria-expanded') === 'true';
+          if (open) closeSubmenus();
+          else openSubmenu(kind, row);
+        });
+      });
+
+      // Dropdown action rows → open an app
+      const dropdownActions = {
+        'project-settings': () => openApp('project-settings', 'general'),
+        'org-settings': () => openApp('org-settings', 'general'),
+        'invite-members': () => openApp('org-settings', 'members'),
+        billing: () => openApp('org-settings', 'billing'),
+      };
+      dropdown.querySelectorAll('[data-action]').forEach((row) => {
+        row.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const action = row.dataset.action;
+          const handler = dropdownActions[action];
+          if (handler) handler();
+          else closeAll();
+        });
+      });
+
+      // Main sidebar → open an app
+      document
+        .querySelectorAll('.side-nav .side-item[data-app]')
+        .forEach((el) => {
+          el.addEventListener('click', () => {
+            const app = el.dataset.app;
+            if (APPS[app]) {
+              openApp(
+                app,
+                APPS[app].sections ? APPS[app].sections[0].id : null,
+              );
+            } else {
+              // fallback for placeholder apps (notebooks, datasources, query, extensions)
+              openApp('home');
+            }
+          });
+        });
+
+      // Search filters
+      submenus.project
+        .querySelector('[data-filter="project"]')
+        .addEventListener('input', (e) => renderProjectsList(e.target.value));
+      submenus.org
+        .querySelector('[data-filter="org"]')
+        .addEventListener('input', (e) => renderOrgsList(e.target.value));
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        const within =
+          dropdown.contains(e.target) ||
+          submenus.project.contains(e.target) ||
+          submenus.org.contains(e.target) ||
+          trigger.contains(e.target);
+        if (!within) closeAll();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAll();
+      });
+
+      // ================= Init =================
+      renderDropdownActiveRows();
+      renderTrigger();
+      renderProjectsList();
+      renderOrgsList();
+      renderSidebarActive();
+      renderMain();
+    </script>
+  </body>
+</html>
