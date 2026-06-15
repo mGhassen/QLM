@@ -9,7 +9,7 @@ catalog:
   '@storybook/react': ^10.3.4
   '@storybook/react-vite': ^10.3.4
   '@supabase/supabase-js': ^2.86.2
-  '@tanstack/react-query': ^5.90.12
+  '@tanstack/react-query': ^5.101.0
   '@tanstack/react-query-devtools': ^5.91.1
   '@tanstack/react-router': 1.169.2
   '@types/node': ^24.9.2
