@@ -1,8 +1,13 @@
-"use client";
+'use client';
 
-import { Children, useRef, type CSSProperties, type ReactNode } from "react";
-import { FLEX_ALIGN_MAP, FLEX_JUSTIFY_MAP, type FlexAlign, type FlexJustify } from "#/lib/block-schema";
-import { trackPointerDrag } from "#/lib/fluid-drag";
+import { Children, useRef, type CSSProperties, type ReactNode } from 'react';
+import {
+  FLEX_ALIGN_MAP,
+  FLEX_JUSTIFY_MAP,
+  type FlexAlign,
+  type FlexJustify,
+} from '#/lib/block-schema';
+import { trackPointerDrag } from '#/lib/fluid-drag';
 
 interface GridProps {
   cols?: 2 | 3 | 4;
@@ -40,9 +45,13 @@ export default function Grid({
   onInsertAtCell,
 }: GridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
-  const classNames = [cols === 4 ? "grid4" : cols === 3 ? "grid3" : "grid2", "studio-grid", className]
+  const classNames = [
+    cols === 4 ? 'grid4' : cols === 3 ? 'grid3' : 'grid2',
+    'studio-grid',
+    className,
+  ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
   const widths = colWidths ?? Array.from({ length: cols }, () => 1);
   const heights = rowHeights ?? Array.from({ length: rows }, () => 1);
   const childCount = Children.count(children);
@@ -54,11 +63,16 @@ export default function Grid({
 
   const style: CSSProperties = {
     ...(colGapVal || rowGapVal
-      ? { columnGap: colGapVal ? `${colGapVal}mm` : undefined, rowGap: rowGapVal ? `${rowGapVal}mm` : undefined }
+      ? {
+          columnGap: colGapVal ? `${colGapVal}mm` : undefined,
+          rowGap: rowGapVal ? `${rowGapVal}mm` : undefined,
+        }
       : {}),
-    display: "grid",
-    gridTemplateColumns: widths.map((w) => `${w}fr`).join(" "),
-    gridTemplateRows: heights.map((h) => (h === 1 ? "auto" : `${h}fr`)).join(" "),
+    display: 'grid',
+    gridTemplateColumns: widths.map((w) => `${w}fr`).join(' '),
+    gridTemplateRows: heights
+      .map((h) => (h === 1 ? 'auto' : `${h}fr`))
+      .join(' '),
     ...(align ? { alignItems: FLEX_ALIGN_MAP[align] } : {}),
     ...(justify ? { justifyContent: FLEX_JUSTIFY_MAP[justify] } : {}),
   };
@@ -76,23 +90,25 @@ export default function Grid({
 
     const startX = e.clientX;
     const startWidths = [...widths];
-    grid.classList.add("studio-transforming");
-    grid.style.willChange = "grid-template-columns";
+    grid.classList.add('studio-transforming');
+    grid.style.willChange = 'grid-template-columns';
 
     trackPointerDrag(e, {
-      cursor: "col-resize",
+      cursor: 'col-resize',
       onMove(ev) {
         const delta = (ev.clientX - startX) / 100;
         const next = [...startWidths];
         next[colIndex] = snapFr(Math.max(0.3, startWidths[colIndex] + delta));
-        next[colIndex + 1] = snapFr(Math.max(0.3, startWidths[colIndex + 1] - delta));
+        next[colIndex + 1] = snapFr(
+          Math.max(0.3, startWidths[colIndex + 1] - delta),
+        );
         latestWidths.current = next;
-        grid.style.gridTemplateColumns = next.map((w) => `${w}fr`).join(" ");
+        grid.style.gridTemplateColumns = next.map((w) => `${w}fr`).join(' ');
       },
       onEnd() {
-        grid.classList.remove("studio-transforming");
-        grid.style.willChange = "";
-        grid.style.removeProperty("grid-template-columns");
+        grid.classList.remove('studio-transforming');
+        grid.style.willChange = '';
+        grid.style.removeProperty('grid-template-columns');
         if (latestWidths.current) onResize(latestWidths.current);
         latestWidths.current = null;
       },
@@ -104,11 +120,11 @@ export default function Grid({
   return (
     <div
       ref={gridRef}
-      className={`${classNames}${showOverlay ? " studio-grid-active" : ""}`}
+      className={`${classNames}${showOverlay ? ' studio-grid-active' : ''}`}
       style={{
         ...style,
         ...(showOverlay
-          ? ({ "--grid-cols": cols, "--grid-rows": rows } as CSSProperties)
+          ? ({ '--grid-cols': cols, '--grid-rows': rows } as CSSProperties)
           : {}),
       }}
     >
@@ -141,13 +157,19 @@ export default function Grid({
             <div
               key={`col-${i}`}
               className="studio-grid-track-label col"
-              style={{ left: `${(widths.slice(0, i).reduce((a, b) => a + b, 0) / widths.reduce((a, b) => a + b, 0)) * 100}%` }}
+              style={{
+                left: `${(widths.slice(0, i).reduce((a, b) => a + b, 0) / widths.reduce((a, b) => a + b, 0)) * 100}%`,
+              }}
             >
               {w}fr
             </div>
           ))}
           {Array.from({ length: rows }).map((_, i) => (
-            <div key={`row-${i}`} className="studio-grid-track-label row" style={{ top: `${(i / rows) * 100}%` }}>
+            <div
+              key={`row-${i}`}
+              className="studio-grid-track-label row"
+              style={{ top: `${(i / rows) * 100}%` }}
+            >
               Auto
             </div>
           ))}
@@ -158,7 +180,8 @@ export default function Grid({
         <div className="studio-grid-handles">
           {widths.slice(0, -1).map((_, i) => {
             const total = widths.reduce((a, b) => a + b, 0);
-            const leftPct = (widths.slice(0, i + 1).reduce((a, b) => a + b, 0) / total) * 100;
+            const leftPct =
+              (widths.slice(0, i + 1).reduce((a, b) => a + b, 0) / total) * 100;
             return (
               <div
                 key={i}

@@ -1,14 +1,18 @@
-import { resolveBlockContent } from "./content";
-import { splitSplittableParts } from "./content-segments";
+import { resolveBlockContent } from './content';
+import { splitSplittableParts } from './content-segments';
 import {
   makeSegmentUnit,
   replaceUnitAt,
   splittablePartCount,
   splitContentAtPartCount,
-} from "./flow-unit-segments";
-import type { FlowUnit } from "./flow-units";
-import { sectionBottomReserve, sectionTopOverhead, unitPackNeed } from "./section-pack-overhead";
-import { getSplittableChild, isSplittableBlockType } from "./splittable";
+} from './flow-unit-segments';
+import type { FlowUnit } from './flow-units';
+import {
+  sectionBottomReserve,
+  sectionTopOverhead,
+  unitPackNeed,
+} from './section-pack-overhead';
+import { getSplittableChild, isSplittableBlockType } from './splittable';
 
 export interface PackOverflow {
   unit: FlowUnit;
@@ -17,7 +21,10 @@ export interface PackOverflow {
   unitHeight: number;
 }
 
-export function canSubdivideUnit(unit: FlowUnit, sections: Record<string, string>): boolean {
+export function canSubdivideUnit(
+  unit: FlowUnit,
+  sections: Record<string, string>,
+): boolean {
   if (unit.isCover || unit.isBreak) return false;
   const child = getSplittableChild(unit.blocks[0]);
   if (!child || !isSplittableBlockType(child.type)) return false;
@@ -60,11 +67,16 @@ export function findPackOverflow(
       return { unit, index, remaining: bodyHeightPx, unitHeight: h };
     }
 
-    if (bucket.length > 0 && used + unitPackNeed(unit, bucket, h) > bodyHeightPx) {
+    if (
+      bucket.length > 0 &&
+      used + unitPackNeed(unit, bucket, h) > bodyHeightPx
+    ) {
       const remaining =
         bodyHeightPx -
         used -
-        sectionBottomReserve(bucket as unknown as Parameters<typeof sectionBottomReserve>[0]);
+        sectionBottomReserve(
+          bucket as unknown as Parameters<typeof sectionBottomReserve>[0],
+        );
       if (remaining > 0) {
         return { unit, index, remaining, unitHeight: h };
       }
@@ -118,7 +130,10 @@ export function subdivideUnitForHeight(
     partCount = best;
   } else {
     const ratio = Math.min(0.95, Math.max(0.05, targetHeight / unitHeight));
-    partCount = Math.max(1, Math.min(parts.length - 1, Math.ceil(parts.length * ratio)));
+    partCount = Math.max(
+      1,
+      Math.min(parts.length - 1, Math.ceil(parts.length * ratio)),
+    );
   }
 
   const [first, rest] = splitContentAtPartCount(content, partCount);

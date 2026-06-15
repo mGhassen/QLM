@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useLayoutEffect, useState, type RefObject } from "react";
-import { createPortal } from "react-dom";
-import { useBlockRect } from "#/lib/block-rect";
-import type { BlockNode } from "#/lib/types";
-import type { StudioTransform } from "#/lib/studio-transform";
-import StudioBlockToolbar from "./StudioBlockToolbar";
-import StudioSpacingHandles from "./StudioSpacingHandles";
-import StudioTransformHandles from "./StudioTransformHandles";
-import InlineInsertMenu from "./InlineInsertMenu";
+import { useEffect, useLayoutEffect, useState, type RefObject } from 'react';
+import { createPortal } from 'react-dom';
+import { useBlockRect } from '#/lib/block-rect';
+import type { BlockNode } from '#/lib/types';
+import type { StudioTransform } from '#/lib/studio-transform';
+import StudioBlockToolbar from './StudioBlockToolbar';
+import StudioSpacingHandles from './StudioSpacingHandles';
+import StudioTransformHandles from './StudioTransformHandles';
+import InlineInsertMenu from './InlineInsertMenu';
 
 interface StudioBlockChromeProps {
   block: BlockNode;
@@ -68,7 +68,7 @@ function StudioBlockChromeActive({
   const props = block.props ?? {};
 
   useLayoutEffect(() => {
-    setDock(document.querySelector<HTMLElement>(".studio-block-chrome-dock"));
+    setDock(document.querySelector<HTMLElement>('.studio-block-chrome-dock'));
   }, []);
 
   useEffect(() => {
@@ -80,15 +80,21 @@ function StudioBlockChromeActive({
   return createPortal(
     <div
       className={`studio-block-chrome-frame${
-        selected ? " is-selected" : editText ? " is-text-editing" : show ? " is-hovered" : ""
+        selected
+          ? ' is-selected'
+          : editText
+            ? ' is-text-editing'
+            : show
+              ? ' is-hovered'
+              : ''
       }`}
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: rect.top,
         left: rect.left,
         width: rect.width,
         height: rect.height,
-        pointerEvents: "none",
+        pointerEvents: 'none',
       }}
       data-chrome-for={block.id}
     >
@@ -97,7 +103,11 @@ function StudioBlockChromeActive({
         type={block.type}
         onHover={onHover}
         showSpacing={showSpacing}
-        onToggleSpacing={selected && onSpacingChange ? () => setShowSpacing((v) => !v) : undefined}
+        onToggleSpacing={
+          selected && onSpacingChange
+            ? () => setShowSpacing((v) => !v)
+            : undefined
+        }
         onDuplicate={onDuplicate}
         onDelete={onDelete}
         onMoveUp={onMoveUp}

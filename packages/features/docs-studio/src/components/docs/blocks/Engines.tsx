@@ -1,7 +1,7 @@
-import MarkdownContent from "./MarkdownContent";
+import MarkdownContent from './MarkdownContent';
 
 export default function Engines({
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
@@ -15,7 +15,13 @@ export default function Engines({
 }) {
   return (
     <div className="engines">
-      <MarkdownContent content={content} editable={editable} editing={editing} onChange={onChange} onActivate={onActivate} />
+      <MarkdownContent
+        content={content}
+        editable={editable}
+        editing={editing}
+        onChange={onChange}
+        onActivate={onActivate}
+      />
     </div>
   );
 }

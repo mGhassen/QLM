@@ -1,9 +1,9 @@
-import { pageHasCover, resolveDocChrome } from "./chrome";
-import type { LayoutItem } from "./layout-items";
-import { assemblePackedPage } from "./layout-items";
-import { getPageBodyHeightPx } from "./page-metrics";
-import type { ResolvedPageSetup } from "./page-setup";
-import type { DocChrome } from "./types";
+import { pageHasCover, resolveDocChrome } from './chrome';
+import type { LayoutItem } from './layout-items';
+import { assemblePackedPage } from './layout-items';
+import { getPageBodyHeightPx } from './page-metrics';
+import type { ResolvedPageSetup } from './page-setup';
+import type { DocChrome } from './types';
 
 export interface PageBodyBudgetContext {
   setup: ResolvedPageSetup;
@@ -17,7 +17,11 @@ export function chromeForPageBlocks(
   pageBlocks: { type: string }[],
 ): { showHeader: boolean; showFooter: boolean; isCover: boolean } {
   const isCover = pageHasCover(pageBlocks);
-  const resolved = resolveDocChrome(ctx.chrome, { title: ctx.title, page: pageNum, total: pageNum });
+  const resolved = resolveDocChrome(ctx.chrome, {
+    title: ctx.title,
+    page: pageNum,
+    total: pageNum,
+  });
   const onCover = isCover && !resolved.showOnCover;
   return {
     isCover,

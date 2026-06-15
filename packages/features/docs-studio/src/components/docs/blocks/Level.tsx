@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Children, cloneElement, isValidElement, type ReactNode } from "react";
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import { Children, cloneElement, isValidElement, type ReactNode } from 'react';
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface LevelProps {
   level?: number;
@@ -21,7 +21,7 @@ export default function Level({
   level = 1,
   name,
   highlightCol,
-  content = "",
+  content = '',
   children,
   editable,
   editing,
@@ -29,30 +29,36 @@ export default function Level({
   onPropChange,
   onActivate,
 }: LevelProps) {
-  const legacyCols = content ? content.split("\n---\n").map((c) => c.trim()) : [];
+  const legacyCols = content
+    ? content.split('\n---\n').map((c) => c.trim())
+    : [];
   const childCount = Children.count(children);
-  const columnCount = childCount > 0 ? childCount : Math.max(legacyCols.length, 2);
+  const columnCount =
+    childCount > 0 ? childCount : Math.max(legacyCols.length, 2);
 
   function updateLegacyCol(index: number, col: string) {
     if (!onChange) return;
     const next = [...legacyCols];
-    while (next.length < columnCount) next.push("");
+    while (next.length < columnCount) next.push('');
     next[index] = col;
-    onChange(next.join("\n---\n"));
+    onChange(next.join('\n---\n'));
   }
 
   const renderedChildren =
     childCount > 0
       ? Children.map(children, (child, i) => {
           if (!isValidElement(child)) return child;
-          return cloneElement(child as React.ReactElement<{ highlight?: boolean }>, {
-            highlight: highlightCol && i === columnCount - 1,
-          });
+          return cloneElement(
+            child as React.ReactElement<{ highlight?: boolean }>,
+            {
+              highlight: highlightCol && i === columnCount - 1,
+            },
+          );
         })
       : legacyCols.map((col, i) => (
           <div
             key={i}
-            className={`col${highlightCol && i === columnCount - 1 ? " gapcol" : ""}`}
+            className={`col${highlightCol && i === columnCount - 1 ? ' gapcol' : ''}`}
           >
             <MarkdownContent
               content={col}
@@ -71,8 +77,8 @@ export default function Level({
         {(name || editable) && (
           <StudioPopover
             editable={editable}
-            value={name ?? ""}
-            onChange={(v) => onPropChange?.("name", v)}
+            value={name ?? ''}
+            onChange={(v) => onPropChange?.('name', v)}
             singleLine
             editing={editing}
             onActivate={onActivate}

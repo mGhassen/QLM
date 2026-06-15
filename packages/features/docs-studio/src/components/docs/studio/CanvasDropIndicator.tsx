@@ -1,19 +1,21 @@
-"use client";
+'use client';
 
-import { createPortal } from "react-dom";
-import { useEffect, useState } from "react";
-import type { CanvasDropTarget } from "#/lib/canvas-drop";
-import { viewportRectToCanvas } from "#/lib/block-rect";
+import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
+import type { CanvasDropTarget } from '#/lib/canvas-drop';
+import { viewportRectToCanvas } from '#/lib/block-rect';
 
 interface CanvasDropIndicatorProps {
   dropTarget: CanvasDropTarget | null;
 }
 
-export default function CanvasDropIndicator({ dropTarget }: CanvasDropIndicatorProps) {
+export default function CanvasDropIndicator({
+  dropTarget,
+}: CanvasDropIndicatorProps) {
   const [dock, setDock] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    setDock(document.querySelector<HTMLElement>(".studio-block-chrome-dock"));
+    setDock(document.querySelector<HTMLElement>('.studio-block-chrome-dock'));
   }, []);
 
   if (!dock || !dropTarget) return null;
@@ -22,17 +24,17 @@ export default function CanvasDropIndicator({ dropTarget }: CanvasDropIndicatorP
   const rect = viewportRectToCanvas(viewportRect);
   const invalid = !valid;
 
-  if (position === "inside") {
+  if (position === 'inside') {
     return createPortal(
       <div
-        className={`studio-canvas-drop-indicator inside${invalid ? " invalid" : ""}`}
+        className={`studio-canvas-drop-indicator inside${invalid ? ' invalid' : ''}`}
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: rect.top,
           left: rect.left,
           width: rect.width,
           height: rect.height,
-          pointerEvents: "none",
+          pointerEvents: 'none',
           zIndex: 200,
         }}
       />,
@@ -40,18 +42,18 @@ export default function CanvasDropIndicator({ dropTarget }: CanvasDropIndicatorP
     );
   }
 
-  const lineTop = position === "before" ? rect.top : rect.top + rect.height;
+  const lineTop = position === 'before' ? rect.top : rect.top + rect.height;
 
   return createPortal(
     <div
-      className={`studio-canvas-drop-indicator line${invalid ? " invalid" : ""}`}
+      className={`studio-canvas-drop-indicator line${invalid ? ' invalid' : ''}`}
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: lineTop - 1,
         left: rect.left,
         width: rect.width,
         height: 2,
-        pointerEvents: "none",
+        pointerEvents: 'none',
         zIndex: 200,
       }}
     />,

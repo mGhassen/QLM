@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Plus } from "lucide-react";
-import InlineInsertMenu from "./InlineInsertMenu";
-import { INLINE_INSERT_ITEMS } from "#/lib/palette";
-import type { BlockNode } from "#/lib/types";
+import { Plus } from 'lucide-react';
+import InlineInsertMenu from './InlineInsertMenu';
+import { INLINE_INSERT_ITEMS } from '#/lib/palette';
+import type { BlockNode } from '#/lib/types';
 
 interface StudioPageChromeProps {
   pageNumber: number;
@@ -21,11 +21,17 @@ export default function StudioPageChrome({
   return (
     <div className="studio-page-chrome">
       <span className="studio-page-chrome-label">
-        {isContinuation ? `Page ${pageNumber} (continued)` : `Page ${pageNumber}`}
+        {isContinuation
+          ? `Page ${pageNumber} (continued)`
+          : `Page ${pageNumber}`}
       </span>
       <div className="studio-page-chrome-actions">
         {onAddSection && (
-          <button type="button" className="studio-page-chrome-btn" onClick={onAddSection}>
+          <button
+            type="button"
+            className="studio-page-chrome-btn"
+            onClick={onAddSection}
+          >
             <Plus size={12} />
             Section
           </button>

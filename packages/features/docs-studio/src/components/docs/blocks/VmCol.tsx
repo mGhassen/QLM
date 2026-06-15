@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { extractCards } from "#/lib/markdoc";
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import { extractCards } from '#/lib/markdoc';
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface VmColProps {
   content?: string;
@@ -13,11 +13,11 @@ interface VmColProps {
 }
 
 function serializeCard(title: string, body: string): string {
-  return [title, body].filter(Boolean).join("\n");
+  return [title, body].filter(Boolean).join('\n');
 }
 
 export default function VmCol({
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
@@ -25,7 +25,7 @@ export default function VmCol({
 }: VmColProps) {
   const cards = extractCards(content);
   const card = cards[0];
-  const title = card?.title ?? "";
+  const title = card?.title ?? '';
   const body = card?.body ?? content;
 
   function updateTitle(newTitle: string) {

@@ -1,10 +1,5 @@
 import { Checkbox } from '@qlm/ui/checkbox';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@qlm/ui/form';
+import { FormControl, FormField, FormItem, FormMessage } from '@qlm/ui/form';
 import { Trans } from '@qlm/ui/trans';
 
 export function TermsAndConditionsFormField(

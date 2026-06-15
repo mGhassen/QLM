@@ -1,7 +1,7 @@
-import { breakVariantToSectionProps, type BreakVariant } from "./breaks";
-import { pageFragmentKey, type BlockPageFragment } from "./page-fragment";
-import { isCoverSection } from "./section-variant";
-import type { BlockNode } from "./types";
+import { breakVariantToSectionProps, type BreakVariant } from './breaks';
+import { pageFragmentKey, type BlockPageFragment } from './page-fragment';
+import { isCoverSection } from './section-variant';
+import type { BlockNode } from './types';
 
 export interface SectionContext {
   id: string;
@@ -43,7 +43,8 @@ function sectionContext(
   return {
     id: section.id,
     pageBreak: isFirst
-      ? (breakProps.pageBreak ?? (section.props?.pageBreak as boolean | undefined))
+      ? (breakProps.pageBreak ??
+        (section.props?.pageBreak as boolean | undefined))
       : false,
     continuation: isFirst
       ? breakProps.continuation
@@ -87,10 +88,15 @@ function sectionToItems(
   let sliceIndex = 0;
 
   for (const child of children) {
-    if (child.type === "break") {
-      items.push({ key: `break:${child.id}`, block: child, isBreak: true, sourcePageId });
+    if (child.type === 'break') {
+      items.push({
+        key: `break:${child.id}`,
+        block: child,
+        isBreak: true,
+        sourcePageId,
+      });
       forceNext = true;
-      nextVariant = (child.props?.variant as BreakVariant) ?? "page";
+      nextVariant = (child.props?.variant as BreakVariant) ?? 'page';
       continue;
     }
 
@@ -115,13 +121,18 @@ function pageToItems(page: BlockNode, breakBefore: boolean): LayoutItem[] {
   const sourcePageId = page.id;
 
   for (const child of page.children ?? []) {
-    if (child.type === "break") {
-      items.push({ key: `break:${child.id}`, block: child, isBreak: true, sourcePageId });
+    if (child.type === 'break') {
+      items.push({
+        key: `break:${child.id}`,
+        block: child,
+        isBreak: true,
+        sourcePageId,
+      });
       forceNext = true;
       continue;
     }
 
-    if (child.type === "section") {
+    if (child.type === 'section') {
       const sectionItems = sectionToItems(child, forceNext, sourcePageId);
       items.push(...sectionItems);
       forceNext = false;
@@ -143,16 +154,16 @@ function pageToItems(page: BlockNode, breakBefore: boolean): LayoutItem[] {
 export function blocksToLayoutItems(blocks: BlockNode[]): LayoutItem[] {
   const items: LayoutItem[] = [];
   let pendingVariant: BreakVariant | undefined;
-  const hasPages = blocks.some((b) => b.type === "page");
+  const hasPages = blocks.some((b) => b.type === 'page');
 
   for (const block of blocks) {
-    if (block.type === "break") {
+    if (block.type === 'break') {
       items.push({ key: `break:${block.id}`, block, isBreak: true });
-      pendingVariant = (block.props?.variant as BreakVariant) ?? "page";
+      pendingVariant = (block.props?.variant as BreakVariant) ?? 'page';
       continue;
     }
 
-    if (block.type === "page") {
+    if (block.type === 'page') {
       const pageItems = pageToItems(block, true);
       if (pendingVariant && pageItems.length > 0 && !pageItems[0].isBreak) {
         pageItems[0].forceBreakBefore = true;
@@ -167,15 +178,27 @@ export function blocksToLayoutItems(blocks: BlockNode[]): LayoutItem[] {
       continue;
     }
 
-    if (block.type === "cover") {
+    if (block.type === 'cover') {
       pendingVariant = undefined;
-      items.push({ key: block.id, block, isCover: true, forceBreakBefore: true });
+      items.push({
+        key: block.id,
+        block,
+        isCover: true,
+        forceBreakBefore: true,
+      });
       continue;
     }
 
-    if (block.type === "section") {
-      const sectionItems = sectionToItems(block, hasPages ? false : !!block.props?.pageBreak);
-      if (pendingVariant && sectionItems.length > 0 && !sectionItems[0].isBreak) {
+    if (block.type === 'section') {
+      const sectionItems = sectionToItems(
+        block,
+        hasPages ? false : !!block.props?.pageBreak,
+      );
+      if (
+        pendingVariant &&
+        sectionItems.length > 0 &&
+        !sectionItems[0].isBreak
+      ) {
         sectionItems[0].forceBreakBefore = true;
         const ctx = sectionItems[0].section;
         if (ctx) {
@@ -242,7 +265,7 @@ export function assemblePackedPage(items: LayoutItem[]): PackedPage {
         currentSectionId = item.section.id;
         currentSection = {
           id: item.section.id,
-          type: "section",
+          type: 'section',
           props: {
             id: item.section.id,
             pageBreak: item.section.pageBreak,
@@ -251,7 +274,10 @@ export function assemblePackedPage(items: LayoutItem[]): PackedPage {
           children: [],
         };
       }
-      currentSection!.children = [...(currentSection!.children ?? []), item.block];
+      currentSection!.children = [
+        ...(currentSection!.children ?? []),
+        item.block,
+      ];
       continue;
     }
 
@@ -281,10 +307,13 @@ export function layoutItemsEqual(a: LayoutItem[], b: LayoutItem[]): boolean {
 }
 
 export function layoutStructureKey(items: LayoutItem[]): string {
-  return items.map((item) => item.key).join("\0");
+  return items.map((item) => item.key).join('\0');
 }
 
-export function syncItemBlocks(items: LayoutItem[], blocks: BlockNode[]): LayoutItem[] {
+export function syncItemBlocks(
+  items: LayoutItem[],
+  blocks: BlockNode[],
+): LayoutItem[] {
   const blockById = new Map<string, BlockNode>();
   const walk = (nodes: BlockNode[]) => {
     for (const node of nodes) {
@@ -300,7 +329,10 @@ export function syncItemBlocks(items: LayoutItem[], blocks: BlockNode[]): Layout
   });
 }
 
-export function syncPackedPageBlocks(pages: PackedPage[], blocks: BlockNode[]): PackedPage[] {
+export function syncPackedPageBlocks(
+  pages: PackedPage[],
+  blocks: BlockNode[],
+): PackedPage[] {
   const blockById = new Map<string, BlockNode>();
   const walk = (nodes: BlockNode[]) => {
     for (const node of nodes) {
@@ -315,7 +347,10 @@ export function syncPackedPageBlocks(pages: PackedPage[], blocks: BlockNode[]): 
     if (!fresh) return node;
     if (node.children?.length) {
       const children = node.children.map(syncBlock);
-      if (fresh === node && children.every((child, i) => child === node.children![i])) {
+      if (
+        fresh === node &&
+        children.every((child, i) => child === node.children![i])
+      ) {
         return node;
       }
       return { ...fresh, children };
@@ -341,10 +376,12 @@ function packedPageBlocksKey(blocks: BlockNode[]): string {
   const walk = (nodes: BlockNode[]): string =>
     nodes
       .map((node) => {
-        const childKey = node.children?.length ? `(${walk(node.children)})` : "";
+        const childKey = node.children?.length
+          ? `(${walk(node.children)})`
+          : '';
         return `${node.id}${childKey}`;
       })
-      .join(",");
+      .join(',');
   return walk(blocks);
 }
 
@@ -355,7 +392,8 @@ export function packedPagesEqual(a: PackedPage[], b: PackedPage[]): boolean {
     const bp = b[i];
     if (ap.sourcePageId !== bp.sourcePageId) return false;
     if (ap.isContinuation !== bp.isContinuation) return false;
-    if (packedPageBlocksKey(ap.blocks) !== packedPageBlocksKey(bp.blocks)) return false;
+    if (packedPageBlocksKey(ap.blocks) !== packedPageBlocksKey(bp.blocks))
+      return false;
     const aKeys = Object.keys(ap.fragments).sort();
     const bKeys = Object.keys(bp.fragments).sort();
     if (aKeys.length !== bKeys.length) return false;
@@ -363,7 +401,11 @@ export function packedPagesEqual(a: PackedPage[], b: PackedPage[]): boolean {
       if (aKeys[k] !== bKeys[k]) return false;
       const af = ap.fragments[aKeys[k]];
       const bf = bp.fragments[bKeys[k]];
-      if (af.content !== bf.content || af.index !== bf.index || af.total !== bf.total) {
+      if (
+        af.content !== bf.content ||
+        af.index !== bf.index ||
+        af.total !== bf.total
+      ) {
         return false;
       }
     }

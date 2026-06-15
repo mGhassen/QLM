@@ -50,8 +50,11 @@ function deriveColor(seed: string): string {
 }
 
 export function ShellTopbar(props: Readonly<ShellTopbarProps>) {
-  const { onNavigate, collapsedMenuExtension, expandMenuExtension = false } =
-    props;
+  const {
+    onNavigate,
+    collapsedMenuExtension,
+    expandMenuExtension = false,
+  } = props;
   const { t } = useTranslation('shell');
   const shell = useShell();
   const { collapsed } = useShellSidebar();

@@ -1,6 +1,13 @@
-import { assemblePackedPage, type LayoutItem, type PackedPage } from "./layout-items";
-import { bodyHeightForPageBucket, type PageBodyBudgetContext } from "./page-body-budget";
-import { sectionTopOverhead, itemPackNeed } from "./section-pack-overhead";
+import {
+  assemblePackedPage,
+  type LayoutItem,
+  type PackedPage,
+} from './layout-items';
+import {
+  bodyHeightForPageBucket,
+  type PageBodyBudgetContext,
+} from './page-body-budget';
+import { sectionTopOverhead, itemPackNeed } from './section-pack-overhead';
 
 function bucketSourcePageId(bucket: LayoutItem[]): string | undefined {
   return bucket.find((item) => item.sourcePageId)?.sourcePageId;
@@ -60,8 +67,12 @@ export function packLayoutItems(
 
     const bodyHeightPx = bodyHeightForPageBucket(ctx, pageNum, bucket);
 
-    if (bucket.length > 0 && used + itemPackNeed(item, bucket, h) > bodyHeightPx) {
-      const samePage = item.sourcePageId && item.sourcePageId === bucketSourcePageId(bucket);
+    if (
+      bucket.length > 0 &&
+      used + itemPackNeed(item, bucket, h) > bodyHeightPx
+    ) {
+      const samePage =
+        item.sourcePageId && item.sourcePageId === bucketSourcePageId(bucket);
       flush(!!samePage);
     }
 

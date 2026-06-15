@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
-import { useRouter } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
-import { Search, Trash2 } from "lucide-react";
-import { Button } from "@qlm/ui/button";
+import { useEffect, useMemo, useRef, useState, useTransition } from 'react';
+import { useRouter } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
+import { Search, Trash2 } from 'lucide-react';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@qlm/ui/dialog";
-import { Input } from "@qlm/ui/input";
-import { cn } from "@qlm/ui/utils";
-import type { DocListItem } from "#/lib/types";
-import { useStudioShell } from "#/studio-shell-context";
-import type { DocStudioActions } from "#/types/actions";
-import ImportDocDialog from "./ImportDocDialog";
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
+import { cn } from '@qlm/ui/utils';
+import type { DocListItem } from '#/lib/types';
+import { useStudioShell } from '#/studio-shell-context';
+import type { DocStudioActions } from '#/types/actions';
+import ImportDocDialog from './ImportDocDialog';
 
 interface DocsPickerDialogProps extends DocStudioActions {
   open: boolean;
@@ -32,10 +32,10 @@ export default function DocsPickerDialog({
   deleteDocAction,
   importDocAction,
 }: DocsPickerDialogProps) {
-  const { t } = useTranslation("studio");
+  const { t } = useTranslation('studio');
   const router = useRouter();
   const { activeSlug, openDoc, closeDocTab } = useStudioShell();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [importOpen, setImportOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,13 +44,14 @@ export default function DocsPickerDialog({
     const q = query.trim().toLowerCase();
     if (!q) return allDocs;
     return allDocs.filter(
-      (d) => d.title.toLowerCase().includes(q) || d.slug.toLowerCase().includes(q),
+      (d) =>
+        d.title.toLowerCase().includes(q) || d.slug.toLowerCase().includes(q),
     );
   }, [allDocs, query]);
 
   useEffect(() => {
     if (!open) {
-      setQuery("");
+      setQuery('');
       return;
     }
     requestAnimationFrame(() => inputRef.current?.focus());
@@ -61,7 +62,7 @@ export default function DocsPickerDialog({
       const { slug } = await createNewDocAction();
       router.invalidate();
       onClose();
-      openDoc(slug, "New Doc");
+      openDoc(slug, 'New Doc');
     });
   }
 
@@ -80,7 +81,7 @@ export default function DocsPickerDialog({
 
       if (remaining.length === 0) {
         const { slug: newSlug } = await createNewDocAction();
-        openDoc(newSlug, "New Doc");
+        openDoc(newSlug, 'New Doc');
       } else if (slug === activeSlug) {
         openDoc(remaining[0]!.slug, remaining[0]!.title);
       }
@@ -102,7 +103,7 @@ export default function DocsPickerDialog({
             disabled={pending}
             className="h-7 rounded-none text-xs"
           >
-            {t("import.button")}
+            {t('import.button')}
           </Button>
           <Button
             type="button"
@@ -143,8 +144,8 @@ export default function DocsPickerDialog({
               <li
                 key={doc.slug}
                 className={cn(
-                  "group border-border flex items-center border-b last:border-b-0",
-                  doc.slug === activeSlug ? "bg-accent" : "hover:bg-accent/50",
+                  'group border-border flex items-center border-b last:border-b-0',
+                  doc.slug === activeSlug ? 'bg-accent' : 'hover:bg-accent/50',
                 )}
               >
                 <button
@@ -155,10 +156,10 @@ export default function DocsPickerDialog({
                   <p className="truncate text-xs font-medium">{doc.title}</p>
                   <p className="text-muted-foreground mt-0.5 font-mono text-[10px]">
                     {new Date(doc.updatedAt).toLocaleDateString(undefined, {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}{" "}
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}{' '}
                     · {doc.slug}
                   </p>
                 </button>

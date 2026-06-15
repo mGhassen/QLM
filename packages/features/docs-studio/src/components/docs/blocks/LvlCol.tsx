@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import MarkdownContent from "./MarkdownContent";
+import MarkdownContent from './MarkdownContent';
 
 interface LvlColProps {
   content?: string;
@@ -12,7 +12,7 @@ interface LvlColProps {
 }
 
 export default function LvlCol({
-  content = "",
+  content = '',
   highlight,
   editable,
   editing,
@@ -20,7 +20,7 @@ export default function LvlCol({
   onActivate,
 }: LvlColProps) {
   return (
-    <div className={`col${highlight ? " gapcol" : ""}`}>
+    <div className={`col${highlight ? ' gapcol' : ''}`}>
       <MarkdownContent
         content={content}
         editable={editable}

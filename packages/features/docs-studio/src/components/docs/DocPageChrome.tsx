@@ -1,10 +1,10 @@
-import type { CSSProperties } from "react";
-import type { ChromeZoneId } from "#/lib/types";
-import { chromeZoneToStyle, type ResolvedChrome } from "#/lib/chrome";
+import type { CSSProperties } from 'react';
+import type { ChromeZoneId } from '#/lib/types';
+import { chromeZoneToStyle, type ResolvedChrome } from '#/lib/chrome';
 
 interface DocPageChromeProps {
   chrome: ResolvedChrome;
-  position: "header" | "footer";
+  position: 'header' | 'footer';
   studioMode?: boolean;
   activeZone?: ChromeZoneId | null;
   onZoneSelect?: (zone: ChromeZoneId) => void;
@@ -20,22 +20,28 @@ function ChromeZone({
 }: {
   zone: ChromeZoneId;
   html: string;
-  chromeStyle?: ResolvedChrome["style"];
+  chromeStyle?: ResolvedChrome['style'];
   studioMode?: boolean;
   active?: boolean;
   onSelect?: (zone: ChromeZoneId) => void;
 }) {
-  if (!html.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").trim()) return <span className="doc-chrome-zone doc-chrome-zone--empty" />;
+  if (
+    !html
+      .replace(/<[^>]+>/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .trim()
+  )
+    return <span className="doc-chrome-zone doc-chrome-zone--empty" />;
 
   const style = chromeZoneToStyle(zone, chromeStyle);
   const className = [
-    "doc-chrome-zone",
+    'doc-chrome-zone',
     `doc-chrome-zone--${zone}`,
-    studioMode ? "doc-chrome-zone--studio" : "",
-    active ? "studio-selected" : "",
+    studioMode ? 'doc-chrome-zone--studio' : '',
+    active ? 'studio-selected' : '',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <span
@@ -62,16 +68,18 @@ export default function DocPageChrome({
   activeZone,
   onZoneSelect,
 }: DocPageChromeProps) {
-  if (position === "header") {
+  if (position === 'header') {
     if (!chrome.showHeader) return null;
     return (
-      <div className={`doc-chrome-header${studioMode ? " doc-chrome-header--studio" : ""}`}>
+      <div
+        className={`doc-chrome-header${studioMode ? ' doc-chrome-header--studio' : ''}`}
+      >
         <ChromeZone
           zone="headerLeft"
           html={chrome.headerLeftHtml}
           chromeStyle={chrome.style}
           studioMode={studioMode}
-          active={activeZone === "headerLeft"}
+          active={activeZone === 'headerLeft'}
           onSelect={onZoneSelect}
         />
         <ChromeZone
@@ -79,7 +87,7 @@ export default function DocPageChrome({
           html={chrome.headerRightHtml}
           chromeStyle={chrome.style}
           studioMode={studioMode}
-          active={activeZone === "headerRight"}
+          active={activeZone === 'headerRight'}
           onSelect={onZoneSelect}
         />
       </div>
@@ -88,13 +96,15 @@ export default function DocPageChrome({
 
   if (!chrome.showFooter) return null;
   return (
-    <div className={`doc-chrome-footer${studioMode ? " doc-chrome-footer--studio" : ""}`}>
+    <div
+      className={`doc-chrome-footer${studioMode ? ' doc-chrome-footer--studio' : ''}`}
+    >
       <ChromeZone
         zone="footerLeft"
         html={chrome.footerLeftHtml}
         chromeStyle={chrome.style}
         studioMode={studioMode}
-        active={activeZone === "footerLeft"}
+        active={activeZone === 'footerLeft'}
         onSelect={onZoneSelect}
       />
       <ChromeZone
@@ -102,7 +112,7 @@ export default function DocPageChrome({
         html={chrome.footerRightHtml}
         chromeStyle={chrome.style}
         studioMode={studioMode}
-        active={activeZone === "footerRight"}
+        active={activeZone === 'footerRight'}
         onSelect={onZoneSelect}
       />
     </div>

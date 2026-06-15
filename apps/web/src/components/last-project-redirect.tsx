@@ -132,10 +132,7 @@ function AuthedLastProjectRedirect({ userId }: Readonly<{ userId: string }>) {
   if ('slug' in resolved) {
     const routeBase = getAppRegistry().getDefaultRouteBase();
     return (
-      <Navigate
-        to={createProjectAppPath(resolved.slug, routeBase)}
-        replace
-      />
+      <Navigate to={createProjectAppPath(resolved.slug, routeBase)} replace />
     );
   }
 

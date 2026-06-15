@@ -11,7 +11,11 @@ type DocsPreviewPageProps = {
 };
 
 export function DocsPreviewPage({ slug }: DocsPreviewPageProps) {
-  const { data: doc, isPending, isError } = useQuery({
+  const {
+    data: doc,
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ['doc-preview', slug],
     queryFn: async () => {
       const res = await fetch(docsPaths.api.preview(slug));
@@ -24,14 +28,14 @@ export function DocsPreviewPage({ slug }: DocsPreviewPageProps) {
   if (isPending) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        <Loader2 className="text-muted-foreground h-6 w-6 animate-spin" />
       </div>
     );
   }
 
   if (isError || !doc) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-sm text-muted-foreground">
+      <div className="text-muted-foreground flex min-h-screen items-center justify-center text-sm">
         Document not found
       </div>
     );

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from 'react';
 
 interface CanvasDragPreviewProps {
   blockId: string;
@@ -19,18 +19,18 @@ export default function CanvasDragPreview({ blockId }: CanvasDragPreviewProps) {
     const rect = source.getBoundingClientRect();
     const clone = source.cloneNode(true) as HTMLElement;
     clone.classList.remove(
-      "studio-dragging",
-      "studio-selected",
-      "studio-hovered",
-      "studio-multi-selected",
-      "studio-selected-inline",
+      'studio-dragging',
+      'studio-selected',
+      'studio-hovered',
+      'studio-multi-selected',
+      'studio-selected-inline',
     );
-    clone.removeAttribute("data-studio-selected");
-    clone.removeAttribute("data-studio-hovered");
-    clone.removeAttribute("data-studio-multi-selected");
-    clone.removeAttribute("data-studio-text-editing");
-    clone.style.opacity = "1";
-    clone.style.pointerEvents = "none";
+    clone.removeAttribute('data-studio-selected');
+    clone.removeAttribute('data-studio-hovered');
+    clone.removeAttribute('data-studio-multi-selected');
+    clone.removeAttribute('data-studio-text-editing');
+    clone.style.opacity = '1';
+    clone.style.pointerEvents = 'none';
 
     host.replaceChildren(clone);
     if (rect.width > 0) host.style.width = `${rect.width}px`;

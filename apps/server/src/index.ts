@@ -40,10 +40,7 @@ function syncLocalSupabaseFromCli() {
       SERVICE_ROLE_KEY?: string;
     };
     const url = status.API_URL;
-    if (
-      !url ||
-      (!url.includes('127.0.0.1') && !url.includes('localhost'))
-    ) {
+    if (!url || (!url.includes('127.0.0.1') && !url.includes('localhost'))) {
       return;
     }
 

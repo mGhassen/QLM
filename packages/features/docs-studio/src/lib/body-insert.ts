@@ -1,31 +1,31 @@
-import { collectPageBlockIds } from "./page-blocks";
-import { parseBodyToSegments, type BodySegment } from "./body-segments";
-import { createBlock } from "./serialize";
-import type { BlockNode } from "./types";
+import { collectPageBlockIds } from './page-blocks';
+import { parseBodyToSegments, type BodySegment } from './body-segments';
+import { createBlock } from './serialize';
+import type { BlockNode } from './types';
 
 function segmentToMarkdown(seg: BodySegment): string {
-  if (seg.kind === "break") {
-    const variant = (seg.block.props?.variant as string) ?? "page";
+  if (seg.kind === 'break') {
+    const variant = (seg.block.props?.variant as string) ?? 'page';
     return `{% break variant="${variant}" /%}`;
   }
-  if (seg.kind === "design") {
+  if (seg.kind === 'design') {
     const block = createBlock(seg.block.type, {
       content: seg.markdown,
       props: seg.block.props,
     });
     const props = block.props ?? {};
     const attrStr = Object.entries(props)
-      .filter(([k]) => k !== "id")
+      .filter(([k]) => k !== 'id')
       .map(([k, v]) => `${k}="${v}"`)
-      .join(" ");
-    return `{% ${block.type}${attrStr ? ` ${attrStr}` : ""} %}\n${block.content ?? seg.markdown}\n{% /${block.type} %}`;
+      .join(' ');
+    return `{% ${block.type}${attrStr ? ` ${attrStr}` : ''} %}\n${block.content ?? seg.markdown}\n{% /${block.type} %}`;
   }
   return seg.markdown;
 }
 
 export function blockToBodyMarkdown(block: BlockNode): string {
-  if (block.type === "break") {
-    const variant = (block.props?.variant as string) ?? "page";
+  if (block.type === 'break') {
+    const variant = (block.props?.variant as string) ?? 'page';
     return `{% break variant="${variant}" /%}`;
   }
   const created = createBlock(block.type, {
@@ -33,15 +33,19 @@ export function blockToBodyMarkdown(block: BlockNode): string {
     props: block.props,
     children: block.children,
   });
-  if (created.type === "paragraph" || created.type === "subheading" || created.type === "quote") {
-    return created.content ?? "";
+  if (
+    created.type === 'paragraph' ||
+    created.type === 'subheading' ||
+    created.type === 'quote'
+  ) {
+    return created.content ?? '';
   }
   const props = created.props ?? {};
   const attrStr = Object.entries(props)
-    .filter(([k]) => k !== "id")
+    .filter(([k]) => k !== 'id')
     .map(([k, v]) => `${k}="${v}"`)
-    .join(" ");
-  return `{% ${created.type}${attrStr ? ` ${attrStr}` : ""} %}\n${created.content ?? ""}\n{% /${created.type} %}`;
+    .join(' ');
+  return `{% ${created.type}${attrStr ? ` ${attrStr}` : ''} %}\n${created.content ?? ''}\n{% /${created.type} %}`;
 }
 
 export function insertAfterPageInBody(
@@ -67,7 +71,11 @@ export function insertAfterPageInBody(
   let insertAfterIdx = -1;
   for (let i = 0; i < segments.length; i++) {
     const segId = segments[i].block.id;
-    if (segId === lastId || lastId.startsWith(segId) || segId.startsWith(lastId)) {
+    if (
+      segId === lastId ||
+      lastId.startsWith(segId) ||
+      segId.startsWith(lastId)
+    ) {
       insertAfterIdx = i;
     }
   }
@@ -78,5 +86,5 @@ export function insertAfterPageInBody(
 
   const parts = segments.map(segmentToMarkdown);
   parts.splice(insertAfterIdx + 1, 0, trimmed);
-  return parts.filter((part) => part.trim()).join("\n\n");
+  return parts.filter((part) => part.trim()).join('\n\n');
 }

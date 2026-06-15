@@ -1,15 +1,18 @@
-"use client";
+'use client';
 
-import { Columns2, Rows2, Square } from "lucide-react";
-import type { AlignDimension } from "#/lib/block-align";
-import { WfHint } from "./style/WfControls";
+import { Columns2, Rows2, Square } from 'lucide-react';
+import type { AlignDimension } from '#/lib/block-align';
+import { WfHint } from './style/WfControls';
 
 interface MultiSelectAlignPanelProps {
   count: number;
   onAlign: (dimension: AlignDimension) => void;
 }
 
-export default function MultiSelectAlignPanel({ count, onAlign }: MultiSelectAlignPanelProps) {
+export default function MultiSelectAlignPanel({
+  count,
+  onAlign,
+}: MultiSelectAlignPanelProps) {
   return (
     <div className="wf-panel-sections">
       <div className="wf-selector-block">
@@ -22,20 +25,35 @@ export default function MultiSelectAlignPanel({ count, onAlign }: MultiSelectAli
           Match size
         </p>
         <div className="wf-align-actions">
-          <button type="button" className="wf-align-btn" onClick={() => onAlign("width")}>
+          <button
+            type="button"
+            className="wf-align-btn"
+            onClick={() => onAlign('width')}
+          >
             <Columns2 size={14} />
             <span>Same width</span>
           </button>
-          <button type="button" className="wf-align-btn" onClick={() => onAlign("height")}>
+          <button
+            type="button"
+            className="wf-align-btn"
+            onClick={() => onAlign('height')}
+          >
             <Rows2 size={14} />
             <span>Same height</span>
           </button>
-          <button type="button" className="wf-align-btn" onClick={() => onAlign("both")}>
+          <button
+            type="button"
+            className="wf-align-btn"
+            onClick={() => onAlign('both')}
+          >
             <Square size={14} />
             <span>Same size</span>
           </button>
         </div>
-        <WfHint>Sizes match the last selected block. Shift+click or ⌘+click to add to selection.</WfHint>
+        <WfHint>
+          Sizes match the last selected block. Shift+click or ⌘+click to add to
+          selection.
+        </WfHint>
       </div>
     </div>
   );

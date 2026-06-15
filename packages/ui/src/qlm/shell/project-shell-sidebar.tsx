@@ -379,93 +379,98 @@ export function ProjectShellSidebar({
       )}
 
       {hasAppGroups ? (
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-2">
-        {/* Apps header (collapsible) */}
-        <button
-          type="button"
-          onClick={() => setAppsOpen((prev) => !prev)}
-          className="text-sidebar-foreground/70 hover:text-sidebar-foreground flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm font-semibold tracking-wide uppercase transition-colors"
-        >
-          <LayoutGrid className="h-4 w-4 shrink-0" />
-          <span className="flex-1 text-left">Apps</span>
-          <ChevronDown
-            className={cn(
-              'h-3.5 w-3.5 shrink-0 transition-transform',
-              appsOpen && 'rotate-180',
-            )}
-          />
-        </button>
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-2">
+          {/* Apps header (collapsible) */}
+          <button
+            type="button"
+            onClick={() => setAppsOpen((prev) => !prev)}
+            className="text-sidebar-foreground/70 hover:text-sidebar-foreground flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm font-semibold tracking-wide uppercase transition-colors"
+          >
+            <LayoutGrid className="h-4 w-4 shrink-0" />
+            <span className="flex-1 text-left">Apps</span>
+            <ChevronDown
+              className={cn(
+                'h-3.5 w-3.5 shrink-0 transition-transform',
+                appsOpen && 'rotate-180',
+              )}
+            />
+          </button>
 
-        {/* App groups */}
-        {appsOpen && (
-          <div className="min-h-0 flex-1 overflow-y-auto pb-2">
-            {appGroups.map((group) => {
-              if (group.items.length === 0) return null;
-              const isGroupCollapsed = collapsedGroups.has(group.title);
-              return (
-                <div key={group.title} className="mt-4 first:mt-2">
-                  <button
-                    type="button"
-                    onClick={() => toggleGroup(group.title)}
-                    className="group/group-header text-sidebar-foreground/70 hover:text-sidebar-foreground mb-1.5 flex w-full items-center gap-1.5 px-2 transition-colors"
-                  >
-                    <span className="flex-1 text-left text-[12px] font-bold tracking-tight">
-                      {group.title}
-                    </span>
-                    <ChevronDown
-                      className={cn(
-                        'h-3 w-3 shrink-0 opacity-0 transition-all group-hover/group-header:opacity-60',
-                        isGroupCollapsed && '-rotate-90 opacity-40',
-                      )}
-                    />
-                  </button>
-                  {!isGroupCollapsed && (
-                    <div className="space-y-0.5">
-                      {group.items.map((item) => {
-                        const Icon = resolveIcon(item.icon);
-                        return (
-                          <div
-                            key={item.id}
-                            className={cn(
-                              'group/item flex w-full items-center rounded-md transition-colors',
-                              item.active
-                                ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
-                                : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground',
-                            )}
-                          >
-                            <button
-                              type="button"
-                              onClick={(e) =>
-                                onItemClick(item.id, e.metaKey || e.ctrlKey)
-                              }
-                              className="flex min-w-0 flex-1 items-center gap-2 px-2 py-1.5 text-sm font-medium"
+          {/* App groups */}
+          {appsOpen && (
+            <div className="min-h-0 flex-1 overflow-y-auto pb-2">
+              {appGroups.map((group) => {
+                if (group.items.length === 0) return null;
+                const isGroupCollapsed = collapsedGroups.has(group.title);
+                return (
+                  <div key={group.title} className="mt-4 first:mt-2">
+                    <button
+                      type="button"
+                      onClick={() => toggleGroup(group.title)}
+                      className="group/group-header text-sidebar-foreground/70 hover:text-sidebar-foreground mb-1.5 flex w-full items-center gap-1.5 px-2 transition-colors"
+                    >
+                      <span className="flex-1 text-left text-[12px] font-bold tracking-tight">
+                        {group.title}
+                      </span>
+                      <ChevronDown
+                        className={cn(
+                          'h-3 w-3 shrink-0 opacity-0 transition-all group-hover/group-header:opacity-60',
+                          isGroupCollapsed && '-rotate-90 opacity-40',
+                        )}
+                      />
+                    </button>
+                    {!isGroupCollapsed && (
+                      <div className="space-y-0.5">
+                        {group.items.map((item) => {
+                          const Icon = resolveIcon(item.icon);
+                          return (
+                            <div
+                              key={item.id}
+                              className={cn(
+                                'group/item flex w-full items-center rounded-md transition-colors',
+                                item.active
+                                  ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+                                  : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground',
+                              )}
                             >
-                              {Icon && <Icon className="h-4 w-4 shrink-0" />}
-                              <span className="truncate">{item.label}</span>
-                            </button>
-                            <AppItemMenu
-                              item={item}
-                              onOpenInNewTab={() => onItemClick(item.id, true)}
-                              onPin={
-                                onPinItem ? () => onPinItem(item.id) : undefined
-                              }
-                              onAppAction={
-                                onAppAction
-                                  ? (actionId) => onAppAction(item.id, actionId)
-                                  : undefined
-                              }
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                              <button
+                                type="button"
+                                onClick={(e) =>
+                                  onItemClick(item.id, e.metaKey || e.ctrlKey)
+                                }
+                                className="flex min-w-0 flex-1 items-center gap-2 px-2 py-1.5 text-sm font-medium"
+                              >
+                                {Icon && <Icon className="h-4 w-4 shrink-0" />}
+                                <span className="truncate">{item.label}</span>
+                              </button>
+                              <AppItemMenu
+                                item={item}
+                                onOpenInNewTab={() =>
+                                  onItemClick(item.id, true)
+                                }
+                                onPin={
+                                  onPinItem
+                                    ? () => onPinItem(item.id)
+                                    : undefined
+                                }
+                                onAppAction={
+                                  onAppAction
+                                    ? (actionId) =>
+                                        onAppAction(item.id, actionId)
+                                    : undefined
+                                }
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       ) : (
         <div className="min-h-0 flex-1" />
       )}

@@ -10,9 +10,9 @@ const TOC_MD_LINK_RE = /^(\d+)\.\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 export function parseCoverToc(content: string): TocEntry[] {
   const entries: TocEntry[] = [];
 
-  for (const line of content.split("\n")) {
+  for (const line of content.split('\n')) {
     const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
+    if (!trimmed || trimmed.startsWith('#')) continue;
 
     let match = trimmed.match(TOC_LINE_RE);
     if (match) {
@@ -30,7 +30,7 @@ export function parseCoverToc(content: string): TocEntry[] {
 }
 
 export function serializeCoverToc(entries: TocEntry[]): string {
-  return entries.map((e) => `**${e.num}** ${e.label} → ${e.href}`).join("\n");
+  return entries.map((e) => `**${e.num}** ${e.label} → ${e.href}`).join('\n');
 }
 
 export function isCoverTocContent(content: string): boolean {

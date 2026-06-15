@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import { BubbleMenu } from "@tiptap/react/menus";
-import StarterKit from "@tiptap/starter-kit";
-import Underline from "@tiptap/extension-underline";
-import Link from "@tiptap/extension-link";
-import Placeholder from "@tiptap/extension-placeholder";
-import { TextStyle } from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
-import TextAlign from "@tiptap/extension-text-align";
-import { BlockStyle } from "#/lib/tiptap-block-style";
-import { BrandSub } from "#/lib/tiptap-brand-sub";
-import { useEffect, useCallback, useId, useRef, useState } from "react";
-import { markdownToHtml, htmlToMarkdown } from "#/lib/markdown-editor";
-import { shouldCloseFieldEditor } from "#/lib/studio-field-focus";
-import EditorToolbar from "./EditorToolbar";
-import FloatingToolbarSlot from "./FloatingToolbarSlot";
-import SlashInsertMenu from "./SlashInsertMenu";
-import type { BlockNode } from "#/lib/types";
+import { useEditor, EditorContent } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
+import StarterKit from '@tiptap/starter-kit';
+import Underline from '@tiptap/extension-underline';
+import Link from '@tiptap/extension-link';
+import Placeholder from '@tiptap/extension-placeholder';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { Color } from '@tiptap/extension-color';
+import TextAlign from '@tiptap/extension-text-align';
+import { BlockStyle } from '#/lib/tiptap-block-style';
+import { BrandSub } from '#/lib/tiptap-brand-sub';
+import { useEffect, useCallback, useId, useRef, useState } from 'react';
+import { markdownToHtml, htmlToMarkdown } from '#/lib/markdown-editor';
+import { shouldCloseFieldEditor } from '#/lib/studio-field-focus';
+import EditorToolbar from './EditorToolbar';
+import FloatingToolbarSlot from './FloatingToolbarSlot';
+import SlashInsertMenu from './SlashInsertMenu';
+import type { BlockNode } from '#/lib/types';
 
 interface WysiwygEditorProps {
   content: string;
@@ -40,8 +40,8 @@ interface WysiwygEditorProps {
 
 function toEditorHtml(content: string, htmlOutput?: boolean): string {
   const trimmed = content.trim();
-  if (!trimmed) return "<p></p>";
-  if (htmlOutput || trimmed.startsWith("<")) return trimmed;
+  if (!trimmed) return '<p></p>';
+  if (htmlOutput || trimmed.startsWith('<')) return trimmed;
   if (/<[a-z][^>]*>/i.test(content)) return `<p>${content}</p>`;
   return markdownToHtml(content);
 }
@@ -53,11 +53,11 @@ function fromEditorHtml(html: string, htmlOutput?: boolean): string {
 
 function htmlPlainText(html: string): string {
   return html
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<\/p>/gi, " ")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/p>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -65,7 +65,7 @@ function WysiwygEditorActive({
   content,
   onChange,
   className,
-  placeholder = "Start typing…",
+  placeholder = 'Start typing…',
   showToolbar = true,
   overlay = false,
   inline = false,
@@ -84,7 +84,7 @@ function WysiwygEditorActive({
   const onDeactivateRef = useRef(onDeactivate);
   const pendingRef = useRef(content);
   const [slashOpen, setSlashOpen] = useState(false);
-  const [slashQuery, setSlashQuery] = useState("");
+  const [slashQuery, setSlashQuery] = useState('');
   const [slashAnchor, setSlashAnchor] = useState<DOMRect | null>(null);
   onDeactivateRef.current = onDeactivate;
 
@@ -111,42 +111,63 @@ function WysiwygEditorActive({
           codeBlock: singleLine ? false : undefined,
         }),
         Underline,
-        Link.configure({ openOnClick: false, HTMLAttributes: { class: "doc-link" } }),
+        Link.configure({
+          openOnClick: false,
+          HTMLAttributes: { class: 'doc-link' },
+        }),
         Placeholder.configure({ placeholder }),
         TextStyle,
         Color,
-        TextAlign.configure({ types: ["heading", "paragraph"] }),
+        TextAlign.configure({ types: ['heading', 'paragraph'] }),
         BlockStyle,
         BrandSub,
       ],
       content: toEditorHtml(content, htmlOutput),
       editorProps: {
         attributes: {
-          class: `studio-wysiwyg outline-none ${className ?? ""}`,
-          ...(active ? {} : { "data-readonly": "true" }),
+          class: `studio-wysiwyg outline-none ${className ?? ''}`,
+          ...(active ? {} : { 'data-readonly': 'true' }),
         },
         handleKeyDown: (view, event) => {
-          if (singleLine && event.key === "Enter") {
+          if (singleLine && event.key === 'Enter') {
             event.preventDefault();
             return true;
           }
-          if (onInsertAfter && event.key === "/" && !event.metaKey && !event.ctrlKey) {
+          if (
+            onInsertAfter &&
+            event.key === '/' &&
+            !event.metaKey &&
+            !event.ctrlKey
+          ) {
             const { from, empty } = view.state.selection;
-            const textBefore = view.state.doc.textBetween(0, from, "\n", "\0");
-            const atBlockStart = !textBefore || textBefore.endsWith("\n") || from <= 1;
+            const textBefore = view.state.doc.textBetween(0, from, '\n', '\0');
+            const atBlockStart =
+              !textBefore || textBefore.endsWith('\n') || from <= 1;
             if (empty && atBlockStart) {
               event.preventDefault();
               const coords = view.coordsAtPos(from);
-              setSlashAnchor(new DOMRect(coords.left, coords.top, 0, coords.bottom - coords.top));
-              setSlashQuery("");
+              setSlashAnchor(
+                new DOMRect(
+                  coords.left,
+                  coords.top,
+                  0,
+                  coords.bottom - coords.top,
+                ),
+              );
+              setSlashQuery('');
               setSlashOpen(true);
               return true;
             }
           }
-          if (slashOpen && event.key.length === 1 && !event.metaKey && !event.ctrlKey) {
-            if (event.key === " ") {
+          if (
+            slashOpen &&
+            event.key.length === 1 &&
+            !event.metaKey &&
+            !event.ctrlKey
+          ) {
+            if (event.key === ' ') {
               setSlashOpen(false);
-            } else if (event.key !== "/") {
+            } else if (event.key !== '/') {
               setSlashQuery((q: string) => q + event.key);
             }
           }
@@ -165,8 +186,13 @@ function WysiwygEditorActive({
         if (!onDeactivateRef.current) return;
         if (
           !event.currentTarget ||
-          !shouldCloseFieldEditor(event.currentTarget as Node, event.relatedTarget as Node | null, fieldId)
-        ) return;
+          !shouldCloseFieldEditor(
+            event.currentTarget as Node,
+            event.relatedTarget as Node | null,
+            fieldId,
+          )
+        )
+          return;
         onDeactivateRef.current();
       },
     },
@@ -185,14 +211,16 @@ function WysiwygEditorActive({
         ? htmlPlainText(current) !== htmlPlainText(content)
         : current !== content;
       if (differs) {
-        editor.commands.setContent(toEditorHtml(content, htmlOutput), { emitUpdate: false });
+        editor.commands.setContent(toEditorHtml(content, htmlOutput), {
+          emitUpdate: false,
+        });
       }
     }
   }, [content, editor, htmlOutput]);
 
   useEffect(() => {
     if (active && autoFocus && editor) {
-      editor.commands.focus("end");
+      editor.commands.focus('end');
     }
   }, [active, autoFocus, editor]);
 
@@ -202,21 +230,21 @@ function WysiwygEditorActive({
     function onSelectAll() {
       editor?.chain().focus().selectAll().run();
     }
-    wrap.addEventListener("studio-select-all", onSelectAll);
-    return () => wrap.removeEventListener("studio-select-all", onSelectAll);
+    wrap.addEventListener('studio-select-all', onSelectAll);
+    return () => wrap.removeEventListener('studio-select-all', onSelectAll);
   }, [editor]);
 
   if (!editor) {
     return (
       <div
         className={[
-          "studio-wysiwyg-wrap",
-          inline ? "studio-wysiwyg-inline" : "",
-          singleLine ? "studio-wysiwyg-single" : "",
+          'studio-wysiwyg-wrap',
+          inline ? 'studio-wysiwyg-inline' : '',
+          singleLine ? 'studio-wysiwyg-single' : '',
           className,
         ]
           .filter(Boolean)
-          .join(" ")}
+          .join(' ')}
         data-field-editor={fieldId}
         dangerouslySetInnerHTML={{ __html: toEditorHtml(content, htmlOutput) }}
       />
@@ -231,14 +259,14 @@ function WysiwygEditorActive({
     <div
       ref={wrapRef}
       className={[
-        "studio-wysiwyg-wrap",
-        inline ? "studio-wysiwyg-inline" : "",
-        overlay ? "studio-wysiwyg-overlay-mode" : "",
-        singleLine ? "studio-wysiwyg-single" : "",
+        'studio-wysiwyg-wrap',
+        inline ? 'studio-wysiwyg-inline' : '',
+        overlay ? 'studio-wysiwyg-overlay-mode' : '',
+        singleLine ? 'studio-wysiwyg-single' : '',
         className,
       ]
         .filter(Boolean)
-        .join(" ")}
+        .join(' ')}
       data-field-editor={fieldId}
       onMouseDown={(e) => {
         if (!active) onActivate?.();
@@ -255,7 +283,7 @@ function WysiwygEditorActive({
       {showBubbleToolbar && (
         <BubbleMenu
           editor={editor}
-          options={{ placement: "top", strategy: "absolute" }}
+          options={{ placement: 'top', strategy: 'absolute' }}
         >
           <EditorToolbar editor={editor} floating />
         </BubbleMenu>
@@ -292,13 +320,13 @@ export default function WysiwygEditor({
     return (
       <div
         className={[
-          "studio-wysiwyg-wrap studio-wysiwyg-idle",
-          inline ? "studio-wysiwyg-inline" : "",
-          singleLine ? "studio-wysiwyg-single" : "",
+          'studio-wysiwyg-wrap studio-wysiwyg-idle',
+          inline ? 'studio-wysiwyg-inline' : '',
+          singleLine ? 'studio-wysiwyg-single' : '',
           className,
         ]
           .filter(Boolean)
-          .join(" ")}
+          .join(' ')}
         dangerouslySetInnerHTML={{ __html: toEditorHtml(content, htmlOutput) }}
         onMouseDown={(e) => {
           onActivate?.();

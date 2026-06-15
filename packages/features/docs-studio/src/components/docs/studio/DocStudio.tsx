@@ -1,6 +1,13 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import {
   DndContext,
   DragOverlay,
@@ -11,29 +18,37 @@ import {
   useSensors,
   type DragEndEvent,
   type DragStartEvent,
-} from "@dnd-kit/core";
-import { Button } from "@qlm/ui/button";
-import { cn } from "@qlm/ui/utils";
-import { formatShortcut, titleWithShortcut } from "#/lib/studio-shortcuts";
-import "#/styles/studio-chrome.css";
-import { useStudioShortcuts } from "./useStudioShortcuts";
-import { Save, Undo2, Redo2, FileDown, Eye, Pencil, Menu } from "lucide-react";
-import { useStudioShell } from "#/studio-shell-context";
-import { docsPaths } from "#/paths";
-import type { DocStudioActions } from "#/types/actions";
-import DocLayout from "#/components/docs/DocLayout";
-import "#/styles/studio-theme-overrides.css";
-import BlockTree, { sortableKeyboardCoordinates } from "./BlockTree";
-import BlockPalette from "./BlockPalette";
-import StudioLeftRail, { type StudioLeftPanel } from "./StudioLeftRail";
-import StudioSecondaryPanel from "./StudioSecondaryPanel";
-import StudioSettingsDrawer from "./StudioSettingsDrawer";
-import StudioRightPanel from "./StudioRightPanel";
-import StudioBreadcrumb from "./StudioBreadcrumb";
-import CanvasDropIndicator from "./CanvasDropIndicator";
-import CanvasDragPreview from "./CanvasDragPreview";
-import { themeToStyle } from "#/lib/theme";
-import type { BlockNode, ChromeZoneId, DocDocument, DocLayoutMode, DocMeta, DocPageSetup, LoadedDoc } from "#/lib/types";
+} from '@dnd-kit/core';
+import { Button } from '@qlm/ui/button';
+import { cn } from '@qlm/ui/utils';
+import { formatShortcut, titleWithShortcut } from '#/lib/studio-shortcuts';
+import '#/styles/studio-chrome.css';
+import { useStudioShortcuts } from './useStudioShortcuts';
+import { Save, Undo2, Redo2, FileDown, Eye, Pencil, Menu } from 'lucide-react';
+import { useStudioShell } from '#/studio-shell-context';
+import { docsPaths } from '#/paths';
+import type { DocStudioActions } from '#/types/actions';
+import DocLayout from '#/components/docs/DocLayout';
+import '#/styles/studio-theme-overrides.css';
+import BlockTree, { sortableKeyboardCoordinates } from './BlockTree';
+import BlockPalette from './BlockPalette';
+import StudioLeftRail, { type StudioLeftPanel } from './StudioLeftRail';
+import StudioSecondaryPanel from './StudioSecondaryPanel';
+import StudioSettingsDrawer from './StudioSettingsDrawer';
+import StudioRightPanel from './StudioRightPanel';
+import StudioBreadcrumb from './StudioBreadcrumb';
+import CanvasDropIndicator from './CanvasDropIndicator';
+import CanvasDragPreview from './CanvasDragPreview';
+import { themeToStyle } from '#/lib/theme';
+import type {
+  BlockNode,
+  ChromeZoneId,
+  DocDocument,
+  DocLayoutMode,
+  DocMeta,
+  DocPageSetup,
+  LoadedDoc,
+} from '#/lib/types';
 import {
   findBlockById,
   reorderBlocks,
@@ -43,8 +58,8 @@ import {
   insertBlockRelative,
   generateId,
   createBlock,
-} from "#/lib/serialize";
-import { resolveBlockContent } from "#/lib/content";
+} from '#/lib/serialize';
+import { resolveBlockContent } from '#/lib/content';
 import {
   applyPlacementNormalize,
   canIndentBlock,
@@ -53,8 +68,8 @@ import {
   outdentBlock,
   previewBlocksForDrag,
   reparentBlockAtTarget,
-} from "#/lib/block-order";
-import { pauseDocLayout, resumeDocLayout } from "#/lib/layout-pause";
+} from '#/lib/block-order';
+import { pauseDocLayout, resumeDocLayout } from '#/lib/layout-pause';
 import {
   canMoveBlockOnPages,
   moveBlockAcrossPages,
@@ -66,38 +81,42 @@ import {
   findParentPageId,
   scrollBlockIntoView,
   scrollTreeItemIntoView,
-} from "#/lib/page-blocks";
-import { ensureCoverFirst } from "#/lib/cover";
-import { splitBlocksIntoPages } from "#/lib/pages";
-import { exportDocAsPdf } from "#/lib/export-pdf";
+} from '#/lib/page-blocks';
+import { ensureCoverFirst } from '#/lib/cover';
+import { splitBlocksIntoPages } from '#/lib/pages';
+import { exportDocAsPdf } from '#/lib/export-pdf';
 import {
   findCanvasDropTarget,
   parseStudioDragId,
   type CanvasDropTarget,
-} from "#/lib/canvas-drop";
+} from '#/lib/canvas-drop';
 import {
   focusBlockEditor,
   getAdjacentBlockId,
   isPointerOverCanvas,
   selectAllInBlockEditor,
-} from "#/lib/block-nav";
-import { blockHasEditableText, parseTreeSelection, toTextNodeId } from "#/lib/block-text";
+} from '#/lib/block-nav';
+import {
+  blockHasEditableText,
+  parseTreeSelection,
+  toTextNodeId,
+} from '#/lib/block-text';
 import {
   buildAlignProps,
   canAlignBlock,
   getMeasuredBlockSize,
   type AlignDimension,
-} from "#/lib/block-align";
-import { normalizeDocBlocks } from "#/lib/normalize-level";
-import { applyDocTitle } from "#/lib/default-document";
+} from '#/lib/block-align';
+import { normalizeDocBlocks } from '#/lib/normalize-level';
+import { applyDocTitle } from '#/lib/default-document';
 import {
   findFirstParagraphId,
   isBlankStarterDocument,
   prepareStudioDocument,
-} from "#/lib/studio-document";
-import StudioDocTitle from "./StudioDocTitle";
-import StudioPageRuler from "./StudioPageRuler";
-import { resolvePageSetup } from "#/lib/page-setup";
+} from '#/lib/studio-document';
+import StudioDocTitle from './StudioDocTitle';
+import StudioPageRuler from './StudioPageRuler';
+import { resolvePageSetup } from '#/lib/page-setup';
 
 export interface DocStudioProps extends DocStudioActions {
   slug: string;
@@ -115,15 +134,18 @@ interface DocHistoryState {
 }
 
 type DocHistoryAction =
-  | { type: "commit"; document: DocDocument; sections: Record<string, string> }
-  | { type: "undo" }
-  | { type: "redo" };
+  | { type: 'commit'; document: DocDocument; sections: Record<string, string> }
+  | { type: 'undo' }
+  | { type: 'redo' };
 
 const MAX_HISTORY = 50;
 
-function docHistoryReducer(state: DocHistoryState, action: DocHistoryAction): DocHistoryState {
+function docHistoryReducer(
+  state: DocHistoryState,
+  action: DocHistoryAction,
+): DocHistoryState {
   switch (action.type) {
-    case "commit": {
+    case 'commit': {
       const prev = state.entries[state.index];
       const document =
         action.document === prev.document
@@ -137,9 +159,9 @@ function docHistoryReducer(state: DocHistoryState, action: DocHistoryAction): Do
       const trimmed = entries.slice(-MAX_HISTORY);
       return { entries: trimmed, index: trimmed.length - 1 };
     }
-    case "undo":
+    case 'undo':
       return state.index <= 0 ? state : { ...state, index: state.index - 1 };
-    case "redo":
+    case 'redo':
       return state.index >= state.entries.length - 1
         ? state
         : { ...state, index: state.index + 1 };
@@ -159,7 +181,10 @@ export default function DocStudio({
   const initialDocument = prepareStudioDocument(
     {
       ...initialDoc.document,
-      blocks: normalizeDocBlocks(initialDoc.document.blocks, initialDoc.sections),
+      blocks: normalizeDocBlocks(
+        initialDoc.document.blocks,
+        initialDoc.sections,
+      ),
     },
     initialDoc.sections,
   );
@@ -181,7 +206,8 @@ export default function DocStudio({
   metaRef.current = meta;
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const selectedId = selectedIds[selectedIds.length - 1] ?? null;
-  const [selectedChromeZone, setSelectedChromeZone] = useState<ChromeZoneId | null>(null);
+  const [selectedChromeZone, setSelectedChromeZone] =
+    useState<ChromeZoneId | null>(null);
   const [textEditBlockId, setTextEditBlockId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [dragBlockId, setDragBlockId] = useState<string | null>(null);
@@ -189,7 +215,7 @@ export default function DocStudio({
   const pointerRef = useRef({ x: 0, y: 0 });
   const [saving, setSaving] = useState(false);
   const [previewMode, setPreviewMode] = useState(false);
-  const [leftPanel, setLeftPanel] = useState<StudioLeftPanel>("outline");
+  const [leftPanel, setLeftPanel] = useState<StudioLeftPanel>('outline');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const isScrollingRef = useRef(false);
   const scrollStopTimerRef = useRef(0);
@@ -197,10 +223,13 @@ export default function DocStudio({
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
   );
 
-  const isCanvasBlockDrag = !!dragBlockId && !dragBlockId.startsWith("palette:");
+  const isCanvasBlockDrag =
+    !!dragBlockId && !dragBlockId.startsWith('palette:');
   const displayBlocks = useMemo(
     () =>
       isCanvasBlockDrag && dropTarget?.valid
@@ -212,7 +241,7 @@ export default function DocStudio({
   function handleSelectBlock(id: string, additive = false) {
     const { blockId, mode } = parseTreeSelection(id);
     setSelectedChromeZone(null);
-    if (mode === "text") {
+    if (mode === 'text') {
       setSelectedIds([]);
       setTextEditBlockId(blockId);
       if (!additive) scrollBlockIntoView(blockId);
@@ -230,19 +259,22 @@ export default function DocStudio({
 
   function toggleSelection(prev: string[], blockId: string): string[] {
     const idx = prev.indexOf(blockId);
-    if (idx >= 0) return prev.length === 1 ? prev : prev.filter((id) => id !== blockId);
+    if (idx >= 0)
+      return prev.length === 1 ? prev : prev.filter((id) => id !== blockId);
     return [...prev, blockId];
   }
 
   function revealTreeSelection(treeId: string) {
-    setLeftPanel("outline");
+    setLeftPanel('outline');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => scrollTreeItemIntoView(treeId));
     });
   }
 
   function handleSelectBlockOnly(blockId: string, additive = false) {
-    setSelectedIds((prev) => (additive ? toggleSelection(prev, blockId) : [blockId]));
+    setSelectedIds((prev) =>
+      additive ? toggleSelection(prev, blockId) : [blockId],
+    );
     setSelectedChromeZone(null);
     setTextEditBlockId(null);
     revealTreeSelection(blockId);
@@ -254,14 +286,16 @@ export default function DocStudio({
     setTextEditBlockId(null);
     window.document
       .querySelector(`[data-chrome-zone-tab="${zone}"]`)
-      ?.scrollIntoView({ block: "nearest", behavior: "instant" });
+      ?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
   }
 
   function handleSelectText(blockId: string) {
     setSelectedIds([]);
     setTextEditBlockId(blockId);
     revealTreeSelection(toTextNodeId(blockId));
-    requestAnimationFrame(() => focusBlockEditor(blockId, { preventScroll: true }));
+    requestAnimationFrame(() =>
+      focusBlockEditor(blockId, { preventScroll: true }),
+    );
   }
 
   function handleAlignBlocks(dimension: AlignDimension) {
@@ -289,7 +323,9 @@ export default function DocStudio({
       setDropTarget(null);
       return;
     }
-    const paletteType = dragBlockId.startsWith("palette:") ? dragBlockId.slice(8) : undefined;
+    const paletteType = dragBlockId.startsWith('palette:')
+      ? dragBlockId.slice(8)
+      : undefined;
     let frame = 0;
     const onMove = (e: PointerEvent) => {
       pointerRef.current = { x: e.clientX, y: e.clientY };
@@ -305,9 +341,9 @@ export default function DocStudio({
         setDropTarget(target);
       });
     };
-    window.addEventListener("pointermove", onMove);
+    window.addEventListener('pointermove', onMove);
     return () => {
-      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener('pointermove', onMove);
       cancelAnimationFrame(frame);
     };
   }, [dragBlockId, document.blocks]);
@@ -321,7 +357,9 @@ export default function DocStudio({
   }, []);
 
   useEffect(() => {
-    const canvas = window.document.querySelector<HTMLElement>(".doc-studio .studio-canvas");
+    const canvas = window.document.querySelector<HTMLElement>(
+      '.doc-studio .studio-canvas',
+    );
     if (!canvas) return;
 
     const markScrolling = () => {
@@ -335,11 +373,11 @@ export default function DocStudio({
       }, 120);
     };
 
-    canvas.addEventListener("scroll", markScrolling, { passive: true });
-    canvas.addEventListener("wheel", markScrolling, { passive: true });
+    canvas.addEventListener('scroll', markScrolling, { passive: true });
+    canvas.addEventListener('wheel', markScrolling, { passive: true });
     return () => {
-      canvas.removeEventListener("scroll", markScrolling);
-      canvas.removeEventListener("wheel", markScrolling);
+      canvas.removeEventListener('scroll', markScrolling);
+      canvas.removeEventListener('wheel', markScrolling);
       window.clearTimeout(scrollStopTimerRef.current);
     };
   }, [previewMode]);
@@ -357,34 +395,46 @@ export default function DocStudio({
     }, 150);
   }, []);
 
-  const commit = useCallback((doc: DocDocument, secs: Record<string, string>) => {
-    dispatchHistory({ type: "commit", document: doc, sections: secs });
-  }, []);
+  const commit = useCallback(
+    (doc: DocDocument, secs: Record<string, string>) => {
+      dispatchHistory({ type: 'commit', document: doc, sections: secs });
+    },
+    [],
+  );
 
   const undo = useCallback(() => {
-    dispatchHistory({ type: "undo" });
+    dispatchHistory({ type: 'undo' });
   }, []);
 
   const redo = useCallback(() => {
-    dispatchHistory({ type: "redo" });
+    dispatchHistory({ type: 'redo' });
   }, []);
 
   const historyIndex = historyState.index;
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < historyState.entries.length - 1;
 
-  const treeSelectedId = textEditBlockId ? toTextNodeId(textEditBlockId) : selectedId;
-  const selectedBlock = selectedId ? findBlockById(document.blocks, selectedId) : null;
-  const textEditBlock = textEditBlockId ? findBlockById(document.blocks, textEditBlockId) : null;
+  const treeSelectedId = textEditBlockId
+    ? toTextNodeId(textEditBlockId)
+    : selectedId;
+  const selectedBlock = selectedId
+    ? findBlockById(document.blocks, selectedId)
+    : null;
+  const textEditBlock = textEditBlockId
+    ? findBlockById(document.blocks, textEditBlockId)
+    : null;
   const selectedContent = selectedBlock
     ? resolveBlockContent(selectedBlock, sections)
-    : "";
+    : '';
 
   function updateSections(blockId: string, content: string) {
     const block = findBlockById(document.blocks, blockId);
     const currentSections = sectionsRef.current;
     if (!block?.contentRef) {
-      const newDoc = updateBlockInTree(document.blocks, blockId, (b) => ({ ...b, content }));
+      const newDoc = updateBlockInTree(document.blocks, blockId, (b) => ({
+        ...b,
+        content,
+      }));
       commit({ ...document, blocks: newDoc }, currentSections);
       return;
     }
@@ -409,7 +459,7 @@ export default function DocStudio({
     commit({ ...document, blocks: newBlocks }, sections);
   }
 
-  function updateTheme(theme: DocDocument["theme"]) {
+  function updateTheme(theme: DocDocument['theme']) {
     commit({ ...document, theme }, sections);
   }
 
@@ -419,24 +469,26 @@ export default function DocStudio({
 
   function updatePageSetup(pageSetup: DocPageSetup) {
     const patch: Partial<DocDocument> = { pageSetup };
-    if (pageSetup.format && pageSetup.format !== "custom") {
+    if (pageSetup.format && pageSetup.format !== 'custom') {
       patch.pageFormat = pageSetup.format;
     }
     commit({ ...document, ...patch }, sections);
   }
 
-  function updateChrome(chrome: DocDocument["chrome"]) {
+  function updateChrome(chrome: DocDocument['chrome']) {
     commit({ ...document, chrome }, sections);
   }
 
-  const layoutMode = document.layoutMode ?? "paginated";
-  const pageFormat = document.pageFormat ?? "a4";
+  const layoutMode = document.layoutMode ?? 'paginated';
+  const pageFormat = document.pageFormat ?? 'a4';
   const resolvedPageSetup = useMemo(
     () => resolvePageSetup(document.pageSetup, pageFormat),
     [document.pageSetup, pageFormat],
   );
   const showStudioRuler =
-    !previewMode && layoutMode === "paginated" && resolvedPageSetup.showMarginGuides;
+    !previewMode &&
+    layoutMode === 'paginated' &&
+    resolvedPageSetup.showMarginGuides;
   const [pageCount, setPageCount] = useState(1);
   const [packedPages, setPackedPages] = useState<BlockNode[][]>([]);
 
@@ -448,61 +500,89 @@ export default function DocStudio({
   }
   const blockCount = countBlocks(document.blocks);
 
-  function handleReorder(parentId: string | null, activeId: string, overId: string) {
+  function handleReorder(
+    parentId: string | null,
+    activeId: string,
+    overId: string,
+  ) {
     if (parentId) {
-      const newBlocks = updateBlockInTree(document.blocks, parentId, (parent) => ({
-        ...parent,
-        children: reorderBlocks(parent.children ?? [], activeId, overId),
-      }));
+      const newBlocks = updateBlockInTree(
+        document.blocks,
+        parentId,
+        (parent) => ({
+          ...parent,
+          children: reorderBlocks(parent.children ?? [], activeId, overId),
+        }),
+      );
       commit({ ...document, blocks: newBlocks }, sections);
     } else {
-      commit({ ...document, blocks: reorderBlocks(document.blocks, activeId, overId) }, sections);
+      commit(
+        {
+          ...document,
+          blocks: reorderBlocks(document.blocks, activeId, overId),
+        },
+        sections,
+      );
     }
   }
 
   function handleInsert(block: BlockNode) {
     const newBlock = { ...block, id: generateId(block.type) };
 
-    if (block.type === "cover") {
+    if (block.type === 'cover') {
       const { blocks: newBlocks, focusId } = insertCoverPage(document.blocks);
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
       return;
     }
 
-    if (block.type === "page") {
-      const selected = selectedId ? findBlockById(document.blocks, selectedId) : null;
+    if (block.type === 'page') {
+      const selected = selectedId
+        ? findBlockById(document.blocks, selectedId)
+        : null;
       const pageId =
-        selected?.type === "page"
+        selected?.type === 'page'
           ? selected.id
           : selected
             ? findParentPageId(document.blocks, selected.id)
             : null;
-      const { blocks: newBlocks, focusId } = insertPageAfter(document.blocks, pageId);
+      const { blocks: newBlocks, focusId } = insertPageAfter(
+        document.blocks,
+        pageId,
+      );
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
       return;
     }
 
     if (!selectedId) {
-      commit({ ...document, blocks: ensureCoverFirst([...document.blocks, newBlock]) }, sections);
+      commit(
+        {
+          ...document,
+          blocks: ensureCoverFirst([...document.blocks, newBlock]),
+        },
+        sections,
+      );
       setSelectedIds([newBlock.id]);
       return;
     }
 
     const selected = findBlockById(document.blocks, selectedId);
-    if (selected?.type === "page") {
-      const { blocks: newBlocks, focusId } = insertSectionInPage(document.blocks, selectedId);
+    if (selected?.type === 'page') {
+      const { blocks: newBlocks, focusId } = insertSectionInPage(
+        document.blocks,
+        selectedId,
+      );
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
       return;
     }
     if (
-      selected?.type === "section" ||
-      selected?.type === "cover" ||
-      selected?.type === "grid" ||
-      selected?.type === "split" ||
-      selected?.type === "box"
+      selected?.type === 'section' ||
+      selected?.type === 'cover' ||
+      selected?.type === 'grid' ||
+      selected?.type === 'split' ||
+      selected?.type === 'box'
     ) {
       const newBlocks = updateBlockInTree(document.blocks, selectedId, (b) => ({
         ...b,
@@ -510,7 +590,12 @@ export default function DocStudio({
       }));
       commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
     } else {
-      const newBlocks = insertBlockRelative(document.blocks, selectedId, newBlock, "after");
+      const newBlocks = insertBlockRelative(
+        document.blocks,
+        selectedId,
+        newBlock,
+        'after',
+      );
       commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
     }
     setSelectedIds([newBlock.id]);
@@ -519,30 +604,39 @@ export default function DocStudio({
   function handleInlineInsert(
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) {
     const newBlock = { ...block, id: generateId(block.type) };
-    if (block.type === "cover") {
+    if (block.type === 'cover') {
       const { blocks: newBlocks, focusId } = insertCoverPage(document.blocks);
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
       return;
     }
-    if (block.type === "page") {
+    if (block.type === 'page') {
       const pageId = findParentPageId(document.blocks, targetId);
-      const { blocks: newBlocks, focusId } = insertPageAfter(document.blocks, pageId ?? targetId);
+      const { blocks: newBlocks, focusId } = insertPageAfter(
+        document.blocks,
+        pageId ?? targetId,
+      );
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
       return;
     }
-    const newBlocks = insertBlockRelative(document.blocks, targetId, newBlock, position, insideIndex);
+    const newBlocks = insertBlockRelative(
+      document.blocks,
+      targetId,
+      newBlock,
+      position,
+      insideIndex,
+    );
     commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
     setSelectedIds([newBlock.id]);
   }
 
   function handleDelete(id: string) {
-    if (!confirm("Delete this block?")) return;
+    if (!confirm('Delete this block?')) return;
     const newBlocks = removeBlockFromTree(document.blocks, id);
     commit({ ...document, blocks: newBlocks }, sections);
     if (selectedIds.includes(id) || textEditBlockId === id) {
@@ -556,16 +650,32 @@ export default function DocStudio({
     commit({ ...document, blocks: newBlocks }, sections);
   }
 
-  function handleMove(id: string, direction: "up" | "down") {
-    if (!canMoveBlockOnPages(document.blocks, packedPages, id, direction)) return;
-    let newBlocks = moveBlockAcrossPages(document.blocks, packedPages, id, direction);
+  function handleMove(id: string, direction: 'up' | 'down') {
+    if (!canMoveBlockOnPages(document.blocks, packedPages, id, direction))
+      return;
+    let newBlocks = moveBlockAcrossPages(
+      document.blocks,
+      packedPages,
+      id,
+      direction,
+    );
     newBlocks = applyPlacementNormalize(newBlocks, id);
     commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
     scrollBlockIntoView(id);
   }
 
-  function handlePageDrop(blockId: string, pageIndex: number, position: "start" | "end") {
-    let newBlocks = moveBlockToPage(document.blocks, packedPages, blockId, pageIndex, position);
+  function handlePageDrop(
+    blockId: string,
+    pageIndex: number,
+    position: 'start' | 'end',
+  ) {
+    let newBlocks = moveBlockToPage(
+      document.blocks,
+      packedPages,
+      blockId,
+      pageIndex,
+      position,
+    );
     newBlocks = applyPlacementNormalize(newBlocks, blockId);
     commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
     setSelectedIds([blockId]);
@@ -576,7 +686,7 @@ export default function DocStudio({
   function handlePageInsert(pageIndex: number, block: BlockNode) {
     const newBlock = { ...block, id: generateId(block.type) };
 
-    if (block.type === "cover") {
+    if (block.type === 'cover') {
       const { blocks: newBlocks, focusId } = insertCoverPage(document.blocks);
       commit({ ...document, blocks: newBlocks }, sections);
       setSelectedIds([focusId]);
@@ -584,11 +694,18 @@ export default function DocStudio({
       return;
     }
 
-    const pageSource = packedPages.length > 0 ? packedPages : splitBlocksIntoPages(document.blocks);
+    const pageSource =
+      packedPages.length > 0
+        ? packedPages
+        : splitBlocksIntoPages(document.blocks);
     const page = pageSource[pageIndex];
     if (!page) return;
 
-    const { blocks: newBlocks, focusId } = insertAtPageEnd(document.blocks, page, newBlock);
+    const { blocks: newBlocks, focusId } = insertAtPageEnd(
+      document.blocks,
+      page,
+      newBlock,
+    );
     commit({ ...document, blocks: newBlocks }, sections);
     setSelectedIds([focusId]);
     scrollBlockIntoView(focusId);
@@ -611,7 +728,11 @@ export default function DocStudio({
   function applyCanvasDrop(activeBlockId: string, target: CanvasDropTarget) {
     if (!target.valid) return;
 
-    const newBlocks = reparentBlockAtTarget(document.blocks, activeBlockId, target);
+    const newBlocks = reparentBlockAtTarget(
+      document.blocks,
+      activeBlockId,
+      target,
+    );
     if (newBlocks === document.blocks) return;
 
     commit({ ...document, blocks: newBlocks }, sections);
@@ -624,17 +745,27 @@ export default function DocStudio({
     const newBlock = createBlock(paletteType);
     let newBlocks = document.blocks;
 
-    if (target.position === "inside") {
+    if (target.position === 'inside') {
       newBlocks = updateBlockInTree(document.blocks, target.blockId, (b) => {
         const children = [...(b.children ?? [])];
         const idx = target.index ?? children.length;
         children.splice(idx, 0, newBlock);
         return { ...b, children };
       });
-    } else if (target.position === "before") {
-      newBlocks = insertBlockRelative(document.blocks, target.blockId, newBlock, "before");
+    } else if (target.position === 'before') {
+      newBlocks = insertBlockRelative(
+        document.blocks,
+        target.blockId,
+        newBlock,
+        'before',
+      );
     } else {
-      newBlocks = insertBlockRelative(document.blocks, target.blockId, newBlock, "after");
+      newBlocks = insertBlockRelative(
+        document.blocks,
+        target.blockId,
+        newBlock,
+        'after',
+      );
     }
 
     commit({ ...document, blocks: ensureCoverFirst(newBlocks) }, sections);
@@ -645,7 +776,7 @@ export default function DocStudio({
   function handleStudioDragStart(event: DragStartEvent) {
     pauseDocLayout();
     const parsed = parseStudioDragId(event.active.id);
-    if (parsed.source === "palette") {
+    if (parsed.source === 'palette') {
       setDragBlockId(`palette:${parsed.paletteType}`);
       return;
     }
@@ -662,19 +793,20 @@ export default function DocStudio({
     const parsed = parseStudioDragId(event.active.id);
     const { active, over } = event;
 
-    if (parsed.source === "canvas" || parsed.source === "palette") {
-      const paletteType = parsed.source === "palette" ? parsed.paletteType : undefined;
+    if (parsed.source === 'canvas' || parsed.source === 'palette') {
+      const paletteType =
+        parsed.source === 'palette' ? parsed.paletteType : undefined;
       const target =
         dropTarget ??
         findCanvasDropTarget(
           pointerRef.current.x,
           pointerRef.current.y,
-          parsed.blockId ?? dragBlockId ?? "",
+          parsed.blockId ?? dragBlockId ?? '',
           document.blocks,
           paletteType ? { paletteType } : undefined,
         );
 
-      if (parsed.source === "palette" && parsed.paletteType && target) {
+      if (parsed.source === 'palette' && parsed.paletteType && target) {
         handlePaletteDrop(parsed.paletteType, target);
       } else if (parsed.blockId && target) {
         applyCanvasDrop(parsed.blockId, target);
@@ -716,7 +848,11 @@ export default function DocStudio({
     handleReorder(activeParent, activeId, overId);
   }
 
-  function getParentIdForTree(nodes: BlockNode[], id: string, parent: string | null = null): string | null | undefined {
+  function getParentIdForTree(
+    nodes: BlockNode[],
+    id: string,
+    parent: string | null = null,
+  ): string | null | undefined {
     for (const node of nodes) {
       if (node.id === id) return parent;
       if (node.children) {
@@ -728,23 +864,26 @@ export default function DocStudio({
   }
 
   async function handleSave(doc = document, title = metaRef.current.title) {
-    window.document.activeElement instanceof HTMLElement && window.document.activeElement.blur();
-    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    window.document.activeElement instanceof HTMLElement &&
+      window.document.activeElement.blur();
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => resolve()),
+    );
     setSaving(true);
     try {
       const res = await fetch(docsPaths.api.doc(slug), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           document: doc,
           sections: sectionsRef.current,
           meta: { title },
         }),
       });
-      if (!res.ok) throw new Error("Save failed");
+      if (!res.ok) throw new Error('Save failed');
     } catch (e) {
       console.error(e);
-      alert("Failed to save document");
+      alert('Failed to save document');
     } finally {
       setSaving(false);
     }
@@ -764,7 +903,9 @@ export default function DocStudio({
     void exportDocAsPdf(meta.title);
   }
 
-  function handleNavigateSelection(direction: "prev" | "next" | "parent" | "firstChild") {
+  function handleNavigateSelection(
+    direction: 'prev' | 'next' | 'parent' | 'firstChild',
+  ) {
     const fromId = selectedId ?? textEditBlockId;
     if (!fromId) return;
     const nextId = getAdjacentBlockId(document.blocks, fromId, direction);
@@ -809,8 +950,8 @@ export default function DocStudio({
     onRedo: redo,
     onDelete: handleDelete,
     onDuplicate: handleDuplicate,
-    onMoveUp: (id) => handleMove(id, "up"),
-    onMoveDown: (id) => handleMove(id, "down"),
+    onMoveUp: (id) => handleMove(id, 'up'),
+    onMoveDown: (id) => handleMove(id, 'down'),
     onIndent: handleIndent,
     onOutdent: handleOutdent,
     onDeselect: () => {
@@ -828,13 +969,15 @@ export default function DocStudio({
     canUndo,
     canRedo,
     canMoveUp: selectedId
-      ? canMoveBlockOnPages(document.blocks, packedPages, selectedId, "up")
+      ? canMoveBlockOnPages(document.blocks, packedPages, selectedId, 'up')
       : false,
     canMoveDown: selectedId
-      ? canMoveBlockOnPages(document.blocks, packedPages, selectedId, "down")
+      ? canMoveBlockOnPages(document.blocks, packedPages, selectedId, 'down')
       : false,
     canIndent: selectedId ? canIndentBlock(document.blocks, selectedId) : false,
-    canOutdent: selectedId ? canOutdentBlock(document.blocks, selectedId) : false,
+    canOutdent: selectedId
+      ? canOutdentBlock(document.blocks, selectedId)
+      : false,
   });
 
   function enterPreview() {
@@ -850,8 +993,8 @@ export default function DocStudio({
   return (
     <div
       className={cn(
-        "doc-studio h-full min-h-0 flex flex-col bg-background",
-        previewMode && "doc-studio-preview",
+        'doc-studio bg-background flex h-full min-h-0 flex-col',
+        previewMode && 'doc-studio-preview',
       )}
     >
       {!previewMode && (
@@ -880,7 +1023,7 @@ export default function DocStudio({
           <div className="border-border flex items-stretch border">
             <Button
               type="button"
-              variant={!previewMode ? "secondary" : "ghost"}
+              variant={!previewMode ? 'secondary' : 'ghost'}
               size="sm"
               onClick={enterEdit}
               className="h-7 gap-1 rounded-none px-2.5 text-[11px]"
@@ -890,7 +1033,7 @@ export default function DocStudio({
             </Button>
             <Button
               type="button"
-              variant={previewMode ? "secondary" : "ghost"}
+              variant={previewMode ? 'secondary' : 'ghost'}
               size="sm"
               onClick={enterPreview}
               className="border-border h-7 gap-1 rounded-none border-l px-2.5 text-[11px]"
@@ -908,7 +1051,7 @@ export default function DocStudio({
                 onClick={undo}
                 disabled={!canUndo}
                 className="rounded-none"
-                title={titleWithShortcut("Undo", "Mod+Z")}
+                title={titleWithShortcut('Undo', 'Mod+Z')}
               >
                 <Undo2 size={14} />
               </Button>
@@ -919,7 +1062,7 @@ export default function DocStudio({
                 onClick={redo}
                 disabled={!canRedo}
                 className="rounded-none"
-                title={titleWithShortcut("Redo", "Mod+Shift+Z")}
+                title={titleWithShortcut('Redo', 'Mod+Shift+Z')}
               >
                 <Redo2 size={14} />
               </Button>
@@ -944,15 +1087,15 @@ export default function DocStudio({
             className="h-7 gap-1 rounded-none px-2.5 text-[11px]"
           >
             <Save size={13} />
-            {saving ? "Saving…" : "Save"}
+            {saving ? 'Saving…' : 'Save'}
             <kbd className="border-border bg-muted text-muted-foreground ml-0.5 hidden border px-1 py-px font-mono text-[9px] sm:inline">
-              {formatShortcut("Mod+S")}
+              {formatShortcut('Mod+S')}
             </kbd>
           </Button>
         </div>
       </header>
 
-      <div className="flex flex-1 min-h-0 flex-col">
+      <div className="flex min-h-0 flex-1 flex-col">
         {!previewMode && (
           <StudioBreadcrumb
             blocks={document.blocks}
@@ -976,8 +1119,10 @@ export default function DocStudio({
               />
 
               {leftPanel && (
-                <StudioSecondaryPanel title={leftPanel === "add" ? "Insert" : "Outline"}>
-                  {leftPanel === "add" ? (
+                <StudioSecondaryPanel
+                  title={leftPanel === 'add' ? 'Insert' : 'Outline'}
+                >
+                  {leftPanel === 'add' ? (
                     <BlockPalette onInsert={handleInsert} />
                   ) : (
                     <BlockTree
@@ -997,8 +1142,8 @@ export default function DocStudio({
               )}
 
               <main
-                className={`relative flex-1 min-h-0 overflow-y-auto studio-canvas p-4${
-                  isCanvasBlockDrag ? " is-block-dragging" : ""
+                className={`studio-canvas relative min-h-0 flex-1 overflow-y-auto p-4${
+                  isCanvasBlockDrag ? ' is-block-dragging' : ''
                 }`}
               >
                 {showStudioRuler && (
@@ -1067,23 +1212,41 @@ export default function DocStudio({
                   const targetId = selectedId ?? textEditBlockId;
                   if (targetId) replaceBlock(targetId, block);
                 }}
-                onContentChange={(content) => selectedId && updateSections(selectedId, content)}
+                onContentChange={(content) =>
+                  selectedId && updateSections(selectedId, content)
+                }
                 onLayoutModeChange={updateLayoutMode}
                 onPageSetupChange={updatePageSetup}
                 onThemeChange={updateTheme}
                 chrome={document.chrome ?? {}}
                 selectedChromeZone={selectedChromeZone}
                 onChromeChange={updateChrome}
-                onDuplicate={selectedId ? () => handleDuplicate(selectedId) : undefined}
-                onDelete={selectedId ? () => handleDelete(selectedId) : undefined}
+                onDuplicate={
+                  selectedId ? () => handleDuplicate(selectedId) : undefined
+                }
+                onDelete={
+                  selectedId ? () => handleDelete(selectedId) : undefined
+                }
                 onMoveUp={
-                  selectedId && canMoveBlockOnPages(document.blocks, packedPages, selectedId, "up")
-                    ? () => handleMove(selectedId, "up")
+                  selectedId &&
+                  canMoveBlockOnPages(
+                    document.blocks,
+                    packedPages,
+                    selectedId,
+                    'up',
+                  )
+                    ? () => handleMove(selectedId, 'up')
                     : undefined
                 }
                 onMoveDown={
-                  selectedId && canMoveBlockOnPages(document.blocks, packedPages, selectedId, "down")
-                    ? () => handleMove(selectedId, "down")
+                  selectedId &&
+                  canMoveBlockOnPages(
+                    document.blocks,
+                    packedPages,
+                    selectedId,
+                    'down',
+                  )
+                    ? () => handleMove(selectedId, 'down')
                     : undefined
                 }
               />
@@ -1093,8 +1256,10 @@ export default function DocStudio({
               )}
 
               <DragOverlay dropAnimation={null}>
-                {isCanvasBlockDrag && <CanvasDragPreview blockId={dragBlockId} />}
-                {dragBlockId?.startsWith("palette:") && (
+                {isCanvasBlockDrag && (
+                  <CanvasDragPreview blockId={dragBlockId} />
+                )}
+                {dragBlockId?.startsWith('palette:') && (
                   <div className="studio-drag-overlay bg-foreground text-background rounded-none px-3 py-1.5 text-xs shadow-lg">
                     {dragBlockId.slice(8)}
                   </div>
@@ -1145,7 +1310,6 @@ export default function DocStudio({
           )}
         </div>
       </div>
-
     </div>
   );
 }

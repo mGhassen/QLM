@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import type { ElementType, ReactNode } from "react";
-import StudioPopover from "./StudioPopover";
+import type { ElementType, ReactNode } from 'react';
+import StudioPopover from './StudioPopover';
 
 interface InlineFieldProps {
   value: string;
@@ -20,8 +20,8 @@ export default function InlineField({
   value,
   onChange,
   editable,
-  className = "",
-  as: Tag = "span",
+  className = '',
+  as: Tag = 'span',
   wysiwyg,
   raw,
   children,
@@ -34,7 +34,13 @@ export default function InlineField({
   }
 
   return (
-    <StudioPopover editable value={value} onChange={onChange} wysiwyg={wysiwyg} raw={raw}>
+    <StudioPopover
+      editable
+      value={value}
+      onChange={onChange}
+      wysiwyg={wysiwyg}
+      raw={raw}
+    >
       {display}
     </StudioPopover>
   );

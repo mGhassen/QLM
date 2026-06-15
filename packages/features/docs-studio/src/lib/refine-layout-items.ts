@@ -1,11 +1,22 @@
-import { canBlockSplit, splitBlockContentAtPartCount } from "./block-split";
-import { resolveBlockContent } from "./content";
-import { splitSplittableParts } from "./content-segments";
-import type { LayoutItem } from "./layout-items";
-import { replaceItemAt } from "./layout-items";
-import { bodyHeightForPageBucket, type PageBodyBudgetContext } from "./page-body-budget";
-import { createPageFragment, fragmentItemKey, uniqueLayoutItemKey } from "./page-fragment";
-import { itemPackNeed, sectionBottomReserve, sectionTopOverhead } from "./section-pack-overhead";
+import { canBlockSplit, splitBlockContentAtPartCount } from './block-split';
+import { resolveBlockContent } from './content';
+import { splitSplittableParts } from './content-segments';
+import type { LayoutItem } from './layout-items';
+import { replaceItemAt } from './layout-items';
+import {
+  bodyHeightForPageBucket,
+  type PageBodyBudgetContext,
+} from './page-body-budget';
+import {
+  createPageFragment,
+  fragmentItemKey,
+  uniqueLayoutItemKey,
+} from './page-fragment';
+import {
+  itemPackNeed,
+  sectionBottomReserve,
+  sectionTopOverhead,
+} from './section-pack-overhead';
 
 export interface PackOverflow {
   item: LayoutItem;
@@ -14,7 +25,10 @@ export interface PackOverflow {
   itemHeight: number;
 }
 
-export function canSubdivideItem(item: LayoutItem, sections: Record<string, string>): boolean {
+export function canSubdivideItem(
+  item: LayoutItem,
+  sections: Record<string, string>,
+): boolean {
   if (item.isCover || item.isBreak) return false;
   if (!canBlockSplit(item.block)) return false;
   const content = resolveBlockContent(item.block, sections, item.fragment);
@@ -62,7 +76,10 @@ export function findPackOverflow(
       return { item, index, remaining: bodyHeightPx, itemHeight: h };
     }
 
-    if (bucket.length > 0 && used + itemPackNeed(item, bucket, h) > bodyHeightPx) {
+    if (
+      bucket.length > 0 &&
+      used + itemPackNeed(item, bucket, h) > bodyHeightPx
+    ) {
       const remaining = bodyHeightPx - used - sectionBottomReserve(bucket);
       if (remaining > 0) {
         return { item, index, remaining, itemHeight: h };
@@ -125,7 +142,10 @@ export function subdivideItemForHeight(
 
   const keys = new Set(reservedKeys);
   keys.delete(item.key);
-  const secondKey = uniqueLayoutItemKey(fragmentItemKey(blockId, baseIndex + 1), keys);
+  const secondKey = uniqueLayoutItemKey(
+    fragmentItemKey(blockId, baseIndex + 1),
+    keys,
+  );
 
   return [
     {

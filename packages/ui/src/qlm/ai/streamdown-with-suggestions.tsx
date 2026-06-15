@@ -145,9 +145,7 @@ export const StreamdownWithSuggestions = memo(
         if (datasourceButton) {
           e.preventDefault();
           e.stopPropagation();
-          const id = datasourceButton.getAttribute(
-            'data-qlm-datasource-id',
-          );
+          const id = datasourceButton.getAttribute('data-qlm-datasource-id');
           const name =
             datasourceButton.getAttribute('data-qlm-datasource-name') ?? '';
           if (id && onDatasourceNameClick) {

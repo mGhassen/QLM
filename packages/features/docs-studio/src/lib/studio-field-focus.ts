@@ -1,5 +1,5 @@
 export const FIELD_EDITOR_PORTAL_SELECTOR =
-  "[data-field-editor], .studio-wysiwyg-toolbar-dock, .studio-wysiwyg-toolbar-portal, [data-tiptap-bubble-menu], .tiptap-bubble-menu, .studio-editor-toolbar, [data-studio-chrome]";
+  '[data-field-editor], .studio-wysiwyg-toolbar-dock, .studio-wysiwyg-toolbar-portal, [data-tiptap-bubble-menu], .tiptap-bubble-menu, .studio-editor-toolbar, [data-studio-chrome]';
 
 export function shouldCloseFieldEditor(
   container: Node,

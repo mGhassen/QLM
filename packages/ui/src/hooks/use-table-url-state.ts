@@ -1,10 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
-import type {
-  FilterRule,
-  SortState,
-} from '../qlm/data-table-advanced/types';
+import type { FilterRule, SortState } from '../qlm/data-table-advanced/types';
 
 export type TableUrlState = Readonly<{
   filters: FilterRule[];

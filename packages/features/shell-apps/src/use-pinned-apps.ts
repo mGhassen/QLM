@@ -7,9 +7,7 @@ import {
 } from './pinned-apps-storage';
 
 export function usePinnedApps(projectId: string) {
-  const [pinnedIds, setPinnedIds] = useState(() =>
-    readPinnedAppIds(projectId),
-  );
+  const [pinnedIds, setPinnedIds] = useState(() => readPinnedAppIds(projectId));
 
   const isPinned = useCallback(
     (appId: string) => pinnedIds.includes(appId),

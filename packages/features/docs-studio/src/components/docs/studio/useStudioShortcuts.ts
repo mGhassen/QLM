@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { isEditingTarget, isMac } from "#/lib/studio-shortcuts";
+import { useEffect } from 'react';
+import { isEditingTarget, isMac } from '#/lib/studio-shortcuts';
 
 interface StudioShortcutHandlers {
   onSave: () => void;
@@ -14,7 +14,7 @@ interface StudioShortcutHandlers {
   onIndent?: (id: string) => void;
   onOutdent?: (id: string) => void;
   onDeselect?: () => void;
-  onNavigate?: (direction: "prev" | "next" | "parent" | "firstChild") => void;
+  onNavigate?: (direction: 'prev' | 'next' | 'parent' | 'firstChild') => void;
   onEdit?: () => void;
   onSelectAll?: () => void;
   selectedId: string | null;
@@ -33,7 +33,7 @@ export function useStudioShortcuts(handlers: StudioShortcutHandlers) {
       const editing = isEditingTarget(e.target);
       const mod = e.metaKey || e.ctrlKey;
 
-      if (mod && e.key.toLowerCase() === "a") {
+      if (mod && e.key.toLowerCase() === 'a') {
         if (editing) return;
         const blockId = handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (!blockId || !handlers.onSelectAll) return;
@@ -42,109 +42,138 @@ export function useStudioShortcuts(handlers: StudioShortcutHandlers) {
         return;
       }
 
-      if (mod && e.key.toLowerCase() === "s") {
+      if (mod && e.key.toLowerCase() === 's') {
         e.preventDefault();
         handlers.onSave();
         return;
       }
 
-      if (mod && e.key.toLowerCase() === "z" && !e.shiftKey) {
+      if (mod && e.key.toLowerCase() === 'z' && !e.shiftKey) {
         if (editing || !handlers.canUndo) return;
         e.preventDefault();
         handlers.onUndo();
         return;
       }
 
-      if (mod && (e.key.toLowerCase() === "z" && e.shiftKey || (!isMac() && e.key.toLowerCase() === "y"))) {
+      if (
+        mod &&
+        ((e.key.toLowerCase() === 'z' && e.shiftKey) ||
+          (!isMac() && e.key.toLowerCase() === 'y'))
+      ) {
         if (editing || !handlers.canRedo) return;
         e.preventDefault();
         handlers.onRedo();
         return;
       }
 
-      if (mod && e.key.toLowerCase() === "d") {
+      if (mod && e.key.toLowerCase() === 'd') {
         if (editing || !handlers.selectedId || !handlers.onDuplicate) return;
         e.preventDefault();
         handlers.onDuplicate(handlers.selectedId);
         return;
       }
 
-      if ((e.key === "Delete" || e.key === "Backspace") && !mod && !e.altKey) {
-        const targetId = handlers.selectedId ?? handlers.textEditBlockId ?? null;
+      if ((e.key === 'Delete' || e.key === 'Backspace') && !mod && !e.altKey) {
+        const targetId =
+          handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (editing || !targetId || !handlers.onDelete) return;
         e.preventDefault();
         handlers.onDelete(targetId);
         return;
       }
 
-      if (e.altKey && e.key === "ArrowUp") {
-        if (editing || !handlers.selectedId || !handlers.onMoveUp || !handlers.canMoveUp) return;
+      if (e.altKey && e.key === 'ArrowUp') {
+        if (
+          editing ||
+          !handlers.selectedId ||
+          !handlers.onMoveUp ||
+          !handlers.canMoveUp
+        )
+          return;
         e.preventDefault();
         handlers.onMoveUp(handlers.selectedId);
         return;
       }
 
-      if (e.altKey && e.key === "ArrowDown") {
-        if (editing || !handlers.selectedId || !handlers.onMoveDown || !handlers.canMoveDown) return;
+      if (e.altKey && e.key === 'ArrowDown') {
+        if (
+          editing ||
+          !handlers.selectedId ||
+          !handlers.onMoveDown ||
+          !handlers.canMoveDown
+        )
+          return;
         e.preventDefault();
         handlers.onMoveDown(handlers.selectedId);
         return;
       }
 
-      if (e.altKey && e.key === "ArrowRight") {
-        if (editing || !handlers.selectedId || !handlers.onIndent || !handlers.canIndent) return;
+      if (e.altKey && e.key === 'ArrowRight') {
+        if (
+          editing ||
+          !handlers.selectedId ||
+          !handlers.onIndent ||
+          !handlers.canIndent
+        )
+          return;
         e.preventDefault();
         handlers.onIndent(handlers.selectedId);
         return;
       }
 
-      if (e.altKey && e.key === "ArrowLeft") {
-        if (editing || !handlers.selectedId || !handlers.onOutdent || !handlers.canOutdent) return;
+      if (e.altKey && e.key === 'ArrowLeft') {
+        if (
+          editing ||
+          !handlers.selectedId ||
+          !handlers.onOutdent ||
+          !handlers.canOutdent
+        )
+          return;
         e.preventDefault();
         handlers.onOutdent(handlers.selectedId);
         return;
       }
 
-      if (!mod && !e.altKey && e.key === "ArrowUp") {
+      if (!mod && !e.altKey && e.key === 'ArrowUp') {
         const id = handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (editing || !id || !handlers.onNavigate) return;
         e.preventDefault();
-        handlers.onNavigate("prev");
+        handlers.onNavigate('prev');
         return;
       }
 
-      if (!mod && !e.altKey && e.key === "ArrowDown") {
+      if (!mod && !e.altKey && e.key === 'ArrowDown') {
         const id = handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (editing || !id || !handlers.onNavigate) return;
         e.preventDefault();
-        handlers.onNavigate("next");
+        handlers.onNavigate('next');
         return;
       }
 
-      if (!mod && !e.altKey && e.key === "ArrowLeft") {
+      if (!mod && !e.altKey && e.key === 'ArrowLeft') {
         const id = handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (editing || !id || !handlers.onNavigate) return;
         e.preventDefault();
-        handlers.onNavigate("parent");
+        handlers.onNavigate('parent');
         return;
       }
 
-      if (!mod && !e.altKey && e.key === "ArrowRight") {
+      if (!mod && !e.altKey && e.key === 'ArrowRight') {
         const id = handlers.selectedId ?? handlers.textEditBlockId ?? null;
         if (editing || !id || !handlers.onNavigate) return;
         e.preventDefault();
-        handlers.onNavigate("firstChild");
+        handlers.onNavigate('firstChild');
         return;
       }
 
-      if (e.key === "Enter" && !mod && !e.altKey) {
+      if (e.key === 'Enter' && !mod && !e.altKey) {
         if (editing || !handlers.selectedId || !handlers.onEdit) return;
         e.preventDefault();
         handlers.onEdit();
         return;
       }
 
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         if (editing || !handlers.onDeselect) return;
         if (!handlers.selectedId && !handlers.textEditBlockId) return;
         e.preventDefault();
@@ -152,8 +181,8 @@ export function useStudioShortcuts(handlers: StudioShortcutHandlers) {
       }
     }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [
     handlers.onSave,
     handlers.onUndo,

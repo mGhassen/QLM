@@ -1,7 +1,7 @@
-import type { BlockPageFragment } from "./page-fragment";
-import type { LayoutItem } from "./layout-items";
-import { getSectionChildWidthPx } from "./page-metrics";
-import type { BlockNode } from "./types";
+import type { BlockPageFragment } from './page-fragment';
+import type { LayoutItem } from './layout-items';
+import { getSectionChildWidthPx } from './page-metrics';
+import type { BlockNode } from './types';
 
 export function blocksForItemMeasure(item: LayoutItem): BlockNode[] {
   if (!item.section) return [item.block];
@@ -9,7 +9,7 @@ export function blocksForItemMeasure(item: LayoutItem): BlockNode[] {
   return [
     {
       id: item.section.id,
-      type: "section",
+      type: 'section',
       props: {
         id: item.section.id,
         pageBreak: item.section.pageBreak,
@@ -20,8 +20,13 @@ export function blocksForItemMeasure(item: LayoutItem): BlockNode[] {
   ];
 }
 
-export function itemMeasureWidthPx(item: LayoutItem, pageContentWidthPx: number): number {
-  return item.section ? getSectionChildWidthPx(pageContentWidthPx) : pageContentWidthPx;
+export function itemMeasureWidthPx(
+  item: LayoutItem,
+  pageContentWidthPx: number,
+): number {
+  return item.section
+    ? getSectionChildWidthPx(pageContentWidthPx)
+    : pageContentWidthPx;
 }
 
 export function fragmentsForItemMeasure(

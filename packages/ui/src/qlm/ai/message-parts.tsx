@@ -22,10 +22,7 @@ import {
 import { SQLQueryVisualizer } from './sql-query-visualizer';
 import { generateExportFilename } from './utils/generate-export-filename';
 
-import type {
-  DatasourceMetadata,
-  SimpleSchema,
-} from '@qlm/domain/entities';
+import type { DatasourceMetadata, SimpleSchema } from '@qlm/domain/entities';
 import { cn } from '../../lib/utils';
 import {
   SchemaVisualizer,

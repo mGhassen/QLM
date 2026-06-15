@@ -1,7 +1,10 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
-import { parseCoverSubtitle, serializeCoverSubtitle } from "#/lib/cover-subtitle";
+import StudioPopover from '../studio/StudioPopover';
+import {
+  parseCoverSubtitle,
+  serializeCoverSubtitle,
+} from '#/lib/cover-subtitle';
 
 interface CoverSubtitleProps {
   content?: string;
@@ -14,7 +17,7 @@ interface CoverSubtitleProps {
 }
 
 export default function CoverSubtitle({
-  content = "",
+  content = '',
   subtitleUpColor,
   subtitleOrColor,
   subtitleDownColor,
@@ -29,7 +32,8 @@ export default function CoverSubtitle({
     onChange(serializeCoverSubtitle({ ...data, ...patch }));
   }
 
-  const hasAny = data.subtitleUp || data.subtitleOr || data.subtitleDown || editable;
+  const hasAny =
+    data.subtitleUp || data.subtitleOr || data.subtitleDown || editable;
   if (!hasAny) return null;
 
   return (
@@ -37,7 +41,7 @@ export default function CoverSubtitle({
       {(data.subtitleUp || editable) && (
         <StudioPopover
           editable={editable}
-          value={data.subtitleUp ?? ""}
+          value={data.subtitleUp ?? ''}
           onChange={(v) => update({ subtitleUp: v })}
           singleLine
           wysiwyg
@@ -51,11 +55,11 @@ export default function CoverSubtitle({
           </span>
         </StudioPopover>
       )}
-      {(data.subtitleUp || editable) && (data.subtitleOr || editable) && " "}
+      {(data.subtitleUp || editable) && (data.subtitleOr || editable) && ' '}
       {(data.subtitleOr || editable) && (
         <StudioPopover
           editable={editable}
-          value={data.subtitleOr ?? ""}
+          value={data.subtitleOr ?? ''}
           onChange={(v) => update({ subtitleOr: v })}
           singleLine
           wysiwyg
@@ -69,11 +73,11 @@ export default function CoverSubtitle({
           </span>
         </StudioPopover>
       )}
-      {(data.subtitleOr || editable) && (data.subtitleDown || editable) && " "}
+      {(data.subtitleOr || editable) && (data.subtitleDown || editable) && ' '}
       {(data.subtitleDown || editable) && (
         <StudioPopover
           editable={editable}
-          value={data.subtitleDown ?? ""}
+          value={data.subtitleDown ?? ''}
           onChange={(v) => update({ subtitleDown: v })}
           singleLine
           wysiwyg

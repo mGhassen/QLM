@@ -1,8 +1,8 @@
-import { resolveBlockContent } from "./content";
-import { splitSplittableParts } from "./content-segments";
-import type { FlowUnit } from "./flow-units";
-import { getSplittableChild } from "./splittable";
-import type { BlockNode } from "./types";
+import { resolveBlockContent } from './content';
+import { splitSplittableParts } from './content-segments';
+import type { FlowUnit } from './flow-units';
+import { getSplittableChild } from './splittable';
+import type { BlockNode } from './types';
 
 export function segmentChild(
   child: BlockNode,
@@ -23,7 +23,7 @@ export function segmentChild(
 
 export function unitWithChild(unit: FlowUnit, child: BlockNode): FlowUnit {
   const block = unit.blocks[0];
-  if (block.type === "section") {
+  if (block.type === 'section') {
     return {
       ...unit,
       blocks: [{ ...block, children: [child] }],
@@ -41,19 +41,35 @@ export function makeSegmentUnit(
   segmentTotal = 0,
 ): FlowUnit {
   return {
-    ...unitWithChild(unit, segmentChild(child, segmentIndex, segmentTotal, segmentText)),
+    ...unitWithChild(
+      unit,
+      segmentChild(child, segmentIndex, segmentTotal, segmentText),
+    ),
     key,
   };
 }
 
-export function splitContentAtPartCount(content: string, partCount: number): [string, string] {
+export function splitContentAtPartCount(
+  content: string,
+  partCount: number,
+): [string, string] {
   const parts = splitSplittableParts(content);
   const clamped = Math.max(1, Math.min(partCount, parts.length - 1));
-  const joiner = content.includes("\n\n") ? "\n\n" : content.includes("\n") ? "\n" : " ";
-  return [parts.slice(0, clamped).join(joiner), parts.slice(clamped).join(joiner)];
+  const joiner = content.includes('\n\n')
+    ? '\n\n'
+    : content.includes('\n')
+      ? '\n'
+      : ' ';
+  return [
+    parts.slice(0, clamped).join(joiner),
+    parts.slice(clamped).join(joiner),
+  ];
 }
 
-export function splittablePartCount(unit: FlowUnit, sections: Record<string, string>): number {
+export function splittablePartCount(
+  unit: FlowUnit,
+  sections: Record<string, string>,
+): number {
   const child = getSplittableChild(unit.blocks[0]);
   if (!child) return 0;
   const content = resolveBlockContent(child, sections);

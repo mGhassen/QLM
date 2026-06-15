@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { ChevronRight } from "lucide-react";
-import { cn } from "@qlm/ui/utils";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import { findBlockById } from "#/lib/serialize";
-import { getAncestorIds } from "#/lib/canvas-drop";
-import type { BlockNode } from "#/lib/types";
+import { ChevronRight } from 'lucide-react';
+import { cn } from '@qlm/ui/utils';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import { findBlockById } from '#/lib/serialize';
+import { getAncestorIds } from '#/lib/canvas-drop';
+import type { BlockNode } from '#/lib/types';
 
 interface StudioBreadcrumbProps {
   blocks: BlockNode[];
@@ -14,7 +14,12 @@ interface StudioBreadcrumbProps {
   onSelect: (id: string) => void;
 }
 
-export default function StudioBreadcrumb({ blocks, selectedId, textEdit, onSelect }: StudioBreadcrumbProps) {
+export default function StudioBreadcrumb({
+  blocks,
+  selectedId,
+  textEdit,
+  onSelect,
+}: StudioBreadcrumbProps) {
   if (!selectedId) return null;
 
   const chain = [...getAncestorIds(blocks, selectedId), selectedId]
@@ -30,13 +35,17 @@ export default function StudioBreadcrumb({ blocks, selectedId, textEdit, onSelec
     >
       {chain.map((block, i) => (
         <span key={block.id} className="flex shrink-0 items-center gap-1">
-          {i > 0 && <ChevronRight size={10} className="text-sidebar-foreground/40" />}
+          {i > 0 && (
+            <ChevronRight size={10} className="text-sidebar-foreground/40" />
+          )}
           <button
             type="button"
             onClick={() => onSelect(block.id)}
             className={cn(
-              "hover:text-sidebar-foreground transition-colors",
-              i === chain.length - 1 && !textEdit && "text-sidebar-foreground font-medium",
+              'hover:text-sidebar-foreground transition-colors',
+              i === chain.length - 1 &&
+                !textEdit &&
+                'text-sidebar-foreground font-medium',
             )}
           >
             {BLOCK_LABELS[block.type] ?? block.type}

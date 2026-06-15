@@ -1,24 +1,26 @@
-"use client";
+'use client';
 
-import { useRef, useState, useTransition } from "react";
-import { useTranslation } from "react-i18next";
-import { Upload } from "lucide-react";
-import { Button } from "@qlm/ui/button";
+import { useRef, useState, useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Upload } from 'lucide-react';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@qlm/ui/dialog";
-import { Input } from "@qlm/ui/input";
-import { Label } from "@qlm/ui/label";
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
 interface ImportDocDialogProps {
   open: boolean;
   onClose: () => void;
   onImported: (result: { slug: string; title: string }) => void;
-  importDocAction: (formData: FormData) => Promise<{ slug: string; title: string }>;
+  importDocAction: (
+    formData: FormData,
+  ) => Promise<{ slug: string; title: string }>;
 }
 
 export default function ImportDocDialog({
@@ -27,17 +29,17 @@ export default function ImportDocDialog({
   onImported,
   importDocAction,
 }: ImportDocDialogProps) {
-  const { t } = useTranslation("studio");
-  const { t: tCommon } = useTranslation("common");
+  const { t } = useTranslation('studio');
+  const { t: tCommon } = useTranslation('common');
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
   function reset() {
     setFile(null);
-    setTitle("");
+    setTitle('');
     setError(null);
   }
 
@@ -52,15 +54,15 @@ export default function ImportDocDialog({
       setError(null);
       try {
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append('file', file);
         if (title.trim()) {
-          formData.append("title", title.trim());
+          formData.append('title', title.trim());
         }
         const result = await importDocAction(formData);
         reset();
         onImported(result);
       } catch (err) {
-        setError(err instanceof Error ? err.message : t("import.error"));
+        setError(err instanceof Error ? err.message : t('import.error'));
       }
     });
   }
@@ -69,7 +71,9 @@ export default function ImportDocDialog({
     <Dialog open={open} onOpenChange={(next) => !next && handleClose()}>
       <DialogContent className="gap-4 rounded-none sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-sm">{t("import.dialogTitle")}</DialogTitle>
+          <DialogTitle className="text-sm">
+            {t('import.dialogTitle')}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -92,20 +96,22 @@ export default function ImportDocDialog({
               disabled={pending}
             >
               <Upload size={14} className="mr-2" />
-              {file?.name ?? t("import.chooseFile")}
+              {file?.name ?? t('import.chooseFile')}
             </Button>
-            <p className="text-muted-foreground text-[11px]">{t("import.acceptedFormats")}</p>
+            <p className="text-muted-foreground text-[11px]">
+              {t('import.acceptedFormats')}
+            </p>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="import-doc-title" className="text-xs">
-              {t("import.titleLabel")}
+              {t('import.titleLabel')}
             </Label>
             <Input
               id="import-doc-title"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
-              placeholder={t("import.titlePlaceholder")}
+              placeholder={t('import.titlePlaceholder')}
               className="rounded-none text-xs"
               disabled={pending}
             />
@@ -122,7 +128,7 @@ export default function ImportDocDialog({
             onClick={handleClose}
             disabled={pending}
           >
-            {tCommon("cancel")}
+            {tCommon('cancel')}
           </Button>
           <Button
             type="button"
@@ -130,7 +136,7 @@ export default function ImportDocDialog({
             onClick={handleSubmit}
             disabled={pending || !file}
           >
-            {pending ? t("import.importing") : t("import.submit")}
+            {pending ? t('import.importing') : t('import.submit')}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -5,4 +5,4 @@ export {
   isSplittableBlockType,
   blockSplittablePartCount,
   splitBlockContentAtPartCount,
-} from "./block-split";
+} from './block-split';

@@ -106,8 +106,7 @@ class DeletePersonalAccountService {
   private async sendDeleteAccountEmail(account: { email: string }) {
     const emailSettings = this.getEmailSettings();
 
-    const { renderAccountDeleteEmail } =
-      await import('@qlm/email-templates');
+    const { renderAccountDeleteEmail } = await import('@qlm/email-templates');
     const { getMailer } = await import('@qlm/mailers');
 
     const mailer = await getMailer();

@@ -1,22 +1,26 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export function WfField({
   label,
-  labelTone = "accent",
+  labelTone = 'accent',
   children,
   className,
 }: {
   label?: string;
-  labelTone?: "accent" | "neutral";
+  labelTone?: 'accent' | 'neutral';
   children: ReactNode;
   className?: string;
 }) {
   return (
-    <div className={`wf-field${className ? ` ${className}` : ""}`}>
+    <div className={`wf-field${className ? ` ${className}` : ''}`}>
       {label && (
-        <span className={`wf-field-label${labelTone === "neutral" ? " neutral" : ""}`}>{label}</span>
+        <span
+          className={`wf-field-label${labelTone === 'neutral' ? ' neutral' : ''}`}
+        >
+          {label}
+        </span>
       )}
       {children}
     </div>
@@ -31,7 +35,7 @@ export function WfInput({
   value,
   onChange,
   placeholder,
-  type = "text",
+  type = 'text',
   className,
 }: {
   value: string | number;
@@ -46,7 +50,7 @@ export function WfInput({
       value={value}
       placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
-      className={`wf-input${className ? ` ${className}` : ""}`}
+      className={`wf-input${className ? ` ${className}` : ''}`}
     />
   );
 }
@@ -61,7 +65,11 @@ export function WfSelect({
   children: ReactNode;
 }) {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)} className="wf-select">
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="wf-select"
+    >
       {children}
     </select>
   );
@@ -82,7 +90,7 @@ export function WfSegmented<T extends string>({
         <button
           key={opt}
           type="button"
-          className={`wf-segment${value === opt ? " active" : ""}`}
+          className={`wf-segment${value === opt ? ' active' : ''}`}
           onClick={() => onChange(opt)}
         >
           {opt}
@@ -105,11 +113,19 @@ export function WfStepper({
 }) {
   return (
     <div className="wf-stepper">
-      <button type="button" className="wf-stepper-btn" onClick={() => onChange(Math.max(min, value - 1))}>
+      <button
+        type="button"
+        className="wf-stepper-btn"
+        onClick={() => onChange(Math.max(min, value - 1))}
+      >
         −
       </button>
       <span className="wf-stepper-value">{value}</span>
-      <button type="button" className="wf-stepper-btn" onClick={() => onChange(Math.min(max, value + 1))}>
+      <button
+        type="button"
+        className="wf-stepper-btn"
+        onClick={() => onChange(Math.min(max, value + 1))}
+      >
         +
       </button>
     </div>
@@ -120,7 +136,7 @@ export function WfGapControl({
   label,
   value,
   max = 24,
-  unit = "mm",
+  unit = 'mm',
   onChange,
 }: {
   label: string;
@@ -164,7 +180,11 @@ export function WfCheckRow({
 }) {
   return (
     <label className="wf-check-row">
-      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+      />
       {label}
     </label>
   );

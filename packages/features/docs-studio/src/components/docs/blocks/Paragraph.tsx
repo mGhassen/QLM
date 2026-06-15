@@ -1,5 +1,5 @@
-import MarkdownContent from "./MarkdownContent";
-import type { BlockNode } from "#/lib/types";
+import MarkdownContent from './MarkdownContent';
+import type { BlockNode } from '#/lib/types';
 
 interface ParagraphProps {
   content?: string;
@@ -14,7 +14,7 @@ interface ParagraphProps {
 }
 
 export default function Paragraph({
-  content = "",
+  content = '',
   className,
   justify,
   editable,
@@ -25,7 +25,10 @@ export default function Paragraph({
   onInsertAfter,
 }: ParagraphProps) {
   return (
-    <div className={className} style={justify ? { textAlign: "justify", hyphens: "auto" } : undefined}>
+    <div
+      className={className}
+      style={justify ? { textAlign: 'justify', hyphens: 'auto' } : undefined}
+    >
       <MarkdownContent
         content={content}
         editable={editable}

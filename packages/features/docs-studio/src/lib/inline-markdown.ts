@@ -10,9 +10,9 @@ export function inlineMarkdown(text: string): string {
   const withNum = designNumberToHtml(text);
 
   return withNum
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/~~(.+?)~~/g, "<s>$1</s>")
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/~~(.+?)~~/g, '<s>$1</s>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-    .replace(/&#160;/g, "\u00a0");
+    .replace(/&#160;/g, '\u00a0');
 }

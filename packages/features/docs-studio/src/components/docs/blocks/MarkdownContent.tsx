@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { renderMarkdocToHtml } from "#/lib/markdoc";
-import type { BlockNode } from "#/lib/types";
-import WysiwygEditor from "../studio/WysiwygEditor";
+import { useState } from 'react';
+import { renderMarkdocToHtml } from '#/lib/markdoc';
+import type { BlockNode } from '#/lib/types';
+import WysiwygEditor from '../studio/WysiwygEditor';
 
 interface MarkdownContentProps {
   content: string;
@@ -41,14 +41,22 @@ export default function MarkdownContent({
   if (!isEditing) {
     return (
       <div
-        className={[className, "studio-inline-field", "studio-inline-field-idle"].filter(Boolean).join(" ")}
+        className={[
+          className,
+          'studio-inline-field',
+          'studio-inline-field-idle',
+        ]
+          .filter(Boolean)
+          .join(' ')}
         dangerouslySetInnerHTML={{ __html: renderMarkdocToHtml(content) }}
       />
     );
   }
 
   return (
-    <div className={[className, "studio-inline-field"].filter(Boolean).join(" ")}>
+    <div
+      className={[className, 'studio-inline-field'].filter(Boolean).join(' ')}
+    >
       <WysiwygEditor
         content={content}
         onChange={onChange}

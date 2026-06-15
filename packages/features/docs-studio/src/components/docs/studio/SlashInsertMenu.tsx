@@ -1,10 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { createBlock } from "#/lib/serialize";
-import { LAYOUT_PRESETS } from "#/lib/layout-presets";
-import { SLASH_INSERT_CATEGORIES, type PaletteCategory, type PaletteItem } from "#/lib/palette";
-import type { BlockNode } from "#/lib/types";
+import { useEffect, useRef, useState } from 'react';
+import { createBlock } from '#/lib/serialize';
+import { LAYOUT_PRESETS } from '#/lib/layout-presets';
+import {
+  SLASH_INSERT_CATEGORIES,
+  type PaletteCategory,
+  type PaletteItem,
+} from '#/lib/palette';
+import type { BlockNode } from '#/lib/types';
 
 interface SlashInsertMenuProps {
   open: boolean;
@@ -35,9 +39,11 @@ function paletteToSlashItem(item: PaletteItem): SlashItem {
 }
 
 function buildSlashItems(categories: PaletteCategory[]): SlashItem[] {
-  const textAndDesign = categories.flatMap((cat) => cat.items.map(paletteToSlashItem));
-  const presets: SlashItem[] = LAYOUT_PRESETS.filter((p) =>
-    !["hero", "cover", "section"].includes(p.id),
+  const textAndDesign = categories.flatMap((cat) =>
+    cat.items.map(paletteToSlashItem),
+  );
+  const presets: SlashItem[] = LAYOUT_PRESETS.filter(
+    (p) => !['hero', 'cover', 'section'].includes(p.id),
   ).map((p) => ({
     key: `preset-${p.id}`,
     label: p.label,
@@ -57,7 +63,9 @@ export default function SlashInsertMenu({
   const ref = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const filtered = buildSlashItems(categories).filter((item) => matchesQuery(item.label, query));
+  const filtered = buildSlashItems(categories).filter((item) =>
+    matchesQuery(item.label, query),
+  );
 
   useEffect(() => {
     setActiveIndex(0);
@@ -66,23 +74,23 @@ export default function SlashInsertMenu({
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         e.preventDefault();
         onClose();
-      } else if (e.key === "ArrowDown") {
+      } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         setActiveIndex((i) => Math.min(i + 1, filtered.length - 1));
-      } else if (e.key === "ArrowUp") {
+      } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setActiveIndex((i) => Math.max(i - 1, 0));
-      } else if (e.key === "Enter" && filtered[activeIndex]) {
+      } else if (e.key === 'Enter' && filtered[activeIndex]) {
         e.preventDefault();
         onInsert(filtered[activeIndex].create());
         onClose();
       }
     }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [open, filtered, activeIndex, onInsert, onClose]);
 
   useEffect(() => {
@@ -90,14 +98,14 @@ export default function SlashInsertMenu({
     function close(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     }
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
   }, [open, onClose]);
 
   if (!open || !anchorRect) return null;
 
   const style: React.CSSProperties = {
-    position: "fixed",
+    position: 'fixed',
     top: anchorRect.bottom + 4,
     left: anchorRect.left,
     zIndex: 300,
@@ -106,7 +114,7 @@ export default function SlashInsertMenu({
   return (
     <div ref={ref} className="studio-slash-menu" style={style}>
       <div className="studio-slash-menu-header">
-        {query ? `Search: ${query}` : "Insert block — type to filter"}
+        {query ? `Search: ${query}` : 'Insert block — type to filter'}
       </div>
       {filtered.length === 0 ? (
         <div className="studio-slash-menu-empty">No matches</div>
@@ -116,7 +124,7 @@ export default function SlashInsertMenu({
             <button
               key={item.key}
               type="button"
-              className={`studio-slash-menu-item${i === activeIndex ? " active" : ""}`}
+              className={`studio-slash-menu-item${i === activeIndex ? ' active' : ''}`}
               onMouseEnter={() => setActiveIndex(i)}
               onClick={() => {
                 onInsert(item.create());

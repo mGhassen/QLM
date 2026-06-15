@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
-import { extractKpis } from "#/lib/markdoc";
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
-import StudioImageUpload from "../studio/StudioImageUpload";
+import type { ReactNode } from 'react';
+import { extractKpis } from '#/lib/markdoc';
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
+import StudioImageUpload from '../studio/StudioImageUpload';
 
 interface RailProps {
-  variant?: "dark" | "note" | "quote" | "img";
+  variant?: 'dark' | 'note' | 'quote' | 'img';
   heading?: string;
   content?: string;
   src?: string;
@@ -21,7 +21,7 @@ interface RailProps {
 }
 
 export default function Rail({
-  variant = "note",
+  variant = 'note',
   heading,
   content,
   src,
@@ -33,17 +33,20 @@ export default function Rail({
   onPropChange,
   onActivate,
 }: RailProps) {
-  if (variant === "img") {
-    const imageSrc = src ?? content?.match(/src:\s*(.+)/)?.[1]?.trim() ?? "";
+  if (variant === 'img') {
+    const imageSrc = src ?? content?.match(/src:\s*(.+)/)?.[1]?.trim() ?? '';
     return (
       <aside className="rail img">
         {imageSrc && <img src={imageSrc} alt="" />}
         {editable && onChange && (
-          <div className="studio-rail-img-controls" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="studio-rail-img-controls"
+            onClick={(e) => e.stopPropagation()}
+          >
             {docSlug && (
               <StudioImageUpload
                 slug={docSlug}
-                label={imageSrc ? "Replace image" : "Upload image"}
+                label={imageSrc ? 'Replace image' : 'Upload image'}
                 onUploaded={(url) => onChange(`src: ${url}`)}
               />
             )}
@@ -54,7 +57,9 @@ export default function Rail({
               singleLine
               onActivate={onActivate}
             >
-              <span className="studio-rail-src">{imageSrc || "Image URL…"}</span>
+              <span className="studio-rail-src">
+                {imageSrc || 'Image URL…'}
+              </span>
             </StudioPopover>
           </div>
         )}
@@ -62,21 +67,23 @@ export default function Rail({
     );
   }
 
-  if (variant === "dark" && content) {
+  if (variant === 'dark' && content) {
     const kpis = extractKpis(content);
     if (kpis.length > 0) {
-      const lines = content.split("\n");
-      const headingLine = lines.find((l) => l.startsWith("## "));
-      const rh = headingLine?.replace("## ", "") ?? heading;
+      const lines = content.split('\n');
+      const headingLine = lines.find((l) => l.startsWith('## '));
+      const rh = headingLine?.replace('## ', '') ?? heading;
       return (
         <aside className="rail dark">
           {(rh || editable) && (
             <StudioPopover
               editable={editable}
-              value={rh ?? ""}
+              value={rh ?? ''}
               onChange={(v) => {
-                const rest = lines.filter((l) => !l.startsWith("## ")).join("\n");
-                onChange?.([`## ${v}`, rest].filter(Boolean).join("\n"));
+                const rest = lines
+                  .filter((l) => !l.startsWith('## '))
+                  .join('\n');
+                onChange?.([`## ${v}`, rest].filter(Boolean).join('\n'));
               }}
               singleLine
               onActivate={onActivate}
@@ -95,21 +102,24 @@ export default function Rail({
     }
   }
 
-  const lines = (content ?? "").split("\n");
-  const headingLine = lines.find((l) => l.startsWith("## "));
-  const rh = heading ?? headingLine?.replace("## ", "") ?? "";
-  const body = lines.filter((l) => !l.startsWith("## ")).join("\n").trim();
+  const lines = (content ?? '').split('\n');
+  const headingLine = lines.find((l) => l.startsWith('## '));
+  const rh = heading ?? headingLine?.replace('## ', '') ?? '';
+  const body = lines
+    .filter((l) => !l.startsWith('## '))
+    .join('\n')
+    .trim();
 
   function serialize(nextHeading: string, nextBody: string) {
     const parts: string[] = [];
     if (nextHeading) parts.push(`## ${nextHeading}`);
     if (nextBody) parts.push(nextBody);
-    return parts.join("\n");
+    return parts.join('\n');
   }
 
   function updateHeading(nextHeading: string) {
     onChange?.(serialize(nextHeading, body));
-    onPropChange?.("heading", nextHeading);
+    onPropChange?.('heading', nextHeading);
   }
 
   function updateBody(nextBody: string) {

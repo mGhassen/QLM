@@ -142,9 +142,7 @@ const SchemaGraphInner = ({ metadata, storageKey }: SchemaGraphProps) => {
             Auto layout
           </Button>
         </div>
-        <div className="text-muted-foreground text-xs">
-          Schema graph · QLM
-        </div>
+        <div className="text-muted-foreground text-xs">Schema graph · QLM</div>
       </div>
 
       <div className="relative h-full w-full">

@@ -1,16 +1,23 @@
-"use client";
+'use client';
 
-import { blockRegistry } from "#/lib/blockRegistry";
-import { resolveBlockContent } from "#/lib/content";
-import type { CanvasDropTarget } from "#/lib/canvas-drop";
-import { fragmentDataAttrs, takePageFragment, type BlockPageFragment } from "#/lib/page-fragment";
-import type { BlockNode } from "#/lib/types";
-import type { ReactNode } from "react";
-import StudioBlockWrapper from "./studio/StudioBlockWrapper";
-import { blockAppearanceProps, hasBlockAppearance } from "#/lib/block-appearance";
-import { canBlockResize } from "#/lib/studio-transform";
-import { canMoveBlock } from "#/lib/block-order";
-import { canMoveBlockOnPages } from "#/lib/page-blocks";
+import { blockRegistry } from '#/lib/blockRegistry';
+import { resolveBlockContent } from '#/lib/content';
+import type { CanvasDropTarget } from '#/lib/canvas-drop';
+import {
+  fragmentDataAttrs,
+  takePageFragment,
+  type BlockPageFragment,
+} from '#/lib/page-fragment';
+import type { BlockNode } from '#/lib/types';
+import type { ReactNode } from 'react';
+import StudioBlockWrapper from './studio/StudioBlockWrapper';
+import {
+  blockAppearanceProps,
+  hasBlockAppearance,
+} from '#/lib/block-appearance';
+import { canBlockResize } from '#/lib/studio-transform';
+import { canMoveBlock } from '#/lib/block-order';
+import { canMoveBlockOnPages } from '#/lib/page-blocks';
 
 interface DocRendererProps {
   blocks: BlockNode[];
@@ -30,11 +37,11 @@ interface DocRendererProps {
   onPropsChange?: (blockId: string, props: Record<string, unknown>) => void;
   onDeleteBlock?: (id: string) => void;
   onDuplicateBlock?: (id: string) => void;
-  onMoveBlock?: (id: string, direction: "up" | "down") => void;
+  onMoveBlock?: (id: string, direction: 'up' | 'down') => void;
   onInsertBlock?: (
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) => void;
   dragBlockId?: string | null;
@@ -47,9 +54,13 @@ function hasContent(block: BlockNode): boolean {
   return block.contentRef !== undefined || block.content !== undefined;
 }
 
-function blockRenderKey(block: BlockNode, fragment?: BlockPageFragment, occurrence = 0): string {
-  const fragPart = fragment ? `#${fragment.index}` : "";
-  const occPart = occurrence > 0 ? `@${occurrence}` : "";
+function blockRenderKey(
+  block: BlockNode,
+  fragment?: BlockPageFragment,
+  occurrence = 0,
+): string {
+  const fragPart = fragment ? `#${fragment.index}` : '';
+  const occPart = occurrence > 0 ? `@${occurrence}` : '';
   return `${block.id}${fragPart}${occPart}`;
 }
 
@@ -64,7 +75,7 @@ function withStudio<T extends Record<string, unknown>>(
   onInsertBlock?: (
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) => void,
 ): T {
@@ -81,7 +92,8 @@ function withStudio<T extends Record<string, unknown>>(
       onPropsChange(block.id, { ...block.props, [key]: value });
   }
   if (onInsertBlock) {
-    studio.onInsertAfter = (newBlock: BlockNode) => onInsertBlock(block.id, newBlock, "after");
+    studio.onInsertAfter = (newBlock: BlockNode) =>
+      onInsertBlock(block.id, newBlock, 'after');
   }
   return { ...base, ...studio } as T;
 }
@@ -98,7 +110,7 @@ function blockProps(
   onInsertBlock?: (
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) => void,
   fragment?: BlockPageFragment,
@@ -107,12 +119,12 @@ function blockProps(
   const props: Record<string, unknown> = { ...(block.props ?? {}), content };
 
   if (studioMode) {
-    if (block.type === "split" && onPropsChange) {
+    if (block.type === 'split' && onPropsChange) {
       props.studioMode = true;
       props.onResize = (mainFlex: number, railFlex: number) =>
         onPropsChange(block.id, { ...block.props, mainFlex, railFlex });
     }
-    if (block.type === "grid") {
+    if (block.type === 'grid') {
       props.studioMode = true;
       props.selected = selectedId === block.id;
       if (onPropsChange) {
@@ -121,11 +133,16 @@ function blockProps(
       }
       if (onInsertBlock) {
         props.onInsertAtCell = (cellIndex: number) => {
-          onInsertBlock(block.id, { id: "", type: "paragraph", content: "" }, "inside", cellIndex);
+          onInsertBlock(
+            block.id,
+            { id: '', type: 'paragraph', content: '' },
+            'inside',
+            cellIndex,
+          );
         };
       }
     }
-    if (block.type === "card" && block.props?.paddingScale) {
+    if (block.type === 'card' && block.props?.paddingScale) {
       props.paddingScale = block.props.paddingScale;
     }
     if (block.props?.padding) {
@@ -133,18 +150,19 @@ function blockProps(
     }
   }
 
-  if (block.type === "coverBody") {
+  if (block.type === 'coverBody') {
     return {};
   }
 
-  if (block.type === "break") {
+  if (block.type === 'break') {
     return {
-      variant: (block.props?.variant as "page" | "section" | "continue") ?? "page",
+      variant:
+        (block.props?.variant as 'page' | 'section' | 'continue') ?? 'page',
       studioMode,
     };
   }
 
-  if (block.type === "cover") {
+  if (block.type === 'cover') {
     return {
       id: (block.props?.id as string) ?? block.id,
       pageBreak: block.props?.pageBreak as boolean,
@@ -153,11 +171,20 @@ function blockProps(
     };
   }
 
-  if (block.type === "brand") {
-    return withStudio({ ...block.props }, block, content, studioMode, onContentChange, onSelectText, onPropsChange, onInsertBlock);
+  if (block.type === 'brand') {
+    return withStudio(
+      { ...block.props },
+      block,
+      content,
+      studioMode,
+      onContentChange,
+      onSelectText,
+      onPropsChange,
+      onInsertBlock,
+    );
   }
 
-  if (block.type === "coverSubt") {
+  if (block.type === 'coverSubt') {
     return withStudio(
       {
         subtitleUpColor: props.subtitleUpColor as string | undefined,
@@ -174,10 +201,10 @@ function blockProps(
     );
   }
 
-  if (block.type === "coverToc") {
+  if (block.type === 'coverToc') {
     return withStudio(
       {
-        title: (block.props?.title as string) ?? "Au sommaire",
+        title: (block.props?.title as string) ?? 'Au sommaire',
       },
       block,
       content,
@@ -189,7 +216,7 @@ function blockProps(
     );
   }
 
-  if (block.type === "section") {
+  if (block.type === 'section') {
     return {
       id: (block.props?.id as string) ?? block.id,
       variant: block.props?.variant as string | undefined,
@@ -199,11 +226,11 @@ function blockProps(
     };
   }
 
-  if (block.type === "page") {
+  if (block.type === 'page') {
     return { studioMode };
   }
 
-  if (block.type === "seclabel") {
+  if (block.type === 'seclabel') {
     return withStudio(
       { text: (block.props?.text as string) ?? content.trim() },
       block,
@@ -216,12 +243,15 @@ function blockProps(
     );
   }
 
-  if (block.type === "opener") {
+  if (block.type === 'opener') {
     return withStudio(
       {
         title:
           (block.props?.title as string) ??
-          content.split("\n").find((l) => l.startsWith("title: "))?.replace("title: ", "") ??
+          content
+            .split('\n')
+            .find((l) => l.startsWith('title: '))
+            ?.replace('title: ', '') ??
           content.trim(),
         number: block.props?.number as string,
       },
@@ -235,11 +265,13 @@ function blockProps(
     );
   }
 
-  if (block.type === "levels") {
-    const firstLevel = block.children?.find((child) => child.type === "level");
+  if (block.type === 'levels') {
+    const firstLevel = block.children?.find((child) => child.type === 'level');
     return {
       headers: block.props?.headers as string[] | undefined,
-      highlightLastHeader: block.props?.highlightLastHeader as boolean | undefined,
+      highlightLastHeader: block.props?.highlightLastHeader as
+        | boolean
+        | undefined,
       tabWidth:
         (block.props?.tabWidth as number | undefined) ??
         (firstLevel?.props?.tabWidth as number | undefined),
@@ -250,12 +282,13 @@ function blockProps(
       selected: studioMode && selectedId === block.id,
       onResize:
         studioMode && onPropsChange
-          ? (colFlex: number[]) => onPropsChange(block.id, { ...block.props, colFlex })
+          ? (colFlex: number[]) =>
+              onPropsChange(block.id, { ...block.props, colFlex })
           : undefined,
     };
   }
 
-  if (block.type === "level") {
+  if (block.type === 'level') {
     return withStudio(
       {
         level: block.props?.level ?? 1,
@@ -272,11 +305,20 @@ function blockProps(
     );
   }
 
-  if (block.type === "lvlcol") {
-    return withStudio({}, block, content, studioMode, onContentChange, onSelectText, onPropsChange, onInsertBlock);
+  if (block.type === 'lvlcol') {
+    return withStudio(
+      {},
+      block,
+      content,
+      studioMode,
+      onContentChange,
+      onSelectText,
+      onPropsChange,
+      onInsertBlock,
+    );
   }
 
-  if (block.type === "grid") {
+  if (block.type === 'grid') {
     return {
       cols: (block.props?.cols as 2 | 3 | 4) ?? 2,
       rows: (block.props?.rows as 1 | 2 | 3 | 4) ?? 1,
@@ -290,15 +332,17 @@ function blockProps(
       className: block.props?.className as string | undefined,
       studioMode: studioMode && onPropsChange ? true : undefined,
       selected: studioMode && selectedId === block.id,
-      onResize: studioMode && onPropsChange
-        ? (colWidths: number[]) => onPropsChange(block.id, { ...block.props, colWidths })
-        : undefined,
+      onResize:
+        studioMode && onPropsChange
+          ? (colWidths: number[]) =>
+              onPropsChange(block.id, { ...block.props, colWidths })
+          : undefined,
     };
   }
 
-  if (block.type === "box") {
+  if (block.type === 'box') {
     return {
-      direction: block.props?.direction as "row" | "column" | undefined,
+      direction: block.props?.direction as 'row' | 'column' | undefined,
       align: block.props?.align as string | undefined,
       justify: block.props?.justify as string | undefined,
       gap: block.props?.gap as number | undefined,
@@ -309,7 +353,7 @@ function blockProps(
     };
   }
 
-  if (block.type === "subheading") {
+  if (block.type === 'subheading') {
     return withStudio(
       {
         ...block.props,
@@ -327,14 +371,18 @@ function blockProps(
     );
   }
 
-  if (block.type === "figure") {
-    const lines = content.split("\n");
+  if (block.type === 'figure') {
+    const lines = content.split('\n');
     return withStudio(
       {
-        src: (block.props?.src as string) ?? lines.find((l) => l.startsWith("src: "))?.replace("src: ", ""),
+        src:
+          (block.props?.src as string) ??
+          lines.find((l) => l.startsWith('src: '))?.replace('src: ', ''),
         caption:
           (block.props?.caption as string) ??
-          lines.find((l) => l.startsWith("caption: "))?.replace("caption: ", ""),
+          lines
+            .find((l) => l.startsWith('caption: '))
+            ?.replace('caption: ', ''),
         wide: block.props?.wide,
         docSlug: studioMode ? docSlug : undefined,
       },
@@ -348,7 +396,7 @@ function blockProps(
     );
   }
 
-  if (block.type === "table") {
+  if (block.type === 'table') {
     return withStudio(
       {
         title: block.props?.title as string,
@@ -364,10 +412,11 @@ function blockProps(
     );
   }
 
-  if (block.type === "rail" && block.props?.variant === "img") {
-    const src = content.match(/src:\s*(.+)/)?.[1]?.trim() ?? (block.props?.src as string);
+  if (block.type === 'rail' && block.props?.variant === 'img') {
+    const src =
+      content.match(/src:\s*(.+)/)?.[1]?.trim() ?? (block.props?.src as string);
     return withStudio(
-      { variant: "img", src, docSlug: studioMode ? docSlug : undefined },
+      { variant: 'img', src, docSlug: studioMode ? docSlug : undefined },
       block,
       content,
       studioMode,
@@ -378,7 +427,16 @@ function blockProps(
     );
   }
 
-  return withStudio(props, block, content, studioMode, onContentChange, onSelectText, onPropsChange, onInsertBlock);
+  return withStudio(
+    props,
+    block,
+    content,
+    studioMode,
+    onContentChange,
+    onSelectText,
+    onPropsChange,
+    onInsertBlock,
+  );
 }
 
 function renderBlock(
@@ -399,11 +457,11 @@ function renderBlock(
   onPropsChange?: (id: string, props: Record<string, unknown>) => void,
   onDeleteBlock?: (id: string) => void,
   onDuplicateBlock?: (id: string) => void,
-  onMoveBlock?: (id: string, direction: "up" | "down") => void,
+  onMoveBlock?: (id: string, direction: 'up' | 'down') => void,
   onInsertBlock?: (
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) => void,
   dragBlockId?: string | null,
@@ -514,31 +572,38 @@ function renderBlock(
           : undefined
       }
       onDelete={onDeleteBlock ? () => onDeleteBlock(block.id) : undefined}
-      onDuplicate={onDuplicateBlock ? () => onDuplicateBlock(block.id) : undefined}
+      onDuplicate={
+        onDuplicateBlock ? () => onDuplicateBlock(block.id) : undefined
+      }
       onMoveUp={
         onMoveBlock &&
         (packedPages
-          ? canMoveBlockOnPages(moveContextBlocks, packedPages, block.id, "up")
-          : canMoveBlock(moveContextBlocks, block.id, "up"))
-          ? () => onMoveBlock(block.id, "up")
+          ? canMoveBlockOnPages(moveContextBlocks, packedPages, block.id, 'up')
+          : canMoveBlock(moveContextBlocks, block.id, 'up'))
+          ? () => onMoveBlock(block.id, 'up')
           : undefined
       }
       onMoveDown={
         onMoveBlock &&
         (packedPages
-          ? canMoveBlockOnPages(moveContextBlocks, packedPages, block.id, "down")
-          : canMoveBlock(moveContextBlocks, block.id, "down"))
-          ? () => onMoveBlock(block.id, "down")
+          ? canMoveBlockOnPages(
+              moveContextBlocks,
+              packedPages,
+              block.id,
+              'down',
+            )
+          : canMoveBlock(moveContextBlocks, block.id, 'down'))
+          ? () => onMoveBlock(block.id, 'down')
           : undefined
       }
       onInsertAfter={
         onInsertBlock
-          ? (newBlock) => onInsertBlock(block.id, newBlock, "after")
+          ? (newBlock) => onInsertBlock(block.id, newBlock, 'after')
           : undefined
       }
       onInsertBefore={
         onInsertBlock
-          ? (newBlock) => onInsertBlock(block.id, newBlock, "before")
+          ? (newBlock) => onInsertBlock(block.id, newBlock, 'before')
           : undefined
       }
       dragBlockId={dragBlockId}

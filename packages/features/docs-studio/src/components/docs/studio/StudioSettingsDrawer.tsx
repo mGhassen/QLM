@@ -1,8 +1,15 @@
-"use client";
+'use client';
 
-import { X } from "lucide-react";
-import type { ChromeZoneId, DocChrome, DocLayoutMode, DocPageFormat, DocPageSetup, DocTheme } from "#/lib/types";
-import PageSetupPanel from "./PageSetupPanel";
+import { X } from 'lucide-react';
+import type {
+  ChromeZoneId,
+  DocChrome,
+  DocLayoutMode,
+  DocPageFormat,
+  DocPageSetup,
+  DocTheme,
+} from '#/lib/types';
+import PageSetupPanel from './PageSetupPanel';
 
 interface StudioSettingsDrawerProps {
   open: boolean;
@@ -49,7 +56,12 @@ export default function StudioSettingsDrawer({
       <aside data-studio-chrome className="studio-settings-drawer">
         <div className="studio-settings-drawer-header">
           <h2 className="text-sm font-medium">Document settings</h2>
-          <button type="button" className="studio-settings-close" onClick={onClose} aria-label="Close">
+          <button
+            type="button"
+            className="studio-settings-close"
+            onClick={onClose}
+            aria-label="Close"
+          >
             <X size={16} />
           </button>
         </div>

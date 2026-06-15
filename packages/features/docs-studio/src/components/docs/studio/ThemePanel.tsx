@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Palette, ChevronDown } from "lucide-react";
-import type { DocTheme } from "#/lib/types";
-import ThemeSettings from "./ThemeSettings";
+import { useState } from 'react';
+import { Palette, ChevronDown } from 'lucide-react';
+import type { DocTheme } from '#/lib/types';
+import ThemeSettings from './ThemeSettings';
 
-export { THEME_PRESETS } from "./ThemeSettings";
+export { THEME_PRESETS } from './ThemeSettings';
 
 interface ThemePanelProps {
   theme: DocTheme;
@@ -24,7 +24,10 @@ export default function ThemePanel({ theme, onChange }: ThemePanelProps) {
       >
         <Palette size={14} />
         Theme
-        <ChevronDown size={12} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown
+          size={12}
+          className={`transition-transform ${open ? 'rotate-180' : ''}`}
+        />
       </button>
 
       {open && (
