@@ -73,8 +73,8 @@ pnpm dev
 
 ## Notes
 
-- 002: ported `convertMessages` verbatim from qwery-enterprise. Added `@types/turndown` (npm-published) to `@guepard/agent-factory-sdk` to fix the implicit-any error that surfaces in any downstream package walking into agent-factory-sdk's `webfetch.ts`. The local `turndown.d.ts` shim inside agent-factory-sdk's own src is invisible to consumers; `@types/turndown` is the proper fix.
-- 004: panel and tab bodies both delegate everything chat-related to `<QweryAgentUI>` (heavyweight component already exported from `@guepard/ui/agent-ui`). Storybook stories temporarily render only `<PanelHeader />` since the live bodies require both `<ShellAppProvider>` and `<QueryClientProvider>` — full mock harness is story 010's domain.
+- 002: ported `convertMessages` verbatim from qwery-enterprise. Added `@types/turndown` (npm-published) to `@qlm/agent-factory-sdk` to fix the implicit-any error that surfaces in any downstream package walking into agent-factory-sdk's `webfetch.ts`. The local `turndown.d.ts` shim inside agent-factory-sdk's own src is invisible to consumers; `@types/turndown` is the proper fix.
+- 004: panel and tab bodies both delegate everything chat-related to `<QweryAgentUI>` (heavyweight component already exported from `@qlm/ui/agent-ui`). Storybook stories temporarily render only `<PanelHeader />` since the live bodies require both `<ShellAppProvider>` and `<QueryClientProvider>` — full mock harness is story 010's domain.
 - 004: active-datasource auto-injection (spec §3.1) deferred — there's no shell-context concept of an "active datasource" today; making the panel route-aware so it can pick one up is its own concern, logged as deviation in spec changelog. Functional pre-req for story 008's billing pre-check is unaffected.
 
 ## Spec-accuracy check

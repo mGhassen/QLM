@@ -20,15 +20,15 @@ Add `GetOrCreateDefaultConversationService` so the shell-runtime resource can bo
 
 ## Acceptance
 
-- [x] `GetOrCreateDefaultConversationService` is reachable via `import { GetOrCreateDefaultConversationService } from '@guepard/domain/services'`.
+- [x] `GetOrCreateDefaultConversationService` is reachable via `import { GetOrCreateDefaultConversationService } from '@qlm/domain/services'`.
 - [x] `execute({ projectId, userId })` returns the user's most-recently-updated conversation in the project when one exists, else creates one with `title: 'Conversation'`, `seedMessage: ''`, `taskId: <fresh UUID>`, `datasources: []`, `createdBy: userId`. Note: `taskId` had to be a UUID (z.uuid() schema constraint), not `''` — used `crypto.randomUUID()` and added a follow-up note in the source comment to consider making `taskId` optional in the schema.
 - [x] No new repository port methods added — composes existing `findByProjectId` and `create`.
-- [x] `pnpm --filter @guepard/domain typecheck` passes.
+- [x] `pnpm --filter @qlm/domain typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain typecheck
 ```
 
 (Unit tests are added in task 003, not here — this task is the type/shape gate.)

@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { DirtyStateProvider } from '@guepard/settings-shell';
-import type { UserToken } from '@guepard/domain/entities';
+import { DirtyStateProvider } from '@qlm/settings-shell';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { TokensSettingsPane } from '../src/components/tokens-settings-pane';
 import { UserTokensApiProvider, type UserTokensApi } from '../src/hooks';

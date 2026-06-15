@@ -15,7 +15,7 @@ import type {
   Node,
   NodeLifecycleState,
   NodeProvider,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   CommandDialog,
   CommandEmpty,
@@ -24,7 +24,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@guepard/ui/command';
+} from '@qlm/ui/command';
 
 export type CommandPaletteProps = Readonly<{
   open: boolean;

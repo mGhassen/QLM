@@ -7,9 +7,9 @@ import { useNavigate } from '@tanstack/react-router';
 import { Building2, Loader2, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { Organization } from '@guepard/domain/entities';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { Button } from '@guepard/ui/button';
+import type { Organization } from '@qlm/domain/entities';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -17,7 +17,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   Form,
   FormControl,
@@ -25,10 +25,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
-import { Trans } from '@guepard/ui/trans';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
+import { Trans } from '@qlm/ui/trans';
+import { cn } from '@qlm/ui/utils';
 
 import { useWorkspace } from '@/lib/context/workspace-context';
 import pathsConfig from '@/config/paths.config';

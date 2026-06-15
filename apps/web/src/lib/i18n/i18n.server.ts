@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { parseAcceptLanguageHeader } from '@guepard/i18n';
-import { initializeServerI18n } from '@guepard/i18n/server';
+import { parseAcceptLanguageHeader } from '@qlm/i18n';
+import { initializeServerI18n } from '@qlm/i18n/server';
 
 import { languageCookie } from '@/lib/i18n/cookies';
 import { getI18nSettings, languages } from '@/lib/i18n/i18n.settings';

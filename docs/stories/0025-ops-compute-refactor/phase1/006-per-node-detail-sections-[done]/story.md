@@ -45,7 +45,7 @@ Confirm per-node detail page renders Services / Storage / CPU / Memory as stacke
 - [ ] `node-detail-storage-section.tsx` shows real disk numbers when `node.diskGb` is defined.
 - [ ] When `node.diskGb` is undefined (legacy fixture), section shows a graceful fallback (`—`) — does not throw.
 - [ ] Each renamed section ships a Storybook story (`*.stories.tsx`).
-- [ ] `pnpm typecheck && pnpm test && pnpm --filter @guepard/infrastructure storybook` green.
+- [ ] `pnpm typecheck && pnpm test && pnpm --filter @qlm/infrastructure storybook` green.
 
 ## Tasks
 
@@ -65,7 +65,7 @@ pnpm dev
 # Open /node/<nodeId> for any node in the fixtures.
 # Observe CPU → Memory → Services → Storage stacked sections.
 # Storage section shows disk capacity + utilization, not the empty state.
-pnpm --filter @guepard/infrastructure storybook
+pnpm --filter @qlm/infrastructure storybook
 ```
 
 ## Questions surfaced

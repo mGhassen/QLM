@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import { Eye, EyeOff, Lock } from 'lucide-react';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@guepard/ui/input-group';
+} from '@qlm/ui/input-group';
 
 export function PasswordInput(props: React.ComponentProps<'input'>) {
   const [showPassword, setShowPassword] = useState(false);

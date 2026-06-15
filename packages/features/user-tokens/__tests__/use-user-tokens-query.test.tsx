@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { useUserTokensQuery } from '../src/hooks';
 import { createTestProviders } from './test-providers';

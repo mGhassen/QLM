@@ -1,4 +1,4 @@
-import { createPoliciesEvaluator } from '@guepard/policies';
+import { createPoliciesEvaluator } from '@qlm/policies';
 
 import type { FeaturePolicyInvitationContext } from './feature-policy-invitation-context';
 import { invitationPolicyRegistry } from './policies';

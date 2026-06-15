@@ -2,9 +2,9 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 
-import { BillingUI, type Invoice } from '@guepard/billing/components';
-import type { Order } from '@guepard/domain/entities';
-import { useShell } from '@guepard/shell-runtime';
+import { BillingUI, type Invoice } from '@qlm/billing/components';
+import type { Order } from '@qlm/domain/entities';
+import { useShell } from '@qlm/shell-runtime';
 
 function orderToInvoice(order: Order): Invoice {
   return {

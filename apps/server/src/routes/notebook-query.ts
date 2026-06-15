@@ -2,12 +2,12 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
 import { handleDomainException } from '../lib/http-utils';
 
 const notebookQueryBodySchema = z.object({

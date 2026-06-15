@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { Project } from '@guepard/domain/entities';
-import type { IProjectRepository } from '@guepard/domain/repositories';
+import type { Project } from '@qlm/domain/entities';
+import type { IProjectRepository } from '@qlm/domain/repositories';
 import {
   CreateProjectService,
   UpdateProjectService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateProjectInput,
   ProjectOutput,
   UpdateProjectInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import { getProjectsByOrganizationIdKey } from '@/lib/queries/use-get-projects';
 

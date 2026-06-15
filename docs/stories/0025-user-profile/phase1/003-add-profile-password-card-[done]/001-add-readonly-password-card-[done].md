@@ -29,7 +29,7 @@ Land the UI-visible Password card below `NameCard`. Form is a static, **disabled
 - [ ] All strings route through `t('userProfile.password.*')` — no hardcoded English.
 - [ ] New i18n keys: `userProfile.password.{title,description,current,next,confirm,submit,noIdentityLinked}`.
 - [ ] Storybook stories for `Linked` and `OauthOnly` variants.
-- [ ] `pnpm typecheck` + `pnpm --filter @guepard/user-profile test` pass.
+- [ ] `pnpm typecheck` + `pnpm --filter @qlm/user-profile test` pass.
 
 ## Notes
 

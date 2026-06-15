@@ -91,9 +91,9 @@ const AppConfigSchema = z
   );
 
 const appConfig = AppConfigSchema.parse({
-  name: 'Rasm',
-  title: 'Rasm Data Platform',
-  description: import.meta.env.VITE_SITE_DESCRIPTION || 'Rasm Data Platform',
+  name: 'QLM',
+  title: 'QLM Data Platform',
+  description: import.meta.env.VITE_SITE_DESCRIPTION || 'QLM Data Platform',
   url: import.meta.env.VITE_SITE_URL || 'http://localhost:3000',
   locale: 'en',
   theme: 'dark',

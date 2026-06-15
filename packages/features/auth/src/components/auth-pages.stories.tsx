@@ -9,8 +9,8 @@ import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
-import { Separator } from '@guepard/ui/separator';
-import { Trans } from '@guepard/ui/trans';
+import { Separator } from '@qlm/ui/separator';
+import { Trans } from '@qlm/ui/trans';
 
 import { AuthLayoutShell } from './auth-layout';
 import { MagicLinkAuthContainer } from './magic-link-auth-container';

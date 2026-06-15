@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
 
 import { storyDatabase } from '../story-fixtures';
 import { DatabaseCard } from './card';
@@ -89,7 +89,7 @@ export const MySQL: Story = {
     database: storyDatabase({
       provider: 'mysql',
       version: '8.0',
-      fqdn: 'app-mysql.db.guepard.internal',
+      fqdn: 'app-mysql.db.qlm.internal',
       port: 3306,
     }),
   },
@@ -102,7 +102,7 @@ export const Redis: Story = {
       name: 'cache-redis',
       provider: 'redis',
       version: '7',
-      fqdn: 'cache-redis.db.guepard.internal',
+      fqdn: 'cache-redis.db.qlm.internal',
       port: 6379,
       compute: undefined,
     }),
@@ -116,7 +116,7 @@ export const MongoDB: Story = {
       name: 'documents-mongo',
       provider: 'mongodb',
       version: '7.0',
-      fqdn: 'documents-mongo.db.guepard.internal',
+      fqdn: 'documents-mongo.db.qlm.internal',
       port: 27017,
       compute: undefined,
     }),

@@ -5,9 +5,9 @@ import { JwtPayload, SupabaseClient } from '@supabase/supabase-js';
 import { addDays, formatISO } from 'date-fns';
 import { z } from 'zod';
 
-import { getLogger } from '@guepard/shared/logger';
-import { Database } from '@guepard/supabase/database';
-import { requireUser } from '@guepard/supabase/require-user';
+import { getLogger } from '@qlm/shared/logger';
+import { Database } from '@qlm/supabase/database';
+import { requireUser } from '@qlm/supabase/require-user';
 
 import {
   DeleteInvitationSchema,

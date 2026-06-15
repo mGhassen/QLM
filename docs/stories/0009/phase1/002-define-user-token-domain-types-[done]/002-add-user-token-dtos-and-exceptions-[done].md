@@ -45,13 +45,13 @@ Ship the input/output DTOs that the domain services in Story 004 will consume, p
 - [ ] `RevokeUserTokenOutputSchema` is structurally identical to `UserTokenSchema`.
 - [ ] Each of the three exception factories returns a `DomainException` with a distinct, non-overlapping `code` value (per the existing `CodeDescription` registry — find the next free slot in the codes enum; coordinate with the existing exception-code inventory).
 - [ ] All three DTO types + all three exceptions are re-exported from their respective `index.ts` files.
-- [ ] `pnpm --filter @guepard/domain typecheck` passes.
+- [ ] `pnpm --filter @qlm/domain typecheck` passes.
 - [ ] No imports of `jsonwebtoken`, `@supabase/*`, or `react` inside any new file.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain typecheck
 # Runtime tests land in task 004 of this story.
 ```
 

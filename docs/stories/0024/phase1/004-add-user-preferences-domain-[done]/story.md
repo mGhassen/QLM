@@ -35,7 +35,7 @@ Define the domain entity, Zod schema, repository port, and two services (`GetLas
 
 ## Acceptance criteria
 
-- [x] `pnpm --filter @guepard/domain test` passes with unit tests covering: valid parse, invalid parse (non-uuid values), missing `last_project_by_org` → fallback, project-not-found → fallback.
+- [x] `pnpm --filter @qlm/domain test` passes with unit tests covering: valid parse, invalid parse (non-uuid values), missing `last_project_by_org` → fallback, project-not-found → fallback.
 - [x] Port is an **abstract class** consistent with existing ports in `packages/domain/src/repositories/*.port.ts`.
 - [x] Services take the repository via constructor injection; no concrete adapter imported.
 - [x] `pnpm typecheck` green across the monorepo.
@@ -47,7 +47,7 @@ Define the domain entity, Zod schema, repository port, and two services (`GetLas
 ## Demo / verification
 
 ```
-pnpm --filter @guepard/domain test -- __tests__/services/user-preferences
+pnpm --filter @qlm/domain test -- __tests__/services/user-preferences
 pnpm typecheck
 ```
 

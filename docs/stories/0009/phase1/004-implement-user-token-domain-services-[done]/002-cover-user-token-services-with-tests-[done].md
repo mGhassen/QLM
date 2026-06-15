@@ -34,20 +34,20 @@ Vitest suites that exercise the three services from task 001 against mock `IUser
 
 ## Acceptance
 
-- [ ] All three test files run clean via `pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token`.
+- [ ] All three test files run clean via `pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token`.
 - [ ] ≥ 90 % line coverage on `packages/domain/src/services/user-token/*.usecase.ts`.
 - [ ] The create test asserts the EXACT JWT payload and options shape via a mock-call assertion (`expect(jwtSignerMock.sign).toHaveBeenCalledWith(expectedPayload, expectedOptions)` or equivalent).
 - [ ] The revoke null-path test verifies both the thrown exception's `code` (`Code.USER_TOKEN_NOT_FOUND_ERROR`) and `data.tokenId` match.
 - [ ] Fake timers used for `.refine` boundary coverage; `vi.useRealTimers()` restored in `afterEach`.
 - [ ] No hitting any real database / network / third-party library in any test.
-- [ ] `pnpm --filter @guepard/domain test` passes end-to-end.
+- [ ] `pnpm --filter @qlm/domain test` passes end-to-end.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
-pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token
-pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'
+pnpm --filter @qlm/domain typecheck
+pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token
+pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'
 ```
 
 ## Storybook validation

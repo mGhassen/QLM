@@ -6,8 +6,8 @@ import { CaretSortIcon, PersonIcon } from '@radix-ui/react-icons';
 import { CheckCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@guepard/ui/avatar';
-import { Button } from '@guepard/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@qlm/ui/avatar';
+import { Button } from '@qlm/ui/button';
 import {
   Command,
   CommandGroup,
@@ -15,11 +15,11 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@guepard/ui/command';
-import { If } from '@guepard/ui/if';
-import { Popover, PopoverContent, PopoverTrigger } from '@guepard/ui/popover';
-import { Trans } from '@guepard/ui/trans';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/command';
+import { If } from '@qlm/ui/if';
+import { Popover, PopoverContent, PopoverTrigger } from '@qlm/ui/popover';
+import { Trans } from '@qlm/ui/trans';
+import { cn } from '@qlm/ui/utils';
 
 import { usePersonalAccountData } from '../hooks/use-personal-account-data';
 

@@ -1,8 +1,8 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { IPoolRepository } from '@guepard/domain/repositories';
-import { ListPoolsByProjectService } from '@guepard/domain/services';
-import type { ListPoolsOutput } from '@guepard/domain/usecases';
+import type { IPoolRepository } from '@qlm/domain/repositories';
+import { ListPoolsByProjectService } from '@qlm/domain/services';
+import type { ListPoolsOutput } from '@qlm/domain/usecases';
 
 export function createPoolsResource(
   repository: IPoolRepository,

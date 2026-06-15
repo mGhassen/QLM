@@ -5,7 +5,7 @@ import React from 'react';
 
 const transportFactoryMock = vi.fn();
 
-vi.mock('@guepard/agent-factory-sdk', () => ({
+vi.mock('@qlm/agent-factory-sdk', () => ({
   SUPPORTED_MODELS: [{ name: 'Test', value: 'openai/gpt-4' }],
   transportFactory: (...args: unknown[]) => {
     transportFactoryMock(...args);
@@ -13,13 +13,13 @@ vi.mock('@guepard/agent-factory-sdk', () => ({
   },
 }));
 
-vi.mock('@guepard/supabase/auth-headers', () => ({
+vi.mock('@qlm/supabase/auth-headers', () => ({
   getAuthHeaders: vi
     .fn()
     .mockResolvedValue({ Authorization: 'Bearer test-token' }),
 }));
 
-vi.mock('@guepard/ui/agent-ui', () => {
+vi.mock('@qlm/ui/agent-ui', () => {
   function MockAgentUI({
     transport,
   }: {
@@ -62,7 +62,7 @@ const shellStub = {
   },
 };
 
-vi.mock('@guepard/shell-runtime', () => ({
+vi.mock('@qlm/shell-runtime', () => ({
   useShell: () => shellStub,
 }));
 

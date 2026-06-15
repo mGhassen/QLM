@@ -4,7 +4,7 @@ import {
   getInvoiceIdFromPaymentIntent,
   getStripeInvoicePdfUrl,
   getStripeInvoiceUrl,
-} from '@guepard/billing/services';
+} from '@qlm/billing/services';
 
 /**
  * Extract the Stripe payment intent id from an order id.

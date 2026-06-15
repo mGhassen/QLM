@@ -47,7 +47,7 @@ Introduce the new `IMfaRepository` port + Supabase adapter + runtime resource + 
 - [ ] Factories wired: `apps/web/src/lib/repositories-factory.ts` constructs `SupabaseMfaRepository` from the browser client; `apps/server/src/lib/repositories.ts` does the same.
 - [ ] i18n keys added under `userProfile.mfa.*`: `enabled`, `enrollError`, `verifyError`, `unenrollConfirm`, `unenrollRemoved`, `dialog.{nameTitle,nameLabel,nameHint,qrTitle,qrHint,manualSecret,otpTitle,otpDescription,verifying,enable,cancel}`.
 - [ ] At least 6 domain tests covering: enroll happy path, verify happy path, verify wrong-code surfaces, unenroll happy path, empty/invalid friendlyName, malformed factorId.
-- [ ] `pnpm --filter @guepard/domain test` + `pnpm typecheck` monorepo-wide pass.
+- [ ] `pnpm --filter @qlm/domain test` + `pnpm typecheck` monorepo-wide pass.
 
 ## Notes
 

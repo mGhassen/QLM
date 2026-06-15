@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Database, KeyRound, Settings as SettingsIcon } from 'lucide-react';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 
 import { SettingsDialog } from './settings-dialog';
 import {

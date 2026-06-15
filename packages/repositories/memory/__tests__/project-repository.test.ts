@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import type { Project } from '@guepard/domain/entities';
+import type { Project } from '@qlm/domain/entities';
 
 import { ProjectRepository } from '../src/project-repository';
 

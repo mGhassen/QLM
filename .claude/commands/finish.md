@@ -36,7 +36,7 @@ This command dispatches on the path suffix:
 1. **Read the task file** — `layer:`, `files:`, `validation:`, and `done-when` checkboxes. Reject if `validation:` is missing.
 2. **Run the validator** by dispatching on `validation.kind`:
    - `typecheck-only` → `pnpm typecheck`.
-   - `domain-test` → `pnpm --filter @guepard/domain test -- <specs>`.
+   - `domain-test` → `pnpm --filter @qlm/domain test -- <specs>`.
    - `route-test` → `pnpm --filter server test -- <specs>`.
    - `ui-smoke` / `e2e` → invoke the `ui-validator` subagent via the Agent tool (`subagent_type: ui-validator`), passing the task's path, the `files:` allowlist, the `validation:` block, and any substituted params.
    - Any other kind → refuse.

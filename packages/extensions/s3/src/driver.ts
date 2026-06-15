@@ -9,14 +9,14 @@ import type {
   DriverAttachOptions,
   DriverAttachResult,
   DriverDetachOptions,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   DatasourceMetadataZodSchema,
   withTimeout,
   DEFAULT_CONNECTION_TEST_TIMEOUT_MS,
   getQueryEngineConnection,
   type QueryEngineConnection,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

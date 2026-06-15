@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import { ExtensionsRegistry, ExtensionScope } from '@guepard/extensions-sdk';
+import { ExtensionsRegistry, ExtensionScope } from '@qlm/extensions-sdk';
 
 const SCOPE_VALUES = Object.values(ExtensionScope) as [string, ...string[]];
 

@@ -34,7 +34,7 @@ Per spec §7.5 (post-AM-1 component list):
 - `src/components/tokens-settings-pane.tsx` + stories + tests — the top-level pane. Owns a `useReducer` whose state is a discriminated union matching the state machine from spec §3.2.6. Renders one of the four child components based on state. Passes the state-transition callbacks to children.
 - `src/components/token-list-view.tsx` + stories + tests — the "list" state of the pane. Header + toolbar (search + status filter + scopes filter + Generate Token button) + table (composing `<TokenRow>` from Story 009). Handles empty / loading / error states of the list query. **Not** a page component — always rendered inside the pane.
 - `src/components/generate-token-form.tsx` + stories + tests — the "create" state. Two-column layout (form + live preview). Back button + Cancel + Create Token footer. **Content-only — no `<Dialog>` wrapper.** On submit calls `useCreateUserTokenMutation.mutateAsync`. On success the parent swaps pane state to `"reveal"` (via callback). On error renders inline banner.
-- `src/components/reveal-token-view.tsx` + stories + tests — the "reveal" state. Warning banner + raw JWT field (copy button) + curl snippet field (copy button, JWT substituted inline, `VITE_GUEPARD_PUBLIC_API_URL` substituted) + Close button. Closing calls a callback that swaps pane state back to `"list"` and drops `rawJwt` from parent state. **Content-only, no `<Dialog>`.**
+- `src/components/reveal-token-view.tsx` + stories + tests — the "reveal" state. Warning banner + raw JWT field (copy button) + curl snippet field (copy button, JWT substituted inline, `VITE_QLM_PUBLIC_API_URL` substituted) + Close button. Closing calls a callback that swaps pane state back to `"list"` and drops `rawJwt` from parent state. **Content-only, no `<Dialog>`.**
 - `src/components/revoke-confirm-inline.tsx` + stories + tests — the "revoke-confirm" state. Inline-modal block (centered, `role="alertdialog"`, `aria-modal="true"`) with heading + body + Cancel + Revoke buttons. **Content-only — not a `<Dialog>`.** Confirm calls `useRevokeUserTokenMutation.mutateAsync`; success swaps pane state to `"list"`.
 - Update `apps/web/src/components/settings-dialog-mount.tsx` (created in Story 010) to replace the placeholder `<TokensPanePlaceholder />` with the real `<TokensSettingsPane />` as the "Personal tokens" section's content.
 
@@ -53,12 +53,12 @@ Per spec §7.5 (post-AM-1 component list):
 - [x] No `Dialog` import in any of the four state components — `RevokeConfirmInline` uses a plain `<div role="alertdialog" aria-modal="true">` per AM-1.
 - [x] `<RevokeConfirmInline>` ARIA: `role="alertdialog"` + `aria-modal="true"` + `aria-labelledby` + `aria-describedby` — verified by a unit test.
 - [x] `<GenerateTokenForm>` submit disabled until valid input via the Story-002 `CreateUserTokenInputSchema` Zod resolver — verified by 1 unit test (the four invalid-input branches are already exercised in `__tests__/user-token/create-user-token-input.schema.test.ts` from Story 002).
-- [x] `<RevealTokenView>` Copy buttons call `navigator.clipboard.writeText` with the raw JWT and the curl snippet (JWT + `VITE_GUEPARD_PUBLIC_API_URL` substituted) — verified by 2 unit tests.
+- [x] `<RevealTokenView>` Copy buttons call `navigator.clipboard.writeText` with the raw JWT and the curl snippet (JWT + `VITE_QLM_PUBLIC_API_URL` substituted) — verified by 2 unit tests.
 - [x] Closing the dialog while in `reveal` unmounts the pane and the next mount starts in `list` (rawJwt cannot leak forward — the reducer's `close-reveal` action drops it AND the dialog unmount destroys the reducer entirely).
 - [x] Storybook stories: 4 pane states + 4 list-view states + 3 create-form states + 2 reveal states + 3 revoke-confirm states = 16 stories total.
 - [x] `apps/web/src/components/settings-dialog-mount.tsx` swapped the placeholder for `<TokensSettingsPane />` and wires the `UserTokensApiProvider` against the host's `HttpUserTokenRepository`.
 - [x] No hardcoded English in any new file — every label / button / alert resolves via `t('tokens:...')` / `t('settings:...')`.
-- [x] `pnpm --filter @guepard/user-tokens test` passes (63 tests). Coverage above 80 % on the new components.
+- [x] `pnpm --filter @qlm/user-tokens test` passes (63 tests). Coverage above 80 % on the new components.
 - [x] User-validated end-to-end via dev server (sign-in → Settings → create → reveal → close → revoke flow) on 2026-04-16.
 
 ## Tasks
@@ -72,7 +72,7 @@ Per spec §7.5 (post-AM-1 component list):
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/user-tokens storybook
+pnpm --filter @qlm/user-tokens storybook
 # Browse: UserTokens/TokensSettingsPane/ListState — empty, loading, error, with-tokens
 # Browse: UserTokens/TokensSettingsPane/CreateState — pristine, dirty, error, disabled
 # Browse: UserTokens/TokensSettingsPane/RevealState — initial, copied
@@ -83,7 +83,7 @@ pnpm web:dev
 # 2. Click through the create → reveal → close → revoke flow end-to-end against live data.
 # 3. Verify the three-way pane transition works smoothly inside the Settings dialog.
 
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Questions surfaced

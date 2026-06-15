@@ -4,7 +4,7 @@ import { PanelHeader } from './_panel-header';
 
 /**
  * Storybook for `AssistantPanelBody` is currently disabled — the live body
- * requires `useShell()` (from `@guepard/shell-runtime`) and `<QueryClientProvider>`
+ * requires `useShell()` (from `@qlm/shell-runtime`) and `<QueryClientProvider>`
  * to bootstrap the conversation and render `<QweryAgentUI>`. Setting up
  * the mock shell + query provider belongs to story 010
  * (`add-qwery-agent-tests`), which introduces the test harness package-wide.

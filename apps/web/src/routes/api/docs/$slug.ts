@@ -4,7 +4,7 @@ import {
   handleDeleteDoc,
   handleGetDoc,
   handleSaveDoc,
-} from '@guepard/docs-studio/server';
+} from '@qlm/docs-studio/server';
 
 export const Route = createFileRoute('/api/docs/$slug')({
   server: {

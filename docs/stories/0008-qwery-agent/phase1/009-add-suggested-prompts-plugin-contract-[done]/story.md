@@ -40,7 +40,7 @@ Implement the plugin-root sibling export `SuggestedPrompts: string[]` — discov
 - [x] Notebook plugin (`packages/apps/notebook/src/plugin-root.tsx`) exports `SuggestedPrompts: string[]` sibling to its other exports.
 - [⚠] Opening the panel on a notebook route shows notebook-contributed prompts; clicking one pre-fills the input — code path verified (host resolves via `registry.getSuggestedPrompts(activeRouteBase)` → `<AssistantPanelBody initialSuggestions={...}>` → `<QweryAgentUI initialSuggestions={...}>`). Live smoke pending `pnpm dev`.
 - [⚠] Non-notebook routes show the shell-level default list. Same code path with fallback; live smoke pending.
-- [x] `pnpm --filter @guepard/qwery-agent typecheck` + `pnpm --filter @guepard/notebook typecheck` both clean. Full `pnpm typecheck` still blocked on the parallel auth-work session's `userToken` / `jwtSigner` factory issue — unrelated to this story.
+- [x] `pnpm --filter @qlm/qwery-agent typecheck` + `pnpm --filter @qlm/notebook typecheck` both clean. Full `pnpm typecheck` still blocked on the parallel auth-work session's `userToken` / `jwtSigner` factory issue — unrelated to this story.
 
 ## Tasks
 

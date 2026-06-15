@@ -20,7 +20,7 @@ blocked_by:
 
 ## Goal
 
-Stand up the `@guepard/app-notebook` shell plugin (default list view, `FlatRoot` editor view, `resolveProjectContext`) and wire its host adapter so a SQL cell's Run round-trips through the existing `/api/notebook/query` Hono endpoint and renders the result in cell state.
+Stand up the `@qlm/app-notebook` shell plugin (default list view, `FlatRoot` editor view, `resolveProjectContext`) and wire its host adapter so a SQL cell's Run round-trips through the existing `/api/notebook/query` Hono endpoint and renders the result in cell state.
 
 ## Scope
 
@@ -43,7 +43,7 @@ Stand up the `@guepard/app-notebook` shell plugin (default list view, `FlatRoot`
 - [x] The editor view loads the notebook by slug, the project's datasources by id, and renders `<NotebookUI>` with `cellResults`, `cellErrors`, `cellLoadingStates`, and `onRunQuery={handleRunQuery}`.
 - [x] `handleRunQuery` calls `shell.query.run({ query, datasourceId, conversationId: notebook.id })` and stores the response in `cellResults[cellId]`.
 - [x] `apps/web/src/shell/run-query.ts` posts to `/notebook/query` (note: the path matches the Hono mount, not a hyphenated alias).
-- [x] `pnpm --filter @guepard/app-notebook exec tsc --noEmit` is clean.
+- [x] `pnpm --filter @qlm/app-notebook exec tsc --noEmit` is clean.
 
 ## Tasks
 

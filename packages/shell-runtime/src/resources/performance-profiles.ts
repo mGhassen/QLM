@@ -1,7 +1,7 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { IPerformanceProfileRepository } from '@guepard/domain/repositories';
-import type { PerformanceProfile } from '@guepard/domain/entities';
+import type { IPerformanceProfileRepository } from '@qlm/domain/repositories';
+import type { PerformanceProfile } from '@qlm/domain/entities';
 
 export function createPerformanceProfilesResource(
   repository: IPerformanceProfileRepository,

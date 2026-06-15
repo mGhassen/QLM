@@ -1,14 +1,14 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { PersonalAccount } from '@guepard/domain/entities';
-import type { IAccountRepository } from '@guepard/domain/repositories';
+import type { PersonalAccount } from '@qlm/domain/entities';
+import type { IAccountRepository } from '@qlm/domain/repositories';
 import {
   ClearAvatarService,
   GetPersonalAccountService,
   UpdatePasswordService,
   UpdatePersonalAccountService,
   UploadAvatarService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 
 /**
  * Shell-runtime resource for the signed-in user's personal `accounts` row.

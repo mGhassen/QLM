@@ -25,7 +25,7 @@ Make the Tauri webview render `apps/web` routes (starting with the first-run pic
 - `apps/desktop/src/routes/__root.tsx` (or alias to `apps/web/src/routes/__root.tsx`): handle the SSR-only primitives (`<Scripts/>`, `<HeadContent/>`, etc.) so the SPA hydrate works. Either fork or runtime-branch.
 - Drop the placeholder `apps/desktop/src/routes/index.tsx` ("sidecar pending") — it's no longer the entry point.
 - `apps/desktop/tsconfig.json`: include the `apps/web/src/routes/**/*.tsx` files in compilation if necessary.
-- `apps/desktop/src/__guepard_api_url.ts` (or inline): expose the `window.__GUEPARD_API_URL` injection so apps/web's HTTP repository factory points at the local sidecar.
+- `apps/desktop/src/__qlm_api_url.ts` (or inline): expose the `window.__QLM_API_URL` injection so apps/web's HTTP repository factory points at the local sidecar.
 - The existing `apps/web` routes that depend on `useRuntime()` / `getAppConfig()` (the picker, the root guard) light up automatically.
 
 **Out of scope** (forces honest slicing)
@@ -36,8 +36,8 @@ Make the Tauri webview render `apps/web` routes (starting with the first-run pic
 ## Acceptance criteria
 
 - [x] `pnpm --filter desktop build` produces `apps/desktop/dist/` with the picker chunk (`first-run-*.js`, 52 KB) + the desktop locale chunks.
-- [x] `pnpm --filter desktop tauri:build` succeeds end-to-end on the host triple — produces `Guepard Desktop.app` (87 MB) + `Guepard Desktop_0.1.0_aarch64.dmg` (30 MB).
-- [x] **Build + UI check (mandatory):** deferred per user instruction; the build artifacts exist, the `apps/desktop/src/routes/desktop/first-run.tsx` route is wired into `apps/desktop/src/routeTree.gen.ts`, and the index route's `beforeLoad` redirects to `/desktop/first-run` when `GUEPARD_SERVER_URL` is missing.
+- [x] `pnpm --filter desktop tauri:build` succeeds end-to-end on the host triple — produces `QLM Desktop.app` (87 MB) + `QLM Desktop_0.1.0_aarch64.dmg` (30 MB).
+- [x] **Build + UI check (mandatory):** deferred per user instruction; the build artifacts exist, the `apps/desktop/src/routes/desktop/first-run.tsx` route is wired into `apps/desktop/src/routeTree.gen.ts`, and the index route's `beforeLoad` redirects to `/desktop/first-run` when `QLM_SERVER_URL` is missing.
 - [x] No console errors expected during launch (curated-deps approach avoids the Node-only browser-externalized warnings entirely).
 - [x] `pnpm typecheck` 51/51 stays green.
 - [x] Existing `apps/web` web build is unchanged — only the `apps/desktop` SPA was touched. The picker component is shared (apps/web component imported via `@/` alias) but apps/web's own route at `/desktop/first-run` continues to exist and continues to work in the cloud build.
@@ -53,17 +53,17 @@ Make the Tauri webview render `apps/web` routes (starting with the first-run pic
 
 ```bash
 # Clean any existing desktop config so the picker is forced to appear
-rm -f "$HOME/Library/Application Support/run.guepard.desktop/config.json"
+rm -f "$HOME/Library/Application Support/run.qlm.desktop/config.json"
 
 # Build the executable
 pnpm --filter desktop tauri:build
 
 # Open the .app
-open "apps/desktop/src-tauri/target/release/bundle/macos/Guepard Desktop.app"
+open "apps/desktop/src-tauri/target/release/bundle/macos/QLM Desktop.app"
 
 # Expected: full-screen picker (NOT the "sidecar pending" landing).
 # Tail desktop.log to confirm the sidecar started:
-tail -f "$HOME/Library/Application Support/run.guepard.desktop/desktop.log"
+tail -f "$HOME/Library/Application Support/run.qlm.desktop/desktop.log"
 ```
 
 ## Questions surfaced

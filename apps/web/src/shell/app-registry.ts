@@ -6,13 +6,13 @@ import {
   type ReactElement,
 } from 'react';
 
-import type { PluginManifest } from '@guepard/shell-contracts';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { PluginManifest } from '@qlm/shell-contracts';
+import type { Repositories } from '@qlm/domain/repositories';
 import type {
   SidebarAppGroup,
   SidebarAppItem,
   SidebarPinnedItem,
-} from '@guepard/ui/shell';
+} from '@qlm/ui/shell';
 
 /**
  * Function exported by an app's plugin-root to resolve project context

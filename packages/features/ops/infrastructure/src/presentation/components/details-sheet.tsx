@@ -22,45 +22,45 @@ import {
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { ActionFooter, type Action } from '@guepard/ui/action';
-import { Button } from '@guepard/ui/button';
+import { ActionFooter, type Action } from '@qlm/ui/action';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { FormLabel } from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/form';
+import { FormLabel } from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
-import { Skeleton } from '@guepard/ui/skeleton';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/select';
+import { Skeleton } from '@qlm/ui/skeleton';
+import { cn } from '@qlm/ui/utils';
 import {
   EntitySheet,
   EntitySheetBody,
   EntitySheetFooter,
   EntitySheetHeader,
-} from '@guepard/ui/entity-sheet';
+} from '@qlm/ui/entity-sheet';
 import {
   BadgeItem,
   DataRow,
   EntitySection,
   ResourceCard,
-} from '@guepard/ui/entity-primitives';
+} from '@qlm/ui/entity-primitives';
 import {
   INPUT_CLASS,
   LABEL_CLASS,
   MESSAGE_CLASS,
   SELECT_TRIGGER_CLASS,
   TagInput,
-} from '@guepard/ui/form-primitives';
+} from '@qlm/ui/form-primitives';
 
 import {
   NODE_KINDS,
@@ -70,9 +70,9 @@ import {
   type Node,
   type NodeLifecycleState,
   type NodeProvider,
-} from '@guepard/domain/entities';
-import type { UpdateNodeInput } from '@guepard/domain/usecases';
-import { useShell } from '@guepard/shell-runtime';
+} from '@qlm/domain/entities';
+import type { UpdateNodeInput } from '@qlm/domain/usecases';
+import { useShell } from '@qlm/shell-runtime';
 import { useQuery } from '@tanstack/react-query';
 
 const SUGGESTED_TAGS = ['production', 'staging', 'gpu', 'critical'];

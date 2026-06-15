@@ -16,7 +16,7 @@ blocked_by: ["002-adapter-presentation-switchover"]
 
 Remove `Node.status`, `Node.healthState`, `INodeRepository.changeStatus`, `shell.nodes.changeStatus`, and the server status route. Sweep the matching cascade through every layer that the domain types reach: supabase + HTTP + server-stub adapters, server routes, shell-runtime resource, topology pkg + MSW handlers + fixtures.
 
-This story is the first of three (003 → 004 → 005) that together close out RFC 0026 §6.5. Split rationale: 003 owns domain + cascade; 004 sweeps the `@guepard/infrastructure` presentation pkg; 005 finishes DB schema 49 + pressure-aliases + i18n keys.
+This story is the first of three (003 → 004 → 005) that together close out RFC 0026 §6.5. Split rationale: 003 owns domain + cascade; 004 sweeps the `@qlm/infrastructure` presentation pkg; 005 finishes DB schema 49 + pressure-aliases + i18n keys.
 
 ## Scope
 
@@ -34,21 +34,21 @@ This story is the first of three (003 → 004 → 005) that together close out R
 
 **Out of scope (moved to 004 + 005)**
 
-- `@guepard/infrastructure` presentation pkg sweep (card.tsx, detail-page.tsx, details-sheet.tsx, story-fixtures, hooks) — story 004.
+- `@qlm/infrastructure` presentation pkg sweep (card.tsx, detail-page.tsx, details-sheet.tsx, story-fixtures, hooks) — story 004.
 - DB schema 49 cleanup migration (drop trigger → fn → column → enum) — story 005.
 - `PressurePointKind` legacy aliases (`high-cpu`, `high-mem`, `down`) — story 005.
 - `nodes.status.*` + `topology.pressure.kind.down` i18n keys — story 005.
 
 ## Acceptance criteria
 
-- [x] `pnpm --filter @guepard/domain typecheck && test` green.
-- [x] `pnpm --filter @guepard/repository-supabase typecheck` green.
-- [x] `pnpm --filter @guepard/shell-runtime typecheck` green.
+- [x] `pnpm --filter @qlm/domain typecheck && test` green.
+- [x] `pnpm --filter @qlm/repository-supabase typecheck` green.
+- [x] `pnpm --filter @qlm/shell-runtime typecheck` green.
 - [x] `pnpm --filter server typecheck` green.
-- [x] `pnpm --filter @guepard/topology typecheck` green.
+- [x] `pnpm --filter @qlm/topology typecheck` green.
 - [x] `pnpm --filter web typecheck` green.
 - [x] No new ESLint disables.
-- [x] Story 003 leaves only `@guepard/infrastructure` typecheck red (deferred to story 004).
+- [x] Story 003 leaves only `@qlm/infrastructure` typecheck red (deferred to story 004).
 
 ## Tasks
 
@@ -61,7 +61,7 @@ This story is the first of three (003 → 004 → 005) that together close out R
 ## Demo / verification
 
 ```bash
-# All packages except @guepard/infrastructure typecheck green
+# All packages except @qlm/infrastructure typecheck green
 pnpm typecheck 2>&1 | grep -v 'infrastructure:typecheck'
 
 # Old surface gone in domain
@@ -74,9 +74,9 @@ grep -rn 'node\.status\b\|statusCounts\b' \
   apps/web/src/lib/msw packages/features/ops/topology
 # expect: zero
 
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain test
 ```
 
 ## Deviations from spec
 
-- Original story 003 bundled DB cleanup + presentation sweep + i18n keys. Working-tree blast radius (~30 files in `@guepard/infrastructure`, plus DB schema) exceeded the 1–8 task cap and the inline-fix scope rule. Split into 003 / 004 / 005 per advisor recommendation. RFC 0026 §6.5 deletions still close at end of story 005.
+- Original story 003 bundled DB cleanup + presentation sweep + i18n keys. Working-tree blast radius (~30 files in `@qlm/infrastructure`, plus DB schema) exceeded the 1–8 task cap and the inline-fix scope rule. Split into 003 / 004 / 005 per advisor recommendation. RFC 0026 §6.5 deletions still close at end of story 005.

@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { NodeDrain } from '@guepard/domain/entities';
+import type { NodeDrain } from '@qlm/domain/entities';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -9,11 +9,11 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
-import { Checkbox } from '@guepard/ui/checkbox';
-import { Label } from '@guepard/ui/label';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
+import { Checkbox } from '@qlm/ui/checkbox';
+import { Label } from '@qlm/ui/label';
+import { cn } from '@qlm/ui/utils';
 
 type DeadlinePreset = '15m' | '30m' | '1h' | '4h' | 'none';
 

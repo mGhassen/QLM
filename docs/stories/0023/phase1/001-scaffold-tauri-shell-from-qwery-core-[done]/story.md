@@ -20,9 +20,9 @@ Stand up the Tauri 2 desktop shell at `apps/desktop/src-tauri/` by lifting `qwer
 
 **In scope**
 - New `apps/desktop/src-tauri/Cargo.toml` mirroring qwery-core's deps (`tauri = "2"`, `tauri-plugin-shell = "2"`, `tauri-plugin-opener = "2"`, `tauri-plugin-os = "2"`, `tauri-plugin-dialog = "2"`, `keyring = "3"` with native features, `serde`, `serde_json`, `dotenvy`).
-- `apps/desktop/src-tauri/tauri.conf.json` with **no `frontendDist`** (sidecar will inject `window.__GUEPARD_API_URL`); app identifier `run.guepard.desktop`; `bundle.externalBin` placeholder ready for the api-server binary.
+- `apps/desktop/src-tauri/tauri.conf.json` with **no `frontendDist`** (sidecar will inject `window.__QLM_API_URL`); app identifier `run.qlm.desktop`; `bundle.externalBin` placeholder ready for the api-server binary.
 - `apps/desktop/src-tauri/capabilities/default.json` with shell-sidecar / opener / dialog grants only.
-- `apps/desktop/src-tauri/src/lib.rs` lifted from qwery-core (`target_triple`, `configure_webview_zoom`, `pick_port(4096)`, PID file path helper, `kill_previous_api_server`, Windows env-subset constants, `append_log_line`, server-ready TCP loop, child kill on window close + `before-quit`). Renamed `SERVICE_NAME` to `"run.guepard.desktop"`.
+- `apps/desktop/src-tauri/src/lib.rs` lifted from qwery-core (`target_triple`, `configure_webview_zoom`, `pick_port(4096)`, PID file path helper, `kill_previous_api_server`, Windows env-subset constants, `append_log_line`, server-ready TCP loop, child kill on window close + `before-quit`). Renamed `SERVICE_NAME` to `"run.qlm.desktop"`.
 - Deletion of the stale Electron scaffold: `apps/desktop/electron/` directory, `electron-builder.yml`, electron-related `package.json` deps and scripts.
 - `apps/desktop/package.json` scripts `tauri:dev` / `tauri:build` (sidecar binary placeholder at this stage — story 002 wires the real one).
 
@@ -56,7 +56,7 @@ pnpm install
 pnpm --filter desktop tauri:dev
 ```
 
-Observe: a Tauri window opens, `desktop.log` is written to `app_config_dir` (`~/Library/Application Support/run.guepard.desktop/desktop.log` on macOS), the window closes cleanly, and the PID file at `<app_config_dir>/api-server.pid` is removed on quit.
+Observe: a Tauri window opens, `desktop.log` is written to `app_config_dir` (`~/Library/Application Support/run.qlm.desktop/desktop.log` on macOS), the window closes cleanly, and the PID file at `<app_config_dir>/api-server.pid` is removed on quit.
 
 ## Questions surfaced
 

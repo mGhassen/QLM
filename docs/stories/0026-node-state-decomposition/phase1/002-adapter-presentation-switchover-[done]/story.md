@@ -57,7 +57,7 @@ Adapters write the new fields, presentation reads them, the per-node detail surf
 - [ ] `pool_view` SQL exposes `lifecycle_counts` + `health_counts`. After `pnpm supabase:web:typegen`, generated types reflect them.
 - [ ] `FleetAggregateService.summary` returns `healthCounts` + `lifecycleCounts`; old `statusCounts` is computed only as a transitional convenience and gated by a comment marking it for deletion in story 003.
 - [ ] E2E `node-drain.spec.ts` passes: open detail → drain → countdown → cancel → eligibility chip flips back.
-- [ ] `pnpm typecheck && pnpm test && pnpm --filter @guepard/infrastructure storybook` green.
+- [ ] `pnpm typecheck && pnpm test && pnpm --filter @qlm/infrastructure storybook` green.
 - [ ] `hex-architecture-reviewer` agent passes (domain stays pure; orchestration writes only in adapters/server).
 
 ## Tasks
@@ -80,7 +80,7 @@ pnpm dev
 # /node/<id> → eligibility chip click → flips ineligible / eligible
 # /topology → pool card now shows health distribution + lifecycle dot row
 # /topology → pressure list uses new kind labels (unreachable, failing, ...)
-pnpm --filter @guepard/infrastructure storybook
+pnpm --filter @qlm/infrastructure storybook
 pnpm --filter web e2e e2e/node-drain.spec.ts
 ```
 

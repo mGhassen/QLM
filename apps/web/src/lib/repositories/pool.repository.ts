@@ -1,5 +1,5 @@
-import type { Pool } from '@guepard/domain/entities';
-import { IPoolRepository } from '@guepard/domain/repositories';
+import type { Pool } from '@qlm/domain/entities';
+import { IPoolRepository } from '@qlm/domain/repositories';
 
 import { apiGet } from './api-client';
 

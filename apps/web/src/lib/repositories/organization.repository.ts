@@ -1,7 +1,7 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Organization } from '@guepard/domain/entities';
-import { IOrganizationRepository } from '@guepard/domain/repositories';
-import type { OrganizationBillingData } from '@guepard/domain/usecases';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Organization } from '@qlm/domain/entities';
+import { IOrganizationRepository } from '@qlm/domain/repositories';
+import type { OrganizationBillingData } from '@qlm/domain/usecases';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 export class OrganizationRepository extends IOrganizationRepository {

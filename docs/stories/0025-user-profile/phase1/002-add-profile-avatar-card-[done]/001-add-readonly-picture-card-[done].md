@@ -27,10 +27,10 @@ Show the current `accounts.picture_url` (or initials fallback) inside a new `Pic
 - [ ] `sections/profile.tsx` passes `pictureUrl` from `shell.personalAccount.getMine()` to `UserProfileSection`.
 - [ ] Storybook story covers `withAvatar` + `initialsFallback`.
 - [ ] Minimal i18n keys added: `userProfile.picture.title`, `userProfile.picture.description`.
-- [ ] `pnpm typecheck` + `pnpm --filter @guepard/user-profile test` pass.
+- [ ] `pnpm typecheck` + `pnpm --filter @qlm/user-profile test` pass.
 
 ## Notes
 
 - Read-only: no `ImageUploader`, no upload mutation, no Clear button. Task 003 wires those.
-- `ProfileAvatar` already exists in `@guepard/ui/avatar` and supports both `pictureUrl` and `displayName` for initials.
+- `ProfileAvatar` already exists in `@qlm/ui/avatar` and supports both `pictureUrl` and `displayName` for initials.
 - Spec anchor: [§3.2.1 Profile section](../../../specs/0025-user-profile-phase1.md#321-profile-section-prjsluguser-settings-sidebar--profile).

@@ -35,7 +35,7 @@ Implement both adapters of the `IIntegrationConnectionRepository` port — the S
 - [x] Supabase adapter's generic `update()` only touches non-secret fields; test results and rotation go through dedicated methods
 - [x] HTTP adapter hits `/integrations/*` and never decodes `secretRef`
 - [x] `apps/web/src/lib/repositories-factory.ts` (the runtime-active one, not the nested legacy copy) wires `integrationConnection` into the repositories map
-- [x] `pnpm --filter @guepard/repository-supabase typecheck` + `pnpm --filter web typecheck` green
+- [x] `pnpm --filter @qlm/repository-supabase typecheck` + `pnpm --filter web typecheck` green
 
 ## Tasks
 
@@ -49,7 +49,7 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/repository-supabase typecheck
+pnpm --filter @qlm/repository-supabase typecheck
 pnpm --filter web typecheck
 ```
 

@@ -23,7 +23,7 @@ Ship every Layer 2 graph element (`GraphSourceNode`, `GraphVolumeNode`, `GraphCl
 
 **In scope**
 
-- `src/components/graph/environments-canvas-dot-grid.tsx` — the background pattern. Port of the POC 16-LOC file (`/Users/hani.chalouati/Documents/work/guepard/mock-v3/packages/features/project-layer/ops/environments/src/presentation/components/environments-workspace/environments-canvas-dot-grid.tsx`), re-implemented with Tailwind tokens.
+- `src/components/graph/environments-canvas-dot-grid.tsx` — the background pattern. Port of the POC 16-LOC file (`/Users/hani.chalouati/Documents/work/qlm/mock-v3/packages/features/project-layer/ops/environments/src/presentation/components/environments-workspace/environments-canvas-dot-grid.tsx`), re-implemented with Tailwind tokens.
 - `src/components/graph/graph-source-node.tsx` — the bolder source node at the top of the Layer 2 tree. Visual reference: POC `service-tree-view.tsx` lines 683–752.
 - `src/components/graph/graph-volume-node.tsx` — compact volume row rendered only when `graph.volume` is non-null. Collapsed otherwise.
 - `src/components/graph/graph-clone-node.tsx` — the clone card. Visual reference: POC `service-tree-view.tsx` lines 53–97 (`CloneNode`), **minus the "Live replication" chip** (phase-2 scope, deferred per spec §13). Phase-1 shape: clone name + status dot + "Create branch" button.
@@ -56,8 +56,8 @@ Ship every Layer 2 graph element (`GraphSourceNode`, `GraphVolumeNode`, `GraphCl
 - [ ] `GraphVolumeNode` is absent from the graph when `graph.volume` is `null`; the source then connects directly to the clone row. Unit test covers both branches.
 - [ ] `LifecycleEventAxis` renders ticks for all 6 event types and each tick's tooltip localizes via `environments.events.*`.
 - [ ] No hardcoded English strings in any new file.
-- [ ] `pnpm --filter @guepard/environments storybook` serves every new story without errors.
-- [ ] `pnpm --filter @guepard/environments test` passes with coverage on the new files.
+- [ ] `pnpm --filter @qlm/environments storybook` serves every new story without errors.
+- [ ] `pnpm --filter @qlm/environments test` passes with coverage on the new files.
 
 ## Tasks
 
@@ -68,7 +68,7 @@ Populated by `/start-story`.
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/environments storybook
+pnpm --filter @qlm/environments storybook
 # Browse: Environments/Graph/SourceNode
 # Browse: Environments/Graph/CloneNode
 # Browse: Environments/Graph/BranchChipStrip (overflow variant)
@@ -76,7 +76,7 @@ pnpm --filter @guepard/environments storybook
 # Browse: Environments/Graph/Composition (aggregated)
 # Browse: Environments/LifecycleEventAxis/{Empty, Few, Dense}
 
-pnpm --filter @guepard/environments test
+pnpm --filter @qlm/environments test
 ```
 
 ## Questions surfaced

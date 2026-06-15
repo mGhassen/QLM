@@ -7,16 +7,16 @@ import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { PasswordSignInSchema } from '../schemas/password-sign-in.schema';
 import { EmailInput } from './email-input';

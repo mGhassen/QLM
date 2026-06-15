@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/app-project-settings",
+  "name": "@qlm/app-project-settings",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,10 +8,10 @@
     "./manifest": "./src/manifest.ts"
   },
   "dependencies": {
-    "@guepard/settings-shell": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/settings-shell": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "catalog:",
     "react-hook-form": "^7.66.0",
@@ -23,7 +23,7 @@
     "react": "catalog:"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@storybook/react": "catalog:",
     "@types/react": "catalog:",
     "i18next": "^25.6.0",

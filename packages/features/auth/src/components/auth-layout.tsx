@@ -1,4 +1,4 @@
-import { Trans } from '@guepard/ui/trans';
+import { Trans } from '@qlm/ui/trans';
 
 /**
  * Full-page auth shell — true two-column layout.

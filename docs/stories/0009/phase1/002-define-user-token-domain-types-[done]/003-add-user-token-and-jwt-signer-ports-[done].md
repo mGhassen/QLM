@@ -68,8 +68,8 @@ Ship the two abstract ports that the Supabase adapter (Story 005) and the HTTP a
 - [ ] `JwtSignerPayload.aud` is literally the string `'authenticated'` (not a generic string) — matches v1 JWT shape per spec §6.3.
 - [ ] `JwtSignerOptions.algorithm` is literally `'HS256'`.
 - [ ] `Repositories` type now has both `userToken: IUserTokenRepository` and `jwtSigner: IJwtSigner` fields.
-- [ ] `@guepard/domain/repositories` re-exports all new symbols.
-- [ ] `pnpm --filter @guepard/domain typecheck` passes.
+- [ ] `@qlm/domain/repositories` re-exports all new symbols.
+- [ ] `pnpm --filter @qlm/domain typecheck` passes.
 - [ ] `pnpm typecheck` across the full workspace passes — in particular, `apps/server/src/lib/repositories.ts` and `apps/web/src/lib/repositories/*` will report "missing `userToken` / `jwtSigner`" errors if they construct a `Repositories` object. This is **expected** — those are unwired until Story 005 (Supabase adapter) and Story 008 (HTTP adapter). Acceptable resolutions:
   - (a) Accept the workspace-level errors and document them explicitly in this task's Notes; they'll be resolved by Stories 005 / 008.
   - (b) Stub a `new Proxy()` or `throw new Error('not wired yet')` placeholder in the factories so the workspace stays green. **Recommend (a)** — the errors surface the unwired state honestly.
@@ -77,7 +77,7 @@ Ship the two abstract ports that the Supabase adapter (Story 005) and the HTTP a
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain typecheck
 # Full workspace typecheck will fail on unwired Repositories construction
 # at apps/server and apps/web until Stories 005 / 008. That's expected per
 # the acceptance criteria above.

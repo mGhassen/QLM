@@ -2,9 +2,9 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException } from '../lib/http-utils';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 const POSITIVE_TYPES = [
   'fastAndAccurate',

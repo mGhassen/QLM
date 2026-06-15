@@ -7,11 +7,11 @@ import type {
   NodeLifecycleState,
   NodeProvider,
   NodeRegion,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import type {
   BulkResult,
   ListNodesRepositoryResult,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import { generateMetrics24h, seedNodes } from '../fixtures/nodes';
 

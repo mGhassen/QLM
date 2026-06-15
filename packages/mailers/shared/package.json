@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/mailers-shared",
+  "name": "@qlm/mailers-shared",
   "private": true,
   "version": "0.1.0",
   "scripts": {
@@ -8,15 +8,15 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "exports": {
     ".": "./src/index.ts"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "zod": "catalog:"
   },
   "typesVersions": {

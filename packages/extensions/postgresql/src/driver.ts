@@ -7,13 +7,13 @@ import type {
   DatasourceResultSet,
   PrimaryKeyRow,
   ForeignKeyRow,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   buildMetadataFromInformationSchema,
   extractConnectionUrl,
   withTimeout,
   DEFAULT_CONNECTION_TEST_TIMEOUT_MS,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import type { z } from 'zod';
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { handleUploadDocAsset } from '@guepard/docs-studio/server';
+import { handleUploadDocAsset } from '@qlm/docs-studio/server';
 
 export const Route = createFileRoute('/api/docs/$slug/upload')({
   server: {

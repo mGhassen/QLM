@@ -8,7 +8,7 @@ import type {
   DriverAttachOptions,
   DriverAttachResult,
   DriverDetachOptions,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   DatasourceMetadataZodSchema,
   withTimeout,
@@ -16,7 +16,7 @@ import {
   getQueryEngineConnection,
   isQueryEngineConnection,
   type QueryEngineConnection,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

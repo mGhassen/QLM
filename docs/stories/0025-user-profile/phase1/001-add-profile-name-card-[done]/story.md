@@ -33,7 +33,7 @@ A signed-in user opens **Settings → Profile** and can update their display nam
 - Shell runtime: `shell.personalAccount.getMine()` + `shell.personalAccount.updateMine({ name })`, shared React Query key `['personal-account', userId]`.
 - Presentation: `UserProfileSectionUI` container, `NameCard` (read-only first, then editable RHF form + submit), Storybook stories + component tests.
 - Shell app: `packages/apps/user-settings/src/sections/profile.tsx`, registered **above** Personal tokens in `plugin-root.tsx`.
-- Topbar avatar/name component (`packages/ui/src/guepard/shell/shell-user-profile-menu.tsx`) switched to the shared query key so updates propagate without reload (resolves open question #1).
+- Topbar avatar/name component (`packages/ui/src/qlm/shell/shell-user-profile-menu.tsx`) switched to the shared query key so updates propagate without reload (resolves open question #1).
 
 **Out of scope** (forces honest slicing)
 
@@ -51,7 +51,7 @@ A signed-in user opens **Settings → Profile** and can update their display nam
 - [x] The topbar avatar menu reflects the new name without a page reload.
 - [x] Submitting an empty name shows an inline validation error and does not call the adapter.
 - [x] `IAccountRepository` is consumed by `shell.personalAccount.*`; no React component imports the Supabase client directly.
-- [x] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @guepard/domain test`, and `pnpm --filter @guepard/user-profile test` all pass. (Project-wide `pnpm --filter @guepard/storybook-config build-storybook` fails on a preexisting `vite-plugin-top-level-await` × esbuild target issue inherited from `main`; not introduced by this story — see Notes.)
+- [x] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @qlm/domain test`, and `pnpm --filter @qlm/user-profile test` all pass. (Project-wide `pnpm --filter @qlm/storybook-config build-storybook` fails on a preexisting `vite-plugin-top-level-await` × esbuild target issue inherited from `main`; not introduced by this story — see Notes.)
 
 ## Tasks
 

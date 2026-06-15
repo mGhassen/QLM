@@ -42,7 +42,7 @@ Inside a snapshot, a user can switch to the **Ask agent** tab, type a question, 
 - [ ] Subsequent messages append to the same conversation.
 - [ ] LLM provider errors render an inline destructive block with a Retry button; retry resends the last user message.
 - [ ] No `console.error` spew during a normal happy-path session.
-- [ ] `pnpm --filter @guepard/features-predictions storybook` shows the agent components.
+- [ ] `pnpm --filter @qlm/features-predictions storybook` shows the agent components.
 - [ ] `pnpm typecheck && pnpm lint` are green.
 
 ## Tasks

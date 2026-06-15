@@ -9,7 +9,7 @@ import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
 import { cn } from '../../../packages/ui/src/lib/utils';
 
 import '../../../apps/web/styles/global.css';
-import { ToolVariantProvider } from '../../../packages/ui/src/guepard/ai/tool-variant-context';
+import { ToolVariantProvider } from '../../../packages/ui/src/qlm/ai/tool-variant-context';
 
 const localeModules = import.meta.glob(
   '../../../apps/web/src/lib/i18n/locales/en/*.json',

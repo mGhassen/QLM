@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HardDrive } from 'lucide-react';
 
-import { HeatSegmentBar } from '@guepard/ui/heat-segment-bar';
-import { cn } from '@guepard/ui/utils';
+import { HeatSegmentBar } from '@qlm/ui/heat-segment-bar';
+import { cn } from '@qlm/ui/utils';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
-import { EntitySection } from '@guepard/ui/entity-primitives';
+import { EntitySection } from '@qlm/ui/entity-primitives';
 import { toHeatTone } from '../lib/to-heat-tone';
 
 export type NodeDetailStorageSectionProps = Readonly<{ node: Node }>;

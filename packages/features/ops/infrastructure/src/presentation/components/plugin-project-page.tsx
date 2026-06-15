@@ -1,6 +1,6 @@
 import { useSearch } from '@tanstack/react-router';
 
-import { useShell } from '@guepard/shell-runtime';
+import { useShell } from '@qlm/shell-runtime';
 
 import { InfrastructureActivitySection } from './infrastructure-activity-section';
 import { InfrastructureReplicasSection } from './infrastructure-replicas-section';

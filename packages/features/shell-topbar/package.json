@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/shell-topbar",
+  "name": "@qlm/shell-topbar",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -15,21 +15,21 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "catalog:",
     "react-hook-form": "^7.66.0",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/i18n": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/i18n": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@storybook/react": "catalog:",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -47,7 +47,7 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

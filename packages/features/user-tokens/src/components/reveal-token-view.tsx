@@ -2,19 +2,19 @@ import { AlertTriangle, Copy, Eye, EyeOff } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { UserToken } from '@guepard/domain/entities';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
+import type { UserToken } from '@qlm/domain/entities';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
-const DEFAULT_PUBLIC_API_URL = 'https://api.rasm.ai';
+const DEFAULT_PUBLIC_API_URL = 'https://api.qlm.dev';
 
 function getPublicApiUrl(): string {
   const fromEnv =
     typeof import.meta !== 'undefined' &&
     (import.meta as { env?: Record<string, string | undefined> }).env
-      ?.VITE_GUEPARD_PUBLIC_API_URL;
+      ?.VITE_QLM_PUBLIC_API_URL;
   return fromEnv && fromEnv.trim().length > 0
     ? fromEnv
     : DEFAULT_PUBLIC_API_URL;

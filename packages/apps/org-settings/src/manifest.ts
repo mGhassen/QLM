@@ -1,4 +1,4 @@
-import type { PluginManifest } from '@guepard/shell-contracts/manifest';
+import type { PluginManifest } from '@qlm/shell-contracts/manifest';
 
 export const manifest: PluginManifest = {
   id: 'org-settings',

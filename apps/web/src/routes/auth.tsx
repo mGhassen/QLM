@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 
-import { AuthLayoutShell } from '@guepard/auth/shared';
+import { AuthLayoutShell } from '@qlm/auth/shared';
 
 import { AppLogo } from '@/components/app-logo';
 

@@ -32,7 +32,7 @@ Follow these rules when writing or modifying code. Reject PRs that violate them.
 
 - **Throw domain exceptions** from services — `DomainException.new({ code, overrideMessage, data })`. Don't throw plain `Error` in `packages/domain`.
 - **Handle errors at boundaries** — catch in the route layer or React Query error callback, not deep inside business logic.
-- **Never swallow errors silently.** If you catch, either rethrow, log via `@guepard/shared/logger`, or surface to the user.
+- **Never swallow errors silently.** If you catch, either rethrow, log via `@qlm/shared/logger`, or surface to the user.
 - **User-facing errors** go through `toast` / `sonner` or inline form errors — never `alert()` except for destructive confirm() prompts.
 
 ## Immutability

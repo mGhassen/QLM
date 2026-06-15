@@ -12,8 +12,8 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { Button } from "@guepard/ui/button";
-import { cn } from "@guepard/ui/utils";
+import { Button } from "@qlm/ui/button";
+import { cn } from "@qlm/ui/utils";
 import { formatShortcut, titleWithShortcut } from "#/lib/studio-shortcuts";
 import "#/styles/studio-chrome.css";
 import { useStudioShortcuts } from "./useStudioShortcuts";

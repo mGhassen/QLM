@@ -1,21 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import { RefreshCcw } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
+import type { PerformanceProfile } from '@qlm/domain/entities';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   ColumnChooser,
   FilterBuilder,
   type AdvancedColumn,
   type FilterRule,
   type SortState,
-} from '@guepard/ui/data-table-advanced';
+} from '@qlm/ui/data-table-advanced';
 import {
   EntityListOptionsMenu,
   type EntityListSortOption,
-} from '@guepard/ui/entity-list';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/entity-list';
+import { cn } from '@qlm/ui/utils';
 
 type OptionsToolbarProps = Readonly<{
   isError: boolean;

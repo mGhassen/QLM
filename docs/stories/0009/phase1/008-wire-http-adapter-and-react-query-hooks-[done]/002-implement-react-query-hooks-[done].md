@@ -29,7 +29,7 @@ Three TanStack Query hooks consumed by Stories 010 + 011 — one query for listi
   - `mutationFn: ({ id }: { id: string }) => repositories.userToken.revoke(id, '')`.
   - `onSuccess: () => queryClient.invalidateQueries({ queryKey: ['user-tokens', 'list'] })`.
 - `packages/features/user-tokens/src/hooks/index.ts` — re-export all three.
-- `packages/features/user-tokens/package.json` — add deps that the hooks need at runtime: `@guepard/repository-supabase` is **not** added (would pull supabase into the browser bundle); the hook reads `Repositories` via the existing `useWorkspace()`/`useShell()` context (whichever the existing accounts/datasources features use). Add `@guepard/shell-runtime` if needed.
+- `packages/features/user-tokens/package.json` — add deps that the hooks need at runtime: `@qlm/repository-supabase` is **not** added (would pull supabase into the browser bundle); the hook reads `Repositories` via the existing `useWorkspace()`/`useShell()` context (whichever the existing accounts/datasources features use). Add `@qlm/shell-runtime` if needed.
 
 ## Acceptance
 
@@ -37,13 +37,13 @@ Three TanStack Query hooks consumed by Stories 010 + 011 — one query for listi
 - [ ] `useUserTokensQuery` uses `queryKey: ['user-tokens', 'list']`.
 - [ ] Both mutations invalidate `['user-tokens', 'list']` on success.
 - [ ] Hooks read `Repositories` via the existing project context — no direct adapter import.
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` passes.
-- [ ] No `@guepard/repository-supabase` import inside `packages/features/user-tokens/src/`.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` passes.
+- [ ] No `@qlm/repository-supabase` import inside `packages/features/user-tokens/src/`.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
+pnpm --filter @qlm/user-tokens typecheck
 ```
 
 ## Storybook validation

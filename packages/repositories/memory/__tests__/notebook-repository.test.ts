@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import type { Notebook } from '@guepard/domain/entities';
+import type { Notebook } from '@qlm/domain/entities';
 
 import { NotebookRepository } from '../src/notebook-repository';
 

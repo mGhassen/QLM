@@ -1,5 +1,5 @@
 /**
- * Shared helpers for @guepard/integrations Storybook stories.
+ * Shared helpers for @qlm/integrations Storybook stories.
  *
  * Provides:
  *  - A pre-initialised i18next instance with inline English translations

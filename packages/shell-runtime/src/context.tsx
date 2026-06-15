@@ -6,12 +6,12 @@ import {
   type ReactNode,
 } from 'react';
 
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import type {
   DatasourceMetadata,
   DatasourceResultSet,
-} from '@guepard/domain/entities';
-import { getLogger } from '@guepard/shared/logger';
+} from '@qlm/domain/entities';
+import { getLogger } from '@qlm/shared/logger';
 
 /**
  * Host-provided function that executes a SQL query against a datasource.
@@ -87,7 +87,7 @@ export type ShellAppContextValue = {
   /**
    * Optional host client for the Predictions app. When omitted, the
    * predictions resource on the shell client will throw if used. Hosts
-   * that ship `@guepard/app-predictions` MUST provide this.
+   * that ship `@qlm/app-predictions` MUST provide this.
    */
   predictionsClient?: import('./resources/predictions').PredictionsHttpClient;
   /** Optional project-shell tab controls (provided by apps/web host). */

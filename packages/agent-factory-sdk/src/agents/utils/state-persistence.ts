@@ -1,6 +1,6 @@
 import type { Snapshot } from 'xstate';
-import type { Repositories } from '@guepard/domain/repositories';
-import { getLogger } from '@guepard/shared/logger';
+import type { Repositories } from '@qlm/domain/repositories';
+import { getLogger } from '@qlm/shared/logger';
 
 /**
  * Persist state machine snapshot

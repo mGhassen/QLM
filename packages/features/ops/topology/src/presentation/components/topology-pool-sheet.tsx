@@ -13,12 +13,12 @@ import {
   EntitySheetBody,
   EntitySheetFooter,
   EntitySheetHeader,
-} from '@guepard/ui/entity-sheet';
-import { Button } from '@guepard/ui/button';
-import { CloudProviderIcon } from '@guepard/ui/cloud-provider-icon';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/entity-sheet';
+import { Button } from '@qlm/ui/button';
+import { CloudProviderIcon } from '@qlm/ui/cloud-provider-icon';
+import { cn } from '@qlm/ui/utils';
 
-import type { Node, NodeHealth } from '@guepard/domain/entities';
+import type { Node, NodeHealth } from '@qlm/domain/entities';
 
 import type { TopologyPool } from '../../application/use-topology-data';
 

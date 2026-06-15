@@ -6,9 +6,9 @@ import type {
   ColumnHeader,
   DatasourceResultSet,
   DatasourceRow,
-} from '@guepard/domain/entities';
-import { DataGrid } from '@guepard/ui/guepard/datagrid';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/domain/entities';
+import { DataGrid } from '@qlm/ui/qlm/datagrid';
+import { cn } from '@qlm/ui/utils';
 
 interface NotebookDataGridProps {
   result: DatasourceResultSet;
@@ -59,7 +59,7 @@ function triggerDownload(filename: string, contents: string) {
 
 /**
  * Thin wrapper around the virtualized `DataGrid` from
- * `@guepard/ui/guepard/datagrid`. The notebook always renders query
+ * `@qlm/ui/qlm/datagrid`. The notebook always renders query
  * results through this wrapper so the row/column shape stays
  * consistent with the `DatasourceResultSet` domain entity.
  *

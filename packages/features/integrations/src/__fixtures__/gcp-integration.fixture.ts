@@ -1,6 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
-import { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+import { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 /**
  * A fully-populated GCP integration in its happy-path "connected" state.
@@ -13,11 +13,11 @@ export const gcpIntegrationFixture = plainToClass(IntegrationConnectionOutput, {
   slug: 'analytics',
   config: {
     defaultRegion: 'europe-west1',
-    accountHint: 'guepard-analytics-prod',
+    accountHint: 'qlm-analytics-prod',
   },
   testStatus: 'success',
   testIdentity:
-    'guepard-runtime@guepard-analytics-prod.iam.gserviceaccount.com',
+    'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
   testError: null,
   testedAt: new Date('2026-04-11T09:45:00.000Z'),
   createdAt: new Date('2026-04-10T14:20:00.000Z'),

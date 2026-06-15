@@ -27,7 +27,7 @@ The current tab system is URL-derived, single-pane, and bug-prone:
    and "sticky is a contiguous prefix" invariant are absent.
 
 The phase-0 patch lands `key={tabKey}` on each pane (forces remount),
-centralizes `getTabKey` in `@guepard/shell-contracts`, fixes topology
+centralizes `getTabKey` in `@qlm/shell-contracts`, fixes topology
 leakage, and patches the sidebar active marker. These eliminate the
 user-visible breakage but lose tab-local state on every switch. The
 next phase adopts VS Code's per-pane mounted model.
@@ -135,7 +135,7 @@ Order roughly by user-perceived value:
 ## Migration
 
 The phase-0 patch is forward-compatible. `getTabKey` already lives in
-`@guepard/shell-contracts`; layer-1 model adoption replaces the
+`@qlm/shell-contracts`; layer-1 model adoption replaces the
 `useState`+`sessionStorage` pair inside `project-shell-host` with a
 shell-runtime store reading the same keys. The per-pane mount switch
 is a single change in the shell host's children-rendering path —

@@ -3,9 +3,9 @@ import type { QueryClient } from '@tanstack/react-query';
 import type {
   IConversationRepository,
   IMessageRepository,
-} from '@guepard/domain/repositories';
-import { GetMessagesByConversationSlugService } from '@guepard/domain/services';
-import type { MessageOutput } from '@guepard/domain/usecases';
+} from '@qlm/domain/repositories';
+import { GetMessagesByConversationSlugService } from '@qlm/domain/services';
+import type { MessageOutput } from '@qlm/domain/usecases';
 
 export function createMessagesResource(
   messageRepository: IMessageRepository,

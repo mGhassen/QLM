@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import { HealthStatusBadge } from './health-status-badge';
 

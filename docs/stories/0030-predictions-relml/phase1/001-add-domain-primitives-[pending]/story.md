@@ -34,11 +34,11 @@ Add the entities, repository ports, and DTOs the rest of phase 1 will plug into 
 
 ## Acceptance criteria
 
-- [ ] `pnpm --filter @guepard/domain typecheck` is green.
-- [ ] `pnpm --filter @guepard/domain test` is green (no new behavior tests yet — story 004 owns those).
-- [ ] All three new entities are exported from `@guepard/domain/entities`.
-- [ ] All three new ports are exported from `@guepard/domain/repositories` and listed on the aggregate `Repositories` interface.
-- [ ] `import type { PredictionSchemaSnapshot } from '@guepard/domain/entities'` resolves from the web and server apps.
+- [ ] `pnpm --filter @qlm/domain typecheck` is green.
+- [ ] `pnpm --filter @qlm/domain test` is green (no new behavior tests yet — story 004 owns those).
+- [ ] All three new entities are exported from `@qlm/domain/entities`.
+- [ ] All three new ports are exported from `@qlm/domain/repositories` and listed on the aggregate `Repositories` interface.
+- [ ] `import type { PredictionSchemaSnapshot } from '@qlm/domain/entities'` resolves from the web and server apps.
 
 ## Tasks
 
@@ -47,8 +47,8 @@ Populated by `/start-story`. Each entry links to a sibling task file in this fol
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/domain typecheck
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain typecheck
+pnpm --filter @qlm/domain test
 ```
 
 Inspect [packages/domain/src/entities/index.ts](packages/domain/src/entities/index.ts) and confirm the three new exports.

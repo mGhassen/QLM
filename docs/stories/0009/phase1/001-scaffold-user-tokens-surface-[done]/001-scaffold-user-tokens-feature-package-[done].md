@@ -16,7 +16,7 @@ files:
 
 ## Purpose
 
-Create the empty `@guepard/user-tokens` workspace package with its public-export shape (`./types`, `./hooks`, `./components` subpaths) so Stories 002 / 008 / 009 can fill those directories without renegotiating the package boundary.
+Create the empty `@qlm/user-tokens` workspace package with its public-export shape (`./types`, `./hooks`, `./components` subpaths) so Stories 002 / 008 / 009 can fill those directories without renegotiating the package boundary.
 
 ## Files
 
@@ -25,8 +25,8 @@ Create the empty `@guepard/user-tokens` workspace package with its public-export
   - `"./types"` → `./src/types/index.ts`
   - `"./hooks"` → `./src/hooks/index.ts`
   - `"./components"` → `./src/components/index.ts`
-  Dependencies: `@guepard/domain`, `@guepard/ui`, `@guepard/i18n`, `zod`. Peer deps: `react`, `react-dom`, `@tanstack/react-query`, `@tanstack/react-router`.
-- `packages/features/user-tokens/tsconfig.json` — extend `@guepard/tsconfig` base (whichever config the repo's feature packages already use).
+  Dependencies: `@qlm/domain`, `@qlm/ui`, `@qlm/i18n`, `zod`. Peer deps: `react`, `react-dom`, `@tanstack/react-query`, `@tanstack/react-router`.
+- `packages/features/user-tokens/tsconfig.json` — extend `@qlm/tsconfig` base (whichever config the repo's feature packages already use).
 - `packages/features/user-tokens/vitest.config.ts` — Vitest + jsdom for React component tests, mirroring other feature packages.
 - `packages/features/user-tokens/src/index.ts` — empty barrel; will re-export from `./types`, `./hooks`, `./components` once those land.
 - `packages/features/user-tokens/src/types/index.ts` — empty barrel (Story 002 fills it).
@@ -35,18 +35,18 @@ Create the empty `@guepard/user-tokens` workspace package with its public-export
 
 ## Acceptance
 
-- [ ] `pnpm install` recognizes `@guepard/user-tokens` as a workspace package (visible in `pnpm list -r | grep user-tokens`).
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` passes (empty barrels compile cleanly).
+- [ ] `pnpm install` recognizes `@qlm/user-tokens` as a workspace package (visible in `pnpm list -r | grep user-tokens`).
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` passes (empty barrels compile cleanly).
 - [ ] `packages/features/user-tokens/package.json` declares the four subpath exports listed above.
-- [ ] Importing `@guepard/user-tokens/types` from a scratch TS file resolves (to an empty module) without a resolution error.
+- [ ] Importing `@qlm/user-tokens/types` from a scratch TS file resolves (to an empty module) without a resolution error.
 
 ## Test plan
 
 ```
 pnpm install
-pnpm --filter @guepard/user-tokens typecheck
+pnpm --filter @qlm/user-tokens typecheck
 # One-liner sanity check that subpath exports resolve:
-node -e "require('@guepard/user-tokens/package.json'); console.log('ok')"
+node -e "require('@qlm/user-tokens/package.json'); console.log('ok')"
 ```
 
 ## Notes

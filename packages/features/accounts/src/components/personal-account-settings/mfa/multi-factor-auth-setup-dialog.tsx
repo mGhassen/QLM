@@ -10,10 +10,10 @@ import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { useFactorsMutationKey } from '@guepard/supabase/hooks/use-user-factors-mutation-key';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { useFactorsMutationKey } from '@qlm/supabase/hooks/use-user-factors-mutation-key';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   Form,
   FormControl,
@@ -30,17 +30,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Input } from '@qlm/ui/input';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@guepard/ui/input-otp';
-import { toast } from '@guepard/ui/sonner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/input-otp';
+import { toast } from '@qlm/ui/sonner';
+import { Trans } from '@qlm/ui/trans';
 
 export function MultiFactorAuthSetupDialog(props: { userId: string }) {
   const { t } = useTranslation();

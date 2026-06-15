@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import { ENVIRONMENTS_CLONE_ROW_GAP_PX } from "../../environment-clone-canvas-layout";
 

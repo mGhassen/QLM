@@ -28,7 +28,7 @@ Enable the panel's "Open in new tab" button: when clicked, navigate to `/agent/<
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 pnpm --filter web dev
 # 1. Open a project → topbar Qwery icon → panel opens with a live conversation.
 # 2. Click the "Open in new tab" icon in the header.

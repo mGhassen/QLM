@@ -1,9 +1,9 @@
 # `apps/e2e` — Playwright end-to-end tests
 
-End-to-end tests for the Rasm console, running against the web app in
+End-to-end tests for the QLM console, running against the web app in
 `apps/web` and the local Supabase stack in `apps/web/supabase/`.
 
-Layout is modeled on the reference suite in the legacy `guepard-console`
+Layout is modeled on the reference suite in the legacy `qlm-console`
 repo: page object + spec per flow, with shared helpers under
 `tests/utils/`.
 
@@ -93,7 +93,7 @@ lives at `tests/utils/expect-no-api-call.ts`.
 Explicit boundary so future contributors don't try to expand specs
 into flows that can't assert anything yet:
 
-- **Invitation email delivery** — `@guepard/mailers` ships with a
+- **Invitation email delivery** — `@qlm/mailers` ships with a
   Resend-only provider and there's no SMTP provider wired to Mailpit
   in local dev. The `createInvitationsAction` server-side path exists
   and the `members.tsx` POST handler dispatches to it, but when called
@@ -170,7 +170,7 @@ submit buttons).
 - **Sign-out step can't find the dropdown** — the `/organizations` route
   renders `UserProfileMenu` in the sidebar footer. The two `data-test`
   attributes (`account-dropdown-trigger`, `account-dropdown-sign-out`)
-  live in `packages/ui/src/guepard/layout/user-profile-menu.tsx`.
+  live in `packages/ui/src/qlm/layout/user-profile-menu.tsx`.
 - **Sign-up fails with a password error** — your local env enables
   `VITE_PASSWORD_REQUIRE_*` with rules that `Testing1234!` doesn't
   satisfy. Update `DEFAULT_PASSWORD` in `tests/utils/credentials.ts`.

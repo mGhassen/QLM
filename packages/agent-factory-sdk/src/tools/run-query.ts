@@ -3,10 +3,10 @@ import { Tool } from './tool';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
-import { getLogger } from '@guepard/shared/logger';
-import { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
+import { getLogger } from '@qlm/shared/logger';
+import { Repositories } from '@qlm/domain/repositories';
 import { ExportFilenameSchema, RunQueryResultSchema } from './schema';
 
 const DESCRIPTION = `Run a SQL query directly against a single datasource using its native driver. When calling this tool, provide an exportFilename (short descriptive name for the table export, e.g. machines-active-status).`;

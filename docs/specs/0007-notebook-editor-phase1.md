@@ -21,7 +21,7 @@ Scope is strict to phase 1. Everything in §3.2 of the RFC is deferred and does 
 | 1 | Persist results inside the notebook document or keep them in-memory?                      | In-memory in plugin-root state (`Map<cellId, DatasourceResultSet>`). Re-opening a notebook re-renders cells empty; the user re-runs.                                          |
 | 2 | Single tabbed result panel or dual rendering (inline summary + tabs)?                     | Single tabbed panel. The grid header strip already shows `Query Results · ⏱ … rows`; a second copy is redundant.                                                              |
 | 3 | Fixed result panel height or auto-fit?                                                    | Auto-fit `clamp(140, chrome + min(rows, 10) × 40, 480)` for the Table tab; fixed 400 for the placeholder tabs whose content size is unknown.                                  |
-| 4 | Wrap `@guepard/ui/guepard/datagrid` or `@guepard/ui/ai`'s minimal grid?                   | Wrap `@guepard/ui/guepard/datagrid` — the virtualised, row-numbered, header-stripped grid the design system already showcases.                                                |
+| 4 | Wrap `@qlm/ui/qlm/datagrid` or `@qlm/ui/ai`'s minimal grid?                   | Wrap `@qlm/ui/qlm/datagrid` — the virtualised, row-numbered, header-stripped grid the design system already showcases.                                                |
 | 5 | Where does the unsaved indicator come from without a real dirty/clean state machine?     | Pass `updateNotebookMutation.isPending` as `hasUnsavedChanges` on `NotebookUI`. It is "save in flight" rather than "dirty since last save"; phase 2 owns the real machine.    |
 | 6 | Sibling Add-cell button at the bottom or trailing `CellDivider` for both?                 | Trailing `CellDivider`. One redesign of the divider component covers both the between-cells case and the bottom case.                                                        |
 | 7 | Cell-type badge on text and prompt cells too?                                             | Only on query cells in phase 1. Text and prompt cells render visible bodies that disambiguate themselves.                                                                     |
@@ -159,7 +159,7 @@ plugin-root.handleRunQuery(cellId, query, datasourceId)
    │  └─ shell.query.run({ query, datasourceId, conversationId: notebook.id })
    │
    ▼
-@guepard/shell-runtime  resources/query.ts  →  host RunQueryFn
+@qlm/shell-runtime  resources/query.ts  →  host RunQueryFn
    │
    ▼
 apps/web/src/shell/run-query.ts: apiPost('/notebook/query', body)
@@ -210,22 +210,22 @@ panelHeight = resultView === 'table' ? fittedTableHeight : 400
 
 | Layer                 | Package                                  | Responsibility                                                                                  |
 | --------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Domain                | `@guepard/domain`                        | `Notebook` entity (existing), `DatasourceResultSet` entity (existing)                            |
+| Domain                | `@qlm/domain`                        | `Notebook` entity (existing), `DatasourceResultSet` entity (existing)                            |
 | Adapters              | `packages/repositories/*`                | `notebook` and `datasource` repository ports (existing)                                          |
 | Server                | `apps/server`                            | `/notebook/query` Hono route (existing)                                                          |
-| Shell runtime         | `@guepard/shell-runtime`                 | `useShell()` + `query` resource + `notebooks` resource (existing)                                |
-| Presentation          | `@guepard/notebook` (= `packages/features/notebook`) | `NotebookList`, `NotebookUI`, `NotebookCell`, `CellDivider`, `NotebookDataGrid` |
-| Plugin glue           | `@guepard/app-notebook` (= `packages/apps/notebook`) | sibling exports (`default`, `FlatRoot`, `resolveProjectContext`); registry init; logo lookup |
+| Shell runtime         | `@qlm/shell-runtime`                 | `useShell()` + `query` resource + `notebooks` resource (existing)                                |
+| Presentation          | `@qlm/notebook` (= `packages/features/notebook`) | `NotebookList`, `NotebookUI`, `NotebookCell`, `CellDivider`, `NotebookDataGrid` |
+| Plugin glue           | `@qlm/app-notebook` (= `packages/apps/notebook`) | sibling exports (`default`, `FlatRoot`, `resolveProjectContext`); registry init; logo lookup |
 | Host                  | `apps/web`                               | Tailwind `@source` scope; `runQueryAgainstDatasource` host adapter; locale JSON                  |
 
-The plugin glue is the only place allowed to import from `@guepard/extensions-sdk` / `@guepard/extensions-loader`. The presentation layer never sees the registry.
+The plugin glue is the only place allowed to import from `@qlm/extensions-sdk` / `@qlm/extensions-loader`. The presentation layer never sees the registry.
 
 ## 5. API contracts
 
 ### 5.1 Data shapes
 
 ```ts
-// Already in @guepard/domain/entities — listed here for completeness.
+// Already in @qlm/domain/entities — listed here for completeness.
 
 type ColumnHeader = {
   name: string;
@@ -329,7 +329,7 @@ None. Reuses the existing `/notebook/query` Hono route at `apps/server/src/route
 - **`src/components/cell-divider.tsx`** — divider between cells.
   - At rest: a thin gradient line with a muted `+` circle (60% opacity).
   - On hover: the circle fades; three rounded typed buttons (Code / Markdown / Prompt) fan in. Each button calls `onAddCell('query' | 'text' | 'prompt')`.
-- **`src/components/notebook-datagrid.tsx`** — wrapper around `DataGrid` from `@guepard/ui/guepard/datagrid`.
+- **`src/components/notebook-datagrid.tsx`** — wrapper around `DataGrid` from `@qlm/ui/qlm/datagrid`.
   - Forwards `columns`, `rows`, `stat`, `pageSize`, `showRowNumbers`.
   - Provides a wrapper-level `handleDownloadCsv` that serialises the **full** result set via `rowsToCsv` (escaping commas/quotes/newlines, `JSON.stringify`'ing object/array cells) and triggers a Blob download named `${exportFileName}.csv`.
   - Provides a wrapper-level `handleCopyPage` that copies the same CSV to the clipboard.
@@ -341,7 +341,7 @@ None. Reuses the existing `/notebook/query` Hono route at `apps/server/src/route
 
 ### 7.6 Shell app (`packages/apps/notebook`)
 
-- **`package.json`** — declare workspace deps on `@guepard/extensions-loader` and `@guepard/extensions-sdk`. (`@guepard/notebook`, `@guepard/shell-runtime`, `@guepard/domain`, `@guepard/ui` are already declared.)
+- **`package.json`** — declare workspace deps on `@qlm/extensions-loader` and `@qlm/extensions-sdk`. (`@qlm/notebook`, `@qlm/shell-runtime`, `@qlm/domain`, `@qlm/ui` are already declared.)
 - **`src/plugin-root.tsx`** —
   - Call `initDatasourceRegistry()` at module top (idempotent) so registered icons and drivers are available before the editor mounts.
   - Default export: `NotebookPluginRoot` — the list view. Uses `useShell()` for `notebooks.list / create / delete` and navigates to the editor via `/notebook/{slug}`.
@@ -382,10 +382,10 @@ No new permissions or RLS policies. The notebook reuses the existing `notebooks`
 ### 10.1 Static checks
 
 ```bash
-pnpm --filter @guepard/notebook typecheck
-pnpm --filter @guepard/app-notebook exec tsc --noEmit
+pnpm --filter @qlm/notebook typecheck
+pnpm --filter @qlm/app-notebook exec tsc --noEmit
 pnpm --filter web typecheck
-pnpm lint --filter @guepard/notebook
+pnpm lint --filter @qlm/notebook
 ```
 
 ### 10.2 Unit tests

@@ -13,7 +13,7 @@
 
 **Qwery Agent** is the user-facing name for the conversational copilot that lives in the right-side assistant panel of the project shell. Users open it from the topbar button or with the **CMD/CTRL + L** keyboard shortcut, chat about their data and the product, and — for longer work — open a dedicated **`/agent/$conversationSlug`** full-page route in a new browser tab.
 
-The entire agent backend and chat UI already exist in this repo: `@guepard/agent-factory-sdk` drives the agent loop, `apps/server/src/routes/chat.ts` exposes `POST /chat/:slug` with credits-gating and tool orchestration, and `packages/ui/src/guepard/ai/*` provides 50+ conversation/message/tool-call components proven in Storybook. What is *missing* is the productization: the shell's `AssistantPanel` is still a static mock, CMD+L does not exist, and there is no flat route for a dedicated conversation view.
+The entire agent backend and chat UI already exist in this repo: `@qlm/agent-factory-sdk` drives the agent loop, `apps/server/src/routes/chat.ts` exposes `POST /chat/:slug` with credits-gating and tool orchestration, and `packages/ui/src/qlm/ai/*` provides 50+ conversation/message/tool-call components proven in Storybook. What is *missing* is the productization: the shell's `AssistantPanel` is still a static mock, CMD+L does not exist, and there is no flat route for a dedicated conversation view.
 
 Phase 1 ships:
 
@@ -27,7 +27,7 @@ Later phases extend capability (tool surfaces, knowledge retrieval, automation s
 
 ## 2. Motivation
 
-Today the right-side `AssistantPanel` is a **hardcoded mock**: three static suggested prompts, a fake avatar, a placeholder welcome bubble. There is no input, no network call, no history. Meanwhile, `@guepard/agent-factory-sdk` is a fully working multi-step agent loop with tool registry, LLM provider abstraction (Claude, Azure, Ollama, Bedrock), streaming via Vercel AI SDK, and MCP support. The chat backend route streams real completions with billing, telemetry, datasource resolution, and message validation. The chat UI package exports every conversational primitive the product needs. **The gap is not capability; it is the last mile of productization.**
+Today the right-side `AssistantPanel` is a **hardcoded mock**: three static suggested prompts, a fake avatar, a placeholder welcome bubble. There is no input, no network call, no history. Meanwhile, `@qlm/agent-factory-sdk` is a fully working multi-step agent loop with tool registry, LLM provider abstraction (Claude, Azure, Ollama, Bedrock), streaming via Vercel AI SDK, and MCP support. The chat backend route streams real completions with billing, telemetry, datasource resolution, and message validation. The chat UI package exports every conversational primitive the product needs. **The gap is not capability; it is the last mile of productization.**
 
 Closing this gap unlocks a measurable step-change in what users can do. Today, "how do I reset a branch?", "why is my query slow?", "generate the migration for this schema change" all require the user to leave the product and open a separate AI tool — or find the right docs page. With Qwery Agent wired in, every one of those questions is answerable in the same view where the user is working, with the active project and datasource already in context. This is the primary product lever Qwery sells: *natural-language data work where the data and product context already live*.
 
@@ -41,7 +41,7 @@ The work upstream of this is already in the repo: RFC 0005 delivered the `Active
 
 ### 3.1 Goals (phase 1)
 
-- **Live assistant panel**: `AssistantPanel` composes `packages/ui/src/guepard/ai/*` components (conversation, message-item, prompt-input, tool-calls-ui) and calls `POST /chat/:slug` for streaming responses. The hardcoded prompts, fake avatar, and placeholder welcome are removed.
+- **Live assistant panel**: `AssistantPanel` composes `packages/ui/src/qlm/ai/*` components (conversation, message-item, prompt-input, tool-calls-ui) and calls `POST /chat/:slug` for streaming responses. The hardcoded prompts, fake avatar, and placeholder welcome are removed.
 - **One conversation per (user, project) in the panel**: opening the panel in project A shows A's persistent conversation; project B has its own. Reuses the existing `conversations` and `messages` routes.
 - **CMD/CTRL + L shortcut**: registered at the project-shell level; toggles the assistant panel open/closed. Focuses the prompt input on open. No-op outside the project shell (org pages, auth pages).
 - **Flat route `/agent/$conversationSlug`**: renders the same conversation full-page using the same UI components. Multiple browser tabs can hold distinct conversations simultaneously and persist independently through the conversations API.
@@ -59,15 +59,15 @@ The work upstream of this is already in the repo: RFC 0005 delivered the `Active
 
 ## 4. Prior art in the codebase
 
-- **Reused**: `@guepard/agent-factory-sdk` — the entire agent loop, LLM provider abstraction, tool registry, and MCP integration. Phase 1 does not touch this package.
+- **Reused**: `@qlm/agent-factory-sdk` — the entire agent loop, LLM provider abstraction, tool registry, and MCP integration. Phase 1 does not touch this package.
 - **Reused**: `apps/server/src/routes/chat.ts` — the streaming `POST /chat/:slug` endpoint with credits-gating, datasource context, and message validation. Phase 1 consumes it as-is.
 - **Reused**: `apps/server/src/routes/conversations.ts` + `messages.ts` — conversation and message persistence. The panel and full-page route both read/write through these.
-- **Reused**: `packages/ui/src/guepard/ai/*` — 50+ chat UI components (conversation-content, message-item, prompt-input, model-selector, tool-calls-ui, schema-visualizer, sql-query-visualizer, web-fetch-visualizer). These become the building blocks of the new `AssistantPanel` and the `/agent/$slug` route.
+- **Reused**: `packages/ui/src/qlm/ai/*` — 50+ chat UI components (conversation-content, message-item, prompt-input, model-selector, tool-calls-ui, schema-visualizer, sql-query-visualizer, web-fetch-visualizer). These become the building blocks of the new `AssistantPanel` and the `/agent/$slug` route.
 - **Reused**: the `ActivePanel` contract from RFC 0005 (`'documentation' | 'assistant' | null`) and the `RightSidebar` component — the panel slot already exists; we are filling it with real content.
 - **Reused**: `packages/shell-runtime` — `useShell()` provides the project / datasource context injection point.
-- **Replaced**: `packages/ui/src/guepard/layout/assistant-panel.tsx` — the 56-line mock with hardcoded prompts and fake avatar is rewritten.
-- **Orthogonal**: `packages/ui/src/guepard/layout/documentation-panel.tsx` — the sibling panel for contextual help (RFC 0005). Qwery Agent does not touch it; they coexist as distinct panel modes.
-- **Orthogonal**: `qwery-core` at `/Users/hani.chalouati/Documents/work/guepard/qwery-core/` — a separate standalone data platform that inspired several patterns (agent-factory-sdk, tool registry, MCP endpoint) already ported here. It is **not** a runtime dependency; the name overlap is purely product naming.
+- **Replaced**: `packages/ui/src/qlm/layout/assistant-panel.tsx` — the 56-line mock with hardcoded prompts and fake avatar is rewritten.
+- **Orthogonal**: `packages/ui/src/qlm/layout/documentation-panel.tsx` — the sibling panel for contextual help (RFC 0005). Qwery Agent does not touch it; they coexist as distinct panel modes.
+- **Orthogonal**: `qwery-core` at `/Users/hani.chalouati/Documents/work/qlm/qwery-core/` — a separate standalone data platform that inspired several patterns (agent-factory-sdk, tool registry, MCP endpoint) already ported here. It is **not** a runtime dependency; the name overlap is purely product naming.
 
 ## 5. Conceptual model
 
@@ -136,7 +136,7 @@ All decisions surfaced during Q&A have been resolved and folded into §5 through
 
 ## 10. Alternatives considered
 
-- **Reuse an external chat component library (e.g. Vercel AI Chatbot template).** Rejected — `packages/ui/src/guepard/ai/*` already covers every primitive and is tuned for our tool-call visualization (schema-viz, SQL-viz, web-fetch-viz). Replacing would be a rewrite for zero product gain.
+- **Reuse an external chat component library (e.g. Vercel AI Chatbot template).** Rejected — `packages/ui/src/qlm/ai/*` already covers every primitive and is tuned for our tool-call visualization (schema-viz, SQL-viz, web-fetch-viz). Replacing would be a rewrite for zero product gain.
 - **Ship the full-page route first and skip the panel wiring.** Rejected — the panel is the primary entry point for quick questions and is the one users will discover via the existing topbar icon. Shipping only `/agent/$slug` would leave the mock panel visible in production and signal that the feature is incomplete.
 - **Ship the panel only and defer the full-page route.** Deferred (considered). The panel alone addresses 80% of the use cases, but serious conversations (pasted SQL, long error traces, side-by-side comparisons) do not fit in 30% of the screen. Adding the route later would still be breaking for users who learned to work in the panel; shipping both at once sets the right expectation.
 - **Use a command-palette modal (CMD+K-style) instead of a side panel for CMD+L.** Rejected — modal loses context of the app underneath, which defeats the point of project-aware assistance. The side panel keeps the user's work visible.
@@ -148,10 +148,10 @@ All decisions surfaced during Q&A have been resolved and folded into §5 through
 - [RFC 0009 — Token management](./0009-token-management.md) — downstream; phase 4 of this RFC consumes it.
 - `packages/agent-factory-sdk/src/` — agent loop, LLM providers, tool registry, MCP.
 - `apps/server/src/routes/chat.ts` — streaming chat endpoint.
-- `packages/ui/src/guepard/ai/` — chat UI component library.
-- `packages/ui/src/guepard/layout/assistant-panel.tsx` — the mock replaced in phase 1.
-- `packages/ui/src/guepard/layout/right-sidebar.tsx` — the panel slot.
-- `packages/ui/src/guepard/layout/topbar-actions.tsx` — the existing toggle button.
+- `packages/ui/src/qlm/ai/` — chat UI component library.
+- `packages/ui/src/qlm/layout/assistant-panel.tsx` — the mock replaced in phase 1.
+- `packages/ui/src/qlm/layout/right-sidebar.tsx` — the panel slot.
+- `packages/ui/src/qlm/layout/topbar-actions.tsx` — the existing toggle button.
 
 ---
 

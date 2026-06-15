@@ -6,7 +6,7 @@
 set -e
 
 ENV_FILE="apps/web/.env.local"
-DOCKER_IMAGE="guepard-console"
+DOCKER_IMAGE="qlm-console"
 DOCKERFILE="Dockerfile"
 
 # Check if .env.local exists

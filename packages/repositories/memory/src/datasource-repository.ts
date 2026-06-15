@@ -1,7 +1,7 @@
-import type { Nullable } from '@guepard/domain/common';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Datasource } from '@guepard/domain/entities';
-import { IDatasourceRepository } from '@guepard/domain/repositories';
+import type { Nullable } from '@qlm/domain/common';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Datasource } from '@qlm/domain/entities';
+import { IDatasourceRepository } from '@qlm/domain/repositories';
 
 export class DatasourceRepository extends IDatasourceRepository {
   private datasources = new Map<string, Datasource>();

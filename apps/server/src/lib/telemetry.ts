@@ -1,4 +1,4 @@
-import { TelemetryManager } from '@guepard/telemetry/node';
+import { TelemetryManager } from '@qlm/telemetry/node';
 
 let telemetryInstance: TelemetryManager | undefined;
 let initializationFailed = false;

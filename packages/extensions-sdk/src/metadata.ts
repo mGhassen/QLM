@@ -4,4 +4,4 @@ export {
   type DatasourceMetadata,
   type DatasourceResultSet,
   type ColumnHeader,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';

@@ -56,8 +56,8 @@ Implement `CreateUserTokenService`, `RevokeUserTokenService`, and `ListUserToken
 - [x] `RevokeUserTokenService.execute({ id, accountId })` throws `TokenNotFoundException` when repo.revoke returns null.
 - [x] `ListUserTokensService.execute({ accountId })` delegates to `repo.findByAccountId(accountId)` unchanged.
 - [x] Coverage ≥ 90 % on the three new files (100 % achieved on all three).
-- [x] `pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token` passes (14 tests).
-- [x] `pnpm --filter @guepard/domain typecheck` passes.
+- [x] `pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token` passes (14 tests).
+- [x] `pnpm --filter @qlm/domain typecheck` passes.
 - [x] No `jsonwebtoken`, `@supabase/*`, `react`, or `@tanstack/*` import anywhere in the service files.
 
 ## Tasks
@@ -68,9 +68,9 @@ Implement `CreateUserTokenService`, `RevokeUserTokenService`, and `ListUserToken
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/domain test -- user-token
-pnpm --filter @guepard/domain test -- --coverage services/user-token
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain test -- user-token
+pnpm --filter @qlm/domain test -- --coverage services/user-token
+pnpm --filter @qlm/domain typecheck
 ```
 
 ## Questions surfaced

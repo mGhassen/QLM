@@ -57,7 +57,7 @@ A signed-in user can see their MFA factor list, enroll a TOTP factor end-to-end 
 - [x] Unenroll prompts for the current password; wrong password keeps the factor; correct password removes it and refreshes the list. *`unenrollMutation` calls `signInWithPassword` first; failure throws `invalidCurrentPasswordException` and surfaces inline.*
 - [x] First-factor enrollment does not require AAL2 — `IMfaRepository.enrollTotp` has no AAL precondition; the runtime resource doesn't gate either. Spec §9 explicitly calls this out.
 - [x] No MFA-related console log contains the TOTP secret, QR data URI, or password. *Adapter does not log; secret/QR are passed to `<img src>` and `<Input value>` directly.*
-- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @guepard/domain test` (314 / 3 skipped), `pnpm --filter @guepard/repository-supabase test` (23 / 23), `pnpm --filter @guepard/user-profile test` (25 / 25) all pass. *Playwright `mfa-enroll.spec.ts` is part of the phase-1 spec §10.4 deliverable, deferred to a phase-1 close-out e2e task — not in this story's scope.*
+- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @qlm/domain test` (314 / 3 skipped), `pnpm --filter @qlm/repository-supabase test` (23 / 23), `pnpm --filter @qlm/user-profile test` (25 / 25) all pass. *Playwright `mfa-enroll.spec.ts` is part of the phase-1 spec §10.4 deliverable, deferred to a phase-1 close-out e2e task — not in this story's scope.*
 
 ## Tasks
 

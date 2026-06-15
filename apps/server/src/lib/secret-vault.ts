@@ -5,7 +5,7 @@ import {
   scryptSync,
 } from 'node:crypto';
 
-import type { ISecretVault } from '@guepard/domain/repositories';
+import type { ISecretVault } from '@qlm/domain/repositories';
 
 /**
  * Server-side implementation of the domain `ISecretVault` port.
@@ -21,7 +21,7 @@ import type { ISecretVault } from '@guepard/domain/repositories';
  * every stored credential. That is an explicitly accepted phase-1 risk per
  * RFC 0001 §10 — the mitigation path is OIDC federation in phase 4.
  *
- * Key source: the `GUEPARD_SECRET_VAULT_KEY` env var, interpreted as
+ * Key source: the `QLM_SECRET_VAULT_KEY` env var, interpreted as
  * either a 64-character hex string (32 bytes, the "real" format) or any
  * other string, in which case it is stretched to 32 bytes with `scrypt`.
  * The second path is only there so local dev and test envs can use a
@@ -35,10 +35,10 @@ const IV_LENGTH = 12; // GCM nonces are 96 bits
 const AUTH_TAG_LENGTH = 16;
 
 function resolveKey(): Buffer {
-  const raw = process.env.GUEPARD_SECRET_VAULT_KEY;
+  const raw = process.env.QLM_SECRET_VAULT_KEY;
   if (!raw) {
     throw new Error(
-      'GUEPARD_SECRET_VAULT_KEY is not set. Refusing to start the secret vault without a key.',
+      'QLM_SECRET_VAULT_KEY is not set. Refusing to start the secret vault without a key.',
     );
   }
   if (/^[0-9a-f]{64}$/i.test(raw)) {
@@ -46,7 +46,7 @@ function resolveKey(): Buffer {
   }
   // scrypt stretch — NOT a substitute for a real 32-byte random key, but
   // lets local dev run with a memorable phrase like "dev-secret".
-  return scryptSync(raw, 'guepard.integration-connections.v1', KEY_LENGTH);
+  return scryptSync(raw, 'qlm.integration-connections.v1', KEY_LENGTH);
 }
 
 function base64url(buffer: Buffer): string {
@@ -139,7 +139,7 @@ export class AesGcmSecretVault implements ISecretVault {
    * Stateless no-op. This vault doesn't have a backing store — the
    * ciphertext IS the handle. A rotated row simply writes a new handle
    * over `secret_ref`, and the old handle, now unreferenced, ceases to
-   * exist as far as Guepard is concerned. There is nothing to reclaim.
+   * exist as far as QLM is concerned. There is nothing to reclaim.
    *
    * A boot-time warning is emitted once from `createServerSecretVault()`
    * so operators running this concrete are aware that `forget()` calls

@@ -5,7 +5,7 @@
 # - web SSR listens on :3001 (internal)
 # - API server listens on :4096 (internal)
 #
-# Build context: guepard-console-v3 repo root
+# Build context: QLM repo root
 
 FROM node:22-slim AS base
 WORKDIR /app
@@ -37,7 +37,7 @@ ENV TURBO_CONCURRENCY=1
 # Prerender executes SSR routes at build time and requires secrets like
 # SUPABASE_SECRET_KEY, which must only be provided at runtime.
 # (We also set it inline on the build command to ensure Turbo inherits it.)
-ENV GUEPARD_SKIP_PRERENDER=1
+ENV QLM_SKIP_PRERENDER=1
 ARG VITE_APP_VERSION
 ARG VITE_APP_GIT_HASH
 ARG VITE_SITE_URL
@@ -78,7 +78,7 @@ ENV VITE_CHAT_API_URL=$VITE_CHAT_API_URL
 
  # Build extensions registry/assets BEFORE web build so the registry.json is bundled into the app.
  RUN pnpm extensions:build
- RUN GUEPARD_SKIP_PRERENDER=1 turbo run build --filter=web...
+ RUN QLM_SKIP_PRERENDER=1 turbo run build --filter=web...
  # TanStack Start SSR can crash when activeMatchesSnapshot is missing from router stores.
  RUN node -e "const fs=require('fs');const p='/app/apps/web/dist/server/server.js';if(!fs.existsSync(p)){process.exit(0);}let s=fs.readFileSync(p,'utf8');const from='...opts.router.stores.activeMatchesSnapshot.state.map((match)=>{';const to='...(opts.router.stores.activeMatchesSnapshot?.state ?? opts.router.stores.matches?.state ?? []).map((match)=>{';if(s.includes(from)){s=s.replace(from,to);fs.writeFileSync(p,s,'utf8');console.log('[docker] patched getStartResponseHeaders (activeMatchesSnapshot)');}else{console.warn('[docker] SSR activeMatchesSnapshot pattern not found; build output changed');}"
 
@@ -114,7 +114,7 @@ COPY --from=prod_deps /app/apps/web/package.json ./apps/web/package.json
 COPY --from=prod_deps /app/apps/web/dist ./apps/web/dist
 COPY --from=prod_deps /app/apps/web/public ./apps/web/public
 
-# Ensure runtime imports of @guepard/domain use compiled JS (Bun TS decorators break class-transformer).
+# Ensure runtime imports of @qlm/domain use compiled JS (Bun TS decorators break class-transformer).
 RUN node -e "const fs=require('fs');const p='packages/domain/package.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));const rw=(v)=>typeof v==='string'?v.replace('./src/','./dist/').replace(/\\.ts$/,'\\.js'):v;const walk=(o)=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){const v=o[k];if(typeof v==='string')o[k]=rw(v);else if(v&&typeof v==='object'){walk(v);}}};walk(j.exports);fs.writeFileSync(p, JSON.stringify(j,null,2));"
 
 # Rehydrate pnpm symlinks in the runtime layer (Bun/Node need real links).

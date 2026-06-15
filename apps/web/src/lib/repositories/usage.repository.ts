@@ -1,10 +1,10 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Usage } from '@guepard/domain/entities';
-import { IUsageRepository } from '@guepard/domain/repositories';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Usage } from '@qlm/domain/entities';
+import { IUsageRepository } from '@qlm/domain/repositories';
 import type {
   GetUsageSummaryInput,
   GetUsageSummaryOutput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 export class UsageRepository extends IUsageRepository {

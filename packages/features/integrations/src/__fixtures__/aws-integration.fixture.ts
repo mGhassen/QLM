@@ -1,6 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
-import { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+import { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 /**
  * A fully-populated AWS integration in its happy-path "connected" state.
@@ -20,7 +20,7 @@ export const awsIntegrationFixture = plainToClass(IntegrationConnectionOutput, {
     accountHint: '123456789012',
   },
   testStatus: 'success',
-  testIdentity: 'arn:aws:iam::123456789012:user/guepard',
+  testIdentity: 'arn:aws:iam::123456789012:user/qlm',
   testError: null,
   testedAt: new Date('2026-04-11T10:58:00.000Z'),
   createdAt: new Date('2026-04-11T10:54:00.000Z'),

@@ -9,17 +9,17 @@ import type {
   NodeOrchestrationState,
   NodeProvider,
   NodeRegion,
-} from '@guepard/domain/entities';
-import { INodeRepository } from '@guepard/domain/repositories';
-import { deriveNodeHealth } from '@guepard/domain/services';
+} from '@qlm/domain/entities';
+import { INodeRepository } from '@qlm/domain/repositories';
+import { deriveNodeHealth } from '@qlm/domain/services';
 import type {
   BulkResult,
   ListNodesInput,
   ListNodesRepositoryResult,
-} from '@guepard/domain/usecases';
-import { Code } from '@guepard/domain/common';
-import { DomainException } from '@guepard/domain/exceptions';
-import type { Enums } from '@guepard/supabase/database';
+} from '@qlm/domain/usecases';
+import { Code } from '@qlm/domain/common';
+import { DomainException } from '@qlm/domain/exceptions';
+import type { Enums } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 // ─── Enum mappings ───────────────────────────────────────────────────────────

@@ -3,8 +3,8 @@ import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
 
-import { stepCountIs, streamText } from '@guepard/agent-factory-sdk';
-import { Provider } from '@guepard/agent-factory-sdk/llm';
+import { stepCountIs, streamText } from '@qlm/agent-factory-sdk';
+import { Provider } from '@qlm/agent-factory-sdk/llm';
 import {
   CreateNotebookService,
   DeleteNotebookService,
@@ -12,13 +12,13 @@ import {
   GetNotebookService,
   GetNotebooksByProjectIdService,
   UpdateNotebookService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
 
 import { handleDomainException, isUUID } from '../lib/http-utils';
 import { makeSqlAgentTools } from '../lib/notebooks/sql-agent-tools';

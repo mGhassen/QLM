@@ -20,7 +20,7 @@ Replace the legacy `ShellOrgDropdown` in `project-shell-host.tsx`'s topbar heade
 
 ## Done when
 
-- [ ] `apps/web/src/shell/project-shell-host.tsx` imports `ShellTopbar` from `@guepard/shell-topbar` and passes `onNavigate={(path) => void navigate({ to: path })}` (using `useNavigate` from `@tanstack/react-router`).
+- [ ] `apps/web/src/shell/project-shell-host.tsx` imports `ShellTopbar` from `@qlm/shell-topbar` and passes `onNavigate={(path) => void navigate({ to: path })}` (using `useNavigate` from `@tanstack/react-router`).
 - [ ] The legacy `ShellOrgDropdown` import + usage is removed; any stale props / callbacks on `<ProjectShellLayout header={...}>` (the old `onSelectOrganization`, `onCreateWorkspace`, `onViewAllOrganizations`) are cleaned up.
 - [ ] If `<ProjectShellLayout>` still requires a `header` prop with specific shape, the slot simply becomes `<ShellTopbar onNavigate={...} />`.
 - [ ] `pnpm typecheck` green; `pnpm --filter web lint` green (unused-import errors blocked).

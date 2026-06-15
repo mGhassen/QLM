@@ -17,7 +17,7 @@ Implement the two pure functions `verifyBearerToken` and `scopePermitsMethod` pl
 
 - `packages/auth-shared/src/bearer-token-middleware.ts` — contains:
   - Zod schema `BearerJwtPayloadSchema` with `{ token_id, sub, scopes, exp }` — validates the decoded JWT claim.
-  - `UserTokenScope` local union type `'read' | 'write' | 'admin'` (copied from domain so this package stays framework-free and has no `@guepard/domain` dep).
+  - `UserTokenScope` local union type `'read' | 'write' | 'admin'` (copied from domain so this package stays framework-free and has no `@qlm/domain` dep).
   - `VerifyBearerTokenResult` discriminated union `{ ok: true, accountId, scopes } | { ok: false, reason }`.
   - `verifyBearerToken(authHeader, jwtSecret, lookup)`: strips `Bearer `, verifies HS256 via `jsonwebtoken.verify`, parses payload via the Zod schema, calls `lookup(tokenId)`, maps branches to the six rejection reasons + happy path.
   - `scopePermitsMethod(scopes, method)`: `admin` → true; `read` → method === `'GET'`; `write` → method ∈ `{'POST','PUT','DELETE'}`.
@@ -29,12 +29,12 @@ Implement the two pure functions `verifyBearerToken` and `scopePermitsMethod` pl
 - [ ] All six rejection branches are explicit: `no-auth`, `invalid-signature`, `not-found`, `revoked`, `expired`. Invalid JWT payload shape (missing `token_id` etc.) maps to `invalid-signature` so callers don't need an extra branch.
 - [ ] `scopePermitsMethod` is pure, synchronous, and handles the full `{read, write, admin} × {GET, POST, PUT, DELETE}` matrix.
 - [ ] The module imports ONLY `jsonwebtoken` and `zod` from its runtime deps. No `@supabase/*`, Hono, Express, React, or DB client.
-- [ ] `pnpm --filter @guepard/auth-shared typecheck` passes.
+- [ ] `pnpm --filter @qlm/auth-shared typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/auth-shared typecheck
+pnpm --filter @qlm/auth-shared typecheck
 ```
 
 ## Storybook validation

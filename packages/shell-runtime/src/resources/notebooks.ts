@@ -1,6 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { INotebookRepository } from '@guepard/domain/repositories';
+import type { INotebookRepository } from '@qlm/domain/repositories';
 import {
   CreateNotebookService,
   DeleteNotebookService,
@@ -8,12 +8,12 @@ import {
   GetNotebookService,
   GetNotebooksByProjectIdService,
   UpdateNotebookService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateNotebookInput,
   NotebookOutput,
   UpdateNotebookInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export function createNotebooksResource(
   repository: INotebookRepository,

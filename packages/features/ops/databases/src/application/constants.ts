@@ -1,4 +1,4 @@
-import type { DatabaseStatus } from '@guepard/domain/entities';
+import type { DatabaseStatus } from '@qlm/domain/entities';
 
 export const PROVIDER_LABELS: Record<string, string> = {
   postgres: 'PostgreSQL',

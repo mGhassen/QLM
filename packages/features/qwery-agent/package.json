@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/qwery-agent",
+  "name": "@qlm/qwery-agent",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -15,23 +15,23 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@guepard/agent-factory-sdk": "workspace:*",
-    "@guepard/domain": "workspace:*",
-    "@guepard/extensions-loader": "workspace:*",
-    "@guepard/extensions-sdk": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/supabase": "workspace:*",
+    "@qlm/agent-factory-sdk": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/extensions-loader": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/supabase": "workspace:*",
     "@tanstack/react-router": "catalog:",
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/i18n": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/i18n": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@storybook/react": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@testing-library/jest-dom": "^6.9.1",
@@ -48,7 +48,7 @@
     "react-i18next": "^16.2.3",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

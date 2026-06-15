@@ -3,7 +3,7 @@ import {
   getTaskDelimiterForToolPart,
   isToolPart,
   parseTodosFromPart,
-} from '../src/guepard/ai/utils/todo-logic';
+} from '../src/qlm/ai/utils/todo-logic';
 
 describe('isToolPart', () => {
   it('returns true for tool-getSchema', () => {

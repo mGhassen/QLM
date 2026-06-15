@@ -36,7 +36,7 @@ operator surfaces. Detail-page action row replaces the old status buttons.
 - [ ] `DrainBanner` renders countdown when `drain.deadline` is set; updates every second.
 - [ ] `EligibilityChip` flips on click, with optimistic UI + rollback on 409.
 - [ ] Every new component has a Storybook story per `.claude/rules/testing.md` Storybook section.
-- [ ] All user-facing strings go through `t(...)` / `Trans` from `@guepard/ui/trans`.
+- [ ] All user-facing strings go through `t(...)` / `Trans` from `@qlm/ui/trans`.
 - [ ] Detail-page UI smoke route is clean (no console exceptions, no unexpected network calls).
 
 ## Notes

@@ -75,7 +75,7 @@ Every modified file, every new file, every dependency, every environment variabl
  └────────────────────────────────────────────────────────────────────────┘
                  │
                  ▼
-       guepard.qwery.relml  (the RelML Python package — see relml.md)
+       qlm.qwery.relml  (the RelML Python package — see relml.md)
 ```
 
 The control flow for a single training run:
@@ -680,7 +680,7 @@ This makes the in-memory job registry survive a server restart. Without it, `GET
 
 ## 13. Step 9 — Add the Python CLIs
 
-Create `python/` at the repo root and drop in the three CLIs. They are intentionally vanilla and self-contained — they read CLI flags, import `guepard.qwery.relml`, and produce the documented outputs. **The full source of all three is embedded below**, so this section is the spec.
+Create `python/` at the repo root and drop in the three CLIs. They are intentionally vanilla and self-contained — they read CLI flags, import `qlm.qwery.relml`, and produce the documented outputs. **The full source of all three is embedded below**, so this section is the spec.
 
 ### 13.1 The contract between the server and each CLI
 
@@ -755,8 +755,8 @@ def main() -> int:
         log(f"ERROR: duckdb not installed ({e}). Run: pip install duckdb")
         return 3
     try:
-        import guepard.qwery.relml as relml
-        from guepard.qwery.relml import (
+        import qlm.qwery.relml as relml
+        from qlm.qwery.relml import (
             TaskSpec,
             InferenceField,
             InferenceOutput,
@@ -928,7 +928,7 @@ def _normalize_field(value: str, field_type: str) -> str:
     """
     For date-typed fields, convert ISO YYYY-MM-DD to unix-seconds.
 
-    RelML's internal table loader (guepard.qwery.relml/__init__.py::_load_table)
+    RelML's internal table loader (qlm.qwery.relml/__init__.py::_load_table)
     calls `datetime.timestamp()` on *naive* datetimes returned by DuckDB —
     which interprets them as **local** time. So a stored "2025-11-26 00:00"
     value becomes epoch-seconds for "2025-11-26 00:00 local", not UTC.
@@ -981,8 +981,8 @@ def main() -> int:
 
     try:
         import duckdb  # noqa: F401
-        import guepard.qwery.relml as relml
-        from guepard.qwery.relml import (
+        import qlm.qwery.relml as relml
+        from qlm.qwery.relml import (
             TaskSpec,
             InferenceField,
             InferenceOutput,
@@ -1249,8 +1249,8 @@ def main() -> int:
 
     try:
         import duckdb  # noqa: F401
-        import guepard.qwery.relml as relml
-        from guepard.qwery.relml import (
+        import qlm.qwery.relml as relml
+        from qlm.qwery.relml import (
             TaskSpec,
             InferenceField,
             InferenceOutput,
@@ -1747,7 +1747,7 @@ For the **larger** TS files (`bundle-builder.ts`, `job-manager.ts`, `validate-de
 
 ## 14. Step 10 — Install RelML in the Python environment
 
-The CLIs assume `guepard.qwery.relml` is importable from `python3`. Build and install it once:
+The CLIs assume `qlm.qwery.relml` is importable from `python3`. Build and install it once:
 
 ```bash
 # pick the venv qwery will spawn from
@@ -1762,7 +1762,7 @@ cmake -B build -DPython_EXECUTABLE=$(which python3)
 cmake --build build -j
 
 # verify the .so dropped into the source tree with the right Python tag
-ls python/guepard/qwery/relml/_relml_core*
+ls python/qlm/qwery/relml/_relml_core*
 
 # editable install
 pip install -e ./python
@@ -1771,7 +1771,7 @@ pip install -e ./python
 pip install duckdb numpy scikit-learn pandas
 
 # smoke test
-python3 -c "from guepard.qwery.relml import TaskSpec, InferenceSchema; print('ok')"
+python3 -c "from qlm.qwery.relml import TaskSpec, InferenceSchema; print('ok')"
 ```
 
 (All of the above is the abridged form of `relml.md` §2 — refer to that file for prerequisites, OpenMP install on macOS, troubleshooting build issues, and Python version pinning.)
@@ -2006,7 +2006,7 @@ ${QWERY_STORAGE_DIR}/
 
 ## 21. Troubleshooting
 
-### `ImportError: No module named guepard.qwery.relml`
+### `ImportError: No module named qlm.qwery.relml`
 
 Python can't find RelML in the env that `Bun.spawn` is launching. Either `pip install -e <relml>/python` in that env, or set `QWERY_PYTHON_BIN` to the venv's interpreter explicitly.
 
@@ -2072,7 +2072,7 @@ This is the local-time-vs-UTC edge case `predict_cli.py` already handles by conv
 10. [ ] Edit `apps/server/src/index.ts` to call `restoreJobsFromDisk()`
 11. [ ] Edit `apps/server/tsconfig.json` to enable decorator metadata
 12. [ ] Copy `python/{train,predict,backtest}_cli.py`
-13. [ ] Build + install `guepard.qwery.relml` into the venv qwery will spawn
+13. [ ] Build + install `qlm.qwery.relml` into the venv qwery will spawn
 14. [ ] Copy `apps/web/lib/repositories/ml-tasks-client.ts`
 15. [ ] Copy `apps/web/lib/services/run-datasource-query.ts`
 16. [ ] Copy `apps/web/app/routes/datasource/model-builder.tsx` + 22 components under `_components/model-builder/`

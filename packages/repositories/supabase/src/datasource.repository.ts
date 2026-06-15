@@ -1,7 +1,7 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Datasource } from '@guepard/domain/entities';
-import { IDatasourceRepository } from '@guepard/domain/repositories';
-import type { Json } from '@guepard/supabase/database';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Datasource } from '@qlm/domain/entities';
+import { IDatasourceRepository } from '@qlm/domain/repositories';
+import type { Json } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 export class DatasourceRepository extends IDatasourceRepository {

@@ -25,10 +25,10 @@ Stand up a thin client-only SPA inside `apps/desktop/` mirroring qwery-core's pa
 - [ ] `apps/desktop/index.html` exists with `<div id="root">` + the dev script tag.
 - [ ] `apps/desktop/src/main.tsx` creates a TanStack Router (no SSR), wraps it with the existing `RootProviders` from `apps/web`, and mounts via `createRoot`.
 - [ ] `apps/desktop/src/__root.tsx` renders `<Outlet/>` without `<Scripts>` or `<HeadContent>` (those are SSR-only) — TanStack Router's title/meta works fine in SPA mode without them.
-- [ ] `apps/desktop/src/routes/index.tsx` renders a tiny landing page (Guepard logo + "Guepard Desktop · sidecar pending") so the bundle has something to show pre-sidecar.
+- [ ] `apps/desktop/src/routes/index.tsx` renders a tiny landing page (QLM logo + "QLM Desktop · sidecar pending") so the bundle has something to show pre-sidecar.
 - [ ] `apps/desktop/vite.config.ts` aliases `@/` → `../web/src` so future stories can import shared route components without copy-paste.
 - [ ] `apps/desktop/tsconfig.json` extends the project base and pulls in `apps/web/src/*` types via the alias.
-- [ ] `apps/desktop/package.json` adds `dev` (`vite`), `build` (`vite build`), and the deps: `@tanstack/react-router`, `@tanstack/react-query`, `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `vite-tsconfig-paths`, `@tailwindcss/vite`, `@guepard/ui`, `@guepard/i18n`, `@guepard/shared`. Strict port 1420 to mirror qwery-core.
+- [ ] `apps/desktop/package.json` adds `dev` (`vite`), `build` (`vite build`), and the deps: `@tanstack/react-router`, `@tanstack/react-query`, `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `vite-tsconfig-paths`, `@tailwindcss/vite`, `@qlm/ui`, `@qlm/i18n`, `@qlm/shared`. Strict port 1420 to mirror qwery-core.
 - [ ] `apps/desktop/src-tauri/tauri.conf.json` updated: `beforeDevCommand: "pnpm --filter desktop dev"`, `devUrl: "http://localhost:1420"`, `beforeBuildCommand: "pnpm --filter desktop build"`, `frontendDist: "../dist"`.
 - [ ] `pnpm --filter desktop build` produces `apps/desktop/dist/index.html` + assets.
 - [ ] `pnpm --filter desktop tauri:build` produces a `.app` and `.dmg` that **launch and render the landing page** (no `asset not found`).

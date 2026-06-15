@@ -24,7 +24,7 @@ Add unit tests for the `useRuntime()` hook + the 7 Tauri wrappers using `renderH
   - Each wrapper calls `invoke(...)` with the right Tauri command name + args when called from desktop runtime — verified via `vi.mock('@tauri-apps/api/core', ...)` returning a `vi.fn()` and asserting on `mock.calls`.
 - [ ] `packages/shell-runtime/vitest.config.ts` exists if not already (jsdom env, istanbul coverage — mirror `packages/features/accounts/vitest.config.ts` or similar).
 - [ ] `packages/shell-runtime/package.json` adds vitest + jsdom + `@testing-library/react` devDeps if missing (mirror what `packages/features/accounts` declares).
-- [ ] `pnpm --filter @guepard/shell-runtime test` runs and all new tests pass.
+- [ ] `pnpm --filter @qlm/shell-runtime test` runs and all new tests pass.
 - [ ] `pnpm typecheck` stays green.
 
 ## Notes

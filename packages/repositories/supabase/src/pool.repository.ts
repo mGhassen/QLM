@@ -6,8 +6,8 @@ import {
   poolIdOf,
   type Pool,
   type PoolProvider,
-} from '@guepard/domain/entities';
-import { IPoolRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import { IPoolRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 /**

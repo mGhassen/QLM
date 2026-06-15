@@ -9,10 +9,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ShieldCheck, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { useFetchAuthFactors } from '@guepard/supabase/hooks/use-fetch-mfa-factors';
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { useFactorsMutationKey } from '@guepard/supabase/hooks/use-user-factors-mutation-key';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { useFetchAuthFactors } from '@qlm/supabase/hooks/use-fetch-mfa-factors';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { useFactorsMutationKey } from '@qlm/supabase/hooks/use-user-factors-mutation-key';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,12 +22,12 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@guepard/ui/alert-dialog';
-import { Badge } from '@guepard/ui/badge';
-import { Button } from '@guepard/ui/button';
-import { If } from '@guepard/ui/if';
-import { toast } from '@guepard/ui/sonner';
-import { Spinner } from '@guepard/ui/spinner';
+} from '@qlm/ui/alert-dialog';
+import { Badge } from '@qlm/ui/badge';
+import { Button } from '@qlm/ui/button';
+import { If } from '@qlm/ui/if';
+import { toast } from '@qlm/ui/sonner';
+import { Spinner } from '@qlm/ui/spinner';
 import {
   Table,
   TableBody,
@@ -35,14 +35,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@guepard/ui/table';
+} from '@qlm/ui/table';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@guepard/ui/tooltip';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/tooltip';
+import { Trans } from '@qlm/ui/trans';
 
 import { MultiFactorAuthSetupDialog } from './multi-factor-auth-setup-dialog';
 

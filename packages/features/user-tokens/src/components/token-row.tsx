@@ -6,8 +6,8 @@ import {
   deriveUserTokenStatus,
   type UserToken,
   type UserTokenScope,
-} from '@guepard/domain/entities';
-import { Button } from '@guepard/ui/button';
+} from '@qlm/domain/entities';
+import { Button } from '@qlm/ui/button';
 
 import { ScopePill } from './primitives/scope-pill';
 import { StatusChip } from './primitives/status-chip';

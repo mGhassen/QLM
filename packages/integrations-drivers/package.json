@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/integrations-drivers",
+  "name": "@qlm/integrations-drivers",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -19,19 +19,19 @@
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.936.0",
     "@aws-sdk/client-sts": "^3.936.0",
-    "@guepard/domain": "workspace:*",
+    "@qlm/domain": "workspace:*",
     "google-auth-library": "^9.15.0"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "eslint": "^9.39.0",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

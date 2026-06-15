@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Tool } from './tool';
 import { generateChart } from '../agents/tools/generate-chart';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 const DESCRIPTION =
   'Generates a chart configuration JSON for visualization. Takes query results and creates a chart (bar, line, or pie) with proper data transformation, colors, and labels. Use this after selecting a chart type or when the user requests a specific chart type.';

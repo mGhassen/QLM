@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { ChevronRight } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import type { Service, ServiceType } from "./service-card";
 

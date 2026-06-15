@@ -1,9 +1,9 @@
-import type { PolicyContext, PolicyResult } from '@guepard/policies';
-import { Database } from '@guepard/supabase/database';
+import type { PolicyContext, PolicyResult } from '@qlm/policies';
+import { Database } from '@qlm/supabase/database';
 
 /**
  * Invitation policy context that extends the base PolicyContext
- * from @guepard/policies for invitation-specific data.
+ * from @qlm/policies for invitation-specific data.
  */
 export interface FeaturePolicyInvitationContext extends PolicyContext {
   /** The organization slug being invited to */
@@ -47,7 +47,7 @@ export interface FeaturePolicyInvitationContext extends PolicyContext {
 
 /**
  * Invitation policy result that extends the base PolicyResult
- * from @guepard/policies while maintaining backward compatibility.
+ * from @qlm/policies while maintaining backward compatibility.
  */
 export interface FeaturePolicyInvitationResult extends PolicyResult {
   /** Whether the invitations are allowed */

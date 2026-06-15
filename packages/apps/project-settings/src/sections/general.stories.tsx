@@ -7,7 +7,7 @@ import { fn } from 'storybook/test';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { ProjectSettingsGeneralSection } from './general';
 
@@ -50,8 +50,8 @@ type ProjectStub = {
 const project: ProjectStub = {
   id: 'p-1',
   organizationId: 'o-1',
-  slug: 'guepard-console',
-  name: 'Rasm Console',
+  slug: 'qlm-console',
+  name: 'QLM Console',
   description: '',
   status: 'active',
 };
@@ -66,7 +66,7 @@ function makeShellValue(overrides: ProjectRepoOverride = {}): ShellAppContextVal
   return {
     projectId: project.id,
     projectSlug: project.slug,
-    orgSlug: 'guepard',
+    orgSlug: 'qlm',
     currentUserId: 'u-1',
     repositories: asAny({
       project: {

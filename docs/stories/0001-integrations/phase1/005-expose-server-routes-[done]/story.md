@@ -40,7 +40,7 @@ Land nine Hono routes under `/integrations`, back them with an AES-256-GCM secre
 - [x] Secrets are JSON-serialised before vault protection and never round-trip to the browser after the initial POST
 - [x] Rate limiter is applied to `POST /test-draft` and `POST /:id/test`
 - [x] Server log redaction list includes every integration credential field name
-- [x] `pnpm --filter @guepard/server test __tests__/integrations.test.ts` — 16 passing
+- [x] `pnpm --filter @qlm/server test __tests__/integrations.test.ts` — 16 passing
 
 ## Tasks
 
@@ -58,8 +58,8 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/server test __tests__/integrations.test.ts
-pnpm --filter @guepard/server typecheck
+pnpm --filter @qlm/server test __tests__/integrations.test.ts
+pnpm --filter @qlm/server typecheck
 ```
 
 16 tests pass. Secrets never appear in response bodies or logs.

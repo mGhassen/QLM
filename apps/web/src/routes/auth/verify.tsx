@@ -1,16 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 
-import { MultiFactorChallengeContainer } from '@guepard/auth/mfa';
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { Heading } from '@guepard/ui/heading';
-import { Spinner } from '@guepard/ui/spinner';
-import { Trans } from '@guepard/ui/trans';
+import { MultiFactorChallengeContainer } from '@qlm/auth/mfa';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { Heading } from '@qlm/ui/heading';
+import { Spinner } from '@qlm/ui/spinner';
+import { Trans } from '@qlm/ui/trans';
 
 import pathsConfig from '@/config/paths.config';
 
 export const Route = createFileRoute('/auth/verify')({
-  head: () => ({ meta: [{ title: 'Verify — Rasm' }] }),
+  head: () => ({ meta: [{ title: 'Verify — QLM' }] }),
   component: VerifyPage,
 });
 

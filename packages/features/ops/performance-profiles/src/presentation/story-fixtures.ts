@@ -1,4 +1,4 @@
-import type { PerformanceProfile } from '@guepard/domain/entities';
+import type { PerformanceProfile } from '@qlm/domain/entities';
 
 function isoDaysAgo(days: number): string {
   const d = new Date();

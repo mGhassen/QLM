@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `@guepard/telemetry` package provides a unified telemetry system supporting multiple backends:
+The `@qlm/telemetry` package provides a unified telemetry system supporting multiple backends:
 - **OpenTelemetry (OTel)** - Observability (spans, metrics, traces)
 - **PostHog** - Product analytics (events, user tracking)
 - **Sentry** - Error tracking (errors, exceptions)
@@ -18,7 +18,7 @@ graph TB
         DESKTOP[Desktop App]
     end
 
-    subgraph "@guepard/telemetry Package"
+    subgraph "@qlm/telemetry Package"
         subgraph "Unified Manager"
             TM[TelemetryManager<br/>createTelemetryManager]
             TS[TelemetryService Interface]
@@ -359,8 +359,8 @@ sequenceDiagram
 
 ### Basic Setup (PostHog only)
 ```typescript
-import { createTelemetryManager } from '@guepard/telemetry';
-import { createPostHogProvider } from '@guepard/telemetry/providers';
+import { createTelemetryManager } from '@qlm/telemetry';
+import { createPostHogProvider } from '@qlm/telemetry/providers';
 
 const telemetry = createTelemetryManager({
   providers: {
@@ -371,18 +371,18 @@ const telemetry = createTelemetryManager({
 
 ### Multi-Provider Setup
 ```typescript
-import { createTelemetryManager } from '@guepard/telemetry';
+import { createTelemetryManager } from '@qlm/telemetry';
 import { 
   createPostHogProvider,
   createOtelProvider,
   createSentryProvider 
-} from '@guepard/telemetry/providers';
+} from '@qlm/telemetry/providers';
 
 const telemetry = createTelemetryManager({
   providers: {
     posthog: createPostHogProvider(),
     otel: createOtelProvider({
-      serviceName: 'guepard-app',
+      serviceName: 'qlm-app',
       options: { exportAppTelemetry: true }
     }),
     sentry: createSentryProvider({
@@ -394,9 +394,9 @@ const telemetry = createTelemetryManager({
 
 ### Direct OTel Usage (for spans/metrics)
 ```typescript
-import { TelemetryManager } from '@guepard/telemetry/otel';
+import { TelemetryManager } from '@qlm/telemetry/otel';
 
-const otel = new TelemetryManager('guepard-app');
+const otel = new TelemetryManager('qlm-app');
 await otel.init();
 
 const span = otel.startSpan('operation.name', { key: 'value' });

@@ -6,7 +6,7 @@ import {
   SettingsLayout,
   type SettingsSection,
   type SettingsSectionKey,
-} from '@guepard/settings-shell';
+} from '@qlm/settings-shell';
 
 import { PersonalTokensSection } from './sections/personal-tokens';
 import { ProfileSection } from './sections/profile';

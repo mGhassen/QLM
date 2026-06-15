@@ -33,7 +33,7 @@ The RFC opened with no unresolved questions. The two upstream decisions made dur
 
 ### 3.1 Information architecture
 
-No change. The project-shell tab bar lives at the top of every `/prj/<slug>/...`, `/<flatPrefix>/...`, and `/agent/<slug>` route. The host stays in `apps/web/src/shell/project-shell-host.tsx`. The bar component stays in `packages/ui/src/guepard/shell/project-shell-tab-bar.tsx`.
+No change. The project-shell tab bar lives at the top of every `/prj/<slug>/...`, `/<flatPrefix>/...`, and `/agent/<slug>` route. The host stays in `apps/web/src/shell/project-shell-host.tsx`. The bar component stays in `packages/ui/src/qlm/shell/project-shell-tab-bar.tsx`.
 
 ### 3.2 Screen-by-screen
 
@@ -67,7 +67,7 @@ No domain or server flow. All work is presentation + shell layer. The three diff
 No change to the layering. Stays:
 
 - `packages/shell-contracts` — identity contract.
-- `packages/ui/src/guepard/shell/*` — generic shell primitives.
+- `packages/ui/src/qlm/shell/*` — generic shell primitives.
 - `apps/web/src/shell/*` — host glue.
 
 ## 5. API contracts
@@ -102,7 +102,7 @@ Each story has its own `Demo / verification` block. The phase-1 acceptance test,
 
 1. **Typecheck.** `pnpm typecheck` → green.
 2. **Tests.** `pnpm test` → all of `tab-key.empirical.test.ts` and the new `project-shell-tab-bar.test.tsx` green.
-3. **Storybook.** `pnpm --filter @guepard/ui storybook` → three new stories render; clicks fire `onTabClick`; grip drags fire `onTabReorder`.
+3. **Storybook.** `pnpm --filter @qlm/ui storybook` → three new stories render; clicks fire `onTabClick`; grip drags fire `onTabReorder`.
 4. **Manual smoke.**
    - `/prj/<slug>/infrastructure?tid=garbage` lands on a sentinel tab. The clean tab is still in the bar.
    - Typing 20 chars into a filter records ≤2 sessionStorage writes in DevTools Performance.

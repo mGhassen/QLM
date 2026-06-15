@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TaskDelimiter } from '../src/guepard/ai/task-delimiter';
-import * as scrollUtils from '../src/guepard/ai/utils/scroll-utils';
+import { TaskDelimiter } from '../src/qlm/ai/task-delimiter';
+import * as scrollUtils from '../src/qlm/ai/utils/scroll-utils';
 import * as sonner from 'sonner';
 
-vi.mock('../src/guepard/ai/utils/scroll-utils');
+vi.mock('../src/qlm/ai/utils/scroll-utils');
 vi.mock('sonner');
 
 describe('TaskDelimiter', () => {

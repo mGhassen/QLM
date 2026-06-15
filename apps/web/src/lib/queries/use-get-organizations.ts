@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { IOrganizationRepository } from '@guepard/domain/repositories';
+import type { IOrganizationRepository } from '@qlm/domain/repositories';
 import {
   GetOrganizationBySlugService,
   GetOrganizationService,
   GetOrganizationsService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 
 export function getOrganizationsKey() {
   return ['organizations'] as const;

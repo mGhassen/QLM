@@ -300,7 +300,7 @@ Number inputs must strip browser spinners:
 
 - The whole card/row IS the selection target when selection mode is active — no separate checkbox column.
 - First card selected sets `lastSelectedCardId`; subsequent shift-clicks select the range (`nodes-list-page.tsx`). Reuse this pattern; don't invent a new one.
-- Bulk bar lives above the list, uses `BulkActionBar` from `@guepard/ui/data-table-advanced`.
+- Bulk bar lives above the list, uses `BulkActionBar` from `@qlm/ui/data-table-advanced`.
 
 ### 6.12 Empty & error states
 
@@ -376,7 +376,7 @@ Before opening the PR, walk this list against the diff:
 - [ ] Every clickable element has `cursor-pointer`.
 - [ ] Operational text is `font-black uppercase tracking-widest` (or `tracking-[0.15..0.4em]`). Data text is `font-semibold`.
 - [ ] Status colors come from a central `constants.ts`, not inline.
-- [ ] All strings go through `t(...)` / `Trans` from `@guepard/ui/trans`. No hardcoded English.
+- [ ] All strings go through `t(...)` / `Trans` from `@qlm/ui/trans`. No hardcoded English.
 - [ ] Form constants (`LABEL_CLASS`, `INPUT_CLASS`, `SELECT_TRIGGER_CLASS`, `MESSAGE_CLASS`) are reused, not re-declared inline.
 - [ ] Sheets: border-l-2, hero `border-b-2`, footer `border-t-2`, body scrolls via `overflow-y-auto custom-scrollbar`.
 - [ ] Dialogs: `rounded-none sm:rounded-none border-2 p-8`, CTAs `h-12 flex-1 font-black uppercase tracking-widest text-xs`.
@@ -398,7 +398,7 @@ Before opening the PR, walk this list against the diff:
 - ❌ Separate checkbox column on cards — the identity tile IS the selection target.
 - ❌ Floating action buttons inside sheet bodies — actions live in the bordered footer.
 - ❌ `alert()` / `confirm()` for destructive actions — use the type-to-confirm `AlertDialog` pattern.
-- ❌ `Trans` imported from `react-i18next` — must come from `@guepard/ui/trans` (ESLint enforces).
+- ❌ `Trans` imported from `react-i18next` — must come from `@qlm/ui/trans` (ESLint enforces).
 
 ---
 

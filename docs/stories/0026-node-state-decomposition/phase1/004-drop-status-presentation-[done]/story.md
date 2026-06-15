@@ -10,7 +10,7 @@ blocks: ["005-drop-status-db-and-i18n"]
 blocked_by: ["003-drop-status-domain-cascade"]
 ---
 
-# Drop deprecated Node.status — `@guepard/infrastructure` presentation sweep
+# Drop deprecated Node.status — `@qlm/infrastructure` presentation sweep
 
 ## Goal
 
@@ -40,10 +40,10 @@ After this story, `pnpm typecheck` is green across the whole repo.
 
 ## Acceptance criteria
 
-- [ ] `pnpm typecheck` green across the whole repo (no `@guepard/infrastructure` red).
-- [ ] `pnpm --filter @guepard/infrastructure test` green.
+- [ ] `pnpm typecheck` green across the whole repo (no `@qlm/infrastructure` red).
+- [ ] `pnpm --filter @qlm/infrastructure test` green.
 - [ ] `grep -rn 'node\.status\b\|NodeStatus\b\|changeStatus\b' packages/features/ops/infrastructure` returns zero.
-- [ ] Storybook for the `@guepard/infrastructure` pkg renders the same surfaces with the new fixture shape.
+- [ ] Storybook for the `@qlm/infrastructure` pkg renders the same surfaces with the new fixture shape.
 - [ ] No new ESLint disables.
 
 ## Tasks
@@ -56,6 +56,6 @@ After this story, `pnpm typecheck` is green across the whole repo.
 pnpm typecheck
 grep -rn 'node\.status\b\|NodeStatus\b\|changeStatus\b' packages/features/ops/infrastructure
 # expect: zero
-pnpm --filter @guepard/infrastructure test
-pnpm --filter @guepard/infrastructure storybook  # smoke
+pnpm --filter @qlm/infrastructure test
+pnpm --filter @qlm/infrastructure storybook  # smoke
 ```

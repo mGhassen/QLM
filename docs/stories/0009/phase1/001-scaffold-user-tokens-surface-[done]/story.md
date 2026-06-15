@@ -30,7 +30,7 @@ Create the empty `packages/features/user-tokens` package, a `/user/tokens` place
 - Create `apps/web/src/routes/user/route.tsx` pass-through layout if the TanStack Router file-based conventions require it.
 - Add `createUserTokensPath()` to `apps/web/src/config/paths.config.ts` returning `/user/tokens`.
 - Add an "Access tokens" menu item to the existing account-menu component (exact path confirmed during implementation; typically `apps/web/src/components/account-menu/*`). The item uses `createUserTokensPath()`.
-- Add `@guepard/user-tokens` to `apps/web/package.json` dependencies.
+- Add `@qlm/user-tokens` to `apps/web/package.json` dependencies.
 
 **Out of scope**
 
@@ -43,8 +43,8 @@ Create the empty `packages/features/user-tokens` package, a `/user/tokens` place
 
 Rewritten mid-story to reflect RFC 0009 AM-1. The original criteria (pre-amendment) referenced `/user/tokens` route + `createUserTokensPath` + "Access tokens" menu label — all removed by task 003. Current criteria reflect what actually shipped.
 
-- [x] `pnpm install` succeeds after the new `@guepard/user-tokens` workspace package is added.
-- [x] `pnpm typecheck` passes across `@guepard/user-tokens`, `@guepard/ui`, and `apps/web`.
+- [x] `pnpm install` succeeds after the new `@qlm/user-tokens` workspace package is added.
+- [x] `pnpm typecheck` passes across `@qlm/user-tokens`, `@qlm/ui`, and `apps/web`.
 - [x] `packages/features/user-tokens/package.json` declares `./types`, `./hooks`, `./components` subpath exports so Stories 002 / 008 / 009 / 011 do not need to renegotiate the package boundary.
 - [x] No `/user/tokens` route exists in the router — `grep routeTree.gen.ts UserTokens` returns zero.
 - [x] `createUserTokensPath` is NOT exported from `paths.config.ts`; no callers reference it; no `user: { tokens }` stanza in the config object.
@@ -55,7 +55,7 @@ Rewritten mid-story to reflect RFC 0009 AM-1. The original criteria (pre-amendme
 
 ## Tasks
 
-1. [001-scaffold-user-tokens-feature-package](001-scaffold-user-tokens-feature-package-[done].md) ✅ — features layer. Empty `@guepard/user-tokens` workspace package with four public-export subpaths.
+1. [001-scaffold-user-tokens-feature-package](001-scaffold-user-tokens-feature-package-[done].md) ✅ — features layer. Empty `@qlm/user-tokens` workspace package with four public-export subpaths.
 2. [002-wire-user-tokens-into-host-app](002-wire-user-tokens-into-host-app-[done].md) ✅ — host layer. Path helper, route stub at `/user/tokens`, account-menu entry in both `UserProfileMenu` and `ShellUserProfileMenu`, and package dependency. **Partially superseded by task 003** (AM-1): the route and the path helper get deleted; the menu entry gets relabeled. The package-dependency addition and the `Key` icon import survive. Task 002's done status reflects the work landed, not its final correctness — task 003 overlays the fixes.
 3. [003-unwire-direct-route-and-relabel-menu](003-unwire-direct-route-and-relabel-menu-[done].md) ✅ — host layer. Deleted `/user/tokens` route + `createUserTokensPath`, relabeled the account-menu entry to "Settings", swapped `onAccessTokensClick` → `onSettingsClick` on both `UserProfileMenu` and `ShellUserProfileMenu` (renamed the existing unused gear `onSettingsClick` → `onProfileSettingsIconClick`), wired both call sites to a stub console-log handler. Story 010 replaces the stub with the real opener.
 
@@ -76,13 +76,13 @@ grep -c "createUserTokensPath" apps/web/src/config/paths.config.ts apps/web/src/
 # expect: 0 across the board
 
 # 4. Confirm the menu renames landed
-grep -c "onAccessTokensClick" packages/ui/src/guepard/layout/user-profile-menu.tsx packages/ui/src/guepard/shell/shell-user-profile-menu.tsx
+grep -c "onAccessTokensClick" packages/ui/src/qlm/layout/user-profile-menu.tsx packages/ui/src/qlm/shell/shell-user-profile-menu.tsx
 # expect: 0 (prop was renamed to onSettingsClick)
-grep -c "onProfileSettingsIconClick" packages/ui/src/guepard/layout/user-profile-menu.tsx packages/ui/src/guepard/shell/shell-user-profile-menu.tsx
+grep -c "onProfileSettingsIconClick" packages/ui/src/qlm/layout/user-profile-menu.tsx packages/ui/src/qlm/shell/shell-user-profile-menu.tsx
 # expect: ≥ 2 per file (type + destructure + JSX)
 
 # 5. Storybook visual check (SDD gate)
-pnpm --filter @guepard/ui storybook
+pnpm --filter @qlm/ui storybook
 # Open:
 #   Design System/Layouts/User Profile Menu/Default      → "Settings" nav-item visible
 #   Design System/Shell/Shell User Profile Menu/Default  → same

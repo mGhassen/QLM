@@ -18,7 +18,7 @@ blocked_by: []
 
 ## Goal
 
-Create a new `packages/features/qwery-agent` package with empty `AssistantPanelBody` and `AgentTabBody` components, and rewrite `packages/ui/src/guepard/layout/assistant-panel.tsx` as a thin wrapper that delegates to `AssistantPanelBody`.
+Create a new `packages/features/qwery-agent` package with empty `AssistantPanelBody` and `AgentTabBody` components, and rewrite `packages/ui/src/qlm/layout/assistant-panel.tsx` as a thin wrapper that delegates to `AssistantPanelBody`.
 
 ## Scope
 
@@ -28,7 +28,7 @@ Create a new `packages/features/qwery-agent` package with empty `AssistantPanelB
 - `AssistantPanelBody` — presentational shell that renders a header (Qwery avatar, title, model selector placeholder, "Open in new tab" placeholder, close button), a thread area (placeholder `ConversationContent` wiring), and a prompt input slot (existing `prompt-input.tsx`). No data wiring yet — static / unwired primitives so it renders in Storybook.
 - `AgentTabBody` — full-width sibling component with the same inner composition but scaled for the tab view. Accepts a `conversationSlug` prop even if unused for now.
 - Barrel export from `src/index.ts`.
-- Rewrite `packages/ui/src/guepard/layout/assistant-panel.tsx` as a thin wrapper that renders `<AssistantPanelBody />` and nothing else. Delete the hardcoded `SUGGESTED_PROMPTS` array, the placeholder "Q" avatar mock, and the fake welcome bubble.
+- Rewrite `packages/ui/src/qlm/layout/assistant-panel.tsx` as a thin wrapper that renders `<AssistantPanelBody />` and nothing else. Delete the hardcoded `SUGGESTED_PROMPTS` array, the placeholder "Q" avatar mock, and the fake welcome bubble.
 - Register the new feature package in the root `pnpm-workspace.yaml` / `package.json` catalog if the workspace requires it.
 
 **Out of scope** (forces honest slicing)
@@ -42,8 +42,8 @@ Create a new `packages/features/qwery-agent` package with empty `AssistantPanelB
 ## Acceptance criteria
 
 - [x] `packages/features/qwery-agent` exists with `package.json`, `tsconfig.json`, `src/index.ts`; `pnpm install` leaves the workspace clean.
-- [x] `AssistantPanelBody` and `AgentTabBody` exported from `@guepard/qwery-agent`, each rendering a static, unwired composition of `packages/ui/src/guepard/ai/*` primitives (shared via private `_panel-shell.tsx`; branded `BotAvatar` header).
-- [x] `packages/ui/src/guepard/layout/assistant-panel.tsx` **deleted** (corrected from "rewrite as wrapper" to avoid the ui→features dep cycle; host now injects `assistantPanelContent` prop following the RFC 0005 docs-panel pattern — see Notes bullet 3 and the deviation explanation below).
+- [x] `AssistantPanelBody` and `AgentTabBody` exported from `@qlm/qwery-agent`, each rendering a static, unwired composition of `packages/ui/src/qlm/ai/*` primitives (shared via private `_panel-shell.tsx`; branded `BotAvatar` header).
+- [x] `packages/ui/src/qlm/layout/assistant-panel.tsx` **deleted** (corrected from "rewrite as wrapper" to avoid the ui→features dep cycle; host now injects `assistantPanelContent` prop following the RFC 0005 docs-panel pattern — see Notes bullet 3 and the deviation explanation below).
 - [x] `pnpm typecheck` passes across the monorepo (46/46 turbo tasks green).
 - [x] Storybook stories co-located for both `AssistantPanelBody` and `AgentTabBody` (task 005 `[skipped]` as superseded).
 
@@ -58,7 +58,7 @@ Create a new `packages/features/qwery-agent` package with empty `AssistantPanelB
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 pnpm --filter web dev
 # Open the project shell → topbar assistant icon → panel shows the new static body (no hardcoded prompts).
 ```
@@ -69,8 +69,8 @@ pnpm --filter web dev
 
 ## Notes
 
-- 002: had to patch `packages/ui/src/ai-elements/reasoning.tsx` (drop the props spread into `<Streamdown>`) to unblock `tsc --noEmit` in any downstream package that imports `@guepard/ui/ai`. Pre-existing baseline bug since initial commit; hit `@guepard/notebook` too. Follow-up: 2 remaining type errors in `packages/ui/src/guepard/datagrid/datagrid.stories.tsx` (out of qwery-agent import path but break `@guepard/ui` standalone typecheck).
-- 003: stories co-located with each component (`*.stories.tsx` sibling) instead of batched into task 005; `BotAvatar` from `@guepard/ui/bot-avatar` (already ported from qwery-core) replaces the placeholder lucide `<Bot />`. Task 005 is redundant — marked `[skipped]`.
+- 002: had to patch `packages/ui/src/ai-elements/reasoning.tsx` (drop the props spread into `<Streamdown>`) to unblock `tsc --noEmit` in any downstream package that imports `@qlm/ui/ai`. Pre-existing baseline bug since initial commit; hit `@qlm/notebook` too. Follow-up: 2 remaining type errors in `packages/ui/src/qlm/datagrid/datagrid.stories.tsx` (out of qwery-agent import path but break `@qlm/ui` standalone typecheck).
+- 003: stories co-located with each component (`*.stories.tsx` sibling) instead of batched into task 005; `BotAvatar` from `@qlm/ui/bot-avatar` (already ported from qwery-core) replaces the placeholder lucide `<Bot />`. Task 005 is redundant — marked `[skipped]`.
 - 004: corrected the approach mid-task: deleted `assistant-panel.tsx` entirely rather than rewriting it as a ui→features wrapper (would have reversed hexagonal dep arrow). Instead `RightSidebar` now accepts `assistantPanelContent?: ReactNode`, mirroring `docsPanelContent` (RFC 0005 pattern); the host in `apps/web` injects `<AssistantPanelBody />`. No package cycle; dep arrow stays clean.
 
 ## Spec-accuracy check

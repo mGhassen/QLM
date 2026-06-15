@@ -17,8 +17,8 @@ for (const envPath of [
 const { loadDocsEnv } = await import('./load-env.cjs');
 loadDocsEnv();
 
-import { prepareStudioDocument } from '@guepard/docs-studio/lib/studio-document';
-import type { DocDocument, DocMeta } from '@guepard/docs-studio/lib/types';
+import { prepareStudioDocument } from '@qlm/docs-studio/lib/studio-document';
+import type { DocDocument, DocMeta } from '@qlm/docs-studio/lib/types';
 
 import { parseArgs, getConfig } from './lib/supabase-config.cjs';
 
@@ -180,7 +180,7 @@ function parseSlugs(argv: string[]) {
 async function seedData() {
   const args = parseArgs(process.argv);
   const target = args.remote || 'local';
-  console.log('🌱 Starting Rasm CMS data seeding...\n');
+  console.log('🌱 Starting QLM CMS data seeding...\n');
 
   const cliSlugs = parseSlugs(process.argv);
   const slugs =

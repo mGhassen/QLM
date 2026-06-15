@@ -1,4 +1,4 @@
-Poste | Avant | Avec Guepard | Bénéfice
+Poste | Avant | Avec QLM | Bénéfice
 Indisponibilités non planifiées / an | 24 | 8 | -67 %
 Incidents d'exposition ou conformité / an | 5 | 1 | -80 %
 Environnements avec données masquées | 22 % | 78 % | +56 pts

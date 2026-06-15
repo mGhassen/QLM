@@ -4,8 +4,8 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import { Database } from '@guepard/supabase/database';
-import { requireUser } from '@guepard/supabase/require-user';
+import { Database } from '@qlm/supabase/database';
+import { requireUser } from '@qlm/supabase/require-user';
 
 import { CreateOrganizationSchema } from '../../schema';
 import { createCreateOrganizationService } from '../services/create-organization.service';

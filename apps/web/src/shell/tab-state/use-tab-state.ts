@@ -283,7 +283,7 @@ export function useTabState(params: {
   useEffect(() => {
     try {
       localStorage.setItem(
-        'guepard:last-project-slug',
+        'qlm:last-project-slug',
         JSON.stringify({ orgSlug, projectSlug }),
       );
     } catch {

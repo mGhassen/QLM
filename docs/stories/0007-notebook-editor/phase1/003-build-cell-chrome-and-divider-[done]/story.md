@@ -51,7 +51,7 @@ Render each query cell with the polished chrome described in the spec — langua
 - [x] The cell's More menu contains a **Duplicate cell** entry that calls the parent's `handleDuplicateCell`.
 - [x] At rest, every cell divider (between cells and the trailing one) shows a small `+` marker; on hover it fans out into Code / Markdown / Prompt buttons.
 - [x] Every new user-facing string is wrapped in `t('notebooks.…')`.
-- [x] `pnpm --filter @guepard/notebook typecheck` is clean (modulo unrelated baseline errors).
+- [x] `pnpm --filter @qlm/notebook typecheck` is clean (modulo unrelated baseline errors).
 
 ## Tasks
 

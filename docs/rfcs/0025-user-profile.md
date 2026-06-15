@@ -17,11 +17,11 @@ The page is hosted as a new `sections/profile.tsx` inside the `user-settings` pl
 
 **Phase 1 ships** a single Profile page with four subsections — display name, profile picture, password, MFA — plus the supporting domain/adapter plumbing the `accounts` row needs to persist the first two fields. MFA enrollment is TOTP-only in phase 1; recovery codes defer to phase 2 (§3.2). RFC 0025 authors the enrollment flow end-to-end and supersedes the corresponding enrollment slice of RFC 0013; factor verification at sign-in remains in RFC 0013's scope.
 
-A full reference implementation of the same four subsections exists in the legacy `guepard-console` repo at `packages/features/accounts/src/components/personal-account-settings/`. RFC 0025 inherits its UX and API flows (card layout, avatar cache-busting pattern, 3-step TOTP enrollment dialog) while re-building the data path through v3's hexagonal layering — ports, adapters, shell-runtime resources — instead of the legacy's direct Supabase-client calls. See §4.2 for what is lifted and what is not.
+A full reference implementation of the same four subsections exists in the legacy `qlm-console` repo at `packages/features/accounts/src/components/personal-account-settings/`. RFC 0025 inherits its UX and API flows (card layout, avatar cache-busting pattern, 3-step TOTP enrollment dialog) while re-building the data path through v3's hexagonal layering — ports, adapters, shell-runtime resources — instead of the legacy's direct Supabase-client calls. See §4.2 for what is lifted and what is not.
 
 ## 2. Motivation
 
-The v3 console is a ground-up rewrite of the legacy `guepard-console`. Customers migrating to v3 are carrying user accounts that were created in the legacy console, and those accounts expect — at minimum — to be able to update their display name, avatar, password, and MFA factors without calling support. The legacy console ships those four flows today at `/home/settings/profile`; v3 ships only **Personal tokens** under **User settings**. For anyone looking at the settings menu, the gap is immediate and visible.
+The v3 console is a ground-up rewrite of the legacy `qlm-console`. Customers migrating to v3 are carrying user accounts that were created in the legacy console, and those accounts expect — at minimum — to be able to update their display name, avatar, password, and MFA factors without calling support. The legacy console ships those four flows today at `/home/settings/profile`; v3 ships only **Personal tokens** under **User settings**. For anyone looking at the settings menu, the gap is immediate and visible.
 
 The primary driver for RFC 0025 is **feature parity with the legacy console** in the narrowest usable form: the four subsections the mockup calls out, hosted as one section inside the existing **User settings** app. Language selector, email change, and account deletion — all present in the legacy container — are **out of phase-1 scope** either because v3 needs a different home for them (language lives with global shell prefs under RFC 0024) or because they need surfaces larger than Profile should own (email change requires an identity re-link flow; account deletion requires the data-lifecycle work tracked in RFC 0016).
 
@@ -58,15 +58,15 @@ A secondary driver is **unblocking MFA self-service**. RFC 0013 (auth-mfa-aal2) 
 - **Reused**: `packages/features/auth/src/components/update-password-form.tsx` + `packages/supabase/src/hooks/use-update-user-mutation.ts` — existing password-change form and mutation; consumed via a shell-runtime resource in the Password subsection.
 - **Reused**: `packages/supabase/src/hooks/use-user-identities.ts` — drives the "account not linked" branch; the Password subsection checks `isProviderConnected('email')` before rendering the form.
 - **Reused**: `packages/supabase/src/hooks/use-fetch-mfa-factors.ts` + `packages/features/auth/src/components/multi-factor-challenge-container.tsx` — factor listing and sign-in-time challenge-verify UI. Enrollment (factor creation + QR display) is new.
-- **Reused**: `packages/ui/src/shadcn/image-uploader.tsx` + `packages/ui/src/guepard/profile-avatar.tsx` — file-picker primitive and avatar renderer for the Profile Picture subsection.
+- **Reused**: `packages/ui/src/shadcn/image-uploader.tsx` + `packages/ui/src/qlm/profile-avatar.tsx` — file-picker primitive and avatar renderer for the Profile Picture subsection.
 - **Reused**: `apps/web/supabase/schemas/19-storage.sql` (`account_image` bucket with RLS via `get_storage_filename_as_uuid`) — avatar upload target. No new bucket, no RLS changes for phase 1.
 - **Reused**: `accounts.name` and `accounts.picture_url` columns (`apps/web/supabase/schemas/04-initial-tables.sql`) — no schema change needed.
 - **Replaced**: the MFA enrollment slice of RFC 0013 — RFC 0025 authors the enroll/unenroll flows as the first concrete UI over Supabase's `auth.mfa.enroll()` / `challenge()` / `verify()` APIs. RFC 0013 continues to own sign-in-time factor verification and AAL2 policy enforcement.
 - **Orthogonal**: `organizations`, organization membership, and organization role management. In v3, `accounts` is personal-only (one row per `auth.users` row, unique `user_id`; schema comment at `apps/web/supabase/schemas/04-initial-tables.sql:79` — *"Accounts are personal accounts only (one per user). Team accounts have been replaced by organizations."*). Profile never reads or writes an `organizations` row.
 
-### 4.2 Legacy `guepard-console` repo (UX/flow reference, not architecture reference)
+### 4.2 Legacy `qlm-console` repo (UX/flow reference, not architecture reference)
 
-A full reference implementation of the four subsections already lives in the legacy Next.js-based `guepard-console` repo at `~/Documents/work/guepard/guepard-console/packages/features/accounts/src/components/personal-account-settings/`. It is the UX contract this RFC inherits — screenshots and form flows map 1:1 — but its internal layering does **not** match v3's hexagonal architecture and must not be copied verbatim.
+A full reference implementation of the four subsections already lives in the legacy Next.js-based `qlm-console` repo at `~/Documents/work/qlm/qlm-console/packages/features/accounts/src/components/personal-account-settings/`. It is the UX contract this RFC inherits — screenshots and form flows map 1:1 — but its internal layering does **not** match v3's hexagonal architecture and must not be copied verbatim.
 
 **Reused as UX + flow spec**:
 

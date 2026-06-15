@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import type { Replica } from '@guepard/infrastructure/types';
+import type { Replica } from '@qlm/infrastructure/types';
 
 const PROVISIONING_MS = 4_000;
 

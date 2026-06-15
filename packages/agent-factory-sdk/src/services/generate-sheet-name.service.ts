@@ -1,7 +1,7 @@
 import { generateText } from 'ai';
 import { resolveModel, getDefaultModel } from './model-resolver';
-import type { SimpleSchema } from '@guepard/domain/entities';
-import { getLogger } from '@guepard/shared/logger';
+import type { SimpleSchema } from '@qlm/domain/entities';
+import { getLogger } from '@qlm/shared/logger';
 
 const GENERATE_SHEET_NAME_PROMPT = (
   currentName: string,

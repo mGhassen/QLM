@@ -1,15 +1,15 @@
 import { CircleHelp, Server, Tag } from 'lucide-react';
 
-import type { Action } from '@guepard/ui/action';
-import { RowActionMenu } from '@guepard/ui/action';
-import type { AdvancedColumn } from '@guepard/ui/data-table-advanced';
+import type { Action } from '@qlm/ui/action';
+import { RowActionMenu } from '@qlm/ui/action';
+import type { AdvancedColumn } from '@qlm/ui/data-table-advanced';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@guepard/ui/tooltip';
-import { cn, highlightSearchMatch } from '@guepard/ui/utils';
+} from '@qlm/ui/tooltip';
+import { cn, highlightSearchMatch } from '@qlm/ui/utils';
 
 import {
   NODE_HEALTH,
@@ -18,7 +18,7 @@ import {
   NODE_PROVIDERS,
   NODE_REGIONS,
   type Node,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import { HealthStatusBadge } from '../presentation/cells/health-status-badge';
 import { HeatBar } from '../presentation/cells/heat-bar';
 import { LastSeenDot } from '../presentation/cells/last-seen-dot';

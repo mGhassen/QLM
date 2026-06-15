@@ -2,8 +2,8 @@ import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 
-import { AgentTabBody } from '@guepard/qwery-agent';
-import { GetProjectService } from '@guepard/domain/services';
+import { AgentTabBody } from '@qlm/qwery-agent';
+import { GetProjectService } from '@qlm/domain/services';
 
 import { ProjectShellHost } from '@/shell/project-shell-host';
 import { useWorkspace } from '@/lib/context/workspace-context';

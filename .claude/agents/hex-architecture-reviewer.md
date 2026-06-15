@@ -24,14 +24,14 @@ In `packages/domain/**`:
 - `grep -rn "from 'react'"` → VIOLATION
 - `grep -rn "from '@tanstack/react-query'"` → VIOLATION
 - `grep -rn "from '@supabase/"` → VIOLATION
-- `grep -rn "from '@guepard/ui"` → VIOLATION
+- `grep -rn "from '@qlm/ui"` → VIOLATION
 - `grep -rn "fetch("` → VIOLATION
-- `grep -rn "import.*from '@guepard/repository-supabase'"` → VIOLATION
+- `grep -rn "import.*from '@qlm/repository-supabase'"` → VIOLATION
 
 ### H2. App-layer isolation
 
 In `packages/apps/**` and `packages/features/**`:
-- Any import of `@guepard/repository-supabase` → VIOLATION (must go through shell runtime).
+- Any import of `@qlm/repository-supabase` → VIOLATION (must go through shell runtime).
 - Any import from `apps/web/**` → VIOLATION (app packages cannot depend on the host).
 
 ### H3. Repository-port discipline
@@ -47,7 +47,7 @@ In any changed file in `apps/server/**` or `apps/web/src/lib/repositories/**`:
 
 In changed `.tsx` files under `packages/ui/**`, `packages/features/**`, `packages/apps/**`, `apps/web/src/**`:
 - Hardcoded user-facing strings inside JSX text nodes, `aria-label`, `placeholder`, `title` attrs → VIOLATION. Heuristic: string literal longer than 3 chars, not matching a CSS class / id / data-* pattern, not inside a `console.*` call.
-- Import of `Trans` from `react-i18next` (should be `@guepard/ui/trans`) → VIOLATION.
+- Import of `Trans` from `react-i18next` (should be `@qlm/ui/trans`) → VIOLATION.
 
 ### H6. RLS on new tables (`.claude/rules/database.md`)
 

@@ -17,7 +17,7 @@ blocked_by: []
 
 ## Goal
 
-Add a new `conversations` resource to `@guepard/shell-runtime` that wraps the existing domain use cases, auto-injects project context, and exposes a promise-based API consumable via `useShell().conversations`.
+Add a new `conversations` resource to `@qlm/shell-runtime` that wraps the existing domain use cases, auto-injects project context, and exposes a promise-based API consumable via `useShell().conversations`.
 
 ## Scope
 
@@ -47,7 +47,7 @@ Add a new `conversations` resource to `@guepard/shell-runtime` that wraps the ex
 - [x] `list()` returns conversations scoped to the active project (defaults to `currentProjectId` from context); no cross-project leakage.
 - [x] `getDefaultForProject()` is idempotent by construction: returns most-recent existing conversation for `(projectId, currentUserId)`; only creates when none exists.
 - [x] Unit test coverage **deferred to story 010** (`add-qwery-agent-tests`) — task 003 here marked `[skipped]` because shell-runtime has no Vitest infrastructure today; story 010 sets up the test suite and covers this resource.
-- [x] `pnpm typecheck` at repo root passes (46/46 turbo tasks). `@guepard/shell-runtime` has no own `typecheck` script; verified through workspace-wide check.
+- [x] `pnpm typecheck` at repo root passes (46/46 turbo tasks). `@qlm/shell-runtime` has no own `typecheck` script; verified through workspace-wide check.
 
 ## Tasks
 
@@ -58,8 +58,8 @@ Add a new `conversations` resource to `@guepard/shell-runtime` that wraps the ex
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/shell-runtime typecheck
-pnpm --filter @guepard/shell-runtime test
+pnpm --filter @qlm/shell-runtime typecheck
+pnpm --filter @qlm/shell-runtime test
 ```
 
 In a test app or temporary story, call `useShell().conversations.list()` and confirm the returned conversations all share the active `projectId`.
@@ -71,7 +71,7 @@ In a test app or temporary story, call `useShell().conversations.list()` and con
 ## Notes
 
 - 001: domain entity's `taskId` is constrained to `z.uuid()` — couldn't use `''` as planned for a "no-task" panel default; used `crypto.randomUUID()` and added a source comment to consider making `taskId` optional in the schema later.
-- 002: `@guepard/shell-runtime` has no `typecheck`/`test` scripts in `package.json` (no Vitest devDep, no config). Type-correctness was verified via the workspace-wide `pnpm typecheck` (46/46 turbo tasks green). Future cleanup: add per-package scripts so `pnpm --filter @guepard/shell-runtime typecheck/test` works directly.
+- 002: `@qlm/shell-runtime` has no `typecheck`/`test` scripts in `package.json` (no Vitest devDep, no config). Type-correctness was verified via the workspace-wide `pnpm typecheck` (46/46 turbo tasks green). Future cleanup: add per-package scripts so `pnpm --filter @qlm/shell-runtime typecheck/test` works directly.
 - 003: deferred unit-test task to story 010 (`add-qwery-agent-tests`) which covers the same surface and bundles the Vitest setup. Idempotency of `getDefaultForProject` is structurally guaranteed by the find-then-create-if-empty algorithm; story 010 will assert it via a mock repo.
 
 ## Spec-accuracy check

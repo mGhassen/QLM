@@ -12,12 +12,12 @@ set -euo pipefail
 #   ./docker/full/build-full.sh [path-to-env] [image-tag]
 #
 # Examples:
-#   ./docker/full/build-full.sh ./.env guepard-console-full:dev
-#   ./docker/full/build-full.sh ./apps/server/.env guepard-console-full:local
+#   ./docker/full/build-full.sh ./.env qlm-console-full:dev
+#   ./docker/full/build-full.sh ./apps/server/.env qlm-console-full:local
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 ENV_FILE="${1:-$ROOT_DIR/.env}"
-IMAGE_TAG="${2:-guepard-console-full:dev}"
+IMAGE_TAG="${2:-qlm-console-full:dev}"
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "env file not found: $ENV_FILE" >&2

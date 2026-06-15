@@ -40,7 +40,7 @@ The "list" pane state — header + toolbar (search input, status `<FilterPopover
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` + `test` both pass.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` + `test` both pass.
 - [ ] No hardcoded English; all copy goes through `tokens:*` keys.
 - [ ] `Readonly<Props>` on the component.
 - [ ] Filter logic is pure client-side (no extra round-trip).
@@ -49,18 +49,18 @@ The "list" pane state — header + toolbar (search input, status `<FilterPopover
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles**: `UserTokens / TokenListView / Loading`, `… / Empty`, `… / Error`, `… / With Three Tokens`, `… / With Filters`
 - **Expected visual outcome**: `Loading` shows 3 grey skeleton rows. `Empty` shows centered "No access tokens yet" message + "Generate your first token" button. `Error` shows alert banner + Retry. `With Three Tokens` shows the toolbar + 3 rows (active green, expired muted, revoked red — trash button enabled on active, disabled on others).
 
 ## Notes
 
 - The list view stays "logic-light" — it owns local search/filter state but offloads transitions to the parent.
-- Skeleton rows are simple `bg-muted` divs, no need for `<Skeleton>` from `@guepard/ui` unless the existing component is already imported elsewhere in the package.
+- Skeleton rows are simple `bg-muted` divs, no need for `<Skeleton>` from `@qlm/ui` unless the existing component is already imported elsewhere in the package.
 - The Generate Token button copy comes from `tokens:toolbar.generate` and the empty-state CTA from `tokens:empty.action` — they're intentionally different strings.

@@ -1,8 +1,8 @@
 import { Cloud, CloudCog, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { IntegrationProvider } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { IntegrationProvider } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 
 export type ProviderPickerProps = Readonly<{
   value: IntegrationProvider | null;

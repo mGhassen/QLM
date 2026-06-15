@@ -177,7 +177,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "time_series",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['agent.actor.type'] AS actor_type,\n    avg(toFloat64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS avg_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765782896910/1000, 9) \n                    AND toDateTime64(1765826096910/1000, 9)\n  AND SpanAttributes['application.type'] IN ('guepard-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting')\nGROUP BY t, actor_type\nORDER BY t ASC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['agent.actor.type'] AS actor_type,\n    avg(toFloat64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS avg_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765782896910/1000, 9) \n                    AND toDateTime64(1765826096910/1000, 9)\n  AND SpanAttributes['application.type'] IN ('qlm-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting')\nGROUP BY t, actor_type\nORDER BY t ASC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -385,7 +385,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "time_series",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['application.type'] AS app_type,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS total_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1766023031590/1000, 9)\n                    AND toDateTime64(1766066231590/1000, 9)\n  AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('guepard-web-server')\n  AND SpanAttributes['user.id'] IN ('cli-1766051924571-27q4q45','web-1766065295881-yugqvzi','web-1766065544866-y1ki9q2')\nGROUP BY t, app_type\nORDER BY t ASC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['application.type'] AS app_type,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS total_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1766023031590/1000, 9)\n                    AND toDateTime64(1766066231590/1000, 9)\n  AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('qlm-web-server')\n  AND SpanAttributes['user.id'] IN ('cli-1766051924571-27q4q45','web-1766065295881-yugqvzi','web-1766065544866-y1ki9q2')\nGROUP BY t, app_type\nORDER BY t ASC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -489,7 +489,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "time_series",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['agent.actor'] AS actor,\n    avg(Duration / 1e6) AS avg_ms\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765804703089/1000, 9)\n                    AND toDateTime64(1765826303089/1000, 9)\n  AND SpanName LIKE 'agent.actor.%'\n  AND SpanAttributes['application.type'] IN ('guepard-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting')\nGROUP BY t, actor\nORDER BY t ASC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    toStartOfHour(Timestamp) AS t,\n    SpanAttributes['agent.actor'] AS actor,\n    avg(Duration / 1e6) AS avg_ms\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765804703089/1000, 9)\n                    AND toDateTime64(1765826303089/1000, 9)\n  AND SpanName LIKE 'agent.actor.%'\n  AND SpanAttributes['application.type'] IN ('qlm-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting')\nGROUP BY t, actor\nORDER BY t ASC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -536,7 +536,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "table",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    Timestamp,\n    SpanName,\n    SpanAttributes['agent.actor'] AS actor,\n    StatusMessage\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765822513022/1000, 9)\n                    AND toDateTime64(1765844113022/1000, 9)\n  AND StatusCode != 'Ok'\n  AND SpanAttributes['application.type'] IN ('guepard-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\nORDER BY Timestamp DESC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    Timestamp,\n    SpanName,\n    SpanAttributes['agent.actor'] AS actor,\n    StatusMessage\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765822513022/1000, 9)\n                    AND toDateTime64(1765844113022/1000, 9)\n  AND StatusCode != 'Ok'\n  AND SpanAttributes['application.type'] IN ('qlm-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\nORDER BY Timestamp DESC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -603,7 +603,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "table",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    SpanAttributes['user.id'] AS user_id,\n    SpanAttributes['application.type'] AS app_type,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS total_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765804703089/1000, 9)\n                    AND toDateTime64(1765826303089/1000, 9)\n  AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('guepard-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\nGROUP BY user_id, app_type\nORDER BY total_tokens DESC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    SpanAttributes['user.id'] AS user_id,\n    SpanAttributes['application.type'] AS app_type,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS total_tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765804703089/1000, 9)\n                    AND toDateTime64(1765826303089/1000, 9)\n  AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('qlm-cli')\n  AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs')\nGROUP BY user_id, app_type\nORDER BY total_tokens DESC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -677,7 +677,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "table",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    SpanAttributes['agent.actor'] AS agent,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765969907640/1000, 9)\n                    AND toDateTime64(1766056307640/1000, 9)\n  AND has(SpanAttributes, 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('guepard-web-server')\n  AND SpanAttributes['user.id'] IN ('cli-1766051924571-27q4q45')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting','loadContext')\nGROUP BY agent\nORDER BY tokens DESC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT\n    SpanAttributes['agent.actor'] AS agent,\n    sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS tokens\nFROM otel_traces\nWHERE Timestamp BETWEEN toDateTime64(1765969907640/1000, 9)\n                    AND toDateTime64(1766056307640/1000, 9)\n  AND has(SpanAttributes, 'agent.llm.total.tokens')\n  AND SpanAttributes['application.type'] IN ('qlm-web-server')\n  AND SpanAttributes['user.id'] IN ('cli-1766051924571-27q4q45')\n  AND SpanAttributes['agent.actor'] IN ('detectIntent','greeting','loadContext')\nGROUP BY agent\nORDER BY tokens DESC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -775,7 +775,7 @@
           "editorMode": "builder",
           "extrapolate": true,
           "format": "table",
-          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT SpanAttributes['agent.llm.model'] AS model, sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS tokens FROM otel_traces WHERE Timestamp BETWEEN toDateTime64(1765801804347/1000, 9) AND toDateTime64(1765845004347/1000, 9) AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens') AND SpanAttributes['application.type'] IN ('guepard-cli') AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs') AND SpanAttributes['agent.llm.model'] IN () GROUP BY model ORDER BY tokens DESC",
+          "formattedQuery": "/* grafana dashboard='LLM Observability Dashboard', user=1 */\nSELECT SpanAttributes['agent.llm.model'] AS model, sum(toUInt64OrZero(SpanAttributes['agent.llm.total.tokens'])) AS tokens FROM otel_traces WHERE Timestamp BETWEEN toDateTime64(1765801804347/1000, 9) AND toDateTime64(1765845004347/1000, 9) AND has(mapKeys(SpanAttributes), 'agent.llm.total.tokens') AND SpanAttributes['application.type'] IN ('qlm-cli') AND SpanAttributes['user.id'] IN ('cli-1765813001600-bpxq1zs') AND SpanAttributes['agent.llm.model'] IN () GROUP BY model ORDER BY tokens DESC",
           "interval": "",
           "intervalFactor": 1,
           "nullifySparse": false,
@@ -817,13 +817,13 @@
         "options": [
           {
             "selected": false,
-            "text": "guepard-cli",
-            "value": "guepard-cli"
+            "text": "qlm-cli",
+            "value": "qlm-cli"
           },
           {
             "selected": false,
-            "text": "guepard-web-server",
-            "value": "guepard-web-server"
+            "text": "qlm-web-server",
+            "value": "qlm-web-server"
           }
         ],
         "query": {

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
-import { encodeTabId } from '@guepard/shell-contracts';
-import { useShell } from '@guepard/shell-runtime';
+import { encodeTabId } from '@qlm/shell-contracts';
+import { useShell } from '@qlm/shell-runtime';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import type { TopologyPool } from '../application/use-topology-data';
 import { TopologyPage, type TopologyView } from './components/topology-page';

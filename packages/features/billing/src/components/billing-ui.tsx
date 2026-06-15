@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import { RemainingBalance } from './remaining-balance';
 import { BuyCredits } from './buy-credits';
 import { InvoiceHistory, type Invoice } from './invoice-history';
 import { CreditCardIcon, EditIcon } from 'lucide-react';
-import { Label } from '@guepard/ui/label';
+import { Label } from '@qlm/ui/label';
 
 type PaymentMethod = {
   id: string;

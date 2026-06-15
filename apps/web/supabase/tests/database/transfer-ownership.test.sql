@@ -16,13 +16,13 @@ select tests.create_supabase_user('test', 'test@supabase.com');
 select public.set_identifier('test', 'test@supabase.com');
 
 select public.authenticate_as('primary_owner');
-insert into public.organizations (slug, name, user_id) values ('transfer-rasm', 'Transfer Rasm', auth.uid());
+insert into public.organizations (slug, name, user_id) values ('transfer-qlm', 'Transfer QLM', auth.uid());
 
 set local role postgres;
 insert into public.organization_memberships (user_id, organization_id, account_role)
-select public.get_id_by_identifier('owner'), public.get_organization_id_by_slug('transfer-rasm'), 'owner'
-union all select public.get_id_by_identifier('member'), public.get_organization_id_by_slug('transfer-rasm'), 'analyst'
-union all select public.get_id_by_identifier('custom'), public.get_organization_id_by_slug('transfer-rasm'), 'analyst';
+select public.get_id_by_identifier('owner'), public.get_organization_id_by_slug('transfer-qlm'), 'owner'
+union all select public.get_id_by_identifier('member'), public.get_organization_id_by_slug('transfer-qlm'), 'analyst'
+union all select public.get_id_by_identifier('custom'), public.get_organization_id_by_slug('transfer-qlm'), 'analyst';
 reset role;
 
 select public.authenticate_as('primary_owner');
@@ -31,7 +31,7 @@ select public.authenticate_as('primary_owner');
 -- authenticated users get permission error or custom exception
 select throws_matching(
     $$ select public.transfer_organization_ownership(
-        public.get_organization_id_by_slug('transfer-rasm'),
+        public.get_organization_id_by_slug('transfer-qlm'),
         tests.get_supabase_uid('custom')
     ) $$,
     'permission|member',
@@ -45,7 +45,7 @@ perform set_config('request.jwt.claims', '{"role":"service_role"}', true);
 -- the new owner must be a member of the organization so this should fail
 select throws_ok(
     $$ select public.transfer_organization_ownership(
-        public.get_organization_id_by_slug('transfer-rasm'),
+        public.get_organization_id_by_slug('transfer-qlm'),
         tests.get_supabase_uid('test')
     ) $$,
     'The new owner must be a member of the organization'
@@ -54,7 +54,7 @@ select throws_ok(
 -- this should work because the user is a member of the organization
 select lives_ok(
     $$ select public.transfer_organization_ownership(
-        public.get_organization_id_by_slug('transfer-rasm'),
+        public.get_organization_id_by_slug('transfer-qlm'),
         tests.get_supabase_uid('owner')
     ) $$
 );
@@ -62,7 +62,7 @@ select lives_ok(
 -- check the organization owner has been updated (use postgres to bypass RLS)
 set local role postgres;
 select row_eq(
-    $$ select user_id from public.organizations where id = (select id from public.organizations where slug = 'transfer-rasm') $$,
+    $$ select user_id from public.organizations where id = (select id from public.organizations where slug = 'transfer-qlm') $$,
     row(tests.get_supabase_uid('owner')),
     'The organization owner should be updated'
 );
@@ -72,7 +72,7 @@ set local role service_role;
 -- the membership will also be updated to the owner role
 select lives_ok(
     $$ select public.transfer_organization_ownership(
-        public.get_organization_id_by_slug('transfer-rasm'),
+        public.get_organization_id_by_slug('transfer-qlm'),
         tests.get_supabase_uid('member')
     ) $$
 );
@@ -81,7 +81,7 @@ select lives_ok(
 set local role postgres;
 select row_eq(
     $$ select account_role from public.organization_memberships
-       where organization_id = (select id from public.organizations where slug = 'transfer-rasm')
+       where organization_id = (select id from public.organizations where slug = 'transfer-qlm')
        and user_id = tests.get_supabase_uid('member');
     $$,
     row('owner'::varchar),

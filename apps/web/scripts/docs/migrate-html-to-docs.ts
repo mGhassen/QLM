@@ -3,13 +3,13 @@
 import * as cheerio from 'cheerio';
 import fs from 'fs';
 import path from 'path';
-import type { BlockNode, DocDocument } from '@guepard/docs-studio/lib/types';
+import type { BlockNode, DocDocument } from '@qlm/docs-studio/lib/types';
 
 export const SLUG = 'ia-agentique';
 const HTML_PATH = path.join(
   process.cwd(),
   'import',
-  'Guepard_Imperatif_Donnees_Agentiques.html',
+  'QLM_Imperatif_Donnees_Agentiques.html',
 );
 const OUT_DIR = path.join(process.cwd(), 'content', 'docs', SLUG);
 const IMG_DIR = path.join(process.cwd(), 'public', 'docs', SLUG);
@@ -487,7 +487,7 @@ function parseCover($: cheerio.CheerioAPI): BlockNode {
   const cover = $('.cover');
   const brand =
     cover.find('.brand').text().replace(/\s+/g, ' ').trim() ||
-    'GUEPARD STRATEGIC RESEARCH';
+    'QLM STRATEGIC RESEARCH';
   const kicker = cover.find('.kicker').text().trim();
   const title = cover.find('h1').text().trim();
   const subtitleUp = cover.find('.subt-up').text().trim();
@@ -643,8 +643,8 @@ export function migrateHtmlToDocs(
     pageFormat: 'a4',
     chrome: {
       headerLeft: 'IA agentique',
-      headerRight: 'Guepard Strategic Research',
-      footerLeft: 'guepard.run',
+      headerRight: 'QLM Strategic Research',
+      footerLeft: 'qlm.run',
       footerRight: 'Page {{page}}',
       showOnCover: false,
     },
@@ -653,7 +653,7 @@ export function migrateHtmlToDocs(
 
   const meta = {
     slug: SLUG,
-    title: 'IA agentique — Guepard Strategic Research',
+    title: 'IA agentique — QLM Strategic Research',
     locale: 'fr',
     createdAt: new Date().toISOString(),
   };

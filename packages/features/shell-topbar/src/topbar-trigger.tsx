@@ -1,7 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { forwardRef, type ButtonHTMLAttributes } from 'react';
 
-import { useShellSidebar } from '@guepard/ui/shell';
+import { useShellSidebar } from '@qlm/ui/shell';
 
 export interface TopbarTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   orgInitial: string;

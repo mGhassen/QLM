@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowUpRight } from 'lucide-react';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
-import type { FleetSummary, PressurePoint } from '@guepard/domain/usecases';
+import type { FleetSummary, PressurePoint } from '@qlm/domain/usecases';
 
 import { HEALTH_DOT, HEALTH_KEYS } from '../../application/constants';
 import { TopologyPressureList } from './topology-pressure-list';

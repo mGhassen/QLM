@@ -11,12 +11,12 @@ import { GcpCredentialsForm } from './gcp-credentials-form';
 const VALID_SERVICE_ACCOUNT_JSON = JSON.stringify(
   {
     type: 'service_account',
-    project_id: 'guepard-analytics-prod',
+    project_id: 'qlm-analytics-prod',
     private_key_id: '1234567890abcdef1234567890abcdef12345678',
     private_key:
       '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcw…\n-----END PRIVATE KEY-----\n',
     client_email:
-      'guepard-runtime@guepard-analytics-prod.iam.gserviceaccount.com',
+      'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
     client_id: '100000000000000000001',
     auth_uri: 'https://accounts.google.com/o/oauth2/auth',
     token_uri: 'https://oauth2.googleapis.com/token',

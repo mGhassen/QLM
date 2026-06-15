@@ -16,7 +16,7 @@ blocked_by: []
 
 ## Goal
 
-Add a pure-state `DocsPanelContext` to `@guepard/shell-runtime` with a `DocsPanelProvider` and a strict `useDocsPanel()` hook so plugins can open and close the right-sidebar docs panel without coupling to the host.
+Add a pure-state `DocsPanelContext` to `@qlm/shell-runtime` with a `DocsPanelProvider` and a strict `useDocsPanel()` hook so plugins can open and close the right-sidebar docs panel without coupling to the host.
 
 ## Scope
 
@@ -24,7 +24,7 @@ Add a pure-state `DocsPanelContext` to `@guepard/shell-runtime` with a `DocsPane
 - `DocsPanelContextValue` — `activePageId / isOpen / open(pageId) / close()`
 - `DocsPanelProvider` — owns `activePageId` state, bridges `open/close` to an optional `onOpenChange` callback
 - `useDocsPanel()` — throws if called outside the provider
-- Barrel exports from `@guepard/shell-runtime`
+- Barrel exports from `@qlm/shell-runtime`
 
 **Out of scope**
 - App registry contract extension → story 002
@@ -34,11 +34,11 @@ Add a pure-state `DocsPanelContext` to `@guepard/shell-runtime` with a `DocsPane
 
 ## Acceptance criteria
 
-- [x] `DocsPanelProvider`, `useDocsPanel`, `DocsPanelContextValue`, and `DocsPanelProviderProps` are exported from `@guepard/shell-runtime`
+- [x] `DocsPanelProvider`, `useDocsPanel`, `DocsPanelContextValue`, and `DocsPanelProviderProps` are exported from `@qlm/shell-runtime`
 - [x] `useDocsPanel()` throws a descriptive error when used without a surrounding provider
 - [x] Opening a page via `open('foo')` sets `activePageId = 'foo'` and fires `onOpenChange(true)` exactly once
 - [x] `close()` sets `activePageId = null` and fires `onOpenChange(false)`
-- [x] `pnpm --filter @guepard/shell-runtime typecheck` green
+- [x] `pnpm --filter @qlm/shell-runtime typecheck` green
 
 ## Tasks
 
@@ -50,10 +50,10 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/shell-runtime typecheck
+pnpm --filter @qlm/shell-runtime typecheck
 ```
 
-Importing `useDocsPanel` from `@guepard/shell-runtime` type-checks in a consumer package.
+Importing `useDocsPanel` from `@qlm/shell-runtime` type-checks in a consumer package.
 
 ## Questions surfaced
 

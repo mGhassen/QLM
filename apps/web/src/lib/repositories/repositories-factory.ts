@@ -1,6 +1,6 @@
-import { Repositories } from '@guepard/domain/repositories';
+import { Repositories } from '@qlm/domain/repositories';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 import { IntegrationConnectionHttpRepository } from './integration-connection.repository';
 import { NodeRepository } from './node.repository';
@@ -32,7 +32,7 @@ export async function createRepositories<T = unknown>(
       UserQuotaRepository: SupabaseUserQuotaRepository,
       VolumePricingTierRepository: SupabaseVolumePricingTierRepository,
     },
-  ] = await Promise.all([import('@guepard/repository-supabase')]);
+  ] = await Promise.all([import('@qlm/repository-supabase')]);
 
   // Use provided client if available, otherwise fall back to browser client
   // Type assertion needed due to SSR client type differences at compile time
@@ -45,7 +45,7 @@ export async function createRepositories<T = unknown>(
     // Use browser client for both server and browser contexts
     // Browser client works fine for server-side operations
     const { getSupabaseBrowserClient } =
-      await import('@guepard/supabase/browser-client');
+      await import('@qlm/supabase/browser-client');
     supabaseClient =
       getSupabaseBrowserClient() as unknown as SupabaseClientType;
   }

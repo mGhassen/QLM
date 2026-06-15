@@ -1,6 +1,6 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { VolumePricingTier } from '@guepard/domain/entities';
-import { IVolumePricingTierRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { VolumePricingTier } from '@qlm/domain/entities';
+import { IVolumePricingTierRepository } from '@qlm/domain/repositories';
 
 export class VolumePricingTierRepository extends IVolumePricingTierRepository {
   async findAll(

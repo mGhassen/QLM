@@ -34,13 +34,13 @@ Polish empty / loading / error states across every token component, run the acce
   - Form validation errors in `GenerateTokenDialog` announce via `aria-live` and link to the offending field via `aria-describedby`.
   - Date picker in `GenerateTokenDialog` is keyboard navigable.
 - **Coverage**:
-  - `pnpm --filter @guepard/user-tokens test -- --coverage` reports ≥ 80 % line coverage on `packages/features/user-tokens/src/`.
-  - `pnpm --filter @guepard/domain test -- --coverage services/user-token` reports ≥ 90 % line coverage on the domain services.
+  - `pnpm --filter @qlm/user-tokens test -- --coverage` reports ≥ 80 % line coverage on `packages/features/user-tokens/src/`.
+  - `pnpm --filter @qlm/domain test -- --coverage services/user-token` reports ≥ 90 % line coverage on the domain services.
   - Fill any coverage gaps identified by the runs.
 - **Playwright smoke**: `apps/e2e/tests/user-tokens/create-reveal-revoke.spec.ts` — the 13-step spec from spec §10.4. Runs against `pnpm web:dev` with a real local Supabase. Uses `navigator.clipboard` stub helpers already present in the e2e package (or add them).
 - **Manual smoke**: walk the 10 steps in spec §10.5 end-to-end. Log the walk in the story's Questions section with one bullet per step + pass/fail.
 - **`pnpm check`** passes end-to-end from a clean working tree: `format:fix → format → lint → typecheck → build → test`.
-- **Cross-repo coordination ticket** against `guepard-public-api`: update its query from `guepard.gp_user_tokens` to `public.user_tokens` (schema-prefix change only; column names unchanged). URL of the filed ticket logged in this story's Questions section.
+- **Cross-repo coordination ticket** against `qlm-public-api`: update its query from `qlm.gp_user_tokens` to `public.user_tokens` (schema-prefix change only; column names unchanged). URL of the filed ticket logged in this story's Questions section.
 - **Follow-up ticket for `revoked NOT NULL` hardening**: filed per spec §13 Follow-ups.
 
 **Out of scope**
@@ -48,19 +48,19 @@ Polish empty / loading / error states across every token component, run the acce
 - Any new component, type, hook, or endpoint. If visual polish reveals a missing piece, **stop and file a new story** — do not silently add it here.
 - Any changes to the spec — deviations logged via `/finish-story`'s Changelog mechanism, not direct edits.
 - Any changes to the RFC — it's immutable; amendments go in `## Amendments`.
-- Changes in the POC or in `guepard-public-api` / `guepard-cli` repos beyond filing the coordination ticket.
+- Changes in the POC or in `qlm-public-api` / `qlm-cli` repos beyond filing the coordination ticket.
 
 ## Acceptance criteria
 
 - [x] Every token component has clean empty / loading / error / ready states visible in Storybook — verified via stories shipped in Stories 009, 010, 011 and user-approved during those stories' visual validation.
 - [~] Keyboard a11y audit: the dialog uses Radix (built-in focus trap, Escape-to-close, focus return); `<RevokeConfirmInline>` uses `role="alertdialog"` + `aria-modal="true"`; every interactive element has a `data-test` AND either a visible label or an `aria-label`. The form uses react-hook-form's built-in `aria-invalid` + `aria-describedby` pairings. A full WCAG audit against axe-core is deferred to a follow-up ticket — there's no way to sign off definitively in this story without running a dedicated tool.
 - [~] Color-contrast audit deferred: Tailwind tokens we use (`text-green-700 dark:text-green-300` on `bg-green-500/10`, red and purple equivalents) have been measured against WCAG AA for adjacent repositories; not re-run here. A formal WCAG audit lands in the same follow-up ticket.
-- [x] `pnpm --filter @guepard/user-tokens exec vitest run --coverage --coverage.include='src/**' --coverage.exclude='**/*.stories.tsx' --coverage.exclude='**/story-helpers.tsx'` → **92.09 %** line. See Questions for the per-file breakdown.
-- [x] `pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'` → **100 %** line.
+- [x] `pnpm --filter @qlm/user-tokens exec vitest run --coverage --coverage.include='src/**' --coverage.exclude='**/*.stories.tsx' --coverage.exclude='**/story-helpers.tsx'` → **92.09 %** line. See Questions for the per-file breakdown.
+- [x] `pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'` → **100 %** line.
 - [x] `apps/e2e/tests/user-tokens/create-reveal-revoke.spec.ts` exists at the spec-mandated path; the 13 amended steps from §10.4 are exercised. The test needs `pnpm web:dev` + local Supabase running — user runs it once before merging (command in the demo section).
 - [~] Manual smoke: the user performed a partial walk during Stories 010 + 011 visual validation. A formal 10-step log is optional — the dev-server flow has been exercised end-to-end during story validation.
 - [~] Full `pnpm check` not run to completion: pre-existing `@mlc-ai/web-llm` ESM failure on `apps/server` test step (unrelated to RFC 0009, documented in Story 006). Touched packages pass typecheck + lint + test.
-- [~] Cross-repo ticket against `guepard-public-api` drafted in full (see Questions); URL pending the user's filing.
+- [~] Cross-repo ticket against `qlm-public-api` drafted in full (see Questions); URL pending the user's filing.
 - [~] Follow-up ticket for `revoked NOT NULL` drafted in full (see Questions); URL pending the user's filing.
 - [x] No new TODOs / FIXME comments in `packages/features/user-tokens/`, `packages/domain/src/services/user-token/`, `packages/domain/src/entities/user-token*`, or `apps/server/src/routes/user-tokens.ts` — the only surviving `TODO(story-010)` comment was already cleared by Story 010 task 003.
 - [x] All `tokens.*` i18n keys from spec §11 are used in the shipped components; no missing-key fallback warnings observed during dev-server validation.
@@ -78,8 +78,8 @@ Polish empty / loading / error states across every token component, run the acce
 pnpm check
 
 # Coverage reports
-pnpm --filter @guepard/user-tokens test -- --coverage
-pnpm --filter @guepard/domain test -- --coverage services/user-token
+pnpm --filter @qlm/user-tokens test -- --coverage
+pnpm --filter @qlm/domain test -- --coverage services/user-token
 
 # Playwright smoke (requires pnpm web:dev running with local Supabase)
 pnpm supabase:web:start
@@ -92,7 +92,7 @@ pnpm web:dev
 # Walk steps 1–10; log pass/fail for each in this story's Questions.
 
 # Storybook visual review
-pnpm --filter @guepard/user-tokens storybook
+pnpm --filter @qlm/user-tokens storybook
 # Compare each story against docs/rfcs/0009-token-management/token-list.png
 # and docs/rfcs/0009-token-management/generate-token.png
 ```
@@ -101,11 +101,11 @@ pnpm --filter @guepard/user-tokens storybook
 
 ### Coverage results (task 001)
 
-- `@guepard/user-tokens` (excluding `*.stories.tsx` + `story-helpers.tsx`) — **92.09 %** line / 81.52 % branch / 89.47 % funcs. Above the 80 % bar.
+- `@qlm/user-tokens` (excluding `*.stories.tsx` + `story-helpers.tsx`) — **92.09 %** line / 81.52 % branch / 89.47 % funcs. Above the 80 % bar.
   - Source files in detail: primitives + token-row + reducer = 100 %; reveal + revoke-confirm = 100 %; generate-form = 89 %; list-view = 85 %; tokens-settings-pane shell = 71 % (shell switch covered indirectly via the per-state stories).
-- `@guepard/domain` user-token services — **100 %** line / 100 % branch / 100 % funcs across `create`, `revoke`, `list`. Above the 90 % bar.
-- `@guepard/auth-shared` (Story 007) — 96.42 % line / 95.65 % branch on `bearer-token-middleware.ts`.
-- `@guepard/repository-supabase` (Story 005) — 100 % line / 93.75 % branch on `user-token.repository.ts` + `jwt-signer.ts`.
+- `@qlm/domain` user-token services — **100 %** line / 100 % branch / 100 % funcs across `create`, `revoke`, `list`. Above the 90 % bar.
+- `@qlm/auth-shared` (Story 007) — 96.42 % line / 95.65 % branch on `bearer-token-middleware.ts`.
+- `@qlm/repository-supabase` (Story 005) — 100 % line / 93.75 % branch on `user-token.repository.ts` + `jwt-signer.ts`.
 
 ### Playwright spec (task 002)
 
@@ -123,20 +123,20 @@ pnpm --filter @guepard/user-tokens storybook
 ### `pnpm check` final gate (task 003)
 
 - **Workspace typecheck** (`pnpm typecheck` via Turborepo): 48 / 48 packages pass.
-- **Lint** on touched packages (`@guepard/user-tokens`, `@guepard/settings-shell`, `@guepard/auth-shared`, `@guepard/repository-supabase`, `@guepard/domain`, `apps/web`, `apps/server`): all pass after fixing 3 lint errors discovered in this gate (escaped `"` in a story, `setState`-in-effect in `SettingsDialog`, `useState` inside a story `render` callback) and adding eslint configs to the two new packages. One react-hook-form `react-hooks/incompatible-library` warning on `generate-token-form.tsx` line 90 — known false-positive on `form.watch()` and intentionally tolerated.
-- **Tests** on touched packages: 376 passing across `@guepard/auth-shared` (23) + `@guepard/domain` (262) + `@guepard/repository-supabase` (18) + `@guepard/settings-shell` (10) + `@guepard/user-tokens` (63). 3 skipped tests in `@guepard/domain` are pre-existing.
+- **Lint** on touched packages (`@qlm/user-tokens`, `@qlm/settings-shell`, `@qlm/auth-shared`, `@qlm/repository-supabase`, `@qlm/domain`, `apps/web`, `apps/server`): all pass after fixing 3 lint errors discovered in this gate (escaped `"` in a story, `setState`-in-effect in `SettingsDialog`, `useState` inside a story `render` callback) and adding eslint configs to the two new packages. One react-hook-form `react-hooks/incompatible-library` warning on `generate-token-form.tsx` line 90 — known false-positive on `form.watch()` and intentionally tolerated.
+- **Tests** on touched packages: 376 passing across `@qlm/auth-shared` (23) + `@qlm/domain` (262) + `@qlm/repository-supabase` (18) + `@qlm/settings-shell` (10) + `@qlm/user-tokens` (63). 3 skipped tests in `@qlm/domain` are pre-existing.
 - **Pre-existing failures NOT introduced by RFC 0009**: `apps/server` test suite still fails on `@mlc-ai/web-llm`'s ESM `require` reference (10 of 12 server test files affected). Already documented in Story 006 Questions; outside this RFC's scope.
 
 ### Cross-repo + follow-up tickets to file
 
 The two tickets below are outside this repo and need a human to file in GitHub. **Action requested**: paste these into your GitHub project boards.
 
-**Ticket 1 — `guepard-public-api` schema rename**
+**Ticket 1 — `qlm-public-api` schema rename**
 > Title: `Update user-tokens lookup query for v3 schema rename`
 >
-> Body: RFC 0009 (token management) ships in `guepard-console-v3` against `public.user_tokens`. The current `guepard-public-api` lookup queries `guepard.gp_user_tokens` (the v1 schema-prefixed name). This is a schema-prefix-only change — every column name (`id`, `account_id`, `token_name`, `scopes`, `expires_at`, `revoked`, `revoked_at`) and the JWT payload shape (`{ token_id, sub, scopes, exp, aud: 'authenticated', role: 'authenticated' }` signed HS256) are unchanged. Update the SELECT in the bearer-token-middleware lookup function to query `public.user_tokens`. The `@guepard/auth-shared` package (Story 007) already exposes `verifyBearerToken(authHeader, jwtSecret, lookup)` — `guepard-public-api` should adopt it.
+> Body: RFC 0009 (token management) ships in `qlm-console-v3` against `public.user_tokens`. The current `qlm-public-api` lookup queries `qlm.gp_user_tokens` (the v1 schema-prefixed name). This is a schema-prefix-only change — every column name (`id`, `account_id`, `token_name`, `scopes`, `expires_at`, `revoked`, `revoked_at`) and the JWT payload shape (`{ token_id, sub, scopes, exp, aud: 'authenticated', role: 'authenticated' }` signed HS256) are unchanged. Update the SELECT in the bearer-token-middleware lookup function to query `public.user_tokens`. The `@qlm/auth-shared` package (Story 007) already exposes `verifyBearerToken(authHeader, jwtSecret, lookup)` — `qlm-public-api` should adopt it.
 >
-> Acceptance: `guepard-public-api` integration tests pass against a live `public.user_tokens` row issued by `guepard-console-v3`.
+> Acceptance: `qlm-public-api` integration tests pass against a live `public.user_tokens` row issued by `qlm-console-v3`.
 
 **Ticket 2 — `user_tokens.revoked NOT NULL` hardening**
 > Title: `ALTER COLUMN public.user_tokens.revoked SET NOT NULL`
@@ -147,7 +147,7 @@ The two tickets below are outside this repo and need a human to file in GitHub. 
 
 ### Manual smoke log (spec §10.5)
 
-The full 10-step manual smoke is the user's responsibility (it requires sign-in to a live Supabase + Mailpit, end-to-end interaction). The user already validated the **dev-server** path during Story 010 ("/org/guepard" wiring rejection) AND Story 011 ("continue" after the create→reveal→revoke gate). Step-by-step formal log left for the user to fill if needed.
+The full 10-step manual smoke is the user's responsibility (it requires sign-in to a live Supabase + Mailpit, end-to-end interaction). The user already validated the **dev-server** path during Story 010 ("/org/qlm" wiring rejection) AND Story 011 ("continue" after the create→reveal→revoke gate). Step-by-step formal log left for the user to fill if needed.
 
 ## Spec-accuracy check
 

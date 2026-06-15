@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,9 +10,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
 export type DeleteIntegrationDialogProps = Readonly<{
   open: boolean;

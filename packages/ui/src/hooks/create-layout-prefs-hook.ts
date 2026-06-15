@@ -1,4 +1,4 @@
-import type { SortState } from '../guepard/data-table-advanced/types';
+import type { SortState } from '../qlm/data-table-advanced/types';
 import { createVersionedPreferenceStore } from './use-versioned-preference-store';
 
 export type DisplayMode = 'list' | 'grid';

@@ -7,9 +7,9 @@ import type {
   IDataSourceDriver,
   DatasourceResultSet,
   DatasourceMetadata,
-} from '@guepard/extensions-sdk';
-import { DatasourceMetadataZodSchema } from '@guepard/extensions-sdk';
-import { extractConnectionUrl } from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
+import { DatasourceMetadataZodSchema } from '@qlm/extensions-sdk';
+import { extractConnectionUrl } from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

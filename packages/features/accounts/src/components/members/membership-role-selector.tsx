@@ -4,9 +4,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
-import { Trans } from '@guepard/ui/trans';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/select';
+import { Trans } from '@qlm/ui/trans';
+import { cn } from '@qlm/ui/utils';
 
 type Role = string;
 

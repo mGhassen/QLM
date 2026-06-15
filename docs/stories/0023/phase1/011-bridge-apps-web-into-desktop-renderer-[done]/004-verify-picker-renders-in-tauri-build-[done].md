@@ -16,7 +16,7 @@ End-to-end manual verification that `pnpm --filter desktop tauri:build` produces
 ## Done when
 
 - [ ] `pnpm --filter desktop tauri:build` succeeds.
-- [ ] `rm -f "$HOME/Library/Application Support/run.guepard.desktop/config.json"` then `open "apps/desktop/src-tauri/target/release/bundle/macos/Guepard Desktop.app"` shows the **full-screen first-run picker** (Cloud / Custom radios + Continue button), NOT the previous "sidecar pending" landing.
+- [ ] `rm -f "$HOME/Library/Application Support/run.qlm.desktop/config.json"` then `open "apps/desktop/src-tauri/target/release/bundle/macos/QLM Desktop.app"` shows the **full-screen first-run picker** (Cloud / Custom radios + Continue button), NOT the previous "sidecar pending" landing.
 - [ ] Tauri devtools console has no fatal errors. Some warnings about missing SSR primitives are acceptable but documented in the README.
 - [ ] `apps/desktop/README.md` updated with:
   - One paragraph documenting the new bridge (apps/desktop reads routes from apps/web/src/routes/, root is desktop-specific).

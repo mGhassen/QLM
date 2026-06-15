@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { z } from 'zod';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Trans } from '@guepard/ui/trans';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Trans } from '@qlm/ui/trans';
 
 import pathsConfig from '@/config/paths.config';
 

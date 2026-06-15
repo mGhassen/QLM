@@ -12,8 +12,8 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { IntegrationConnectionOutput } from '@guepard/domain/usecases';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import type { IntegrationConnectionOutput } from '@qlm/domain/usecases';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 import {
   EntityArrowCell,
   EntityDateCell,
@@ -25,7 +25,7 @@ import {
   type EntityListDisplayMode,
   type EntityListSortDirection,
   type EntityListSortOption,
-} from '@guepard/ui/entity-list';
+} from '@qlm/ui/entity-list';
 
 import { IntegrationCard } from './components/integration-card';
 import { IntegrationStatusBadge } from './components/integration-status-badge';

@@ -2,21 +2,21 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Check, LayoutGrid, Pin } from 'lucide-react';
 
-import type { SidebarAppGroup } from '@guepard/ui/shell';
-import { resolveIcon, useShellSidebar } from '@guepard/ui/shell';
-import { cn } from '@guepard/ui/utils';
+import type { SidebarAppGroup } from '@qlm/ui/shell';
+import { resolveIcon, useShellSidebar } from '@qlm/ui/shell';
+import { cn } from '@qlm/ui/utils';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from '@guepard/ui/dropdown-menu';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@guepard/ui/tabs';
+} from '@qlm/ui/dropdown-menu';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@qlm/ui/tabs';
 
 export type AppsPickerMenuProps = {
   appGroups: SidebarAppGroup[];

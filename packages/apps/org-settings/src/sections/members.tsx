@@ -6,17 +6,17 @@ import { Plus, User } from 'lucide-react';
 import {
   InviteMembersDialogContainer,
   RoleBadge,
-} from '@guepard/accounts/components';
-import type { TeamMember } from '@guepard/domain/entities';
-import { useShell, useShellApp } from '@guepard/shell-runtime';
-import { Button } from '@guepard/ui/button';
+} from '@qlm/accounts/components';
+import type { TeamMember } from '@qlm/domain/entities';
+import { useShell, useShellApp } from '@qlm/shell-runtime';
+import { Button } from '@qlm/ui/button';
 import {
   EntityDateCell,
   EntityListPage,
   EntityListTable,
   EntityNameCell,
   type EntityListColumn,
-} from '@guepard/ui/entity-list';
+} from '@qlm/ui/entity-list';
 
 export function OrgSettingsMembersSection() {
   const { t } = useTranslation('org-settings');

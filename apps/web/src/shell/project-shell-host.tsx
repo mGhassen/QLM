@@ -11,9 +11,9 @@ import { useQuery } from '@tanstack/react-query';
 import {
   OrganizationOutput,
   ProjectOutput,
-} from '@guepard/domain/usecases';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { useSignOut } from '@guepard/supabase/hooks/use-sign-out';
+} from '@qlm/domain/usecases';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { useSignOut } from '@qlm/supabase/hooks/use-sign-out';
 import {
   ProjectShellLayout,
   ShellUserProfileMenu,
@@ -23,15 +23,15 @@ import {
   type TabGroupDef,
   type TabGroupLabels,
   type TabItem,
-} from '@guepard/ui/shell';
+} from '@qlm/ui/shell';
 import {
   AppsPickerCollapsedMenuItem,
   AppsPickerMenu,
   usePinnedApps,
-} from '@guepard/shell-apps';
-import { ShellTopbar } from '@guepard/shell-topbar';
-import type { ActivePanel } from '@guepard/ui/layout';
-import { AssistantPanelBody } from '@guepard/qwery-agent';
+} from '@qlm/shell-apps';
+import { ShellTopbar } from '@qlm/shell-topbar';
+import type { ActivePanel } from '@qlm/ui/layout';
+import { AssistantPanelBody } from '@qlm/qwery-agent';
 import {
   DocsPanelProvider,
   ShellAppProvider,
@@ -39,7 +39,7 @@ import {
   type GetDatasourceMetadataFn,
   type RunQueryFn,
   type TestConnectionFn,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 import { useTranslation } from 'react-i18next';
 
 import { useWorkspace } from '@/lib/context/workspace-context';

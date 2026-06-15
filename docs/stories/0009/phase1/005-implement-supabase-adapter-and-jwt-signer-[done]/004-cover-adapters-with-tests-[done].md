@@ -30,7 +30,7 @@ Vitest coverage for `SupabaseUserTokenRepository` (SQL call shape + null-return 
 
 ## Acceptance
 
-- [ ] Both test files run green via `pnpm --filter @guepard/repository-supabase test`.
+- [ ] Both test files run green via `pnpm --filter @qlm/repository-supabase test`.
 - [ ] Coverage ≥ 90 % on `src/user-token.repository.ts` and `src/jwt-signer.ts`.
 - [ ] Tests use the same mock-client pattern as existing repository tests in the package; no new test helper directory introduced.
 - [ ] No real DB / network / third-party service calls.
@@ -38,8 +38,8 @@ Vitest coverage for `SupabaseUserTokenRepository` (SQL call shape + null-return 
 ## Test plan
 
 ```
-pnpm --filter @guepard/repository-supabase test
-pnpm --filter @guepard/repository-supabase exec vitest run --coverage --coverage.include='src/user-token.repository.ts' --coverage.include='src/jwt-signer.ts'
+pnpm --filter @qlm/repository-supabase test
+pnpm --filter @qlm/repository-supabase exec vitest run --coverage --coverage.include='src/user-token.repository.ts' --coverage.include='src/jwt-signer.ts'
 ```
 
 ## Storybook validation
@@ -49,4 +49,4 @@ N/A — not a UI task.
 ## Notes
 
 - If the existing repository tests in this package have sparse coverage, match that style rather than over-engineering — keep the bar "at or above existing neighbors."
-- The JWT round-trip test gives us confidence that `guepard-public-api` (which verifies with the same secret) can read v3-issued tokens.
+- The JWT round-trip test gives us confidence that `qlm-public-api` (which verifies with the same secret) can read v3-issued tokens.

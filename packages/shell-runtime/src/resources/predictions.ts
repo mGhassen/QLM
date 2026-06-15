@@ -5,12 +5,12 @@ import type {
   PredictionAgentConversation,
   PredictionAgentMessage,
   PredictionSchemaSnapshot,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import type {
   IPredictionAgentConversationRepository,
   IPredictionAgentMessageRepository,
   IPredictionSchemaSnapshotRepository,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 
 /**
  * Host-provided HTTP shape for Predictions operations that don't fit a

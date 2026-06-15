@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
+} from '@qlm/ui/select';
 
 type GridPaginationFooterProps = Readonly<{
   pageIndex: number;

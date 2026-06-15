@@ -13,7 +13,7 @@ import {
   getUnionOptions,
   humanizeFieldKey,
   unwrapSchema,
-} from '../src/guepard/schema-form-utils';
+} from '../src/qlm/schema-form-utils';
 
 describe('unwrapSchema', () => {
   it('returns same schema when not optional/nullable/default', () => {

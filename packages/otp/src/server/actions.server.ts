@@ -1,9 +1,9 @@
 import { ActionFunctionArgs } from 'react-router';
 
-import { getLogger } from '@guepard/shared/logger';
-import { requireUser } from '@guepard/supabase/require-user';
-import { getSupabaseServerAdminClient } from '@guepard/supabase/server-admin-client';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+import { getLogger } from '@qlm/shared/logger';
+import { requireUser } from '@qlm/supabase/require-user';
+import { getSupabaseServerAdminClient } from '@qlm/supabase/server-admin-client';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 import { createOtpApi } from '../api/index.server';
 import { SendOtpEmailSchema } from '../send-otp.schema';

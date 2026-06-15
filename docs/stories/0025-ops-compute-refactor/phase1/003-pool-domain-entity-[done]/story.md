@@ -68,7 +68,7 @@ Replace the React-layer `TopologyPool` synthesis with a first-class `Pool` domai
 pnpm supabase:web:reset
 pnpm supabase:web:typegen
 pnpm typecheck
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain test
 pnpm --filter server test __tests__/pools.test.ts
 pnpm dev
 # Open http://localhost:3000/prj/<slug>/topology

@@ -41,13 +41,13 @@ One row per question from the RFC's open-questions section. Every question is re
 - **URL**: `/prj/{projectSlug}/user-settings` — the existing route. No new route registered.
 - **Sidebar ordering** (inside `SettingsSidebar`): **Profile** (new) → **Personal tokens** (existing) → future sections.
 - **Default section**: Profile is the default landing section when the URL has no sidebar hash.
-- **Topbar coupling**: the user-menu avatar + display name in `packages/ui/src/guepard/shell/shell-user-profile-menu.tsx` read from the same React Query key as Profile (open-question #1).
+- **Topbar coupling**: the user-menu avatar + display name in `packages/ui/src/qlm/shell/shell-user-profile-menu.tsx` read from the same React Query key as Profile (open-question #1).
 
 ### 3.2 Screen-by-screen
 
 #### 3.2.1 Profile section (`/prj/{slug}/user-settings`, sidebar = Profile)
 
-Layout: vertical stack of four `Card` primitives from `@guepard/ui/card`, matching `docs/rfcs/0025-user-profile/user-profile.png`.
+Layout: vertical stack of four `Card` primitives from `@qlm/ui/card`, matching `docs/rfcs/0025-user-profile/user-profile.png`.
 
 | # | Card | Components | Loading | Empty | Error |
 | - | ---- | ---------- | ------- | ----- | ----- |
@@ -322,7 +322,7 @@ Grouped by hexagonal layer, top-down. Each subsection lists concrete files and t
 
 ### 7.2 Adapters (`packages/repositories/supabase` and `apps/web/src/lib/repositories`)
 
-- **New** `packages/repositories/supabase/src/personal-account.repository.ts` — implements `IAccountRepository`; `uploadAvatar` follows the cache-bust + replace-old pattern from `~/Documents/work/guepard/guepard-console/.../update-account-image-container.tsx`.
+- **New** `packages/repositories/supabase/src/personal-account.repository.ts` — implements `IAccountRepository`; `uploadAvatar` follows the cache-bust + replace-old pattern from `~/Documents/work/qlm/qlm-console/.../update-account-image-container.tsx`.
 - **New** `packages/repositories/supabase/src/mfa.repository.ts` — implements `IMfaRepository` by delegating to `client.auth.mfa.*` and returning mapped entities.
 - **Update** `packages/repositories/supabase/src/index.ts` — re-exports.
 
@@ -484,7 +484,7 @@ Each story closes with a green `ui-smoke` at `/prj/{slug}/user-settings`. The fi
 
 One line per deviation from this spec discovered during implementation. Populated by `/finish-story` when the "did the spec stay accurate?" check answers no.
 
-- 2026-04-27 — 001-add-profile-name-card — i18n locale paths in §7.7 are `packages/i18n/src/locales/<lang>/...`; correct path is `apps/web/src/lib/i18n/locales/<lang>/...` (the `@guepard/i18n` package only ships the runtime, not locale JSON). Repo currently has only `en/`, no `fr/` — French locale promise dropped.
+- 2026-04-27 — 001-add-profile-name-card — i18n locale paths in §7.7 are `packages/i18n/src/locales/<lang>/...`; correct path is `apps/web/src/lib/i18n/locales/<lang>/...` (the `@qlm/i18n` package only ships the runtime, not locale JSON). Repo currently has only `en/`, no `fr/` — French locale promise dropped.
 - 2026-04-27 — 002-add-profile-avatar-card — `IAccountRepository.uploadAvatar` takes `{userId, bytes: ArrayBuffer, extension}` instead of the spec §5.1 `File` shape. Justification: `packages/domain` must stay free of DOM types per the hex rule (`File`/`Blob` are browser-only). The runtime resource adapts `File → {bytes, extension}` before invoking the service. Behaviourally equivalent.
 - 2026-04-28 — 003-add-profile-password-card — `shell.personalAccount.updatePassword` requires the caller to pass `sessionEmail`, not auto-resolved from runtime context (which exposes `currentUserId` only). `sections/profile.tsx` reads `useUser().data?.email` and threads it through. Spec §4.1 SD-4 implied auto-resolution; layering is still correct — the domain stays free of session state.
 - 2026-04-28 — 004-add-profile-mfa-card — wrong-OTP error in the setup dialog uses a single i18n string (`userProfile.mfa.verifyError`) rather than the per-code mapping `auth:errors.<code>` suggested in spec §3.4. Justification: Supabase's verify failure surfaces a generic error, and spec §8.1's threat model already calls for "generic auth errors" — surfacing finer codes would invite identity-enumeration. Behaviourally consistent with the password-card pattern shipped in story 003.

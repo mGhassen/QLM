@@ -11,7 +11,7 @@ import topLevelAwait from 'vite-plugin-top-level-await';
 import { execSync } from 'node:child_process';
 import tailwindcss from '@tailwindcss/vite';
 
-import tailwindCssVitePlugin from '@guepard/tailwind-config/vite';
+import tailwindCssVitePlugin from '@qlm/tailwind-config/vite';
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 const gitHash = (() => {
@@ -197,8 +197,8 @@ export default defineConfig(({ mode }) => {
   }
 
   const skipPrerender =
-    process.env.GUEPARD_SKIP_PRERENDER === '1' ||
-    process.env.GUEPARD_SKIP_PRERENDER === 'true';
+    process.env.QLM_SKIP_PRERENDER === '1' ||
+    process.env.QLM_SKIP_PRERENDER === 'true';
   const hasSupabaseSecretKey = Boolean(
     process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY,
   );
@@ -324,18 +324,18 @@ export default defineConfig(({ mode }) => {
         '@electric-sql/pglite',
         '@duckdb/node-api',
         '@duckdb/duckdb-wasm',
-        '@guepard/agent-factory-sdk',
+        '@qlm/agent-factory-sdk',
         '@dqbd/tiktoken',
-        '@guepard/extension-s3',
-        '@guepard/extension-clickhouse-node',
-        '@guepard/extension-duckdb',
-        '@guepard/extension-mongodb',
-        '@guepard/extension-mysql',
-        '@guepard/extension-postgresql',
-        '@guepard/extension-parquet-online',
-        '@guepard/extension-gsheet-csv',
-        '@guepard/extension-json-online',
-        '@guepard/extension-youtube-data-api-v3',
+        '@qlm/extension-s3',
+        '@qlm/extension-clickhouse-node',
+        '@qlm/extension-duckdb',
+        '@qlm/extension-mongodb',
+        '@qlm/extension-mysql',
+        '@qlm/extension-postgresql',
+        '@qlm/extension-parquet-online',
+        '@qlm/extension-gsheet-csv',
+        '@qlm/extension-json-online',
+        '@qlm/extension-youtube-data-api-v3',
       ],
       include: [
         '@codemirror/state',

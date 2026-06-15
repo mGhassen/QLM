@@ -3,10 +3,10 @@ import {
   IUsageRepository,
   IConversationRepository,
   IProjectRepository,
-} from '@guepard/domain/repositories';
-import { CreateUsageService } from '@guepard/domain/services';
-import { CreateUsageInput } from '@guepard/domain/usecases';
-import { getUsageFromCatalog } from '@guepard/shared/model-cost';
+} from '@qlm/domain/repositories';
+import { CreateUsageService } from '@qlm/domain/services';
+import { CreateUsageInput } from '@qlm/domain/usecases';
+import { getUsageFromCatalog } from '@qlm/shared/model-cost';
 import { getModelsCatalog } from '../model-catalog';
 
 /**

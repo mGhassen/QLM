@@ -1,6 +1,6 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Project } from '@guepard/domain/entities';
-import { IProjectRepository } from '@guepard/domain/repositories';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Project } from '@qlm/domain/entities';
+import { IProjectRepository } from '@qlm/domain/repositories';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 export class ProjectRepository extends IProjectRepository {

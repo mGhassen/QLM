@@ -1,8 +1,8 @@
-import { UserTokenSchema, type UserToken } from '@guepard/domain/entities';
+import { UserTokenSchema, type UserToken } from '@qlm/domain/entities';
 import {
   IUserTokenRepository,
   type CreateUserTokenRow,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 /**

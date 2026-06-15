@@ -58,7 +58,7 @@ Ship `ContextualInspector` with its four slot sets (Source / Volume / Clone / Br
 - [ ] `NodePickerPopover` renders the fixture node list, calls `onConfirm(nodeId)` on selection, and disables confirm while no node is selected.
 - [ ] `BranchNameDialog` pre-fills a generated name (e.g. `main-2`), validates non-empty input, and calls `onConfirm(branchName)` on confirm.
 - [ ] No hardcoded English strings in any new file.
-- [ ] `pnpm --filter @guepard/environments test` passes with coverage on slot-set switching, Escape close, popover confirm, dialog confirm.
+- [ ] `pnpm --filter @qlm/environments test` passes with coverage on slot-set switching, Escape close, popover confirm, dialog confirm.
 
 ## Tasks
 
@@ -69,7 +69,7 @@ Populated by `/start-story`.
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/environments storybook
+pnpm --filter @qlm/environments storybook
 # Browse: Environments/ContextualInspector/SourceSelected
 # Browse: Environments/ContextualInspector/VolumeSelected
 # Browse: Environments/ContextualInspector/CloneSelected
@@ -78,7 +78,7 @@ pnpm --filter @guepard/environments storybook
 # Browse: Environments/Primitives/NodePickerPopover/Open
 # Browse: Environments/Primitives/BranchNameDialog/Open
 
-pnpm --filter @guepard/environments test
+pnpm --filter @qlm/environments test
 ```
 
 ## Questions surfaced

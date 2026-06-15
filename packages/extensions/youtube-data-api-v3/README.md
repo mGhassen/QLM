@@ -31,11 +31,11 @@ LIMIT 10;
 
 Workaround: Build the extensions-sdk package first:
 ```bash
-pnpm --filter @guepard/extensions-sdk build
+pnpm --filter @qlm/extensions-sdk build
 ```
 
 Then run tests:
 ```bash
-pnpm --filter @guepard/extension-youtube-data-api-v3 test
+pnpm --filter @qlm/extension-youtube-data-api-v3 test
 ```
 

@@ -22,7 +22,7 @@ Run the full manual smoke per spec §10.5 against cloud + local Supabase, add Ru
 - Manual smoke (8 steps) per spec §10.5 on macOS (arm64 + x86_64), Windows, Linux. Record findings in this story's Demo section.
 - Rust unit tests per §10.2 (keyring round-trip, `pick_port` fallback, IPC token-auth, `MANAGED_KEYS` env-injection ordering, `config.json` parser).
 - Rust integration test per §10.3 spawning the sidecar binary against a `wiremock-rs` Supabase, with a temp keyring, asserting end-to-end sign-in / refresh / sign-out.
-- TypeScript-side `apps/web` Playwright tests stubbing `window.__TAURI__` + `window.__GUEPARD_RUNTIME='desktop'` for first-run picker visibility, Server pane visibility, LLM keys pane visibility.
+- TypeScript-side `apps/web` Playwright tests stubbing `window.__TAURI__` + `window.__QLM_RUNTIME='desktop'` for first-run picker visibility, Server pane visibility, LLM keys pane visibility.
 - New CI workflow `apps/desktop/.github/workflows/desktop-ci.yml` (or extension of the root workflow) running `cargo clippy`, `cargo test`, `cargo fmt --check`, `pnpm --filter server build:desktop`, `cargo build --release` on the matrix.
 - New file `docs/desktop-mdm.md` documenting the `config.json` shape, file location per OS, MDM tool tips (Jamf / Intune / silent provisioning).
 
@@ -59,14 +59,14 @@ Run the full §10.5 manual smoke and paste the outcomes inline here:
 3. Quit, relaunch → no sign-in screen, sees authenticated home directly.         [PASS / FAIL]
 4. Settings → LLM keys → set OPENAI_API_KEY → Save → Restart sidecar → env present in desktop.log. [PASS / FAIL]
 5. Settings → Server → change to http://127.0.0.1:54321 → first-run reappears pre-selected. [PASS / FAIL]
-6. Verify keychain via `security find-generic-password -s run.guepard.desktop`. [PASS / FAIL]
+6. Verify keychain via `security find-generic-password -s run.qlm.desktop`. [PASS / FAIL]
 7. Sign-out → keychain refresh_token entries gone.                                [PASS / FAIL]
 8. allowInsecureTls: true → banner + log warning.                                 [PASS / FAIL]
 ```
 
 ## Questions surfaced
 
-- Is a Windows GitHub Actions runner provisioned for the Guepard org? `.github/workflows/desktop-ci.yml` currently marks the Windows job `continue-on-error: true` until someone confirms the runner works end-to-end with `bun --compile` + keyring-native. Drop the flag once a green Windows run lands.
+- Is a Windows GitHub Actions runner provisioned for the QLM org? `.github/workflows/desktop-ci.yml` currently marks the Windows job `continue-on-error: true` until someone confirms the runner works end-to-end with `bun --compile` + keyring-native. Drop the flag once a green Windows run lands.
 - Server-pane + full sign-in/sign-out e2e coverage in Playwright depend on reusing `apps/e2e/tests/auth/auth.spec.ts`'s email-confirmation fixture. Folding that in was disproportionate for 010 — track as a follow-up story if we want real end-to-end coverage of the Settings dialog in desktop runtime.
 
 ## Notes

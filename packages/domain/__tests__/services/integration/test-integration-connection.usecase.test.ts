@@ -26,7 +26,7 @@ describe('TestIntegrationConnectionService', () => {
     const { registry, aws } = createDefaultRegistry();
     aws.nextResult = {
       ok: true,
-      identity: 'arn:aws:iam::123456789012:user/guepard',
+      identity: 'arn:aws:iam::123456789012:user/qlm',
     };
     const service = new TestIntegrationConnectionService(
       repository,
@@ -37,7 +37,7 @@ describe('TestIntegrationConnectionService', () => {
     const result = await service.execute(row.id);
 
     expect(result.ok).toBe(true);
-    expect(result.identity).toBe('arn:aws:iam::123456789012:user/guepard');
+    expect(result.identity).toBe('arn:aws:iam::123456789012:user/qlm');
 
     expect(aws.testCalls).toHaveLength(1);
     const callArg = aws.testCalls[0];
@@ -49,7 +49,7 @@ describe('TestIntegrationConnectionService', () => {
 
     const after = repository.snapshot(row.id);
     expect(after?.testStatus).toBe('success');
-    expect(after?.testIdentity).toBe('arn:aws:iam::123456789012:user/guepard');
+    expect(after?.testIdentity).toBe('arn:aws:iam::123456789012:user/qlm');
     expect(after?.testError).toBeNull();
     expect(after?.testedAt).toBeInstanceOf(Date);
   });

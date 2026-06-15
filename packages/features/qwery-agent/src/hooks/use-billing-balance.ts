@@ -1,6 +1,6 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { useShell } from '@guepard/shell-runtime';
+import { useShell } from '@qlm/shell-runtime';
 
 export type BillingBalance = {
   balance: number;

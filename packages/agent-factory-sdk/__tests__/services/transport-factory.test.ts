@@ -11,7 +11,7 @@ vi.mock('ai', () => {
   return { DefaultChatTransport: MockDefaultChatTransport };
 });
 
-vi.mock('@guepard/shared/message-role-utils', () => ({
+vi.mock('@qlm/shared/message-role-utils', () => ({
   normalizeUIRole: (role: string) => role,
 }));
 

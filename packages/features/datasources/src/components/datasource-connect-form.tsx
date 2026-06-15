@@ -4,11 +4,11 @@ import { Check, Loader2, Pencil, Shuffle } from 'lucide-react';
 import type { z } from 'zod';
 import { z as zLib } from 'zod';
 
-import type { DatasourceExtension } from '@guepard/extensions-sdk';
-import { Button } from '@guepard/ui/button';
-import { FormRenderer } from '@guepard/ui/form-renderer';
-import { Input } from '@guepard/ui/input';
-import { cn } from '@guepard/ui/utils';
+import type { DatasourceExtension } from '@qlm/extensions-sdk';
+import { Button } from '@qlm/ui/button';
+import { FormRenderer } from '@qlm/ui/form-renderer';
+import { Input } from '@qlm/ui/input';
+import { cn } from '@qlm/ui/utils';
 
 import { DatasourceDocsLink } from './datasource-docs-link';
 

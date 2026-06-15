@@ -46,7 +46,7 @@ export const MongoProvider: Story = {
     database: storyDatabase({
       provider: 'mongodb',
       version: '7',
-      fqdn: 'app-mongo.db.guepard.internal',
+      fqdn: 'app-mongo.db.qlm.internal',
       port: 27017,
     }),
   },
@@ -57,7 +57,7 @@ export const RedisNoPort: Story = {
     database: storyDatabase({
       provider: 'redis',
       version: '7',
-      fqdn: 'cache.db.guepard.internal',
+      fqdn: 'cache.db.qlm.internal',
       port: undefined,
       compute: undefined,
       dbRole: undefined,

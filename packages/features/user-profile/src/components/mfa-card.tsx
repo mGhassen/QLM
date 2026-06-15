@@ -1,14 +1,14 @@
 import { ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@guepard/ui/card';
+} from '@qlm/ui/card';
 
 import { MultiFactorAuthFactorsList } from './multi-factor-auth-factors-list';
 

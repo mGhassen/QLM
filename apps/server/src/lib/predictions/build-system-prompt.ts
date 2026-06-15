@@ -1,4 +1,4 @@
-import type { DatasourceMetadata } from '@guepard/domain/entities';
+import type { DatasourceMetadata } from '@qlm/domain/entities';
 
 /**
  * Compact "schema cheatsheet" for the snapshot — table names, column
@@ -34,7 +34,7 @@ export function buildSystemPrompt(input: {
 }): string {
   const summary = projectSchemaSummary(input.metadata);
   return [
-    `You are the Guepard Predictions schema agent.`,
+    `You are the QLM Predictions schema agent.`,
     `Your sole job is to answer questions about the relational schema of the datasource named "${input.datasourceName}", as captured by the snapshot summarised below.`,
     ``,
     `Hard rules — non-negotiable:`,

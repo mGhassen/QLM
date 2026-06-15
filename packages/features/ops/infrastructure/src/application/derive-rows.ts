@@ -1,7 +1,7 @@
-import type { AdvancedColumn, FilterRule, SortState } from '@guepard/ui/data-table-advanced';
-import { applyFilterRules, applySort } from '@guepard/ui/data-table-advanced';
+import type { AdvancedColumn, FilterRule, SortState } from '@qlm/ui/data-table-advanced';
+import { applyFilterRules, applySort } from '@qlm/ui/data-table-advanced';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import { filterNodesBySearch } from './selectors';
 

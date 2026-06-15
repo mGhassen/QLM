@@ -15,7 +15,7 @@ validation:
 
 # Add user-preferences shell-runtime resource
 
-Scaffold vitest in `@guepard/shell-runtime` (it has none today) and add a `createUserPreferencesResource(repo, projectRepo, queryClient)` that exposes `getLastProject`, `setLastProject`, `mergePreferences` with React Query keys + invalidation. `setLastProject` does an in-memory read-merge-patch of `last_project_by_org` because postgres `jsonb ||` is shallow and a one-key patch would clobber other orgs' entries (see story 005 notes).
+Scaffold vitest in `@qlm/shell-runtime` (it has none today) and add a `createUserPreferencesResource(repo, projectRepo, queryClient)` that exposes `getLastProject`, `setLastProject`, `mergePreferences` with React Query keys + invalidation. `setLastProject` does an in-memory read-merge-patch of `last_project_by_org` because postgres `jsonb ||` is shallow and a one-key patch would clobber other orgs' entries (see story 005 notes).
 
 ## Done when
 
@@ -29,7 +29,7 @@ Scaffold vitest in `@guepard/shell-runtime` (it has none today) and add a `creat
   - `invalidate.root`.
 - [ ] Unit test covers: `setLastProject` preserves an existing org's entry when adding a new one; `getLastProject` returns the stored id; `getLastProject` falls back to the org's first project when the map has no entry; `mergePreferences` rejects invalid payloads.
 - [ ] `pnpm typecheck` green.
-- [ ] `pnpm --filter @guepard/shell-runtime test` green.
+- [ ] `pnpm --filter @qlm/shell-runtime test` green.
 
 ## Notes
 

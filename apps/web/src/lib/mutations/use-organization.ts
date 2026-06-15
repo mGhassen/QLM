@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { Organization } from '@guepard/domain/entities';
-import type { IOrganizationRepository } from '@guepard/domain/repositories';
+import type { Organization } from '@qlm/domain/entities';
+import type { IOrganizationRepository } from '@qlm/domain/repositories';
 import {
   CreateOrganizationService,
   UpdateOrganizationService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateOrganizationInput,
   OrganizationOutput,
   UpdateOrganizationInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import {
   getOrganizationBySlugKey,

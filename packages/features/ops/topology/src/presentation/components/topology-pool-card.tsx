@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CloudProviderIcon } from '@guepard/ui/cloud-provider-icon';
+import { CloudProviderIcon } from '@qlm/ui/cloud-provider-icon';
 import {
   HeatSegmentBar,
   type HeatSegmentBarTone,
-} from '@guepard/ui/heat-segment-bar';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/heat-segment-bar';
+import { cn } from '@qlm/ui/utils';
 
-import type { NodeHealth } from '@guepard/domain/entities';
+import type { NodeHealth } from '@qlm/domain/entities';
 
 import type { TopologyPool } from '../../application/use-topology-data';
 

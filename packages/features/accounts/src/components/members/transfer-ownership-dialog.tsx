@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch } from 'react-hook-form';
 
-import { useCsrfToken } from '@guepard/csrf/client';
-import { VerifyOtpForm } from '@guepard/otp/components';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { useCsrfToken } from '@qlm/csrf/client';
+import { VerifyOtpForm } from '@qlm/otp/components';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -17,11 +17,11 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
-import { Form } from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
+import { Form } from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { TransferOwnershipConfirmationSchema } from '../../schema';
 

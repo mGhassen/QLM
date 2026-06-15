@@ -60,8 +60,8 @@ Ship the topbar trigger, the two-level dropdown with PROJECT and ORGANIZATION se
 ## Demo / verification
 
 ```
-pnpm --filter @guepard/shell-topbar storybook
-pnpm --filter @guepard/shell-topbar test
+pnpm --filter @qlm/shell-topbar storybook
+pnpm --filter @qlm/shell-topbar test
 pnpm dev
 ```
 

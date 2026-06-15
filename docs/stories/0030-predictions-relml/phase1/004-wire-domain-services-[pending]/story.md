@@ -31,7 +31,7 @@ Implement the seven domain services for snapshots and agent conversations, with 
 
 ## Acceptance criteria
 
-- [ ] `pnpm --filter @guepard/domain test` is green.
+- [ ] `pnpm --filter @qlm/domain test` is green.
 - [ ] `TakeSnapshotService` test exercises: happy path, 5 MB cap rejection, malformed metadata rejection, monotonic version increment.
 - [ ] All services accept their repository via constructor injection — no concrete class imports inside services.
 - [ ] Domain remains pure: no `@tanstack/react-query`, no `@supabase/*`, no `fetch` imports anywhere under `packages/domain/src`.
@@ -44,7 +44,7 @@ Populated by `/start-story`.
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain test
 pnpm typecheck
 ```
 

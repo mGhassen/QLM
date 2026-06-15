@@ -13,10 +13,10 @@ import { SelectChartTypeTool } from './select-chart-type-tool';
 import { GenerateChartTool } from './generate-chart-tool';
 import { GetSkillTool } from './get-skill';
 import { TaskTool } from './task';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 import { getMcpTools } from '../mcp/client.js';
-import { GetTodoByConversationService } from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+import { GetTodoByConversationService } from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 
 const TASK_COMPLETING_TOOL_IDS = new Set([
   'runQuery',

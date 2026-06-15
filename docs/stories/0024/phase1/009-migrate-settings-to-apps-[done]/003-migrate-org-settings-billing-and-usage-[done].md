@@ -17,8 +17,8 @@ files:
   - packages/shell-runtime/src/client.ts
   - packages/apps/org-settings/src/sections/members.tsx
   - packages/apps/org-settings/src/sections/members.stories.tsx
-  - packages/ui/src/guepard/entity-list/entity-list-toolbar.tsx
-  - packages/ui/src/guepard/entity-list/entity-list-page.tsx
+  - packages/ui/src/qlm/entity-list/entity-list-toolbar.tsx
+  - packages/ui/src/qlm/entity-list/entity-list-page.tsx
   - packages/features/billing/src/components/remaining-balance.tsx
 validation:
   kind: typecheck-only
@@ -26,11 +26,11 @@ validation:
 
 # Migrate org-settings Billing and Usage sections
 
-Adds Billing and Usage sections to `org-settings`, reusing `@guepard/features/billing` components for Billing and migrating the deleted `/org/$slug/usage` route content inline into Usage (no new feature package).
+Adds Billing and Usage sections to `org-settings`, reusing `@qlm/features/billing` components for Billing and migrating the deleted `/org/$slug/usage` route content inline into Usage (no new feature package).
 
 ## Done when
 
-- [ ] `sections/billing.tsx` composes the existing billing components (balance, invoice history, buy credits, etc.) from `@guepard/features/billing/components` against the current org.
+- [ ] `sections/billing.tsx` composes the existing billing components (balance, invoice history, buy credits, etc.) from `@qlm/features/billing/components` against the current org.
 - [ ] `sections/usage.tsx` inlines the usage panel content from the pre-deletion `/org/$slug/usage` route, wired through the existing shell-runtime usage resource.
 - [ ] Plugin-root mounts all four sections (`general`, `members`, `billing`, `usage`) in that order.
 - [ ] Storybook stories cover default, loading, and error states for each section.
@@ -39,5 +39,5 @@ Adds Billing and Usage sections to `org-settings`, reusing `@guepard/features/bi
 
 ## Notes
 
-- Usage content is migrated inline — creating a `@guepard/features/usage` package is explicitly out of scope (the deleted route was ~286 lines, manageable inline).
+- Usage content is migrated inline — creating a `@qlm/features/usage` package is explicitly out of scope (the deleted route was ~286 lines, manageable inline).
 - Pull pre-deletion bodies via `git show 657158b^:apps/web/src/routes/org/$slug/{billing,usage}.tsx`.

@@ -18,7 +18,7 @@ method deleted in task 002. Runtime caller surface follows.
 
 - [ ] `shell.nodes.changeStatus` no longer exposed.
 - [ ] No imports of `ChangeNodeStatusService` or `ChangeNodeStatusInput` remain.
-- [ ] `pnpm --filter @guepard/shell-runtime typecheck` green.
+- [ ] `pnpm --filter @qlm/shell-runtime typecheck` green.
 
 ## Notes
 

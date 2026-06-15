@@ -3,21 +3,21 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import { Code } from '@guepard/domain/common';
+import { Code } from '@qlm/domain/common';
 import {
   DomainException,
   invalidCurrentPasswordException,
-} from '@guepard/domain/exceptions';
-import { useShell } from '@guepard/shell-runtime';
-import { useFetchAuthFactors } from '@guepard/supabase/hooks/use-fetch-mfa-factors';
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { useUserIdentities } from '@guepard/supabase/hooks/use-user-identities';
+} from '@qlm/domain/exceptions';
+import { useShell } from '@qlm/shell-runtime';
+import { useFetchAuthFactors } from '@qlm/supabase/hooks/use-fetch-mfa-factors';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { useUserIdentities } from '@qlm/supabase/hooks/use-user-identities';
 import {
   UserProfileSection,
   type MfaFactorRow,
   type MfaSetupEnrollPayload,
-} from '@guepard/user-profile';
+} from '@qlm/user-profile';
 
 export function ProfileSection() {
   const { t } = useTranslation('user-profile');

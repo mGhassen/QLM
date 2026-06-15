@@ -1,14 +1,14 @@
 import { MoreHorizontal, Pencil, RotateCw, Trash2, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
+} from '@qlm/ui/dropdown-menu';
 
 export type IntegrationRowMenuProps = Readonly<{
   canManage: boolean;

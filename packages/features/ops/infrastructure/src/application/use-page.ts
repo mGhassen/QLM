@@ -1,26 +1,26 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { toast } from '@guepard/ui/sonner';
+import { toast } from '@qlm/ui/sonner';
 
-import type { Action } from '@guepard/ui/action';
+import type { Action } from '@qlm/ui/action';
 import {
   exportRowsToCsv,
   toggleInFilter,
   type AdvancedColumn,
   type BulkAction,
-} from '@guepard/ui/data-table-advanced';
-import type { EntityListSortOption } from '@guepard/ui/entity-list';
-import { useBulkSelection } from '@guepard/ui/use-bulk-selection';
-import { useTableVisibility } from '@guepard/ui/use-table-visibility';
-import { useDebouncedValue } from '@guepard/ui/use-debounced-value';
+} from '@qlm/ui/data-table-advanced';
+import type { EntityListSortOption } from '@qlm/ui/entity-list';
+import { useBulkSelection } from '@qlm/ui/use-bulk-selection';
+import { useTableVisibility } from '@qlm/ui/use-table-visibility';
+import { useDebouncedValue } from '@qlm/ui/use-debounced-value';
 
 import type {
   Node,
   NodeDrain,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 
-import { useShell } from '@guepard/shell-runtime';
+import { useShell } from '@qlm/shell-runtime';
 import { useQueryClient } from '@tanstack/react-query';
 
 
@@ -437,7 +437,7 @@ export function usePage({ projectId, onOpenDetails, onOpenInTab }: UsePageOption
     });
     const end = typeof performance !== 'undefined' ? performance.now() : 0;
     if (
-      (globalThis as unknown as { __GUEPARD_DEBUG_OPS__?: boolean }).__GUEPARD_DEBUG_OPS__ &&
+      (globalThis as unknown as { __QLM_DEBUG_OPS__?: boolean }).__QLM_DEBUG_OPS__ &&
       end - start > 16
     ) {
       // eslint-disable-next-line no-console

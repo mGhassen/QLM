@@ -4,7 +4,7 @@ status: pending
 layer: ui
 model: sonnet
 files:
-  - packages/ui/src/guepard/shell/project-shell-tab-bar.tsx
+  - packages/ui/src/qlm/shell/project-shell-tab-bar.tsx
 validation:
   kind: ui-smoke
   route: /prj/$projectSlug/infrastructure

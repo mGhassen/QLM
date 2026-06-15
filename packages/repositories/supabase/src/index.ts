@@ -26,4 +26,4 @@ export { PredictionAgentConversationRepository } from './prediction-agent-conver
 export { PredictionAgentMessageRepository } from './prediction-agent-message.repository';
 // `JwtSigner` is intentionally not re-exported here — it pulls in
 // `jsonwebtoken`, which relies on Node's `util.inherits` and crashes in the
-// browser. Server code imports it directly via `@guepard/repository-supabase/jwt-signer`.
+// browser. Server code imports it directly via `@qlm/repository-supabase/jwt-signer`.

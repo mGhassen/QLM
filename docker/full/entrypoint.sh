@@ -75,10 +75,10 @@ cleanup() {
 }
 trap cleanup EXIT
 
-READY_WAIT="${GUEPARD_READY_WAIT_SECONDS:-90}"
+READY_WAIT="${QLM_READY_WAIT_SECONDS:-90}"
 
-if [ "${GUEPARD_WAIT_BACKENDS:-1}" != "0" ]; then
-  echo "[entrypoint] waiting for Bun API :${API_INTERNAL_PORT} (skip: GUEPARD_WAIT_BACKENDS=0)" >&2
+if [ "${QLM_WAIT_BACKENDS:-1}" != "0" ]; then
+  echo "[entrypoint] waiting for Bun API :${API_INTERNAL_PORT} (skip: QLM_WAIT_BACKENDS=0)" >&2
   i=0
   while [ "$i" -lt "$READY_WAIT" ]; do
     if curl -fsS --max-time 2 "http://127.0.0.1:${API_INTERNAL_PORT}/health" >/dev/null 2>&1; then

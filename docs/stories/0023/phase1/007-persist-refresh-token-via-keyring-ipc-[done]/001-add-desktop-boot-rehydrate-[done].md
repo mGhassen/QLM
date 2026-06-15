@@ -14,14 +14,14 @@ validation:
 
 # Add desktop boot rehydrate
 
-Add `apps/server/src/runtime/desktop-boot.ts` exposing a `rehydrateSession` use case that reads `GUEPARD_REFRESH_TOKEN` at boot, exchanges it with Supabase, and persists the new refresh token via `keyringClient` — so a relaunched desktop app skips the sign-in screen.
+Add `apps/server/src/runtime/desktop-boot.ts` exposing a `rehydrateSession` use case that reads `QLM_REFRESH_TOKEN` at boot, exchanges it with Supabase, and persists the new refresh token via `keyringClient` — so a relaunched desktop app skips the sign-in screen.
 
 ## Done when
 
 - [ ] `apps/server/src/runtime/desktop-boot.ts` exports `rehydrateSession({ env, refresh, keyring }): Promise<RehydrateResult>` where:
-  - `env: NodeJS.ProcessEnv` — reads `GUEPARD_REFRESH_TOKEN` and `GUEPARD_SERVER_URL`. Returns `{ status: 'skipped' }` when either is missing.
+  - `env: NodeJS.ProcessEnv` — reads `QLM_REFRESH_TOKEN` and `QLM_SERVER_URL`. Returns `{ status: 'skipped' }` when either is missing.
   - `refresh: (token: string) => Promise<{ refresh_token: string; access_token: string } | { code: 'expired' | 'unauthorized' | 'transient'; message: string }>` — Supabase-shaped client, injected for testability.
-  - `keyring: KeyringClient` — same shape as `apps/server/src/lib/keyring-client.ts`. The boot helper persists `refresh_token:${GUEPARD_SERVER_URL}` on success and deletes it on terminal failure.
+  - `keyring: KeyringClient` — same shape as `apps/server/src/lib/keyring-client.ts`. The boot helper persists `refresh_token:${QLM_SERVER_URL}` on success and deletes it on terminal failure.
 - [ ] Retry budget per spec §5.3: 3 attempts on `transient` failures with exponential backoff (`100ms → 400ms → 1600ms`). Caller injects `sleep(ms): Promise<void>` (default real, replaceable in tests).
 - [ ] Single in-flight refresh: a module-level `inFlight: Promise<RehydrateResult> | null` is cleared on settle so concurrent callers share one upstream request.
 - [ ] Returns a discriminated union: `{ status: 'rehydrated' | 'skipped' | 'expired' | 'failed', reason?: string }` — never throws.

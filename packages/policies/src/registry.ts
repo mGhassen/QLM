@@ -1,4 +1,4 @@
-import { createRegistry } from '@guepard/shared/registry';
+import { createRegistry } from '@qlm/shared/registry';
 
 import type { FeaturePolicyDefinition } from './declarative';
 import type { PolicyContext } from './types';

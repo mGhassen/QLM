@@ -3,8 +3,8 @@ import { Check, Plus, Receipt, Search, Settings, UserPlus } from 'lucide-react';
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useShell } from '@guepard/shell-runtime';
-import { useShellSidebar } from '@guepard/ui/shell';
+import { useShell } from '@qlm/shell-runtime';
+import { useShellSidebar } from '@qlm/ui/shell';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
+} from '@qlm/ui/dropdown-menu';
 
 import { CreateOrgDialog } from './create-org-dialog';
 import { CreateProjectDialog } from './create-project-dialog';

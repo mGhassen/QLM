@@ -2,7 +2,7 @@ import type {
   NodeHealth,
   NodeLifecycleState,
   NodeProvider,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 
 /**
  * Centralized status palette for the topology feature. Mirrors the

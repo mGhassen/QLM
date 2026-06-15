@@ -23,7 +23,7 @@ adapter. Adapter `deserialize` no longer reads `lifecycle_status`.
 - [ ] Abstract method gone from port.
 - [ ] All 3 adapters (supabase, web HTTP, server stub) compile without `changeStatus`.
 - [ ] No grep hit for `STATUS_TO_SQL`, `SQL_STATUS_TO_DOMAIN` outside this story file.
-- [ ] `pnpm --filter @guepard/domain typecheck` + `pnpm --filter @guepard/repository-supabase typecheck` + `pnpm --filter web typecheck` + `pnpm --filter server typecheck` green.
+- [ ] `pnpm --filter @qlm/domain typecheck` + `pnpm --filter @qlm/repository-supabase typecheck` + `pnpm --filter web typecheck` + `pnpm --filter server typecheck` green.
 
 ## Notes
 

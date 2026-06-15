@@ -1,7 +1,7 @@
 import process from 'node:process';
 import { z } from 'zod';
 
-import { Mailer, MailerSchema } from '@guepard/mailers-shared';
+import { Mailer, MailerSchema } from '@qlm/mailers-shared';
 
 type Config = z.infer<typeof MailerSchema>;
 

@@ -12,16 +12,16 @@ import * as React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Heading } from '@guepard/ui/heading';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Heading } from '@qlm/ui/heading';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@guepard/ui/input-otp';
-import { Spinner } from '@guepard/ui/spinner';
+} from '@qlm/ui/input-otp';
+import { Spinner } from '@qlm/ui/spinner';
 
 import { MultiFactorChallengeContainer } from './multi-factor-challenge-container';
 import { withAuthProviders } from './story-helpers';

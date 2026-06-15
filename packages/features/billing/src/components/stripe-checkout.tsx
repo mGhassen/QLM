@@ -3,7 +3,7 @@ import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
 } from '@stripe/react-stripe-js';
-import { Dialog, DialogContent } from '@guepard/ui/dialog';
+import { Dialog, DialogContent } from '@qlm/ui/dialog';
 
 import { stripePromise } from '../stripe-browser';
 

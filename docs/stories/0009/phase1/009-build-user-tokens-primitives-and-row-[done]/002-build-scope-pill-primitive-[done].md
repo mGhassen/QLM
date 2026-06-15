@@ -20,7 +20,7 @@ Inline scope pill rendered by `TokenRow` (one per scope, in `read / write / admi
 - `packages/features/user-tokens/src/components/primitives/scope-pill.tsx`:
   - `<ScopePill scope={UserTokenScope} />`. Color mapping: `read` → blue (`text-blue-600` / `bg-blue-500/10` / `border-blue-500/20`), `write` → amber (`text-amber-600` / `bg-amber-500/10` / `border-amber-500/20`), `admin` → purple (`text-purple-600` / `bg-purple-500/10` / `border-purple-500/20`).
   - Label via `t('tokens:scopes.<value>')`.
-  - Compose `@guepard/ui/badge` with `variant="outline"`.
+  - Compose `@qlm/ui/badge` with `variant="outline"`.
   - `Readonly<Props>`.
 - `packages/features/user-tokens/src/components/primitives/scope-pill.stories.tsx`:
   - `meta.title = 'UserTokens/Primitives/ScopePill'`, decorator = `withUserTokensProviders`.
@@ -31,8 +31,8 @@ Inline scope pill rendered by `TokenRow` (one per scope, in `read / write / admi
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` passes.
-- [ ] `pnpm --filter @guepard/user-tokens test` passes.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` passes.
+- [ ] `pnpm --filter @qlm/user-tokens test` passes.
 - [ ] No hardcoded English strings.
 - [ ] Tailwind tokens only.
 - [ ] `Readonly<Props>` on the component.
@@ -40,13 +40,13 @@ Inline scope pill rendered by `TokenRow` (one per scope, in `read / write / admi
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles to inspect**: `UserTokens / Primitives / ScopePill / Read`, `… / Write`, `… / Admin`, `… / All Three In Order`
 - **Expected visual outcome**: three distinct pills — blue Read, amber Write, purple Admin. Labels match `tokens.scopes.*`.
 

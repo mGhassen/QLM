@@ -20,15 +20,15 @@ Spec §10.4 (end-to-end Playwright) was authored before RFC 0009 AM-1 (the setti
 
 - [ ] Spec §10.4 steps 2–3 + 9 updated to match AM-1: open the account dropdown → click **Settings** → dialog opens with "Personal tokens" selected; close the dialog at the end of the flow.
 - [ ] Changelog entry added explaining the amendment.
-- [ ] `pnpm --filter @guepard/user-tokens exec vitest run --coverage --coverage.include='src/**'` reports ≥ 80 % line coverage on the shipped code.
-- [ ] `pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'` reports ≥ 90 %.
+- [ ] `pnpm --filter @qlm/user-tokens exec vitest run --coverage --coverage.include='src/**'` reports ≥ 80 % line coverage on the shipped code.
+- [ ] `pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'` reports ≥ 90 %.
 - [ ] Coverage results logged under the story's Questions section.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens exec vitest run --coverage --coverage.include='src/**'
-pnpm --filter @guepard/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'
+pnpm --filter @qlm/user-tokens exec vitest run --coverage --coverage.include='src/**'
+pnpm --filter @qlm/domain exec vitest run __tests__/services/user-token --coverage --coverage.include='src/services/user-token/*'
 ```
 
 ## Storybook validation

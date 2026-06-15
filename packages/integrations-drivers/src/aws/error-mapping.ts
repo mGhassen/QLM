@@ -1,4 +1,4 @@
-import type { TestResultErrorCode } from '@guepard/domain/usecases';
+import type { TestResultErrorCode } from '@qlm/domain/usecases';
 
 /**
  * Maps an AWS SDK error to one of the closed-set error codes the UI renders.

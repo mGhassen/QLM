@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/prettier-config",
+  "name": "@qlm/prettier-config",
   "private": true,
   "version": "0.1.0",
   "main": "index.mjs",
@@ -14,7 +14,7 @@
     "prettier-plugin-tailwindcss": "^0.7.1"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "typescript": "catalog:"
   },
   "prettier": "./index.mjs"

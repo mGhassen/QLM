@@ -66,11 +66,11 @@ Add `lifecycle / orchestration / eligibility / drain / health` to the domain `No
 
 ```bash
 pnpm typecheck && pnpm test
-pnpm --filter @guepard/domain test __tests__/services/node
+pnpm --filter @qlm/domain test __tests__/services/node
 pnpm supabase:web:reset && pnpm supabase:web:typegen
 psql "$LOCAL_SUPABASE_URL" -c "SELECT COUNT(*) FROM public.node WHERE lifecycle IS NULL;"
 psql "$LOCAL_SUPABASE_URL" -c "SELECT * FROM public.node_drain LIMIT 5;"
-pnpm --filter @guepard/domain test __tests__/eslint   # RuleTester proves no-orchestration-write fires + allowlist works
+pnpm --filter @qlm/domain test __tests__/eslint   # RuleTester proves no-orchestration-write fires + allowlist works
 ```
 
 ## Questions surfaced

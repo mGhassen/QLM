@@ -1,5 +1,5 @@
-import type { TodoItem } from '@guepard/domain/entities';
-import { ITodoRepository } from '@guepard/domain/repositories';
+import type { TodoItem } from '@qlm/domain/entities';
+import { ITodoRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 const TABLE = 'todos';

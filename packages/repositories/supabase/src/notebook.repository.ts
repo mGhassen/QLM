@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import type { Notebook } from '@guepard/domain/entities';
-import { INotebookRepository } from '@guepard/domain/repositories';
-import type { Json } from '@guepard/supabase/database';
+import type { Notebook } from '@qlm/domain/entities';
+import { INotebookRepository } from '@qlm/domain/repositories';
+import type { Json } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 export class NotebookRepository extends INotebookRepository {

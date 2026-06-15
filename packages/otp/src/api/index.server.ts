@@ -4,9 +4,9 @@
  * Usage
  *
  * ```typescript
- * import { createOtpApi } from '@guepard/otp/api';
- * import { getSupabaseServerClient } from '@guepard/supabase/server-client';
- * import { NoncePurpose } from '@guepard/otp/types';
+ * import { createOtpApi } from '@qlm/otp/api';
+ * import { getSupabaseServerClient } from '@qlm/supabase/server-client';
+ * import { NoncePurpose } from '@qlm/otp/types';
  *
  * const client = getSupabaseServerClient();
  * const api = createOtpApi(client);
@@ -36,7 +36,7 @@
  */
 import { SupabaseClient } from '@supabase/supabase-js';
 
-import { Database } from '@guepard/supabase/database';
+import { Database } from '@qlm/supabase/database';
 
 import { createOtpEmailService } from '../server/otp-email.service.server';
 import { createOtpService } from '../server/otp.service.server';

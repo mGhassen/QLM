@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import {
   INITIAL_PANE_STATE,

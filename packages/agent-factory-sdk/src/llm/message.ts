@@ -1,7 +1,7 @@
 import { convertToModelMessages, type ModelMessage, type UIMessage } from 'ai';
 import { z } from 'zod';
-import type { IMessageRepository } from '@guepard/domain/repositories';
-import type { Message, MessageContent } from '@guepard/domain/entities';
+import type { IMessageRepository } from '@qlm/domain/repositories';
+import type { Message, MessageContent } from '@qlm/domain/entities';
 import type { Model } from './provider';
 
 export type { Message };

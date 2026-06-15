@@ -42,7 +42,7 @@ function parseBrand(content: string) {
 }
 
 export default function Brand({
-  content = "GUEPARD STRATEGIC RESEARCH",
+  content = "QLM STRATEGIC RESEARCH",
   editable,
   editing,
   onChange,

@@ -16,13 +16,13 @@ blocked_by:
 
 ## Goal
 
-Render the Table tab through a thin `NotebookDataGrid` wrapper around the canonical virtualised `DataGrid` from `@guepard/ui/guepard/datagrid`, and add wrapper-level CSV export and clipboard-copy handlers so the grid header strip's action icons are functional and operate on the **full** result set, not just the visible page.
+Render the Table tab through a thin `NotebookDataGrid` wrapper around the canonical virtualised `DataGrid` from `@qlm/ui/qlm/datagrid`, and add wrapper-level CSV export and clipboard-copy handlers so the grid header strip's action icons are functional and operate on the **full** result set, not just the visible page.
 
 ## Scope
 
 **In scope**
 - `packages/features/notebook/src/components/notebook-datagrid.tsx`
-  - Import `DataGrid` from `@guepard/ui/guepard/datagrid` and pass through `columns`, `rows`, `stat`, `pageSize`, `showRowNumbers`.
+  - Import `DataGrid` from `@qlm/ui/qlm/datagrid` and pass through `columns`, `rows`, `stat`, `pageSize`, `showRowNumbers`.
   - Implement `rowsToCsv(columns, rows)` with CSV escaping for commas/quotes/newlines and `JSON.stringify` for object/array cells.
   - Implement `handleDownloadCsv` that builds a Blob and triggers a `${exportFileName}.csv` download via an anchor click.
   - Implement `handleCopyPage` that writes the same CSV string to the clipboard.
@@ -39,7 +39,7 @@ Render the Table tab through a thin `NotebookDataGrid` wrapper around the canoni
 - [x] The Table tab renders the virtualised grid with row numbers and the `Query Results · ⏱ … rows` header strip.
 - [x] Clicking the Download icon downloads `query-result.csv` containing **every** row of the result set, with correct CSV escaping for commas, quotes, newlines, and `JSON.stringify`-rendered object/array cells.
 - [x] Clicking the Copy icon writes the same CSV to the clipboard.
-- [x] `pnpm --filter @guepard/notebook typecheck` is clean.
+- [x] `pnpm --filter @qlm/notebook typecheck` is clean.
 
 ## Tasks
 

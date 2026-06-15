@@ -3,16 +3,16 @@ import { createFileRoute, Link, Navigate } from '@tanstack/react-router';
 import { ArrowLeft } from 'lucide-react';
 import { z } from 'zod';
 
-import { AcceptInvitationContainer } from '@guepard/accounts/components';
-import { AuthLayoutShell } from '@guepard/auth/shared';
-import { getSupabaseBrowserClient } from '@guepard/supabase/browser-client';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { requireUser } from '@guepard/supabase/require-user';
-import { getSupabaseServerAdminClient } from '@guepard/supabase/server-admin-client';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
-import { Button } from '@guepard/ui/button';
-import { Heading } from '@guepard/ui/heading';
-import { Trans } from '@guepard/ui/trans';
+import { AcceptInvitationContainer } from '@qlm/accounts/components';
+import { AuthLayoutShell } from '@qlm/auth/shared';
+import { getSupabaseBrowserClient } from '@qlm/supabase/browser-client';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { requireUser } from '@qlm/supabase/require-user';
+import { getSupabaseServerAdminClient } from '@qlm/supabase/server-admin-client';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
+import { Button } from '@qlm/ui/button';
+import { Heading } from '@qlm/ui/heading';
+import { Trans } from '@qlm/ui/trans';
 
 import { AppLogo } from '@/components/app-logo';
 import pathsConfig from '@/config/paths.config';

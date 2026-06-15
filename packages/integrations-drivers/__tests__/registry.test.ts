@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import type { IntegrationProvider } from '@guepard/domain/entities';
+import type { IntegrationProvider } from '@qlm/domain/entities';
 import type {
   IIntegrationProviderDriver,
   RevealedCredentials,
-} from '@guepard/domain/services';
-import type { Region, TestResult } from '@guepard/domain/usecases';
+} from '@qlm/domain/services';
+import type { Region, TestResult } from '@qlm/domain/usecases';
 
 import { IntegrationProviderDriverRegistry } from '../src/registry';
 

@@ -7,8 +7,8 @@ const { loadDocsEnv, syncLocalSupabaseFromCli, repoRoot, webDir } = require('./l
 
 loadDocsEnv();
 
-const email = process.env.ADMIN_EMAIL || 'admin@rasm.ai';
-const password = process.env.ADMIN_PASSWORD || 'Rasm2026!';
+const email = process.env.ADMIN_EMAIL || 'admin@qlm.dev';
+const password = process.env.ADMIN_PASSWORD || 'QLM2026!';
 const skipReset = process.argv.includes('--skip-reset');
 const remoteArg = process.argv.includes('--remote')
   ? process.argv[process.argv.indexOf('--remote') + 1] || 'prod'
@@ -21,7 +21,7 @@ function isLocalSupabase() {
 
 const useLocal = !remoteArg && isLocalSupabase();
 
-console.log('🚀 Starting Rasm Docs CMS setup...\n');
+console.log('🚀 Starting QLM Docs CMS setup...\n');
 console.log(
   `📍 Target: ${remoteArg ? `remote (${remoteArg})` : useLocal ? 'local Supabase' : 'linked remote project'}\n`,
 );
@@ -83,7 +83,7 @@ try {
   console.log('\n🔐 CMS Login:');
   console.log(`   Email:    ${email}`);
   console.log(`   Password: ${password}`);
-  console.log(`   Studio:   ${base}/prj/rasm-project/studio`);
+  console.log(`   Studio:   ${base}/prj/qlm-project/studio`);
   console.log(`   Sign in:  ${base}/auth/sign-in`);
   console.log('\n📄 Docs:');
   console.log(`   Preview:  ${base}/docs/ia-agentique`);

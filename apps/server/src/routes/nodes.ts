@@ -14,24 +14,24 @@ import {
   SetNodeEligibilityService,
   SetNodeLifecycleService,
   UpdateNodeService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import type {
   ListNodesInput,
   NodeSort,
   NodeSortKey,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 import {
   NODE_ELIGIBILITY_STATES,
   NODE_LIFECYCLE_STATES,
   NodeDrainSchema,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import type {
   NodeEligibility,
   NodeLifecycleState,
   NodeProvider,
   NodeRegion,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import { handleDomainException, parseLimit } from '../lib/http-utils';
 
 const setLifecycleSchema = z.object({

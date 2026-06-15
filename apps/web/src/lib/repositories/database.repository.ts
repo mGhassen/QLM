@@ -1,5 +1,5 @@
-import type { Database } from '@guepard/domain/entities';
-import { IDatabaseRepository } from '@guepard/domain/repositories';
+import type { Database } from '@qlm/domain/entities';
+import { IDatabaseRepository } from '@qlm/domain/repositories';
 
 import { apiDelete, apiGet, apiPatch, apiPost } from './api-client';
 

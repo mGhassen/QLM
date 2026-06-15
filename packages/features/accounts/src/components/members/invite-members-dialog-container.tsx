@@ -8,9 +8,9 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import { useCsrfToken } from '@guepard/csrf/client';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useCsrfToken } from '@qlm/csrf/client';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -18,28 +18,28 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@guepard/ui/input-group';
-import { Spinner } from '@guepard/ui/spinner';
+} from '@qlm/ui/input-group';
+import { Spinner } from '@qlm/ui/spinner';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@guepard/ui/tooltip';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/tooltip';
+import { Trans } from '@qlm/ui/trans';
 
 import { createInvitationsSchema } from '../../schema';
 import { MembershipRoleSelector } from './membership-role-selector';

@@ -35,8 +35,8 @@ Final pane state — an *inline* (NOT Radix `Dialog`) confirmation block per AM-
 - `src/components/tokens-settings-pane.tsx` — replace task-001 revoke-confirm placeholder with `<RevokeConfirmInline token={state.token} onCancel={() => dispatch({ type: 'cancel-revoke-confirm' })} onRevoked={(row) => dispatch({ type: 'revoked', row })} />`.
 - `src/components/index.ts` — extend with `RevokeConfirmInline`.
 - `apps/web/src/components/settings-dialog-mount.tsx`:
-  - Replace `<TokensPanePlaceholder />` with `<TokensSettingsPane />` (import from `@guepard/user-tokens/components`).
-  - Wrap the children of `SettingsDialogContext.Provider` (or the dialog content) with `<UserTokensApiProvider value={...}>` from `@guepard/user-tokens/hooks`. The value adapts the existing `repositories.userToken` (`HttpUserTokenRepository`) to the `UserTokensApi` shape from Story 008. Three thin methods:
+  - Replace `<TokensPanePlaceholder />` with `<TokensSettingsPane />` (import from `@qlm/user-tokens/components`).
+  - Wrap the children of `SettingsDialogContext.Provider` (or the dialog content) with `<UserTokensApiProvider value={...}>` from `@qlm/user-tokens/hooks`. The value adapts the existing `repositories.userToken` (`HttpUserTokenRepository`) to the `UserTokensApi` shape from Story 008. Three thin methods:
     - `list()` → `repositories.userToken.findByAccountId('')` (empty accountId — server resolves from session).
     - `create(input)` → `(repositories.userToken as HttpUserTokenRepository).createAndIssueJwt({ account_id: '', ...input })`.
     - `revoke(id)` → `repositories.userToken.revoke(id, '').then(row => row!)` (the adapter never returns null on the happy path; throw if it does).
@@ -44,8 +44,8 @@ Final pane state — an *inline* (NOT Radix `Dialog`) confirmation block per AM-
 
 ## Acceptance
 
-- [ ] No `@guepard/ui/dialog` import in `revoke-confirm-inline.tsx`. The container uses a plain `<div>` with the right ARIA attributes.
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` + `test` pass.
+- [ ] No `@qlm/ui/dialog` import in `revoke-confirm-inline.tsx`. The container uses a plain `<div>` with the right ARIA attributes.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` + `test` pass.
 - [ ] `pnpm --filter web typecheck` passes after the wiring change.
 - [ ] `Readonly<Props>` on the component.
 - [ ] All copy localized via `tokens:pane.revoke.*` keys.
@@ -55,8 +55,8 @@ Final pane state — an *inline* (NOT Radix `Dialog`) confirmation block per AM-
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 pnpm --filter web typecheck
 pnpm web:dev
 # Manual: open Settings → click Generate → fill form → submit → reveal pane shows JWT → close → row appears in list → click trash → confirm-inline appears (NOT a stacked dialog) → Revoke → row flips to Revoked.
@@ -64,7 +64,7 @@ pnpm web:dev
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles**: `UserTokens / RevokeConfirmInline / Pristine`, `… / Submitting`, `… / Error`. PLUS the existing `UserTokens / TokensSettingsPane / Opened Revoke Confirm` (from task 001) now rendering the real component.
 - **Expected visual outcome**: a centered confirmation card with subtle backdrop dim. Heading "Revoke this token?" + body warning. Cancel + Revoke buttons. `Submitting` shows a spinner on the Revoke button. `Error` shows an inline error message under the body.
 

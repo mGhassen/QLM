@@ -1,8 +1,8 @@
-import type { IntegrationProvider } from '@guepard/domain/entities';
+import type { IntegrationProvider } from '@qlm/domain/entities';
 import {
   IIntegrationProviderDriverRegistry,
   type IIntegrationProviderDriver,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 
 import { AwsDriver } from './aws/aws-driver';
 import { GcpDriver } from './gcp/gcp-driver';

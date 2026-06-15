@@ -16,7 +16,7 @@ class MockMfaRepository extends IMfaRepository {
       totp: {
         qrCode: 'data:image/svg+xml;utf-8,<svg/>',
         secret: 'JBSWY3DPEHPK3PXP',
-        uri: `otpauth://totp/Guepard:${friendlyName}?secret=JBSWY3DPEHPK3PXP`,
+        uri: `otpauth://totp/QLM:${friendlyName}?secret=JBSWY3DPEHPK3PXP`,
       },
     });
 

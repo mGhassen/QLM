@@ -44,7 +44,7 @@ A user can land on `/prj/{slug}/predictions`, see the project's datasource list 
 - [ ] Clicking "Take snapshot" navigates to `/prediction-snapshot/{id}` and the hero + Schema tab populate from the snapshot.
 - [ ] Schema tab supports table → columns drilldown without touching `driver.metadata()` again (reads from snapshot only).
 - [ ] Browser-runtime datasources fall back to `takeFromClient` automatically and still produce a snapshot.
-- [ ] `pnpm --filter @guepard/features-predictions storybook` opens; at least one story renders per new component.
+- [ ] `pnpm --filter @qlm/features-predictions storybook` opens; at least one story renders per new component.
 - [ ] `pnpm typecheck && pnpm lint` are green.
 
 ## Tasks

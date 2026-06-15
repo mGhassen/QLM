@@ -5,16 +5,16 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
 const FormSchema = z.object({
   name: z.string().min(1),

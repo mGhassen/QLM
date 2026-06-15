@@ -1,6 +1,6 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Notebook } from '@guepard/domain/entities';
-import { INotebookRepository } from '@guepard/domain/repositories';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Notebook } from '@qlm/domain/entities';
+import { INotebookRepository } from '@qlm/domain/repositories';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 export class NotebookRepository extends INotebookRepository {

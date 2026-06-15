@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { RefreshCw } from 'lucide-react';
 
-import { useShell } from '@guepard/shell-runtime';
-import { Button } from '@guepard/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@guepard/ui/card';
-import { cn } from '@guepard/ui/utils';
+import { useShell } from '@qlm/shell-runtime';
+import { Button } from '@qlm/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@qlm/ui/card';
+import { cn } from '@qlm/ui/utils';
 
 function formatCredits(value: number): string {
   return value.toLocaleString('en-US', {

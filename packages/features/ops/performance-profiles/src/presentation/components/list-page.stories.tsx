@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { IPerformanceProfileRepository, type Repositories } from '@guepard/domain/repositories';
-import { ShellAppProvider } from '@guepard/shell-runtime';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { IPerformanceProfileRepository, type Repositories } from '@qlm/domain/repositories';
+import { ShellAppProvider } from '@qlm/shell-runtime';
 
 import { STORY_PROFILES } from '../story-fixtures';
 import { PerformanceProfileListPage } from './list-page';

@@ -17,7 +17,7 @@ Port the Rust shell entry point from qwery-core so the window opens with the lif
 ## Done when
 
 - [ ] `apps/desktop/src-tauri/src/main.rs` is a one-line shim calling `desktop_lib::run()`.
-- [ ] `apps/desktop/src-tauri/src/lib.rs` ports the following symbols from `qwery-core/apps/desktop/src-tauri/src/lib.rs`, with `SERVICE_NAME = "run.guepard.desktop"`:
+- [ ] `apps/desktop/src-tauri/src/lib.rs` ports the following symbols from `qwery-core/apps/desktop/src-tauri/src/lib.rs`, with `SERVICE_NAME = "run.qlm.desktop"`:
   - `target_triple()`
   - `configure_webview_zoom()` (Windows-only; no-op elsewhere)
   - `pick_port(preferred: u16) -> u16` with random-fallback

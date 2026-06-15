@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 import { I18nextProvider } from 'react-i18next';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { RevealTokenView } from './reveal-token-view';
 import { storybookI18n } from './story-helpers';

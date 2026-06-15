@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -13,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { PasswordSignUpSchema } from '../schemas/password-sign-up.schema';
 import { EmailInput } from './email-input';

@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { PasswordResetRequestContainer } from '@guepard/auth/password-reset';
-import { Heading } from '@guepard/ui/heading';
-import { Trans } from '@guepard/ui/trans';
+import { PasswordResetRequestContainer } from '@qlm/auth/password-reset';
+import { Heading } from '@qlm/ui/heading';
+import { Trans } from '@qlm/ui/trans';
 
 import pathsConfig from '@/config/paths.config';
 
 export const Route = createFileRoute('/auth/password-reset')({
-  head: () => ({ meta: [{ title: 'Reset Password — Rasm' }] }),
+  head: () => ({ meta: [{ title: 'Reset Password — QLM' }] }),
   component: PasswordResetPage,
 });
 

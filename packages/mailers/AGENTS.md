@@ -5,8 +5,8 @@ This file contains guidance for working with the email service supporting Resend
 ## Basic Usage
 
 ```typescript
-import { getMailer } from '@guepard/mailers';
-import { renderAccountDeleteEmail } from '@guepard/email-templates';
+import { getMailer } from '@qlm/mailers';
+import { renderAccountDeleteEmail } from '@qlm/email-templates';
 
 async function sendSimpleEmail() {
     // Get mailer instance
@@ -39,14 +39,14 @@ async function sendComplexEmail() {
 
 ## Email Templates
 
-Email templates are located in `@guepard/email-templates` and return `{ html, subject }`:
+Email templates are located in `@qlm/email-templates` and return `{ html, subject }`:
 
 ```typescript
 import { 
   renderAccountDeleteEmail,
   renderWelcomeEmail,
   renderPasswordResetEmail 
-} from '@guepard/email-templates';
+} from '@qlm/email-templates';
 
 // Render template
 const { html, subject } = await renderWelcomeEmail({

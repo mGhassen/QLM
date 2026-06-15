@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { CsrfTokenSchema } from '@guepard/csrf/schema';
+import { CsrfTokenSchema } from '@qlm/csrf/schema';
 
 export const LeaveOrganizationSchema = z.object({
   intent: z.literal('leave-organization'),

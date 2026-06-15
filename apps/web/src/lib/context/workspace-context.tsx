@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 
 type WorkspaceContextValue = {
   repositories: Repositories;

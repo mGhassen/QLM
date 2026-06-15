@@ -37,7 +37,7 @@ Ship the Supabase adapter plus the two Hono routes (`GET` / `PATCH /api/me/prefe
 ## Acceptance criteria
 
 - [x] `pnpm --filter server test __tests__/routes/user-preferences.test.ts` passes (happy + malformed + unauthenticated branches).
-- [x] `pnpm --filter @guepard/repository-supabase test` passes for the new adapter.
+- [x] `pnpm --filter @qlm/repository-supabase test` passes for the new adapter.
 - [x] `GET /api/me/preferences` with no row returns `200` and `{ preferences: {} }`.
 - [x] `PATCH` with `{ last_project_by_org: { [orgId]: projectId } }` merges without destroying other future keys.
 - [x] RLS still enforced when the adapter runs under the user's auth context.
@@ -51,7 +51,7 @@ Ship the Supabase adapter plus the two Hono routes (`GET` / `PATCH /api/me/prefe
 
 ```
 pnpm --filter server test __tests__/routes/user-preferences.test.ts
-pnpm --filter @guepard/repository-supabase test
+pnpm --filter @qlm/repository-supabase test
 pnpm server:dev    # then hit GET/PATCH /api/me/preferences with curl
 ```
 

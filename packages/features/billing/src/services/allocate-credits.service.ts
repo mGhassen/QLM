@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 export interface AllocateCreditsParams {
   organizationId: string;

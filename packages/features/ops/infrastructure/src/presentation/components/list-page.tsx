@@ -5,27 +5,27 @@ import { useQuery } from '@tanstack/react-query';
 import { VirtuosoGrid } from 'react-virtuoso';
 import { AlertTriangle, Loader2, Server, X } from 'lucide-react';
 
-import type { Node } from '@guepard/domain/entities';
-import { encodeTabId } from '@guepard/shell-contracts';
-import { useShell } from '@guepard/shell-runtime';
+import type { Node } from '@qlm/domain/entities';
+import { encodeTabId } from '@qlm/shell-contracts';
+import { useShell } from '@qlm/shell-runtime';
 
 import { DetailPage } from './detail-page';
 
-import { EntityListPage } from '@guepard/ui/entity-list';
+import { EntityListPage } from '@qlm/ui/entity-list';
 import {
   BulkActionBar,
   DataTableAdvanced,
   FilterChipRow,
   QuickFilterBar,
-} from '@guepard/ui/data-table-advanced';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/data-table-advanced';
+import { cn } from '@qlm/ui/utils';
 import {
   EntityEmptyFiltered,
   EntityEmptyFirstRun,
   EntityErrorBanner,
   EntityLoadingCardsSkeleton,
   EntityLoadingTableSkeleton,
-} from '@guepard/ui/entity-state';
+} from '@qlm/ui/entity-state';
 
 import { DetailsSheet } from './details-sheet';
 import { CreateSheet } from './create-sheet';

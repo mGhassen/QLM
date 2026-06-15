@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-gsheet-csv",
+  "name": "@qlm/extension-gsheet-csv",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@duckdb/node-api": "1.4.2-r.1",
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

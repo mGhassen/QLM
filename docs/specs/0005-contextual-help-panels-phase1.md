@@ -31,7 +31,7 @@ Scope is strict to phase 1. Deep linking, per-locale content, and manifest-level
 - As a **plugin author**, I can force-open the docs panel on a specific page from inside my component tree via `useDocsPanel().open(pageId)`.
 - As a **user** of any project-shell app, when a plugin opens a help page I see contextual documentation in the existing right-sidebar panel, styled consistently regardless of which plugin contributed it.
 - As a **user**, I can close the panel with the topbar button at any time, and it stays closed until another plugin (or I) explicitly reopens it.
-- As a **plugin author** (or any package author), I can render arbitrary markdown (GFM + code blocks + tables) via `<Markdown source={...} />` from `@guepard/ui/markdown`, without reconfiguring `react-markdown` myself.
+- As a **plugin author** (or any package author), I can render arbitrary markdown (GFM + code blocks + tables) via `<Markdown source={...} />` from `@qlm/ui/markdown`, without reconfiguring `react-markdown` myself.
 
 ---
 
@@ -100,7 +100,7 @@ Plugin component                                    Host (DocsPanelProvider)    
 
 - **`packages/shell-runtime`** — owns `DocsPanelContext`, `DocsPanelProvider`, `useDocsPanel()`. No React Query, no registry lookup, no rendering. Pure state.
 - **`apps/web`** — owns the `project-shell-host.tsx` wiring: `activePanel` state, `DocsPanelProvider onOpenChange`, `registry.getHelpPage()` lookup, and passing `docsPanelContent={<ActiveHelpPage />}` into the layout.
-- **`packages/ui`** — owns the layout (`ProjectShellLayout`, `RightSidebar`, `DocumentationPanel`) and the new `@guepard/ui/markdown` subpath export.
+- **`packages/ui`** — owns the layout (`ProjectShellLayout`, `RightSidebar`, `DocumentationPanel`) and the new `@qlm/ui/markdown` subpath export.
 - **`packages/apps/<plugin>`** — owns the help-page components (React components rendering `<Markdown source={rawMd} />`) and the `HelpPages` sibling export in `plugin-root.tsx`.
 
 ---
@@ -165,10 +165,10 @@ export function DocsPanelProvider(props: DocsPanelProviderProps): React.ReactEle
 export function useDocsPanel(): DocsPanelContextValue; // throws outside provider
 ```
 
-### 5.4 `@guepard/ui/markdown` API
+### 5.4 `@qlm/ui/markdown` API
 
 ```ts
-// packages/ui/src/guepard/markdown.tsx
+// packages/ui/src/qlm/markdown.tsx
 export type MarkdownProps = Readonly<{
   source: string;
   className?: string;
@@ -218,17 +218,17 @@ No database changes. No migrations. Nothing in `packages/domain`.
 
 ### 7.3 Layout UI (`packages/ui`)
 
-- `src/guepard/layout/documentation-panel.tsx` — **rewrite**. Delete `DocumentationItem` type and the static-list render path. New props `Readonly<{ page: ReactNode | null }>`. Chrome unchanged.
-- `src/guepard/layout/right-sidebar.tsx` — **edit**. Replace `documentationItems?: DocumentationItem[]` with `docsPanelContent?: ReactNode`. Pass `page={docsPanelContent ?? null}` to the panel.
-- `src/guepard/layout/root-layout.tsx` — **edit**. Same prop swap. `RootLayout` still owns local `activePanel` state — the lift is only inside `ProjectShellLayout`.
-- `src/guepard/shell/project-shell-layout.tsx` — **edit**. Remove local `useState<ActivePanel>`. Accept `activePanel` + `onPanelChange` as props. Swap `documentationItems` → `docsPanelContent?: ReactNode`.
-- `src/guepard/layout/index.ts` — **edit**. Remove `DocumentationItem` export (type deleted).
+- `src/qlm/layout/documentation-panel.tsx` — **rewrite**. Delete `DocumentationItem` type and the static-list render path. New props `Readonly<{ page: ReactNode | null }>`. Chrome unchanged.
+- `src/qlm/layout/right-sidebar.tsx` — **edit**. Replace `documentationItems?: DocumentationItem[]` with `docsPanelContent?: ReactNode`. Pass `page={docsPanelContent ?? null}` to the panel.
+- `src/qlm/layout/root-layout.tsx` — **edit**. Same prop swap. `RootLayout` still owns local `activePanel` state — the lift is only inside `ProjectShellLayout`.
+- `src/qlm/shell/project-shell-layout.tsx` — **edit**. Remove local `useState<ActivePanel>`. Accept `activePanel` + `onPanelChange` as props. Swap `documentationItems` → `docsPanelContent?: ReactNode`.
+- `src/qlm/layout/index.ts` — **edit**. Remove `DocumentationItem` export (type deleted).
 
 ### 7.4 Shared markdown (`packages/ui`)
 
-- `src/guepard/markdown.tsx` — **new**. Thin `react-markdown` + `remark-gfm` wrapper with default prose classes + targeted code-block overrides.
-- `src/guepard/markdown.stories.tsx` — **new**. Four stories: `HelpPage`, `AllFeatures`, `NarrowContainer`, `Empty`.
-- `package.json` — **edit**. Add `"./markdown": "./src/guepard/markdown.tsx"` to `exports`.
+- `src/qlm/markdown.tsx` — **new**. Thin `react-markdown` + `remark-gfm` wrapper with default prose classes + targeted code-block overrides.
+- `src/qlm/markdown.stories.tsx` — **new**. Four stories: `HelpPage`, `AllFeatures`, `NarrowContainer`, `Empty`.
+- `package.json` — **edit**. Add `"./markdown": "./src/qlm/markdown.tsx"` to `exports`.
 
 ### 7.5 Integrations plugin — first consumer (`packages/apps/integrations`)
 
@@ -244,7 +244,7 @@ No database changes. No migrations. Nothing in `packages/domain`.
 
 - `apps/web/src/routes/org/$slug.tsx` — **edit**. Drop the old `documentationItems` mock list; the route uses `RootLayout` (not `ProjectShellLayout`) and keeps its own `activePanel` state — nothing about the org-level layout changes.
 - `apps/web/src/routes/org/$slug/project/$projectSlug.tsx` — **edit**. Same.
-- `packages/ui/src/guepard/shell/project-shell.stories.tsx` — **edit**. Storybook story updates to the new `docsPanelContent` prop; wraps the story in a minimal `<DocsPanelProvider>` when rendering components that call `useDocsPanel`.
+- `packages/ui/src/qlm/shell/project-shell.stories.tsx` — **edit**. Storybook story updates to the new `docsPanelContent` prop; wraps the story in a minimal `<DocsPanelProvider>` when rendering components that call `useDocsPanel`.
 
 ---
 
@@ -267,9 +267,9 @@ None. No database tables.
 ### 10.1 Static checks
 
 ```bash
-pnpm --filter @guepard/shell-runtime typecheck
-pnpm --filter @guepard/ui typecheck
-pnpm --filter @guepard/integrations typecheck
+pnpm --filter @qlm/shell-runtime typecheck
+pnpm --filter @qlm/ui typecheck
+pnpm --filter @qlm/integrations typecheck
 pnpm --filter web typecheck
 ```
 
@@ -313,7 +313,7 @@ Five vertical slices, ordered by dependency. See `docs/stories/0005-contextual-h
 1. **001-add-docs-panel-context** — shell-runtime `DocsPanelContext` + `DocsPanelProvider` + `useDocsPanel()` (throws outside provider). Pure state, no registry lookup, no rendering. Blocks everything below.
 2. **002-extend-app-registry-contract** — plugin-root `HelpPages` sibling export, `PluginRegistryEntry.helpPages`, `AppRegistry.getHelpPage(routeBase, pageId)`, `project-shell-host.tsx` wiring (owns `activePanel`, wraps in `DocsPanelProvider`, deletes the hardcoded mocks). Depends on 001.
 3. **003-rewire-layout-docs-panel** — rewrite `DocumentationPanel` to accept a React node, state-lift in `ProjectShellLayout`, propagate the `documentationItems → docsPanelContent` rename. Depends on 002 (the host needs to compile first).
-4. **004-create-shared-markdown-component** — `@guepard/ui/markdown` wrapper + Storybook stories. Independent of 001/002/003 — can land in parallel.
+4. **004-create-shared-markdown-component** — `@qlm/ui/markdown` wrapper + Storybook stories. Independent of 001/002/003 — can land in parallel.
 5. **005-wire-integrations-first-consumer** — AWS/GCP markdown help pages + `HelpPages` export + auto-open `useEffect`. Depends on 001–004.
 
 ---
@@ -323,8 +323,8 @@ Five vertical slices, ordered by dependency. See `docs/stories/0005-contextual-h
 - Deep linking via `?docs=<pageId>` URL query param.
 - Per-locale help content.
 - Manifest-level help-page titles for a future "browse all help" picker.
-- Optional syntax highlighting in `@guepard/ui/markdown` once a plugin needs it.
-- A shared `DocsPanelStoryDecorator` under `@guepard/storybook` so stories don't have to hand-wire a `DocsPanelProvider` every time.
+- Optional syntax highlighting in `@qlm/ui/markdown` once a plugin needs it.
+- A shared `DocsPanelStoryDecorator` under `@qlm/storybook` so stories don't have to hand-wire a `DocsPanelProvider` every time.
 
 ---
 

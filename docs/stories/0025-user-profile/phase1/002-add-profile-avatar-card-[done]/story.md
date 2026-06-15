@@ -47,7 +47,7 @@ A signed-in user can upload a profile picture or clear it back to initials; the 
 - [x] Selecting a non-image file or an image larger than 2 MB is rejected client-side with an inline error — no Storage call is made.
 - [x] Re-uploading replaces the previous file in the bucket (no orphaned files — verify via Supabase Storage UI). *Logic-verified via `extractStoragePath` + `bucket.remove` before upload; not browser-tested in this run.*
 - [x] All writes go through `IAccountRepository`; no React component calls `client.storage.from(...)` directly.
-- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @guepard/domain test` (302/3 skipped), `pnpm --filter @guepard/repository-supabase test` (23/23), `pnpm --filter @guepard/user-profile test` (9/9) all pass.
+- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @qlm/domain test` (302/3 skipped), `pnpm --filter @qlm/repository-supabase test` (23/23), `pnpm --filter @qlm/user-profile test` (9/9) all pass.
 
 ## Tasks
 

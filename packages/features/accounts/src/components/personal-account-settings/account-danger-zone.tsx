@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { useForm, useWatch } from 'react-hook-form';
 
-import { ErrorBoundary } from '@guepard/telemetry';
-import { VerifyOtpForm } from '@guepard/otp/components';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { ErrorBoundary } from '@qlm/telemetry';
+import { VerifyOtpForm } from '@qlm/otp/components';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -18,10 +18,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
-import { Form } from '@guepard/ui/form';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
+import { Form } from '@qlm/ui/form';
+import { Trans } from '@qlm/ui/trans';
 
 import { DeleteAccountFormSchema } from '../../schema/delete-personal-account.schema';
 

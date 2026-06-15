@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Boxes } from 'lucide-react';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
-import { EntitySection } from '@guepard/ui/entity-primitives';
+import { EntitySection } from '@qlm/ui/entity-primitives';
 
 export type NodeDetailServicesSectionProps = Readonly<{ node: Node }>;
 

@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { UserToken } from '@guepard/domain/entities';
-import type { CreateUserTokenOutput } from '@guepard/domain/usecases';
+import type { UserToken } from '@qlm/domain/entities';
+import type { CreateUserTokenOutput } from '@qlm/domain/usecases';
 
 import {
   USER_TOKENS_LIST_QUERY_KEY,

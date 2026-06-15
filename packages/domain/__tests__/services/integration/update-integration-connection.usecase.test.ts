@@ -44,7 +44,7 @@ describe('UpdateIntegrationConnectionService', () => {
     const row = createIntegrationRow({
       secretRef: 'vault:original:1',
       testStatus: 'success',
-      testIdentity: 'arn:aws:iam::123:user/guepard',
+      testIdentity: 'arn:aws:iam::123:user/qlm',
     });
     repository.seed(row);
     const service = new UpdateIntegrationConnectionService(repository);
@@ -58,6 +58,6 @@ describe('UpdateIntegrationConnectionService', () => {
     const after = repository.snapshot(row.id);
     expect(after?.secretRef).toBe('vault:original:1');
     expect(after?.testStatus).toBe('success');
-    expect(after?.testIdentity).toBe('arn:aws:iam::123:user/guepard');
+    expect(after?.testIdentity).toBe('arn:aws:iam::123:user/qlm');
   });
 });

@@ -11,15 +11,15 @@
 
 ## 1. Summary
 
-Introduce a **notebook editor** primitive in `guepard-console-v3` so users can author cells, run SQL queries against any configured datasource, and read tabular results inside the project shell — without leaving the app for an external SQL client. A notebook is a project-scoped document made of an ordered list of cells. Each cell is one of three types: a **query cell** (SQL editor + Run button + result viewer), a **markdown cell** (rich text), or a **prompt cell** (free-form prompt for the agent surface, deferred to a later phase).
+Introduce a **notebook editor** primitive in `qlm-console-v3` so users can author cells, run SQL queries against any configured datasource, and read tabular results inside the project shell — without leaving the app for an external SQL client. A notebook is a project-scoped document made of an ordered list of cells. Each cell is one of three types: a **query cell** (SQL editor + Run button + result viewer), a **markdown cell** (rich text), or a **prompt cell** (free-form prompt for the agent surface, deferred to a later phase).
 
 Phase 1 ships:
 
-- A `@guepard/notebook` feature package owning the presentational shell — `NotebookList`, `NotebookUI`, `NotebookCell`, `CellDivider`, `NotebookDataGrid`.
-- A `@guepard/app-notebook` plugin under `packages/apps/notebook` exposing the standard `default` (list view), `FlatRoot` (editor view), and `resolveProjectContext` sibling exports the shell registry consumes.
+- A `@qlm/notebook` feature package owning the presentational shell — `NotebookList`, `NotebookUI`, `NotebookCell`, `CellDivider`, `NotebookDataGrid`.
+- A `@qlm/app-notebook` plugin under `packages/apps/notebook` exposing the standard `default` (list view), `FlatRoot` (editor view), and `resolveProjectContext` sibling exports the shell registry consumes.
 - Cell affordances at parity with `qwery-core`: language badges, hover-tooltipped footer toolbar, More-menu cell operations including Duplicate, an always-visible `+` insertion affordance on every cell divider, and a Run button whose disabled state explains itself.
 - A single tabbed result panel (`Table | Graphs | API | Data App | Report`) inside each query cell. Only the `Table` tab is functional in phase 1; the other four are placeholder slots reserved for later phases. The panel auto-fits its content height between 140 px and 480 px so a one-row result does not waste a screen of vertical space.
-- A virtualised `DataGrid` rendering for the `Table` tab via a thin `NotebookDataGrid` wrapper around `@guepard/ui/guepard/datagrid` — the same component the design-system Storybook story showcases. The wrapper supplies the row-number column, the header strip with `Query Results · ⏱ … rows`, and full-result-set CSV export and clipboard copy actions.
+- A virtualised `DataGrid` rendering for the `Table` tab via a thin `NotebookDataGrid` wrapper around `@qlm/ui/qlm/datagrid` — the same component the design-system Storybook story showcases. The wrapper supplies the row-number column, the header strip with `Query Results · ⏱ … rows`, and full-result-set CSV export and clipboard copy actions.
 - A datasource selector inside each query cell that renders the brand logo of the registered provider (postgres, mongo, s3, …) by resolving icons from `ExtensionsRegistry`.
 - An `unsaved` indicator next to the notebook title driven by the `hasUnsavedChanges` prop on `NotebookUI`.
 - The plumbing required for the above to actually render: the host's Tailwind v4 source scope must include `packages/features` and `packages/apps` so utility classes used inside plugin packages are emitted, and `NotebookUI`'s subtree must be wrapped in a `TooltipProvider` so the new Radix-based tooltips have a parent context.
@@ -50,7 +50,7 @@ Each goal is an observable exit criterion.
 - **Run a SQL cell end-to-end.** Pick a datasource from the in-cell selector, click Run, the query is dispatched through `shell.query.run({ query, datasourceId, conversationId: notebookId })`, the host posts `/api/notebook/query`, the server resolves the datasource and runs the query through the registered node driver, and the result renders inside the cell.
 - **Single result render per cell.** Exactly one tabbed result panel per cell, exactly one error panel per cell. No duplicate stacks.
 - **Auto-fit result panel.** The Table tab's panel height is `clamp(140, chrome + visibleRows × 40, 480)` where `visibleRows = min(rows.length, 10)`. Other tabs use a fixed 400 px since their content size is unknown in phase 1.
-- **Storybook-grade `DataGrid`.** The Table tab renders through `DataGrid` from `@guepard/ui/guepard/datagrid` — virtualised, row-numbered, with a header strip showing `Query Results · ⏱ … rows` and Export CSV + Copy page actions.
+- **Storybook-grade `DataGrid`.** The Table tab renders through `DataGrid` from `@qlm/ui/qlm/datagrid` — virtualised, row-numbered, with a header strip showing `Query Results · ⏱ … rows` and Export CSV + Copy page actions.
 - **Full-result CSV export.** Clicking Export CSV downloads a `.csv` of every row in the current result set, not just the visible page. Copy page copies the same content to the clipboard.
 - **Tooltipped affordances.** Every cell-footer icon has a tooltip. The Run button's tooltip explains the disabled state ("Select a datasource to run") so users learn the requirement instead of guessing.
 - **Cell-type badge.** Each query cell's header shows a small `SQL` pill next to "Cell N"; markdown and prompt cells render their own visible bodies and need no extra badge in phase 1.
@@ -65,7 +65,7 @@ Each goal is an observable exit criterion.
 - **Chart authoring.** The `Graphs` tab renders a "coming soon" placeholder. **Phase 2.**
 - **API view.** The `API` tab renders a placeholder; phase 2 will define the contract for exposing a query as a callable endpoint.
 - **Data App view.** Same — placeholder slot reserved for a phase that ships the Data App primitive.
-- **Report view.** Hooked to `ReportRenderer` / `ResultReportView` from `@guepard/ui/guepard/report` if `reportContent` is supplied; phase 1 does not produce reports automatically.
+- **Report view.** Hooked to `ReportRenderer` / `ResultReportView` from `@qlm/ui/qlm/report` if `reportContent` is supplied; phase 1 does not produce reports automatically.
 - **SQL autocomplete and schema-aware IntelliSense.** The CodeMirror grammar stays at the basic SQL extension. **Phase 2.**
 - **Auto-save state machine.** Saves fire per change through `updateNotebookMutation`. The unsaved-yellow-dot uses `mutation.isPending` as a proxy for "in flight". A real dirty/clean machine is **Phase 2**.
 - **Run-all-cells.** Each cell still runs in isolation. **Phase 2.**
@@ -81,12 +81,12 @@ Each goal is an observable exit criterion.
 ## 4. Prior art in the codebase
 
 - **Reused** — `@tanstack/react-router` flat routing convention for plugin URLs. The notebook editor uses `/notebook/{notebookSlug}` as a flat route, identical to how the datasources plugin uses `/datasource/{slug}`.
-- **Reused** — `@guepard/shell-runtime` `useShell()` and the `query` resource, which already wraps a host-supplied `runQuery` function. The notebook is a consumer; no new resource is added in this RFC.
+- **Reused** — `@qlm/shell-runtime` `useShell()` and the `query` resource, which already wraps a host-supplied `runQuery` function. The notebook is a consumer; no new resource is added in this RFC.
 - **Reused** — `apps/web/src/shell/run-query.ts`, the host's `RunQueryFn` implementation, which posts to the Hono server's `/api/notebook/query` endpoint.
 - **Reused** — `apps/server/src/routes/notebook-query.ts`, a Hono route mounted at `/notebook/query` that resolves the datasource via repositories, looks up the registered node driver via `ExtensionsRegistry`, runs the query through `getDriverInstance(...).query(...)`, and returns `{ success, data: DatasourceResultSet }`.
-- **Reused** — `@guepard/extensions-loader::initDatasourceRegistry()` (idempotent) and `@guepard/extensions-sdk::ExtensionsRegistry`. The notebook plugin-root calls `init` at module top so registered icons and drivers are available before the editor mounts.
-- **Reused** — `@guepard/ui/guepard/datagrid::DataGrid`, the virtualised TableVirtuoso-based grid the design system exposes (and the `Design System / DataGrid` Storybook story renders). The notebook wraps it for result rendering.
-- **Reused** — `@guepard/ui/tooltip` (Radix-based). The notebook wraps its subtree in `TooltipProvider` so the cell-chrome tooltips have a parent context.
+- **Reused** — `@qlm/extensions-loader::initDatasourceRegistry()` (idempotent) and `@qlm/extensions-sdk::ExtensionsRegistry`. The notebook plugin-root calls `init` at module top so registered icons and drivers are available before the editor mounts.
+- **Reused** — `@qlm/ui/qlm/datagrid::DataGrid`, the virtualised TableVirtuoso-based grid the design system exposes (and the `Design System / DataGrid` Storybook story renders). The notebook wraps it for result rendering.
+- **Reused** — `@qlm/ui/tooltip` (Radix-based). The notebook wraps its subtree in `TooltipProvider` so the cell-chrome tooltips have a parent context.
 - **Reused** — `@dnd-kit/sortable` for cell drag-and-drop reordering. Already a dependency from the broader UI.
 - **Reused** — `@uiw/react-codemirror` + `@codemirror/lang-sql` for the SQL editor body. Already a dependency.
 - **Reused** — `react-markdown` + `remark-gfm` for the markdown cell preview. Already a dependency.
@@ -157,7 +157,7 @@ packages/features/notebook/src/components/
    ├─ notebook-datagrid.tsx — wrapper around DataGrid with CSV/copy handlers
    └─ notebook-cell-ai-popup.tsx — embedded AI input (advanced mode only)
    │
-packages/ui/src/guepard/datagrid/datagrid.tsx   (reused as-is)
+packages/ui/src/qlm/datagrid/datagrid.tsx   (reused as-is)
    │
 packages/extensions-loader (reused) + packages/extensions-sdk (reused)
 ```
@@ -181,7 +181,7 @@ These were resolved during spec drafting and are listed here for the historical 
 1. **Persist results inside the notebook document or keep them in-memory?** Persisting would survive page reloads but inflate document size and confuse ownership (results are an artifact, not the document). **Resolution:** in-memory in plugin-root state; the user re-runs after a reload. Phase 2 may revisit if a user complains.
 2. **Single tabbed panel or dual rendering with an inline summary above the tabs?** A dual rendering (a `Results · N rows × M cols` collapsible above the tabs *and* the tabbed view below) gives both at-a-glance info and the rich grid. **Resolution:** single tabbed panel — the meta info already lives in the grid header strip (`Query Results · ⏱ … rows`). Two stacks of the same data is worse than one.
 3. **Fixed result panel height or auto-fit?** Fixed (e.g., 400 px) is simpler but wastes vertical space for one-row results. Auto-fit needs to know row height. **Resolution:** auto-fit `clamp(140, chrome + min(rows, 10) × 40, 480)`. The grid handles internal scroll and pagination above 10 visible rows.
-4. **Wrap `@guepard/ui/guepard/datagrid` or `@guepard/ui/ai`'s minimal grid?** Two grids exist in the UI library. **Resolution:** the Storybook-grade `@guepard/ui/guepard/datagrid` — virtualised, row-numbered, header strip, CSV-ready. `@guepard/ui/ai`'s minimal grid is reserved for the chat-sidebar context where the chrome would be too heavy.
+4. **Wrap `@qlm/ui/qlm/datagrid` or `@qlm/ui/ai`'s minimal grid?** Two grids exist in the UI library. **Resolution:** the Storybook-grade `@qlm/ui/qlm/datagrid` — virtualised, row-numbered, header strip, CSV-ready. `@qlm/ui/ai`'s minimal grid is reserved for the chat-sidebar context where the chrome would be too heavy.
 5. **Where does the unsaved indicator come from?** Without a real dirty/clean state machine. **Resolution:** plumb `updateNotebookMutation.isPending` as `hasUnsavedChanges`. Phase 2 owns the real machine.
 6. **Sibling Add-cell button at the bottom or use the trailing `CellDivider` for both between-cells and bottom?** **Resolution:** the trailing `CellDivider` already covers the bottom case; one component handles both. The redesign of `CellDivider` (always-visible `+`, hover fan-out) applies uniformly.
 7. **Cell-type badge on text and prompt cells too, or only query?** **Resolution:** only query cells in phase 1. Text and prompt cells render their own visible bodies and don't need the disambiguation. Revisit if user feedback says otherwise.
@@ -194,7 +194,7 @@ These were resolved during spec drafting and are listed here for the historical 
 - **Persist results in the notebook document.** Rejected — see §8.1.
 - **One result viewer with no tabs at all.** Rejected. Even though only Table is functional in phase 1, the tab strip telegraphs that more views are coming and reserves visual real estate so phase 2 doesn't reshuffle the layout.
 - **A custom in-house data grid instead of wrapping the existing one.** Rejected. The design system already exposes a virtualised grid with the exact features the notebook needs. Wrapping it preserves visual consistency across the app and CSV export logic stays in one place.
-- **Render brand logos via a separate `@guepard/extensions-icons` package.** Rejected. The icons are already addressable as static URLs from `ExtensionsRegistry.get(...).icon`. A separate package would be redirection without value.
+- **Render brand logos via a separate `@qlm/extensions-icons` package.** Rejected. The icons are already addressable as static URLs from `ExtensionsRegistry.get(...).icon`. A separate package would be redirection without value.
 
 ## 10. References
 
@@ -202,7 +202,7 @@ These were resolved during spec drafting and are listed here for the historical 
 - `.claude/rules/i18n.md` — every new user-facing string this RFC adds is wrapped in `t()` against the `notebooks` namespace.
 - `.claude/rules/clean-code.md` — followed for the cell-state hygiene (no dead state variables, no orphaned helpers).
 - `apps/server/src/routes/notebook-query.ts` — the existing run endpoint the notebook reuses unchanged.
-- `packages/ui/src/guepard/datagrid/datagrid.tsx` + `datagrid.stories.tsx` — the canonical DataGrid the notebook wraps.
+- `packages/ui/src/qlm/datagrid/datagrid.tsx` + `datagrid.stories.tsx` — the canonical DataGrid the notebook wraps.
 - `packages/extensions-loader/src/index.browser.ts` — `initDatasourceRegistry()` and friends.
 
 ---

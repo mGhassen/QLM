@@ -22,7 +22,7 @@ Every user-facing string in the Predictions app routes through `t()` from the ne
 **In scope**
 - `apps/web/src/lib/i18n/locales/en/predictions.json` — populated with the full key map from spec §11.
 - `apps/web/src/lib/i18n/i18n.settings.ts` — append `'predictions'` to `defaultI18nNamespaces`.
-- Sweep stories 002 / 007 / 008 outputs and replace every TODO-marked English literal with `t('predictions.<key>')` or `<Trans i18nKey="predictions.<key>" />` from `@guepard/ui/trans`.
+- Sweep stories 002 / 007 / 008 outputs and replace every TODO-marked English literal with `t('predictions.<key>')` or `<Trans i18nKey="predictions.<key>" />` from `@qlm/ui/trans`.
 - Finalize Storybook stories with translated strings (i18n initialized in storybook config or stubbed).
 - Run §10.5 smoke locally and document the result in this story's `Demo / verification` outcome.
 
@@ -33,7 +33,7 @@ Every user-facing string in the Predictions app routes through `t()` from the ne
 ## Acceptance criteria
 
 - [ ] `grep -nE '"[A-Z][a-z]+ [a-z]+"' packages/apps/predictions/src packages/features/predictions/src` returns no user-facing English literals (only test strings, comments, or whitelisted exceptions).
-- [ ] ESLint passes — no `react-i18next/Trans` import (must be from `@guepard/ui/trans`).
+- [ ] ESLint passes — no `react-i18next/Trans` import (must be from `@qlm/ui/trans`).
 - [ ] `apps/web/src/lib/i18n/i18n.settings.ts` lists `'predictions'` in `defaultI18nNamespaces`.
 - [ ] `pnpm typecheck && pnpm lint && pnpm test` are green.
 - [ ] Manual smoke per §10.5 succeeds: take a snapshot, drill into a table, ask the agent, get a coherent streamed reply.

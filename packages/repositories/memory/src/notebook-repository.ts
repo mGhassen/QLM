@@ -1,7 +1,7 @@
-import type { Nullable } from '@guepard/domain/common';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Notebook } from '@guepard/domain/entities';
-import { INotebookRepository } from '@guepard/domain/repositories';
+import type { Nullable } from '@qlm/domain/common';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Notebook } from '@qlm/domain/entities';
+import { INotebookRepository } from '@qlm/domain/repositories';
 
 export class NotebookRepository extends INotebookRepository {
   private notebooks = new Map<string, Notebook>();

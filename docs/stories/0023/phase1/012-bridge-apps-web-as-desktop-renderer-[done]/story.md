@@ -20,7 +20,7 @@ Load the full `apps/web` SPA inside the Tauri webview so the desktop `.app` ship
 
 **In scope**
 - Add a SPA build target to `apps/web/vite.config.ts` (alongside the existing SSR output) so prod builds emit a standalone `index.html` + assets loadable from disk.
-- Wire `window.__GUEPARD_API_URL` through `apps/web/src/lib/repositories/api-client.ts` so every API call reaches the Tauri-spawned sidecar regardless of origin. Add `apps/web/src/globals.d.ts` for the Window type.
+- Wire `window.__QLM_API_URL` through `apps/web/src/lib/repositories/api-client.ts` so every API call reaches the Tauri-spawned sidecar regardless of origin. Add `apps/web/src/globals.d.ts` for the Window type.
 - Repoint `apps/desktop/src-tauri/tauri.conf.json`:
   - `beforeDevCommand` → `pnpm --filter web dev`
   - `devUrl` → `http://localhost:3000`
@@ -37,7 +37,7 @@ Load the full `apps/web` SPA inside the Tauri webview so the desktop `.app` ship
 
 - [x] `pnpm --filter web build` produces `apps/web/dist/client/index.html` + `assets/` (SPA shell additive to the existing SSR build — no separate `build:spa` script needed). SSR still produces `dist/server/server.js`.
 - [x] `pnpm --filter desktop tauri:dev` launches the window, points at `localhost:3000`, and apps/web's root route loads (sign-in or home, depending on session).
-- [x] `pnpm --filter desktop tauri:build` produces a `.app` that loads apps/web's UI from disk. `/api/*` requests reach the Bun sidecar via `window.__GUEPARD_API_URL` (verified). Mixed-content note: the prod `.app` cannot reach **HTTP** local Supabase due to WebKit's secure-context rules — that's a separate concern for cloud-HTTPS distribution and a future "sidecar-owned auth" story.
+- [x] `pnpm --filter desktop tauri:build` produces a `.app` that loads apps/web's UI from disk. `/api/*` requests reach the Bun sidecar via `window.__QLM_API_URL` (verified). Mixed-content note: the prod `.app` cannot reach **HTTP** local Supabase due to WebKit's secure-context rules — that's a separate concern for cloud-HTTPS distribution and a future "sidecar-owned auth" story.
 - [x] First-run flow: deleting `config.json` redirects to apps/web's `/desktop/first-run` (covered by story 008 + the runtime gate).
 - [x] Settings → Server pane (story 009) renders in desktop runtime via `useRuntime() === 'desktop'`.
 - [x] `pnpm typecheck` green across the monorepo.
@@ -56,11 +56,11 @@ pnpm --filter desktop tauri:dev
 
 # Prod package
 pnpm --filter desktop tauri:build
-open "apps/desktop/src-tauri/target/release/bundle/macos/Guepard Desktop.app"
+open "apps/desktop/src-tauri/target/release/bundle/macos/QLM Desktop.app"
 
 # Fresh first-run
-rm -f "$HOME/Library/Application Support/run.guepard.desktop/config.json"
-open "apps/desktop/src-tauri/target/release/bundle/macos/Guepard Desktop.app"
+rm -f "$HOME/Library/Application Support/run.qlm.desktop/config.json"
+open "apps/desktop/src-tauri/target/release/bundle/macos/QLM Desktop.app"
 ```
 
 ## Questions surfaced
@@ -70,7 +70,7 @@ open "apps/desktop/src-tauri/target/release/bundle/macos/Guepard Desktop.app"
 ## Notes
 
 - 001 — Simpler than originally planned: TanStack Start's `spa: { enabled: true, prerender: { outputPath: '/index' } }` is additive — single `pnpm --filter web build` produces both SSR (`dist/server/server.js`) + SPA shell (`dist/client/index.html`). No `BUILD_MODE` flag, no `dist-spa` folder, no `build:spa` script. Tasks 002 + 003 will reflect the shared `dist/client` path.
-- 002 — `getApiBaseUrl()` short-circuits on `window.__GUEPARD_API_URL` and returns `${url}/api` so existing `fetch(\`${base}${endpoint}\`)` callers keep working in both web (relative `/api`) and desktop (absolute sidecar URL).
+- 002 — `getApiBaseUrl()` short-circuits on `window.__QLM_API_URL` and returns `${url}/api` so existing `fetch(\`${base}${endpoint}\`)` callers keep working in both web (relative `/api`) and desktop (absolute sidecar URL).
 - 003 — `tauri.conf.json` repointed at apps/web (`devUrl: localhost:3000`, `frontendDist: ../../web/dist/client`). The apps/desktop placeholder SPA stays on disk but is no longer rendered — pruning is a follow-up story.
 
 ## Spec-accuracy check

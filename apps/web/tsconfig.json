@@ -1,5 +1,5 @@
 {
-  "extends": "@guepard/tsconfig/base.json",
+  "extends": "@qlm/tsconfig/base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "moduleResolution": "bundler",

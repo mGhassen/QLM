@@ -7,7 +7,7 @@ import { fn } from 'storybook/test';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { OrgSettingsGeneralSection } from './general';
 
@@ -55,8 +55,8 @@ type OrganizationStub = {
 
 const organization: OrganizationStub = {
   id: 'o-1',
-  slug: 'guepard',
-  name: 'Rasm',
+  slug: 'qlm',
+  name: 'QLM',
   userId: 'u-1',
   hideSidebar: false,
 };
@@ -74,7 +74,7 @@ function makeShellValue(
   const asAny = (v: unknown) => v as never;
   return {
     projectId: 'p-1',
-    projectSlug: 'guepard-console',
+    projectSlug: 'qlm-console',
     orgSlug: organization.slug,
     currentUserId: 'u-1',
     repositories: asAny({

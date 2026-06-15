@@ -1,6 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import { createBillingEventHandlerService } from './billing-event-handler.service';
-import { Database } from '@guepard/supabase/database';
+import { Database } from '@qlm/supabase/database';
 import { PlanTypeMap } from '../types/create-billing-schema';
 
 export * from './create-stripe-checkout';

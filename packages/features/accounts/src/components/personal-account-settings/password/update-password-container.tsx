@@ -1,7 +1,7 @@
 'use client';
 
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { LoadingOverlay } from '@guepard/ui/loading-overlay';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { LoadingOverlay } from '@qlm/ui/loading-overlay';
 
 import { UpdatePasswordForm } from './update-password-form';
 

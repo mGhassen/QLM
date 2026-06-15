@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/app-studio",
+  "name": "@qlm/app-studio",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,11 +8,11 @@
     "./manifest": "./src/manifest.ts"
   },
   "dependencies": {
-    "@guepard/docs-studio": "workspace:*",
+    "@qlm/docs-studio": "workspace:*",
     "@tanstack/react-query": "catalog:",
-    "@guepard/domain": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*"
+    "@qlm/domain": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*"
   },
   "peerDependencies": {
     "@tanstack/react-query": "catalog:",
@@ -20,7 +20,7 @@
     "react": "catalog:"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "catalog:",
     "@types/react": "catalog:",

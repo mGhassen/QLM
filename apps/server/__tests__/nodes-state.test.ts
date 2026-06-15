@@ -1,10 +1,10 @@
 import { Hono } from 'hono';
 import { describe, expect, it, vi } from 'vitest';
 
-import { Code } from '@guepard/domain/common';
-import { DomainException } from '@guepard/domain/exceptions';
-import type { Node } from '@guepard/domain/entities';
-import type { Repositories } from '@guepard/domain/repositories';
+import { Code } from '@qlm/domain/common';
+import { DomainException } from '@qlm/domain/exceptions';
+import type { Node } from '@qlm/domain/entities';
+import type { Repositories } from '@qlm/domain/repositories';
 
 import { createNodesRoutes } from '../src/routes/nodes';
 

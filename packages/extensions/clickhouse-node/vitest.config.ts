@@ -11,7 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@guepard/extensions-sdk': path.resolve(
+      '@qlm/extensions-sdk': path.resolve(
         __dirname,
         '../extensions-sdk/src',
       ),

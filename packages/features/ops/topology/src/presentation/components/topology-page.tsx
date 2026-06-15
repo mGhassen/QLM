@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Grid2X2, LayoutGrid, Network, RefreshCcw, type LucideIcon } from 'lucide-react';
 
-import { EntityListPage } from '@guepard/ui/entity-list';
+import { EntityListPage } from '@qlm/ui/entity-list';
 import {
   EntityErrorBanner,
   EntityLoadingCardsSkeleton,
-} from '@guepard/ui/entity-state';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/entity-state';
+import { cn } from '@qlm/ui/utils';
 
 import type { TopologyPool } from '../../application/use-topology-data';
 import { useTopologyData } from '../../application/use-topology-data';
@@ -15,7 +15,7 @@ import { TopologyFleetSummary } from './topology-fleet-summary';
 import { TopologyHostMap } from './topology-host-map';
 import { TopologyPoolCard } from './topology-pool-card';
 import { TopologyOptionsMenu } from './options-menu';
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 
 export type TopologyView = 'pools' | 'hosts';
 
@@ -28,7 +28,7 @@ export type TopologyPageProps = Readonly<{
   view?: TopologyView;
   onViewChange?: (next: TopologyView) => void;
   onOpenPool?: (pool: TopologyPool) => void;
-  onOpenNode?: (node: import('@guepard/domain/entities').Node) => void;
+  onOpenNode?: (node: import('@qlm/domain/entities').Node) => void;
   /** Drill into nodes filtered by needs-attention statuses. */
   onAttentionClick?: () => void;
 }>;

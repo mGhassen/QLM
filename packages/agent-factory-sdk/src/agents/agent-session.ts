@@ -3,13 +3,13 @@ import { getDefaultModel } from '../services/model-resolver';
 import { generateConversationTitle } from '../services/generate-conversation-title.service';
 import { MessagePersistenceService } from '../services/message-persistence.service';
 import { UsagePersistenceService } from '../services/usage-persistence.service';
-import type { Repositories } from '@guepard/domain/repositories';
-import type { TelemetryManager } from '@guepard/telemetry/otel';
-import { MessageRole } from '@guepard/domain/entities';
+import type { Repositories } from '@qlm/domain/repositories';
+import type { TelemetryManager } from '@qlm/telemetry/otel';
+import { MessageRole } from '@qlm/domain/entities';
 import { createMessages, filterCompacted } from '../llm/message';
 import type { Message, MessageContentPart } from '../llm/message';
 import { SessionCompaction } from './session-compaction';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 import { Registry } from '../tools/registry';
 import type { AskRequest, ToolContext, ToolMetadataInput } from '../tools/tool';
 import { insertReminders } from './insert-reminders';
@@ -18,7 +18,7 @@ import { Provider } from '../llm/provider';
 import { SystemPrompt } from '../llm/system';
 import { v4 as uuidv4 } from 'uuid';
 import { loadDatasources } from '../tools/datasource-loader';
-import type { Datasource } from '@guepard/domain/entities';
+import type { Datasource } from '@qlm/domain/entities';
 
 export type AgentSessionPromptInput = {
   conversationSlug: string;

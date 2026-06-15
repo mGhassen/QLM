@@ -16,13 +16,13 @@ Lock in task 003's wiring with a jsdom integration test. Same pattern as `chat-a
 ## Done when
 
 - [ ] New file `packages/features/qwery-agent/__tests__/chat-feedback.test.tsx`.
-- [ ] Mocks `@guepard/ui/agent-ui` to a passthrough that captures the `onSubmitFeedback` prop and calls it once on mount with a fake `(messageId, feedback)` pair.
+- [ ] Mocks `@qlm/ui/agent-ui` to a passthrough that captures the `onSubmitFeedback` prop and calls it once on mount with a fake `(messageId, feedback)` pair.
 - [ ] Mocks the HTTP client (`apiPost` — or whichever transport `useSubmitFeedback` uses) with a `vi.fn()` that resolves.
 - [ ] Renders `<AssistantPanelBody />` inside a fresh `QueryClientProvider`, waits for the passthrough to fire `onSubmitFeedback`, then asserts:
   - The mocked HTTP call received `POST /api/feedback` (or the equivalent `apiPost('/feedback', …)`).
   - The payload includes `conversationSlug`, `messageId`, and the `feedback` blob from the prop call.
 - [ ] A second test covers `<AgentTabBody conversationSlug="..." />` with the same assertions.
-- [ ] `pnpm --filter @guepard/qwery-agent test __tests__/chat-feedback.test.tsx` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent test __tests__/chat-feedback.test.tsx` passes.
 
 ## Notes
 

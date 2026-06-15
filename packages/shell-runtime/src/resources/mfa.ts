@@ -3,13 +3,13 @@ import type { QueryClient } from '@tanstack/react-query';
 import type {
   EnrollTotpOutput,
   MfaFactor,
-} from '@guepard/domain/entities';
-import type { IMfaRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import type { IMfaRepository } from '@qlm/domain/repositories';
 import {
   EnrollTotpService,
   UnenrollFactorService,
   VerifyMfaFactorService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 
 /**
  * Shell-runtime resource for the signed-in user's MFA factors.

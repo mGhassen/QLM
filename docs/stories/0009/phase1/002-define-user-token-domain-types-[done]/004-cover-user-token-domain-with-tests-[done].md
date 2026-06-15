@@ -46,19 +46,19 @@ Ship the Vitest suite that validates every user-token type, schema, and helper p
 
 ## Acceptance
 
-- [ ] All five test files run clean via `pnpm --filter @guepard/domain test -- user-token`.
-- [ ] Line coverage on `packages/domain/src/entities/user-token*.ts`, `packages/domain/src/usecases/dto/*user-token*.ts`, and (where applicable) ports, is ≥ 90 %. Measured via `pnpm --filter @guepard/domain test -- --coverage user-token`.
+- [ ] All five test files run clean via `pnpm --filter @qlm/domain test -- user-token`.
+- [ ] Line coverage on `packages/domain/src/entities/user-token*.ts`, `packages/domain/src/usecases/dto/*user-token*.ts`, and (where applicable) ports, is ≥ 90 %. Measured via `pnpm --filter @qlm/domain test -- --coverage user-token`.
 - [ ] Refinement boundary tests use fake timers so they pass deterministically regardless of wall-clock run time.
 - [ ] No hitting any real database, network, or third-party library (`jsonwebtoken`, `@supabase/*`, etc.) from any test.
-- [ ] `pnpm --filter @guepard/domain test` passes end-to-end (the new tests do not break any existing domain test).
-- [ ] `@guepard/domain`'s `package.json` test script runs the new path without config changes — tests are picked up by the existing `__tests__` directory glob.
+- [ ] `pnpm --filter @qlm/domain test` passes end-to-end (the new tests do not break any existing domain test).
+- [ ] `@qlm/domain`'s `package.json` test script runs the new path without config changes — tests are picked up by the existing `__tests__` directory glob.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
-pnpm --filter @guepard/domain test -- user-token
-pnpm --filter @guepard/domain test -- --coverage user-token
+pnpm --filter @qlm/domain typecheck
+pnpm --filter @qlm/domain test -- user-token
+pnpm --filter @qlm/domain test -- --coverage user-token
 # Inspect the coverage output: look for user-token-scope.ts, user-token-status.ts,
 # user-token.type.ts, create-user-token.input.ts, create-user-token.output.ts.
 # Each should report ≥ 90 % line coverage.

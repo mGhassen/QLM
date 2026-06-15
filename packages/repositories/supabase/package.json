@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/repository-supabase",
+  "name": "@qlm/repository-supabase",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -18,8 +18,8 @@
     "./jwt-signer": "./src/jwt-signer.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/supabase": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/supabase": "workspace:*",
     "@supabase/supabase-js": "catalog:",
     "jsonwebtoken": "^9.0.2",
     "nanoid": "^5.1.6",
@@ -28,16 +28,16 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/jsonwebtoken": "^9.0.7",
     "@vitest/coverage-istanbul": "catalog:",
     "eslint": "^9.39.0",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

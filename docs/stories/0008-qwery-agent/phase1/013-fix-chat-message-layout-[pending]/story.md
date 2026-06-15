@@ -15,7 +15,7 @@ blocked_by:
 
 ## Goal
 
-Finish the chat-UI polish items deferred from story 012: shrink assistant prose to a comfortable reading size (keep code blocks monospace), right-align user message bubbles, and shrink the prompt-input font — all while preserving Guepard's app-wide monospace aesthetic.
+Finish the chat-UI polish items deferred from story 012: shrink assistant prose to a comfortable reading size (keep code blocks monospace), right-align user message bubbles, and shrink the prompt-input font — all while preserving QLM's app-wide monospace aesthetic.
 
 ## Scope
 
@@ -37,7 +37,7 @@ Finish the chat-UI polish items deferred from story 012: shrink assistant prose 
 - [ ] Assistant prose `<p>` elements in the conversation render at `font-size: 14px` (`text-sm`) or smaller, verified in DevTools computed styles. Code blocks + inline code remain `font-mono` and their current size.
 - [ ] User message bubble: the outermost user-message wrapper is flush to the right edge of the conversation column (`justify-end` actually applies to the visible bubble, not the invisible wrapper), with `max-w-[80%]` wrapping intact.
 - [ ] Prompt-input placeholder + typed text render at the same size as assistant prose.
-- [ ] `pnpm --filter @guepard/ui typecheck` and `pnpm --filter @guepard/qwery-agent typecheck` pass.
+- [ ] `pnpm --filter @qlm/ui typecheck` and `pnpm --filter @qlm/qwery-agent typecheck` pass.
 - [ ] Existing qwery-agent tests (auth + feedback integration) remain green.
 - [ ] Storybook visual smoke: `Design System/AI/Conversation Content / Text output (agent response)` and `Full (tasks + tool + sources)` render the new treatment cleanly; reviewer eyeballs them.
 - [ ] Runtime smoke via `pnpm dev`: user bubble right-aligned, assistant prose not oversized, no console errors.
@@ -53,7 +53,7 @@ Populated by `/start-story`. Expected shape (3 tasks):
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/storybook-config storybook
+pnpm --filter @qlm/storybook-config storybook
 # Open Design System/AI/Conversation Content / Text output
 # Confirm: assistant prose at text-sm, user bubble right-flush.
 

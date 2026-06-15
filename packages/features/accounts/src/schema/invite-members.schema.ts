@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { CsrfTokenSchema } from '@guepard/csrf/schema';
+import { CsrfTokenSchema } from '@qlm/csrf/schema';
 
 const EMAIL_MAX_LENGTH = 254;
 

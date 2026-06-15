@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@guepard/ui/card';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
+} from '@qlm/ui/card';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
 export type NameCardProps = Readonly<{
   name: string;

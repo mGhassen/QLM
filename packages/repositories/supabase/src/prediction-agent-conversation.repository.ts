@@ -1,5 +1,5 @@
-import type { PredictionAgentConversation } from '@guepard/domain/entities';
-import { IPredictionAgentConversationRepository } from '@guepard/domain/repositories';
+import type { PredictionAgentConversation } from '@qlm/domain/entities';
+import { IPredictionAgentConversationRepository } from '@qlm/domain/repositories';
 
 import type { SupabaseClientType } from './types';
 

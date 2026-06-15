@@ -2,10 +2,10 @@ import { useNavigate } from '@tanstack/react-router';
 
 import type { Provider } from '@supabase/supabase-js';
 
-import { isBrowser } from '@guepard/shared/utils';
-import { If } from '@guepard/ui/if';
-import { Separator } from '@guepard/ui/separator';
-import { Trans } from '@guepard/ui/trans';
+import { isBrowser } from '@qlm/shared/utils';
+import { If } from '@qlm/ui/if';
+import { Separator } from '@qlm/ui/separator';
+import { Trans } from '@qlm/ui/trans';
 
 import { MagicLinkAuthContainer } from './magic-link-auth-container';
 import { OauthProviders } from './oauth-providers';

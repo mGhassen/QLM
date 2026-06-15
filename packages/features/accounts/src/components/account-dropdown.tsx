@@ -14,12 +14,12 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
-import { If } from '@guepard/ui/if';
-import { SubMenuModeToggle } from '@guepard/ui/mode-toggle';
-import { ProfileAvatar } from '@guepard/ui/profile-avatar';
-import { Trans } from '@guepard/ui/trans';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/dropdown-menu';
+import { If } from '@qlm/ui/if';
+import { SubMenuModeToggle } from '@qlm/ui/mode-toggle';
+import { ProfileAvatar } from '@qlm/ui/profile-avatar';
+import { Trans } from '@qlm/ui/trans';
+import { cn } from '@qlm/ui/utils';
 
 import { usePersonalAccountData } from '../hooks/use-personal-account-data';
 

@@ -106,22 +106,22 @@
 
 Same shape as the index: feature added `nodes` to `ShellClient` and wired `createNodesResource` in `useShell`; main added `conversations` + `messages`. **Union both.**
 
-### 15. `packages/ui/src/guepard/entity-list/entity-list-options-menu.tsx`
+### 15. `packages/ui/src/qlm/entity-list/entity-list-options-menu.tsx`
 
 - **Feature:** rendered sort-by as a compact `<Select>` + `AscDescToggle` side-by-side (imported Radix select primitives).
 - **Main:** rendered sort-by as a list of buttons with the toggle inlined under the active option (commit `c740196 feat: extract entity list components`).
 - **Resolution:** took **main**. Also removed the now-orphaned `Select*` imports from the top of the file.
 
-### 16. `packages/ui/src/guepard/entity-list/entity-list-toolbar.tsx`
+### 16. `packages/ui/src/qlm/entity-list/entity-list-toolbar.tsx`
 
 - **Feature:** brutalist search + primary-action styling (`rounded-none`, `border-2`, uppercase, font-black).
 - **Main:** standard shadcn look plus a new `primarySlot` prop that lets consumers render a fully custom CTA (e.g. a `DialogTrigger` wrapping a `Button`). Added the `primarySlot ? ... : primaryAction ?` ternary.
 - **Resolution:** took **main** end-to-end. The `primarySlot` API is additive and the brutalist styling was an isolated local experiment on the feature branch.
 
-### 17. `packages/ui/src/guepard/layout/root-layout.tsx`
+### 17. `packages/ui/src/qlm/layout/root-layout.tsx`
 
 - **Feature:** added `sidebarCollapsible`, `sidebarResizable`, `showSidebarTrigger` props.
-- **Main:** added `assistantPanelContent` prop (the host injects `<AssistantPanelBody />` from `@guepard/qwery-agent`).
+- **Main:** added `assistantPanelContent` prop (the host injects `<AssistantPanelBody />` from `@qlm/qwery-agent`).
 - **Resolution:** **union**. Kept all four props in the type, all four in the destructure with defaults, and ensured the JSX body (already including both sets of props) stayed consistent.
 
 ### 18. `packages/ui/src/shadcn/alert.tsx`

@@ -12,7 +12,7 @@ validation:
 
 # Add keyring_cmds module
 
-Lift qwery-core's keyring Tauri commands into a new `keyring_cmds.rs` module with `SERVICE_NAME = "run.guepard.desktop"`.
+Lift qwery-core's keyring Tauri commands into a new `keyring_cmds.rs` module with `SERVICE_NAME = "run.qlm.desktop"`.
 
 ## Done when
 

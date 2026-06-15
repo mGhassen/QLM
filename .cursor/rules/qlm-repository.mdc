@@ -1,0 +1,31 @@
+---
+description: Enforce CLAUDE.md, .claude rules/commands, and docs workflow for this repo
+alwaysApply: true
+---
+
+# QLM console — repository guidance
+
+## Engineering rules (mandatory)
+
+1. Follow root `CLAUDE.md` on every change. It is the index; do not skip it.
+2. Apply the split rule files under `.claude/rules/` as listed in `CLAUDE.md` (architecture, hexagonal-architecture, clean-code, i18n, conventions, database, testing, commands). Read the file that matches the task before implementing.
+3. Slash-command playbooks for this repo live in `.claude/commands/` (`draft-rfc`, `rfc-to-spec`, `spec-to-stories`, `start-story`, `finish`). Use them when the user is doing spec-driven work from chat.
+4. Spec-driven caps and discipline: `.claude/rules/spec-driven-dev.md`.
+
+## Documentation tree (`docs/`)
+
+- **Workflow overview:** `docs/WORKFLOW.md` (RFC → spec → stories → tasks, statuses, command mapping).
+- **RFCs:** `docs/rfcs/` — intent and phases for major work.
+- **Specs:** `docs/specs/` — phased “what & how” for an RFC.
+- **Stories / tasks:** `docs/stories/0003/phase1/` only — vertical slices and atomic steps for RFC 0003 phase 1.
+
+When the user is implementing or planning a feature that already has material under `docs/`, align with the relevant RFC and spec; for stories/tasks, use `docs/stories/0003/phase1/` only. Do not invent a parallel process.
+
+## Non-negotiables (from `CLAUDE.md`)
+
+- Hexagonal boundaries: `packages/domain` stays pure; apps use shell/runtime patterns as in the hexagonal rule.
+- No hardcoded user-facing strings — use i18n as in the i18n rule.
+- New DB tables: RLS and policies per the database rule.
+- After changes: run `pnpm typecheck` (see commands rule).
+
+If repo guidance conflicts with a one-off user request, surface the conflict instead of silently violating these rules.

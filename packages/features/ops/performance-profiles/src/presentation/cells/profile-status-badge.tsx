@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 import { STATUS_BADGE } from '../../application/constants';
 

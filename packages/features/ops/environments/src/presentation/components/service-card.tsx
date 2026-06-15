@@ -1,5 +1,5 @@
 import { useState, type Ref } from "react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -9,7 +9,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "@guepard/ui/context-menu";
+} from "@qlm/ui/context-menu";
 import {
   Copy,
   Terminal,

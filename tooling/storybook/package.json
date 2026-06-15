@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/storybook-config",
+  "name": "@qlm/storybook-config",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -26,9 +26,9 @@
     "tailwindcss": "4.1.16"
   },
   "devDependencies": {
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@storybook/addon-docs": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
@@ -40,5 +40,5 @@
     "vite-plugin-wasm": "^3.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

@@ -1,22 +1,22 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import { UserPreferencesPayloadSchema } from '@guepard/domain/entities';
+import { UserPreferencesPayloadSchema } from '@qlm/domain/entities';
 import type {
   UserPreferences,
   UserPreferencesPayload,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import type {
   IProjectRepository,
   IUserPreferencesRepository,
-} from '@guepard/domain/repositories';
-import { GetLastProjectService } from '@guepard/domain/services';
+} from '@qlm/domain/repositories';
+import { GetLastProjectService } from '@qlm/domain/services';
 
 /**
  * Shell-runtime resource for per-user preferences.
  *
  * Phase 1 only writes `last_project_by_org`. The resource mediates between
  * presentation (`useShell().userPreferences.*`) and the two use cases in
- * `@guepard/domain/services/user-preferences`.
+ * `@qlm/domain/services/user-preferences`.
  *
  * `setLastProject` does a read-merge-patch in memory before calling
  * `repository.patch`: postgres `jsonb ||` is a shallow concat, so a naive

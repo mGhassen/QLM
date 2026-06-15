@@ -1,4 +1,4 @@
-import type { TabGroupColor } from '@guepard/ui/shell';
+import type { TabGroupColor } from '@qlm/ui/shell';
 
 export type { TabGroupColor };
 

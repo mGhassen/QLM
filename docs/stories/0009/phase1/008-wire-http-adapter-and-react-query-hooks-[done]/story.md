@@ -17,13 +17,13 @@ blocked_by:
 
 ## Goal
 
-Implement `HttpUserTokenRepository` against the Story-006 server endpoints, wire it into `apps/web/src/lib/repositories-factory.ts`, and publish the three TanStack Query hooks (`useUserTokensQuery`, `useCreateUserTokenMutation`, `useRevokeUserTokenMutation`) from `@guepard/user-tokens/hooks` — so every later UI story (010, 011) consumes them directly.
+Implement `HttpUserTokenRepository` against the Story-006 server endpoints, wire it into `apps/web/src/lib/repositories-factory.ts`, and publish the three TanStack Query hooks (`useUserTokensQuery`, `useCreateUserTokenMutation`, `useRevokeUserTokenMutation`) from `@qlm/user-tokens/hooks` — so every later UI story (010, 011) consumes them directly.
 
 ## Scope
 
 **In scope**
 
-- `apps/web/src/lib/repositories/user-token.repository.ts` — `HttpUserTokenRepository` implementing `IUserTokenRepository` from `@guepard/domain/repositories`:
+- `apps/web/src/lib/repositories/user-token.repository.ts` — `HttpUserTokenRepository` implementing `IUserTokenRepository` from `@qlm/domain/repositories`:
   - `findByAccountId(_accountId)` → `apiGet('/user-tokens')` (account context is implicit in the session cookie — the server derives `accountId` from it, so the browser-side `accountId` arg is ignored; this is documented in a code comment).
   - `create({ account_id, token_name, scopes, expires_at })` → `apiPost('/user-tokens', { token_name, scopes, expires_at })` (server overrides `account_id` from the session, so the client doesn't send it).
   - `revoke(id, _accountId)` → `apiPost('/user-tokens/${id}/revoke')` (same session-implicit pattern).
@@ -46,15 +46,15 @@ Implement `HttpUserTokenRepository` against the Story-006 server endpoints, wire
 
 ## Acceptance criteria
 
-- [x] `HttpUserTokenRepository` extends `IUserTokenRepository` from `@guepard/domain`. Includes a non-port `createAndIssueJwt(...)` method that returns the full `{ row, rawJwt }` payload — port-shape mismatch documented in the spec Changelog.
+- [x] `HttpUserTokenRepository` extends `IUserTokenRepository` from `@qlm/domain`. Includes a non-port `createAndIssueJwt(...)` method that returns the full `{ row, rawJwt }` payload — port-shape mismatch documented in the spec Changelog.
 - [x] Each method calls the corresponding path from spec §5.2 (`GET /api/user-tokens`, `POST /api/user-tokens`, `POST /api/user-tokens/:id/revoke`).
 - [x] `apps/web/src/lib/repositories-factory.ts` AND `apps/web/src/lib/repositories/repositories-factory.ts` (the SSR-aware factory) both populate `userToken: new HttpUserTokenRepository()`.
 - [x] `jwtSigner` slot: the SSR-aware factory binds it to the supabase package's `JwtSigner` to satisfy the type, but it is never invoked from the browser (documented in code comments). The simpler factory at `apps/web/src/lib/repositories-factory.ts` keeps its `as unknown as Repositories` cast.
 - [x] Hooks read the API surface via the new lightweight `UserTokensApiProvider`/`useUserTokensApi` context (the canonical "deeper-than-shell" pattern; `useShell()` is project-scoped and user tokens are account-scoped) — see Changelog for the rationale deviation from the spec's "via workspace context" wording.
 - [x] Both mutations invalidate `['user-tokens', 'list']` on success — directly verified by the per-hook test files.
-- [x] All hooks (`useUserTokensQuery`, `useCreateUserTokenMutation`, `useRevokeUserTokenMutation`) plus the new `UserTokensApiProvider` / `useUserTokensApi` / `USER_TOKENS_LIST_QUERY_KEY` are re-exported from `@guepard/user-tokens/hooks`.
-- [x] `pnpm --filter @guepard/user-tokens typecheck` and `pnpm --filter web typecheck` both pass.
-- [x] `pnpm --filter @guepard/user-tokens test` passes (8 tests, 95 % line coverage on `src/hooks`).
+- [x] All hooks (`useUserTokensQuery`, `useCreateUserTokenMutation`, `useRevokeUserTokenMutation`) plus the new `UserTokensApiProvider` / `useUserTokensApi` / `USER_TOKENS_LIST_QUERY_KEY` are re-exported from `@qlm/user-tokens/hooks`.
+- [x] `pnpm --filter @qlm/user-tokens typecheck` and `pnpm --filter web typecheck` both pass.
+- [x] `pnpm --filter @qlm/user-tokens test` passes (8 tests, 95 % line coverage on `src/hooks`).
 
 ## Tasks
 
@@ -65,8 +65,8 @@ Implement `HttpUserTokenRepository` against the Story-006 server endpoints, wire
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test -- hooks
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test -- hooks
 
 # Optional: wire the hook into a scratch component and run pnpm web:dev to observe XHR
 ```

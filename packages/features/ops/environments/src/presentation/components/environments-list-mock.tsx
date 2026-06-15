@@ -1,4 +1,4 @@
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 /** Project environments list mock (shared with project settings story shell). */
 export function EnvironmentsListMock({ hideHeading = false }: { hideHeading?: boolean }) {

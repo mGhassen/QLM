@@ -5,8 +5,8 @@ import { z } from 'zod';
 import {
   GetMessagesByConversationSlugService,
   GetMessagesPaginatedService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException } from '../lib/http-utils';
 
 const messagesQuerySchema = z.object({

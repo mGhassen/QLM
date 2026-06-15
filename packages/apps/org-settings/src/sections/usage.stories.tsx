@@ -4,11 +4,11 @@ import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { fn } from 'storybook/test';
 
-import type { UsageSummary } from '@guepard/domain/usecases';
+import type { UsageSummary } from '@qlm/domain/usecases';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { OrgSettingsUsageSection } from './usage';
 
@@ -46,8 +46,8 @@ storybookI18n.use(initReactI18next).init({
 
 const organization = {
   id: 'o-1',
-  slug: 'guepard',
-  name: 'Rasm',
+  slug: 'qlm',
+  name: 'QLM',
   userId: 'u-1',
 };
 
@@ -61,7 +61,7 @@ const summary: UsageSummary = {
     { userId: 'u-2', userName: 'Teammate', credits: 300 },
   ],
   topProjects: [
-    { projectId: 'p-1', projectName: 'Rasm Console', credits: 700 },
+    { projectId: 'p-1', projectName: 'QLM Console', credits: 700 },
     { projectId: 'p-2', projectName: 'Docs Search', credits: 500 },
   ],
 };
@@ -75,7 +75,7 @@ function makeShellValue(overrides: RepoOverride = {}): ShellAppContextValue {
   const asAny = (v: unknown) => v as never;
   return {
     projectId: 'p-1',
-    projectSlug: 'guepard-console',
+    projectSlug: 'qlm-console',
     orgSlug: organization.slug,
     currentUserId: 'u-1',
     repositories: asAny({

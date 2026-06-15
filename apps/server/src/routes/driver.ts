@@ -1,12 +1,12 @@
 import { Hono } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import { getDriverInstance } from '@guepard/extensions-loader';
+import { getDriverInstance } from '@qlm/extensions-loader';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getLogger } from '@guepard/shared/logger';
+} from '@qlm/extensions-sdk';
+import { getLogger } from '@qlm/shared/logger';
 
 const bodySchema = z.object({
   action: z.enum(['testConnection', 'metadata', 'query']),

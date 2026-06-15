@@ -1,11 +1,11 @@
 {
-  "extends": "@guepard/tsconfig/base.json",
+  "extends": "@qlm/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "@guepard/domain/*": ["../domain/src/*"]
+      "@qlm/domain/*": ["../domain/src/*"]
     }
   },
   "include": ["src/**/*", "__tests__/**/*"],

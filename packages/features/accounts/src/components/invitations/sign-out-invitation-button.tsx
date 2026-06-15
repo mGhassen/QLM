@@ -1,9 +1,9 @@
 'use client';
 
-import { getSafeRedirectPath } from '@guepard/shared/utils';
-import { useSignOut } from '@guepard/supabase/hooks/use-sign-out';
-import { Button } from '@guepard/ui/button';
-import { Trans } from '@guepard/ui/trans';
+import { getSafeRedirectPath } from '@qlm/shared/utils';
+import { useSignOut } from '@qlm/supabase/hooks/use-sign-out';
+import { Button } from '@qlm/ui/button';
+import { Trans } from '@qlm/ui/trans';
 
 export function SignOutInvitationButton(
   props: React.PropsWithChildren<{

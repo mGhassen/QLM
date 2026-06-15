@@ -31,11 +31,11 @@ Land the pure-TypeScript entity, DTOs, repository port, driver port, and six use
 
 ## Acceptance criteria
 
-- [x] `IntegrationConnectionEntity` + `IntegrationConnectionOutput` exported from `@guepard/domain`
-- [x] `IIntegrationConnectionRepository` abstract class exported from `@guepard/domain/repositories`
-- [x] `IIntegrationProviderDriver` + `IIntegrationProviderDriverRegistry` exported from `@guepard/domain/services/integration`
+- [x] `IntegrationConnectionEntity` + `IntegrationConnectionOutput` exported from `@qlm/domain`
+- [x] `IIntegrationConnectionRepository` abstract class exported from `@qlm/domain/repositories`
+- [x] `IIntegrationProviderDriver` + `IIntegrationProviderDriverRegistry` exported from `@qlm/domain/services/integration`
 - [x] All six services implement their use-case interface and throw `DomainException.new({ code })` on failure, never plain `Error`
-- [x] `pnpm --filter @guepard/domain test` passes (21 new integration service tests)
+- [x] `pnpm --filter @qlm/domain test` passes (21 new integration service tests)
 
 ## Tasks
 
@@ -61,11 +61,11 @@ Shipped files (retroactive — tasks were not scaffolded via `/start-story` beca
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/domain test -- integration
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain test -- integration
+pnpm --filter @qlm/domain typecheck
 ```
 
-Both commands return green. `IntegrationConnectionEntity` and `IntegrationConnectionOutput` are importable from `@guepard/domain`.
+Both commands return green. `IntegrationConnectionEntity` and `IntegrationConnectionOutput` are importable from `@qlm/domain`.
 
 ## Questions surfaced
 

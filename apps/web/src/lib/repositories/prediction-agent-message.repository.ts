@@ -1,5 +1,5 @@
-import type { PredictionAgentMessage } from '@guepard/domain/entities';
-import { IPredictionAgentMessageRepository } from '@guepard/domain/repositories';
+import type { PredictionAgentMessage } from '@qlm/domain/entities';
+import { IPredictionAgentMessageRepository } from '@qlm/domain/repositories';
 
 import { apiGet, apiPost } from './api-client';
 

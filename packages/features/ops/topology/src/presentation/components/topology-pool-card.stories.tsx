@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import { TopologyPoolCard } from './topology-pool-card';
 import type { TopologyPool } from '../../application/use-topology-data';

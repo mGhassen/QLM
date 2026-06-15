@@ -10,9 +10,9 @@ import {
   Trash2,
 } from 'lucide-react';
 
-import type { Node, NodeLifecycleState } from '@guepard/domain/entities';
-import type { Action } from '@guepard/ui/action';
-import type { BulkAction } from '@guepard/ui/data-table-advanced';
+import type { Node, NodeLifecycleState } from '@qlm/domain/entities';
+import type { Action } from '@qlm/ui/action';
+import type { BulkAction } from '@qlm/ui/data-table-advanced';
 
 // Structural `t` shape — i18next's `TFunction` is invariant in its `Ns`
 // generic, so a `t` from `useTranslation('nodes')` cannot be assigned to a

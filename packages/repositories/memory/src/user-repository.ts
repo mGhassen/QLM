@@ -1,6 +1,6 @@
-import type { Nullable, RepositoryFindOptions } from '@guepard/domain/common';
-import type { User } from '@guepard/domain/entities';
-import { IUserRepository } from '@guepard/domain/repositories';
+import type { Nullable, RepositoryFindOptions } from '@qlm/domain/common';
+import type { User } from '@qlm/domain/entities';
+import { IUserRepository } from '@qlm/domain/repositories';
 
 export class UserRepository extends IUserRepository {
   private users = new Map<string, User>();

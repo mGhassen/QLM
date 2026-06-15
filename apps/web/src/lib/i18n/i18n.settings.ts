@@ -1,4 +1,4 @@
-import { createI18nSettings } from '@guepard/i18n';
+import { createI18nSettings } from '@qlm/i18n';
 
 /**
  * The default language of the application.

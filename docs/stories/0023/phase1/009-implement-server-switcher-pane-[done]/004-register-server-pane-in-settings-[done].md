@@ -20,9 +20,9 @@ Mount `<ServerPane />` (built in task 003) into the Settings dialog as a runtime
   - When runtime is anything else, sections stay exactly as they are today.
 - [ ] Section uses `Server` icon from `lucide-react` (not `KeyRound`).
 - [ ] Storybook for the dialog (if it exists) updated to include a `runtime=desktop` story; otherwise the existing `<ServerPane />` story from task 003 is the visual gate.
-- [ ] `ui-validator` agent navigates to `/`, opens settings (via the user-profile menu), confirms the "Server" pane is visible (only because the validator runs in desktop runtime through `window.__GUEPARD_RUNTIME='desktop'`-style stubs), no console errors.
+- [ ] `ui-validator` agent navigates to `/`, opens settings (via the user-profile menu), confirms the "Server" pane is visible (only because the validator runs in desktop runtime through `window.__QLM_RUNTIME='desktop'`-style stubs), no console errors.
 
 ## Notes
 
-- The `useRuntime()` helper from `@guepard/shell-runtime` (story 005) is the only gating source — never branch on `window.__TAURI__` directly.
+- The `useRuntime()` helper from `@qlm/shell-runtime` (story 005) is the only gating source — never branch on `window.__TAURI__` directly.
 - Spec anchor: `#75-presentation-appsweb` ("Settings dialog → 'Server' pane" bullet).

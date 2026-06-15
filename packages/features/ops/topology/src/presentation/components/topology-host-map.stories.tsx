@@ -9,7 +9,7 @@ import type {
   NodeLifecycleState,
   NodeOrchestrationState,
   NodeRegion,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 
 import { TopologyHostMap } from './topology-host-map';
 

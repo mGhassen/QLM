@@ -8,13 +8,13 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@guepard/ui/accordion';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { EntitySection } from '@guepard/ui/entity-primitives';
-import { Sheet, SheetContent, SheetTitle } from '@guepard/ui/sheet';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/accordion';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { EntitySection } from '@qlm/ui/entity-primitives';
+import { Sheet, SheetContent, SheetTitle } from '@qlm/ui/sheet';
+import { cn } from '@qlm/ui/utils';
 
 import { COMPUTE_TIERS } from '../../application/compute-tiers';
 import { useInfrastructureSettings } from '../../application/use-infrastructure-settings';

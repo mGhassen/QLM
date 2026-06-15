@@ -5,11 +5,11 @@ import type {
   IntegrationConnectionConfig,
   IntegrationProvider,
   IntegrationTestStatus,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   IIntegrationConnectionRepository,
   type IntegrationTestResultUpdate,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import {
   IntegrationConnectionOutput,
   type CreateIntegrationConnectionInput,
@@ -18,7 +18,7 @@ import {
   type TestResult,
   type UpdateIntegrationConnectionInput,
   type UpdateIntegrationCredentialsInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from './api-client';
 

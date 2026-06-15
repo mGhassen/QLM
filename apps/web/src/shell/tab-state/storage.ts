@@ -1,29 +1,29 @@
 import type { ShellTabStored, ShellTabGroup } from './types';
 
 export function tabsStorageKey(projectId: string): string {
-  return `guepard:project-tabs:${projectId}`;
+  return `qlm:project-tabs:${projectId}`;
 }
 
 export function groupsStorageKey(projectId: string): string {
-  return `guepard:project-tab-groups:${projectId}`;
+  return `qlm:project-tab-groups:${projectId}`;
 }
 
 export function mruStorageKey(projectId: string): string {
-  return `guepard:project-tab-mru:${projectId}`;
+  return `qlm:project-tab-mru:${projectId}`;
 }
 
 export function previewStorageKey(projectId: string): string {
-  return `guepard:project-tab-preview:${projectId}`;
+  return `qlm:project-tab-preview:${projectId}`;
 }
 
 // One-shot purge: stale hrefs from before RFC-0028 make tab-switching look frozen.
-const PURGE_FLAG_KEY = 'guepard:project-tabs:rfc28-purged';
+const PURGE_FLAG_KEY = 'qlm:project-tabs:rfc28-purged';
 export function purgeStaleProjectTabsOnce(): void {
   try {
     if (localStorage.getItem(PURGE_FLAG_KEY) === '1') return;
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const key = localStorage.key(i);
-      if (key?.startsWith('guepard:project-tabs:') && key !== PURGE_FLAG_KEY) {
+      if (key?.startsWith('qlm:project-tabs:') && key !== PURGE_FLAG_KEY) {
         localStorage.removeItem(key);
       }
     }

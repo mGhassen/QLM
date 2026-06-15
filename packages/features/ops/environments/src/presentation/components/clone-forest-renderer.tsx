@@ -16,7 +16,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import {
   CLONE_FOREST_LEVEL_GAP_PX,

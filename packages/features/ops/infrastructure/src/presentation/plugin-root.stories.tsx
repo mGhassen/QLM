@@ -8,17 +8,17 @@ import type {
   NodeDrain,
   NodeEligibility,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   INodeRepository,
   type Repositories,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import type {
   BulkResult,
   ListNodesInput,
   ListNodesRepositoryResult,
-} from '@guepard/domain/usecases';
-import { ShellAppProvider } from '@guepard/shell-runtime';
+} from '@qlm/domain/usecases';
+import { ShellAppProvider } from '@qlm/shell-runtime';
 
 import { ListPage } from './components/list-page';
 import { withNodesRouter } from './storybook-router';

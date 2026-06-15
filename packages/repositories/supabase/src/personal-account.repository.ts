@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
 
-import type { PersonalAccount } from '@guepard/domain/entities';
-import { invalidCurrentPasswordException } from '@guepard/domain/exceptions';
-import { IAccountRepository } from '@guepard/domain/repositories';
-import type { Tables } from '@guepard/supabase/database';
+import type { PersonalAccount } from '@qlm/domain/entities';
+import { invalidCurrentPasswordException } from '@qlm/domain/exceptions';
+import { IAccountRepository } from '@qlm/domain/repositories';
+import type { Tables } from '@qlm/supabase/database';
 
 import type { SupabaseClientType } from './types';
 

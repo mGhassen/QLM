@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { AuthLayoutShell } from '@guepard/auth/shared';
-import { UpdatePasswordForm } from '@guepard/auth/password-reset';
-import { Heading } from '@guepard/ui/heading';
-import { Trans } from '@guepard/ui/trans';
+import { AuthLayoutShell } from '@qlm/auth/shared';
+import { UpdatePasswordForm } from '@qlm/auth/password-reset';
+import { Heading } from '@qlm/ui/heading';
+import { Trans } from '@qlm/ui/trans';
 
 import { AppLogo } from '@/components/app-logo';
 import pathsConfig from '@/config/paths.config';

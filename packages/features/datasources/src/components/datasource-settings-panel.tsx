@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pencil } from 'lucide-react';
 
-import type { Datasource } from '@guepard/domain/entities';
-import type { DatasourceExtension } from '@guepard/extensions-sdk';
+import type { Datasource } from '@qlm/domain/entities';
+import type { DatasourceExtension } from '@qlm/extensions-sdk';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,10 +13,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { PageBody } from '@guepard/ui/page';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { PageBody } from '@qlm/ui/page';
 
 import {
   DatasourceConnectForm,

@@ -22,7 +22,7 @@ Read paths join `public.node_drain` and apply `deriveNodeHealth` to populate
 - [ ] `findById` and `findByOrganizationId` return Nodes with populated `drain`, `lifecycle`, `orchestration`, `eligibility`, and `health` (derived).
 - [ ] Version mismatch path returns the correct exception code.
 - [ ] No call to `deriveNodeHealth` from inside the SQL — derivation is TS-only on read; SQL aggregations use the parity expressions from `health-thresholds.ts` (enforced in task 008).
-- [ ] `pnpm --filter @guepard/repository-supabase typecheck` green.
+- [ ] `pnpm --filter @qlm/repository-supabase typecheck` green.
 
 ## Notes
 

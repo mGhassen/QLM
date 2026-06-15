@@ -2,8 +2,8 @@ import {
   ExtensionScope,
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { datasourceIconMapKeys } from '@guepard/ui/ai';
+} from '@qlm/extensions-sdk';
+import { datasourceIconMapKeys } from '@qlm/ui/ai';
 
 /**
  * Build the `pluginLogoMap` the QweryAgentUI consumes — a Map keyed by

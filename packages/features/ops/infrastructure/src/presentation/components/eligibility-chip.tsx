@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { NodeEligibility } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { NodeEligibility } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 
 export type EligibilityChipProps = Readonly<{
   eligibility: NodeEligibility;

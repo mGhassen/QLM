@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/user-tokens",
+  "name": "@qlm/user-tokens",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -18,17 +18,17 @@
     "./components": "./src/components/index.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/settings-shell": "workspace:*"
+    "@qlm/domain": "workspace:*",
+    "@qlm/settings-shell": "workspace:*"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/i18n": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/i18n": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@storybook/react": "catalog:",
     "@tanstack/react-query": "catalog:",
@@ -54,7 +54,7 @@
     "vitest": "catalog:",
     "zod": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

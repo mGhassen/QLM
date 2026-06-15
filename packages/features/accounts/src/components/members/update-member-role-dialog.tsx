@@ -4,17 +4,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useCsrfToken } from '@guepard/csrf/client';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Spinner } from '@guepard/ui/spinner';
+import { useCsrfToken } from '@qlm/csrf/client';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Spinner } from '@qlm/ui/spinner';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   Form,
   FormControl,
@@ -23,9 +23,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { RoleSchema } from '../../schema';
 import { MembershipRoleSelector } from './membership-role-selector';

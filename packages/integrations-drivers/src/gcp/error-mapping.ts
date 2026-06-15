@@ -1,4 +1,4 @@
-import type { TestResultErrorCode } from '@guepard/domain/usecases';
+import type { TestResultErrorCode } from '@qlm/domain/usecases';
 
 /**
  * Maps a GCP REST / google-auth-library error to one of the closed-set

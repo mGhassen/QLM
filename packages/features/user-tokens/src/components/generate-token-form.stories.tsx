@@ -4,7 +4,7 @@ import { fn } from 'storybook/test';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 
-import { DirtyStateProvider } from '@guepard/settings-shell';
+import { DirtyStateProvider } from '@qlm/settings-shell';
 
 import { UserTokensApiProvider, type UserTokensApi } from '../hooks';
 import { GenerateTokenForm } from './generate-token-form';

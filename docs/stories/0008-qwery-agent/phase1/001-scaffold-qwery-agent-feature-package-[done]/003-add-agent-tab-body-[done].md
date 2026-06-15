@@ -24,20 +24,20 @@ Create the `AgentTabBody` component — the full-width sibling of `AssistantPane
 
 ## Acceptance
 
-- [x] `AgentTabBody` exported from `@guepard/qwery-agent`.
+- [x] `AgentTabBody` exported from `@qlm/qwery-agent`.
 - [x] Props `Readonly<{ conversationSlug: string }>` accepted (slug unused in this task; story 007 wires it).
 - [x] No data fetching — static composition only.
-- [x] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [x] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 - [x] Storybook stories co-located for both `AssistantPanelBody` and `AgentTabBody`; shared composition extracted into private `_panel-shell.tsx` (~90 lines of duplication avoided).
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 ```
 
 ## Notes
 
 - Extract any layout shared between `AssistantPanelBody` and `AgentTabBody` into a private `_panel-shell.tsx` only if the duplication is > 20 lines.
-- Reuse the same `@guepard/ui/ai` primitives — diverge only in outer layout / width.
+- Reuse the same `@qlm/ui/ai` primitives — diverge only in outer layout / width.
 - Don't add conversation-history dropdowns here; story 007 / 010 will add them.

@@ -48,13 +48,13 @@ Cover the phase-1 Qwery Agent surface with Vitest unit tests (feature package + 
 
 ## Acceptance criteria
 
-- [x] Vitest infrastructure added to `@guepard/qwery-agent` (config, setup, script, devDeps); runs clean.
+- [x] Vitest infrastructure added to `@qlm/qwery-agent` (config, setup, script, devDeps); runs clean.
 - [x] `convert-messages` unit tests (7 cases) — 91.66% coverage on the helper.
 - [x] `GetOrCreateDefaultConversationService` unit tests (5 cases) — idempotency, sort-by-updatedAt, cross-user isolation.
 - [ ] **Deferred**: body-component tests (`AssistantPanelBody`, `AgentTabBody`) — require mock `<ShellAppProvider>` + `<QueryClientProvider>` + `useNavigate` stub + billing fetch mock + heavyweight `<QweryAgentUI>`. Not worth the harness complexity for phase 1; bodies are thin wrappers over pieces tested at lower layers. Logged as a follow-up.
 - [ ] **Deferred**: Playwright E2E for the five user journeys — needs a running app + chat-stream mocking (LLM calls need credits or a stub). Phase-1 smoke remains manual via `pnpm dev`. Logged as follow-up.
 - [ ] **Dropped**: `useOpenConversationInTab` hook tests — the hook was never implemented (story 007 put the navigation inline in `AssistantPanelBody`); acceptance was stale.
-- [⚠] `pnpm check` — scoped down: `pnpm --filter @guepard/domain test` (262 tests green) + `pnpm --filter @guepard/qwery-agent test` (7 tests green, new file contributing 91.66% coverage). Full repo-wide `pnpm check` still blocked on the parallel auth-work session's `userToken`/`jwtSigner` factory issue (unrelated).
+- [⚠] `pnpm check` — scoped down: `pnpm --filter @qlm/domain test` (262 tests green) + `pnpm --filter @qlm/qwery-agent test` (7 tests green, new file contributing 91.66% coverage). Full repo-wide `pnpm check` still blocked on the parallel auth-work session's `userToken`/`jwtSigner` factory issue (unrelated).
 
 ## Tasks
 
@@ -65,8 +65,8 @@ Cover the phase-1 Qwery Agent surface with Vitest unit tests (feature package + 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/qwery-agent test
-pnpm --filter @guepard/shell-runtime test
+pnpm --filter @qlm/qwery-agent test
+pnpm --filter @qlm/shell-runtime test
 pnpm --filter e2e test apps/e2e/tests/qwery-agent/
 pnpm check
 ```
@@ -80,7 +80,7 @@ All four commands exit 0.
 ## Notes
 
 - Story scoped down from the original spread. Test harness setup for the full `<ShellAppProvider>` + `<QueryClientProvider>` + `QweryAgentUI` rig was judged too expensive for phase-1 ROI; same guarantees are achievable by testing the pure layers below (convert-messages + domain service). Logged deviations in spec changelog.
-- Shell-runtime Vitest setup deferred — same guarantees covered by testing `GetOrCreateDefaultConversationService` in `@guepard/domain` (which already has Vitest infrastructure).
+- Shell-runtime Vitest setup deferred — same guarantees covered by testing `GetOrCreateDefaultConversationService` in `@qlm/domain` (which already has Vitest infrastructure).
 - Playwright E2E deferred — existing `apps/e2e/tests/` tests use real Supabase + Mailpit; qwery-agent E2E would additionally need chat-stream mocking (LLM calls need credits or a stub). Phase-1 smoke stays manual via `pnpm dev`.
 
 ## Spec-accuracy check

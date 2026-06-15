@@ -1,4 +1,4 @@
-# Emails - @guepard/email-templates
+# Emails - @qlm/email-templates
 
 This package is responsible for managing email templates using the react.email library.
 

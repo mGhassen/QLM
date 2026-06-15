@@ -4,8 +4,8 @@ import type {
   NodeDrain,
   NodeEligibility,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
-import type { INodeRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import type { INodeRepository } from '@qlm/domain/repositories';
 import {
   BulkDeleteNodesService,
   CreateNodeService,
@@ -18,7 +18,7 @@ import {
   SetNodeEligibilityService,
   SetNodeLifecycleService,
   UpdateNodeService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   BulkResult,
   CreateNodeInput,
@@ -28,7 +28,7 @@ import type {
   MetricsRange,
   NodeOutput,
   UpdateNodeInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export function createNodesResource(
   repository: INodeRepository,

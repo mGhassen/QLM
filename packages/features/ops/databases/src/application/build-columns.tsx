@@ -1,15 +1,15 @@
 import type { TFunction } from 'i18next';
-import { DbProviderIcon } from '@guepard/ui/db-provider-icon';
+import { DbProviderIcon } from '@qlm/ui/db-provider-icon';
 
-import { RowActionMenu } from '@guepard/ui/action';
-import type { Action } from '@guepard/ui/action';
-import type { AdvancedColumn } from '@guepard/ui/data-table-advanced';
+import { RowActionMenu } from '@qlm/ui/action';
+import type { Action } from '@qlm/ui/action';
+import type { AdvancedColumn } from '@qlm/ui/data-table-advanced';
 
 import {
   DATABASE_PROVIDERS,
   DATABASE_STATUSES,
-} from '@guepard/domain/entities';
-import type { DatabaseOutput } from '@guepard/domain/usecases';
+} from '@qlm/domain/entities';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
 
 import { DbProviderBadge } from '../presentation/cells/db-provider-badge';
 import { DbStatusBadge } from '../presentation/cells/db-status-badge';

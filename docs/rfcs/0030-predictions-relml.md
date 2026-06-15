@@ -5,7 +5,7 @@
 | Status     | Draft                                                        |
 | Author     | Wael Ben Amara                                               |
 | Created    | 2026-05-08                                                   |
-| Target     | New `@guepard/app-predictions` shell app — phase 1 ships the per-datasource conversational schema-understanding agent that all later RELML phases build on. |
+| Target     | New `@qlm/app-predictions` shell app — phase 1 ships the per-datasource conversational schema-understanding agent that all later RELML phases build on. |
 | Supersedes | —                                                            |
 | Related    | RFC 0006 (datasources), RFC 0008 (qwery-agent), RFC 0024 (global shell UI), RFC 0026 (LLM keys management), RFC 0029 (databases app) |
 
@@ -17,11 +17,11 @@ This RFC scopes a multi-phase rollout (schema understanding → task spec → tr
 
 Phase 1 ships:
 
-- A new `@guepard/app-predictions` shell app discoverable in the project shell.
+- A new `@qlm/app-predictions` shell app discoverable in the project shell.
 - A list view: every datasource in the current project with its latest snapshot status.
 - A "Take snapshot" action that calls the existing `IDataSourceDriver.metadata()` and persists the result as an immutable `prediction_schema_snapshots` row.
 - A snapshot detail view with a **schema explorer** (read-only navigation of tables, columns, PKs, FK relationships).
-- A **conversational LLM agent** (built on `@guepard/agent-factory-sdk`, reusing the `SimpleSchema` bridge) that answers questions about the active snapshot.
+- A **conversational LLM agent** (built on `@qlm/agent-factory-sdk`, reusing the `SimpleSchema` bridge) that answers questions about the active snapshot.
 - Domain entities, repository ports, Supabase + HTTP adapters, shell-runtime resources, i18n keys, and Storybook stories.
 
 Phase 1 does **not** ship task spec authoring, training, model registry, inference, explanations, or any deterministic schema-analysis layer beyond what `driver.metadata()` already returns.
@@ -45,9 +45,9 @@ Each goal is an observable exit criterion — phase 1 is done when every bullet 
 - A user can open the **Predictions** app inside any project shell (`/prj/{slug}/predictions`) and see the list of datasources in that project with snapshot status (none / latest snapshot timestamp).
 - A user can trigger **"Take snapshot"** on a datasource and see a new immutable `prediction_schema_snapshots` row created via the server, populated from `IDataSourceDriver.metadata()`.
 - A user can open a snapshot and see a **schema explorer** that lists tables with columns, primary keys, and foreign-key relationships (no editing, no deterministic analysis layer beyond what the driver returns).
-- A user can open a **conversational chat panel** scoped to a single snapshot and ask natural-language questions about the schema (e.g. "what tables join through `driverId`?"); the agent answers using the snapshot as context, via `@guepard/agent-factory-sdk`.
+- A user can open a **conversational chat panel** scoped to a single snapshot and ask natural-language questions about the schema (e.g. "what tables join through `driverId`?"); the agent answers using the snapshot as context, via `@qlm/agent-factory-sdk`.
 - All snapshot data is **RLS-protected** by `project_id` and read/write policies use the existing `has_role_on_organization` / `has_permission` helpers; no `SECURITY DEFINER` without an auth check.
-- All user-facing strings flow through `t()` / `@guepard/ui/trans`; no hardcoded English.
+- All user-facing strings flow through `t()` / `@qlm/ui/trans`; no hardcoded English.
 - Every UI surface ships a **Storybook story** matching the industrial design system (`rounded-none`, `border-2`, `font-black uppercase tracking-widest` for operational text).
 - `pnpm typecheck && pnpm lint && pnpm test` all pass on the phase-1 branch.
 
@@ -75,8 +75,8 @@ Reused as-is:
 - **`DatasourceMetadata`** ([packages/domain/src/entities/datasource-meta/metadata.type.ts](packages/domain/src/entities/datasource-meta/metadata.type.ts)) — already-rich Zod-validated shape; the snapshot stores it verbatim.
 - **`Table.primary_keys` and `Table.relationships`** ([packages/domain/src/entities/datasource-meta/tables.type.ts](packages/domain/src/entities/datasource-meta/tables.type.ts)) — exactly what RELML needs for FK graph reasoning.
 - **`SimpleSchema`** ([packages/domain/src/entities/datasource-meta/simple-schema.type.ts](packages/domain/src/entities/datasource-meta/simple-schema.type.ts)) — lightweight LLM-friendly shape; the conversational agent context-injects this rather than the full `DatasourceMetadata`.
-- **`@guepard/agent-factory-sdk`** — provides Claude / Azure OpenAI / Ollama / Bedrock backends via Vercel AI SDK; the conversational agent uses this directly. Same path qwery-agent uses.
-- **Project-scoped shell apps** ([packages/apps/notebook](packages/apps/notebook), [packages/apps/datasources](packages/apps/datasources)) — `@guepard/app-predictions` mirrors their structure (manifest + plugin-root, `useShell()` for data access, contextual nav).
+- **`@qlm/agent-factory-sdk`** — provides Claude / Azure OpenAI / Ollama / Bedrock backends via Vercel AI SDK; the conversational agent uses this directly. Same path qwery-agent uses.
+- **Project-scoped shell apps** ([packages/apps/notebook](packages/apps/notebook), [packages/apps/datasources](packages/apps/datasources)) — `@qlm/app-predictions` mirrors their structure (manifest + plugin-root, `useShell()` for data access, contextual nav).
 - **`useShell()`** ([packages/shell-runtime](packages/shell-runtime)) — apps consume the new `shell.predictions.*` namespace; never instantiate domain services directly.
 - **Repository factory** ([apps/web/src/lib/repositories-factory.ts](apps/web/src/lib/repositories-factory.ts)) — the host wires the new `IPredictionSchemaSnapshotRepository` adapter.
 - **RLS helper functions** ([packages/supabase/CLAUDE.md](packages/supabase/CLAUDE.md), [apps/web/supabase/CLAUDE.md](apps/web/supabase/CLAUDE.md)) — `has_role_on_organization`, `has_permission`, `is_account_owner`. Used in every new policy.
@@ -88,7 +88,7 @@ Replaced:
 Orthogonal (intentionally not touched in phase 1):
 
 - **`qwery-agent`** (RFC 0008) — a different conversational surface oriented at querying data. The Predictions agent is scoped to schema metadata only, not row-level data. Both share the LLM provider plumbing; neither owns the other.
-- **`@guepard/notebook`** — separate concern (interactive query authoring); does not gain Predictions affordances.
+- **`@qlm/notebook`** — separate concern (interactive query authoring); does not gain Predictions affordances.
 
 If RELML had been integratable as a TS library this section would also list the `apps/server` route patterns; that integration is deferred to phase 4 (training).
 
@@ -131,7 +131,7 @@ Every entity is project-scoped. RLS policies key on `project_id`. Cross-project 
    /prj/{slug}/predictions                     POST /predictions/snapshots
        │                                        ├── reads driver.metadata()
        ▼                                        ├── persists row (RLS)
-   @guepard/app-predictions                     └── returns snapshot id
+   @qlm/app-predictions                     └── returns snapshot id
        (manifest + plugin-root)                POST /predictions/agent
        │                                        ├── loads snapshot
        │ useShell()                             ├── projects to SimpleSchema
@@ -234,7 +234,7 @@ Apps never touch repositories directly. The shell client wires HTTP for `take` /
 
 ## 11. Operational considerations
 
-- **Observability**: `predictions.snapshot.duration_ms`, `predictions.agent.tokens_in/out`, `predictions.agent.latency_ms` exported via OpenTelemetry (existing `@guepard/telemetry`). Errors logged with `correlation_id`.
+- **Observability**: `predictions.snapshot.duration_ms`, `predictions.agent.tokens_in/out`, `predictions.agent.latency_ms` exported via OpenTelemetry (existing `@qlm/telemetry`). Errors logged with `correlation_id`.
 - **Rollback**: phase 1 is purely additive. No existing tables touched. Rollback = drop the new tables + remove the app entry; no data migration required.
 - **Billing/credits**: agent usage consumes the org's LLM budget (RFC 0026 owns enforcement); no new billing surface in phase 1.
 - **Storage**: snapshots are jsonb; expected size 10 KB – 1 MB. No new buckets needed.
@@ -244,7 +244,7 @@ Apps never touch repositories directly. The shell client wires HTTP for `take` /
 
 | Phase | Scope                                                                                                                           | Artifacts                  | Status |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------ |
-| 1     | Versioned snapshots + conversational agent UI inside `@guepard/app-predictions`. Read-only schema explorer over snapshot.        | This RFC + phase-1 spec    | Draft  |
+| 1     | Versioned snapshots + conversational agent UI inside `@qlm/app-predictions`. Read-only schema explorer over snapshot.        | This RFC + phase-1 spec    | Draft  |
 | 2     | Deterministic schema-analysis layer: cardinality, time-column inference, PK/FK refinement for schemaless sources, user-editable schema overrides on top of an immutable snapshot. | Phase 2 RFC                | Future |
 | 3     | TaskSpec authoring UI: target column, label transform, split strategy, inference mode, dataset_schema declaration.               | Phase 3 RFC                | Future |
 | 4     | Training orchestration: Python sidecar service running RELML, async job queue, status streaming, training logs, CPU-only first.  | Phase 4 RFC                | Future |
@@ -283,7 +283,7 @@ Apps never touch repositories directly. The shell client wires HTTP for `take` /
 - [docs/rfcs/0024-global-shell-ui.md](docs/rfcs/0024-global-shell-ui.md)
 - [docs/rfcs/0026-llm-keys-management.md](docs/rfcs/0026-llm-keys-management.md)
 - [docs/rfcs/0029-databases-app.md](docs/rfcs/0029-databases-app.md)
-- RELML reference: `all_code.txt` examples (`binary_f1_example.py`, `f1_podium.py`, `ml1m_ratings.py`, `sunny_side_demand.py`) and the `guepard.qwery.relml` Python wrapper.
+- RELML reference: `all_code.txt` examples (`binary_f1_example.py`, `f1_podium.py`, `ml1m_ratings.py`, `sunny_side_demand.py`) and the `qlm.qwery.relml` Python wrapper.
 - **Qwery × RELML integration guide** (`tmp/relml_integration.md`) — canonical wiring blueprint adopted as the reference architecture for phases 2+. See Amendment A1 below.
 
 ---
@@ -325,20 +325,20 @@ Each step persists to a `MLTrainingJob` record with lineage (`parentJobId`) so i
 | `apps/server/src/routes/ml-tasks.ts` | `apps/server/src/routes/predictions.ts` (extend the existing file) |
 | `MLTaskDesign` Zod entity | `PredictionTaskDesign` under `packages/domain/src/entities/predictions/` |
 | `/api/ml-tasks/...` | `/api/predictions/tasks/...` |
-| `${QWERY_STORAGE_DIR}/ml/<jobId>/` | `${GUEPARD_STORAGE_DIR}/predictions/<jobId>/` |
-| `apps/web/app/routes/datasource/model-builder.tsx` | A new flat route under `@guepard/app-predictions` (we already have the snapshot detail page; add a "New model" entry that opens the 4-step builder) |
+| `${QWERY_STORAGE_DIR}/ml/<jobId>/` | `${QLM_STORAGE_DIR}/predictions/<jobId>/` |
+| `apps/web/app/routes/datasource/model-builder.tsx` | A new flat route under `@qlm/app-predictions` (we already have the snapshot detail page; add a "New model" entry that opens the 4-step builder) |
 | `lib/repositories/ml-tasks-client.ts` | Extend `apps/web/src/lib/repositories/prediction-*.repository.ts` and the shell-runtime `predictions` resource |
 
 **Dependencies we'll add (when we start phase 2):**
 - Server: `@duckdb/node-api@1.4.2-r.1` (used by `validate-design` for binder validation against an in-memory DuckDB and by `bundle-builder` for materializing the training bundle).
-- Python env: install `guepard.qwery.relml` from the RELML repo into the venv `Bun.spawn` will launch.
+- Python env: install `qlm.qwery.relml` from the RELML repo into the venv `Bun.spawn` will launch.
 - Server tsconfig: `experimentalDecorators: true` + `emitDecoratorMetadata: true` (required by the agent SDK's runtime libs).
 - Web (later): `motion@^12.23.24` if we want the Qwery design animations; otherwise omit.
 
 **Environment variables we'll introduce (phase 4):**
-- `GUEPARD_PYTHON_BIN` — interpreter for the venv with `guepard.qwery.relml` installed (default `python3`).
-- `GUEPARD_STORAGE_DIR` — root for job artifacts; defaults to repo-root `qwery.db/` already used by the server.
-- `GUEPARD_PREDICTIONS_TRAIN_CLI`, `GUEPARD_PREDICTIONS_PREDICT_CLI`, `GUEPARD_PREDICTIONS_BACKTEST_CLI` — absolute paths to the three Python CLIs (defaults relative to `process.cwd()`).
+- `QLM_PYTHON_BIN` — interpreter for the venv with `qlm.qwery.relml` installed (default `python3`).
+- `QLM_STORAGE_DIR` — root for job artifacts; defaults to repo-root `qwery.db/` already used by the server.
+- `QLM_PREDICTIONS_TRAIN_CLI`, `QLM_PREDICTIONS_PREDICT_CLI`, `QLM_PREDICTIONS_BACKTEST_CLI` — absolute paths to the three Python CLIs (defaults relative to `process.cwd()`).
 
 **Adopted contracts (verbatim from Qwery, will live in our domain layer):**
 - `MLTaskDesign` shape (Qwery §19.1) — single source of truth for what gets serialized to `design.json` and read by the Python CLIs.

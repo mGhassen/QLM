@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { DirtyStateProvider } from '@guepard/settings-shell';
+import { DirtyStateProvider } from '@qlm/settings-shell';
 
 import { UserTokensApiProvider, type UserTokensApi } from '../src/hooks';
 import { GenerateTokenForm } from '../src/components/generate-token-form';

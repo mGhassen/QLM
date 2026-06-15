@@ -19,14 +19,14 @@ import {
   GetProjectService,
   UpdateConversationService,
   UpdateNotebookService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
-import { DomainException } from '@guepard/domain/exceptions';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
+import { DomainException } from '@qlm/domain/exceptions';
 import {
   ExtensionsRegistry,
   ExtensionScope,
   DatasourceExtension,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import { instanceToPlain } from 'class-transformer';
 import { getRepositoriesFromRequest } from './repositories';
 import { isUUID } from './http-utils';

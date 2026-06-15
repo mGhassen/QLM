@@ -12,25 +12,25 @@ files:
 
 ## Purpose
 
-Create the new `@guepard/qwery-agent` workspace package with standard tooling config so subsequent tasks have a place to add components.
+Create the new `@qlm/qwery-agent` workspace package with standard tooling config so subsequent tasks have a place to add components.
 
 ## Files
 
-- `packages/features/qwery-agent/package.json` — package manifest mirroring `packages/features/notebook/package.json`; `name: "@guepard/qwery-agent"`, private, exports map, workspace:* devDeps.
+- `packages/features/qwery-agent/package.json` — package manifest mirroring `packages/features/notebook/package.json`; `name: "@qlm/qwery-agent"`, private, exports map, workspace:* devDeps.
 - `packages/features/qwery-agent/tsconfig.json` — extends the shared React tsconfig used by sibling feature packages.
 - `packages/features/qwery-agent/src/index.ts` — empty module (`export {};`) placeholder, filled by later tasks.
 
 ## Acceptance
 
 - [x] `pnpm install` completes without workspace errors; the new package is picked up by the existing `packages/features/*` glob.
-- [x] `pnpm --filter @guepard/qwery-agent typecheck` passes (no files → no errors).
+- [x] `pnpm --filter @qlm/qwery-agent typecheck` passes (no files → no errors).
 - [x] No changes to unrelated packages' lockfiles beyond what adding the new workspace requires.
 
 ## Test plan
 
 ```
 pnpm install
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 ```
 
 ## Notes

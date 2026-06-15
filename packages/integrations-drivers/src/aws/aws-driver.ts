@@ -1,12 +1,12 @@
 import { DescribeRegionsCommand, EC2Client } from '@aws-sdk/client-ec2';
 import { GetCallerIdentityCommand, STSClient } from '@aws-sdk/client-sts';
 
-import type { IntegrationProvider } from '@guepard/domain/entities';
+import type { IntegrationProvider } from '@qlm/domain/entities';
 import type {
   IIntegrationProviderDriver,
   RevealedCredentials,
-} from '@guepard/domain/services';
-import type { Region, TestResult } from '@guepard/domain/usecases';
+} from '@qlm/domain/services';
+import type { Region, TestResult } from '@qlm/domain/usecases';
 
 import { mapAwsError } from './error-mapping';
 

@@ -34,10 +34,10 @@ Build the 3-step `MultiFactorAuthSetupDialog` (friendly name → QR + manual sec
 - [ ] Storybook stories: setup dialog (Name step / QR step / Verify step / Error), factors list (Empty / OneFactor / WithUnenrollDialog).
 - [ ] Component tests cover: dialog 3-step happy path, wrong OTP, cancel-mid-flow unenroll, list unenroll happy path, list unenroll wrong-password.
 - [ ] No TOTP secret or password material appears in any console log line during the flow.
-- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @guepard/user-profile test` all pass.
+- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @qlm/user-profile test` all pass.
 
 ## Notes
 
-- For the `InputOTP` 6-digit input use `@guepard/ui/input-otp` if it exists, otherwise three `Input` slots — confirm during implementation. The legacy console used Shadcn's `InputOTP`.
+- For the `InputOTP` 6-digit input use `@qlm/ui/input-otp` if it exists, otherwise three `Input` slots — confirm during implementation. The legacy console used Shadcn's `InputOTP`.
 - The Verify step gets `factorId` from the enroll response; chain via component state, not a separate query.
 - Spec anchors: [§3.2.2 MFA setup dialog](../../../specs/0025-user-profile-phase1.md#322-mfa-setup-dialog-modal), [§3.3 F5/F6](../../../specs/0025-user-profile-phase1.md#33-user-flows-happy-paths), [§9 security](../../../specs/0025-user-profile-phase1.md#9-security-checklist).

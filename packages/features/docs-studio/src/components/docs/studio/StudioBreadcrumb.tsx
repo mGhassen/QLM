@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 import { BLOCK_LABELS } from "#/lib/block-fields";
 import { findBlockById } from "#/lib/serialize";
 import { getAncestorIds } from "#/lib/canvas-drop";

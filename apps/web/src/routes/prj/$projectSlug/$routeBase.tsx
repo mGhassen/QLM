@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { Loader2 } from 'lucide-react';
 
-import { decodeTabId, deriveTabTitle } from '@guepard/shell-contracts';
+import { decodeTabId, deriveTabTitle } from '@qlm/shell-contracts';
 
 import { getAppRegistry } from '@/shell/app-registry';
 import {

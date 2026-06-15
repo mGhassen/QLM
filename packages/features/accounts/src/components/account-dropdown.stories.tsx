@@ -51,7 +51,7 @@ type Story = StoryObj<typeof AccountDropdown>;
 const user = {
   // Intentionally empty so `usePersonalAccountData` is disabled in Storybook.
   id: '',
-  email: 'aziz@guepard.dev',
+  email: 'aziz@qlm.dev',
   phone: null,
   aal: 'aal2',
   app_metadata: { role: 'super-admin' },

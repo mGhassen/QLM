@@ -1,4 +1,4 @@
-import { Database } from '@guepard/supabase/database';
+import { Database } from '@qlm/supabase/database';
 
 export type UpsertSubscriptionParams =
   Database['public']['Functions']['upsert_subscription']['Args'] & {

@@ -5,11 +5,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   Repositories,
   IUserPreferencesRepository,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import type {
   UserPreferences,
   UserPreferencesPayload,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 
 import {
   ShellAppProvider,
@@ -45,7 +45,7 @@ const loggerSpies = {
   debug: vi.fn(),
 };
 
-vi.mock('@guepard/shared/logger', () => ({
+vi.mock('@qlm/shared/logger', () => ({
   getLogger: vi.fn(async () => loggerSpies),
 }));
 

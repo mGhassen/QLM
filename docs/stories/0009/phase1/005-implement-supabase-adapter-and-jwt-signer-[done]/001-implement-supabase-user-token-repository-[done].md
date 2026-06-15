@@ -11,7 +11,7 @@ files:
 
 ## Purpose
 
-Implement `SupabaseUserTokenRepository extends IUserTokenRepository` backed by `public.user_tokens`, and export it from the `@guepard/repository-supabase` barrel.
+Implement `SupabaseUserTokenRepository extends IUserTokenRepository` backed by `public.user_tokens`, and export it from the `@qlm/repository-supabase` barrel.
 
 ## Files
 
@@ -25,17 +25,17 @@ Implement `SupabaseUserTokenRepository extends IUserTokenRepository` backed by `
 
 ## Acceptance
 
-- [ ] Class extends `IUserTokenRepository` from `@guepard/domain/repositories` (abstract class, not a type).
+- [ ] Class extends `IUserTokenRepository` from `@qlm/domain/repositories` (abstract class, not a type).
 - [ ] `findByAccountId` filters by `account_id` and orders by `created_at DESC`.
 - [ ] `create` inserts only the four fields (`account_id`, `token_name`, `scopes`, `expires_at`) and returns the full row via `.select().single()`.
 - [ ] `revoke` narrows `WHERE revoked = false`; returns `null` when zero rows are updated (both unknown id and already-revoked cases).
 - [ ] Every returned row is validated through `UserTokenSchema.parse(...)` so a DB drift surfaces as a Zod error at the adapter boundary.
-- [ ] `pnpm --filter @guepard/repository-supabase typecheck` passes.
+- [ ] `pnpm --filter @qlm/repository-supabase typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/repository-supabase typecheck
+pnpm --filter @qlm/repository-supabase typecheck
 ```
 
 ## Storybook validation
@@ -44,6 +44,6 @@ N/A — not a UI task.
 
 ## Notes
 
-- Use `UserTokenSchema` from `@guepard/domain/entities` for parsing — it normalises `revoked: null → false`.
+- Use `UserTokenSchema` from `@qlm/domain/entities` for parsing — it normalises `revoked: null → false`.
 - Follow the constructor pattern `constructor(private client: SupabaseClientType) { super(); }` from `DatasourceRepository`.
 - Do NOT hand-set `created_at` / `updated_at` / `created_by` / `updated_by` — the DB triggers own those.

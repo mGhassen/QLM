@@ -41,7 +41,7 @@ Ship the shared primitives (`StatusChip`, `ScopePill`, `FilterPopover`) and the 
   - Props: `token: UserToken`, `onRevokeClick(token: UserToken)`.
   - Renders the 7 columns exactly per spec §3.2.1: Name (`token.token_name`), Expires (localized date from `token.expires_at * 1000`), Status (`<StatusChip status={deriveUserTokenStatus(token)} />`), Created At (localized date), Revoked At (localized date or `tokens.table.notApplicable`), Scopes (one `<ScopePill />` per scope, always in the order `read / write / admin`), Actions (revoke icon button, disabled for non-active tokens, `aria-label={t('tokens.table.revokeAriaLabel')}`).
   - Stories: active + all 3 scopes, active + read only, expired, revoked, with various scope combos.
-- All components: `Readonly<Props>`, compose `@guepard/ui` primitives (`Badge`, `Button`, `Popover`, `Checkbox`), Tailwind tokens, every string via `t(...)` or `<Trans>`.
+- All components: `Readonly<Props>`, compose `@qlm/ui` primitives (`Badge`, `Button`, `Popover`, `Checkbox`), Tailwind tokens, every string via `t(...)` or `<Trans>`.
 
 **Out of scope**
 
@@ -58,8 +58,8 @@ Ship the shared primitives (`StatusChip`, `ScopePill`, `FilterPopover`) and the 
 - [x] `TokenRow` revoke button is disabled for non-active statuses — verified by 2 unit tests AND visually in the `Expired` / `Revoked` stories (greyed trash icon).
 - [x] No hardcoded English strings — labels resolved via `t('tokens:...')` / `t('settings:...')`.
 - [x] All new components are typed with `Readonly<Props>`.
-- [x] `pnpm --filter @guepard/user-tokens test` passes (25 tests, 100 % line on the three primitives, ~95 % on `token-row.tsx`).
-- [x] Storybook stories render cleanly under `pnpm --filter @guepard/storybook-config storybook` — user-validated 2026-04-16.
+- [x] `pnpm --filter @qlm/user-tokens test` passes (25 tests, 100 % line on the three primitives, ~95 % on `token-row.tsx`).
+- [x] Storybook stories render cleanly under `pnpm --filter @qlm/storybook-config storybook` — user-validated 2026-04-16.
 
 ## Tasks
 
@@ -71,14 +71,14 @@ Ship the shared primitives (`StatusChip`, `ScopePill`, `FilterPopover`) and the 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/user-tokens storybook
+pnpm --filter @qlm/user-tokens storybook
 # Browse: UserTokens/Primitives/StatusChip (3 stories)
 # Browse: UserTokens/Primitives/ScopePill (3 stories)
 # Browse: UserTokens/Primitives/FilterPopover (2 stories)
 # Browse: UserTokens/TokenRow (multiple variants)
 
-pnpm --filter @guepard/user-tokens test -- primitives
-pnpm --filter @guepard/user-tokens test -- token-row
+pnpm --filter @qlm/user-tokens test -- primitives
+pnpm --filter @qlm/user-tokens test -- token-row
 ```
 
 ## Questions surfaced

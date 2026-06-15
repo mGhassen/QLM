@@ -14,12 +14,12 @@ blocked_by: ["001"]
 
 ## Goal
 
-Lift qwery-core's keyring Tauri commands into the guepard shell so renderer-driven LLM key storage and (later) refresh-token persistence have a working OS-keychain backend.
+Lift qwery-core's keyring Tauri commands into the qlm shell so renderer-driven LLM key storage and (later) refresh-token persistence have a working OS-keychain backend.
 
 ## Scope
 
 **In scope**
-- New `apps/desktop/src-tauri/src/keyring_cmds.rs` (or extension of `lib.rs`) with `save_api_key` / `get_api_key` / `delete_api_key` / `debug_keyring_status` lifted from qwery-core, with `SERVICE_NAME = "run.guepard.desktop"`.
+- New `apps/desktop/src-tauri/src/keyring_cmds.rs` (or extension of `lib.rs`) with `save_api_key` / `get_api_key` / `delete_api_key` / `debug_keyring_status` lifted from qwery-core, with `SERVICE_NAME = "run.qlm.desktop"`.
 - Windows `Entry::new_with_target` per-key isolation + legacy-target read/migrate/delete logic retained from qwery-core.
 - `MANAGED_KEYS` Rust constant per spec §7.8 (Anthropic / OpenAI / Azure / AWS Bedrock / Ollama / `AGENT_PROVIDER` / `DEFAULT_MODEL`).
 - `CONFIG_KEYS` Rust constant per spec §7.8.
@@ -36,7 +36,7 @@ Lift qwery-core's keyring Tauri commands into the guepard shell so renderer-driv
 - [x] `cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml -- -D warnings` passes.
 - [~] `cargo test` covers the keyring commands against a mock keyring backend — **deferred**: `keyring` crate exposes `Entry` directly with no test-mode backend, and qwery-core didn't ship Rust unit tests either. Behaviour is verified by the manual devtools round-trip + `security find-generic-password` pair below. Adding a mock backend is a future improvement, not a phase-1 blocker.
 - [x] Tauri devtools `invoke('save_api_key', { key: 'OPENAI_API_KEY', value: 'sk-…' })` round-trips with `invoke('get_api_key', { key: 'OPENAI_API_KEY' })` — verifiable via the packaged `.app` per the Demo section. (User opted out of manual verification this round.)
-- [x] `security find-generic-password -s run.guepard.desktop -a OPENAI_API_KEY` (macOS) finds the entry; `delete_api_key` removes it — same mechanism as qwery-core, lifted verbatim.
+- [x] `security find-generic-password -s run.qlm.desktop -a OPENAI_API_KEY` (macOS) finds the entry; `delete_api_key` removes it — same mechanism as qwery-core, lifted verbatim.
 - [x] On launch, sidecar spawn shows `MANAGED_KEYS` values from keychain in env (verifiable via `desktop.log` "keyring … =set" / `=missing` lines, no values logged).
 - [x] **Build + UI check:** desktop launches, devtools-driven keyring round-trip succeeds with no console errors. (`tauri:build` produced 30 MB DMG; user opted out of manual verification this round.)
 

@@ -45,7 +45,7 @@ Ship the two i18n namespaces required by RFC 0009 phase 1 (post-AM-1): `settings
 - [ ] `pnpm typecheck` across apps/web passes (new namespace registration doesn't break anything).
 - [ ] `pnpm --filter web build` succeeds (JSON imports resolve).
 - [ ] No typos in any key name — verified by string-diffing the key inventory against spec §11.
-- [ ] The `TODO(story-003)` comments in `packages/ui/src/guepard/layout/user-profile-menu.tsx` and `packages/ui/src/guepard/shell/shell-user-profile-menu.tsx` are resolved: either removed (if the literal string matches other literal strings in the same component — the UI package's convention) or the literal is hoisted to a prop that consumers localize. Decision during implementation.
+- [ ] The `TODO(story-003)` comments in `packages/ui/src/qlm/layout/user-profile-menu.tsx` and `packages/ui/src/qlm/shell/shell-user-profile-menu.tsx` are resolved: either removed (if the literal string matches other literal strings in the same component — the UI package's convention) or the literal is hoisted to a prop that consumers localize. Decision during implementation.
 
 ## Test plan
 
@@ -61,10 +61,10 @@ node -e "console.log(Object.keys(require('./apps/web/src/lib/i18n/locales/en/tok
 
 N/A — not a UI task. (This adds i18n JSON files + registers namespaces; no component changes.)
 
-If the task ends up editing `packages/ui/src/guepard/layout/user-profile-menu.tsx` or `shell-user-profile-menu.tsx` to resolve the `TODO(story-003)` markers by hoisting the "Settings" label to a prop, **then it becomes a UI task** and Storybook validation applies: rerun `pnpm --filter @guepard/ui storybook` and confirm both menus still show "Settings" as the nav-item label in their Default stories. Document whichever path is taken in the Notes.
+If the task ends up editing `packages/ui/src/qlm/layout/user-profile-menu.tsx` or `shell-user-profile-menu.tsx` to resolve the `TODO(story-003)` markers by hoisting the "Settings" label to a prop, **then it becomes a UI task** and Storybook validation applies: rerun `pnpm --filter @qlm/ui storybook` and confirm both menus still show "Settings" as the nav-item label in their Default stories. Document whichever path is taken in the Notes.
 
 ## Notes
 
-- `t('settings.menu.label')` is called from `apps/web/src/routes/organizations.tsx` and `apps/web/src/shell/project-shell-host.tsx` (the two account-menu call sites) — if the label is localized there (not in the UI package), the TODO(003) markers can simply be dropped without changing the UI package. That's the cleanest path and preserves the existing "literals in @guepard/ui primitives, localized by consumers" convention.
+- `t('settings.menu.label')` is called from `apps/web/src/routes/organizations.tsx` and `apps/web/src/shell/project-shell-host.tsx` (the two account-menu call sites) — if the label is localized there (not in the UI package), the TODO(003) markers can simply be dropped without changing the UI package. That's the cleanest path and preserves the existing "literals in @qlm/ui primitives, localized by consumers" convention.
 - No non-English locale files land in this task — spec §7.8 says English-only in phase 1 (non-English placeholders are added when non-English locales exist, which they don't yet).
 - Every key in the JSON files should match the spec §11 list exactly; adding keys beyond spec §11 is scope creep (defer to later tasks). Removing or renaming keys is a deviation (log in story Notes).

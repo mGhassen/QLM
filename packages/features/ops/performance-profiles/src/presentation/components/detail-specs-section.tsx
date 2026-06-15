@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Gauge, Star } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { DataRow, EntitySection } from '@guepard/ui/entity-primitives';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { DataRow, EntitySection } from '@qlm/ui/entity-primitives';
 import { ProfileStatusBadge } from '../cells/profile-status-badge';
 
 export type DetailSpecsSectionProps = Readonly<{ profile: PerformanceProfile }>;

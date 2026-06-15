@@ -1,4 +1,4 @@
-import { MessageRole } from '@guepard/domain/entities';
+import { MessageRole } from '@qlm/domain/entities';
 import type { Message, MessageContentPart } from '../llm/message';
 import type { AgentInfoWithId } from './agent';
 import { buildDatasourceReminder } from './prompts/datasource-reminder';

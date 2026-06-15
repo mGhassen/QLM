@@ -3,7 +3,7 @@ import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
 
-import type { Repositories, ISecretVault } from '@guepard/domain/repositories';
+import type { Repositories, ISecretVault } from '@qlm/domain/repositories';
 import {
   CreateIntegrationConnectionService,
   DeleteIntegrationConnectionService,
@@ -14,8 +14,8 @@ import {
   splitCredentialsForStorage,
   type IIntegrationProviderDriverRegistry,
   type RevealedCredentials,
-} from '@guepard/domain/services';
-import { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+} from '@qlm/domain/services';
+import { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 import { handleDomainException } from '../lib/http-utils';
 import { createRateLimiter, type RateLimiter } from '../lib/rate-limiter';

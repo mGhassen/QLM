@@ -21,7 +21,7 @@ Extend the chat transport so callers can inject per-request headers (needed for 
 - [ ] `transport-factory.ts` exports `TransportFactoryOptions { getHeaders? }` and accepts an optional 3rd argument that is forwarded to `defaultTransport`.
 - [ ] Existing two-arg `transportFactory(slug, model)` and single-arg `defaultTransport(api)` call sites keep compiling (option is truly optional).
 - [ ] Unit test `__tests__/services/transport-factory.test.ts` mocks `DefaultChatTransport`, calls `transportFactory('slug', 'openai/gpt', { getHeaders: async () => ({ Authorization: 'Bearer t' }) })`, and asserts the mock received `headers` equal to the passed function.
-- [ ] `pnpm --filter @guepard/agent-factory-sdk typecheck` passes and the new test passes under `pnpm --filter @guepard/agent-factory-sdk test`.
+- [ ] `pnpm --filter @qlm/agent-factory-sdk typecheck` passes and the new test passes under `pnpm --filter @qlm/agent-factory-sdk test`.
 
 ## Notes
 

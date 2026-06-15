@@ -1,4 +1,4 @@
-import type { TestResult } from '@guepard/domain/usecases';
+import type { TestResult } from '@qlm/domain/usecases';
 
 /**
  * One fixture per error code in the `TestResultErrorCode` closed set.

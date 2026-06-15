@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/shell-apps",
+  "name": "@qlm/shell-apps",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -13,7 +13,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@guepard/ui": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "lucide-react": "^0.552.0"
   },
   "peerDependencies": {
@@ -21,14 +21,14 @@
     "react-i18next": "^16.2.3"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "eslint": "^9.39.0",
     "react": "catalog:",
     "react-i18next": "^16.2.3",
     "typescript": "catalog:"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

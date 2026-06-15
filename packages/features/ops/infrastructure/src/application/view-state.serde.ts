@@ -9,9 +9,9 @@ import {
   type NodeHealth,
   type NodeLifecycleState,
   type NodeProvider,
-} from '@guepard/domain/entities';
-import type { FilterRule } from '@guepard/ui/data-table-advanced';
-import { arrayOf, decodeFilters, encodeFilters } from '@guepard/ui/filter-serde';
+} from '@qlm/domain/entities';
+import type { FilterRule } from '@qlm/ui/data-table-advanced';
+import { arrayOf, decodeFilters, encodeFilters } from '@qlm/ui/filter-serde';
 
 export { decodeFilters, encodeFilters };
 

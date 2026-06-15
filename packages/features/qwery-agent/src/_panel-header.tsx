@@ -1,7 +1,7 @@
 import { ExternalLink, X } from 'lucide-react';
 
-import { BotAvatar } from '@guepard/ui/bot-avatar';
-import { Button } from '@guepard/ui/button';
+import { BotAvatar } from '@qlm/ui/bot-avatar';
+import { Button } from '@qlm/ui/button';
 
 export type PanelHeaderProps = {
   /** Show the "Open in new tab" button in the header. Defaults to true. */

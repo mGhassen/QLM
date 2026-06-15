@@ -1,12 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 
-import { DomainException } from '@guepard/domain/exceptions';
+import { DomainException } from '@qlm/domain/exceptions';
 import {
   GetOrganizationBySlugService,
   GetOrganizationService,
-} from '@guepard/domain/services';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+} from '@qlm/domain/services';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 import { OrganizationCheckoutSchema } from '@/lib/billing/org-billing.schema';
 import { createOrganizationBillingService } from '@/lib/billing/org-billing.server';

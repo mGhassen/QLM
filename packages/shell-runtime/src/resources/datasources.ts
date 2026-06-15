@@ -3,20 +3,20 @@ import type { QueryClient } from '@tanstack/react-query';
 import type {
   Datasource,
   DatasourceMetadata,
-} from '@guepard/domain/entities';
-import type { IDatasourceRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import type { IDatasourceRepository } from '@qlm/domain/repositories';
 import {
   CreateDatasourceService,
   DeleteDatasourceService,
   GetDatasourceBySlugService,
   GetDatasourcesByProjectIdService,
   UpdateDatasourceService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateDatasourceInput,
   DatasourceOutput,
   UpdateDatasourceInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import type {
   GetDatasourceMetadataFn,

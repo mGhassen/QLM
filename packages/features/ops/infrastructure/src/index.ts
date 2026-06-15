@@ -11,7 +11,7 @@ export {
 /**
  * Re-exports for the MSW fixtures + any downstream consumer that previously
  * imported types from this pkg. The canonical location is now
- * `@guepard/domain/entities` — prefer that in new code; this barrel keeps
+ * `@qlm/domain/entities` — prefer that in new code; this barrel keeps
  * legacy imports working without a codemod sweep.
  */
 export {
@@ -23,7 +23,7 @@ export {
   NODE_ELIGIBILITY_STATES,
   NODE_HEALTH,
   NodeSchema,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 export type {
   Node,
   NodeKind,
@@ -33,8 +33,8 @@ export type {
   NodeOrchestrationState,
   NodeEligibility,
   NodeHealth,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 export type {
   CreateNodeInput,
   UpdateNodeInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';

@@ -1,10 +1,10 @@
 /**
- * Presentation-only types carved from the dying `@guepard/infrastructure`
+ * Presentation-only types carved from the dying `@qlm/infrastructure`
  * pkg as part of RFC 0025 phase 1, story 005. Cluster/provider/region
  * view-models were deleted (Topology + Pool entity cover that surface
  * now); only the replica/settings/activity types travel forward.
  *
- * Subpath export: `@guepard/infrastructure/types` (preserved by the
+ * Subpath export: `@qlm/infrastructure/types` (preserved by the
  * package.json `exports` field). MSW handlers (`apps/web/src/lib/msw/
  * handlers/replicas.ts`, `…/fixtures/infrastructure.ts`) consume from
  * here.

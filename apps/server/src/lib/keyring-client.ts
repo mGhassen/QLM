@@ -1,7 +1,7 @@
 /**
  * Tauri shell keyring-IPC client.
  *
- * Reads `GUEPARD_KEYRING_PORT` + `GUEPARD_KEYRING_TOKEN` from `process.env`
+ * Reads `QLM_KEYRING_PORT` + `QLM_KEYRING_TOKEN` from `process.env`
  * and exposes set/get/delete against the per-launch HTTP server in
  * `apps/desktop/src-tauri/src/ipc.rs`. Sidecar consumers use this; route
  * handlers do not.
@@ -11,8 +11,8 @@
  * if a caller surfaces the message.
  */
 
-const PORT_ENV = 'GUEPARD_KEYRING_PORT';
-const TOKEN_ENV = 'GUEPARD_KEYRING_TOKEN';
+const PORT_ENV = 'QLM_KEYRING_PORT';
+const TOKEN_ENV = 'QLM_KEYRING_TOKEN';
 
 interface KeyringEnv {
   readonly port: number;

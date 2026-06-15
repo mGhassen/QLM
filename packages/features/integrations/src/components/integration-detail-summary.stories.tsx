@@ -2,7 +2,7 @@ import { plainToClass } from 'class-transformer';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+import { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 import { awsIntegrationFixture } from '../__fixtures__';
 import { withIntegrationsProviders } from '../lib/story-helpers';

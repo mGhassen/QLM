@@ -2,9 +2,9 @@ import { Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import type { UserToken } from '@guepard/domain/entities';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import type { UserToken } from '@qlm/domain/entities';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 
 import { useRevokeUserTokenMutation } from '../hooks/use-revoke-user-token-mutation';
 

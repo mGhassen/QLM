@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest';
-import type { Conversation, Message } from '@guepard/domain/entities';
-import { MessageRole } from '@guepard/domain/entities';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Conversation, Message } from '@qlm/domain/entities';
+import { MessageRole } from '@qlm/domain/entities';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   ConversationRepository,
   MessageRepository,
@@ -12,7 +12,7 @@ import {
   NotebookRepository,
   UsageRepository,
   TodoRepository,
-} from '@guepard/repository-in-memory';
+} from '@qlm/repository-in-memory';
 import { prune } from '../../src/agents/session-compaction';
 
 function createRepositories(): Repositories {

@@ -16,7 +16,7 @@ Expose the new `conversations` namespace on `useShell()` so downstream stories (
 
 ## Files
 
-- `packages/shell-runtime/src/resources/conversations.ts` — **new**. Mirrors `notebooks.ts` shape: `createConversationsResource(repository, currentProjectId, currentUserId, queryClient)` returning `{ keys, list, getBySlug, getDefaultForProject, create, update, delete, invalidate }`. Wraps domain services from `@guepard/domain/services`.
+- `packages/shell-runtime/src/resources/conversations.ts` — **new**. Mirrors `notebooks.ts` shape: `createConversationsResource(repository, currentProjectId, currentUserId, queryClient)` returning `{ keys, list, getBySlug, getDefaultForProject, create, update, delete, invalidate }`. Wraps domain services from `@qlm/domain/services`.
 - `packages/shell-runtime/src/client.ts` — add `conversations: ConversationsResource` to `ShellClient` type; compose inside the `useMemo`, passing `repositories.conversation`, `projectId`, `currentUserId`, `queryClient`. `currentUserId` is already destructured.
 - `packages/shell-runtime/src/index.ts` — re-export `ConversationsResource` alongside the other resource type exports.
 
@@ -26,12 +26,12 @@ Expose the new `conversations` namespace on `useShell()` so downstream stories (
 - [x] `list({ projectId? })` defaults `projectId` to the active project context.
 - [x] `create(...)` and `update(...)` automatically set `createdBy` / `updatedBy` to `currentUserId` — callers do not pass them.
 - [x] `getDefaultForProject({ projectId? })` calls the domain `GetOrCreateDefaultConversationService` from task 001.
-- [x] `pnpm typecheck` at root passes (46/46 turbo tasks). `@guepard/shell-runtime` has no `typecheck` script of its own; verified via the workspace-wide check.
+- [x] `pnpm typecheck` at root passes (46/46 turbo tasks). `@qlm/shell-runtime` has no `typecheck` script of its own; verified via the workspace-wide check.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/shell-runtime typecheck
+pnpm --filter @qlm/shell-runtime typecheck
 ```
 
 ## Notes

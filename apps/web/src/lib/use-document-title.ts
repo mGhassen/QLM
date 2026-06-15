@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SUFFIX = 'Rasm';
+const SUFFIX = 'QLM';
 
 export function useDocumentTitle(title: string | null | undefined) {
   useEffect(() => {

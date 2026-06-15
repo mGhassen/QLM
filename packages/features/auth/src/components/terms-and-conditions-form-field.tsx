@@ -1,11 +1,11 @@
-import { Checkbox } from '@guepard/ui/checkbox';
+import { Checkbox } from '@qlm/ui/checkbox';
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { Trans } from '@qlm/ui/trans';
 
 export function TermsAndConditionsFormField(
   props: {

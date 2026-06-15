@@ -6,8 +6,8 @@ import { Registry } from './registry';
 import { TaskPrompt } from './prompts/task.prompt';
 import { runAgentToCompletion } from '../agents/run-agent-to-completion';
 import { createMessages, type Message } from '../llm/message';
-import type { Repositories } from '@guepard/domain/repositories';
-import { messageRoleToUIRole } from '@guepard/shared/message-role-utils';
+import type { Repositories } from '@qlm/domain/repositories';
+import { messageRoleToUIRole } from '@qlm/shared/message-role-utils';
 
 const parameters = z.object({
   description: z

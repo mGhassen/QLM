@@ -1,2 +1,2 @@
-## Guepard Strategic Research
-IA agentique  |  guepard.run  |  2026
+## QLM Strategic Research
+IA agentique  |  qlm.run  |  2026

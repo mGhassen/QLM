@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { CsrfTokenSchema } from '@guepard/csrf/schema';
+import { CsrfTokenSchema } from '@qlm/csrf/schema';
 
 /**
  * @name RESERVED_NAMES_ARRAY

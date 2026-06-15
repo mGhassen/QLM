@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   IOrganizationRepository,
   IProjectRepository,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 
 import {
   createOrganizationsResource,

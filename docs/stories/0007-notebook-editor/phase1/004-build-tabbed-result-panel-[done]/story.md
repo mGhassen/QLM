@@ -51,7 +51,7 @@ Render exactly one result panel per query cell — a tabbed switcher (`Table | G
 - [x] A 1-row result fits in ≤ 160 px of vertical space.
 - [x] A 100-row result clamps at 480 px and the inner grid is scrollable.
 - [x] No orphaned cell-state variables left behind (e.g. `resultsOpen` / `setResultsOpen` / the `formatQueryDuration` helper).
-- [x] `pnpm --filter @guepard/notebook typecheck` is clean.
+- [x] `pnpm --filter @qlm/notebook typecheck` is clean.
 
 ## Tasks
 

@@ -35,9 +35,9 @@ Stand up the empty feature and app packages the rest of phase 1 depends on, so s
 
 ## Acceptance criteria
 
-- [x] `pnpm --filter @guepard/shell-topbar typecheck` passes (package has its own typecheck script; builds clean).
-- [x] `packages/apps/project-settings` (`@guepard/app-project-settings`) compiles as part of the monorepo typecheck — app packages follow the `@guepard/app-*` convention and rely on the root turbo typecheck pipeline.
-- [x] `packages/apps/org-settings` (`@guepard/app-org-settings`) compiles as part of the monorepo typecheck.
+- [x] `pnpm --filter @qlm/shell-topbar typecheck` passes (package has its own typecheck script; builds clean).
+- [x] `packages/apps/project-settings` (`@qlm/app-project-settings`) compiles as part of the monorepo typecheck — app packages follow the `@qlm/app-*` convention and rely on the root turbo typecheck pipeline.
+- [x] `packages/apps/org-settings` (`@qlm/app-org-settings`) compiles as part of the monorepo typecheck.
 - [x] The two new apps are visible via `app-registry.ts`'s existing `import.meta.glob('../../../../packages/apps/*/src/manifest.ts')` — no hand-rolled registry entries.
 - [x] `packages/features/shell-topbar` ships a Storybook story (`src/topbar-trigger.stories.tsx`) consumable by the monorepo Storybook host at `tooling/storybook`.
 - [x] Monorepo-wide `pnpm typecheck` stays green (49/49 tasks).
@@ -55,7 +55,7 @@ Stand up the empty feature and app packages the rest of phase 1 depends on, so s
 ```
 pnpm install
 pnpm typecheck
-pnpm --filter @guepard/shell-topbar storybook
+pnpm --filter @qlm/shell-topbar storybook
 ```
 
 Expect: storybook launches; both new app packages build without errors.
@@ -65,7 +65,7 @@ Expect: storybook launches; both new app packages build without errors.
 ## Notes
 
 - Scaffolding tasks added `pnpm-lock.yaml` to their `files:` allowlist — scaffolding a new workspace package inherently touches the root lock file.
-- App packages follow the `@guepard/app-<name>` convention (matches `app-notebook`, `app-datasources`, …); settings apps use `project.overflow` slot so they don't appear in the primary project nav (surfaced via the topbar dropdown in story 008).
+- App packages follow the `@qlm/app-<name>` convention (matches `app-notebook`, `app-datasources`, …); settings apps use `project.overflow` slot so they don't appear in the primary project nav (surfaced via the topbar dropdown in story 008).
 - Task 004 un-skipped: the registry's glob discovered the apps, but `getNavGroups()` was still rendering them in the sidebar because it honored only `projectTopLevelAppBucketId === 'dashboard'` not `nav.slot === 'project.overflow'`. One-line filter added.
 
 ## Spec-accuracy check

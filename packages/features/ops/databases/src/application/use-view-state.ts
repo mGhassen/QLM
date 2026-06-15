@@ -1,6 +1,6 @@
-import type { TableUrlSerde, UseTableUrlStateOptions } from '@guepard/ui/use-table-url-state';
-import { useTableUrlState } from '@guepard/ui/use-table-url-state';
-import type { SortState } from '@guepard/ui/data-table-advanced';
+import type { TableUrlSerde, UseTableUrlStateOptions } from '@qlm/ui/use-table-url-state';
+import { useTableUrlState } from '@qlm/ui/use-table-url-state';
+import type { SortState } from '@qlm/ui/data-table-advanced';
 
 import {
   encodeFilters,

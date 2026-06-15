@@ -5,7 +5,7 @@ import {
   getAllDocsFromSupabase,
   loadDocFromSupabase,
 } from '#/supabase/docs';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 export function getDocsSupabase(request: Request) {
   return getSupabaseServerClient(request);

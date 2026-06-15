@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createAuthRoutes, type SidecarAuthSupabase } from '../src/routes/auth';
 
-const SERVER_URL = 'https://api.rasm.ai';
+const SERVER_URL = 'https://api.qlm.dev';
 const KEYRING_KEY = `refresh_token:${SERVER_URL}`;
 
 interface KeyringMocks {
@@ -52,7 +52,7 @@ describe('sidecar auth routes', () => {
   let env: NodeJS.ProcessEnv;
 
   beforeEach(() => {
-    env = { GUEPARD_SERVER_URL: SERVER_URL };
+    env = { QLM_SERVER_URL: SERVER_URL };
   });
 
   afterEach(() => {
@@ -83,7 +83,7 @@ describe('sidecar auth routes', () => {
         'refresh-token-x',
       );
       expect(response.headers.get('Set-Cookie')).toContain(
-        'guepard-session=access-token-x',
+        'qlm-session=access-token-x',
       );
       expect(response.headers.get('Set-Cookie')).toContain('HttpOnly');
     });
@@ -166,7 +166,7 @@ describe('sidecar auth routes', () => {
 
       const response = await app.request(
         bareRequest('/sign-out', {
-          headers: { Cookie: 'guepard-session=access-token-x' },
+          headers: { Cookie: 'qlm-session=access-token-x' },
         }),
       );
 
@@ -197,7 +197,7 @@ describe('sidecar auth routes', () => {
 
       const response = await app.request(
         bareRequest('/sign-out', {
-          headers: { Cookie: 'guepard-session=access-token-x' },
+          headers: { Cookie: 'qlm-session=access-token-x' },
         }),
       );
 

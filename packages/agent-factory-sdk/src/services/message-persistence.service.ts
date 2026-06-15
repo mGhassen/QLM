@@ -2,16 +2,16 @@ import { type UIMessage } from 'ai';
 import {
   IMessageRepository,
   IConversationRepository,
-} from '@guepard/domain/repositories';
-import { CreateMessageService } from '@guepard/domain/services';
-import { MessageOutput } from '@guepard/domain/usecases';
+} from '@qlm/domain/repositories';
+import { CreateMessageService } from '@qlm/domain/services';
+import { MessageOutput } from '@qlm/domain/usecases';
 import {
   messageRoleToUIRole,
   normalizeUIRole,
   uiRoleToMessageRole,
   type UIMessageRole,
-} from '@guepard/shared/message-role-utils';
-import { getLogger } from '@guepard/shared/logger';
+} from '@qlm/shared/message-role-utils';
+import { getLogger } from '@qlm/shared/logger';
 
 /**
  * Validates if a string is a valid UUID format

@@ -18,7 +18,7 @@ Run the full repo-level gate (`pnpm check`: format, lint, typecheck, build, test
   - Coverage results (from task 001).
   - Playwright spec path + any flakiness observations (from task 002).
   - `pnpm check` failure categories (pre-existing vs. 0009-introduced).
-  - Cross-repo ticket description for `guepard-public-api` schema rename (copy verbatim from spec §7.10).
+  - Cross-repo ticket description for `qlm-public-api` schema rename (copy verbatim from spec §7.10).
   - Follow-up ticket description for `user_tokens.revoked NOT NULL` (copy verbatim from spec §13).
 
 ## Acceptance

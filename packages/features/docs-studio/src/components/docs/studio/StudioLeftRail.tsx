@@ -1,7 +1,7 @@
 "use client";
 
 import { ListTree, Plus, Settings } from "lucide-react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 export type StudioLeftPanel = "add" | "outline" | null;
 

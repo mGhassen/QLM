@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/docs-studio",
+  "name": "@qlm/docs-studio",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -28,8 +28,8 @@
     "./supabase/docs": "./src/supabase/docs.ts"
   },
   "dependencies": {
-    "@guepard/ui": "workspace:*",
-    "@guepard/supabase": "workspace:*",
+    "@qlm/ui": "workspace:*",
+    "@qlm/supabase": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
@@ -58,9 +58,9 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "catalog:",
@@ -71,5 +71,5 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

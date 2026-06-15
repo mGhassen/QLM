@@ -1,12 +1,12 @@
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   OrderItemRepository as SupabaseOrderItemRepository,
   OrderRepository as SupabaseOrderRepository,
   OrganizationRepository as SupabaseOrganizationRepository,
   ProjectRepository as SupabaseProjectRepository,
   TeamMemberRepository as SupabaseTeamMemberRepository,
-} from '@guepard/repository-supabase';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+} from '@qlm/repository-supabase';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 /**
  * Server-side repository factory for use inside TanStack Start server route

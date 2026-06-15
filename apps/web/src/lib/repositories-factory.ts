@@ -1,4 +1,4 @@
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   OrderItemRepository as SupabaseOrderItemRepository,
   OrderRepository as SupabaseOrderRepository,
@@ -10,8 +10,8 @@ import {
   UserQuotaRepository as SupabaseUserQuotaRepository,
   UserRepository as SupabaseUserRepository,
   VolumePricingTierRepository as SupabaseVolumePricingTierRepository,
-} from '@guepard/repository-supabase';
-import { getSupabaseBrowserClient } from '@guepard/supabase/browser-client';
+} from '@qlm/repository-supabase';
+import { getSupabaseBrowserClient } from '@qlm/supabase/browser-client';
 
 import { ConversationRepository } from './repositories/conversation.repository';
 import { DatabaseHttpRepository } from './repositories/database.repository';

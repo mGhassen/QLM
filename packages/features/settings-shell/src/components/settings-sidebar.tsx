@@ -1,5 +1,5 @@
-import { Button } from '@guepard/ui/button';
-import { cn } from '@guepard/ui/utils';
+import { Button } from '@qlm/ui/button';
+import { cn } from '@qlm/ui/utils';
 
 import type {
   SettingsSection,

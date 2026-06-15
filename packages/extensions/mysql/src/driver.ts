@@ -6,13 +6,13 @@ import type {
   IDataSourceDriver,
   DatasourceResultSet,
   DatasourceMetadata,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   buildMetadataFromInformationSchema,
   extractConnectionUrl,
   withTimeout,
   DEFAULT_CONNECTION_TEST_TIMEOUT_MS,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

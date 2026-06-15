@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Settings2 } from 'lucide-react';
 
-import type { Database } from '@guepard/domain/entities';
-import { DataRow, EntitySection } from '@guepard/ui/entity-primitives';
+import type { Database } from '@qlm/domain/entities';
+import { DataRow, EntitySection } from '@qlm/ui/entity-primitives';
 
 export type DetailDiskSectionProps = Readonly<{ database: Database }>;
 

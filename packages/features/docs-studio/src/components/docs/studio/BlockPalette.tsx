@@ -2,7 +2,7 @@
 
 import { useDraggable } from "@dnd-kit/core";
 import { Plus } from "lucide-react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 import { paletteDragId } from "#/lib/canvas-drop";
 import { createBlock } from "#/lib/serialize";
 import { PALETTE_CATEGORIES, type PaletteItem } from "#/lib/palette";

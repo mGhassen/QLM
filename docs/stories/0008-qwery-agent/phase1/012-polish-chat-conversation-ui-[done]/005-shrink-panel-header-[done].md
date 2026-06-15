@@ -20,7 +20,7 @@ The current `PanelHeader` is ~80px tall with a big Qwery avatar + two rows of te
 - [ ] Existing header actions (open-in-tab, close, model selector if any) still render and work at the smaller size.
 - [ ] `agent-tab-body.tsx`: does not render `<PanelHeader />` at all — the shell tab bar already shows the conversation label.
 - [ ] `pnpm typecheck` passes.
-- [ ] `pnpm --filter @guepard/qwery-agent test` stays green — `chat-feedback.test.tsx` and `chat-auth.test.tsx` should not regress (both render the bodies; removing the header from the tab body may affect DOM assertions — adjust mocks if needed).
+- [ ] `pnpm --filter @qlm/qwery-agent test` stays green — `chat-feedback.test.tsx` and `chat-auth.test.tsx` should not regress (both render the bodies; removing the header from the tab body may affect DOM assertions — adjust mocks if needed).
 
 ## Notes
 

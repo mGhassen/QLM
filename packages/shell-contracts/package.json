@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/shell-contracts",
+  "name": "@qlm/shell-contracts",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -16,11 +16,11 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
+    "@qlm/domain": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

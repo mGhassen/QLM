@@ -22,11 +22,11 @@ Create the `desktop` i18n namespace and register it so subsequent tasks can refe
     "firstRun": {
       "title": "Choose a server",
       "subtitle": "Select where this app should connect.",
-      "cloudOption": "Cloud (guepard.com)",
-      "cloudDescription": "Connect to Guepard's hosted service.",
+      "cloudOption": "Cloud (qlm.com)",
+      "cloudDescription": "Connect to QLM's hosted service.",
       "customOption": "Custom server URL",
       "customDescription": "Connect to your organization's deployment.",
-      "urlPlaceholder": "https://guepard.your-company.com",
+      "urlPlaceholder": "https://qlm.your-company.com",
       "urlInvalid": "Enter a valid HTTPS URL.",
       "mdmBanner": "Your IT team configured this URL.",
       "continue": "Continue"

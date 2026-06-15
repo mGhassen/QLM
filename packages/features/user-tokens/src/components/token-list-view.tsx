@@ -7,11 +7,11 @@ import {
   type UserToken,
   type UserTokenScope,
   type UserTokenStatus,
-} from '@guepard/domain/entities';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { Skeleton } from '@guepard/ui/skeleton';
+} from '@qlm/domain/entities';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { Skeleton } from '@qlm/ui/skeleton';
 
 import { useUserTokensQuery } from '../hooks/use-user-tokens-query';
 import { FilterPopover } from './primitives/filter-popover';

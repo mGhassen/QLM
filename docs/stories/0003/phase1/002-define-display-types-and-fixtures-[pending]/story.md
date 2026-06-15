@@ -18,7 +18,7 @@ blocked_by:
 
 ## Goal
 
-Ship all Zod display-type schemas (reusing `DatasourceSchema` from `@guepard/domain/entities` for source-side types so there is zero drift from `public.datasources`) and the fixture module + adapter hooks so every component has a typed contract and realistic sample data to render against.
+Ship all Zod display-type schemas (reusing `DatasourceSchema` from `@qlm/domain/entities` for source-side types so there is zero drift from `public.datasources`) and the fixture module + adapter hooks so every component has a typed contract and realistic sample data to render against.
 
 ## Scope
 
@@ -26,7 +26,7 @@ Ship all Zod display-type schemas (reusing `DatasourceSchema` from `@guepard/dom
 
 - `src/types/index.ts` — type barrel.
 - `src/types/source-status.ts` — view-only `SourceStatus` enum + schema. Inline comment labels it as **not** a column on `public.datasources`.
-- `src/types/source-card.ts` — `SourceCardSchema` built as `DatasourceSchema.pick({ id, projectId, slug, name, datasource_provider, datasource_kind }).extend({ status, volumeLabel, defaultBranchLabel })`. Imports `DatasourceSchema` from `@guepard/domain/entities`.
+- `src/types/source-card.ts` — `SourceCardSchema` built as `DatasourceSchema.pick({ id, projectId, slug, name, datasource_provider, datasource_kind }).extend({ status, volumeLabel, defaultBranchLabel })`. Imports `DatasourceSchema` from `@qlm/domain/entities`.
 - `src/types/source-detail.ts` — `SourceDetailSchema` built as `DatasourceSchema.extend({ status, volumeLabel, defaultBranchLabel, connectionStringMasked })`. Inherits `description`, `config`, timestamps, `isPublic`, `remixedFrom`, `datasource_driver`, `datasource_kind`, `datasource_provider` from the entity.
 - `src/types/volume-detail.ts`, `src/types/clone-detail.ts`, `src/types/branch-chip.ts`, `src/types/branch-detail.ts` — greenfield node-side display contracts (no DB drift possible — nothing in the v3 schema carries these concepts).
 - `src/types/lifecycle-event.ts` — `LifecycleEventType` enum (6 types) + `LifecycleEventSchema`.
@@ -50,14 +50,14 @@ Ship all Zod display-type schemas (reusing `DatasourceSchema` from `@guepard/dom
 
 ## Acceptance criteria
 
-- [ ] `SourceCardSchema` and `SourceDetailSchema` both `import { DatasourceSchema } from '@guepard/domain/entities'` and build via `.pick(...)` / `.extend(...)`. No hand-rolled duplication of column names.
+- [ ] `SourceCardSchema` and `SourceDetailSchema` both `import { DatasourceSchema } from '@qlm/domain/entities'` and build via `.pick(...)` / `.extend(...)`. No hand-rolled duplication of column names.
 - [ ] No file in `packages/features/environments/src/types/` defines a `SourceProvider` enum.
 - [ ] No field in the source-side types uses a name that already exists on `public.datasources` under a different spelling (e.g. no `provider` alongside `datasource_provider`).
 - [ ] Every view-only field (`status`, `volumeLabel`, `defaultBranchLabel`, `connectionStringMasked`) has an inline comment stating it is **not persisted** and naming where it comes from (phase 1 fixture / RFC 0004 node-side).
 - [ ] `FIXTURE_SOURCES` and the output of `buildFixtureGraph(...)` pass `SourceCardSchema.parse(...)` / `EnvironmentGraphSchema.parse(...)` at test time.
-- [ ] `pnpm typecheck` passes across `@guepard/environments` — confirming `.pick(...)` / `.extend(...)` resolves correctly against the current `DatasourceSchema`.
-- [ ] All types are exported from the package root via `@guepard/environments/types`.
-- [ ] `useFixtureSources` and `useFixtureEnvironmentGraph` are both exported from `@guepard/environments/fixtures` and are the only path Story 006 / Story 009's plugin-root imports need.
+- [ ] `pnpm typecheck` passes across `@qlm/environments` — confirming `.pick(...)` / `.extend(...)` resolves correctly against the current `DatasourceSchema`.
+- [ ] All types are exported from the package root via `@qlm/environments/types`.
+- [ ] `useFixtureSources` and `useFixtureEnvironmentGraph` are both exported from `@qlm/environments/fixtures` and are the only path Story 006 / Story 009's plugin-root imports need.
 
 ## Tasks
 
@@ -69,11 +69,11 @@ Populated by `/start-story`. Each entry links to a sibling task file in this fol
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/environments typecheck
-pnpm --filter @guepard/environments test
+pnpm --filter @qlm/environments typecheck
+pnpm --filter @qlm/environments test
 # Optional: in a scratch file, import the types + fixtures and log them
-# import { FIXTURE_SOURCES, buildFixtureGraph } from '@guepard/environments/fixtures';
-# import { SourceCardSchema, EnvironmentGraphSchema } from '@guepard/environments/types';
+# import { FIXTURE_SOURCES, buildFixtureGraph } from '@qlm/environments/fixtures';
+# import { SourceCardSchema, EnvironmentGraphSchema } from '@qlm/environments/types';
 # console.log(SourceCardSchema.parse(FIXTURE_SOURCES[0]));
 # console.log(EnvironmentGraphSchema.parse(buildFixtureGraph('postgres-primary')));
 ```

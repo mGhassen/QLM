@@ -41,7 +41,7 @@ Prove the contextual help contract end-to-end by shipping AWS and GCP permission
 - [x] Switching to GCP swaps the page in-place without closing the panel
 - [x] Closing the panel via the topbar docs button keeps the docs panel closed until the next `docs.open(...)` call
 - [x] Opening the panel does not fight with other shell state (assistant panel, tabs, project switcher)
-- [x] `pnpm --filter @guepard/integrations typecheck` + `pnpm --filter web typecheck` green on top of the baseline
+- [x] `pnpm --filter @qlm/integrations typecheck` + `pnpm --filter web typecheck` green on top of the baseline
 
 ## Tasks
 
@@ -58,7 +58,7 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/integrations typecheck
+pnpm --filter @qlm/integrations typecheck
 pnpm --filter web typecheck
 pnpm web:dev   # with VITE_FEATURE_INTEGRATIONS=true
 ```

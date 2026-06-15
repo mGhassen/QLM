@@ -31,7 +31,7 @@ A request with a garbage `tid` query param produces a distinct sentinel `tabKey`
 - [ ] `getTabKey({ kind: 'contextual', routeBase: 'infrastructure', tid: 'totally-bogus-input' })` returns `'infrastructure#invalid:totally-bogus-input'`.
 - [ ] `getTabKey({ kind: 'contextual', routeBase: 'infrastructure' })` continues to return `'infrastructure'`.
 - [ ] `getTabKey({ kind: 'contextual', routeBase: 'infrastructure', tid: 'node-name:foo' })` continues to return `'node-name:foo'`.
-- [ ] `pnpm --filter @guepard/shell-contracts test` is green.
+- [ ] `pnpm --filter @qlm/shell-contracts test` is green.
 
 ## Tasks
 
@@ -40,7 +40,7 @@ A request with a garbage `tid` query param produces a distinct sentinel `tabKey`
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/shell-contracts test
+pnpm --filter @qlm/shell-contracts test
 ```
 
 Expect 52 tests green. The renamed test now asserts the regression: malformed `tid` produces a sentinel key distinct from the base routeBase key.

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import type { UserToken, UserTokenScope } from '@guepard/domain/entities';
+import type { UserToken, UserTokenScope } from '@qlm/domain/entities';
 
 import { UserTokensApiProvider } from '../hooks/user-tokens-api-context';
 import { storybookI18n } from './story-helpers';

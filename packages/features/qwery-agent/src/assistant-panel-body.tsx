@@ -4,12 +4,12 @@ import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import { SUPPORTED_MODELS, transportFactory } from '@guepard/agent-factory-sdk';
-import { initDatasourceRegistry } from '@guepard/extensions-loader';
-import { useShell } from '@guepard/shell-runtime';
-import { getAuthHeaders } from '@guepard/supabase/auth-headers';
-import QweryAgentUI from '@guepard/ui/agent-ui';
-import type { DatasourceItem, FeedbackPayload } from '@guepard/ui/ai';
+import { SUPPORTED_MODELS, transportFactory } from '@qlm/agent-factory-sdk';
+import { initDatasourceRegistry } from '@qlm/extensions-loader';
+import { useShell } from '@qlm/shell-runtime';
+import { getAuthHeaders } from '@qlm/supabase/auth-headers';
+import QweryAgentUI from '@qlm/ui/agent-ui';
+import type { DatasourceItem, FeedbackPayload } from '@qlm/ui/ai';
 
 import { PanelHeader } from './_panel-header';
 import { CreditsBanner } from './credits-banner';

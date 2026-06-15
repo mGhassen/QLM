@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 import {
   consumeCredits,

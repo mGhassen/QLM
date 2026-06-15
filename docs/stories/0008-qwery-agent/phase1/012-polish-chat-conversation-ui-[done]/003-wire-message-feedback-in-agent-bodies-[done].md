@@ -7,7 +7,7 @@ files:
   - packages/features/qwery-agent/src/assistant-panel-body.tsx
   - packages/features/qwery-agent/src/agent-tab-body.tsx
   - packages/features/qwery-agent/src/hooks/use-submit-feedback.ts
-  - packages/ui/src/guepard/agent-ui.tsx
+  - packages/ui/src/qlm/agent-ui.tsx
 validation:
   kind: ui-smoke
   route: /prj/$projectSlug
@@ -18,7 +18,7 @@ validation:
 
 # Wire message feedback submission in the agent bodies
 
-The `message-feedback-button` + `message-feedback-dialog` primitives already exist in `packages/ui/src/guepard/ai/`. `<QweryAgentUI>` already accepts an `onSubmitFeedback(messageId, feedback)` callback — it's used in qwery-enterprise's `agent-ui-wrapper.tsx`. In v3 neither `AssistantPanelBody` nor `AgentTabBody` passes the callback, so the thumbs never render on assistant messages. This task ports that wiring.
+The `message-feedback-button` + `message-feedback-dialog` primitives already exist in `packages/ui/src/qlm/ai/`. `<QweryAgentUI>` already accepts an `onSubmitFeedback(messageId, feedback)` callback — it's used in qwery-enterprise's `agent-ui-wrapper.tsx`. In v3 neither `AssistantPanelBody` nor `AgentTabBody` passes the callback, so the thumbs never render on assistant messages. This task ports that wiring.
 
 ## Done when
 
@@ -26,7 +26,7 @@ The `message-feedback-button` + `message-feedback-dialog` primitives already exi
 - [ ] `AssistantPanelBody` uses `useSubmitFeedback(conversation.slug)` and passes an `onSubmitFeedback={(messageId, feedback) => submitFeedback.mutateAsync({ messageId, feedback })}` prop into `<QweryAgentUI>`.
 - [ ] `AgentTabBody` does the same with `conversationSlug` (the prop).
 - [ ] Successful submission shows a `toast.success(t('chat.feedback.success'))`, failure shows `toast.error(t('chat.feedback.error'))`. Add the two keys to `packages/i18n` alongside the existing `chat.*` namespace if they don't exist.
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 - [ ] UI smoke (validator drives the flow): open panel, submit a prompt, wait for assistant reply, click thumbs-down on the assistant message, fill the dialog, submit. Asserts `POST /api/feedback` returns 2xx and the console is clean.
 
 ## Notes

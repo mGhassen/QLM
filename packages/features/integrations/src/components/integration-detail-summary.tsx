@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import type { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+import type { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 import { formatTimeAgo } from '../lib/format-time-ago';
 import { IntegrationStatusBadge } from './integration-status-badge';

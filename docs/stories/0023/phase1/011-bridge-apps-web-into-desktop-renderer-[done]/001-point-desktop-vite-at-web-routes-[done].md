@@ -20,10 +20,10 @@ This task wires the build infrastructure: workspace deps, dedupe, and Tauri-frie
 ## Done when
 
 - [ ] `apps/desktop/package.json` declares the **minimum** workspace deps the desktop bundle needs (curate aggressively — every dep added here is a dep that ships in the .app):
-  - `@guepard/i18n` — for translations
-  - `@guepard/shared` — for `isDesktopApp()` + the `DesktopApi` types
-  - `@guepard/shell-runtime` — for `useRuntime()` + Tauri-command wrappers (story 005)
-  - `@guepard/ui` — for Shadcn primitives
+  - `@qlm/i18n` — for translations
+  - `@qlm/shared` — for `isDesktopApp()` + the `DesktopApi` types
+  - `@qlm/shell-runtime` — for `useRuntime()` + Tauri-command wrappers (story 005)
+  - `@qlm/ui` — for Shadcn primitives
   - `@tanstack/react-query` — required by router context
   - `react-i18next` — required by `useTranslation()` calls in shared components
   - `@tanstack/react-router`, `@tauri-apps/api`, `react`, `react-dom` (already there)

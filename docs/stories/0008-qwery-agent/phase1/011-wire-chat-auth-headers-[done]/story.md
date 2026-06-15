@@ -23,7 +23,7 @@ Make the streaming `POST /api/chat/:slug` call carry the Supabase session bearer
 
 - Extend `packages/agent-factory-sdk/src/services/default-transport.ts` to accept `{ getHeaders?: () => Record<string, string> | Promise<Record<string, string>> }` and forward it as `DefaultChatTransport({ headers: options.getHeaders })`.
 - Extend `packages/agent-factory-sdk/src/services/transport-factory.ts` to accept the same options and forward them to `defaultTransport`.
-- Expose a `getAuthHeaders()` utility from `@guepard/supabase` that reads the current browser session and returns `{ Authorization: 'Bearer <token>' }` (or `{}` when anonymous). A feature package cannot import from `apps/web`, so the helper must live in `@guepard/supabase`.
+- Expose a `getAuthHeaders()` utility from `@qlm/supabase` that reads the current browser session and returns `{ Authorization: 'Bearer <token>' }` (or `{}` when anonymous). A feature package cannot import from `apps/web`, so the helper must live in `@qlm/supabase`.
 - Wire `transportFactory(slug, model, { getHeaders: getAuthHeaders })` in `packages/features/qwery-agent/src/assistant-panel-body.tsx` and `agent-tab-body.tsx`.
 - Unit-test the transport factory: asserts that `getHeaders` is plumbed through to `DefaultChatTransport`.
 - Integration-test the chat-auth wiring at the feature layer (jsdom): assert `AssistantPanelBody` / `AgentTabBody` build the transport with `{ getHeaders: getAuthHeaders }` and the resolved headers carry the bearer. Full end-to-end coverage through Playwright is deferred — the existing `apps/e2e` harness lacks a project / credits / datasource POM and building it is out of this story's scope.
@@ -39,7 +39,7 @@ Make the streaming `POST /api/chat/:slug` call carry the Supabase session bearer
 
 - [x] `defaultTransport(api, { getHeaders })` forwards `getHeaders` to `DefaultChatTransport.headers`; existing `defaultTransport(api)` call sites keep working (param is optional).
 - [x] `transportFactory(slug, model, { getHeaders })` forwards options; the two-arg signature keeps working.
-- [x] `@guepard/supabase` exports `getAuthHeaders()` (new `./auth-headers` export).
+- [x] `@qlm/supabase` exports `getAuthHeaders()` (new `./auth-headers` export).
 - [x] `assistant-panel-body.tsx` and `agent-tab-body.tsx` construct the transport with `{ getHeaders: getAuthHeaders }`.
 - [x] Unit test: transport factory passes a `getHeaders` fn that resolves to `{ Authorization: 'Bearer <token>' }` into `DefaultChatTransport`.
 - [x] Integration test: `AssistantPanelBody` and `AgentTabBody` construct the chat transport with `{ getHeaders }`, and the resolved `getHeaders()` yields `{ Authorization: 'Bearer <token>' }`. (E2E deferred — the `apps/e2e` harness has no project POM yet; raising a standalone story for the full chat e2e once that harness exists.)
@@ -63,7 +63,7 @@ pnpm dev
 #    NOT:
 #      POST /api/chat/<slug> 404
 # 4. Hard-refresh, confirm the conversation history is preserved AND a second submit still streams.
-pnpm --filter @guepard/qwery-agent test __tests__/chat-auth.test.tsx
+pnpm --filter @qlm/qwery-agent test __tests__/chat-auth.test.tsx
 ```
 
 ## Questions surfaced

@@ -1,5 +1,5 @@
 // Browser-safe OpenTelemetry exports
-// For Node.js-only TelemetryManager with full SDK, use '@guepard/telemetry/node'
+// For Node.js-only TelemetryManager with full SDK, use '@qlm/telemetry/node'
 
 // Re-export TelemetryManager type for backward compatibility (type-only, no runtime code)
 export type {

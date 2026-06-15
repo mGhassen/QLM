@@ -1,6 +1,6 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { UserQuota } from '@guepard/domain/entities';
-import { IUserQuotaRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { UserQuota } from '@qlm/domain/entities';
+import { IUserQuotaRepository } from '@qlm/domain/repositories';
 
 export class UserQuotaRepository extends IUserQuotaRepository {
   async findAll(_options?: RepositoryFindOptions): Promise<UserQuota[]> {

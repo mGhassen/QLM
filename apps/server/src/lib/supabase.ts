@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 const isTest = process.env.VITEST === 'true';
 

@@ -4,15 +4,15 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Search, Trash2 } from "lucide-react";
-import { Button } from "@guepard/ui/button";
+import { Button } from "@qlm/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@guepard/ui/dialog";
-import { Input } from "@guepard/ui/input";
-import { cn } from "@guepard/ui/utils";
+} from "@qlm/ui/dialog";
+import { Input } from "@qlm/ui/input";
+import { cn } from "@qlm/ui/utils";
 import type { DocListItem } from "#/lib/types";
 import { useStudioShell } from "#/studio-shell-context";
 import type { DocStudioActions } from "#/types/actions";

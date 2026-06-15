@@ -137,7 +137,7 @@ packages/agent-factory-sdk/src/
 
 ```
 packages/policies/src/declarative.ts                                  ← typed clone
-packages/ui/src/guepard/agent-ui.tsx                                  ← 3 casts audited
+packages/ui/src/qlm/agent-ui.tsx                                  ← 3 casts audited
 packages/features/ops/infrastructure/src/presentation/components/detail-page.tsx  ← projectSlug on node type
 packages/features/ops/topology/src/presentation/components/options-menu.tsx       ← icon: LucideIcon
 packages/ui/src/ai-elements/message.tsx                               ← Button size union extension

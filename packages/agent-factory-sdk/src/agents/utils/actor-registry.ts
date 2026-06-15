@@ -1,5 +1,5 @@
 import type { AnyActorRef } from 'xstate';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 /**
  * Registry for managing actor lifecycle

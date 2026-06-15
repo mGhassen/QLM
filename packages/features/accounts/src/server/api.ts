@@ -1,6 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 
-import { Database } from '@guepard/supabase/database';
+import { Database } from '@qlm/supabase/database';
 
 export function createAccountsApi(client: SupabaseClient<Database>) {
   return new AccountsApi(client);

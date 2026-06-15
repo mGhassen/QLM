@@ -1,4 +1,4 @@
-import { getSupabaseBrowserClient } from '@guepard/supabase/browser-client';
+import { getSupabaseBrowserClient } from '@qlm/supabase/browser-client';
 
 function getApiBaseUrl(): string {
   if (typeof process !== 'undefined' && process.env) {

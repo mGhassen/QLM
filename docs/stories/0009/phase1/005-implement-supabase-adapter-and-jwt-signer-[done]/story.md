@@ -23,7 +23,7 @@ Implement `SupabaseUserTokenRepository` against the existing `public.user_tokens
 
 **In scope**
 
-- `packages/repositories/supabase/src/user-token.repository.ts` — `SupabaseUserTokenRepository` extending `IUserTokenRepository` from `@guepard/domain/repositories`:
+- `packages/repositories/supabase/src/user-token.repository.ts` — `SupabaseUserTokenRepository` extending `IUserTokenRepository` from `@qlm/domain/repositories`:
   - `findByAccountId(accountId)` — `SELECT * FROM public.user_tokens WHERE account_id = $accountId ORDER BY created_at DESC`. Returns `UserToken[]` after Zod parse.
   - `create({ account_id, token_name, scopes, expires_at })` — `INSERT INTO public.user_tokens (account_id, token_name, scopes, expires_at) VALUES (...) RETURNING *`. Returns `UserToken` after Zod parse.
   - `revoke(id, accountId)` — `UPDATE public.user_tokens SET revoked = true, revoked_at = now() WHERE id = $id AND account_id = $accountId AND revoked = false RETURNING *`. Returns `UserToken | null` — null when zero rows (unknown id OR already revoked).
@@ -47,7 +47,7 @@ Implement `SupabaseUserTokenRepository` against the existing `public.user_tokens
 
 ## Acceptance criteria
 
-- [x] `SupabaseUserTokenRepository` extends `IUserTokenRepository` from `@guepard/domain`.
+- [x] `SupabaseUserTokenRepository` extends `IUserTokenRepository` from `@qlm/domain`.
 - [x] `findByAccountId` SQL filters by `account_id` and orders by `created_at DESC` — verified by a mock query-call match.
 - [x] `create` inserts only the four allowed fields (`account_id`, `token_name`, `scopes`, `expires_at`); triggers own timestamps + tracking — verified by a `not.toHaveProperty` assertion on the insert payload.
 - [x] `revoke` UPDATEs with `revoked: true` + `revoked_at: <ISO>`, narrowed by `id` AND `account_id` AND `revoked = false` — three `eq` calls verified.
@@ -55,8 +55,8 @@ Implement `SupabaseUserTokenRepository` against the existing `public.user_tokens
 - [x] `JwtSigner.sign({...}, { secret, algorithm: 'HS256' })` returns a token that `jsonwebtoken.verify(token, secret)` round-trips back to the same payload.
 - [x] `apps/server/src/lib/repositories.ts` factory returns a `Repositories` object with `userToken` and `jwtSigner` populated — no casts.
 - [x] `JWT_SECRET` is read once via `getJwtSecret()` (cached, validated non-empty); `JwtSigner` itself never reads `process.env`.
-- [x] `pnpm --filter @guepard/repository-supabase test` passes (18 tests, 100 % line / 93.75 % branch on new files).
-- [x] `pnpm --filter @guepard/repository-supabase typecheck` and `pnpm --filter server typecheck` both pass.
+- [x] `pnpm --filter @qlm/repository-supabase test` passes (18 tests, 100 % line / 93.75 % branch on new files).
+- [x] `pnpm --filter @qlm/repository-supabase typecheck` and `pnpm --filter server typecheck` both pass.
 
 ## Tasks
 
@@ -68,11 +68,11 @@ Implement `SupabaseUserTokenRepository` against the existing `public.user_tokens
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/repository-supabase test -- user-token
+pnpm --filter @qlm/repository-supabase test -- user-token
 pnpm typecheck
 
 # Optional: quick JWT round-trip in a node REPL
-# const { JwtSigner } = await import('@guepard/repository-supabase');
+# const { JwtSigner } = await import('@qlm/repository-supabase');
 # const signer = new JwtSigner('test-secret');
 # const jwt = signer.sign({ token_id: 'x', sub: 'y', scopes: ['read'], exp: 0, aud: 'authenticated', role: 'authenticated' }, { secret: 'test-secret', algorithm: 'HS256' });
 # const { default: jsonwebtoken } = await import('jsonwebtoken');

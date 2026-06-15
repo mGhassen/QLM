@@ -1,7 +1,7 @@
 import { fromPromise } from 'xstate/actors';
 import type { PromiseActorLogic } from 'xstate';
 import { createActor } from 'xstate';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 interface CacheEntry<TOutput> {
   result: TOutput;

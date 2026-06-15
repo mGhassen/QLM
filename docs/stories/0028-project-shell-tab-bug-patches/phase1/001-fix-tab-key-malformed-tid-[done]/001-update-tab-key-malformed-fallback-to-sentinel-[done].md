@@ -21,7 +21,7 @@ Replace the malformed-`tid` fallback in `getTabKey` with a distinct sentinel str
 - [ ] `tab-key.ts` `case 'contextual'` returns `${descriptor.routeBase}#invalid:${descriptor.tid}` when `decodeTabId(descriptor.tid)` is null.
 - [ ] `tab-key.empirical.test.ts` first test renamed from "BUG: malformed tid collapses…" to "malformed tid produces sentinel key, no collision" and asserts `expect(malformedKey).not.toBe(baseKey)` and `expect(malformedKey).toBe('infrastructure#invalid:totally-bogus-input')`.
 - [ ] The other three empirical probes are untouched (still green) and each carries a one-line comment marking it as documented-but-out-of-scope-for-this-story.
-- [ ] `pnpm typecheck` and `pnpm --filter @guepard/shell-contracts test` are green.
+- [ ] `pnpm typecheck` and `pnpm --filter @qlm/shell-contracts test` are green.
 
 ## Notes
 

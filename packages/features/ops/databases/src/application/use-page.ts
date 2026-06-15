@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import type { Action } from '@guepard/ui/action';
+import type { Action } from '@qlm/ui/action';
 import {
   exportRowsToCsv,
   type AdvancedColumn,
   type BulkAction,
-} from '@guepard/ui/data-table-advanced';
-import type { EntityListSortOption } from '@guepard/ui/entity-list';
-import { useBulkSelection } from '@guepard/ui/use-bulk-selection';
-import { useTableVisibility } from '@guepard/ui/use-table-visibility';
-import { useDebouncedValue } from '@guepard/ui/use-debounced-value';
+} from '@qlm/ui/data-table-advanced';
+import type { EntityListSortOption } from '@qlm/ui/entity-list';
+import { useBulkSelection } from '@qlm/ui/use-bulk-selection';
+import { useTableVisibility } from '@qlm/ui/use-table-visibility';
+import { useDebouncedValue } from '@qlm/ui/use-debounced-value';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
-import { useShell } from '@guepard/shell-runtime';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
+import { useShell } from '@qlm/shell-runtime';
 
 import { useLayoutPrefs, type DisplayMode } from './use-layout-prefs';
 import { buildBulkActions, buildRowActions } from './use-actions';

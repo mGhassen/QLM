@@ -9,9 +9,9 @@ select tests.create_supabase_user('revoking_mfa_admin');
 select tests.create_supabase_user('concurrent_session_user');
 
 -- Set up test users
-select public.set_identifier('transitioning_admin', 'transitioning@rasm.ai');
-select public.set_identifier('revoking_mfa_admin', 'revoking@rasm.ai');
-select public.set_identifier('concurrent_session_user', 'concurrent@rasm.ai');
+select public.set_identifier('transitioning_admin', 'transitioning@qlm.dev');
+select public.set_identifier('revoking_mfa_admin', 'revoking@qlm.dev');
+select public.set_identifier('concurrent_session_user', 'concurrent@qlm.dev');
 
 -- Test 1: Role Transition Scenarios
 select public.authenticate_as('transitioning_admin');

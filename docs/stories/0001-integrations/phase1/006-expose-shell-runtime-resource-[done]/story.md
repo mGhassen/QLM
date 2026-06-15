@@ -14,7 +14,7 @@ blocked_by:
 
 ## Goal
 
-Expose a typed `shell.integrations.*` client from `@guepard/shell-runtime` so plugin apps consume integrations through `useShell()` without ever touching the HTTP adapter or domain services directly.
+Expose a typed `shell.integrations.*` client from `@qlm/shell-runtime` so plugin apps consume integrations through `useShell()` without ever touching the HTTP adapter or domain services directly.
 
 ## Scope
 
@@ -33,7 +33,7 @@ Expose a typed `shell.integrations.*` client from `@guepard/shell-runtime` so pl
 
 - [x] `shell.integrations` exposes every method listed above
 - [x] `shell.integrations.keys` returns stable React Query keys namespaced under the current project id
-- [x] `pnpm --filter @guepard/shell-runtime typecheck` green
+- [x] `pnpm --filter @qlm/shell-runtime typecheck` green
 - [x] Plugin app consumers import `shell.integrations` with no `as unknown as` casts
 
 ## Tasks
@@ -47,7 +47,7 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/shell-runtime typecheck
+pnpm --filter @qlm/shell-runtime typecheck
 ```
 
 From a plugin, `const shell = useShell(); shell.integrations.list()` type-checks and returns the sanitised DTOs.

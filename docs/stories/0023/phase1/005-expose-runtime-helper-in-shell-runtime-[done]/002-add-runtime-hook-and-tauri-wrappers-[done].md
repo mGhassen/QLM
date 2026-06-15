@@ -18,7 +18,7 @@ Add a `useRuntime()` React hook + 7 thin `@tauri-apps/api invoke(...)` wrappers 
 ## Done when
 
 - [ ] `packages/shell-runtime/src/runtime.ts` exports:
-  - `useRuntime(): 'web' | 'desktop'` — reads `isDesktopApp()` from `@guepard/shared/desktop`. Stable per render via `useMemo`. Reactive: a host that toggles `__TAURI_INTERNALS__` mid-session is not supported, but the existing `platform` constant already picks at module load.
+  - `useRuntime(): 'web' | 'desktop'` — reads `isDesktopApp()` from `@qlm/shared/desktop`. Stable per render via `useMemo`. Reactive: a host that toggles `__TAURI_INTERNALS__` mid-session is not supported, but the existing `platform` constant already picks at module load.
   - `saveProviderKey(key, value): Promise<void>`
   - `getProviderKey(key): Promise<string | null>`
   - `deleteProviderKey(key): Promise<void>`
@@ -26,7 +26,7 @@ Add a `useRuntime()` React hook + 7 thin `@tauri-apps/api invoke(...)` wrappers 
   - `getAppConfig(): Promise<Record<string, string>>`
   - `setAppConfig(config): Promise<void>`
   - `restartSidecar(): Promise<void>`
-- [ ] Each wrapper guards on `isDesktopApp() === false` and throws the typed `DesktopApiUnavailableError` (from `@guepard/shared/desktop`, added in task 001).
+- [ ] Each wrapper guards on `isDesktopApp() === false` and throws the typed `DesktopApiUnavailableError` (from `@qlm/shared/desktop`, added in task 001).
 - [ ] Each wrapper calls `invoke(...)` from `@tauri-apps/api/core` and maps the Tauri command names: `saveProviderKey → save_api_key`, `getProviderKey → get_api_key`, `deleteProviderKey → delete_api_key`, `debugKeyringStatus → debug_keyring_status`, `getAppConfig → get_app_config`, `setAppConfig → set_app_config`, `restartSidecar → restart_sidecar`.
 - [ ] `packages/shell-runtime/src/index.ts` re-exports `useRuntime`, the 7 wrappers, and the `DesktopApiUnavailableError`.
 - [ ] `packages/shell-runtime/package.json` adds `@tauri-apps/api` to `dependencies` (`^2`). `pnpm install` resolves cleanly.

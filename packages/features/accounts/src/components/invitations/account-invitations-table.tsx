@@ -6,20 +6,20 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Ellipsis } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Database } from '@guepard/supabase/database';
-import { Badge } from '@guepard/ui/badge';
-import { Button } from '@guepard/ui/button';
-import { DataTable } from '@guepard/ui/data-table';
+import { Database } from '@qlm/supabase/database';
+import { Badge } from '@qlm/ui/badge';
+import { Button } from '@qlm/ui/button';
+import { DataTable } from '@qlm/ui/data-table';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
-import { If } from '@guepard/ui/if';
-import { Input } from '@guepard/ui/input';
-import { ProfileAvatar } from '@guepard/ui/profile-avatar';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/dropdown-menu';
+import { If } from '@qlm/ui/if';
+import { Input } from '@qlm/ui/input';
+import { ProfileAvatar } from '@qlm/ui/profile-avatar';
+import { Trans } from '@qlm/ui/trans';
 
 import { RoleBadge } from '../members/role-badge';
 import { DeleteInvitationDialog } from './delete-invitation-dialog';

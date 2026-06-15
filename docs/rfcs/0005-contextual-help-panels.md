@@ -19,7 +19,7 @@ Phase 1 ships:
 - A shell-runtime `DocsPanelContext` + `useDocsPanel()` hook.
 - A rewritten `DocumentationPanel` that accepts a React node instead of a static items list.
 - A state lift out of `ProjectShellLayout` so the `DocsPanelProvider` owns `activePanel`.
-- A shared `@guepard/ui/markdown` component so help pages (and any other package) can render markdown uniformly.
+- A shared `@qlm/ui/markdown` component so help pages (and any other package) can render markdown uniformly.
 - Deletion of the four hardcoded mock "documentation items" that previously lived in `project-shell-host.tsx`.
 
 Integrations (RFC 0001) is the **first consumer** of the contract — it ships two markdown help pages and auto-opens them from the provider-picker effect — but the contract belongs to the shell.
@@ -34,7 +34,7 @@ In RFC 0001 (Integrations), users need to see the IAM permissions required by AW
 
 The real shape is: **the plugin that knows what help the user needs contributes the pages; the shell renders them**. That flips the ownership from the host to the plugin, aligns with the existing `FlatRoot` / `resolveProjectContext` sibling-export pattern on `plugin-root.tsx`, and gives every future plugin a free docs surface without touching host code.
 
-A secondary motivation: the console has no shared markdown renderer today. Every place that wants to display rich text rolls its own `react-markdown` config, and the integrations help pages were the forcing function to extract that into `@guepard/ui/markdown`.
+A secondary motivation: the console has no shared markdown renderer today. Every place that wants to display rich text rolls its own `react-markdown` config, and the integrations help pages were the forcing function to extract that into `@qlm/ui/markdown`.
 
 ## 3. Goals and non-goals
 
@@ -44,7 +44,7 @@ A secondary motivation: the console has no shared markdown renderer today. Every
 - **Runtime wiring**: `useDocsPanel().open(pageId)` force-opens the panel and selects a page; `.close()` closes it. The hook throws if called outside a `DocsPanelProvider` — no silent no-op.
 - **Panel rewrite**: `DocumentationPanel` accepts a React node (the active help page) instead of a static items list. Chrome stays unchanged (`BookOpen` icon + "Documentation" title).
 - **State lift**: `ProjectShellLayout` accepts `activePanel` + `onPanelChange` as props. The host (`project-shell-host.tsx`) owns the state and wraps the layout in `<DocsPanelProvider>` so the hook's `open(...)` flips `activePanel` to `'documentation'`.
-- **Shared markdown component**: `@guepard/ui/markdown` subpath export, a thin wrapper around `react-markdown` + `remark-gfm` with default prose classes and targeted overrides for code blocks. Works at any container width, including the ~360 px docs panel.
+- **Shared markdown component**: `@qlm/ui/markdown` subpath export, a thin wrapper around `react-markdown` + `remark-gfm` with default prose classes and targeted overrides for code blocks. Works at any container width, including the ~360 px docs panel.
 - **First consumer wired up**: integrations exports `HelpPages = { 'aws-permissions': ..., 'gcp-permissions': ... }` and calls `docs.open('aws-permissions' | 'gcp-permissions')` from a `useEffect` on the provider state.
 - **Deletion of the mock items**: the four hardcoded `documentationItems` entries in `project-shell-host.tsx` are removed; nothing else in the tree was using the old static-list prop.
 
@@ -59,10 +59,10 @@ A secondary motivation: the console has no shared markdown renderer today. Every
 ## 4. Prior art in the codebase
 
 - **Plugin-root sibling exports** (`apps/web/src/shell/app-registry.ts`) — the registry already picks up `default` + `FlatRoot` + `resolveProjectContext` from plugin-root modules via `import.meta.glob(..., { eager: true })`. `HelpPages` slots into the exact same pipeline — no new discovery code.
-- **`DocumentationPanel` + `RightSidebar`** (`packages/ui/src/guepard/layout/*`) — already implement the panel chrome, the icon, the title, and the `ActivePanel` state union. This RFC rewires what they render, not how they're framed.
-- **`ProjectShellLayout`** (`packages/ui/src/guepard/shell/project-shell-layout.tsx`) — owned `activePanel` locally. Lifting that state up was the enabling change for this RFC.
-- **`@guepard/shell-runtime`** — already the home of `useShell()` + typed resources. Adding a second context (`DocsPanelContext`) here is consistent with the layer's responsibility: plugin-to-shell React-aware glue.
-- **`react-markdown`** is already a dependency via earlier assistant work. This RFC formalises it as a `@guepard/ui/markdown` subpath export so other packages stop re-vendoring the config.
+- **`DocumentationPanel` + `RightSidebar`** (`packages/ui/src/qlm/layout/*`) — already implement the panel chrome, the icon, the title, and the `ActivePanel` state union. This RFC rewires what they render, not how they're framed.
+- **`ProjectShellLayout`** (`packages/ui/src/qlm/shell/project-shell-layout.tsx`) — owned `activePanel` locally. Lifting that state up was the enabling change for this RFC.
+- **`@qlm/shell-runtime`** — already the home of `useShell()` + typed resources. Adding a second context (`DocsPanelContext`) here is consistent with the layer's responsibility: plugin-to-shell React-aware glue.
+- **`react-markdown`** is already a dependency via earlier assistant work. This RFC formalises it as a `@qlm/ui/markdown` subpath export so other packages stop re-vendoring the config.
 - **Throwaway mocks in `project-shell-host.tsx`** — the four hardcoded `documentationItems` entries (install CLI / connect database / create branch / run query) are replaced, not reshaped. They were acknowledged as placeholders during the shell migration.
 
 ## 5. Conceptual model
@@ -92,13 +92,13 @@ apps/web/src/shell/project-shell-host.tsx
     │  wraps children in <DocsPanelProvider onOpenChange={...}>
     │  computes <ActiveHelpPage /> via getHelpPage(activeRouteBase, activePageId)
     ▼
-packages/ui/src/guepard/shell/project-shell-layout.tsx
+packages/ui/src/qlm/shell/project-shell-layout.tsx
     │  accepts activePanel + onPanelChange + docsPanelContent props
     ▼
-packages/ui/src/guepard/layout/right-sidebar.tsx → documentation-panel.tsx
+packages/ui/src/qlm/layout/right-sidebar.tsx → documentation-panel.tsx
     │  renders the React node (or a placeholder when null)
     ▼
-packages/ui/src/guepard/markdown.tsx
+packages/ui/src/qlm/markdown.tsx
     │  used by help-page components to render .md content
 ```
 
@@ -122,14 +122,14 @@ Resolved during spec drafting. Left here for historical completeness.
 - **Keep the static documentation items list.** Rejected. The items were always placeholders, and a static global list cannot answer "what does the user need help with *right now*".
 - **Put `HelpPages` on `PluginManifest`.** Rejected — see §8.1. No value over the sibling export, adds asymmetry.
 - **Let plugins render their own floating help popover.** Rejected. Every plugin reinventing the same chrome is exactly the anti-pattern this RFC fixes.
-- **Markdown renderer in `shell-runtime` instead of `ui`.** Rejected. Markdown rendering is a presentation concern; other packages (tooltips, notifications, assistant) will want it too. `@guepard/ui/markdown` is the right home.
+- **Markdown renderer in `shell-runtime` instead of `ui`.** Rejected. Markdown rendering is a presentation concern; other packages (tooltips, notifications, assistant) will want it too. `@qlm/ui/markdown` is the right home.
 
 ## 10. References
 
 - `.claude/rules/hexagonal-architecture.md` — layering rules (`ui` ⊂ `shell-runtime` consumer; this RFC respects both).
 - `apps/web/src/shell/app-registry.ts` — Vite-glob app discovery; the contract this RFC extends.
-- `packages/ui/src/guepard/layout/documentation-panel.tsx` — panel chrome reused as-is.
-- `packages/ui/src/guepard/shell/project-shell-layout.tsx` — state-lift target.
+- `packages/ui/src/qlm/layout/documentation-panel.tsx` — panel chrome reused as-is.
+- `packages/ui/src/qlm/shell/project-shell-layout.tsx` — state-lift target.
 
 ---
 

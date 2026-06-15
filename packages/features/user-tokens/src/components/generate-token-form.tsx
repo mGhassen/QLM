@@ -5,18 +5,18 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { type UserTokenScope } from '@guepard/domain/entities';
+import { type UserTokenScope } from '@qlm/domain/entities';
 import {
   CreateUserTokenInputSchema,
   type CreateUserTokenInput,
   type CreateUserTokenOutput,
-} from '@guepard/domain/usecases';
-import { useMarkSectionDirty } from '@guepard/settings-shell';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
-import { Checkbox } from '@guepard/ui/checkbox';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
+} from '@qlm/domain/usecases';
+import { useMarkSectionDirty } from '@qlm/settings-shell';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
+import { Checkbox } from '@qlm/ui/checkbox';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
 
 import { useCreateUserTokenMutation } from '../hooks/use-create-user-token-mutation';
 

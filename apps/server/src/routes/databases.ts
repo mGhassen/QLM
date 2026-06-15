@@ -8,8 +8,8 @@ import {
   GetDatabaseService,
   ListDatabasesService,
   UpdateDatabaseService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException } from '../lib/http-utils';
 
 const idParamSchema = z.object({ id: z.string().min(1) });

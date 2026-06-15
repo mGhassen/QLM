@@ -15,7 +15,7 @@ pnpm test                                                   # All tests with cov
 pnpm test:watch                                             # Watch mode
 pnpm --filter web test __tests__/specific.test.tsx          # Single test (web)
 pnpm --filter server test __tests__/specific.test.ts        # Single test (server)
-pnpm --filter @guepard/domain test                          # One package
+pnpm --filter @qlm/domain test                          # One package
 ```
 
 ## Location

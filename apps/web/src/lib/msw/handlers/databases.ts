@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
 
 import { seedDatabases } from '../fixtures/databases';
 
@@ -53,7 +53,7 @@ export const databasesHandlers = [
       version: body.version ?? '15',
       status: 'init',
       deploymentType: body.deploymentType ?? 'repository',
-      fqdn: body.fqdn ?? `${body.name ?? 'untitled'}.db.rasm.internal`,
+      fqdn: body.fqdn ?? `${body.name ?? 'untitled'}.db.qlm.internal`,
       port: body.port,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),

@@ -1,6 +1,6 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Order } from '@guepard/domain/entities';
-import { IOrderRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Order } from '@qlm/domain/entities';
+import { IOrderRepository } from '@qlm/domain/repositories';
 
 export class OrderRepository extends IOrderRepository {
   async findAll(_options?: RepositoryFindOptions): Promise<Order[]> {

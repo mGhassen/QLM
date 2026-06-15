@@ -1,10 +1,10 @@
 import { createContext, useContext, type ReactNode } from 'react';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 import type {
   CreateUserTokenInput,
   CreateUserTokenOutput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 /**
  * Browser-side surface for the three user-token operations the feature

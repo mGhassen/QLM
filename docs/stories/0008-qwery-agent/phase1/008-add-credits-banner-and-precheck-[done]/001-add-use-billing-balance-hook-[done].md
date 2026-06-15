@@ -20,12 +20,12 @@ Feature-local query hook that fetches the active org's balance via the existing 
 
 - [ ] `useBillingBalance()` returns a `UseQueryResult` whose `.data` is typed `{ balance: number; invoicesCount: number } | undefined`.
 - [ ] Query key: `['billing-balance', orgSlug]` so the query is per-org and React Query caches across panel/tab renders.
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 ```
 
 ## Notes

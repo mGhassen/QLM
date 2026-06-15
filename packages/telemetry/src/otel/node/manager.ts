@@ -43,7 +43,7 @@ export class TelemetryManager {
   private metricsManager: MetricsManager;
 
   constructor(
-    serviceName: string = 'guepard-app',
+    serviceName: string = 'qlm-app',
     sessionId?: string,
     options?: OtelTelemetryManagerOptions,
   ) {
@@ -58,7 +58,7 @@ export class TelemetryManager {
       }
       this.sessionId = sessionId || `${serviceName}-disabled-${Date.now()}`;
       this.clientService = new OtelClientService(undefined);
-      this.meter = metrics.getMeter('guepard-null-telemetry', '1.0.0');
+      this.meter = metrics.getMeter('qlm-null-telemetry', '1.0.0');
       this.metricsManager = new MetricsManager(this.meter, this.config);
       this.sdk = null;
       return;
@@ -66,7 +66,7 @@ export class TelemetryManager {
 
     this.sessionId = sessionId || this.generateSessionId();
     this.clientService = new OtelClientService(this);
-    this.meter = metrics.getMeter('guepard-cli', '1.0.0');
+    this.meter = metrics.getMeter('qlm-cli', '1.0.0');
     this.metricsManager = new MetricsManager(this.meter, this.config);
 
     this.initializeSDK(options);
@@ -196,7 +196,7 @@ export class TelemetryManager {
     if (!this.config.enabled) {
       return createNoOpSpan();
     }
-    const tracer = trace.getTracer('guepard-telemetry');
+    const tracer = trace.getTracer('qlm-telemetry');
     const serializedAttributes = serializeAttributes(attributes);
     const activeContext = context.active();
     const span = tracer.startSpan(
@@ -219,7 +219,7 @@ export class TelemetryManager {
     if (!this.config.enabled) {
       return createNoOpSpan();
     }
-    const tracer = trace.getTracer('guepard-telemetry');
+    const tracer = trace.getTracer('qlm-telemetry');
     const serializedAttributes = serializeAttributes(attributes);
     const activeContext = context.active();
 

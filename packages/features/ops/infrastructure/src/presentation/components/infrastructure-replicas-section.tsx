@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@guepard/shell-runtime';
+import { useShell } from '@qlm/shell-runtime';
 
 import { Globe, Plus, Trash2, X, Database } from 'lucide-react';
-import { Button } from '@guepard/ui/button';
-import { Sheet, SheetContent, SheetTitle } from '@guepard/ui/sheet';
-import { cn } from '@guepard/ui/utils';
+import { Button } from '@qlm/ui/button';
+import { Sheet, SheetContent, SheetTitle } from '@qlm/ui/sheet';
+import { cn } from '@qlm/ui/utils';
 
 import { SELECTABLE_TIERS } from '../../application/compute-tiers';
 import { useReplicas } from '../../application/use-replicas';
@@ -35,7 +35,7 @@ const AVAILABLE_REGIONS = [
   { value: 'asia-east1', provider: 'GCP' },
 ] as const;
 
-const MOCK_LOAD_BALANCER = 'lb.db.rasm.ai';
+const MOCK_LOAD_BALANCER = 'lb.db.qlm.dev';
 
 const SELECT =
   'w-full rounded-none border border-border bg-background h-10 text-sm font-bold px-3 cursor-pointer focus:outline-none focus:border-foreground transition-colors';

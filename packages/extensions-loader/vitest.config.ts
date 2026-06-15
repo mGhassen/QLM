@@ -10,7 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@guepard/extensions-loader': path.resolve(__dirname, './src'),
+      '@qlm/extensions-loader': path.resolve(__dirname, './src'),
     },
   },
 });

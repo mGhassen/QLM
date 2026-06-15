@@ -99,10 +99,10 @@ async function main() {
                   outfile: dest,
                   external: [
                     // Externalize UI packages - they're not needed in drivers
-                    '@guepard/ui',
+                    '@qlm/ui',
                     'react',
                     'react-dom',
-                    // Bundle @guepard/extensions-sdk and @guepard/domain into the driver
+                    // Bundle @qlm/extensions-sdk and @qlm/domain into the driver
                     // so it's self-contained and can be loaded from /public
                   ],
                   // Mark all node: imports as external - they're Node.js built-ins
@@ -122,7 +122,7 @@ async function main() {
                   banner: {
                     js: `
 // This file is bundled for browser use
-// All dependencies including @guepard/extensions-sdk and @guepard/domain are bundled
+// All dependencies including @qlm/extensions-sdk and @qlm/domain are bundled
 `,
                   },
                   resolveExtensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -136,7 +136,7 @@ async function main() {
 
                 // Copy PGlite WASM and data files if they exist
                 // These are needed at runtime and can't be bundled
-                if (pkg.name === '@guepard/extension-pglite') {
+                if (pkg.name === '@qlm/extension-pglite') {
                   // Root node_modules (pnpm workspace root)
                   const rootNodeModules = path.resolve(
                     here,
@@ -181,7 +181,7 @@ async function main() {
 
                 // Copy DuckDB WASM worker files if they exist
                 // These are needed at runtime and can't be bundled
-                if (pkg.name === '@guepard/extension-duckdb-wasm') {
+                if (pkg.name === '@qlm/extension-duckdb-wasm') {
                   const rootNodeModules = path.resolve(
                     here,
                     '..',
@@ -316,7 +316,7 @@ async function main() {
               target: 'es2020',
               outfile: schemaDest,
               external: [
-                '@guepard/ui',
+                '@qlm/ui',
                 'react',
                 'react-dom',
               ],

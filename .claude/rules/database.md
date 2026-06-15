@@ -36,7 +36,7 @@ See `packages/supabase/CLAUDE.md` for the full security guide. The rules below a
 7. Create the entity + repository port in `packages/domain`
 8. Implement the repository in `packages/repositories/supabase` (or HTTP adapter)
 9. Wire into `apps/web/src/lib/repositories-factory.ts`
-10. Add a service (use case) + expose via `@guepard/shell-runtime` resources if apps need it
+10. Add a service (use case) + expose via `@qlm/shell-runtime` resources if apps need it
 
 ## Repository implementations
 
@@ -48,9 +48,9 @@ See `packages/supabase/CLAUDE.md` for the full security guide. The rules below a
 ## Auth
 
 - Supabase Auth with session cookies
-- `@guepard/supabase/browser-client` for the browser, `@guepard/supabase/server-client` for the server
-- `useUser()` from `@guepard/supabase/hooks/use-user` to read the current user in React
-- `useSignOut()` from `@guepard/supabase/hooks/use-sign-out` for logout
+- `@qlm/supabase/browser-client` for the browser, `@qlm/supabase/server-client` for the server
+- `useUser()` from `@qlm/supabase/hooks/use-user` to read the current user in React
+- `useSignOut()` from `@qlm/supabase/hooks/use-sign-out` for logout
 
 ## Secrets
 

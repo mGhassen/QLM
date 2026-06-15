@@ -89,7 +89,7 @@ importers:
 
   .:
     devDependencies:
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:tooling/prettier
       '@manypkg/cli':
@@ -137,13 +137,13 @@ importers:
 
   apps/e2e:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@playwright/test':
@@ -161,31 +161,31 @@ importers:
 
   apps/server:
     dependencies:
-      '@guepard/agent-factory-sdk':
+      '@qlm/agent-factory-sdk':
         specifier: workspace:*
         version: link:../../packages/agent-factory-sdk
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@guepard/extensions-loader':
+      '@qlm/extensions-loader':
         specifier: workspace:*
         version: link:../../packages/extensions-loader
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../packages/extensions-sdk
-      '@guepard/integrations-drivers':
+      '@qlm/integrations-drivers':
         specifier: workspace:*
         version: link:../../packages/integrations-drivers
-      '@guepard/repository-supabase':
+      '@qlm/repository-supabase':
         specifier: workspace:*
         version: link:../../packages/repositories/supabase
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../packages/shared
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../packages/supabase
-      '@guepard/telemetry':
+      '@qlm/telemetry':
         specifier: workspace:*
         version: link:../../packages/telemetry
       '@hono/zod-validator':
@@ -207,13 +207,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/bun':
@@ -270,70 +270,70 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/accounts':
+      '@qlm/accounts':
         specifier: workspace:*
         version: link:../../packages/features/accounts
-      '@guepard/auth':
+      '@qlm/auth':
         specifier: workspace:*
         version: link:../../packages/features/auth
-      '@guepard/billing':
+      '@qlm/billing':
         specifier: workspace:*
         version: link:../../packages/features/billing
-      '@guepard/csrf':
+      '@qlm/csrf':
         specifier: workspace:*
         version: link:../../packages/csrf
-      '@guepard/docs-studio':
+      '@qlm/docs-studio':
         specifier: workspace:*
         version: link:../../packages/features/docs-studio
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@guepard/extensions-loader':
+      '@qlm/extensions-loader':
         specifier: workspace:*
         version: link:../../packages/extensions-loader
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../packages/extensions-sdk
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
-      '@guepard/otp':
+      '@qlm/otp':
         specifier: workspace:*
         version: link:../../packages/otp
-      '@guepard/qwery-agent':
+      '@qlm/qwery-agent':
         specifier: workspace:*
         version: link:../../packages/features/qwery-agent
-      '@guepard/repository-supabase':
+      '@qlm/repository-supabase':
         specifier: workspace:*
         version: link:../../packages/repositories/supabase
-      '@guepard/settings-shell':
+      '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../../packages/features/settings-shell
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../packages/shared
-      '@guepard/shell-apps':
+      '@qlm/shell-apps':
         specifier: workspace:*
         version: link:../../packages/features/shell-apps
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../packages/shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../packages/shell-runtime
-      '@guepard/shell-topbar':
+      '@qlm/shell-topbar':
         specifier: workspace:*
         version: link:../../packages/features/shell-topbar
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../packages/supabase
-      '@guepard/telemetry':
+      '@qlm/telemetry':
         specifier: workspace:*
         version: link:../../packages/telemetry
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@guepard/user-tokens':
+      '@qlm/user-tokens':
         specifier: workspace:*
         version: link:../../packages/features/user-tokens
       '@hookform/resolvers':
@@ -454,16 +454,16 @@ importers:
         specifier: ^5.0.2
         version: 5.0.13(@types/react@19.2.14)(immer@11.1.8)(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@storybook/react':
@@ -613,19 +613,19 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
-      '@guepard/extensions-loader':
+      '@qlm/extensions-loader':
         specifier: workspace:*
         version: link:../extensions-loader
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../extensions-sdk
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/telemetry':
+      '@qlm/telemetry':
         specifier: workspace:*
         version: link:../telemetry
       '@mlc-ai/web-llm':
@@ -659,25 +659,25 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/repository-in-memory':
+      '@qlm/repository-in-memory':
         specifier: workspace:*
         version: link:../repositories/memory
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../ui
       '@hookform/resolvers':
@@ -743,11 +743,11 @@ importers:
 
   packages/apps/dashboard:
     dependencies:
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../shell-contracts
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/react':
@@ -762,25 +762,25 @@ importers:
 
   packages/apps/org-settings:
     dependencies:
-      '@guepard/accounts':
+      '@qlm/accounts':
         specifier: workspace:*
         version: link:../../features/accounts
-      '@guepard/billing':
+      '@qlm/billing':
         specifier: workspace:*
         version: link:../../features/billing
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/settings-shell':
+      '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../../features/settings-shell
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -805,7 +805,7 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@storybook/react':
@@ -829,16 +829,16 @@ importers:
 
   packages/apps/project-settings:
     dependencies:
-      '@guepard/settings-shell':
+      '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../../features/settings-shell
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -860,7 +860,7 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@storybook/react':
@@ -884,23 +884,23 @@ importers:
 
   packages/apps/studio:
     dependencies:
-      '@guepard/docs-studio':
+      '@qlm/docs-studio':
         specifier: workspace:*
         version: link:../../features/docs-studio
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.100.9(react@19.2.6)
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@tanstack/react-router':
@@ -918,25 +918,25 @@ importers:
 
   packages/apps/user-settings:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/settings-shell':
+      '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../../features/settings-shell
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
-      '@guepard/user-profile':
+      '@qlm/user-profile':
         specifier: workspace:*
         version: link:../../features/user-profile
-      '@guepard/user-tokens':
+      '@qlm/user-tokens':
         specifier: workspace:*
         version: link:../../features/user-tokens
       '@tanstack/react-query':
@@ -949,13 +949,13 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/react':
@@ -980,13 +980,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/jsonwebtoken':
@@ -1014,16 +1014,16 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@react-router/node':
@@ -1066,13 +1066,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@vitest/coverage-istanbul':
@@ -1094,16 +1094,16 @@ importers:
         specifier: 1.0.1
         version: 1.0.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/react':
@@ -1112,50 +1112,50 @@ importers:
 
   packages/extensions-loader:
     dependencies:
-      '@guepard/extension-clickhouse-node':
+      '@qlm/extension-clickhouse-node':
         specifier: workspace:*
         version: link:../extensions/clickhouse-node
-      '@guepard/extension-csv-online':
+      '@qlm/extension-csv-online':
         specifier: workspace:*
         version: link:../extensions/csv-online
-      '@guepard/extension-duckdb':
+      '@qlm/extension-duckdb':
         specifier: workspace:*
         version: link:../extensions/duckdb
-      '@guepard/extension-gsheet-csv':
+      '@qlm/extension-gsheet-csv':
         specifier: workspace:*
         version: link:../extensions/gsheet-csv
-      '@guepard/extension-json-online':
+      '@qlm/extension-json-online':
         specifier: workspace:*
         version: link:../extensions/json-online
-      '@guepard/extension-mongodb':
+      '@qlm/extension-mongodb':
         specifier: workspace:*
         version: link:../extensions/mongodb
-      '@guepard/extension-mysql':
+      '@qlm/extension-mysql':
         specifier: workspace:*
         version: link:../extensions/mysql
-      '@guepard/extension-parquet-online':
+      '@qlm/extension-parquet-online':
         specifier: workspace:*
         version: link:../extensions/parquet-online
-      '@guepard/extension-postgresql':
+      '@qlm/extension-postgresql':
         specifier: workspace:*
         version: link:../extensions/postgresql
-      '@guepard/extension-s3':
+      '@qlm/extension-s3':
         specifier: workspace:*
         version: link:../extensions/s3
-      '@guepard/extension-youtube-data-api-v3':
+      '@qlm/extension-youtube-data-api-v3':
         specifier: workspace:*
         version: link:../extensions/youtube-data-api-v3
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../extensions-sdk
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@vitest/coverage-istanbul':
@@ -1173,23 +1173,23 @@ importers:
 
   packages/extensions-sdk:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
       zod:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@vitest/coverage-istanbul':
@@ -1207,7 +1207,7 @@ importers:
       '@clickhouse/client':
         specifier: ^0.2.10
         version: 0.2.10
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1226,7 +1226,7 @@ importers:
       '@clickhouse/client-web':
         specifier: ^0.2.10
         version: 0.2.10
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1245,7 +1245,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1264,7 +1264,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1283,7 +1283,7 @@ importers:
       '@duckdb/duckdb-wasm':
         specifier: 1.31.1-dev31.0
         version: 1.31.1-dev31.0
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1302,7 +1302,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1321,7 +1321,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1337,7 +1337,7 @@ importers:
 
   packages/extensions/mongodb:
     dependencies:
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       mongodb:
@@ -1359,7 +1359,7 @@ importers:
 
   packages/extensions/mysql:
     dependencies:
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       mysql2:
@@ -1381,7 +1381,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1400,7 +1400,7 @@ importers:
       '@electric-sql/pglite':
         specifier: ^0.3.12
         version: 0.3.16
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1416,7 +1416,7 @@ importers:
 
   packages/extensions/postgresql:
     dependencies:
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       pg:
@@ -1441,7 +1441,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       zod:
@@ -1460,7 +1460,7 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
       googleapis:
@@ -1489,43 +1489,43 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
-      '@guepard/csrf':
+      '@qlm/csrf':
         specifier: workspace:*
         version: link:../../csrf
-      '@guepard/email-templates':
+      '@qlm/email-templates':
         specifier: workspace:*
         version: link:../../email-templates
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/mailers':
+      '@qlm/mailers':
         specifier: workspace:*
         version: link:../../mailers/core
-      '@guepard/otp':
+      '@qlm/otp':
         specifier: workspace:*
         version: link:../../otp
-      '@guepard/policies':
+      '@qlm/policies':
         specifier: workspace:*
         version: link:../../policies
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/telemetry':
+      '@qlm/telemetry':
         specifier: workspace:*
         version: link:../../telemetry
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -1616,28 +1616,28 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -1700,7 +1700,7 @@ importers:
 
   packages/features/billing:
     dependencies:
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
       date-fns:
@@ -1713,25 +1713,25 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -1794,32 +1794,32 @@ importers:
 
   packages/features/datasources:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -1876,10 +1876,10 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.6)
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@supabase/supabase-js':
@@ -1940,13 +1940,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/node':
@@ -1979,7 +1979,7 @@ importers:
 
   packages/features/integrations:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
       class-transformer:
@@ -1989,25 +1989,25 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -2079,7 +2079,7 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.6)
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
       '@uiw/react-codemirror':
@@ -2101,25 +2101,25 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -2170,23 +2170,23 @@ importers:
 
   packages/features/ops/databases:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../../domain
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
       react-virtuoso:
         specifier: ^4.17.0
         version: 4.18.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../../tooling/typescript
       '@storybook/react-vite':
@@ -2243,7 +2243,7 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.6)
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
       '@xyflow/react':
@@ -2259,7 +2259,7 @@ importers:
         specifier: ^0.552.0
         version: 0.552.0(react@19.2.6)
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../../tooling/typescript
       '@storybook/react-vite':
@@ -2295,16 +2295,16 @@ importers:
 
   packages/features/ops/infrastructure:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../../domain
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
       '@hookform/resolvers':
@@ -2320,7 +2320,7 @@ importers:
         specifier: ^4.17.0
         version: 4.18.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../../tooling/typescript
       '@storybook/react-vite':
@@ -2377,20 +2377,20 @@ importers:
 
   packages/features/ops/performance-profiles:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../../domain
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../../tooling/typescript
       '@storybook/react-vite':
@@ -2432,20 +2432,20 @@ importers:
 
   packages/features/ops/topology:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../../domain
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../../../shell-contracts
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../../tooling/typescript
       '@storybook/react-vite':
@@ -2487,22 +2487,22 @@ importers:
 
   packages/features/qwery-agent:
     dependencies:
-      '@guepard/agent-factory-sdk':
+      '@qlm/agent-factory-sdk':
         specifier: workspace:*
         version: link:../../agent-factory-sdk
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/extensions-loader':
+      '@qlm/extensions-loader':
         specifier: workspace:*
         version: link:../../extensions-loader
-      '@guepard/extensions-sdk':
+      '@qlm/extensions-sdk':
         specifier: workspace:*
         version: link:../../extensions-sdk
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
       '@tanstack/react-router':
@@ -2512,25 +2512,25 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@storybook/react':
@@ -2581,23 +2581,23 @@ importers:
 
   packages/features/settings-shell:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@storybook/react':
@@ -2657,20 +2657,20 @@ importers:
 
   packages/features/shell-apps:
     dependencies:
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       lucide-react:
         specifier: ^0.552.0
         version: 0.552.0(react@19.2.6)
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/react':
@@ -2691,13 +2691,13 @@ importers:
 
   packages/features/shell-topbar:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/shell-runtime':
+      '@qlm/shell-runtime':
         specifier: workspace:*
         version: link:../../shell-runtime
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -2713,22 +2713,22 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@storybook/react':
@@ -2782,20 +2782,20 @@ importers:
 
   packages/features/user-profile:
     dependencies:
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@storybook/react':
@@ -2855,32 +2855,32 @@ importers:
 
   packages/features/user-tokens:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/settings-shell':
+      '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../settings-shell
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
       '@hookform/resolvers':
@@ -2968,19 +2968,19 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@tanstack/react-query':
@@ -3010,20 +3010,20 @@ importers:
       '@aws-sdk/client-sts':
         specifier: ^3.936.0
         version: 3.1045.0
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
       google-auth-library:
         specifier: ^9.15.0
         version: 9.15.1
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@vitest/coverage-istanbul':
@@ -3041,19 +3041,19 @@ importers:
 
   packages/mailers/core:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/resend':
+      '@qlm/resend':
         specifier: workspace:*
         version: link:../resend
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/node':
@@ -3065,19 +3065,19 @@ importers:
 
   packages/mailers/resend:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/mailers-shared':
+      '@qlm/mailers-shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/node':
@@ -3089,16 +3089,16 @@ importers:
 
   packages/mailers/shared:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       zod:
@@ -3107,28 +3107,28 @@ importers:
 
   packages/otp:
     devDependencies:
-      '@guepard/email-templates':
+      '@qlm/email-templates':
         specifier: workspace:*
         version: link:../email-templates
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/mailers':
+      '@qlm/mailers':
         specifier: workspace:*
         version: link:../mailers/core
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../supabase
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@guepard/ui':
+      '@qlm/ui':
         specifier: workspace:*
         version: link:../ui
       '@hookform/resolvers':
@@ -3164,16 +3164,16 @@ importers:
 
   packages/policies:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       zod:
@@ -3182,10 +3182,10 @@ importers:
 
   packages/repositories/memory:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../../shared
       sqids:
@@ -3198,13 +3198,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@vitest/coverage-istanbul':
@@ -3222,10 +3222,10 @@ importers:
 
   packages/repositories/supabase:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
-      '@guepard/supabase':
+      '@qlm/supabase':
         specifier: workspace:*
         version: link:../../supabase
       '@supabase/supabase-js':
@@ -3247,13 +3247,13 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../../tooling/prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../../tooling/typescript
       '@types/jsonwebtoken':
@@ -3274,7 +3274,7 @@ importers:
 
   packages/shared:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
       papaparse:
@@ -3290,16 +3290,16 @@ importers:
         specifier: ^15.6.11
         version: 15.7.3
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/papaparse':
@@ -3323,14 +3323,14 @@ importers:
 
   packages/shell-contracts:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
       zod:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       typescript:
@@ -3342,17 +3342,17 @@ importers:
 
   packages/shell-runtime:
     dependencies:
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../shell-contracts
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@tanstack/react-query':
@@ -3388,16 +3388,16 @@ importers:
 
   packages/supabase:
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@supabase/ssr':
@@ -3476,19 +3476,19 @@ importers:
         specifier: ^11.0.3
         version: 11.1.1
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/i18n':
+      '@qlm/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/react':
@@ -3542,13 +3542,13 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.6)
-      '@guepard/domain':
+      '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
-      '@guepard/shared':
+      '@qlm/shared':
         specifier: workspace:*
         version: link:../shared
-      '@guepard/shell-contracts':
+      '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../shell-contracts
       '@hookform/resolvers':
@@ -3726,16 +3726,16 @@ importers:
         specifier: ^5.0.2
         version: 5.0.13(@types/react@19.2.14)(immer@11.1.8)(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
     devDependencies:
-      '@guepard/eslint-config':
+      '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../../tooling/prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../../tooling/tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@radix-ui/react-icons':
@@ -3859,10 +3859,10 @@ importers:
       '@eslint/js':
         specifier: ^9.39.0
         version: 9.39.4
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       eslint:
@@ -3881,7 +3881,7 @@ importers:
         specifier: ^0.7.1
         version: 0.7.4(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.8.3))(prettier@3.8.3)
     devDependencies:
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       typescript:
@@ -3930,13 +3930,13 @@ importers:
         specifier: 4.1.16
         version: 4.1.16
     devDependencies:
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../prettier
-      '@guepard/tailwind-config':
+      '@qlm/tailwind-config':
         specifier: workspace:*
         version: link:../tailwind
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       '@storybook/addon-docs':
@@ -3979,10 +3979,10 @@ importers:
         specifier: 4.1.16
         version: 4.1.16
     devDependencies:
-      '@guepard/prettier-config':
+      '@qlm/prettier-config':
         specifier: workspace:*
         version: link:../prettier
-      '@guepard/tsconfig':
+      '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../typescript
       prettier:

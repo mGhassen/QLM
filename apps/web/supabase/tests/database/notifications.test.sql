@@ -40,19 +40,19 @@ select row_eq(
     'user can read their own notifications'
 );
 
--- Create org guepard and add member for team notifications test
+-- Create org qlm and add member for team notifications test
 -- Note: notifications.account_id references accounts(id). For org notifications the RLS uses has_role_on_organization(account_id)
 -- which expects org id. The FK restricts to accounts - org ids would fail. So we test with primary_owner's account (personal)
 -- and verify member (who has org role) - for org-scoped notifications we'd need schema to support organization_id.
 -- For now we test that get_account_id_by_slug works with SECURITY DEFINER (no permission denied)
 select public.authenticate_as('primary_owner');
-insert into public.organizations (slug, name, user_id) values ('notif-rasm', 'Notif Rasm', auth.uid());
+insert into public.organizations (slug, name, user_id) values ('notif-qlm', 'Notif QLM', auth.uid());
 
 set local role postgres;
 insert into public.organization_memberships (user_id, organization_id, account_role)
-select public.get_id_by_identifier('owner'), public.get_organization_id_by_slug('notif-rasm'), 'owner'
-union all select public.get_id_by_identifier('member'), public.get_organization_id_by_slug('notif-rasm'), 'analyst'
-union all select public.get_id_by_identifier('custom'), public.get_organization_id_by_slug('notif-rasm'), 'analyst';
+select public.get_id_by_identifier('owner'), public.get_organization_id_by_slug('notif-qlm'), 'owner'
+union all select public.get_id_by_identifier('member'), public.get_organization_id_by_slug('notif-qlm'), 'analyst'
+union all select public.get_id_by_identifier('custom'), public.get_organization_id_by_slug('notif-qlm'), 'analyst';
 reset role;
 
 set local role service_role;

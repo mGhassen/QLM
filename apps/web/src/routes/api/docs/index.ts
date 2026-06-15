@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import {
   handleCreateDoc,
   handleListDocs,
-} from '@guepard/docs-studio/server';
+} from '@qlm/docs-studio/server';
 
 export const Route = createFileRoute('/api/docs/')({
   server: {

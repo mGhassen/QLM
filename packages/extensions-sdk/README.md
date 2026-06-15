@@ -1,6 +1,6 @@
 # Qwery Extensions SDK v0
 
-Minimal contracts to register datasources and drivers, collect metadata, and run queries. Schemas come from `@guepard/extensions-sdk` (`DatasourceMetadataZodSchema`).
+Minimal contracts to register datasources and drivers, collect metadata, and run queries. Schemas come from `@qlm/extensions-sdk` (`DatasourceMetadataZodSchema`).
 
 ## Core Types
 - `ExtensionContext` with `subscriptions: Disposable[]`.
@@ -11,7 +11,7 @@ Minimal contracts to register datasources and drivers, collect metadata, and run
 
 ## Activation example
 ```ts
-import * as qwery from '@guepard/extensions-sdk';
+import * as qwery from '@qlm/extensions-sdk';
 import { makeDriver } from './driver';
 
 export function activate(context: qwery.ExtensionContext) {
@@ -27,7 +27,7 @@ See `templates/package.json` for a ready JSON sample:
 - optional `displayName`, `description`, `categories`, `keywords`, `icon`.
 - `contributes.datasources[]` with `id`, `name`, `description`, `icon?`, `schema`, `drivers`.
 - `contributes.drivers[]` with `id`, `name`, `description`, `runtime`, `entry?`.
-- dependency on `@guepard/extensions-sdk`.
+- dependency on `@qlm/extensions-sdk`.
 
 ## Driver shape (v0)
 Factory signature: `(context: DriverContext) => IDataSourceDriver`.
@@ -63,7 +63,7 @@ export function makeDriver(context: DriverContext): IDataSourceDriver {
 ```
 
 ## Metadata expectations
-- SDK re-exports `DatasourceMetadataZodSchema` (and related types) under `@guepard/extensions-sdk`; extensions should import from there only.
+- SDK re-exports `DatasourceMetadataZodSchema` (and related types) under `@qlm/extensions-sdk`; extensions should import from there only.
 - Use `DatasourceMetadataZodSchema` to validate your result; schemas are `.passthrough()`, so vendor extras are fine.
 - Preserve RLS flags/policies in table metadata.
 - You can add engine-specific fields without mutating core types.
@@ -96,7 +96,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@domain': path.resolve(__dirname, '../domain/src'),
-      '@guepard/extensions-sdk': path.resolve(__dirname, './src'),
+      '@qlm/extensions-sdk': path.resolve(__dirname, './src'),
     },
   },
 });

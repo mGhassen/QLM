@@ -1,9 +1,9 @@
 import { CheckCircle2, Circle, XCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { IntegrationTestStatus } from '@guepard/domain/entities';
-import { Badge } from '@guepard/ui/badge';
-import { cn } from '@guepard/ui/utils';
+import type { IntegrationTestStatus } from '@qlm/domain/entities';
+import { Badge } from '@qlm/ui/badge';
+import { cn } from '@qlm/ui/utils';
 
 export type IntegrationStatusBadgeProps = Readonly<{
   status: IntegrationTestStatus;

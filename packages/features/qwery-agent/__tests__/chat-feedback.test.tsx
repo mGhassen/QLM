@@ -12,12 +12,12 @@ const fetchMock = vi.fn<(...args: unknown[]) => Promise<Response>>();
 
 vi.stubGlobal('fetch', fetchMock);
 
-vi.mock('@guepard/agent-factory-sdk', () => ({
+vi.mock('@qlm/agent-factory-sdk', () => ({
   SUPPORTED_MODELS: [{ name: 'Test', value: 'openai/gpt-4' }],
   transportFactory: () => ({ __mockTransport: true }),
 }));
 
-vi.mock('@guepard/supabase/auth-headers', () => ({
+vi.mock('@qlm/supabase/auth-headers', () => ({
   getAuthHeaders: vi
     .fn()
     .mockResolvedValue({ Authorization: 'Bearer test-token' }),
@@ -30,7 +30,7 @@ type CapturedFeedback = {
 
 let capturedFeedback: CapturedFeedback | null = null;
 
-vi.mock('@guepard/ui/agent-ui', () => {
+vi.mock('@qlm/ui/agent-ui', () => {
   function MockAgentUI({
     onSubmitFeedback,
   }: {
@@ -84,7 +84,7 @@ const shellStub = {
   },
 };
 
-vi.mock('@guepard/shell-runtime', () => ({ useShell: () => shellStub }));
+vi.mock('@qlm/shell-runtime', () => ({ useShell: () => shellStub }));
 
 vi.mock('@tanstack/react-router', () => ({ useNavigate: () => vi.fn() }));
 

@@ -1,4 +1,4 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
+import { RepositoryFindOptions } from '@qlm/domain/common';
 import type {
   MetricsPoint,
   MetricsRange,
@@ -6,13 +6,13 @@ import type {
   NodeDrain,
   NodeEligibility,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
-import { INodeRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import { INodeRepository } from '@qlm/domain/repositories';
 import type {
   BulkResult,
   ListNodesInput,
   ListNodesRepositoryResult,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import { apiDelete, apiGet, apiPatch, apiPost } from './api-client';
 

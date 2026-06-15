@@ -13,11 +13,11 @@ validation:
 
 # Split host sync effect and debounce href tracking
 
-Replace the single 90-line `useEffect` at lines 214-306 with three single-purpose effects. Debounce the href-watching one with `useDebouncedValue` from `@guepard/ui/hooks/use-debounced-value`.
+Replace the single 90-line `useEffect` at lines 214-306 with three single-purpose effects. Debounce the href-watching one with `useDebouncedValue` from `@qlm/ui/hooks/use-debounced-value`.
 
 ## Done when
 
-- [ ] `useDebouncedValue` imported from `@guepard/ui/hooks/use-debounced-value`. `const debouncedHref = useDebouncedValue(location.href, 150);` near the top of the component body.
+- [ ] `useDebouncedValue` imported from `@qlm/ui/hooks/use-debounced-value`. `const debouncedHref = useDebouncedValue(location.href, 150);` near the top of the component body.
 - [ ] Effect A "ensure virtual tab exists" — deps `[virtualTab?.id, virtualTab?.title, activeTabId]`. Upserts only the membership; never writes hrefs.
 - [ ] Effect B "ensure contextual tab exists" — deps `[activeTabId, projectSlug]`. Adds the contextual record with `createProjectAppPath(projectSlug, activeTabId)` only when missing; never writes hrefs.
 - [ ] Effect C "track current href on existing tabs" — deps `[debouncedHref, activeTabId, virtualTab?.id, location.pathname]`. Computes `currentHref = normalizeHref(debouncedHref)` and `contextualHref = buildContextualHref(debouncedHref)`. Writes only when an existing record's stored href is different.

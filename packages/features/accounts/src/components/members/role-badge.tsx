@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
-import { Badge } from '@guepard/ui/badge';
-import { Trans } from '@guepard/ui/trans';
+import { Badge } from '@qlm/ui/badge';
+import { Trans } from '@qlm/ui/trans';
 
 type Role = 'owner' | 'administrator' | 'analyst' | 'viewer' | string;
 

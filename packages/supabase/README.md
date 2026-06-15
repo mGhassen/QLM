@@ -1,14 +1,14 @@
-# Supabase - @guepard/supabase
+# Supabase - @qlm/supabase
 
 This package is responsible for managing the Supabase client and various utilities related to Supabase.
 
-Make sure the app installs the `@guepard/supabase` package before using it.
+Make sure the app installs the `@qlm/supabase` package before using it.
 
 ```json
 {
     "name": "my-app",
     "dependencies": {
-        "@guepard/supabase": "*"
+        "@qlm/supabase": "*"
     }
 }
 ```

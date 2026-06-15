@@ -1,7 +1,7 @@
 import {
   BillingProviderSchema,
   createBillingSchema,
-} from '@guepard/billing/services';
+} from '@qlm/billing/services';
 
 /**
  * Static billing configuration.

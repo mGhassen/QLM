@@ -4,12 +4,12 @@ import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Eye, Gauge, Loader2 } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { encodeTabId } from '@guepard/shell-contracts';
-import type { Action } from '@guepard/ui/action';
-import { useShell } from '@guepard/shell-runtime';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { encodeTabId } from '@qlm/shell-contracts';
+import type { Action } from '@qlm/ui/action';
+import { useShell } from '@qlm/shell-runtime';
 
-import { EntityListPage } from '@guepard/ui/entity-list';
+import { EntityListPage } from '@qlm/ui/entity-list';
 import {
   DataTableAdvanced,
   FilterChipRow,
@@ -18,18 +18,18 @@ import {
   applySort,
   type FilterRule,
   type SortState,
-} from '@guepard/ui/data-table-advanced';
-import type { EntityListSortOption } from '@guepard/ui/entity-list';
+} from '@qlm/ui/data-table-advanced';
+import type { EntityListSortOption } from '@qlm/ui/entity-list';
 import {
   EntityEmptyFiltered,
   EntityEmptyFirstRun,
   EntityErrorBanner,
   EntityLoadingTableSkeleton,
-} from '@guepard/ui/entity-state';
-import { useDebouncedValue } from '@guepard/ui/use-debounced-value';
-import { useTableVisibility } from '@guepard/ui/use-table-visibility';
+} from '@qlm/ui/entity-state';
+import { useDebouncedValue } from '@qlm/ui/use-debounced-value';
+import { useTableVisibility } from '@qlm/ui/use-table-visibility';
 
-import { EntitySheet } from '@guepard/ui/entity-sheet';
+import { EntitySheet } from '@qlm/ui/entity-sheet';
 
 import { OptionsToolbar } from './options-toolbar';
 import { PerformanceProfileDetailPage } from './detail-page';

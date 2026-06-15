@@ -23,12 +23,12 @@ Extend `AssistantPanelBody` with an `initialSuggestions?: string[]` prop and for
 - [ ] `AssistantPanelBody` accepts `initialSuggestions?: string[]`.
 - [ ] Prop forwards to `<QweryAgentUI initialSuggestions={...} />` (existing component API).
 - [ ] `AgentTabBody` unchanged in signature — no regression.
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 ```
 
 ## Notes

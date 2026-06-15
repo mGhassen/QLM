@@ -27,7 +27,7 @@ Cover the spec §10.2 bullets for `packages/domain`: schema parse/reject, `GetLa
 - [ ] `GetLastProjectService` tests cover: key present & project exists, key present & project deleted, key missing.
 - [ ] `SetLastProjectService` test asserts the exact JSON patch shape it produces.
 - [ ] Merge-helper test asserts sibling keys are preserved when patching.
-- [ ] `pnpm --filter @guepard/domain test -- __tests__/entities/user-preferences.test.ts __tests__/services/user-preferences/*.test.ts` green.
+- [ ] `pnpm --filter @qlm/domain test -- __tests__/entities/user-preferences.test.ts __tests__/services/user-preferences/*.test.ts` green.
 
 ## Notes
 

@@ -3,8 +3,8 @@ import type { UserTokenScope } from '../entities';
 /**
  * Exact shape of the JWT claim that `IJwtSigner` produces for a user token.
  *
- * Fields are locked to match v1's JWT shape so `guepard-public-api` and
- * `guepard-cli` continue to validate v3-issued tokens without change. See
+ * Fields are locked to match v1's JWT shape so `qlm-public-api` and
+ * `qlm-cli` continue to validate v3-issued tokens without change. See
  * RFC 0009 spec §6.3.
  *
  * - `token_id` — `public.user_tokens.id` — what the validator looks up to

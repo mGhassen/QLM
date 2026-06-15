@@ -11,9 +11,9 @@ import type {
   LeaveTeamOutput,
   GetRolesOutput,
   Role,
-} from '@guepard/domain/usecases';
-import { ITeamMemberRepository } from '@guepard/domain/repositories';
-import type { TeamMember } from '@guepard/domain/entities';
+} from '@qlm/domain/usecases';
+import { ITeamMemberRepository } from '@qlm/domain/repositories';
+import type { TeamMember } from '@qlm/domain/entities';
 
 export class TeamMemberRepository extends ITeamMemberRepository {
   private teamMembers = new Map<string, TeamMember>();

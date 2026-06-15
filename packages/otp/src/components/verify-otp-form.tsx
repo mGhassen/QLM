@@ -7,8 +7,8 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -16,16 +16,16 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@guepard/ui/input-otp';
-import { Spinner } from '@guepard/ui/spinner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/input-otp';
+import { Spinner } from '@qlm/ui/spinner';
+import { Trans } from '@qlm/ui/trans';
 
 import { useRequestOtp } from '../hooks/use-request-otp';
 

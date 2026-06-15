@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { renderOtpEmail } from '@guepard/email-templates';
-import { getMailer } from '@guepard/mailers';
-import { getLogger } from '@guepard/shared/logger';
+import { renderOtpEmail } from '@qlm/email-templates';
+import { getMailer } from '@qlm/mailers';
+import { getLogger } from '@qlm/shared/logger';
 
 const EMAIL_SENDER = z
   .string({

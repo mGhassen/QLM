@@ -3,7 +3,7 @@ import {
   IJwtSigner,
   type JwtSignerOptions,
   type JwtSignerPayload,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 
 /**
  * Concrete `IJwtSigner` backed by the `jsonwebtoken` package.
@@ -12,8 +12,8 @@ import {
  * so there is exactly one source of truth (the factory at server boot reads
  * `process.env.JWT_SECRET` and hands it to the `CreateUserTokenService`).
  *
- * Pinned to HS256 to match the JWT shape `guepard-public-api` and
- * `guepard-cli` already accept — see RFC 0009 spec §6.3.
+ * Pinned to HS256 to match the JWT shape `qlm-public-api` and
+ * `qlm-cli` already accept — see RFC 0009 spec §6.3.
  */
 export class JwtSigner extends IJwtSigner {
   sign(payload: JwtSignerPayload, options: JwtSignerOptions): string {

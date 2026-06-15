@@ -65,7 +65,7 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:is(.dark *));
-@import "@guepard/ui/styles.css";
+@import "@qlm/ui/styles.css";
 
 @source "../../../packages/ui/src";
 @source "../../../packages/features";

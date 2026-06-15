@@ -10,11 +10,11 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@guepard/ui/card';
-import { If } from '@guepard/ui/if';
-import { LanguageSelector } from '@guepard/ui/language-selector';
-import { LoadingOverlay } from '@guepard/ui/loading-overlay';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/card';
+import { If } from '@qlm/ui/if';
+import { LanguageSelector } from '@qlm/ui/language-selector';
+import { LoadingOverlay } from '@qlm/ui/loading-overlay';
+import { Trans } from '@qlm/ui/trans';
 
 import { usePersonalAccountData } from '../../hooks/use-personal-account-data';
 import { AccountDangerZone } from './account-danger-zone';

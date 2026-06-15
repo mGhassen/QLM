@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import type {
   CreateUserTokenInput,
   CreateUserTokenOutput,
-} from '@guepard/domain/usecases';
-import { useShellApp } from '@guepard/shell-runtime';
+} from '@qlm/domain/usecases';
+import { useShellApp } from '@qlm/shell-runtime';
 import {
   UserTokensApiProvider,
   type UserTokensApi,
-} from '@guepard/user-tokens/hooks';
-import { TokensSettingsPane } from '@guepard/user-tokens/components';
+} from '@qlm/user-tokens/hooks';
+import { TokensSettingsPane } from '@qlm/user-tokens/components';
 
 /**
  * Wraps `TokensSettingsPane` with the `UserTokensApi` adapter that

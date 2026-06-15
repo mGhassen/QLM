@@ -46,7 +46,7 @@ Inline two-column form (left form, right live preview) for creating a new token.
 ## Acceptance
 
 - [ ] No `Dialog` import in this file.
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` + `test` pass.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` + `test` pass.
 - [ ] `Readonly<Props>` on the component.
 - [ ] Discard guard fires when the form is dirty (verified via test that uses the `useSettingsDirtyState` API).
 - [ ] All copy localized via `tokens:pane.create.*` keys.
@@ -54,18 +54,18 @@ Inline two-column form (left form, right live preview) for creating a new token.
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles**: `UserTokens / GenerateTokenForm / Pristine`, `… / Dirty`, `… / Submitting`, `… / Error`, `… / With Long Name`
 - **Expected visual outcome**: two-column layout — left form (back link, name input, three scope checkboxes, date input, footer with Cancel + Create), right preview (status chip + scope pills + formatted expiration). Submit button disabled in `Pristine` + `Submitting` shows spinner.
 
 ## Notes
 
-- The scope checkboxes can use `@guepard/ui/checkbox` directly — no need to reuse `<FilterPopover>` here (different purpose).
-- `useMarkSectionDirty` lives in `@guepard/settings-shell` (Story 010) — import via `@guepard/settings-shell` package; the user-tokens feature can dep on settings-shell.
+- The scope checkboxes can use `@qlm/ui/checkbox` directly — no need to reuse `<FilterPopover>` here (different purpose).
+- `useMarkSectionDirty` lives in `@qlm/settings-shell` (Story 010) — import via `@qlm/settings-shell` package; the user-tokens feature can dep on settings-shell.
 - The date input deliberately uses native `<input type="date">` for phase 1; a polished date picker can land in a follow-up RFC.

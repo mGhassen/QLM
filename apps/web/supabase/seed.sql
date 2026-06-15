@@ -41,39 +41,39 @@ INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encryp
                             "email_change_confirm_status", "banned_until", "reauthentication_token",
                             "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous")
 VALUES ('00000000-0000-0000-0000-000000000000', 'b73eb03e-fb7a-424d-84ff-18e2791ce0b4', 'authenticated',
-        'authenticated', 'viewer@rasm.ai', '$2a$10$b3ZPpU6TU3or30QzrXnZDuATPAx2pPq3JW.sNaneVY3aafMSuR4yi',
+        'authenticated', 'viewer@qlm.dev', '$2a$10$b3ZPpU6TU3or30QzrXnZDuATPAx2pPq3JW.sNaneVY3aafMSuR4yi',
         '2024-04-20 08:38:00.860548+00', NULL, '', '2024-04-20 08:37:43.343769+00', '', NULL, '', '', NULL,
         '2024-04-20 08:38:00.93864+00', '{"provider": "email", "providers": ["email"]}',
-        '{"sub": "b73eb03e-fb7a-424d-84ff-18e2791ce0b4", "email": "viewer@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "b73eb03e-fb7a-424d-84ff-18e2791ce0b4", "email": "viewer@qlm.dev", "email_verified": false, "phone_verified": false}',
         NULL, '2024-04-20 08:37:43.3385+00', '2024-04-20 08:38:00.942809+00', NULL, NULL, '', '', NULL, '', 0, NULL, '',
         NULL, false, NULL, false),
        ('00000000-0000-0000-0000-000000000000', '31a03e74-1639-45b6-bfa7-77447f1a4762', 'authenticated',
-        'authenticated', 'admin@rasm.ai', '$2a$10$IaFAAGnYHMOG9x71eWrIYeXUeEi9NUv8zunb7TGfFf9XITy8fgQ0K',
+        'authenticated', 'admin@qlm.dev', '$2a$10$IaFAAGnYHMOG9x71eWrIYeXUeEi9NUv8zunb7TGfFf9XITy8fgQ0K',
         '2024-04-20 08:20:38.165331+00', NULL, '', NULL, '', NULL, '', '', NULL, '2024-04-20 09:36:02.521776+00',
         '{"provider": "email", "providers": ["email"], "role": "super-admin"}',
-        '{"sub": "31a03e74-1639-45b6-bfa7-77447f1a4762", "email": "admin@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "31a03e74-1639-45b6-bfa7-77447f1a4762", "email": "admin@qlm.dev", "email_verified": false, "phone_verified": false}',
         NULL, '2024-04-20 08:20:34.459113+00', '2024-04-20 10:07:48.554125+00', NULL, NULL, '', '', NULL, '', 0, NULL,
         '', NULL, false, NULL, false),
        ('00000000-0000-0000-0000-000000000000', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', 'authenticated',
-        'authenticated', 'owner@rasm.ai', '$2a$10$D6arGxWJShy8q4RTW18z7eW0vEm2hOxEUovUCj5f3NblyHfamm5/a',
+        'authenticated', 'owner@qlm.dev', '$2a$10$D6arGxWJShy8q4RTW18z7eW0vEm2hOxEUovUCj5f3NblyHfamm5/a',
         '2024-04-20 08:36:37.517993+00', NULL, '', '2024-04-20 08:36:27.639648+00', '', NULL, '', '', NULL,
         '2024-04-20 08:36:37.614337+00', '{"provider": "email", "providers": ["email"]}',
-        '{"sub": "5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf", "email": "owner@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf", "email": "owner@qlm.dev", "email_verified": false, "phone_verified": false}',
         NULL, '2024-04-20 08:36:27.630379+00', '2024-04-20 08:36:37.617955+00', NULL, NULL, '', '', NULL, '', 0, NULL,
         '', NULL, false, NULL, false),
        ('00000000-0000-0000-0000-000000000000', '6b83d656-e4ab-48e3-a062-c0c54a427368', 'authenticated',
-        'authenticated', 'analyst@rasm.ai', '$2a$10$6h/x.AX.6zzphTfDXIJMzuYx13hIYEi/Iods9FXH19J2VxhsLycfa',
+        'authenticated', 'analyst@qlm.dev', '$2a$10$6h/x.AX.6zzphTfDXIJMzuYx13hIYEi/Iods9FXH19J2VxhsLycfa',
         '2024-04-20 08:41:15.376778+00', NULL, '', '2024-04-20 08:41:08.689674+00', '', NULL, '', '', NULL,
         '2024-04-20 08:41:15.484606+00', '{"provider": "email", "providers": ["email"]}',
-        '{"sub": "6b83d656-e4ab-48e3-a062-c0c54a427368", "email": "analyst@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "6b83d656-e4ab-48e3-a062-c0c54a427368", "email": "analyst@qlm.dev", "email_verified": false, "phone_verified": false}',
         NULL, '2024-04-20 08:41:08.683395+00', '2024-04-20 08:41:15.485494+00', NULL, NULL, '', '', NULL, '', 0, NULL,
         '', NULL, false, NULL, false),
        ('00000000-0000-0000-0000-000000000000', 'c5b930c9-0a76-412e-a836-4bc4849a3270', 'authenticated',
-        'authenticated', 'super-admin@rasm.ai',
+        'authenticated', 'super-admin@qlm.dev',
         '$2a$10$gzxQw3vaVni8Ke9UVcn6ueWh674.6xImf6/yWYNc23BSeYdE9wmki', '2025-02-24 13:25:11.176987+00', null, '',
         '2025-02-24 13:25:01.649714+00', '', null, '', '', null, '2025-02-24 13:25:11.17957+00',
         '{"provider": "email", "providers": ["email"], "role": "super-admin"}',
-        '{"sub": "c5b930c9-0a76-412e-a836-4bc4849a3270", "email": "super-admin@rasm.ai", "email_verified": true, "phone_verified": false}',
+        '{"sub": "c5b930c9-0a76-412e-a836-4bc4849a3270", "email": "super-admin@qlm.dev", "email_verified": true, "phone_verified": false}',
         null, '2025-02-24 13:25:01.646641+00', '2025-02-24 13:25:11.181332+00', null, null, '', '', null
            , '', '0', null, '', null, 'false', null, 'false');
 
@@ -84,23 +84,23 @@ VALUES ('00000000-0000-0000-0000-000000000000', 'b73eb03e-fb7a-424d-84ff-18e2791
 INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "provider", "last_sign_in_at", "created_at",
                                  "updated_at", "id")
 VALUES ('31a03e74-1639-45b6-bfa7-77447f1a4762', '31a03e74-1639-45b6-bfa7-77447f1a4762',
-        '{"sub": "31a03e74-1639-45b6-bfa7-77447f1a4762", "email": "admin@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "31a03e74-1639-45b6-bfa7-77447f1a4762", "email": "admin@qlm.dev", "email_verified": false, "phone_verified": false}',
         'email', '2024-04-20 08:20:34.46275+00', '2024-04-20 08:20:34.462773+00', '2024-04-20 08:20:34.462773+00',
         '9bb58bad-24a4-41a8-9742-1b5b4e2d8abd'),
        ('5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf',
-        '{"sub": "5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf", "email": "owner@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf", "email": "owner@qlm.dev", "email_verified": false, "phone_verified": false}',
         'email', '2024-04-20 08:36:27.637388+00', '2024-04-20 08:36:27.637409+00', '2024-04-20 08:36:27.637409+00',
         '090598a1-ebba-4879-bbe3-38d517d5066f'),
        ('b73eb03e-fb7a-424d-84ff-18e2791ce0b4', 'b73eb03e-fb7a-424d-84ff-18e2791ce0b4',
-        '{"sub": "b73eb03e-fb7a-424d-84ff-18e2791ce0b4", "email": "viewer@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "b73eb03e-fb7a-424d-84ff-18e2791ce0b4", "email": "viewer@qlm.dev", "email_verified": false, "phone_verified": false}',
         'email', '2024-04-20 08:37:43.342194+00', '2024-04-20 08:37:43.342218+00', '2024-04-20 08:37:43.342218+00',
         '4392e228-a6d8-4295-a7d6-baed50c33e7c'),
        ('6b83d656-e4ab-48e3-a062-c0c54a427368', '6b83d656-e4ab-48e3-a062-c0c54a427368',
-        '{"sub": "6b83d656-e4ab-48e3-a062-c0c54a427368", "email": "analyst@rasm.ai", "email_verified": false, "phone_verified": false}',
+        '{"sub": "6b83d656-e4ab-48e3-a062-c0c54a427368", "email": "analyst@qlm.dev", "email_verified": false, "phone_verified": false}',
         'email', '2024-04-20 08:41:08.687948+00', '2024-04-20 08:41:08.687982+00', '2024-04-20 08:41:08.687982+00',
         'd122aca5-4f29-43f0-b1b1-940b000638db'),
        ('c5b930c9-0a76-412e-a836-4bc4849a3270', 'c5b930c9-0a76-412e-a836-4bc4849a3270',
-        '{"sub": "c5b930c9-0a76-412e-a836-4bc4849a3270", "email": "super-admin@rasm.ai", "email_verified": true, "phone_verified": false}',
+        '{"sub": "c5b930c9-0a76-412e-a836-4bc4849a3270", "email": "super-admin@qlm.dev", "email_verified": true, "phone_verified": false}',
         'email', '2025-02-24 13:25:01.646641+00', '2025-02-24 13:25:11.181332+00', '2025-02-24 13:25:11.181332+00',
         'c5b930c9-0a76-412e-a836-4bc4849a3270');
 
@@ -159,7 +159,7 @@ VALUES ('31a03e74-1639-45b6-bfa7-77447f1a4762', '31a03e74-1639-45b6-bfa7-77447f1
 
 --
 -- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: postgres
--- NOTE: Accounts are automatically created via the guepard.setup_new_user() trigger when users are inserted.
+-- NOTE: Accounts are automatically created via the qlm.setup_new_user() trigger when users are inserted.
 -- Personal accounts are created with id = user_id = user.id
 -- However, when seeding existing users, we need to ensure accounts exist for them.
 -- This creates accounts for seeded users if they don't already exist.
@@ -189,11 +189,11 @@ ON CONFLICT (user_id) DO NOTHING;
 
 -- Insert organizations
 INSERT INTO "public"."organizations" ("id", "user_id", "name", "slug", "created_at", "updated_at", "created_by", "updated_by")
-VALUES ('5deaa894-2094-4da3-b4fd-1fada0809d1c', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', 'Rasm', 'rasm', '2024-04-20 08:20:00.000000+00', '2024-04-20 08:20:00.000000+00', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf');
+VALUES ('5deaa894-2094-4da3-b4fd-1fada0809d1c', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', 'QLM', 'qlm', '2024-04-20 08:20:00.000000+00', '2024-04-20 08:20:00.000000+00', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf', '5c064f1b-78ee-4e1c-ac3b-e99aa97c99bf');
 
 -- Insert project
 INSERT INTO "public"."projects" ("id", "organization_id", "name", "slug", "description", "created_at", "updated_at", "created_by", "updated_by")
-VALUES ('5deaa894-2094-4da3-b4fd-1fada0000abc', '5deaa894-2094-4da3-b4fd-1fada0809d1c', 'Rasm Project', 'rasm-project', 'Rasm Project is a default project for the organization.', '2024-04-20 08:20:00.000000+00', '2024-04-20 08:20:00.000000+00', NULL, NULL);
+VALUES ('5deaa894-2094-4da3-b4fd-1fada0000abc', '5deaa894-2094-4da3-b4fd-1fada0809d1c', 'QLM Project', 'qlm-project', 'QLM Project is a default project for the organization.', '2024-04-20 08:20:00.000000+00', '2024-04-20 08:20:00.000000+00', NULL, NULL);
 
 
 --

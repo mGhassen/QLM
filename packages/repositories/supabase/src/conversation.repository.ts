@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Conversation } from '@guepard/domain/entities';
-import { IConversationRepository } from '@guepard/domain/repositories';
-import type { Json } from '@guepard/supabase/database';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Conversation } from '@qlm/domain/entities';
+import { IConversationRepository } from '@qlm/domain/repositories';
+import type { Json } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 export class ConversationRepository extends IConversationRepository {

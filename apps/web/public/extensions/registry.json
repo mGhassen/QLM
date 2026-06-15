@@ -10,7 +10,7 @@
       ],
       "icon": "/extensions/clickhouse-node/ClickHouseLogo_White_FNL.svg",
       "schema": null,
-      "packageName": "@guepard/extension-clickhouse-node",
+      "packageName": "@qlm/extension-clickhouse-node",
       "drivers": [
         {
           "id": "clickhouse.node",
@@ -32,7 +32,7 @@
       ],
       "icon": "/extensions/clickhouse-web/ClickHouseLogo_White_FNL.svg",
       "schema": null,
-      "packageName": "@guepard/extension-clickhouse-web",
+      "packageName": "@qlm/extension-clickhouse-web",
       "drivers": [
         {
           "id": "clickhouse.web",
@@ -54,7 +54,7 @@
         "Files"
       ],
       "schema": null,
-      "packageName": "@guepard/extension-csv-online",
+      "packageName": "@qlm/extension-csv-online",
       "drivers": [
         {
           "id": "csv-online.duckdb",
@@ -76,7 +76,7 @@
       ],
       "icon": "/extensions/duckdb/DuckDB_stack-darkmode.svg",
       "schema": null,
-      "packageName": "@guepard/extension-duckdb",
+      "packageName": "@qlm/extension-duckdb",
       "drivers": [
         {
           "id": "duckdb.default",
@@ -98,7 +98,7 @@
       ],
       "icon": "/extensions/duckdb-wasm/DuckDB_stack-darkmode.svg",
       "schema": null,
-      "packageName": "@guepard/extension-duckdb-wasm",
+      "packageName": "@qlm/extension-duckdb-wasm",
       "drivers": [
         {
           "id": "duckdb-wasm.default",
@@ -122,7 +122,7 @@
       ],
       "icon": "/extensions/gsheet-csv/gsheet.svg",
       "schema": null,
-      "packageName": "@guepard/extension-gsheet-csv",
+      "packageName": "@qlm/extension-gsheet-csv",
       "drivers": [
         {
           "id": "gsheet-csv.duckdb",
@@ -144,7 +144,7 @@
       ],
       "icon": "/extensions/json-online/json.svg",
       "schema": null,
-      "packageName": "@guepard/extension-json-online",
+      "packageName": "@qlm/extension-json-online",
       "drivers": [
         {
           "id": "json-online.duckdb",
@@ -166,7 +166,7 @@
       ],
       "icon": "/extensions/mongodb/mongodb.svg",
       "schema": null,
-      "packageName": "@guepard/extension-mongodb",
+      "packageName": "@qlm/extension-mongodb",
       "drivers": [
         {
           "id": "mongodb.default",
@@ -188,7 +188,7 @@
       ],
       "icon": "/extensions/mysql/MySQL.svg",
       "schema": null,
-      "packageName": "@guepard/extension-mysql",
+      "packageName": "@qlm/extension-mysql",
       "drivers": [
         {
           "id": "mysql.default",
@@ -210,7 +210,7 @@
       ],
       "icon": "/extensions/parquet-online/parquet.svg",
       "schema": null,
-      "packageName": "@guepard/extension-parquet-online",
+      "packageName": "@qlm/extension-parquet-online",
       "drivers": [
         {
           "id": "parquet-online.duckdb",
@@ -232,7 +232,7 @@
       ],
       "icon": "/extensions/pglite/pglite.svg",
       "schema": null,
-      "packageName": "@guepard/extension-pglite",
+      "packageName": "@qlm/extension-pglite",
       "drivers": [
         {
           "id": "pglite.default",
@@ -255,7 +255,7 @@
       ],
       "icon": "/extensions/postgresql/postgresql.svg",
       "schema": null,
-      "packageName": "@guepard/extension-postgresql",
+      "packageName": "@qlm/extension-postgresql",
       "drivers": [
         {
           "id": "postgresql.default",
@@ -278,7 +278,7 @@
       ],
       "icon": "/extensions/postgresql-supabase/supabase-logo-wordmark--dark.svg",
       "schema": null,
-      "packageName": "@guepard/extension-postgresql",
+      "packageName": "@qlm/extension-postgresql",
       "drivers": [
         {
           "id": "postgresql.default",
@@ -301,7 +301,7 @@
       ],
       "icon": "/extensions/postgresql-neon/neon-logo-dark-color.svg",
       "schema": null,
-      "packageName": "@guepard/extension-postgresql",
+      "packageName": "@qlm/extension-postgresql",
       "drivers": [
         {
           "id": "postgresql.default",
@@ -324,7 +324,7 @@
       ],
       "icon": "/extensions/s3/s3.svg",
       "schema": null,
-      "packageName": "@guepard/extension-s3",
+      "packageName": "@qlm/extension-s3",
       "drivers": [
         {
           "id": "s3.duckdb",
@@ -346,7 +346,7 @@
       ],
       "icon": "/extensions/youtube-data-api-v3/YouTube_2024.svg",
       "schema": null,
-      "packageName": "@guepard/extension-youtube-data-api-v3",
+      "packageName": "@qlm/extension-youtube-data-api-v3",
       "drivers": [
         {
           "id": "youtube-data-api-v3.default",

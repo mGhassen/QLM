@@ -29,17 +29,17 @@ Ship `Layer1View` with Loading / Empty / Ready / Error states, wire the plugin-r
   - Props: `{ sources: SourceCard[]; isLoading: boolean; error: Error | null; onSelectSource: (s: SourceCard) => void; onRetry: () => void; }` as `Readonly<Layer1ViewProps>`.
   - Layout: full-bleed dot-grid background (reusing `EnvironmentsCanvasDotGrid` from Story 007 if it lands first, or a placeholder until then — see note below), centered flex-wrap container with `max-w-5xl`, cards at 200px wide.
   - Empty state: centered illustration + `environments.layer1.empty.heading` + `environments.layer1.empty.body`. No primary action.
-  - Loading state: six skeleton cards via `@guepard/ui/skeleton`.
+  - Loading state: six skeleton cards via `@qlm/ui/skeleton`.
   - Error state: `<InlineError />` (Story 005 primitive) with retry button.
   - Ready state: grid of `<SourceCard />` components, one click handler per card.
   - Stories: one per state.
 - `packages/apps/environments/src/plugin-root.tsx` default export (`EnvironmentsPluginRoot`):
-  - Calls `useFixtureSources(projectSlug)` from `@guepard/environments/fixtures`.
+  - Calls `useFixtureSources(projectSlug)` from `@qlm/environments/fixtures`.
   - Passes `sources`, `isLoading`, `error`, `onSelectSource`, `onRetry` to `<Layer1View />`.
   - `onSelectSource` navigates to `/prj/$projectSlug/environments/$sourceSlug` via `useNavigate` from `@tanstack/react-router`.
 - `apps/web/src/config/paths.config.ts`:
   - Add `createEnvironmentsPath(projectSlug: string)` helper (returns `/prj/${projectSlug}/environments`).
-- `apps/web/package.json`: add `@guepard/environments` and `@guepard/apps-environments` to dependencies if they aren't already from Story 001.
+- `apps/web/package.json`: add `@qlm/environments` and `@qlm/apps-environments` to dependencies if they aren't already from Story 001.
 - Unit test for the navigate callback with a mocked router.
 
 **Out of scope** (forces honest slicing)
@@ -61,7 +61,7 @@ Ship `Layer1View` with Loading / Empty / Ready / Error states, wire the plugin-r
 - [ ] `pnpm web:dev` → navigate to `/prj/{any-slug}/environments` → render 3 fixture cards → click Postgres card → URL becomes `/prj/{slug}/environments/postgres-primary` (Layer 2 returns 404 until Story 009).
 - [ ] Empty state is user-friendly and localized — verified by rendering the story with `sources={[]}`.
 - [ ] No hardcoded English strings in the new files.
-- [ ] `pnpm typecheck` passes across `@guepard/environments`, `@guepard/apps-environments`, `apps/web`.
+- [ ] `pnpm typecheck` passes across `@qlm/environments`, `@qlm/apps-environments`, `apps/web`.
 
 ## Tasks
 
@@ -83,11 +83,11 @@ pnpm web:dev
 # 7. Expect a 404 or blank Layer 2 — Story 009 delivers the Layer 2 view.
 
 # Storybook visual review
-pnpm --filter @guepard/environments storybook
+pnpm --filter @qlm/environments storybook
 # Browse: Environments/Layer1View (4 state stories)
 
 # Tests
-pnpm --filter @guepard/environments test
+pnpm --filter @qlm/environments test
 ```
 
 ## Questions surfaced

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/user-profile",
+  "name": "@qlm/user-profile",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -16,13 +16,13 @@
     "./components": "./src/components/index.ts"
   },
   "dependencies": {
-    "@guepard/supabase": "workspace:*"
+    "@qlm/supabase": "workspace:*"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@storybook/react": "catalog:",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -42,7 +42,7 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

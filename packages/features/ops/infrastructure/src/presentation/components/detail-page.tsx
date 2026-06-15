@@ -22,12 +22,12 @@ import {
   FileCode,
 } from 'lucide-react';
 
-import type { Node, NodeLifecycleState } from '@guepard/domain/entities';
-import { Button } from '@guepard/ui/button';
-import { CloudProviderIcon } from '@guepard/ui/cloud-provider-icon';
-import { ConfirmNameDialog } from '@guepard/ui/dialog-primitives';
-import { BadgeItem, EntitySection } from '@guepard/ui/entity-primitives';
-import { cn } from '@guepard/ui/utils';
+import type { Node, NodeLifecycleState } from '@qlm/domain/entities';
+import { Button } from '@qlm/ui/button';
+import { CloudProviderIcon } from '@qlm/ui/cloud-provider-icon';
+import { ConfirmNameDialog } from '@qlm/ui/dialog-primitives';
+import { BadgeItem, EntitySection } from '@qlm/ui/entity-primitives';
+import { cn } from '@qlm/ui/utils';
 
 import { DISPLAY_BADGE_CLASSES, PROVIDER_STYLES } from '../../application/constants';
 import { HealthStatusBadge } from '../cells/health-status-badge';

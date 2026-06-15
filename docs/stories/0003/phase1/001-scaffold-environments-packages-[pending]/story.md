@@ -28,7 +28,7 @@ Create empty `packages/features/environments` and `packages/apps/environments` p
 - Create `packages/apps/environments/` with `package.json`, `tsconfig.json`, `src/index.ts`, `src/manifest.ts`, `src/plugin-root.tsx` (placeholder). Mirror the shape of `packages/apps/notebook/`.
 - `manifest.ts` mirrors `packages/apps/notebook/src/manifest.ts` shape: `id: 'environments'`, `displayName: 'Environments'`, `icon: 'SquareTerminal'`, `layer: 'project'`, `routeBase: 'environments'`, `projectTopLevelAppBucketId: 'ops'`, `flatRoute: { prefix: 'env', params: ['sourceSlug'] }`, `nav: { slot: 'project.topLevelNav', primary: { label: 'Environments', icon: 'SquareTerminal', order: 15 } }`, `enabled: true`.
 - `plugin-root.tsx` default export returns a trivial placeholder page (one localized heading) — no real components yet.
-- Add `@guepard/environments` and `@guepard/apps-environments` (or whatever the target names resolve to) to `apps/web/package.json`.
+- Add `@qlm/environments` and `@qlm/apps-environments` (or whatever the target names resolve to) to `apps/web/package.json`.
 - Verify the Vite-glob registry (`apps/web/src/shell/app-registry.ts`) picks up the new plugin **without any hand-edit to that file**.
 
 **Out of scope** (forces honest slicing)
@@ -47,7 +47,7 @@ Create empty `packages/features/environments` and `packages/apps/environments` p
 - [ ] Clicking "Environments" navigates to `/prj/{slug}/environments` and renders the placeholder page without errors.
 - [ ] The plugin is discovered by `apps/web/src/shell/app-registry.ts` automatically — no edits to that file are needed.
 - [ ] The placeholder page contains no hardcoded English strings. Even the single placeholder line uses `t(...)` with a key that Story 003 later fleshes out.
-- [ ] `packages/apps/environments/src/manifest.ts` imports `PluginManifest` from `@guepard/shell-contracts/manifest` matching the notebook pattern.
+- [ ] `packages/apps/environments/src/manifest.ts` imports `PluginManifest` from `@qlm/shell-contracts/manifest` matching the notebook pattern.
 - [ ] `packages/features/environments/package.json` exposes a `./types` export pointing at `./src/types/index.ts` even though that file is empty for now, so Story 002 can fill it without another package-boundary change.
 
 ## Tasks

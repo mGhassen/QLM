@@ -3,13 +3,13 @@ import type { QueryClient } from '@tanstack/react-query';
 import type {
   INodeRepository,
   IPoolRepository,
-} from '@guepard/domain/repositories';
-import { FleetAggregateService } from '@guepard/domain/services';
+} from '@qlm/domain/repositories';
+import { FleetAggregateService } from '@qlm/domain/services';
 import type {
   FleetSummary,
   PressurePoint,
-} from '@guepard/domain/usecases';
-import type { Pool } from '@guepard/domain/entities';
+} from '@qlm/domain/usecases';
+import type { Pool } from '@qlm/domain/entities';
 
 /**
  * Runtime namespace for "where is the fleet?" reads. Both topology and

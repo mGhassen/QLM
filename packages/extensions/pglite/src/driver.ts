@@ -5,8 +5,8 @@ import type {
   IDataSourceDriver,
   DatasourceResultSet,
   DatasourceMetadata,
-} from '@guepard/extensions-sdk';
-import { buildMetadataFromInformationSchema } from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
+import { buildMetadataFromInformationSchema } from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

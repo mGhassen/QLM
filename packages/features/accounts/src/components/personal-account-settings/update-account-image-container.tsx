@@ -7,10 +7,10 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import { Database } from '@guepard/supabase/database';
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { ImageUploader } from '@guepard/ui/image-uploader';
-import { Trans } from '@guepard/ui/trans';
+import { Database } from '@qlm/supabase/database';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { ImageUploader } from '@qlm/ui/image-uploader';
+import { Trans } from '@qlm/ui/trans';
 
 import { useRevalidatePersonalAccountDataQuery } from '../../hooks/use-personal-account-data';
 

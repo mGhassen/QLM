@@ -23,10 +23,10 @@ Presentational `DropdownMenu` with PROJECT + ORGANIZATION sections separated by 
 - [ ] Keyboard: `Esc` calls `onClose`. `↑`/`↓` move focus within the menu. `Enter` on a chevron row opens its submenu.
 - [ ] Storybook stories: `Default`, `Loading`, `Error`, `LongOrgName` (overflow handling).
 - [ ] `index.ts` re-exports `DropdownMenu` + its prop types.
-- [ ] `pnpm typecheck` green; `pnpm --filter @guepard/shell-topbar test` green.
+- [ ] `pnpm typecheck` green; `pnpm --filter @qlm/shell-topbar test` green.
 
 ## Notes
 
-- Use Shadcn primitives from `@guepard/ui` — `DropdownMenu`-like Radix wrappers if available, else handcrafted with `role="menu"` + `role="menuitem"` and the aria-activedescendant pattern.
-- Do NOT import `react-i18next/Trans` — eslint enforces `@guepard/ui/trans`. For pure `t()` calls, `useTranslation('shell')` from `react-i18next` is the conventional pattern.
+- Use Shadcn primitives from `@qlm/ui` — `DropdownMenu`-like Radix wrappers if available, else handcrafted with `role="menu"` + `role="menuitem"` and the aria-activedescendant pattern.
+- Do NOT import `react-i18next/Trans` — eslint enforces `@qlm/ui/trans`. For pure `t()` calls, `useTranslation('shell')` from `react-i18next` is the conventional pattern.
 - The active-project and active-org rows MUST have `aria-haspopup="menu"` + `aria-expanded` driven by whichever submenu is open (parent manages state — this task just wires the attribute through).

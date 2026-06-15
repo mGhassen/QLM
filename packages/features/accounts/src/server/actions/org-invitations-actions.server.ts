@@ -4,9 +4,9 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import { Database } from '@guepard/supabase/database';
-import { requireUser } from '@guepard/supabase/require-user';
-import { getSupabaseServerAdminClient } from '@guepard/supabase/server-admin-client';
+import { Database } from '@qlm/supabase/database';
+import { requireUser } from '@qlm/supabase/require-user';
+import { getSupabaseServerAdminClient } from '@qlm/supabase/server-admin-client';
 
 import {
   DeleteInvitationSchema,

@@ -2,13 +2,13 @@
   "firstRun": {
     "title": "Choose a server",
     "subtitle": "Select where this app should connect.",
-    "cloudOption": "Cloud (rasm.ai)",
-    "cloudDescription": "Connect to Rasm's hosted service.",
+    "cloudOption": "Cloud (qlm.dev)",
+    "cloudDescription": "Connect to QLM's hosted service.",
     "customOption": "Custom server URL",
     "customDescription": "Connect to your organization's deployment.",
     "localOption": "Local",
     "localDescription": "Use the bundled server running on this machine.",
-    "urlPlaceholder": "https://rasm.your-company.com",
+    "urlPlaceholder": "https://qlm.your-company.com",
     "urlInvalid": "Enter a valid HTTPS URL.",
     "mdmBanner": "Your IT team configured this URL.",
     "continue": "Continue"

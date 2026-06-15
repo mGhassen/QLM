@@ -4,19 +4,19 @@ import { Hono } from 'hono';
 import type {
   IntegrationConnection,
   IntegrationProvider,
-} from '@guepard/domain/entities';
-import { IIntegrationConnectionRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import { IIntegrationConnectionRepository } from '@qlm/domain/repositories';
 import type {
   IntegrationTestResultUpdate,
   ISecretVault,
   Repositories,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import {
   IIntegrationProviderDriverRegistry,
   type IIntegrationProviderDriver,
   type RevealedCredentials,
-} from '@guepard/domain/services';
-import type { Region, TestResult } from '@guepard/domain/usecases';
+} from '@qlm/domain/services';
+import type { Region, TestResult } from '@qlm/domain/usecases';
 
 import { createRateLimiter } from '../src/lib/rate-limiter.js';
 import { createIntegrationsRoutes } from '../src/routes/integrations.js';

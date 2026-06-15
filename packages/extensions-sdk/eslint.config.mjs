@@ -1,5 +1,5 @@
-import eslintConfigApps from '@guepard/eslint-config/apps.js';
-import eslintConfigBase from '@guepard/eslint-config/base.js';
+import eslintConfigApps from '@qlm/eslint-config/apps.js';
+import eslintConfigBase from '@qlm/eslint-config/base.js';
 
 export default [
   ...eslintConfigBase,

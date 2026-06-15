@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
-import { decodeTabId, encodeTabId } from '@guepard/shell-contracts';
-import { useShellApp } from '@guepard/shell-runtime';
-import { createNewDocAction, deleteDocAction, importDocAction } from '@guepard/docs-studio/actions';
-import type { DocListItem } from '@guepard/docs-studio';
-import { docsPaths } from '@guepard/docs-studio/paths';
+import { decodeTabId, encodeTabId } from '@qlm/shell-contracts';
+import { useShellApp } from '@qlm/shell-runtime';
+import { createNewDocAction, deleteDocAction, importDocAction } from '@qlm/docs-studio/actions';
+import type { DocListItem } from '@qlm/docs-studio';
+import { docsPaths } from '@qlm/docs-studio/paths';
 import {
   DocsPickerDialog,
   DocsStudioPage,
   DocsStudioRedirect,
   StudioShellProvider,
-} from '@guepard/docs-studio/pages';
+} from '@qlm/docs-studio/pages';
 
 function studioDocTabId(slug: string): string {
   return encodeTabId({ kind: 'studio-doc', slug });

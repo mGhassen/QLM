@@ -88,7 +88,7 @@ const tokensEn = {
   },
   empty: {
     heading: 'No access tokens yet',
-    body: 'Generate a token to authenticate CLI tools, CI pipelines, or scripts against the Guepard public API.',
+    body: 'Generate a token to authenticate CLI tools, CI pipelines, or scripts against the QLM public API.',
     action: 'Generate your first token',
   },
   errors: {

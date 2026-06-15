@@ -8,14 +8,14 @@ import {
     type LucideIcon,
 } from 'lucide-react';
 
-import { cn } from '@guepard/ui/utils';
-import { Button } from '@guepard/ui/button';
+import { cn } from '@qlm/ui/utils';
+import { Button } from '@qlm/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuTrigger,
     DropdownMenuSeparator,
-} from '@guepard/ui/dropdown-menu';
+} from '@qlm/ui/dropdown-menu';
 import type { TopologyView } from './topology-page';
 
 export type TopologyOptionsMenuProps = {

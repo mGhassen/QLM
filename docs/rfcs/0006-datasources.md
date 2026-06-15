@@ -21,7 +21,7 @@ Phase 1 shipped the following, end-to-end:
 
 - A Zod-validated `DatasourceEntity` in `packages/domain`, with CRUD use-case services, a repository port, Supabase and HTTP adapters, and a `shell.datasources.*` resource on the shell runtime.
 - A `packages/apps/datasources` plugin app registered automatically by the Vite-glob app registry under the `data` bucket in the project shell, with a list view, a driver browser + connect sheet, and a detail view with **Settings**, **Tables**, and **Schema** tabs.
-- A driver plug-in contract (`@guepard/extensions-sdk`) with 14 driver packages under `packages/extensions/*`, split across **browser runtime** (DuckDB-WASM, PGlite, ClickHouse-WASM, CSV / Parquet / JSON online, Google Sheets CSV, YouTube Data API) and **node runtime** (PostgreSQL, MySQL, ClickHouse-node, MongoDB, S3, DuckDB-native). A browser / node dispatcher in the web shell routes `testConnection` and `metadata` calls to the right runtime.
+- A driver plug-in contract (`@qlm/extensions-sdk`) with 14 driver packages under `packages/extensions/*`, split across **browser runtime** (DuckDB-WASM, PGlite, ClickHouse-WASM, CSV / Parquet / JSON online, Google Sheets CSV, YouTube Data API) and **node runtime** (PostgreSQL, MySQL, ClickHouse-node, MongoDB, S3, DuckDB-native). A browser / node dispatcher in the web shell routes `testConnection` and `metadata` calls to the right runtime.
 - A three-state visibility model encoded in RLS: **organisational** (`is_private = false AND is_public = false`), **private** (`is_private = true`), **public** (`is_public = true`), gated by two permissions on `public.app_permissions`: `datasources.manage` and `datasources.publish`.
 - An i18n namespace `datasources` covering the list view, connect flow, detail tabs, and toast messages.
 
@@ -33,7 +33,7 @@ The console needs a first-class primitive for "a thing that speaks a known proto
 
 **Notebooks need a stable binding target.** A notebook cell is "a SQL expression evaluated against a named datasource". Without a datasource entity that has an id, a lifecycle, and a permission model, notebooks would have to embed raw connection strings in cell metadata — non-shareable, non-auditable, impossible to rotate. The datasource primitive gives cells a stable id to bind to.
 
-**The federated query engine needs a uniform attach surface.** Guepard's query engine attaches multiple sources into a single query (`attach(datasources[])` / `detach(datasources[])` on the query-engine port). For that to work, every source has to flow through *one* contract: a driver with `testConnection`, `metadata`, and a query entry point. Datasources are the row that holds the driver's inputs; drivers are the code that honours the contract.
+**The federated query engine needs a uniform attach surface.** QLM's query engine attaches multiple sources into a single query (`attach(datasources[])` / `detach(datasources[])` on the query-engine port). For that to work, every source has to flow through *one* contract: a driver with `testConnection`, `metadata`, and a query entry point. Datasources are the row that holds the driver's inputs; drivers are the code that honours the contract.
 
 **Browser-local and server-side drivers are both first-class citizens.** Some providers naturally live in the browser (DuckDB-WASM on in-memory Parquet, PGlite on a local file, CSV parsed in the page). Others are strictly server-side (Postgres over the network, S3 with credentials, MongoDB). The datasource primitive must accommodate both without forcing one onto the other — forcing every driver server-side would make browser-local datasets pointlessly slow; forcing every driver browser-side would leak database credentials into the client. The dispatcher that routes by `runtime: 'browser' | 'node'` is therefore part of the primitive, not an optimisation.
 
@@ -55,7 +55,7 @@ Every bullet below is an observable exit criterion that the current implementati
 - Hono routes in `apps/server/src/routes/datasources.ts` wiring the CRUD surface: `GET /` (by project), `GET /:id` (by uuid or by slug), `POST /`, `PUT /:id`, `DELETE /:id`.
 - A plugin app `packages/apps/datasources` discovered by `apps/web/src/shell/app-registry.ts`, with a `routeBase: 'datasources'` under the project shell and a `flatRoute` prefix `datasource` for shareable short URLs.
 - Feature components in `packages/features/datasources/src/components`: `DatasourceList`, `DatasourceBrowser`, `DatasourceConnectSheet`, `DatasourceConnectForm`, `DatasourceDetailSidebar`, `DatasourceSettingsPanel`, `DatasourceTablesPanel`, `DatasourceColumnsPanel`, `DatasourceSchemaPanel`, `DatasourceDocsLink`.
-- A driver plug-in contract in `@guepard/extensions-sdk`, with 14 driver packages under `packages/extensions/*` split across browser and node runtimes (see §7 for the full list).
+- A driver plug-in contract in `@qlm/extensions-sdk`, with 14 driver packages under `packages/extensions/*` split across browser and node runtimes (see §7 for the full list).
 - A browser / node dispatcher (`apps/web/src/shell/driver-dispatch.ts`) that resolves the runtime per driver and either invokes the driver in-process (browser runtime) or forwards the call to the server via `POST /driver/command` (node runtime).
 - A RLS-protected `public.datasources` table in `apps/web/supabase/schemas/22-datasources.sql` with three SELECT policies (organisational / private / public), a public-anon read policy, and INSERT / UPDATE / DELETE policies gated by `datasources.manage` and `datasources.publish` permissions on `public.app_permissions`.
 - An i18n namespace `datasources` in `apps/web/src/lib/i18n/locales/en/datasources.json` covering list, browser, connect, detail (Settings / Tables / Schema), delete-confirm, and error-toast surfaces.
@@ -105,10 +105,10 @@ The entity lives in `packages/domain`, is pure TypeScript, and is a value-object
 
 ### 5.2 Drivers
 
-A driver is a plug-in contributed by a `@guepard/extension-*` package. Every driver declares:
+A driver is a plug-in contributed by a `@qlm/extension-*` package. Every driver declares:
 
 - **Identity** — extension id + driver id pair, human-readable name, icon reference, docs URL.
-- **Schema** — a JSON-Schema description of the non-secret `config` (converted to Zod at runtime via `@guepard/extensions-sdk/json-schema-to-zod`). In phase 1, secret fields are *not* annotated separately; they are just fields in the schema and flow into the same `config` blob.
+- **Schema** — a JSON-Schema description of the non-secret `config` (converted to Zod at runtime via `@qlm/extensions-sdk/json-schema-to-zod`). In phase 1, secret fields are *not* annotated separately; they are just fields in the schema and flow into the same `config` blob.
 - **Runtime** — `browser` or `node`. The dispatcher in `apps/web/src/shell/driver-dispatch.ts` reads this marker to decide where to execute test-connection and metadata calls.
 - **Operations** — a `DriverFactory` that returns a driver instance with `testConnection`, `metadata` (schemas / tables / columns / relationships), and the query surface consumed by the query engine.
 
@@ -166,7 +166,7 @@ apps/web                                          apps/server
 Three orthogonal ports / registries:
 
 - **Persistence** — `IDatasourceRepository`, with Supabase and HTTP adapters.
-- **Driver registry** — `ExtensionsRegistry` from `@guepard/extensions-sdk`, initialised at plugin-root mount time from the hand-maintained loader array.
+- **Driver registry** — `ExtensionsRegistry` from `@qlm/extensions-sdk`, initialised at plugin-root mount time from the hand-maintained loader array.
 - **Driver dispatch** — `apps/web/src/shell/driver-dispatch.ts`, the thin runtime-aware router that turns `(provider, driverId, config)` into a `testConnection` or `metadata` call against the right runtime.
 
 Browser-runtime drivers execute inside the plugin app — test and metadata calls stay client-side. Node-runtime drivers execute inside the server — the plugin app calls the shell resource, which calls the dispatcher, which posts to `/driver/command`. The shell runtime hides the split from the UI: the plugin calls `shell.datasources.testConnection(...)` and does not care which side runs.
@@ -179,23 +179,23 @@ The 14 driver packages shipped under `packages/extensions/*` in phase 1:
 
 **Browser runtime** (driver runs in the user's browser, in-process):
 
-- `@guepard/extension-duckdb-wasm` — DuckDB compiled to WebAssembly, for ad-hoc SQL on in-memory data.
-- `@guepard/extension-pglite` — Postgres compiled to WebAssembly (via PGlite), for local Postgres-compatible experimentation.
-- `@guepard/extension-clickhouse-web` — ClickHouse browser driver.
-- `@guepard/extension-csv-online` — CSV file parsed in the browser, queried via DuckDB-WASM under the hood.
-- `@guepard/extension-parquet-online` — Parquet file fetched and queried in the browser.
-- `@guepard/extension-json-online` — JSON file parsed and queried in the browser.
-- `@guepard/extension-gsheet-csv` — Google Sheets exported as CSV and queried in the browser.
-- `@guepard/extension-youtube-data-api-v3` — YouTube Data API v3, queried as a virtual tabular source.
+- `@qlm/extension-duckdb-wasm` — DuckDB compiled to WebAssembly, for ad-hoc SQL on in-memory data.
+- `@qlm/extension-pglite` — Postgres compiled to WebAssembly (via PGlite), for local Postgres-compatible experimentation.
+- `@qlm/extension-clickhouse-web` — ClickHouse browser driver.
+- `@qlm/extension-csv-online` — CSV file parsed in the browser, queried via DuckDB-WASM under the hood.
+- `@qlm/extension-parquet-online` — Parquet file fetched and queried in the browser.
+- `@qlm/extension-json-online` — JSON file parsed and queried in the browser.
+- `@qlm/extension-gsheet-csv` — Google Sheets exported as CSV and queried in the browser.
+- `@qlm/extension-youtube-data-api-v3` — YouTube Data API v3, queried as a virtual tabular source.
 
 **Node runtime** (driver runs on the server, reached by the browser via `POST /driver/command`):
 
-- `@guepard/extension-postgresql` — PostgreSQL over the network.
-- `@guepard/extension-mysql` — MySQL over the network.
-- `@guepard/extension-clickhouse-node` — ClickHouse server driver.
-- `@guepard/extension-mongodb` — MongoDB native driver.
-- `@guepard/extension-s3` — S3 object listing + object fetch.
-- `@guepard/extension-duckdb` — DuckDB native (non-WASM).
+- `@qlm/extension-postgresql` — PostgreSQL over the network.
+- `@qlm/extension-mysql` — MySQL over the network.
+- `@qlm/extension-clickhouse-node` — ClickHouse server driver.
+- `@qlm/extension-mongodb` — MongoDB native driver.
+- `@qlm/extension-s3` — S3 object listing + object fetch.
+- `@qlm/extension-duckdb` — DuckDB native (non-WASM).
 
 A `postgresql-supabase` and a `postgresql-neon` extension are reserved slots in the loader registry; the packages themselves are not shipped in phase 1.
 
@@ -262,7 +262,7 @@ New user-facing strings land in this file (plus mirrors in every other locale) p
 
 These are documented here so future work has a known-and-agreed baseline to reconcile, not so they get fixed as part of phase 1. Each is phase-2 material unless a specific amendment says otherwise.
 
-- **Duplicate service hierarchy.** Two directories exist in parallel: `packages/domain/src/services/datasources/` and `packages/domain/src/usecases/datasources/`. The canonical, wired-up hierarchy is `services/datasources/` — both `shell-runtime` and the server routes import from `@guepard/domain/services`. The `usecases/datasources/` directory is historical and intended for removal in phase 2.
+- **Duplicate service hierarchy.** Two directories exist in parallel: `packages/domain/src/services/datasources/` and `packages/domain/src/usecases/datasources/`. The canonical, wired-up hierarchy is `services/datasources/` — both `shell-runtime` and the server routes import from `@qlm/domain/services`. The `usecases/datasources/` directory is historical and intended for removal in phase 2.
 - **Plaintext secrets in `datasource_config`.** `IDatasourceRepository.revealSecrets` is a pass-through. Adopting `ISecretVault` is the phase-2 milestone; it will require a driver-schema annotation for secret fields, a server-side split of `config` into non-secret-and-stored vs. secret-and-vaulted, and a one-shot migration of existing rows.
 - **Entity ↔ DB drift on visibility.** The entity exposes only `isPublic`; the DB has `is_private` and `is_public`. RLS treats organisational, private, and public as three distinct postures, but the entity cannot describe the "private" posture. Phase 2 adds `isPrivate` to the entity, or collapses to a `visibility: 'organisational' | 'private' | 'public'` enum with a migration.
 - **Hand-maintained driver loader array.** `packages/extensions-loader/src/index.ts` hard-codes the `EXTENSIONS` list. Replacing it with Vite-glob discovery (matching `apps/web/src/shell/app-registry.ts`) is phase 2.

@@ -1,5 +1,5 @@
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { IPerformanceProfileRepository } from '@guepard/domain/repositories';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { IPerformanceProfileRepository } from '@qlm/domain/repositories';
 
 import { apiGet } from './api-client';
 

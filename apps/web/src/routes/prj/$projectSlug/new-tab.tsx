@@ -3,8 +3,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { Search, Loader2, Plus } from 'lucide-react';
 
-import { renderIcon } from '@guepard/ui/shell';
-import { cn } from '@guepard/ui/utils';
+import { renderIcon } from '@qlm/ui/shell';
+import { cn } from '@qlm/ui/utils';
 
 import { getAppRegistry } from '@/shell/app-registry';
 import {

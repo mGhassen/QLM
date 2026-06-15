@@ -16,9 +16,9 @@ Create `packages/apps/project-settings` as a new shell app plugin with a manifes
 
 ## Done when
 
-- [x] `packages/apps/project-settings/package.json` declares `@guepard/app-project-settings` (consistent with `@guepard/app-notebook`, etc.) with `@guepard/settings-shell` as a dep.
+- [x] `packages/apps/project-settings/package.json` declares `@qlm/app-project-settings` (consistent with `@qlm/app-notebook`, etc.) with `@qlm/settings-shell` as a dep.
 - [x] `src/manifest.ts` exports a `PluginManifest` with `id: 'project-settings'`, `routeBase: 'project-settings'`, a human label, and an icon.
-- [x] `src/plugin-root.tsx` default-exports a React component that renders `SettingsSidebar` (from `@guepard/settings-shell`) with a single placeholder General section.
+- [x] `src/plugin-root.tsx` default-exports a React component that renders `SettingsSidebar` (from `@qlm/settings-shell`) with a single placeholder General section.
 - [x] Monorepo-wide `pnpm typecheck` stays green (49/49 tasks).
 
 ## Notes

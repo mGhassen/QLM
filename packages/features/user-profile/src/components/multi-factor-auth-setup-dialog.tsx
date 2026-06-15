@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@guepard/ui/input-otp';
-import { Label } from '@guepard/ui/label';
+} from '@qlm/ui/input-otp';
+import { Label } from '@qlm/ui/label';
 
 export type MfaSetupEnrollPayload = Readonly<{
   factorId: string;

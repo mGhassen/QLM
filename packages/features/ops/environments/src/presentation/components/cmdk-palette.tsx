@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Command } from "cmdk";
 
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 import {
   Database,
   MessageSquare,

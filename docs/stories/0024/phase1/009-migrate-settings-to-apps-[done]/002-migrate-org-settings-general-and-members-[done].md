@@ -19,12 +19,12 @@ validation:
 
 # Migrate org-settings General and Members sections
 
-Builds the first two sections of the `org-settings` SettingsShell: General (org rename) and Members (wraps `@guepard/features/accounts` members + invitations UI migrated from the deleted `/org/$slug/members` route).
+Builds the first two sections of the `org-settings` SettingsShell: General (org rename) and Members (wraps `@qlm/features/accounts` members + invitations UI migrated from the deleted `/org/$slug/members` route).
 
 ## Done when
 
 - [ ] `sections/general.tsx` renders an org rename form wired through the existing org-update resource.
-- [ ] `sections/members.tsx` composes `AccountMembersTable` and `InviteMembersDialogContainer` from `@guepard/accounts/components` against the current org.
+- [ ] `sections/members.tsx` composes `AccountMembersTable` and `InviteMembersDialogContainer` from `@qlm/accounts/components` against the current org.
 - [ ] Plugin-root mounts `SettingsShell` with `general` and `members` sections (billing + usage arrive in task 003).
 - [ ] Storybook stories cover default, loading, and error states for each section.
 - [ ] All user-facing strings go through `t(...)` with keys added to `apps/web/src/lib/i18n/locales/en/org-settings.json`.

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
-import type { UserToken, UserTokenScope } from '@guepard/domain/entities';
+import type { UserToken, UserTokenScope } from '@qlm/domain/entities';
 
 import { withUserTokensProviders } from './story-helpers';
 import { TokenRow } from './token-row';

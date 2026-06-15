@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { I18nextProvider } from 'react-i18next';
 
-import type { UserTokenScope, UserTokenStatus } from '@guepard/domain/entities';
+import type { UserTokenScope, UserTokenStatus } from '@qlm/domain/entities';
 
 import { FilterPopover } from '../src/components/primitives/filter-popover';
 import { storybookI18n } from '../src/components/story-helpers';

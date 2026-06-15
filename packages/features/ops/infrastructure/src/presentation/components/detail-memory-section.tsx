@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HeatSegmentBar } from '@guepard/ui/heat-segment-bar';
+import { HeatSegmentBar } from '@qlm/ui/heat-segment-bar';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
-import { EntitySection } from '@guepard/ui/entity-primitives';
+import { EntitySection } from '@qlm/ui/entity-primitives';
 import { toHeatTone } from '../lib/to-heat-tone';
 
 export type NodeDetailMemorySectionProps = Readonly<{ node: Node }>;

@@ -5,7 +5,7 @@ import { fn } from 'storybook/test';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { ShellTopbar } from './shell-topbar';
 
@@ -16,14 +16,14 @@ import { ShellTopbar } from './shell-topbar';
  */
 function makeShellValue(): ShellAppContextValue {
   const orgs = [
-    { id: 'o-1', slug: 'rasm', name: 'Rasm', user_id: 'u-1' },
+    { id: 'o-1', slug: 'qlm', name: 'QLM', user_id: 'u-1' },
     { id: 'o-2', slug: 'contoso', name: 'Contoso', user_id: 'u-1' },
   ];
   const projects = [
     {
       id: 'p-1',
-      slug: 'guepard-console',
-      name: 'Rasm Console',
+      slug: 'qlm-console',
+      name: 'QLM Console',
       organizationId: 'o-1',
     },
     {
@@ -37,8 +37,8 @@ function makeShellValue(): ShellAppContextValue {
 
   return {
     projectId: 'p-1',
-    projectSlug: 'guepard-console',
-    orgSlug: 'rasm',
+    projectSlug: 'qlm-console',
+    orgSlug: 'qlm',
     organizationId: 'org-1',
     currentUserId: 'u-1',
     repositories: asAny({

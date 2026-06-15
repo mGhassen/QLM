@@ -43,7 +43,7 @@ Introduce the `IAccountRepository` port, Supabase adapter, `shell.personalAccoun
 - [ ] `apps/web/src/lib/repositories-factory.ts` constructs `PersonalAccountRepository` and includes it in the `Repositories` bag.
 - [ ] `shell.personalAccount.getMine()` + `updateMine({ name?, pictureUrl? })` + `invalidate.mine()` exposed, backed by shared query key `['personal-account', userId]`.
 - [ ] `packages/i18n` ships `userProfile.sectionTitle`, `userProfile.name.{title,description,label,submit,updated,required}` with English + French defaults.
-- [ ] `pnpm --filter @guepard/domain test` passes; `pnpm typecheck` passes across the monorepo.
+- [ ] `pnpm --filter @qlm/domain test` passes; `pnpm typecheck` passes across the monorepo.
 
 ## Notes
 

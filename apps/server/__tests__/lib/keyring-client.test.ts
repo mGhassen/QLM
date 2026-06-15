@@ -27,14 +27,14 @@ describe('keyringClient', () => {
 
   beforeEach(() => {
     originalFetch = globalThis.fetch;
-    process.env.GUEPARD_KEYRING_PORT = PORT;
-    process.env.GUEPARD_KEYRING_TOKEN = TOKEN;
+    process.env.QLM_KEYRING_PORT = PORT;
+    process.env.QLM_KEYRING_TOKEN = TOKEN;
   });
 
   afterEach(() => {
     globalThis.fetch = originalFetch;
-    delete process.env.GUEPARD_KEYRING_PORT;
-    delete process.env.GUEPARD_KEYRING_TOKEN;
+    delete process.env.QLM_KEYRING_PORT;
+    delete process.env.QLM_KEYRING_TOKEN;
     vi.restoreAllMocks();
   });
 
@@ -44,17 +44,17 @@ describe('keyringClient', () => {
     });
 
     it('returns false when port is missing', () => {
-      delete process.env.GUEPARD_KEYRING_PORT;
+      delete process.env.QLM_KEYRING_PORT;
       expect(keyringClient.isAvailable()).toBe(false);
     });
 
     it('returns false when token is missing', () => {
-      delete process.env.GUEPARD_KEYRING_TOKEN;
+      delete process.env.QLM_KEYRING_TOKEN;
       expect(keyringClient.isAvailable()).toBe(false);
     });
 
     it('returns false when port is not a valid integer', () => {
-      process.env.GUEPARD_KEYRING_PORT = 'not-a-number';
+      process.env.QLM_KEYRING_PORT = 'not-a-number';
       expect(keyringClient.isAvailable()).toBe(false);
     });
   });

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 
-import type { TestResult } from '@guepard/domain/usecases';
+import type { TestResult } from '@qlm/domain/usecases';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 
 import { AwsCredentialsForm, type AwsFormValues } from './aws-credentials-form';
 import { GcpCredentialsForm, type GcpFormValues } from './gcp-credentials-form';

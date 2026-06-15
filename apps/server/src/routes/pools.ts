@@ -3,8 +3,8 @@ import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
 
-import type { Repositories } from '@guepard/domain/repositories';
-import { ListPoolsByProjectService } from '@guepard/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
+import { ListPoolsByProjectService } from '@qlm/domain/services';
 
 import { handleDomainException } from '../lib/http-utils';
 

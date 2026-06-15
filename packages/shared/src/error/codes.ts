@@ -1,4 +1,4 @@
-import { Code } from '@guepard/domain/common';
+import { Code } from '@qlm/domain/common';
 
 export const ERROR_CODES = {
   BAD_REQUEST: Code.BAD_REQUEST_ERROR.code,

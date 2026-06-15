@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 
 import { AuthErrorAlert } from './auth-error-alert';
 import { PasswordSignUpForm } from './password-sign-up-form';

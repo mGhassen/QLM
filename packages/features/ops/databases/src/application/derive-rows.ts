@@ -1,7 +1,7 @@
-import type { AdvancedColumn, FilterRule, SortState } from '@guepard/ui/data-table-advanced';
-import { applyFilterRules, applySort } from '@guepard/ui/data-table-advanced';
+import type { AdvancedColumn, FilterRule, SortState } from '@qlm/ui/data-table-advanced';
+import { applyFilterRules, applySort } from '@qlm/ui/data-table-advanced';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
 
 export function filterDatabasesBySearch(
   rows: readonly DatabaseOutput[],

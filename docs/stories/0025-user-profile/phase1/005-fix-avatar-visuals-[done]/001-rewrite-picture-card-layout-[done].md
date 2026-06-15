@@ -21,13 +21,13 @@ Replace `ImageUploader` usage in `PictureCard` with a self-contained avatar + bu
 
 ## Done when
 
-- [ ] `PictureCard` no longer imports `@guepard/ui/image-uploader`. It renders a single `ProfileAvatar` (initials when `pictureUrl` null), a hidden `<input type=file accept="image/*">`, an *Upload* button that triggers it, and a *Clear* button gated on `pictureUrl !== null`.
+- [ ] `PictureCard` no longer imports `@qlm/ui/image-uploader`. It renders a single `ProfileAvatar` (initials when `pictureUrl` null), a hidden `<input type=file accept="image/*">`, an *Upload* button that triggers it, and a *Clear* button gated on `pictureUrl !== null`.
 - [ ] All button labels in `PictureCard` route through `t('userProfile.picture.*')` — including a new `userProfile.picture.upload` key.
 - [ ] `<CardTitle>` in `PictureCard` and `NameCard` carries `className="text-base"`.
 - [ ] Client-side gates (MIME starts with `image/`, size ≤ 2 MB) and inline error rendering still work — covered by component tests.
 - [ ] `picture-card.stories.tsx` updated: `InitialsFallback`, `WithAvatar`, `Uploading` stories all render correctly.
 - [ ] `picture-card.test.tsx` updated to query the new buttons and use `fireEvent.change` on the (now self-managed) input. All 5 scenarios pass.
-- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @guepard/user-profile test` all pass.
+- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @qlm/user-profile test` all pass.
 
 ## Notes
 

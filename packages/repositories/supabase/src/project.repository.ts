@@ -1,6 +1,6 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Project } from '@guepard/domain/entities';
-import { IProjectRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Project } from '@qlm/domain/entities';
+import { IProjectRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 export class ProjectRepository extends IProjectRepository {

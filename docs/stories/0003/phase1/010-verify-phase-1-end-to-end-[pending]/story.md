@@ -27,14 +27,14 @@ Polish the empty / loading / error states across every environments component, r
   - Tab order is logical through Layer 1 grid and Layer 2 graph.
   - Escape closes the inspector and returns focus to the previously selected graph node (or the body if none).
   - Every interactive element has a visible label or `aria-label`.
-  - Focus-visible styles match `@guepard/ui` conventions.
-  - Colour contrast on status chips passes WCAG AA against both `@guepard/ui` light and dark backgrounds.
+  - Focus-visible styles match `@qlm/ui` conventions.
+  - Colour contrast on status chips passes WCAG AA against both `@qlm/ui` light and dark backgrounds.
   - Keyboard activation: Enter / Space on graph nodes selects them, Escape closes the inspector.
 - **Unit-test coverage**: bring `packages/features/environments/src/` to ≥80 % line coverage. Fill gaps identified by the coverage run: branch chip overflow, inspector selection-swap branches, fixture-adapter timer edges, inspector Escape handler.
 - **Playwright smoke**: `apps/e2e/tests/environments/layer-1-and-2.spec.ts` implementing the 14-step flow from spec §10.4. Runs against `pnpm web:dev` (no server, no Supabase running) because phase 1 is fixture-backed.
 - **Manual smoke**: walk the 19 steps in spec §10.5 end-to-end. Log any deviations in the Questions surfaced section below; if the implementation deviates from the spec, file a `Changelog` line via `/finish-story`.
 - **`pnpm check` green**: the repo-wide gate (`format:fix → format → lint → typecheck → build → test`) must pass from scratch.
-- **Visual review**: open `pnpm --filter @guepard/environments storybook` side-by-side with the POC Storybook at `/Users/hani.chalouati/Documents/work/guepard/mock-v3/...` and confirm every ported component visually matches its counterpart (minus the deferred slots — masking panel, branch history panel, metric tiles, replication chips, lineage, context menus, infra footer, extra inspector tabs, ⌘K palette, env-tabs navbar).
+- **Visual review**: open `pnpm --filter @qlm/environments storybook` side-by-side with the POC Storybook at `/Users/hani.chalouati/Documents/work/qlm/mock-v3/...` and confirm every ported component visually matches its counterpart (minus the deferred slots — masking panel, branch history panel, metric tiles, replication chips, lineage, context menus, infra footer, extra inspector tabs, ⌘K palette, env-tabs navbar).
 
 **Out of scope** (forces honest slicing)
 
@@ -47,7 +47,7 @@ Polish the empty / loading / error states across every environments component, r
 
 - [ ] Every environments component has clean empty / loading / error / ready states visible in Storybook, each localized.
 - [ ] Keyboard a11y audit passes: tab order is logical, Escape closes the inspector and returns focus, every interactive element has a label, focus-visible styles are present, Space / Enter selects graph nodes.
-- [ ] `pnpm --filter @guepard/environments test -- --coverage` reports ≥80 % line coverage on `packages/features/environments/src/`.
+- [ ] `pnpm --filter @qlm/environments test -- --coverage` reports ≥80 % line coverage on `packages/features/environments/src/`.
 - [ ] `apps/e2e/tests/environments/layer-1-and-2.spec.ts` exists, runs locally against `pnpm web:dev`, and passes all 14 steps from spec §10.4.
 - [ ] Manual smoke: all 19 steps from spec §10.5 walked; any deviations logged under "Questions surfaced".
 - [ ] `pnpm check` passes end-to-end starting from a clean working tree.
@@ -68,11 +68,11 @@ Populated by `/start-story`.
 pnpm check
 
 # Coverage report
-pnpm --filter @guepard/environments test -- --coverage
+pnpm --filter @qlm/environments test -- --coverage
 
 # Playwright smoke (requires pnpm web:dev running)
 pnpm web:dev &
-pnpm --filter @guepard/e2e test -- environments/layer-1-and-2
+pnpm --filter @qlm/e2e test -- environments/layer-1-and-2
 kill %1
 
 # Manual smoke
@@ -80,9 +80,9 @@ pnpm web:dev
 # Walk steps 1 – 19 from spec §10.5 in order; tick each one.
 
 # Storybook visual review
-pnpm --filter @guepard/environments storybook &
+pnpm --filter @qlm/environments storybook &
 # Also run the POC Storybook for side-by-side comparison
-cd /Users/hani.chalouati/Documents/work/guepard/mock-v3
+cd /Users/hani.chalouati/Documents/work/qlm/mock-v3
 pnpm --filter @workspace/environments storybook
 ```
 

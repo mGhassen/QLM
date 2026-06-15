@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 import {
   DirtyStateProvider,

@@ -4,7 +4,7 @@
 
 ### Aliases
 
-- **`@guepard/*`** — any package import (e.g. `@guepard/ui/button`, `@guepard/domain/services`)
+- **`@qlm/*`** — any package import (e.g. `@qlm/ui/button`, `@qlm/domain/services`)
 - **`~/*`** or **`@/*`** — app-internal imports (in `apps/web`, `@/*` maps to `./src/*`)
 
 ### Order (enforced by Prettier)
@@ -13,7 +13,7 @@
 2. `react`
 3. `react-router` / `@tanstack/react-router`
 4. Third-party libraries (alphabetical)
-5. `@guepard/*` packages (alphabetical)
+5. `@qlm/*` packages (alphabetical)
 6. `@/*` or `~/*` app-internal imports
 7. Relative imports (`./`, `../`)
 
@@ -31,9 +31,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import type { Notebook } from '@guepard/domain/entities';
-import { useShell } from '@guepard/shell-runtime';
-import { Button } from '@guepard/ui/button';
+import type { Notebook } from '@qlm/domain/entities';
+import { useShell } from '@qlm/shell-runtime';
+import { Button } from '@qlm/ui/button';
 
 import { useWorkspace } from '@/lib/context/workspace-context';
 
@@ -121,8 +121,8 @@ Auto-generated from Supabase schema:
 ## Styling
 
 - **Tailwind CSS 4** — utility-first; project presets in `tooling/tailwind/`
-- **`cn(...)`** helper from `@guepard/ui/utils` for conditional classes
-- **Shadcn primitives** (`@guepard/ui/button`, `@guepard/ui/dialog`, etc.) instead of hand-rolled HTML
+- **`cn(...)`** helper from `@qlm/ui/utils` for conditional classes
+- **Shadcn primitives** (`@qlm/ui/button`, `@qlm/ui/dialog`, etc.) instead of hand-rolled HTML
 - **Dark mode** via CSS variables — use `bg-background`, `text-foreground`, `bg-muted`, etc. instead of hardcoded colors
 - **Lucide icons** via `lucide-react`
 
@@ -139,4 +139,4 @@ Auto-generated from Supabase schema:
 ## ESLint
 
 - `tooling/eslint/base` and `tooling/eslint/react` configs
-- **Custom rule**: enforces `@guepard/ui/trans` over `react-i18next/Trans` — do not disable
+- **Custom rule**: enforces `@qlm/ui/trans` over `react-i18next/Trans` — do not disable

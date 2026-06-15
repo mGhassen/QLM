@@ -1,7 +1,7 @@
 import { redirect } from '@tanstack/react-router';
 
-import { requireUser } from '@guepard/supabase/require-user';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+import { requireUser } from '@qlm/supabase/require-user';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 import pathsConfig from '@/config/paths.config';
 

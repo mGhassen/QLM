@@ -25,11 +25,11 @@ export async function createTestApp(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU';
   // Server-side secret vault needs a key to boot. AesGcmSecretVault stretches
   // this phrase with scrypt into a valid 32-byte key.
-  process.env.GUEPARD_SECRET_VAULT_KEY =
-    process.env.GUEPARD_SECRET_VAULT_KEY ?? 'guepard-test-vault-key-phase-1';
+  process.env.QLM_SECRET_VAULT_KEY =
+    process.env.QLM_SECRET_VAULT_KEY ?? 'qlm-test-vault-key-phase-1';
   process.env.JWT_SECRET =
     process.env.JWT_SECRET ??
-    'guepard-test-jwt-secret-with-enough-bits-to-sign-HS256';
+    'qlm-test-jwt-secret-with-enough-bits-to-sign-HS256';
   const mockRepos = createMockRepositories();
   const mod = await import('../../src/server.js');
   const app = mod.createApp({

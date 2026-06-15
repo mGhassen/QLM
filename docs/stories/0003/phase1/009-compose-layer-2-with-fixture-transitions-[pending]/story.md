@@ -40,7 +40,7 @@ Compose `Layer2View` from the Story-007 graph, the lifecycle axis, and the Story
   - State lives in React via `useState` — no external store, no network.
 - `packages/apps/environments/src/plugin-root.tsx`:
   - Export `FlatRoot`: calls `useFlatRoute()` to read `sourceSlug`, calls `useFixtureEnvironmentGraph(sourceSlug)`, renders `<Layer2View />` with all callbacks wired.
-  - Export `resolveProjectContext(params, api)`: reads the fixture source by slug from `@guepard/environments/fixtures` and returns `{ projectId }`. Returns `null` for unknown slugs.
+  - Export `resolveProjectContext(params, api)`: reads the fixture source by slug from `@qlm/environments/fixtures` and returns `{ projectId }`. Returns `null` for unknown slugs.
 - `apps/web/src/config/paths.config.ts`: add `createEnvironmentFlatPath(sourceSlug: string)` helper returning `/env/${sourceSlug}`.
 - Verify the flat route `/env/{sourceSlug}` works via the existing catch-all — no new route file in `apps/web/src/routes/` expected.
 - Integration test: fake-timer Vitest test for `use-fixture-environment-graph.ts` asserting the cloneToNode transition fires at t=0 (provisioning), t=400 (ingesting), t=1600 (healthy).
@@ -90,11 +90,11 @@ pnpm web:dev
 # 9. Navigate directly to /env/postgres-primary → Layer 2 renders (Flow E).
 
 # Storybook
-pnpm --filter @guepard/environments storybook
+pnpm --filter @qlm/environments storybook
 # Browse: Environments/Layer2View/{Loading, Empty, Ready-2Clones, Ready-3Clones, Error}
 
 # Tests
-pnpm --filter @guepard/environments test
+pnpm --filter @qlm/environments test
 ```
 
 ## Questions surfaced

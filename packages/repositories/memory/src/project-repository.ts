@@ -1,7 +1,7 @@
-import type { Nullable } from '@guepard/domain/common';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Project } from '@guepard/domain/entities';
-import { IProjectRepository } from '@guepard/domain/repositories';
+import type { Nullable } from '@qlm/domain/common';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Project } from '@qlm/domain/entities';
+import { IProjectRepository } from '@qlm/domain/repositories';
 
 export class ProjectRepository extends IProjectRepository {
   private projects = new Map<string, Project>();

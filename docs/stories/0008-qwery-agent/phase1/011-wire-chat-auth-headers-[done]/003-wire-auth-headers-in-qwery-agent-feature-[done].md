@@ -23,8 +23,8 @@ Use the new `transportFactory(slug, model, { getHeaders })` signature so `POST /
 
 - [ ] `assistant-panel-body.tsx`: `transport` memo becomes `(model) => transportFactory(conversation.slug, model, { getHeaders: getAuthHeaders })`.
 - [ ] `agent-tab-body.tsx`: same change.
-- [ ] Import `getAuthHeaders` from `@guepard/supabase/auth-headers`.
-- [ ] Add `"@guepard/supabase": "workspace:*"` to `packages/features/qwery-agent/package.json` if it's not already a dependency.
+- [ ] Import `getAuthHeaders` from `@qlm/supabase/auth-headers`.
+- [ ] Add `"@qlm/supabase": "workspace:*"` to `packages/features/qwery-agent/package.json` if it's not already a dependency.
 - [ ] Signing in, opening a project, and opening the assistant panel results in `POST /api/chat/<slug>` returning 2xx (not 404). Verified via `ui-validator` under the `expect_network_2xx` check.
 
 ## Notes

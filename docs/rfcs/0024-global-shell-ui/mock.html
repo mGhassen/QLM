@@ -501,7 +501,7 @@
         >
           <span class="logo">G</span>
           <span class="caret">▾</span>
-          <span id="trigger-label">Guepard Console</span>
+          <span id="trigger-label">QLM Console</span>
         </button>
         <div class="topbar-right">
           <span class="icon-btn" title="Search">⌕</span>
@@ -542,7 +542,7 @@
           <div style="display: flex; flex-direction: column">
             <span style="font-weight: 600; font-size: 13px">Hani</span>
             <span style="font-size: 11px; color: var(--text-muted)"
-              >hc@guepard.run</span
+              >hc@qlm.run</span
             >
           </div>
         </div>
@@ -561,7 +561,7 @@
           aria-expanded="false"
         >
           <span class="row-icon logo-g">G</span>
-          <span class="row-label">Guepard Console</span>
+          <span class="row-label">QLM Console</span>
           <span class="row-chevron">›</span>
         </div>
         <div class="row" data-action="project-settings">
@@ -579,7 +579,7 @@
           aria-expanded="false"
         >
           <span class="row-icon logo-o">◆</span>
-          <span class="row-label">Guepard</span>
+          <span class="row-label">QLM</span>
           <span class="row-chevron">›</span>
         </div>
         <div class="row" data-action="invite-members">
@@ -648,14 +648,14 @@
     <script>
       // ================= Data =================
       const state = {
-        activeOrgId: 'guepard',
-        activeProjectId: 'guepard-console',
+        activeOrgId: 'qlm',
+        activeProjectId: 'qlm-console',
         activeApp: 'organization', // home | organization | project-settings | org-settings | notebooks | ...
         activeSection: null, // section slug within the active app
         orgs: [
           {
-            id: 'guepard',
-            name: 'Guepard',
+            id: 'qlm',
+            name: 'QLM',
             role: 'owner',
             color: '#f59e0b',
             initial: '◆',
@@ -676,9 +676,9 @@
           },
         ],
         projectsByOrg: {
-          guepard: [
-            { id: 'guepard-console', name: 'Guepard Console', initial: 'G' },
-            { id: 'guepard-website', name: 'Guepard Website', initial: 'W' },
+          qlm: [
+            { id: 'qlm-console', name: 'QLM Console', initial: 'G' },
+            { id: 'qlm-website', name: 'QLM Website', initial: 'W' },
             { id: 'docs-site', name: 'Docs Site', initial: 'D' },
           ],
           acme: [
@@ -969,9 +969,9 @@
             <table class="table">
               <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
               <tbody>
-                <tr><td>Hani</td><td>hc@guepard.run</td><td><span class="pill">owner</span></td></tr>
-                <tr><td>Alex</td><td>alex@guepard.run</td><td><span class="pill">admin</span></td></tr>
-                <tr><td>Sam</td><td>sam@guepard.run</td><td><span class="pill">member</span></td></tr>
+                <tr><td>Hani</td><td>hc@qlm.run</td><td><span class="pill">owner</span></td></tr>
+                <tr><td>Alex</td><td>alex@qlm.run</td><td><span class="pill">admin</span></td></tr>
+                <tr><td>Sam</td><td>sam@qlm.run</td><td><span class="pill">member</span></td></tr>
               </tbody>
             </table>
           `,

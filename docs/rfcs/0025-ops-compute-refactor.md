@@ -11,32 +11,32 @@
 
 ## 1. Summary
 
-The OPS surface ships three apps — **Topology** (fleet observability), **Infrastructure** (per-node operations), **Integrations** (cloud connectivity) — plus a **Replicas** placement primitive. A post-implementation audit found that runtime wiring contradicts intent: the `@guepard/infrastructure` feature package is dead code, the `@guepard/nodes` feature package is what actually mounts at `/infrastructure`, fleet aggregations are duplicated across topology and the dead infrastructure feature, "Pool" is faked client-side, the `tid:` virtual-tab protocol is an untyped string convention, and replicas leak into Infrastructure as a Settings tab next to node CRUD.
+The OPS surface ships three apps — **Topology** (fleet observability), **Infrastructure** (per-node operations), **Integrations** (cloud connectivity) — plus a **Replicas** placement primitive. A post-implementation audit found that runtime wiring contradicts intent: the `@qlm/infrastructure` feature package is dead code, the `@qlm/nodes` feature package is what actually mounts at `/infrastructure`, fleet aggregations are duplicated across topology and the dead infrastructure feature, "Pool" is faked client-side, the `tid:` virtual-tab protocol is an untyped string convention, and replicas leak into Infrastructure as a Settings tab next to node CRUD.
 
 This RFC scopes the consolidation. Phase 1 ships:
 
-- A **typed `TabId`** discriminated union in `@guepard/shell-contracts`, replacing inline `tid:` string parsing.
+- A **typed `TabId`** discriminated union in `@qlm/shell-contracts`, replacing inline `tid:` string parsing.
 - **Pool as a domain entity** (`PoolEntity` + `IPoolRepository` + `ListPoolsByProjectService`), backed by a Postgres VIEW over `public.node.node_pool` (no new table for phase 1).
 - **`shell.fleet` runtime resource** exposing `summary | pools | pressurePoints` from a `FleetAggregateService` in domain.
-- **Package rename + merge**: `@guepard/nodes` → `@guepard/infrastructure` (canonical name), absorbing the activity + settings + replicas surfaces from the dying pkg, deleting the cluster/provider tabs (now redundant with Topology + Pool entity).
+- **Package rename + merge**: `@qlm/nodes` → `@qlm/infrastructure` (canonical name), absorbing the activity + settings + replicas surfaces from the dying pkg, deleting the cluster/provider tabs (now redundant with Topology + Pool entity).
 - **Per-node detail sections** (Services / Storage / CPU / Memory) confirmed as scrollable sections, not tabs, in the merged pkg.
 
 Phase 2 deferred:
 
 - Nomad-aligned `NODE_STATUSES` extension (`provisioning|initializing|ready|disconnected|down|terminating|stopped|error`), `eligibility`, structured `drain`, `lastHeartbeatAt`. Tracked separately in `docs/research/nomad-node-management.md` because the migration is its own breaking story sequence and is orthogonal to the structural refactor below.
 - Workload (`Service`) domain port + Storage real-data wiring for the per-node sections. Stub for now.
-- **Replicas as a standalone app** (`@guepard/app-replicas`). For phase 1, replicas remain embedded inside the merged Infrastructure pkg under the Settings sub-view, exactly where they live today — only the surrounding pkg name changes. Replica domain entity, repository, server route, and dedicated app pkg are deferred.
+- **Replicas as a standalone app** (`@qlm/app-replicas`). For phase 1, replicas remain embedded inside the merged Infrastructure pkg under the Settings sub-view, exactly where they live today — only the surrounding pkg name changes. Replica domain entity, repository, server route, and dedicated app pkg are deferred.
 - True topology graph view (Reactflow / SVG nesting). Today's pool-card grid + host-map heatmap stay.
 
 ## 2. Motivation
 
 **The audit's six headline findings, distilled.**
 
-1. **Infrastructure redesign is dead code.** `packages/apps/infrastructure/src/plugin-root.tsx` mounts `NodesPluginRoot` from `@guepard/nodes`. The `InfrastructurePluginRoot` from `@guepard/infrastructure` is only consumed by its own Storybook + types-only MSW imports. Tabbed Overview/Clusters/Providers/Activity/Settings ships zero runtime exposure. Two packages, one is dark.
+1. **Infrastructure redesign is dead code.** `packages/apps/infrastructure/src/plugin-root.tsx` mounts `NodesPluginRoot` from `@qlm/nodes`. The `InfrastructurePluginRoot` from `@qlm/infrastructure` is only consumed by its own Storybook + types-only MSW imports. Tabbed Overview/Clusters/Providers/Activity/Settings ships zero runtime exposure. Two packages, one is dark.
 2. **Topology and Infrastructure both compute fleet aggregates** (`use-topology-data.ts` and `use-infrastructure-page.ts`), duplicating logic with divergent shapes. No shared selector. If both were mounted, the same numbers could disagree.
 3. **"Pool" is synthesized at the React layer** as `${provider}::${region}::${cluster}`. Brittle: rename a cluster, identity flips. The DB has `node.node_pool` already; domain doesn't model it.
 4. **`tid:` is a string protocol.** `nc:`, `np:`, `topology:*` parsed in `apps/web/src/routes/prj/$projectSlug/$routeBase.tsx:27-52`. No type safety, no central registry, easy to drift. Eight `as never` casts in cross-app navigations confirm the smell.
-5. **`@guepard/infrastructure` package name collides with semantic intent.** Its only live consumers (`apps/web/src/lib/msw/handlers/replicas.ts`, `apps/web/src/lib/msw/fixtures/infrastructure.ts`) pull *types* from a presentation-layer package. Coupling MSW into the dying UI bundle.
+5. **`@qlm/infrastructure` package name collides with semantic intent.** Its only live consumers (`apps/web/src/lib/msw/handlers/replicas.ts`, `apps/web/src/lib/msw/fixtures/infrastructure.ts`) pull *types* from a presentation-layer package. Coupling MSW into the dying UI bundle.
 6. **Replicas live inside Infrastructure's Settings tab.** Replicas are placement, not node ops — wrong home. They are also entirely presentation-only (no domain entity, no repo, no DB, no server route).
 
 **Why now.** Phase-1 audit ran on a recently merged feature branch. Adding more surface (Nomad-aligned status enums, real workload modeling, true topology graph) on top of a wiring contradiction will compound the drift. This RFC is the structural reset that unblocks every follow-on phase.
@@ -49,12 +49,12 @@ Phase 2 deferred:
 
 ### 3.1 Goals (phase 1)
 
-- **G1.** `nc:`, `np:`, `topology:*` strings vanish from emitter and parser sites. Every `navigate({to, search})` for cross-app drill-through round-trips through `encodeTabId` / `decodeTabId` in `@guepard/shell-contracts`.
+- **G1.** `nc:`, `np:`, `topology:*` strings vanish from emitter and parser sites. Every `navigate({to, search})` for cross-app drill-through round-trips through `encodeTabId` / `decodeTabId` in `@qlm/shell-contracts`.
 - **G2.** Zero `as never` casts in any topology / infrastructure / nodes feature package navigate call.
 - **G3.** `Pool` exists as a Zod-validated domain entity, with `IPoolRepository`, Supabase adapter (Postgres VIEW), HTTP adapter, server route, and `shell.pools` resource. Topology consumes it; the synthetic `groupIntoPools` helper is deleted.
-- **G4.** Replicas continue to function exactly as today (MSW-mocked add/remove flow), accessible via the merged Infrastructure pkg's Settings sub-view. The `Replica` and `ReplicaStatus` types travel with the pkg merge — `@guepard/infrastructure/types` keeps working for MSW imports because the merged pkg re-exports them. No new domain entity, no new app.
+- **G4.** Replicas continue to function exactly as today (MSW-mocked add/remove flow), accessible via the merged Infrastructure pkg's Settings sub-view. The `Replica` and `ReplicaStatus` types travel with the pkg merge — `@qlm/infrastructure/types` keeps working for MSW imports because the merged pkg re-exports them. No new domain entity, no new app.
 - **G5.** `FleetAggregateService` in domain composes `INodeRepository` + `IPoolRepository` and exposes `summary(orgId)`, `pools(orgId)`, `pressurePoints(orgId)`. Topology + the new merged Infrastructure read fleet numbers via `shell.fleet.*` only — no inline `useMemo` aggregation.
-- **G6.** Single canonical `@guepard/infrastructure` package. The directory at `packages/features/ops/nodes/` becomes `packages/features/ops/infrastructure/`. Old `@guepard/infrastructure` deleted; clusters/providers tabs removed; settings tab + activity section + replicas section retained as project-level surfaces inside the merged pkg.
+- **G6.** Single canonical `@qlm/infrastructure` package. The directory at `packages/features/ops/nodes/` becomes `packages/features/ops/infrastructure/`. Old `@qlm/infrastructure` deleted; clusters/providers tabs removed; settings tab + activity section + replicas section retained as project-level surfaces inside the merged pkg.
 - **G7.** Per-node detail page renders Services / Storage / CPU / Memory as **stacked sections**, not tabs. Files renamed `node-detail-{cpu,memory,services,storage}-tab.tsx` → `node-detail-{cpu,memory,services,storage}-section.tsx`. Storage section consumes `node.diskGb` + `node.diskUtilPct` (already present in DB).
 - **G8.** `pnpm typecheck && pnpm test` green at every story boundary. No new ESLint disables.
 
@@ -63,7 +63,7 @@ Phase 2 deferred:
 - **Nomad-aligned status enum migration.** Phase 2 (RFC 0026). Reason: orthogonal breaking change with its own three-story sequence. Mixing it into the structural refactor would multiply the blast radius.
 - **Workload (`Service`) domain port.** Phase 2. Per-node Services section ships an empty state with a typed stub repository.
 - **True topology graph view.** Phase 3 (RFC 0027).
-- **Replicas as a standalone app (`@guepard/app-replicas`) + replicas domain entity + real backend.** Phase 2 (RFC 0029). Reason: replicas are presentation-only today (no DB, no server route). Promoting them at the same time as the structural refactor inflates phase 1 without product upside. Phase 1 keeps the existing MSW-mocked `infrastructure-replicas-section.tsx` exactly as-is, only moving with the pkg merge.
+- **Replicas as a standalone app (`@qlm/app-replicas`) + replicas domain entity + real backend.** Phase 2 (RFC 0029). Reason: replicas are presentation-only today (no DB, no server route). Promoting them at the same time as the structural refactor inflates phase 1 without product upside. Phase 1 keeps the existing MSW-mocked `infrastructure-replicas-section.tsx` exactly as-is, only moving with the pkg merge.
 - **Pool table (writable metadata).** Phase 2 if/when product confirms pool-level metadata. Phase 1 ships a read-only VIEW.
 - **Pressure-point thresholds as configuration.** Phase 1 hardcodes thresholds as domain constants (`HIGH_CPU_PCT = 85`, etc.). Configuration becomes a thing if/when an operator asks.
 
@@ -84,7 +84,7 @@ Phase 2 deferred:
 - **`packages/features/ops/topology/src/application/use-topology-data.ts`** — `groupIntoPools` and `computeAggregate` go away; hook becomes a thin `useQuery` wrapper around `shell.fleet.*` and `shell.pools.list()`.
 - **`packages/features/ops/infrastructure/`** (the dying pkg) — clusters/providers/overview tabs deleted; activity + settings + replicas surfaces migrate into the merged pkg as-is.
 - **`apps/web/src/routes/prj/$projectSlug/$routeBase.tsx:27-52`** — `deriveTitleFromTid` replaced by `deriveTabTitle(decodeTabId(tid))`.
-- **`@guepard/nodes` package name** — folder + name renamed to `@guepard/infrastructure`.
+- **`@qlm/nodes` package name** — folder + name renamed to `@qlm/infrastructure`.
 
 ### Orthogonal
 
@@ -106,7 +106,7 @@ OPS (project bucket)
 
 Replicas-as-standalone-app deferred to phase 2 (RFC 0029).
 
-Each app is a thin shell plugin under `packages/apps/<id>/` mounting a feature package under `packages/features/ops/<id>/`. Apps are discovered at build time via `apps/web/src/shell/app-registry.ts`. No app imports another's feature pkg. Cross-app navigation goes through typed `TabId` + path helpers from `@guepard/shell-contracts`.
+Each app is a thin shell plugin under `packages/apps/<id>/` mounting a feature package under `packages/features/ops/<id>/`. Apps are discovered at build time via `apps/web/src/shell/app-registry.ts`. No app imports another's feature pkg. Cross-app navigation goes through typed `TabId` + path helpers from `@qlm/shell-contracts`.
 
 ### 5.2 Vocabulary
 
@@ -159,8 +159,8 @@ None. Phase 1 is structural cleanup; no new feature or app packages ship.
 
 | Old name                                  | Old path                              | New name                  | New path                              |
 | ----------------------------------------- | ------------------------------------- | ------------------------- | ------------------------------------- |
-| `@guepard/nodes`                          | `packages/features/ops/nodes/`        | `@guepard/infrastructure` | `packages/features/ops/infrastructure/` |
-| `@guepard/infrastructure` (the dying one) | `packages/features/ops/infrastructure/` | (deleted before rename)   | (deleted)                             |
+| `@qlm/nodes`                          | `packages/features/ops/nodes/`        | `@qlm/infrastructure` | `packages/features/ops/infrastructure/` |
+| `@qlm/infrastructure` (the dying one) | `packages/features/ops/infrastructure/` | (deleted before rename)   | (deleted)                             |
 
 ### 6.3 New domain artifacts
 
@@ -248,8 +248,8 @@ All resolved at RFC time with recommended defaults baked into the spec. The spec
 
 ## 9. Alternatives considered
 
-- **Delete the dying `@guepard/infrastructure` outright and forget the merge.** Rejected — the activity section + settings tab are real per-project surfaces that the current nodes-list page doesn't cover. Losing them would regress functionality.
-- **Keep `@guepard/nodes` as the canonical name.** Rejected — the user-facing nav says "Infrastructure"; the package name should match. Rename cost is one-shot.
+- **Delete the dying `@qlm/infrastructure` outright and forget the merge.** Rejected — the activity section + settings tab are real per-project surfaces that the current nodes-list page doesn't cover. Losing them would regress functionality.
+- **Keep `@qlm/nodes` as the canonical name.** Rejected — the user-facing nav says "Infrastructure"; the package name should match. Rename cost is one-shot.
 - **Promote Pool to a writable table now.** Deferred — no metadata is product-confirmed for phase 1. VIEW unblocks the typed entity + ports without dragging migration risk in.
 - **Compute fleet aggregates in a Postgres function rather than `FleetAggregateService`.** Deferred to phase 2 if performance demands. Phase 1 keeps the logic in the domain layer where it's portable and testable.
 - **Keep the `tid:` string protocol.** Rejected — eight `as never` casts in the audit's contract inventory confirm the smell. Typed `TabId` pays for itself the moment a seventh variant is added.

@@ -7,7 +7,7 @@ export * from './agents';
 export * from './agents/tools/types';
 export * from './agents/tools/inferred-types';
 
-// Export config (browser-safe: skills cache only; use @guepard/agent-factory-sdk/config/node for disk loaders)
+// Export config (browser-safe: skills cache only; use @qlm/agent-factory-sdk/config/node for disk loaders)
 export * from './config';
 
 // Export agent/tool registry system

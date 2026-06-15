@@ -26,7 +26,7 @@ function makeTestApp() {
   // any route handler resolves it.
   process.env.JWT_SECRET =
     process.env.JWT_SECRET ??
-    'guepard-test-jwt-secret-with-enough-bits-to-sign-HS256';
+    'qlm-test-jwt-secret-with-enough-bits-to-sign-HS256';
   app.route(
     '/user-tokens',
     createUserTokensRoutes(

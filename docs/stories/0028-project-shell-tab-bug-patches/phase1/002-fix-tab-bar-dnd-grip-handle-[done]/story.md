@@ -20,9 +20,9 @@ A click anywhere on a tab fires `onTabClick` and never `onTabReorder`. Drag-to-r
 ## Scope
 
 **In scope**
-- `packages/ui/src/guepard/shell/project-shell-tab-bar.tsx` — refactor `SortableTabBarItem` to use `setActivatorNodeRef` on a small grip element instead of `{...listeners}` on the click button.
-- `packages/ui/src/guepard/shell/project-shell-tab-bar.stories.tsx` — new file. Three Storybook stories: `Default`, `WithPinnedTabs`, `ManyTabsOverflow`.
-- `packages/ui/src/guepard/shell/project-shell-tab-bar.test.tsx` — new file. Three interaction tests.
+- `packages/ui/src/qlm/shell/project-shell-tab-bar.tsx` — refactor `SortableTabBarItem` to use `setActivatorNodeRef` on a small grip element instead of `{...listeners}` on the click button.
+- `packages/ui/src/qlm/shell/project-shell-tab-bar.stories.tsx` — new file. Three Storybook stories: `Default`, `WithPinnedTabs`, `ManyTabsOverflow`.
+- `packages/ui/src/qlm/shell/project-shell-tab-bar.test.tsx` — new file. Three interaction tests.
 
 **Out of scope**
 - Visual redesign of the tab bar.
@@ -36,7 +36,7 @@ A click anywhere on a tab fires `onTabClick` and never `onTabReorder`. Drag-to-r
 - [ ] Pinned tabs do not show a grip; the entire pinned tab still drags.
 - [ ] Middle-click close (`onAuxClick`) still works.
 - [ ] Storybook story file present, three stories render, action panel logs the right callback per gesture.
-- [ ] `pnpm typecheck` and `pnpm --filter @guepard/ui test packages/ui/src/guepard/shell/project-shell-tab-bar.test.tsx` are green.
+- [ ] `pnpm typecheck` and `pnpm --filter @qlm/ui test packages/ui/src/qlm/shell/project-shell-tab-bar.test.tsx` are green.
 
 ## Tasks
 
@@ -46,8 +46,8 @@ A click anywhere on a tab fires `onTabClick` and never `onTabReorder`. Drag-to-r
 
 ## Demo / verification
 
-1. `pnpm --filter @guepard/ui storybook` — open each new story. Click each tab on the title; observe `onTabClick` only. Drag from grip; observe `onTabReorder` only. Drag from title; observe nothing (no reorder, no click).
-2. `pnpm --filter @guepard/ui test packages/ui/src/guepard/shell/project-shell-tab-bar.test.tsx` — three tests green.
+1. `pnpm --filter @qlm/ui storybook` — open each new story. Click each tab on the title; observe `onTabClick` only. Drag from grip; observe `onTabReorder` only. Drag from title; observe nothing (no reorder, no click).
+2. `pnpm --filter @qlm/ui test packages/ui/src/qlm/shell/project-shell-tab-bar.test.tsx` — three tests green.
 3. `pnpm dev` and navigate to any project. Click around the tab bar with intentional pointer drift. Tabs no longer shuffle on click.
 
 ## Questions surfaced

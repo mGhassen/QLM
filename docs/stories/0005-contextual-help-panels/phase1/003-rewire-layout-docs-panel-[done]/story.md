@@ -25,12 +25,12 @@ Rewrite `DocumentationPanel` to accept a single React node instead of a static i
 - `DocumentationPanel` rewrite — props become `Readonly<{ page: ReactNode | null }>`; chrome (`BookOpen` icon + "Documentation" title) unchanged; placeholder when `page === null`
 - `RightSidebar`, `RootLayout`, `ProjectShellLayout` — swap `documentationItems?: DocumentationItem[]` for `docsPanelContent?: ReactNode`
 - `ProjectShellLayout` state lift — accept `activePanel` + `onPanelChange` as props; remove local `useState<ActivePanel>`
-- Delete the `DocumentationItem` type export from `packages/ui/src/guepard/layout/index.ts`
+- Delete the `DocumentationItem` type export from `packages/ui/src/qlm/layout/index.ts`
 - Fix the two legacy route files that were still importing the old type
 - Update the project-shell Storybook story to use the new prop shape and wrap in a minimal `DocsPanelProvider` where needed
 
 **Out of scope**
-- `@guepard/ui/markdown` component → story 004
+- `@qlm/ui/markdown` component → story 004
 - Integrations plugin wiring → story 005
 
 ## Acceptance criteria
@@ -38,29 +38,29 @@ Rewrite `DocumentationPanel` to accept a single React node instead of a static i
 - [x] `DocumentationPanel` renders the placeholder when `page === null` and the page node when non-null
 - [x] `ProjectShellLayout` no longer owns `activePanel` state — it accepts it as props
 - [x] `RootLayout` still owns its own `activePanel` state for org-level pages (the state lift is scoped to `ProjectShellLayout`)
-- [x] `DocumentationItem` type is gone from `packages/ui/src/guepard/layout/index.ts`
-- [x] `pnpm --filter @guepard/ui typecheck` + `pnpm --filter web typecheck` green on top of the baseline
+- [x] `DocumentationItem` type is gone from `packages/ui/src/qlm/layout/index.ts`
+- [x] `pnpm --filter @qlm/ui typecheck` + `pnpm --filter web typecheck` green on top of the baseline
 - [x] `Shell / ProjectShell / Default` Storybook story renders without crashing
 
 ## Tasks
 
 Shipped files:
 
-- `packages/ui/src/guepard/layout/documentation-panel.tsx` — rewrite
-- `packages/ui/src/guepard/layout/right-sidebar.tsx` — `documentationItems` → `docsPanelContent?: ReactNode`
-- `packages/ui/src/guepard/layout/root-layout.tsx` — same prop swap, keeps local `activePanel` state
-- `packages/ui/src/guepard/shell/project-shell-layout.tsx` — remove local `useState`, accept props, swap the prop
-- `packages/ui/src/guepard/layout/index.ts` — remove `DocumentationItem` type export
+- `packages/ui/src/qlm/layout/documentation-panel.tsx` — rewrite
+- `packages/ui/src/qlm/layout/right-sidebar.tsx` — `documentationItems` → `docsPanelContent?: ReactNode`
+- `packages/ui/src/qlm/layout/root-layout.tsx` — same prop swap, keeps local `activePanel` state
+- `packages/ui/src/qlm/shell/project-shell-layout.tsx` — remove local `useState`, accept props, swap the prop
+- `packages/ui/src/qlm/layout/index.ts` — remove `DocumentationItem` type export
 - `apps/web/src/routes/org/$slug.tsx` — drop the legacy `documentationItems` mock
 - `apps/web/src/routes/org/$slug/project/$projectSlug.tsx` — same
-- `packages/ui/src/guepard/shell/project-shell.stories.tsx` — use the new `docsPanelContent` prop; minimal `DocsPanelProvider` wrap
+- `packages/ui/src/qlm/shell/project-shell.stories.tsx` — use the new `docsPanelContent` prop; minimal `DocsPanelProvider` wrap
 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/ui typecheck
+pnpm --filter @qlm/ui typecheck
 pnpm --filter web typecheck
-pnpm --filter @guepard/ui storybook  # open Shell / ProjectShell / Default
+pnpm --filter @qlm/ui storybook  # open Shell / ProjectShell / Default
 ```
 
 Storybook renders without crashing; passing a `<Markdown source="..." />` into `docsPanelContent` shows it inside the panel.

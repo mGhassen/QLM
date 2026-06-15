@@ -8,8 +8,8 @@ import {
   GetDatasourceBySlugService,
   GetDatasourceService,
   UpdateDatasourceService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException, isUUID } from '../lib/http-utils';
 
 const listQuerySchema = z.object({ projectId: z.string().min(1) });

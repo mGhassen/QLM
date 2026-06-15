@@ -50,7 +50,7 @@
 
 1. **Desktop-only vs web-parity.** RFC 0023 assumed desktop-only (OS keychain). Web support needs server-side storage with encryption + RLS, plus a Supabase-backed repository. Is phase 1 desktop-only (matching 0023's shipped scaffolding), or does it cover web from day one?
 2. **Provider list scope.** 0023's `MANAGED_KEYS` is Anthropic, OpenAI, Azure (three vars: key + resource + deployment), AWS Bedrock (three vars: access key + secret + region), Ollama, plus `AGENT_PROVIDER` / `DEFAULT_MODEL`. Is that the phase-1 surface, or broader / narrower?
-3. **Relationship to the deferred Guepard cloud LLM proxy.** RFC 0023 §13 lists a `guepardCloud()` `LanguageModelV2` provider as future work. Does this RFC plan the hand-off, or is it strictly about user-supplied keys?
+3. **Relationship to the deferred QLM cloud LLM proxy.** RFC 0023 §13 lists a `qlmCloud()` `LanguageModelV2` provider as future work. Does this RFC plan the hand-off, or is it strictly about user-supplied keys?
 4. **Multi-profile.** One set of keys per install, or per user / per server-URL?
 5. **Secret redaction in logs / telemetry.** What's the redaction contract the agent-factory-sdk must honour?
 

@@ -12,15 +12,15 @@ validation:
 
 # Wire API URL from Tauri
 
-`apps/web` needs to route `/api/...` requests to the Bun sidecar when loaded inside the Tauri webview (the renderer is served from `tauri://localhost`, so relative `/api` paths go nowhere). The sidecar port changes per launch, so the Rust shell already injects `window.__GUEPARD_API_URL = 'http://127.0.0.1:<port>'` via `window.eval` at startup.
+`apps/web` needs to route `/api/...` requests to the Bun sidecar when loaded inside the Tauri webview (the renderer is served from `tauri://localhost`, so relative `/api` paths go nowhere). The sidecar port changes per launch, so the Rust shell already injects `window.__QLM_API_URL = 'http://127.0.0.1:<port>'` via `window.eval` at startup.
 
 ## Done when
 
-- [ ] `apps/web/src/globals.d.ts` (new) declares `interface Window { __GUEPARD_API_URL?: string; }` with an `export {};` to keep it a module.
+- [ ] `apps/web/src/globals.d.ts` (new) declares `interface Window { __QLM_API_URL?: string; }` with an `export {};` to keep it a module.
 - [ ] `apps/web/src/lib/repositories/api-client.ts` `getApiBaseUrl()` reads the Tauri-injected URL first:
   ```ts
-  if (typeof window !== 'undefined' && typeof window.__GUEPARD_API_URL === 'string' && window.__GUEPARD_API_URL.length > 0) {
-    return `${window.__GUEPARD_API_URL}/api`;
+  if (typeof window !== 'undefined' && typeof window.__QLM_API_URL === 'string' && window.__QLM_API_URL.length > 0) {
+    return `${window.__QLM_API_URL}/api`;
   }
   ```
   Fallback to the existing `process.env` + `import.meta.env` + `/api` chain unchanged.

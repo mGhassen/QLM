@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { SidebarDetailLayout } from '@guepard/ui/layout';
+import { SidebarDetailLayout } from '@qlm/ui/layout';
 
 import { SettingsSidebar, type SettingsSidebarProps } from './settings-sidebar';
 
@@ -17,7 +17,7 @@ export type SettingsLayoutProps = Readonly<{
 
 /**
  * Thin convenience wrapper around `SidebarDetailLayout` from
- * `@guepard/ui/layout` — feeds a `SettingsSidebar` into the rail slot
+ * `@qlm/ui/layout` — feeds a `SettingsSidebar` into the rail slot
  * so every settings app can stay a one-liner at the call site.
  * Non-settings consumers (datasource drill-downs, list/detail splits)
  * should use `<SidebarDetailLayout>` directly.

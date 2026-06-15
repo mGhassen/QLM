@@ -1,6 +1,6 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Datasource } from '@guepard/domain/entities';
-import { IDatasourceRepository } from '@guepard/domain/repositories';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Datasource } from '@qlm/domain/entities';
+import { IDatasourceRepository } from '@qlm/domain/repositories';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 export class DatasourceRepository extends IDatasourceRepository {

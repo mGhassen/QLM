@@ -1,6 +1,6 @@
-import { encodeTabId } from '@guepard/shell-contracts';
+import { encodeTabId } from '@qlm/shell-contracts';
 
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 
 /**
  * Flat-route project resolver for `/node/$nodeId`. The flat catch-all

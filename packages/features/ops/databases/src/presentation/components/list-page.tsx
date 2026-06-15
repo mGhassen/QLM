@@ -5,27 +5,27 @@ import { useQuery } from '@tanstack/react-query';
 import { VirtuosoGrid } from 'react-virtuoso';
 import { Database, Loader2, Server } from 'lucide-react';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
-import { encodeTabId } from '@guepard/shell-contracts';
-import { useShell } from '@guepard/shell-runtime';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
+import { encodeTabId } from '@qlm/shell-contracts';
+import { useShell } from '@qlm/shell-runtime';
 
 import { DatabaseDetailPage } from './detail-page';
 
-import { EntityListPage } from '@guepard/ui/entity-list';
+import { EntityListPage } from '@qlm/ui/entity-list';
 import {
   BulkActionBar,
   DataTableAdvanced,
   FilterChipRow,
   QuickFilterBar,
-} from '@guepard/ui/data-table-advanced';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/data-table-advanced';
+import { cn } from '@qlm/ui/utils';
 import {
   EntityEmptyFiltered,
   EntityEmptyFirstRun,
   EntityErrorBanner,
   EntityLoadingCardsSkeleton,
   EntityLoadingTableSkeleton,
-} from '@guepard/ui/entity-state';
+} from '@qlm/ui/entity-state';
 
 import { DatabaseCard } from './card';
 import { GridPaginationFooter } from './grid-pagination-footer';

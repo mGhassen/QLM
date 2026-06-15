@@ -26,4 +26,4 @@ Ship the spec §10.4 cases as a new Playwright spec. Path correction: the e2e pa
 ## Notes
 
 - The 8 cases: shell renders on authed routes · dropdown structure (PROJECT + ORGANIZATION, no ACCOUNT) · switch project · switch org (lands on last-visited project) · new-project / new-org dialogs · Invite/Billing/Org-settings shortcuts · `/organizations` redirect · Esc + outside-click close without navigating.
-- Mailpit isn't required for this spec — use the existing `owner@guepard.run` / `testingpassword` sign-in pattern from `apps/e2e/tests/orgs/` (or equivalent).
+- Mailpit isn't required for this spec — use the existing `owner@qlm.run` / `testingpassword` sign-in pattern from `apps/e2e/tests/orgs/` (or equivalent).

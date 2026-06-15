@@ -1,6 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { IProjectRepository } from '@guepard/domain/repositories';
+import type { IProjectRepository } from '@qlm/domain/repositories';
 import {
   CreateProjectService,
   DeleteProjectService,
@@ -8,12 +8,12 @@ import {
   GetProjectService,
   GetProjectsByOrganizationIdService,
   UpdateProjectService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateProjectInput,
   ProjectOutput,
   UpdateProjectInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export function createProjectsResource(
   repository: IProjectRepository,

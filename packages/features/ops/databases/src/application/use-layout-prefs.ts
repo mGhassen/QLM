@@ -1,9 +1,9 @@
-import { createLayoutPrefsHook } from '@guepard/ui/create-layout-prefs-hook';
+import { createLayoutPrefsHook } from '@qlm/ui/create-layout-prefs-hook';
 
-export type { DisplayMode } from '@guepard/ui/create-layout-prefs-hook';
+export type { DisplayMode } from '@qlm/ui/create-layout-prefs-hook';
 
 export const useLayoutPrefs = createLayoutPrefsHook({
-  storeKey: 'guepard:databases',
+  storeKey: 'qlm:databases',
   version: 5,
   defaultPinnedQuickFilters: ['status'],
 });

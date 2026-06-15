@@ -18,7 +18,7 @@ validation:
 - [ ] `src/index.ts` no longer re-exports `NODE_STATUSES`, `NODE_HEALTH_STATES`, `NodeStatus`, `NodeHealthState`.
 - [ ] `view-state.serde.ts` no longer imports / serializes `NodeStatus`-keyed view state.
 - [ ] `application/constants.ts` deprecated `STATUS_BADGE_CLASSES` removed (or commented as moved to lifecycle).
-- [ ] `pnpm --filter @guepard/infrastructure typecheck` reduces error count vs baseline.
+- [ ] `pnpm --filter @qlm/infrastructure typecheck` reduces error count vs baseline.
 
 ## Notes
 

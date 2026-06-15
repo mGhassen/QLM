@@ -1,8 +1,8 @@
-import type { Nullable } from '@guepard/domain/common';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Organization } from '@guepard/domain/entities';
-import { IOrganizationRepository } from '@guepard/domain/repositories';
-import type { OrganizationBillingData } from '@guepard/domain/usecases';
+import type { Nullable } from '@qlm/domain/common';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Organization } from '@qlm/domain/entities';
+import { IOrganizationRepository } from '@qlm/domain/repositories';
+import type { OrganizationBillingData } from '@qlm/domain/usecases';
 
 export class OrganizationRepository extends IOrganizationRepository {
   private organizations = new Map<string, Organization>();

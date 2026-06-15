@@ -28,5 +28,5 @@ Builds a General section for `project-settings` that renames the current project
 
 ## Notes
 
-- Reuse the project-update resource already exposed by `@guepard/shell-runtime` — do not add a new shell resource for this task.
+- Reuse the project-update resource already exposed by `@qlm/shell-runtime` — do not add a new shell resource for this task.
 - The rename form is the only surface here; API keys / env vars / danger zone are phase 2 and explicitly out of scope.

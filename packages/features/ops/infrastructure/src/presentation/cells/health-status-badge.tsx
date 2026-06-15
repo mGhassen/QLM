@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { Node } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { Node } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 
 import { DISPLAY_BADGE_CLASSES } from '../../application/constants';
 import {

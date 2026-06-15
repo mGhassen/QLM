@@ -1,4 +1,4 @@
-import { MessageRole } from '@guepard/domain/entities';
+import { MessageRole } from '@qlm/domain/entities';
 
 export type UIMessageRole = 'user' | 'assistant' | 'system';
 

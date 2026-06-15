@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { toast } from '@guepard/ui/sonner';
+import { toast } from '@qlm/ui/sonner';
 
 import type {
   NodeDrain,
   NodeEligibility,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
-import { useShell } from '@guepard/shell-runtime';
+} from '@qlm/domain/entities';
+import { useShell } from '@qlm/shell-runtime';
 
 /**
  * Project-scoped nodes query + CRUD mutations with optimistic cache

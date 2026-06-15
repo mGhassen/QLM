@@ -3,10 +3,10 @@ import type {
   RepositoryFindOptions,
   PaginationOptions,
   PaginatedResult,
-} from '@guepard/domain/common';
-import type { Message } from '@guepard/domain/entities';
-import { IMessageRepository } from '@guepard/domain/repositories';
-import type { Json } from '@guepard/supabase/database';
+} from '@qlm/domain/common';
+import type { Message } from '@qlm/domain/entities';
+import { IMessageRepository } from '@qlm/domain/repositories';
+import type { Json } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 export class MessageRepository extends IMessageRepository {

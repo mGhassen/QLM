@@ -24,12 +24,12 @@ When `useBillingBalance()` reports `balance <= 0`, render `<CreditsBanner />` in
 - [ ] Same for `/agent/$conversationSlug` tab.
 - [ ] Org with `balance > 0`: original behaviour (conversation + streaming chat).
 - [ ] Loading state for the balance query does **not** flicker the banner — while balance is `undefined`, treat it as permissive (show the conversation) to avoid a false-positive banner during initial load.
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 pnpm --filter web dev
 # Test with a zero-balance org (or stub the endpoint): open panel → banner visible.
 # Top up credits (or switch to a funded org): panel body reloads into conversation.

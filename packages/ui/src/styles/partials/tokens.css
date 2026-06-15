@@ -163,7 +163,7 @@
   --destructive: 0 63% 50%;
   --destructive-foreground: 0 0% 98%;
   --input: 0 0% 15%;
-  /* Focus ring should be neutral; primary stays Guepard yellow */
+  /* Focus ring should be neutral; primary stays QLM yellow */
   --ring: 0 0% 70%;
 
   --chart-1: 42 100% 66%;

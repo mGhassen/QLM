@@ -467,7 +467,7 @@ RFC 0030 Amendment A1 adopts `tmp/relml_integration.md` as the canonical referen
 | **2 — Schema digest + Suggest** | §9 — `schema-digest.ts`, `suggest-ml-tasks.service.ts` | `packages/agent-factory-sdk/src/services/{schema-digest,suggest-prediction-tasks}.ts` |
 | **3 — Design (Describe + Design steps)** | §9 — `clarify-ml-task.service.ts`, `design-ml-task.service.ts`, `relml-primer.ts`; §10 — `validate-design.ts`, `validate-task-design.ts`, `normalize-design.ts`, `quote-ident.ts` | `apps/server/src/lib/predictions/{validate-design,validate-task-design,normalize-design,quote-ident}.ts` + new agent services |
 | **4 — Train (Train step)** | §10 — `bundle-builder.ts`, `job-manager.ts`, `parse-metrics.ts`; §11 — `/train` + `/train/:id/stream` SSE; §12 — `restoreJobsFromDisk`; §13 — `train_cli.py`, `backtest_cli.py` | `apps/server/src/lib/predictions/{bundle-builder,job-manager,parse-metrics}.ts`, `apps/server/src/routes/predictions.ts` (extended), `python/{train,backtest}_cli.py` |
-| **5 — Use (Use step)** | §10 — `predict.ts`; §13 — `predict_cli.py`; §11 — `/predict`, `/backtest`; §15-16 — Web Model Builder UI | `apps/server/src/lib/predictions/predict.ts`, `python/predict_cli.py`, model-builder route inside `@guepard/app-predictions` |
+| **5 — Use (Use step)** | §10 — `predict.ts`; §13 — `predict_cli.py`; §11 — `/predict`, `/backtest`; §15-16 — Web Model Builder UI | `apps/server/src/lib/predictions/predict.ts`, `python/predict_cli.py`, model-builder route inside `@qlm/app-predictions` |
 | **6 — Improve (improvement + recovery)** | §9 — `improve-ml-task.service.ts`, `diagnosis-playbook.ts`; §10 — `compute-diagnosis.ts`; §11 — `/improve`, `/recover` | `apps/server/src/lib/predictions/compute-diagnosis.ts` + improvement agent service |
 
 **Adopted verbatim from Qwery (when phase 4 lands):**
@@ -475,13 +475,13 @@ RFC 0030 Amendment A1 adopts `tmp/relml_integration.md` as the canonical referen
 - SSE event protocol (§19.2): `event: log` lines + terminal `event: status`.
 - Predict request/response (§19.3): `{inputs: Record<string,string>}` → `{success, data: {ok, value}}`.
 - Improvement proposal (§19.4): `{design, changes[], rationale, confidence}`.
-- Job filesystem layout (§20): `${GUEPARD_STORAGE_DIR}/predictions/<jobId>/{job.json,design.json,bundle.duckdb,train.log,model.bin,model.schema.json,backtest.json}`.
+- Job filesystem layout (§20): `${QLM_STORAGE_DIR}/predictions/<jobId>/{job.json,design.json,bundle.duckdb,train.log,model.bin,model.schema.json,backtest.json}`.
 
 **Deps added in phase 2+ (NOT in phase 1):**
 - `@duckdb/node-api@1.4.2-r.1` (server) — binder validation + bundle building.
 - `experimentalDecorators` + `emitDecoratorMetadata` in `apps/server/tsconfig.json`.
-- `guepard.qwery.relml` Python package installed into the spawn venv.
-- Env: `GUEPARD_PYTHON_BIN`, `GUEPARD_STORAGE_DIR`, `GUEPARD_PREDICTIONS_{TRAIN,PREDICT,BACKTEST}_CLI`.
+- `qlm.qwery.relml` Python package installed into the spawn venv.
+- Env: `QLM_PYTHON_BIN`, `QLM_STORAGE_DIR`, `QLM_PREDICTIONS_{TRAIN,PREDICT,BACKTEST}_CLI`.
 
 The integration-doc blueprint is **not** copied verbatim — every file is ported through our hexagonal layers (domain → ports → services → adapters → routes → shell-runtime → app), and the `MLTask*` prefix becomes `PredictionTask*`.
 

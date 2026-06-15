@@ -1,9 +1,9 @@
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 import {
   IUserTokenRepository,
   type CreateUserTokenRow,
-} from '@guepard/domain/repositories';
-import type { CreateUserTokenOutput } from '@guepard/domain/usecases';
+} from '@qlm/domain/repositories';
+import type { CreateUserTokenOutput } from '@qlm/domain/usecases';
 
 import { apiGet, apiPost } from './api-client';
 

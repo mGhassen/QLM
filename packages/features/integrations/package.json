@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/integrations",
+  "name": "@qlm/integrations",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -14,18 +14,18 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
+    "@qlm/domain": "workspace:*",
     "class-transformer": "^0.5.1",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/i18n": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/i18n": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@storybook/react": "catalog:",
     "@types/react": "catalog:",
@@ -41,7 +41,7 @@
     "typescript": "catalog:",
     "zod": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

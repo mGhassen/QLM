@@ -8,7 +8,7 @@ import {
 } from "@xyflow/react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import { CloneCard } from "../clone-card";
 import { ENVIRONMENTS_CANVAS_SERVICE_DRAG, ENVIRONMENTS_CANVAS_SERVICE_FOCUS } from "../environments-services-canvas";

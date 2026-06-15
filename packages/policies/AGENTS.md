@@ -24,7 +24,7 @@ import {
   createPolicyRegistry,
   definePolicy,
   deny,
-} from '@guepard/policies';
+} from '@qlm/policies';
 
 const registry = createPolicyRegistry();
 
@@ -74,7 +74,7 @@ import {
   createPoliciesFromRegistry,
   createPolicyEvaluator,
   createPolicyRegistry,
-} from '@guepard/policies';
+} from '@qlm/policies';
 
 const registry = createPolicyRegistry();
 
@@ -119,7 +119,7 @@ const result = await evaluator.evaluateGroups(
 ### Real-World Multi-Stage Team Invitation Flow
 
 ```typescript
-import { createPolicy, createPolicyEvaluator } from '@guepard/policies';
+import { createPolicy, createPolicyEvaluator } from '@qlm/policies';
 
 // Complex business logic: (Authentication AND Email Validation) AND (Subscription OR Trial) AND Billing Limits
 async function validateTeamInvitation(context: InvitationContext) {
@@ -607,7 +607,7 @@ if (!result.allowed) {
 ### 1. Register Complex Policy with Configuration
 
 ```typescript
-import { createPolicyRegistry, definePolicy } from '@guepard/policies';
+import { createPolicyRegistry, definePolicy } from '@qlm/policies';
 
 const registry = createPolicyRegistry();
 

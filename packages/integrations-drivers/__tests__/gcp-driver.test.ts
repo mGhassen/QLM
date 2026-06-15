@@ -1,16 +1,16 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { RevealedCredentials } from '@guepard/domain/services';
+import type { RevealedCredentials } from '@qlm/domain/services';
 
 import { GcpDriver, type GcpClientFactory } from '../src/gcp/gcp-driver';
 
 const VALID_SERVICE_ACCOUNT = JSON.stringify({
   type: 'service_account',
-  project_id: 'guepard-analytics-prod',
+  project_id: 'qlm-analytics-prod',
   private_key_id: '1234567890abcdef',
   private_key: '-----BEGIN PRIVATE KEY-----\nfake\n-----END PRIVATE KEY-----\n',
   client_email:
-    'guepard-runtime@guepard-analytics-prod.iam.gserviceaccount.com',
+    'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
 });
 
 const GCP_CREDS: RevealedCredentials = {
@@ -49,11 +49,11 @@ describe('GcpDriver.testConnection', () => {
     expect(result).toEqual({
       ok: true,
       identity:
-        'guepard-runtime@guepard-analytics-prod.iam.gserviceaccount.com',
+        'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
     });
     expect(calls).toHaveLength(1);
     expect(calls[0]).toBe(
-      'https://cloudresourcemanager.googleapis.com/v1/projects/guepard-analytics-prod',
+      'https://cloudresourcemanager.googleapis.com/v1/projects/qlm-analytics-prod',
     );
   });
 
@@ -205,7 +205,7 @@ describe('GcpDriver.listRegions', () => {
     expect(regions[1]).toEqual({ id: 'europe-west1', name: 'Belgium' });
 
     expect(calls[0]).toBe(
-      'https://compute.googleapis.com/compute/v1/projects/guepard-analytics-prod/regions',
+      'https://compute.googleapis.com/compute/v1/projects/qlm-analytics-prod/regions',
     );
   });
 

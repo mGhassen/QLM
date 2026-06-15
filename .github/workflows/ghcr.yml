@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: guepard-console-full
+  IMAGE_NAME: qlm-console-full
 
 jobs:
   build:

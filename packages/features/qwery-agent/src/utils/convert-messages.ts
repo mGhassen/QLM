@@ -2,9 +2,9 @@ import {
   messageRoleToUIRole,
   normalizeUIRole,
   type UIMessageRole,
-} from '@guepard/shared/message-role-utils';
-import type { UIMessage } from '@guepard/agent-factory-sdk';
-import { MessageOutput } from '@guepard/domain/usecases';
+} from '@qlm/shared/message-role-utils';
+import type { UIMessage } from '@qlm/agent-factory-sdk';
+import { MessageOutput } from '@qlm/domain/usecases';
 
 /**
  * Convert `MessageOutput[]` (server shape) to `UIMessage[]` (`@ai-sdk/react`

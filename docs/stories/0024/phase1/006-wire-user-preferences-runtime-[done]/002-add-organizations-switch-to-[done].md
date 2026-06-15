@@ -26,7 +26,7 @@ Extend `createOrganizationsResource` with `switchTo(orgId)` that resolves the ta
 - [ ] Unit test covers: switchTo resolves last project slug, falls back to first project when no last entry, falls back when the stored id 404s, throws when the org has no projects.
 - [ ] `client.ts` constructs `createUserPreferencesResource(repositories.userPreferences, repositories.project, queryClient, currentUserId)` and threads it into `createOrganizationsResource` as the `lastProjectResolver`. `ShellClient` gains `userPreferences: UserPreferencesResource`. Must land in the same commit — the 4-arg `createOrganizationsResource` signature breaks the old call site otherwise.
 - [ ] `pnpm typecheck` green.
-- [ ] `pnpm --filter @guepard/shell-runtime test` green.
+- [ ] `pnpm --filter @qlm/shell-runtime test` green.
 
 ## Notes
 

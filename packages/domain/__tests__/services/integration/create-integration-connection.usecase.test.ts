@@ -49,11 +49,11 @@ describe('CreateIntegrationConnectionService', () => {
 
     const gcpJson = JSON.stringify({
       type: 'service_account',
-      project_id: 'guepard-analytics-prod',
+      project_id: 'qlm-analytics-prod',
       private_key_id: 'abc',
       private_key:
         '-----BEGIN PRIVATE KEY-----\nfake\n-----END PRIVATE KEY-----',
-      client_email: 'guepard@guepard-analytics-prod.iam.gserviceaccount.com',
+      client_email: 'qlm@qlm-analytics-prod.iam.gserviceaccount.com',
     });
 
     const output = await service.execute({
@@ -68,7 +68,7 @@ describe('CreateIntegrationConnectionService', () => {
     });
 
     expect(output.provider).toBe('gcp');
-    expect(output.config.accountHint).toBe('guepard-analytics-prod');
+    expect(output.config.accountHint).toBe('qlm-analytics-prod');
     expect(output.config.defaultRegion).toBe('europe-west1');
   });
 

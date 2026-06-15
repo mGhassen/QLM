@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-pglite",
+  "name": "@qlm/extension-pglite",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.12",
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

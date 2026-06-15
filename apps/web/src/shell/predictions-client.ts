@@ -1,5 +1,5 @@
-import type { DatasourceMetadata } from '@guepard/domain/entities';
-import type { PredictionsHostClient } from '@guepard/shell-runtime';
+import type { DatasourceMetadata } from '@qlm/domain/entities';
+import type { PredictionsHostClient } from '@qlm/shell-runtime';
 
 import {
   apiPost,

@@ -71,7 +71,7 @@ pnpm supabase:web:typegen
 grep -n is_source packages/supabase/src/database.types.ts
 
 # Confirm the domain entity schema parses both values
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain test
 
 # Full typecheck and test sweep — no regressions allowed
 pnpm typecheck

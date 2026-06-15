@@ -1,4 +1,4 @@
-import type { NodeProvider } from '@guepard/domain/entities';
+import type { NodeProvider } from '@qlm/domain/entities';
 
 /**
  * Visual classes for the eight composite states from `getNodeDisplayState`.

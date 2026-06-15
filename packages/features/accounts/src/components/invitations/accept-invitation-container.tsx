@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { CsrfTokenFormField, useCsrfToken } from '@guepard/csrf/client';
-import { Button } from '@guepard/ui/button';
-import { Heading } from '@guepard/ui/heading';
-import { If } from '@guepard/ui/if';
-import { Separator } from '@guepard/ui/separator';
-import { Trans } from '@guepard/ui/trans';
+import { CsrfTokenFormField, useCsrfToken } from '@qlm/csrf/client';
+import { Button } from '@qlm/ui/button';
+import { Heading } from '@qlm/ui/heading';
+import { If } from '@qlm/ui/if';
+import { Separator } from '@qlm/ui/separator';
+import { Trans } from '@qlm/ui/trans';
 
 import { SignOutInvitationButton } from './sign-out-invitation-button';
 

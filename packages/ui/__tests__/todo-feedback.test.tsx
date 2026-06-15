@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TodoPart } from '../src/guepard/ai/message-parts';
-import { ToolVariantProvider } from '../src/guepard/ai/tool-variant-context';
-import * as scrollUtils from '../src/guepard/ai/utils/scroll-utils';
+import { TodoPart } from '../src/qlm/ai/message-parts';
+import { ToolVariantProvider } from '../src/qlm/ai/tool-variant-context';
+import * as scrollUtils from '../src/qlm/ai/utils/scroll-utils';
 import * as sonner from 'sonner';
 
-vi.mock('../src/guepard/ai/utils/scroll-utils');
+vi.mock('../src/qlm/ai/utils/scroll-utils');
 vi.mock('sonner');
 
 function renderTodoPart(part: Parameters<typeof TodoPart>[0]['part']) {

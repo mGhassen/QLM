@@ -1,8 +1,8 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { Order } from '@guepard/domain/entities';
-import type { IOrderRepository } from '@guepard/domain/repositories';
-import { GetOrdersByOrganizationIdService } from '@guepard/domain/services';
+import type { Order } from '@qlm/domain/entities';
+import type { IOrderRepository } from '@qlm/domain/repositories';
+import { GetOrdersByOrganizationIdService } from '@qlm/domain/services';
 
 export function createOrdersResource(
   repository: IOrderRepository,

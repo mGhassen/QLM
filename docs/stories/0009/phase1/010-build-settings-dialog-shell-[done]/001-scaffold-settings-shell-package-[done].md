@@ -12,7 +12,7 @@ files:
   - packages/features/settings-shell/__tests__/setup.ts
 ---
 
-# Scaffold @guepard/settings-shell package
+# Scaffold @qlm/settings-shell package
 
 ## Purpose
 
@@ -20,8 +20,8 @@ New workspace package home for the dialog + sidebar components task 002 will wri
 
 ## Files
 
-- `packages/features/settings-shell/package.json` — name `@guepard/settings-shell`, private, type module. Subpath exports `.`, `./components`, `./types`. Deps: `@guepard/domain` (workspace), `@guepard/ui` (workspace), `react` (catalog), `react-i18next`, `zod` (catalog), plus storybook + testing devDeps mirroring `@guepard/user-tokens`.
-- `packages/features/settings-shell/tsconfig.json` — extends `@guepard/tsconfig/base.json`; includes `src` + `__tests__` + `vitest.config.ts`.
+- `packages/features/settings-shell/package.json` — name `@qlm/settings-shell`, private, type module. Subpath exports `.`, `./components`, `./types`. Deps: `@qlm/domain` (workspace), `@qlm/ui` (workspace), `react` (catalog), `react-i18next`, `zod` (catalog), plus storybook + testing devDeps mirroring `@qlm/user-tokens`.
+- `packages/features/settings-shell/tsconfig.json` — extends `@qlm/tsconfig/base.json`; includes `src` + `__tests__` + `vitest.config.ts`.
 - `packages/features/settings-shell/vitest.config.ts` — jsdom env, istanbul coverage, `@testing-library/jest-dom/vitest` setup.
 - `packages/features/settings-shell/src/index.ts` — `export {};` placeholder (re-exports added in task 002).
 - `packages/features/settings-shell/src/components/index.ts` — `export {};`.
@@ -31,14 +31,14 @@ New workspace package home for the dialog + sidebar components task 002 will wri
 ## Acceptance
 
 - [ ] `pnpm install` from repo root succeeds with the new package.
-- [ ] `pnpm --filter @guepard/settings-shell typecheck` passes on the empty package.
+- [ ] `pnpm --filter @qlm/settings-shell typecheck` passes on the empty package.
 - [ ] No new lockfile churn beyond the new package's deps.
 
 ## Test plan
 
 ```
 pnpm install
-pnpm --filter @guepard/settings-shell typecheck
+pnpm --filter @qlm/settings-shell typecheck
 ```
 
 ## Storybook validation

@@ -25,7 +25,7 @@ validation:
 
 # Scaffold profile with read-only name
 
-Stand up the `@guepard/user-profile` feature package, a read-only `NameCard` sourced from `useUser()`, and a new `sections/profile.tsx` registered above **Personal tokens** in the `user-settings` plugin so `/prj/{slug}/user-settings` renders the new section on page load.
+Stand up the `@qlm/user-profile` feature package, a read-only `NameCard` sourced from `useUser()`, and a new `sections/profile.tsx` registered above **Personal tokens** in the `user-settings` plugin so `/prj/{slug}/user-settings` renders the new section on page load.
 
 ## Done when
 
@@ -33,7 +33,7 @@ Stand up the `@guepard/user-profile` feature package, a read-only `NameCard` sou
 - [ ] `NameCard` renders the signed-in user's name read-only (from `useUser()`), with a disabled input placeholder for future editing.
 - [ ] `packages/apps/user-settings/src/sections/profile.tsx` exists and is registered as the **first** section in `plugin-root.tsx`, above `personal-tokens`.
 - [ ] Navigating to `/prj/$projectSlug/user-settings` shows Profile as the default sidebar item with the read-only Name card visible.
-- [ ] `pnpm typecheck` + `pnpm --filter @guepard/user-profile build` pass; no new console errors in the `ui-smoke` run.
+- [ ] `pnpm typecheck` + `pnpm --filter @qlm/user-profile build` pass; no new console errors in the `ui-smoke` run.
 
 ## Notes
 

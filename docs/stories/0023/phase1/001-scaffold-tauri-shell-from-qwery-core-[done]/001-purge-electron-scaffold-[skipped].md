@@ -18,7 +18,7 @@ Delete the unused Electron scaffold under `apps/desktop/` so the Tauri rewrite h
 
 ## Skipped because
 
-`apps/desktop/` does not exist in this repo. The Electron scaffold the spec referenced lives in qwery-core (`/Users/hani.chalouati/Documents/work/guepard/qwery-core/apps/desktop/`), not here. `architecture.md` mentions "apps/desktop — Electron wrapper" aspirationally; there are no files to delete. Folder was created greenfield by task 002, so this task became a no-op.
+`apps/desktop/` does not exist in this repo. The Electron scaffold the spec referenced lives in qwery-core (`/Users/hani.chalouati/Documents/work/qlm/qwery-core/apps/desktop/`), not here. `architecture.md` mentions "apps/desktop — Electron wrapper" aspirationally; there are no files to delete. Folder was created greenfield by task 002, so this task became a no-op.
 
 ## Done when
 

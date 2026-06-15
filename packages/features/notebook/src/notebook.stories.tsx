@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import type { ColumnHeader, DatasourceRow } from '@guepard/domain/entities';
+import type { ColumnHeader, DatasourceRow } from '@qlm/domain/entities';
 import { NotebookUI } from './components/notebook-ui';
 
 const meta: Meta<typeof NotebookUI> = {

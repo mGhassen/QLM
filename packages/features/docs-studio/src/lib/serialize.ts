@@ -238,7 +238,7 @@ export const BLOCK_DEFAULTS: Record<string, Partial<BlockNode>> = {
     type: "cover",
     props: { id: "cover", pageBreak: true },
     children: [
-      { id: "", type: "brand", content: "GUEPARD STRATEGIC RESEARCH" },
+      { id: "", type: "brand", content: "QLM STRATEGIC RESEARCH" },
       {
         id: "",
         type: "coverBody",
@@ -276,7 +276,7 @@ export const BLOCK_DEFAULTS: Record<string, Partial<BlockNode>> = {
       },
     ],
   },
-  brand: { type: "brand", content: "GUEPARD STRATEGIC RESEARCH" },
+  brand: { type: "brand", content: "QLM STRATEGIC RESEARCH" },
   coverBody: { type: "coverBody" },
   section: { type: "section", props: { id: "section-1", pageBreak: true } },
   seclabel: { type: "seclabel", content: "Section 01" },

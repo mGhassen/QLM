@@ -2,8 +2,8 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { BillingWebhookHandlerService } from '../ports/billing-webhook-handler.service';
 import { UpsertOrderParams, UpsertSubscriptionParams } from '../types';
-import { getLogger } from '@guepard/shared/logger';
-import { Database } from '@guepard/supabase/database';
+import { getLogger } from '@qlm/shared/logger';
+import { Database } from '@qlm/supabase/database';
 import { StripeWebhookHandlerService } from './stripe-webhook-handler.service';
 import { PlanTypeMap } from '../types/create-billing-schema';
 

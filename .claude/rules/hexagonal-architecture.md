@@ -24,13 +24,13 @@ Strict separation between business logic, adapters, and presentation. Respect th
    - **Apps must use this, not domain services directly**
 
 4. **Presentation** (`packages/ui`, `packages/features/*`, `packages/apps/*`)
-   - `packages/ui` — generic Shadcn-based primitives + guepard-branded components
+   - `packages/ui` — generic Shadcn-based primitives + qlm-branded components
    - `packages/features/*` — presentational feature components (e.g. `NotebookUI`, `NotebookList`). Receive data via props or `useShell()`. **Do not instantiate domain services.**
    - `packages/apps/*` — thin shell plugins: manifest + plugin-root. Plugin-root wires `useShell()` queries/mutations to feature components.
 
 5. **Host** (`apps/web`) — owns the routing, providers, and repository factory
    - `lib/repositories-factory.ts` constructs concrete adapters and provides them via `WorkspaceContext`
-   - Routes wrap the shell with `<ShellAppProvider>` from `@guepard/shell-runtime`
+   - Routes wrap the shell with `<ShellAppProvider>` from `@qlm/shell-runtime`
 
 ## Mandatory rules
 
@@ -50,7 +50,7 @@ Strict separation between business logic, adapters, and presentation. Respect th
 
 ## Anti-patterns (reject during review)
 
-- ❌ Importing `@guepard/repository-supabase` from a feature or app package — use the shell client instead
+- ❌ Importing `@qlm/repository-supabase` from a feature or app package — use the shell client instead
 - ❌ Instantiating domain services inside React components — use the shell client
 - ❌ Putting React hooks inside `packages/domain` — domain must stay pure
 - ❌ Apps importing from `apps/web` — app packages cannot depend on the host

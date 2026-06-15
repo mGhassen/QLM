@@ -17,7 +17,7 @@ validation:
     - packages/domain/__tests__/services/user-token/create.test.ts
 ```
 
-Runner: `pnpm --filter @guepard/domain test -- <specs>`. Use for domain services, entities, exceptions.
+Runner: `pnpm --filter @qlm/domain test -- <specs>`. Use for domain services, entities, exceptions.
 
 ### `route-test`
 

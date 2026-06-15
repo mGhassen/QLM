@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Grid3x3, History, Move, Rows2, Sparkles } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
-import { Separator } from "@guepard/ui/separator";
+import { cn } from "@qlm/ui/utils";
+import { Separator } from "@qlm/ui/separator";
 
 import type { CanvasCardLayoutMode } from "./canvas-card-layout";
 

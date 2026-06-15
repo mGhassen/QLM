@@ -8,10 +8,10 @@ import {
 } from '@radix-ui/react-icons';
 import { ArrowLeft, ArrowRight, Database, Sparkles, X } from 'lucide-react';
 
-import type { DatasourceExtension } from '@guepard/extensions-sdk';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { cn } from '@guepard/ui/utils';
+import type { DatasourceExtension } from '@qlm/extensions-sdk';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { cn } from '@qlm/ui/utils';
 
 const ITEMS_PER_PAGE = 24;
 const FILTER_TAGS = ['SQL', 'Files', 'SaaS', 'API'] as const;
@@ -206,7 +206,7 @@ export function DatasourceBrowser({
               })}
             </p>
             <a
-              href="https://github.com/guepard/guepard-console-v3/issues/new"
+              href="https://github.com/qlm/qlm-console-v3/issues/new"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 inline-flex cursor-pointer items-center gap-2 text-sm font-medium transition-colors"

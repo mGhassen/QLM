@@ -3,10 +3,10 @@ import type { Context } from 'hono';
 import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
 import { basicAuth } from 'hono/basic-auth';
-import { DomainException } from '@guepard/domain/exceptions';
-import { getLogger } from '@guepard/shared/logger';
-import type { ISecretVault, Repositories } from '@guepard/domain/repositories';
-import type { IIntegrationProviderDriverRegistry } from '@guepard/domain/services';
+import { DomainException } from '@qlm/domain/exceptions';
+import { getLogger } from '@qlm/shared/logger';
+import type { ISecretVault, Repositories } from '@qlm/domain/repositories';
+import type { IIntegrationProviderDriverRegistry } from '@qlm/domain/services';
 import { getRepositories } from './lib/repositories';
 import { createServerSecretVault } from './lib/secret-vault';
 import { createServerDriverRegistry } from './lib/integration-driver-registry';
@@ -62,7 +62,7 @@ export type CreateAppOptions = {
   getRepositories?: (c: Context) => Promise<Repositories>;
   /**
    * Override the secret vault used by the integrations routes. Tests pass
-   * an in-memory fake so they don't need a real `GUEPARD_SECRET_VAULT_KEY`
+   * an in-memory fake so they don't need a real `QLM_SECRET_VAULT_KEY`
    * and so that assertions can peek at stored values.
    */
   secretVault?: ISecretVault;

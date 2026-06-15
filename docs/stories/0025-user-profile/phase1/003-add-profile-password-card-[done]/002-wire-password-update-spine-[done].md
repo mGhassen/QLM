@@ -33,7 +33,7 @@ Extend the existing `IAccountRepository` port with `updatePassword({sessionEmail
 - [ ] `SupabasePersonalAccountRepository.updatePassword`: `auth.signInWithPassword({email: sessionEmail, password: current})` → on failure throw `InvalidCurrentPasswordException`; on success `auth.updateUser({password: next})`.
 - [ ] `shell.personalAccount.updatePassword({current, next})` exposed; reads the session's email from the runtime context to satisfy `sessionEmail`.
 - [ ] i18n keys added: `userProfile.password.{updated,invalidCurrent,sameAsCurrent,tooShort}`.
-- [ ] `pnpm --filter @guepard/domain test` passes; `pnpm typecheck` passes monorepo-wide.
+- [ ] `pnpm --filter @qlm/domain test` passes; `pnpm typecheck` passes monorepo-wide.
 
 ## Notes
 

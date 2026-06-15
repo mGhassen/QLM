@@ -29,7 +29,7 @@ const config: StorybookConfig = {
         tailwindcss(),
       ],
       define: {
-        // `@guepard/billing` parses Stripe env at module-top level. Storybook
+        // `@qlm/billing` parses Stripe env at module-top level. Storybook
         // doesn't load `apps/web/.env.local`, so inject a placeholder that
         // satisfies the `pk_` prefix refinement.
         'import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY': JSON.stringify(
@@ -63,17 +63,17 @@ const config: StorybookConfig = {
           '@duckdb/node-bindings-win32-x64',
           '@duckdb/node-bindings-darwin-x64',
           '@duckdb/node-bindings-linux-x64',
-          '@guepard/extension-clickhouse-node',
-          '@guepard/extension-clickhouse-web',
-          '@guepard/extension-duckdb',
-          '@guepard/extension-duckdb-wasm',
-          '@guepard/extension-pglite',
-          '@guepard/extension-mysql',
-          '@guepard/extension-postgresql',
-          '@guepard/extension-json-online',
-          '@guepard/extension-gsheet-csv',
-          '@guepard/extension-parquet-online',
-          '@guepard/extension-youtube-data-api-v3',
+          '@qlm/extension-clickhouse-node',
+          '@qlm/extension-clickhouse-web',
+          '@qlm/extension-duckdb',
+          '@qlm/extension-duckdb-wasm',
+          '@qlm/extension-pglite',
+          '@qlm/extension-mysql',
+          '@qlm/extension-postgresql',
+          '@qlm/extension-json-online',
+          '@qlm/extension-gsheet-csv',
+          '@qlm/extension-parquet-online',
+          '@qlm/extension-youtube-data-api-v3',
         ],
       },
     });

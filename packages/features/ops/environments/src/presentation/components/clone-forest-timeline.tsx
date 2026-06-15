@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import { environmentsCloneCardWidthPx } from "../../environment-clone-canvas-layout";
 import type { CloneForestNode } from "../../environment-clone-tree";

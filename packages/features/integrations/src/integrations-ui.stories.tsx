@@ -53,6 +53,6 @@ export const Error: Story = {
   name: 'Error',
   args: {
     error:
-      'Could not reach the Guepard API (502 Bad Gateway). Retry in a moment.',
+      'Could not reach the QLM API (502 Bad Gateway). Retry in a moment.',
   },
 };

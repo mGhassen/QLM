@@ -8,7 +8,7 @@ import { useLocalStorage } from './use-local-storage';
  * Keys are stored as `<namespace>:<key>` so stores never collide.
  *
  * @example
- * const useNodesPrefs = createPreferenceStore('guepard:nodes', {
+ * const useNodesPrefs = createPreferenceStore('qlm:nodes', {
  *   displayMode: 'list' as 'list' | 'grid',
  *   pageSize: 20,
  *   sort: null as SortState | null,

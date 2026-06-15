@@ -35,14 +35,14 @@ validation:
   - Org switch: `const { slug } = await shell.organizations.switchTo(nextOrgId); onNavigate('/prj/' + slug);`.
   - Project create: `const project = await shell.projects.create({ organizationId, name, slug });` → `onNavigate('/prj/' + project.slug);` → `shell.projects.invalidate.list(organizationId)`.
   - Org create: `const org = await shell.organizations.create({ name, slug });` → await a tick for the DB trigger's default project (see story 007 notes), then `const { slug: projectSlug } = await shell.organizations.switchTo(org.id); onNavigate('/prj/' + projectSlug);`. Invalidate `shell.organizations.keys.all`.
-- [ ] Error handling: `shell.projects.create` / `organizations.create` rejections surface as `serverError` on the dialog (string form of the error message). Other mutation failures toast via `sonner` + log via `@guepard/shared/logger.warn`.
+- [ ] Error handling: `shell.projects.create` / `organizations.create` rejections surface as `serverError` on the dialog (string form of the error message). Other mutation failures toast via `sonner` + log via `@qlm/shared/logger.warn`.
 - [ ] Keyboard: `Esc` always closes (root-level listener while `level1/submenu/dialog`). Outside-click closes `level1/submenu` but NOT `dialog` (modal traps focus).
 - [ ] Storybook stories: `DefaultClosed`, `Level1Open`, `ProjectSubmenuOpen`, `OrgSubmenuOpen`, `CreateProjectDialog`, `CreateOrgDialog`. Use a MockShellProvider / `ShellAppProvider` harness that injects fake repositories.
 - [ ] Unit test: clicking trigger opens level-1; clicking active-project row opens project submenu; clicking a project row calls `onNavigate` with the right path and fires `setLastProject`; `Esc` closes.
-- [ ] `pnpm typecheck` green; `pnpm --filter @guepard/shell-topbar test` green.
+- [ ] `pnpm typecheck` green; `pnpm --filter @qlm/shell-topbar test` green.
 
 ## Notes
 
 - Do NOT import from `apps/web/*` — features packages are forbidden to. Any path helper must be inlined or reimplemented in a small private helper.
 - `shell.orgSlug` is the org's slug in context. To turn it into `orgId` for list queries, use the org list: `orgs.find(o => o.slug === shell.orgSlug)?.id`. For speed, memoize.
-- `@tanstack/react-query` is a peer dep of `@guepard/shell-runtime`; `@guepard/shell-topbar` can `useQuery` directly since it's already on the catalog.
+- `@tanstack/react-query` is a peer dep of `@qlm/shell-runtime`; `@qlm/shell-topbar` can `useQuery` directly since it's already on the catalog.

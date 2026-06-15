@@ -15,20 +15,20 @@ blocked_by:
 
 ## Goal
 
-Build `packages/auth-shared/src/bearer-token-middleware.ts` — a self-contained, framework-agnostic module exporting `verifyBearerToken` and `scopePermitsMethod`, with full unit-test coverage — so `guepard-public-api` can adopt it in a separate cross-repo ticket without re-implementing JWT verification + scope enforcement logic.
+Build `packages/auth-shared/src/bearer-token-middleware.ts` — a self-contained, framework-agnostic module exporting `verifyBearerToken` and `scopePermitsMethod`, with full unit-test coverage — so `qlm-public-api` can adopt it in a separate cross-repo ticket without re-implementing JWT verification + scope enforcement logic.
 
 ## Scope
 
 **In scope**
 
 - New package `packages/auth-shared/` with:
-  - `package.json` (`@guepard/auth-shared` or similar name; decided during implementation), `tsconfig.json`, `vitest.config.ts`, `src/index.ts`.
+  - `package.json` (`@qlm/auth-shared` or similar name; decided during implementation), `tsconfig.json`, `vitest.config.ts`, `src/index.ts`.
   - Dependencies: `zod` (for validating the JWT payload shape), `jsonwebtoken` (for HS256 verify). No Hono, no Supabase, no React, no framework-specific code.
 - `src/bearer-token-middleware.ts` exporting:
   - `verifyBearerToken(authHeader: string | null, jwtSecret: string, lookup: (tokenId: string) => Promise<{ revoked: boolean; expires_at: number } | null>)` → `Promise<{ ok: true; accountId: string; scopes: UserTokenScope[] } | { ok: false; reason: 'no-auth' | 'invalid-signature' | 'not-found' | 'revoked' | 'expired' }>`.
   - `scopePermitsMethod(scopes: UserTokenScope[], method: string): boolean` — `admin` → any; `read` → GET only; `write` → POST/PUT/DELETE only.
   - Small Zod schema for the expected JWT payload shape (`token_id`, `sub`, `scopes`, `exp`) so invalid-shape claims are rejected cleanly.
-- The `lookup` dependency is injected — the module does NOT import `@supabase/*` or any DB client. Consumers (v3's server, `guepard-public-api`) pass their own lookup function. This keeps the module portable.
+- The `lookup` dependency is injected — the module does NOT import `@supabase/*` or any DB client. Consumers (v3's server, `qlm-public-api`) pass their own lookup function. This keeps the module portable.
 - Re-export from `src/index.ts`.
 - Unit tests:
   - Missing `Authorization` header → `{ ok: false, reason: 'no-auth' }`.
@@ -42,8 +42,8 @@ Build `packages/auth-shared/src/bearer-token-middleware.ts` — a self-contained
 
 **Out of scope**
 
-- Applying the middleware anywhere in v3. Per spec §3.3 Flow C and §7.4, v3 server routes use the session cookie; they do NOT adopt this middleware. This module exists for `guepard-public-api`.
-- The actual `guepard-public-api` consumption — tracked cross-repo in spec §7.9 (and referenced by Story 012's coordination checklist).
+- Applying the middleware anywhere in v3. Per spec §3.3 Flow C and §7.4, v3 server routes use the session cookie; they do NOT adopt this middleware. This module exists for `qlm-public-api`.
+- The actual `qlm-public-api` consumption — tracked cross-repo in spec §7.9 (and referenced by Story 012's coordination checklist).
 - Any framework-specific middleware wrapper (e.g. a Hono or Express adapter). Just the pure functions.
 
 ## Acceptance criteria
@@ -55,21 +55,21 @@ Build `packages/auth-shared/src/bearer-token-middleware.ts` — a self-contained
 - [x] `scopePermitsMethod` covers all 12 combinations of `{read, write, admin} × {GET, POST, PUT, DELETE}` with passing unit tests, plus an OR-combine case and a case-insensitive-method case.
 - [x] No import of Hono, Express, `@supabase/*`, React, or any framework-specific package in the module files.
 - [x] Coverage ≥ 90 % on `src/` (96.42 % line, 95.65 % branch).
-- [x] `pnpm --filter @guepard/auth-shared test` passes (23 tests).
-- [x] `pnpm --filter @guepard/auth-shared typecheck` passes.
+- [x] `pnpm --filter @qlm/auth-shared test` passes (23 tests).
+- [x] `pnpm --filter @qlm/auth-shared typecheck` passes.
 
 ## Tasks
 
-1. [001-scaffold-auth-shared-package](001-scaffold-auth-shared-package-[pending].md) — domain. New `@guepard/auth-shared` workspace package (package.json, tsconfig, vitest.config, empty barrel).
+1. [001-scaffold-auth-shared-package](001-scaffold-auth-shared-package-[pending].md) — domain. New `@qlm/auth-shared` workspace package (package.json, tsconfig, vitest.config, empty barrel).
 2. [002-implement-bearer-token-middleware](002-implement-bearer-token-middleware-[pending].md) — domain. `verifyBearerToken` + `scopePermitsMethod` + Zod JWT-payload schema.
 3. [003-cover-bearer-token-middleware-with-tests](003-cover-bearer-token-middleware-with-tests-[pending].md) — tests. 7 `verifyBearerToken` branches + 12-cell `scopePermitsMethod` matrix.
 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/auth-shared typecheck
-pnpm --filter @guepard/auth-shared test
-pnpm --filter @guepard/auth-shared test -- --coverage
+pnpm --filter @qlm/auth-shared typecheck
+pnpm --filter @qlm/auth-shared test
+pnpm --filter @qlm/auth-shared test -- --coverage
 ```
 
 ## Questions surfaced

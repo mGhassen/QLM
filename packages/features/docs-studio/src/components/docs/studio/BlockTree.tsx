@@ -22,7 +22,7 @@ import { BLOCK_LABELS } from "#/lib/block-fields";
 import { isCoverPageBlock, isCoverSection } from "#/lib/section-variant";
 import { blockHasEditableText, parseTreeSelection, toTextNodeId } from "#/lib/block-text";
 import { scrollTreeItemIntoView } from "#/lib/page-blocks";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 import type { BlockNode } from "#/lib/types";
 
 interface BlockTreeProps {

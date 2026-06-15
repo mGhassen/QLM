@@ -55,7 +55,7 @@ Ship the three session-gated Hono routes on `apps/server` — `POST /user-tokens
 - [x] `POST /user-tokens` rejects all four invalid-input cases with 400 (Zod-validator rejection from `CreateUserTokenInputSchema`).
 - [x] `rawJwt` log-redaction is logged as a follow-up — see Questions surfaced. Centralised redaction does not exist on apps/server today; a future RFC owns rolling out a pino redact list.
 - [x] `pnpm --filter server exec vitest run __tests__/user-tokens.test.ts` passes (12 tests).
-- [x] `pnpm --filter server typecheck` and `pnpm --filter @guepard/repository-supabase typecheck` and `pnpm --filter @guepard/domain typecheck` all pass.
+- [x] `pnpm --filter server typecheck` and `pnpm --filter @qlm/repository-supabase typecheck` and `pnpm --filter @qlm/domain typecheck` all pass.
 
 ## Tasks
 
@@ -80,7 +80,7 @@ pnpm server:dev
 ## Questions surfaced
 
 - **Centralised "current user" middleware.** Phase-1 ships `apps/server/src/lib/current-account.ts` as a one-off helper. Every other server route either accepts `userId`/`accountId` from a query/body/path param or scopes by `organizationId`. A future auth RFC should extract a single Hono middleware that resolves user + account once per request and exposes them via `c.get('account')`. Tracked outside this story.
-- **`rawJwt` log redaction.** `apps/server` uses `getLogger()` from `@guepard/shared/logger` (Pino) without any redaction configuration. `rawJwt` should be on a redact list before token issuance ships to production. The centralised redaction list is the right place; a follow-up RFC adds it across all sensitive fields (passwords, OTPs, JWTs, vault secrets) at once.
+- **`rawJwt` log redaction.** `apps/server` uses `getLogger()` from `@qlm/shared/logger` (Pino) without any redaction configuration. `rawJwt` should be on a redact list before token issuance ships to production. The centralised redaction list is the right place; a follow-up RFC adds it across all sensitive fields (passwords, OTPs, JWTs, vault secrets) at once.
 
 ## Spec-accuracy check
 

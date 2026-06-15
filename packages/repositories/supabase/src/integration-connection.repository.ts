@@ -3,11 +3,11 @@ import type {
   IntegrationConnectionConfig,
   IntegrationProvider,
   IntegrationTestStatus,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   IIntegrationConnectionRepository,
   type IntegrationTestResultUpdate,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 
 import type { SupabaseClientType } from './types';
 

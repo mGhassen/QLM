@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 
 import { createPoolsRoutes } from '../src/routes/pools';
 

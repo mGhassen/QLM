@@ -8,7 +8,7 @@ import {
 import { SELECT_CHART_TYPE_PROMPT } from '../prompts/select-chart-type.prompt';
 import { GENERATE_CHART_CONFIG_PROMPT } from '../prompts/generate-chart-config.prompt';
 import { getSupportedChartTypes } from '../config/supported-charts';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 export interface QueryResults {
   rows: Array<Record<string, unknown>>;

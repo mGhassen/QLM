@@ -1,4 +1,4 @@
-const GITHUB_BASE_URL = 'https://github.com/Guepard-Corp/guepard-core';
+const GITHUB_BASE_URL = 'https://github.com/QLM-Corp/qlm-core';
 
 export const GITHUB_URLS = {
   repo: GITHUB_BASE_URL,

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-duckdb-wasm",
+  "name": "@qlm/extension-duckdb-wasm",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@duckdb/duckdb-wasm": "1.31.1-dev31.0",
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

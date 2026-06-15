@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import type { UserTokenScope } from '@guepard/domain/entities';
-import { Badge } from '@guepard/ui/badge';
-import { cn } from '@guepard/ui/utils';
+import type { UserTokenScope } from '@qlm/domain/entities';
+import { Badge } from '@qlm/ui/badge';
+import { cn } from '@qlm/ui/utils';
 
 const SCOPE_CLASSES: Record<UserTokenScope, string> = {
   read: 'border-blue-500/20 bg-blue-500/10 text-blue-700 dark:text-blue-300',

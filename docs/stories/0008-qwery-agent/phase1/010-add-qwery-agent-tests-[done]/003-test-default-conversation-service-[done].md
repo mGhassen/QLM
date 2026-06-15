@@ -22,12 +22,12 @@ Unit-test `GetOrCreateDefaultConversationService` (added in story 003 task 001).
 - [ ] Existing conversation for the user → service returns it, **never calls `create`**.
 - [ ] Multiple conversations for the user → service returns the most recently updated one (sort by `updatedAt` desc).
 - [ ] Conversation exists but for a different user → service treats as empty for this user and calls `create`.
-- [ ] `pnpm --filter @guepard/domain test` passes with the new file.
+- [ ] `pnpm --filter @qlm/domain test` passes with the new file.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain test get-or-create-default-conversation
+pnpm --filter @qlm/domain test get-or-create-default-conversation
 ```
 
 ## Notes

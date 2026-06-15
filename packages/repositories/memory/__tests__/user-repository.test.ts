@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { Roles } from '@guepard/domain/common';
-import type { User } from '@guepard/domain/entities';
+import { Roles } from '@qlm/domain/common';
+import type { User } from '@qlm/domain/entities';
 
 import { UserRepository } from '../src/user-repository';
 

@@ -1,5 +1,5 @@
-import type { TodoItem } from '@guepard/domain/entities';
-import { ITodoRepository } from '@guepard/domain/repositories';
+import type { TodoItem } from '@qlm/domain/entities';
+import { ITodoRepository } from '@qlm/domain/repositories';
 
 export class TodoRepository extends ITodoRepository {
   private todosByConversation = new Map<string, TodoItem[]>();

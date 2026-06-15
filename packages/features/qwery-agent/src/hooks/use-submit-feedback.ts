@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useShell } from '@guepard/shell-runtime';
-import { getAuthHeaders } from '@guepard/supabase/auth-headers';
-import type { FeedbackPayload } from '@guepard/ui/ai';
+import { useShell } from '@qlm/shell-runtime';
+import { getAuthHeaders } from '@qlm/supabase/auth-headers';
+import type { FeedbackPayload } from '@qlm/ui/ai';
 
 export type SubmitFeedbackInput = {
   messageId: string;

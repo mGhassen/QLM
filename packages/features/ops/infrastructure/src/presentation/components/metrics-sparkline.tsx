@@ -2,10 +2,10 @@ import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 
-import type { MetricsPoint } from '@guepard/domain/entities';
-import { useShell } from '@guepard/shell-runtime';
-import { Skeleton } from '@guepard/ui/skeleton';
-import { cn } from '@guepard/ui/utils';
+import type { MetricsPoint } from '@qlm/domain/entities';
+import { useShell } from '@qlm/shell-runtime';
+import { Skeleton } from '@qlm/ui/skeleton';
+import { cn } from '@qlm/ui/utils';
 
 export type MetricsSparklineProps = Readonly<{
   nodeId: string;

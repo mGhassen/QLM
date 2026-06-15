@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { useCsrfToken } from '@guepard/csrf/client';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { useCsrfToken } from '@qlm/csrf/client';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -10,10 +10,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 export const DeleteInvitationDialog: React.FC<{
   isOpen: boolean;

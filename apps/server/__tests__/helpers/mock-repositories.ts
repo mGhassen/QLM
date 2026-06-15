@@ -1,16 +1,16 @@
 import type {
   Repositories,
   CreateUserTokenRow,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import type {
   Organization,
   UserPreferences,
   UserPreferencesPayload,
   UserToken,
-} from '@guepard/domain/entities';
-import type { OrganizationBillingData } from '@guepard/domain/usecases';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import { shortenId } from '@guepard/domain/utils';
+} from '@qlm/domain/entities';
+import type { OrganizationBillingData } from '@qlm/domain/usecases';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import { shortenId } from '@qlm/domain/utils';
 
 type InMemoryStore<T> = Map<string, T>;
 type SlugIndex = Map<string, string>; // slug -> id

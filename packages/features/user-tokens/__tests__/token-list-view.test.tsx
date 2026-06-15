@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { UserToken, UserTokenScope } from '@guepard/domain/entities';
+import type { UserToken, UserTokenScope } from '@qlm/domain/entities';
 
 import { TokenListView } from '../src/components/token-list-view';
 import { createTestProviders } from './test-providers';

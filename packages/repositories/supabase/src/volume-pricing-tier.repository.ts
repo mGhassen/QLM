@@ -1,7 +1,7 @@
-import type { VolumePricingTier } from '@guepard/domain/entities';
-import { IVolumePricingTierRepository } from '@guepard/domain/repositories';
+import type { VolumePricingTier } from '@qlm/domain/entities';
+import { IVolumePricingTierRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
-import { RepositoryFindOptions } from '@guepard/domain/common';
+import { RepositoryFindOptions } from '@qlm/domain/common';
 
 export class VolumePricingTierRepository extends IVolumePricingTierRepository {
   constructor(private client: SupabaseClientType) {

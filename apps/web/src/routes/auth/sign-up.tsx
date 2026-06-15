@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 
-import { SignUpMethodsContainer } from '@guepard/auth/sign-up';
-import { Button } from '@guepard/ui/button';
-import { Heading } from '@guepard/ui/heading';
-import { Trans } from '@guepard/ui/trans';
+import { SignUpMethodsContainer } from '@qlm/auth/sign-up';
+import { Button } from '@qlm/ui/button';
+import { Heading } from '@qlm/ui/heading';
+import { Trans } from '@qlm/ui/trans';
 
 import authConfig from '@/config/auth.config';
 import pathsConfig from '@/config/paths.config';
 
 export const Route = createFileRoute('/auth/sign-up')({
-  head: () => ({ meta: [{ title: 'Sign Up — Rasm' }] }),
+  head: () => ({ meta: [{ title: 'Sign Up — QLM' }] }),
   component: SignUpPage,
 });
 

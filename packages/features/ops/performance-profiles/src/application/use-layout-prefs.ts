@@ -1,7 +1,7 @@
-import { createVersionedPreferenceStore } from '@guepard/ui/use-versioned-preference-store';
+import { createVersionedPreferenceStore } from '@qlm/ui/use-versioned-preference-store';
 
 const usePerformanceProfilesPrefs = createVersionedPreferenceStore(
-  'guepard:performance-profiles',
+  'qlm:performance-profiles',
   {
     columns: {} as Record<string, boolean>,
     columnOrder: [] as string[],

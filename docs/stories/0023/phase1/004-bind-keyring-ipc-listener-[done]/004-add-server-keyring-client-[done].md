@@ -14,7 +14,7 @@ validation:
 
 # Add server keyring client
 
-Add a thin `keyringClient` module to `apps/server` that reads `GUEPARD_KEYRING_PORT` + `GUEPARD_KEYRING_TOKEN` from `process.env` and exposes `set` / `get` / `delete` against the Tauri shell IPC. Sidecar consumers (story 007) wire it to the auth flow.
+Add a thin `keyringClient` module to `apps/server` that reads `QLM_KEYRING_PORT` + `QLM_KEYRING_TOKEN` from `process.env` and exposes `set` / `get` / `delete` against the Tauri shell IPC. Sidecar consumers (story 007) wire it to the auth flow.
 
 ## Done when
 

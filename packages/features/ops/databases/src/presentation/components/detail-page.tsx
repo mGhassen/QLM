@@ -17,11 +17,11 @@ import {
   Trash2,
 } from 'lucide-react';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
-import { Button } from '@guepard/ui/button';
-import { DbProviderIcon } from '@guepard/ui/db-provider-icon';
-import { EntitySection } from '@guepard/ui/entity-primitives';
-import { cn } from '@guepard/ui/utils';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
+import { Button } from '@qlm/ui/button';
+import { DbProviderIcon } from '@qlm/ui/db-provider-icon';
+import { EntitySection } from '@qlm/ui/entity-primitives';
+import { cn } from '@qlm/ui/utils';
 
 import { PROVIDER_STYLES } from '../../application/constants';
 import { DbProviderBadge } from '../cells/db-provider-badge';

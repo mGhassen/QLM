@@ -2,7 +2,7 @@ Extensions SDK v0: smallest possible contract to register datasources + drivers,
 
 ## Package manifest (package.json)
 - Top-level: `name`, `version`, `main` (built JS entry), `displayName?`, `description?`, `categories?`, `keywords?`, `icon?`.
-- `"dependencies": { "@guepard/extensions-sdk": "workspace:*" }`
+- `"dependencies": { "@qlm/extensions-sdk": "workspace:*" }`
 - `"contributes"` block:
   - `datasources`: array of datasource definitions
     - `id`: string slug, globally unique (e.g. `csv.gsheet`)
@@ -84,7 +84,7 @@ export interface IDataSourceDriver {
     ]
   },
   "dependencies": {
-    "@guepard/extensions-sdk": "workspace:*"
+    "@qlm/extensions-sdk": "workspace:*"
   }
 }
 ```

@@ -8,7 +8,7 @@ import {
   DriverExtension,
   type DatasourceExtension,
   ExtensionScope,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 type DriverModule = {
   driverFactory?: unknown;
@@ -22,22 +22,22 @@ const driverImports = new Map<string, DriverImportFn>();
 const extensionIdToPkgName = new Map<string, string>();
 
 const EXTENSIONS = [
-  '@guepard/extension-clickhouse-node',
-  '@guepard/extension-duckdb',
-  '@guepard/extension-gsheet-csv',
-  '@guepard/extension-json-online',
-  '@guepard/extension-mongodb',
-  '@guepard/extension-mysql',
-  '@guepard/extension-parquet-online',
-  '@guepard/extension-s3',
-  '@guepard/extension-postgresql',
-  '@guepard/extension-youtube-data-api-v3',
-  '@guepard/extension-clickhouse-web',
-  '@guepard/extension-duckdb-wasm',
-  '@guepard/extension-pglite',
-  '@guepard/extension-postgresql-supabase',
-  '@guepard/extension-postgresql-neon',
-  '@guepard/extension-csv-online',
+  '@qlm/extension-clickhouse-node',
+  '@qlm/extension-duckdb',
+  '@qlm/extension-gsheet-csv',
+  '@qlm/extension-json-online',
+  '@qlm/extension-mongodb',
+  '@qlm/extension-mysql',
+  '@qlm/extension-parquet-online',
+  '@qlm/extension-s3',
+  '@qlm/extension-postgresql',
+  '@qlm/extension-youtube-data-api-v3',
+  '@qlm/extension-clickhouse-web',
+  '@qlm/extension-duckdb-wasm',
+  '@qlm/extension-pglite',
+  '@qlm/extension-postgresql-supabase',
+  '@qlm/extension-postgresql-neon',
+  '@qlm/extension-csv-online',
 ];
 
 interface ContributesDriver {

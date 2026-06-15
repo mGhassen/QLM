@@ -2,7 +2,7 @@ import type {
   ActivityDataPoint,
   InfrastructureActivity,
   InfrastructureSettings,
-} from '@guepard/infrastructure/types';
+} from '@qlm/infrastructure/types';
 
 function hash(s: string): number {
   let h = 2166136261;

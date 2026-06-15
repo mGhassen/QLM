@@ -17,7 +17,7 @@ const config = {
     '^react-router$', // react-router
     '^@react-router$', // react-router
     '<THIRD_PARTY_MODULES>',
-    '^@guepard/(.*)$', // package imports
+    '^@qlm/(.*)$', // package imports
     '^~/(.*)$', // app-specific imports
     '^[./]', // relative imports
   ],

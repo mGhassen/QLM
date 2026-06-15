@@ -20,7 +20,7 @@ Cover the spec §10.2 bullets for the runtime and topbar layers: `userPreference
 - [ ] shell-runtime test builds a `QueryClient`, stubs the repositories, calls `setLastProject`, and asserts both the repository write and the exact `invalidateQueries` key.
 - [ ] project-switcher-submenu filter test covers: empty query returns all, partial match filters, case-insensitive.
 - [ ] Keyboard-nav test covers: ArrowDown/ArrowUp cycles focus, Enter selects, Escape closes without selecting.
-- [ ] `pnpm --filter @guepard/shell-runtime test` and `pnpm --filter @guepard/shell-topbar test` both green.
+- [ ] `pnpm --filter @qlm/shell-runtime test` and `pnpm --filter @qlm/shell-topbar test` both green.
 
 ## Notes
 

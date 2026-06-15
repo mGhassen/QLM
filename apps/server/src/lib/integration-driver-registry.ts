@@ -1,5 +1,5 @@
-import type { IIntegrationProviderDriverRegistry } from '@guepard/domain/services';
-import { IntegrationProviderDriverRegistry } from '@guepard/integrations-drivers';
+import type { IIntegrationProviderDriverRegistry } from '@qlm/domain/services';
+import { IntegrationProviderDriverRegistry } from '@qlm/integrations-drivers';
 
 let cached: IIntegrationProviderDriverRegistry | null = null;
 

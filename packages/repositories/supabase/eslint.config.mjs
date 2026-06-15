@@ -1,4 +1,4 @@
-import baseConfig from '@guepard/eslint-config/base.js';
+import baseConfig from '@qlm/eslint-config/base.js';
 
 export default [
   ...baseConfig,

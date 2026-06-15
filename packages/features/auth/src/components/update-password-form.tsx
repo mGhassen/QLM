@@ -9,9 +9,9 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 
-import { useUpdateUser } from '@guepard/supabase/hooks/use-update-user-mutation';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useUpdateUser } from '@qlm/supabase/hooks/use-update-user-mutation';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -19,9 +19,9 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { Heading } from '@guepard/ui/heading';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { Heading } from '@qlm/ui/heading';
+import { Trans } from '@qlm/ui/trans';
 
 import { PasswordResetSchema } from '../schemas/password-reset.schema';
 import { PasswordInput } from './password-input';

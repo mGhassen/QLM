@@ -16,7 +16,7 @@ Create `packages/apps/org-settings` as a new shell app plugin with a manifest an
 
 ## Done when
 
-- [x] `packages/apps/org-settings/package.json` declares `@guepard/app-org-settings` (matches the `app-<name>` convention) with `@guepard/settings-shell` as a dep.
+- [x] `packages/apps/org-settings/package.json` declares `@qlm/app-org-settings` (matches the `app-<name>` convention) with `@qlm/settings-shell` as a dep.
 - [x] `src/manifest.ts` exports a `PluginManifest` with `id: 'org-settings'`, `routeBase: 'org-settings'`, a human label, and the `Building2` icon.
 - [x] `src/plugin-root.tsx` default-exports a React component that renders `SettingsSidebar` with sections `[general, members, billing, usage]` (placeholder copy; content migration happens in story 009).
 - [x] Monorepo-wide `pnpm typecheck` stays green (49/49 tasks).

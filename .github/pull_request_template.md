@@ -1,5 +1,5 @@
 <!--
-Thank you for contributing to Guepard Data Platfrom! 
+Thank you for contributing to QLM Data Platfrom! 
 
 Please follow the PR title conventions:
 🎉 New Datasource: [name]

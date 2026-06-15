@@ -11,11 +11,11 @@ select tests.create_supabase_user('malicious_user');
 select tests.create_supabase_user('partial_mfa_user');
 
 -- Set up test users
-select public.set_identifier('super_admin', 'super@rasm.ai');
-select public.set_identifier('regular_user', 'regular@rasm.ai');
-select public.set_identifier('mfa_user', 'mfa@rasm.ai');
-select public.set_identifier('malicious_user', 'malicious@rasm.ai');
-select public.set_identifier('partial_mfa_user', 'partial@rasm.ai');
+select public.set_identifier('super_admin', 'super@qlm.dev');
+select public.set_identifier('regular_user', 'regular@qlm.dev');
+select public.set_identifier('mfa_user', 'mfa@qlm.dev');
+select public.set_identifier('malicious_user', 'malicious@qlm.dev');
+select public.set_identifier('partial_mfa_user', 'partial@qlm.dev');
 
 -- Test is_aal2 function
 set local role postgres;

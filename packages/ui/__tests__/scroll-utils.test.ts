@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   scrollToTodoDelimiter,
   scrollToTodoTaskAndHighlight,
-} from '../src/guepard/ai/utils/scroll-utils';
+} from '../src/qlm/ai/utils/scroll-utils';
 
 beforeEach(() => {
   Element.prototype.scrollIntoView = vi.fn();

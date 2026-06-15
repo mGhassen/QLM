@@ -1,6 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { IConversationRepository } from '@guepard/domain/repositories';
+import type { IConversationRepository } from '@qlm/domain/repositories';
 import {
   CreateConversationService,
   DeleteConversationService,
@@ -8,11 +8,11 @@ import {
   GetConversationsByProjectIdService,
   GetOrCreateDefaultConversationService,
   UpdateConversationService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   ConversationOutput,
   UpdateConversationInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export type CreateConversationResourceInput = {
   projectId?: string;

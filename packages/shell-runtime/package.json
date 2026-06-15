@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/shell-runtime",
+  "name": "@qlm/shell-runtime",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -12,16 +12,16 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*"
+    "@qlm/domain": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*"
   },
   "peerDependencies": {
     "@tanstack/react-query": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",

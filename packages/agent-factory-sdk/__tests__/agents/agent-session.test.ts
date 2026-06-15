@@ -2,8 +2,8 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-import type { Conversation } from '@guepard/domain/entities';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Conversation } from '@qlm/domain/entities';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   ConversationRepository,
   MessageRepository,
@@ -14,8 +14,8 @@ import {
   NotebookRepository,
   UsageRepository,
   TodoRepository,
-} from '@guepard/repository-in-memory';
-import { createOtelNullTelemetryService } from '@guepard/telemetry/otel';
+} from '@qlm/repository-in-memory';
+import { createOtelNullTelemetryService } from '@qlm/telemetry/otel';
 import { prompt } from '../../src/agents/agent-session';
 
 function createRepositories(): Repositories {

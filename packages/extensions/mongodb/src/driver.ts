@@ -6,12 +6,12 @@ import type {
   DatasourceResultSet,
   DriverContext,
   IDataSourceDriver,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   DEFAULT_CONNECTION_TEST_TIMEOUT_MS,
   DatasourceMetadataZodSchema,
   withTimeout,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import { schema } from './schema';
 

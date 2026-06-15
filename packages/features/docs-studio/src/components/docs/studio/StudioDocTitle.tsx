@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Input } from "@guepard/ui/input";
-import { cn } from "@guepard/ui/utils";
+import { Input } from "@qlm/ui/input";
+import { cn } from "@qlm/ui/utils";
 
 interface StudioDocTitleProps {
   title: string;

@@ -1,8 +1,8 @@
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { TestResult } from '@guepard/domain/usecases';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import type { TestResult } from '@qlm/domain/usecases';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 
 export type TestResultBannerProps = Readonly<{
   result: TestResult;

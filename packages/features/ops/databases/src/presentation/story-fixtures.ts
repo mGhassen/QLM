@@ -1,5 +1,5 @@
-import type { DatabaseOutput } from '@guepard/domain/usecases';
-import type { PerformanceProfile } from '@guepard/domain/entities';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
+import type { PerformanceProfile } from '@qlm/domain/entities';
 
 function isoDaysAgo(days: number): string {
   const d = new Date();
@@ -32,7 +32,7 @@ export function storyDatabase(overrides: Partial<DatabaseOutput> = {}): Database
     version: '15',
     status: 'created',
     deploymentType: 'repository',
-    fqdn: 'app-primary.db.guepard.internal',
+    fqdn: 'app-primary.db.qlm.internal',
     port: 5432,
     nodeId: 'c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f',
     dbUserId: 'd4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a',
@@ -57,12 +57,12 @@ export function storyDatabase(overrides: Partial<DatabaseOutput> = {}): Database
 }
 
 export const STORY_DATABASES: DatabaseOutput[] = [
-  storyDatabase({ id: '11111111-1111-4111-8111-111111111111', name: 'analytics-pg',  provider: 'postgres', status: 'created',     fqdn: 'analytics-pg.db.guepard.internal',  port: 5432 }),
-  storyDatabase({ id: '22222222-2222-4222-8222-222222222222', name: 'app-primary',   provider: 'postgres', status: 'created',     fqdn: 'app-primary.db.guepard.internal',   port: 5433 }),
-  storyDatabase({ id: '33333333-3333-4333-8333-333333333333', name: 'app-staging',   provider: 'mysql',    status: 'pending',     fqdn: 'app-staging.db.guepard.internal',   port: 3306, compute: undefined, dbRole: undefined }),
-  storyDatabase({ id: '44444444-4444-4444-8444-444444444444', name: 'cache-redis',   provider: 'redis',    status: 'in_progress', fqdn: 'cache-redis.db.guepard.internal',   port: 6379, compute: undefined, dbRole: undefined }),
-  storyDatabase({ id: '55555555-5555-4555-8555-555555555555', name: 'reporting-db',  provider: 'postgres', status: 'created',     fqdn: 'reporting-db.db.guepard.internal',  port: 5434 }),
-  storyDatabase({ id: '66666666-6666-4666-8666-666666666666', name: 'backup-pg',     provider: 'postgres', status: 'error',       fqdn: 'backup-pg.db.guepard.internal',     port: 5435, compute: undefined, dbRole: undefined }),
-  storyDatabase({ id: '77777777-7777-4777-8777-777777777777', name: 'shadow-clone',  provider: 'postgres', status: 'init',        fqdn: 'shadow-clone.db.guepard.internal',  port: 5436, compute: undefined, dbRole: undefined }),
-  storyDatabase({ id: '88888888-8888-4888-8888-888888888888', name: 'legacy-mysql',  provider: 'mysql',    status: 'deleted',     fqdn: 'legacy-mysql.db.guepard.internal',  port: 3307, compute: undefined, dbRole: undefined }),
+  storyDatabase({ id: '11111111-1111-4111-8111-111111111111', name: 'analytics-pg',  provider: 'postgres', status: 'created',     fqdn: 'analytics-pg.db.qlm.internal',  port: 5432 }),
+  storyDatabase({ id: '22222222-2222-4222-8222-222222222222', name: 'app-primary',   provider: 'postgres', status: 'created',     fqdn: 'app-primary.db.qlm.internal',   port: 5433 }),
+  storyDatabase({ id: '33333333-3333-4333-8333-333333333333', name: 'app-staging',   provider: 'mysql',    status: 'pending',     fqdn: 'app-staging.db.qlm.internal',   port: 3306, compute: undefined, dbRole: undefined }),
+  storyDatabase({ id: '44444444-4444-4444-8444-444444444444', name: 'cache-redis',   provider: 'redis',    status: 'in_progress', fqdn: 'cache-redis.db.qlm.internal',   port: 6379, compute: undefined, dbRole: undefined }),
+  storyDatabase({ id: '55555555-5555-4555-8555-555555555555', name: 'reporting-db',  provider: 'postgres', status: 'created',     fqdn: 'reporting-db.db.qlm.internal',  port: 5434 }),
+  storyDatabase({ id: '66666666-6666-4666-8666-666666666666', name: 'backup-pg',     provider: 'postgres', status: 'error',       fqdn: 'backup-pg.db.qlm.internal',     port: 5435, compute: undefined, dbRole: undefined }),
+  storyDatabase({ id: '77777777-7777-4777-8777-777777777777', name: 'shadow-clone',  provider: 'postgres', status: 'init',        fqdn: 'shadow-clone.db.qlm.internal',  port: 5436, compute: undefined, dbRole: undefined }),
+  storyDatabase({ id: '88888888-8888-4888-8888-888888888888', name: 'legacy-mysql',  provider: 'mysql',    status: 'deleted',     fqdn: 'legacy-mysql.db.qlm.internal',  port: 3307, compute: undefined, dbRole: undefined }),
 ];

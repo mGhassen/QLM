@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
 
-import type { Column, Table } from '@guepard/domain/entities';
-import type { DatasourceMetadata } from '@guepard/extensions-sdk';
-import { Button } from '@guepard/ui/button';
+import type { Column, Table } from '@qlm/domain/entities';
+import type { DatasourceMetadata } from '@qlm/extensions-sdk';
+import { Button } from '@qlm/ui/button';
 import {
   Columns,
   type ColumnListItem,
-} from '@guepard/ui/guepard/datasource/columns';
+} from '@qlm/ui/qlm/datasource/columns';
 
 export interface DatasourceColumnsPanelProps {
   metadata: DatasourceMetadata | null | undefined;

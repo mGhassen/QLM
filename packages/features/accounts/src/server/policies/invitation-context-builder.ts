@@ -2,7 +2,7 @@ import type { JwtPayload, SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 import { InviteMembersSchema } from '../../schema/invite-members.schema';
 import type { FeaturePolicyInvitationContext } from './feature-policy-invitation-context';

@@ -9,8 +9,8 @@ import {
   Layers,
 } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
-import { Separator } from "@guepard/ui/separator";
+import { cn } from "@qlm/ui/utils";
+import { Separator } from "@qlm/ui/separator";
 
 function BarBtn({
   onClick,

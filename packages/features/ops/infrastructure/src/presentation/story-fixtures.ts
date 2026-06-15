@@ -1,4 +1,4 @@
-import type { Node, NodeHealth, NodeLifecycleState } from '@guepard/domain/entities';
+import type { Node, NodeHealth, NodeLifecycleState } from '@qlm/domain/entities';
 
 const BASE_CREATED = '2025-01-01T00:00:00.000Z';
 const BASE_UPDATED = '2026-01-01T00:00:00.000Z';

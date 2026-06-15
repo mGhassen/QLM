@@ -43,8 +43,8 @@ files:
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` passes.
-- [ ] `pnpm --filter @guepard/user-tokens test` passes (≥ 90 % coverage on the reducer, full transition matrix exercised).
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` passes.
+- [ ] `pnpm --filter @qlm/user-tokens test` passes (≥ 90 % coverage on the reducer, full transition matrix exercised).
 - [ ] At any moment, exactly one of `pane-state-{list|create|reveal|revoke-confirm}` is in the DOM — verified by a test.
 - [ ] Reveal-state holds `rawJwt`; the `close-reveal` action drops it (the next state is `list` with no `rawJwt` field) — verified by a reducer test.
 - [ ] Storybook stories render each state without errors.
@@ -52,13 +52,13 @@ files:
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles**: `UserTokens / TokensSettingsPane / Initial`, `… / Opened Create`, `… / Opened Reveal`, `… / Opened Revoke Confirm`
 - **Expected visual outcome**: four placeholder boxes, each labelled with the pane-state name and equipped with the transition buttons (e.g. on the `Initial`/list state: a "Generate" button that swaps to the `OpenedCreate` placeholder).
 

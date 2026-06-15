@@ -22,16 +22,16 @@ import { CSS } from '@dnd-kit/utilities';
 import { Loader2, Pencil, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-import type { DatasourceResultSet, Notebook } from '@guepard/domain/entities';
-import { Button } from '@guepard/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@guepard/ui/popover';
+import type { DatasourceResultSet, Notebook } from '@qlm/domain/entities';
+import { Button } from '@qlm/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@qlm/ui/popover';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
 
 import { CellDivider } from './components/cell-divider';
 import {
@@ -45,10 +45,10 @@ import { oneDark } from '@codemirror/theme-one-dark';
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from '@codemirror/view';
 import { useTheme } from 'next-themes';
-import { Textarea } from '@guepard/ui/textarea';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
+import { Textarea } from '@qlm/ui/textarea';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
 import { AlertCircle } from 'lucide-react';
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 interface NotebookUIProps {
   notebook?: Notebook;

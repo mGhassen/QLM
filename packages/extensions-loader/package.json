@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extensions-loader",
+  "name": "@qlm/extensions-loader",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -19,29 +19,29 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@guepard/extension-clickhouse-node": "workspace:*",
-    "@guepard/extension-csv-online": "workspace:*",
-    "@guepard/extension-duckdb": "workspace:*",
-    "@guepard/extension-gsheet-csv": "workspace:*",
-    "@guepard/extension-json-online": "workspace:*",
-    "@guepard/extension-mongodb": "workspace:*",
-    "@guepard/extension-mysql": "workspace:*",
-    "@guepard/extension-parquet-online": "workspace:*",
-    "@guepard/extension-postgresql": "workspace:*",
-    "@guepard/extension-s3": "workspace:*",
-    "@guepard/extension-youtube-data-api-v3": "workspace:*",
-    "@guepard/extensions-sdk": "workspace:*"
+    "@qlm/extension-clickhouse-node": "workspace:*",
+    "@qlm/extension-csv-online": "workspace:*",
+    "@qlm/extension-duckdb": "workspace:*",
+    "@qlm/extension-gsheet-csv": "workspace:*",
+    "@qlm/extension-json-online": "workspace:*",
+    "@qlm/extension-mongodb": "workspace:*",
+    "@qlm/extension-mysql": "workspace:*",
+    "@qlm/extension-parquet-online": "workspace:*",
+    "@qlm/extension-postgresql": "workspace:*",
+    "@qlm/extension-s3": "workspace:*",
+    "@qlm/extension-youtube-data-api-v3": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "eslint": "^9.39.0",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

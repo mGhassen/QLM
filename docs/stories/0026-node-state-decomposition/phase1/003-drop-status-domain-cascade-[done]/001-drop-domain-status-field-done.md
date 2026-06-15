@@ -28,7 +28,7 @@ type, `NODE_STATUSES` constant, `Node.status` Zod field + class field,
 - [ ] `NodeSchema` no longer has `status` or `healthState` fields.
 - [ ] `NODE_STATUSES`, `NodeStatus`, `NODE_HEALTH_STATES`, `NodeHealthState` not exported.
 - [ ] `change-node-status.usecase.ts` + `ChangeNodeStatusInput` DTO deleted.
-- [ ] Domain barrel updated; `pnpm --filter @guepard/domain typecheck` green.
+- [ ] Domain barrel updated; `pnpm --filter @qlm/domain typecheck` green.
 - [ ] All domain tests still pass.
 
 ## Notes

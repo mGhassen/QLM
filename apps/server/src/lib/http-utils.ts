@@ -1,4 +1,4 @@
-import { DomainException } from '@guepard/domain/exceptions';
+import { DomainException } from '@qlm/domain/exceptions';
 
 // Explicit per-code overrides — used when the band heuristic below is
 // wrong for a specific code. RFC 0026 added node mutations that need

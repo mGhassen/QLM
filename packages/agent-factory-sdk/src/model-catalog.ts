@@ -1,4 +1,4 @@
-import type { ModelsDevCatalog } from '@guepard/shared/model-cost';
+import type { ModelsDevCatalog } from '@qlm/shared/model-cost';
 
 const MODELS_DEV_URL = 'https://models.dev/api.json';
 

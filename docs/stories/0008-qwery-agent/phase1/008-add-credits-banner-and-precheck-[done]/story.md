@@ -23,7 +23,7 @@ Render an "Add credits" banner in place of the prompt input — across both the 
 
 **In scope**
 
-- New component `CreditsBanner` inside `@guepard/qwery-agent` (or reused from an existing shared one if present) rendering title, short description, and a CTA that links to the billing top-up page (reuse an existing `createOrgBillingPath(...)` helper if it exists; otherwise open the org billing route).
+- New component `CreditsBanner` inside `@qlm/qwery-agent` (or reused from an existing shared one if present) rendering title, short description, and a CTA that links to the billing top-up page (reuse an existing `createOrgBillingPath(...)` helper if it exists; otherwise open the org billing route).
 - Pre-check on submit: before posting to `/api/chat/:slug`, `AssistantPanelBody` and `AgentTabBody` call `useShell().billing.getBalance()` and:
   - If `balance <= 0` → replace the prompt input with `<CreditsBanner />` and disable submit.
   - If `balance > 0` → proceed to submit.
@@ -43,7 +43,7 @@ Render an "Add credits" banner in place of the prompt input — across both the 
 - [⚠] Balance recovers (> 0): the React Query hook's 30s `staleTime` + natural refetch-on-focus restores the conversation view without a reload. Live smoke pending.
 - [ ] **Mid-stream 402 handling deferred.** QweryAgentUI doesn't expose `onError` or similar, so catching a 402 mid-generation requires a `QweryAgentUIProps.onPaymentRequired?` addition that belongs to a follow-up story. Server-side HTTP 402 continues to be the source of truth.
 - [x] All new user-facing strings go through `t('credits.X')` in the `chat` i18n namespace — no hardcoded English.
-- [⚠] `pnpm --filter @guepard/qwery-agent typecheck` clean. Repo-wide typecheck still blocked on the parallel auth-work session (`userToken` / `jwtSigner` factories) — unrelated to this story.
+- [⚠] `pnpm --filter @qlm/qwery-agent typecheck` clean. Repo-wide typecheck still blocked on the parallel auth-work session (`userToken` / `jwtSigner` factories) — unrelated to this story.
 
 ## Tasks
 

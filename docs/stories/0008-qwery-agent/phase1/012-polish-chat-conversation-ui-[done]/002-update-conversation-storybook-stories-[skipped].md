@@ -4,8 +4,8 @@ status: skipped
 layer: features
 model: sonnet
 files:
-  - packages/ui/src/guepard/ai/conversation-content.stories.tsx
-  - packages/ui/src/guepard/ai/chat-with-tool-calls.stories.tsx
+  - packages/ui/src/qlm/ai/conversation-content.stories.tsx
+  - packages/ui/src/qlm/ai/chat-with-tool-calls.stories.tsx
 validation:
   kind: typecheck-only
 ---
@@ -21,8 +21,8 @@ Refresh the Storybook fixtures so reviewers can visually verify task 001's typog
   - assistant: a markdown reply with a short paragraph and a 3-bullet list — left-aligned prose, avatar on the first message, sans-serif body.
   - The assistant message renders the feedback thumbs (once task 003 lands, the story should exercise them — pass a stub `onSubmitFeedback` that logs to console; this is just visual smoke).
 - [ ] `chat-with-tool-calls.stories.tsx` keeps a tool-call block with monospace text inside, surrounding prose in sans-serif.
-- [ ] Both stories render cleanly in `pnpm --filter @guepard/ui storybook` with no console errors.
-- [ ] `pnpm --filter @guepard/ui typecheck` passes.
+- [ ] Both stories render cleanly in `pnpm --filter @qlm/ui storybook` with no console errors.
+- [ ] `pnpm --filter @qlm/ui typecheck` passes.
 
 ## Notes
 

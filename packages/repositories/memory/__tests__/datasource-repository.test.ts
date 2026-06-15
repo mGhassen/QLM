@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import type { Datasource } from '@guepard/domain/entities';
-import { DatasourceKind } from '@guepard/domain/entities';
+import type { Datasource } from '@qlm/domain/entities';
+import { DatasourceKind } from '@qlm/domain/entities';
 
 import { DatasourceRepository } from '../src/datasource-repository';
 

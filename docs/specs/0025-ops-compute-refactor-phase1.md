@@ -34,7 +34,7 @@ This spec defines what phase 1 ships and how. RFC 0025 defines why and what shap
 - As a platform engineer, I can drill from Topology into a pool detail sheet and the URL stays stable + bookmarkable, regardless of pool rename.
 - As a platform engineer, I see identical fleet numbers (total nodes, status counts, regions) on both Topology and Infrastructure pages because they read from the same `shell.fleet.summary()` query.
 - As a developer, I can add a new cross-app virtual tab by extending one Zod-validated `TabIdSchema` union — no string-prefix branching anywhere.
-- As a developer, I can `import { Pool } from '@guepard/domain/entities'` and treat it the same as `Node`.
+- As a developer, I can `import { Pool } from '@qlm/domain/entities'` and treat it the same as `Node`.
 - As a platform engineer opening a node detail page, I see Services / Storage / CPU / Memory as scrollable sections, with Storage showing real disk numbers from `node.diskGb` / `node.diskUtilPct`.
 - As a platform engineer, I keep my existing replicas workflow (Settings sub-view of Infrastructure) — phase 1 changes nothing for the replicas user.
 
@@ -71,7 +71,7 @@ Renamed from "nodes-list-page" to "infrastructure-list-page" inside the merged p
 - `view=activity` → mounts `InfrastructureActivitySection` (migrated from dying pkg)
 - `view=settings` → mounts `InfrastructureSettingsTab` (migrated from dying pkg)
 
-Tab bar at the top of the page uses `Tabs` from `@guepard/ui/tabs`, mirroring the dying pkg's existing pattern (`infrastructure-list-page.tsx:76-149`).
+Tab bar at the top of the page uses `Tabs` from `@qlm/ui/tabs`, mirroring the dying pkg's existing pattern (`infrastructure-list-page.tsx:76-149`).
 
 The Settings sub-view embeds the existing `infrastructure-replicas-section.tsx` and `infrastructure-settings-tab.tsx` side-by-side, identical to today's UX.
 
@@ -133,7 +133,7 @@ TopologyPage onClick(pool)
 
 ### 4.3 Component split
 
-- `packages/features/ops/topology/` — pure presentation + hooks. Imports `Pool`, `FleetSummary`, `PressurePoint` from `@guepard/domain/entities` (or `@guepard/domain/usecases/fleet`). No HTTP, no Supabase.
+- `packages/features/ops/topology/` — pure presentation + hooks. Imports `Pool`, `FleetSummary`, `PressurePoint` from `@qlm/domain/entities` (or `@qlm/domain/usecases/fleet`). No HTTP, no Supabase.
 - `packages/features/ops/infrastructure/` (renamed from nodes/) — pure presentation + hooks. Imports `Node`, plus `FleetSummary` for any shared aggregate UI. Hosts the migrated replicas section + settings tab + activity section under its Settings / Activity sub-views.
 - `packages/apps/{topology,infrastructure}/` — thin shell glue. Manifest + plugin-root re-export. No business logic.
 
@@ -291,7 +291,7 @@ No new secrets. Pool VIEW is read-only and inherits RLS. Replicas mock data is i
 #### S05 — pkg rename + merge
 
 - **Rename folder** `packages/features/ops/nodes/` → `packages/features/ops/infrastructure/` via `git mv`.
-- **Edit** `packages/features/ops/infrastructure/package.json` — `name: '@guepard/infrastructure'`. Add `exports['./types']: './src/application/types.ts'` (preserves MSW import path until S02 migrates fixtures).
+- **Edit** `packages/features/ops/infrastructure/package.json` — `name: '@qlm/infrastructure'`. Add `exports['./types']: './src/application/types.ts'` (preserves MSW import path until S02 migrates fixtures).
 - **Edit** `packages/features/ops/infrastructure/src/index.ts` — rename `NodesPluginRoot` → `InfrastructurePluginRoot`, etc.
 - **Migrate from dying pkg** — move:
   - `infrastructure-activity-section.tsx` → `packages/features/ops/infrastructure/src/presentation/components/`
@@ -300,7 +300,7 @@ No new secrets. Pool VIEW is read-only and inherits RLS. Replicas mock data is i
   - `application/use-activity-data.ts`, `application/use-infrastructure-settings.ts`, `application/use-replicas.ts`, `application/compute-tiers.ts` → `packages/features/ops/infrastructure/src/application/`
   - Carve `Replica`, `ReplicaStatus`, `InfrastructureSettings`, `InfrastructureActivity`, `ActivityDataPoint` out of the dying `application/types.ts` into the merged pkg's `application/types.ts`. Delete cluster/provider/region view-models in the same diff.
 - **Add** `infrastructure-page.tsx` — new wrapper that switches between nodes-list / activity / settings based on `view` query param. Settings sub-view stacks `InfrastructureSettingsTab` + `InfrastructureReplicasSection` (today's pattern).
-- **Preserve subpath export** — keep `exports['./types']: './src/application/types.ts'` on the merged pkg so MSW handlers (`apps/web/src/lib/msw/handlers/replicas.ts`) keep their `import type { Replica } from '@guepard/infrastructure/types'` line working without changes.
+- **Preserve subpath export** — keep `exports['./types']: './src/application/types.ts'` on the merged pkg so MSW handlers (`apps/web/src/lib/msw/handlers/replicas.ts`) keep their `import type { Replica } from '@qlm/infrastructure/types'` line working without changes.
 - **Delete** dying pkg files listed in RFC §6.7.
 
 #### S06 — per-node sections rename
@@ -321,9 +321,9 @@ No new secrets. Pool VIEW is read-only and inherits RLS. Replicas mock data is i
 
 ### 7.6 Shell apps (`packages/apps/<name>`)
 
-- **Edit** `packages/apps/infrastructure/src/plugin-root.tsx` — `import from '@guepard/infrastructure'` (was `@guepard/nodes`); rename symbols.
-- **Edit** `packages/apps/infrastructure/package.json` — dependency `@guepard/nodes` → `@guepard/infrastructure`.
-- **Edit** `apps/web/package.json` — replace `@guepard/nodes` workspace dep with `@guepard/infrastructure`. The existing `@guepard/infrastructure` workspace dep already pointed at the dying pkg; after the rename it resolves to the merged pkg. Confirm version pin.
+- **Edit** `packages/apps/infrastructure/src/plugin-root.tsx` — `import from '@qlm/infrastructure'` (was `@qlm/nodes`); rename symbols.
+- **Edit** `packages/apps/infrastructure/package.json` — dependency `@qlm/nodes` → `@qlm/infrastructure`.
+- **Edit** `apps/web/package.json` — replace `@qlm/nodes` workspace dep with `@qlm/infrastructure`. The existing `@qlm/infrastructure` workspace dep already pointed at the dying pkg; after the rename it resolves to the merged pkg. Confirm version pin.
 
 ### 7.7 i18n
 
@@ -384,7 +384,7 @@ No new secrets. Pool VIEW is read-only and inherits RLS. Replicas mock data is i
 3. Click a pool card → "Drill into" → URL stays bookmarkable.
 4. Open `/prj/$slug/infrastructure?view=settings`. Verify replicas section + settings tab both render. Add and remove a replica to confirm the migrated section still works.
 5. Open a node detail page. Confirm Services / Storage / CPU / Memory all render as stacked sections, Storage shows real disk numbers.
-6. `pnpm --filter @guepard/infrastructure storybook`. Verify renamed sections render correctly.
+6. `pnpm --filter @qlm/infrastructure storybook`. Verify renamed sections render correctly.
 
 ## 11. i18n key map
 

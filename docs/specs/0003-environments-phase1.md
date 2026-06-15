@@ -12,7 +12,7 @@ This document is the implementation spec for RFC 0003 phase 1. The RFC establish
 
 Scope is strict to phase 1 of RFC 0003: shell plugin + Layer 1 + Layer 2 + single-view Overview inspector + display types + fixture-backed implementation + `is_source` column. Everything out of scope belongs either to RFC 0004 (core behavior) or to a later phase of this RFC.
 
-A visual prototype of every component this spec describes **already exists** at `/Users/hani.chalouati/Documents/work/guepard/mock-v3/packages/features/project-layer/ops/environments/`. That package (`@workspace/environments`) is **the visual reference** for every screen — not the code source. The POC is built with hand-rolled inline styles, hardcoded English strings, a different package namespace, and a monolithic feature layout; this spec re-implements its visual design in the target repo's conventions (Tailwind + `@guepard/ui`, `@guepard/i18n`, Zod, hexagonal split, `@tanstack/react-router`, `Readonly<Props>`). Every subsection in §7 below names the POC file that a given target-repo file should visually match.
+A visual prototype of every component this spec describes **already exists** at `/Users/hani.chalouati/Documents/work/qlm/mock-v3/packages/features/project-layer/ops/environments/`. That package (`@workspace/environments`) is **the visual reference** for every screen — not the code source. The POC is built with hand-rolled inline styles, hardcoded English strings, a different package namespace, and a monolithic feature layout; this spec re-implements its visual design in the target repo's conventions (Tailwind + `@qlm/ui`, `@qlm/i18n`, Zod, hexagonal split, `@tanstack/react-router`, `Readonly<Props>`). Every subsection in §7 below names the POC file that a given target-repo file should visually match.
 
 ---
 
@@ -24,7 +24,7 @@ Every row is resolved. No TBDs survive into the spec.
 |---|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1 | Graph renderer                                    | **Custom SVG.** Hand-rolled connectors and animated lines, following the POC approach in `service-tree-view.tsx` (the `Connectors` and `HorizCloneLink` components). No graph library added. Use `framer-motion` for entry/exit animations only, since it is already a catalog dependency — if not, plain CSS transitions instead. |
 | 2 | Flat short URL `/env/{sourceSlug}` for Layer 2    | **Yes.** Add `createFlatPath('env', sourceSlug)` helper in `apps/web/src/config/paths.config.ts`. The plugin manifest declares `flatRoute: { prefix: 'env', params: ['sourceSlug'] }` mirroring the notebook pattern in `packages/apps/notebook/src/manifest.ts`. |
-| 3 | Fixture module location                           | **Inside the feature package** at `packages/features/environments/src/fixtures/`, exported from `@guepard/environments/fixtures`. The plugin-root in `packages/apps/environments` imports the fixture adapter from there. When RFC 0004 lands the shell-runtime resource, the plugin-root swaps the import — the feature package's fixtures remain for Storybook. |
+| 3 | Fixture module location                           | **Inside the feature package** at `packages/features/environments/src/fixtures/`, exported from `@qlm/environments/fixtures`. The plugin-root in `packages/apps/environments` imports the fixture adapter from there. When RFC 0004 lands the shell-runtime resource, the plugin-root swaps the import — the feature package's fixtures remain for Storybook. |
 | 4 | Non-PG card treatment in Layer 1                  | **Identical rendering** for every provider (Postgres, Redis, MongoDB, MySQL, …). Same card anatomy, same interactions. No visual downgrade for "not yet clone-enabled" engines. In phase 1 everything is fixture-driven so all providers behave identically; RFC 0004 decides the action-side UX for live non-PG sources. |
 | 5 | Empty-slot behavior in the inspector              | **Hidden entirely.** Slots for future-phase content (metric tiles, lineage, masking, replication status, commit history) do not render in phase 1. No "—" placeholders. No "coming soon" badges. The component shapes exist so later phases can drop content in, but nothing ships in the chrome that promises future work. |
 | 6 | Status chip color map                             | 6 statuses, mapped to these hex values (sourced from the POC palette): `online` and `healthy` → `#22c55e` (green), `ingesting` → `#f59e0b` (amber, with pulse animation), `failed` → `#ef4444` (red), `registered` and `offline` → `#6b7280` (grey). Label text matches the status key, localized. Colors come from Tailwind tokens (`text-green-500`, `text-amber-500`, `text-red-500`, `text-zinc-500`) not hardcoded hex. |
@@ -48,7 +48,7 @@ Each bullet is a user-visible capability delivered by phase 1.
 - **As a project member**, I can click "Clone to node" on a source in Layer 2 and see a new clone appear in `provisioning` state, transition through `ingesting` to `healthy` via fixture state transitions. (Real behavior lives in RFC 0004.)
 - **As a project member**, I can click "Create branch" on a healthy clone and see a new branch chip appear under the clone via a fixture state transition.
 - **As a designer or product reviewer**, I can open Storybook and browse every component in every state (loading / empty / ready / error + status variants) for design review.
-- **As a developer**, I can import `SourceCard`, `SourceDetail`, `CloneDetail`, `BranchChip`, `EnvironmentGraph`, and the other display types from `@guepard/environments/types` — these are the UX contract RFC 0004's shell-runtime resource will satisfy.
+- **As a developer**, I can import `SourceCard`, `SourceDetail`, `CloneDetail`, `BranchChip`, `EnvironmentGraph`, and the other display types from `@qlm/environments/types` — these are the UX contract RFC 0004's shell-runtime resource will satisfy.
 - **As a developer running `pnpm web:dev`**, I can click through the full environments experience end-to-end against fixtures, with no network calls to any backend and no dependency on RFC 0002 or RFC 0004.
 - **As an admin with `datasources.manage`**, I can flip `is_source = true` on a datasource row via SQL and the column update is accepted by the DB. **This is not observable in the phase-1 UI** — phase 1 renders from fixtures and does not query `public.datasources`. The column ships in phase 1 so that RFC 0004 can consume it in phase 2 when live data replaces the fixture adapter. No UI is added for flipping `is_source` in phase 1.
 
@@ -74,7 +74,7 @@ Each bullet is a user-visible capability delivered by phase 1.
 - **Header**: None in phase 1 (matches POC). The shell chrome provides the project breadcrumb.
 - **Card**: `SourceCard` component. Renders provider icon, name, status dot + label, optional volume stripe, optional default-branch stripe. Hover: subtle border highlight + box shadow. Click: navigates to Layer 2.
 - **Empty state**: Centered illustration + "No sources yet" copy + short instruction ("Flip `is_source = true` on a datasource to see it here"). No primary action button in phase 1 since there is no create-source affordance yet.
-- **Loading state**: Six skeleton cards (same 200px width, grey shimmer, matching `@guepard/ui/skeleton`).
+- **Loading state**: Six skeleton cards (same 200px width, grey shimmer, matching `@qlm/ui/skeleton`).
 - **Error state**: `InlineError` component with a generic error message and a retry button.
 - **Props** (from the plugin-root):
   ```ts
@@ -278,9 +278,9 @@ Per `.claude/rules/hexagonal-architecture.md`:
 
 ### 5.1 Data shapes
 
-All types live in `packages/features/environments/src/types/`. One file per concept; all exported from `src/types/index.ts` and re-exported from the package root as `@guepard/environments/types`.
+All types live in `packages/features/environments/src/types/`. One file per concept; all exported from `src/types/index.ts` and re-exported from the package root as `@qlm/environments/types`.
 
-**Schema alignment — no drift.** `guepard-console-v3` is a fusion of `qwery-enterprise` and `guepard-console v1`; its database schema already contains the `datasources` table that source-role entries live in. The source-side display types defined below **do not reinvent field names** — they reuse the existing `Datasource` entity exported by `@guepard/domain/entities` (`packages/domain/src/entities/datasource.type.ts`), which in turn mirrors `public.datasources` as defined in `apps/web/supabase/schemas/04-initial-tables.sql:238-256`. A `SourceCard` is a **view projection** over the persistent `Datasource` row plus a small set of view-only fields (`status`, `volumeLabel`, `defaultBranchLabel`, `connectionStringMasked`) that are **not columns in `public.datasources`** — in phase 1 they are populated by the fixture adapter, and in RFC 0004 they are produced by the node-side control plane. Every view-only field is called out explicitly below. The node-side types (`VolumeDetail`, `CloneDetail`, `BranchChip`, `BranchDetail`, `LifecycleEvent`, `EnvironmentGraph`) are **greenfield display contracts** — they describe data that lives inside a node (RFC 0002) and is consumed by the shell runtime (RFC 0004). There is no v3 schema to drift from for those types.
+**Schema alignment — no drift.** `qlm-console-v3` is a fusion of `qwery-enterprise` and `qlm-console v1`; its database schema already contains the `datasources` table that source-role entries live in. The source-side display types defined below **do not reinvent field names** — they reuse the existing `Datasource` entity exported by `@qlm/domain/entities` (`packages/domain/src/entities/datasource.type.ts`), which in turn mirrors `public.datasources` as defined in `apps/web/supabase/schemas/04-initial-tables.sql:238-256`. A `SourceCard` is a **view projection** over the persistent `Datasource` row plus a small set of view-only fields (`status`, `volumeLabel`, `defaultBranchLabel`, `connectionStringMasked`) that are **not columns in `public.datasources`** — in phase 1 they are populated by the fixture adapter, and in RFC 0004 they are produced by the node-side control plane. Every view-only field is called out explicitly below. The node-side types (`VolumeDetail`, `CloneDetail`, `BranchChip`, `BranchDetail`, `LifecycleEvent`, `EnvironmentGraph`) are **greenfield display contracts** — they describe data that lives inside a node (RFC 0002) and is consumed by the shell runtime (RFC 0004). There is no v3 schema to drift from for those types.
 
 The `datasource_provider` column is **free-form text**, not an enum — there is no `SourceProvider` enum in the codebase and this spec does not introduce one. Any `text` value is valid. The UI maps known provider strings (`'postgres'`, `'mysql'`, `'mongo'`, `'redis'`, …) to icons with a generic fallback for unknowns; matching is done inside the icon component, not at the type level.
 
@@ -304,7 +304,7 @@ export type SourceStatus = z.infer<typeof SourceStatusSchema>;
 ```ts
 // packages/features/environments/src/types/source-card.ts
 import { z } from 'zod';
-import { DatasourceSchema } from '@guepard/domain/entities';
+import { DatasourceSchema } from '@qlm/domain/entities';
 import { SourceStatusSchema } from './source-status';
 
 // SourceCard is a view projection over the existing Datasource entity.
@@ -332,7 +332,7 @@ export type SourceCard = z.infer<typeof SourceCardSchema>;
 ```ts
 // packages/features/environments/src/types/source-detail.ts
 import { z } from 'zod';
-import { DatasourceSchema } from '@guepard/domain/entities';
+import { DatasourceSchema } from '@qlm/domain/entities';
 import { SourceStatusSchema } from './source-status';
 
 // SourceDetail carries everything Layer 2's Source inspector slot renders.
@@ -521,19 +521,19 @@ Grouped by hexagonal layer, top-down. Each subsection lists concrete files. This
 
 ### 7.5 Presentation — feature package (`packages/features/environments`)
 
-**New package.** Mirror the layout of `packages/features/notebook`. `package.json` dependencies: `@guepard/ui`, `@guepard/i18n`, `@guepard/shell-contracts`, `zod`, `framer-motion` (if available in catalog; otherwise drop it and use CSS transitions), `lucide-react`. Peer deps: `react`, `react-dom`, `@tanstack/react-router`.
+**New package.** Mirror the layout of `packages/features/notebook`. `package.json` dependencies: `@qlm/ui`, `@qlm/i18n`, `@qlm/shell-contracts`, `zod`, `framer-motion` (if available in catalog; otherwise drop it and use CSS transitions), `lucide-react`. Peer deps: `react`, `react-dom`, `@tanstack/react-router`.
 
-Visual reference column below lists the POC file each target file should visually match. **The POC is a visual reference, not a code source** — every file is re-implemented in target-repo idioms (Tailwind + `@guepard/ui` primitives, `@guepard/i18n`, Zod schemas, `Readonly<Props>`).
+Visual reference column below lists the POC file each target file should visually match. **The POC is a visual reference, not a code source** — every file is re-implemented in target-repo idioms (Tailwind + `@qlm/ui` primitives, `@qlm/i18n`, Zod schemas, `Readonly<Props>`).
 
 | File to create | Role | POC visual reference |
 |---|---|---|
 | `package.json` | Package manifest | — |
-| `tsconfig.json` | TS config extending `@guepard/tsconfig` | — |
+| `tsconfig.json` | TS config extending `@qlm/tsconfig` | — |
 | `vitest.config.ts` | Vitest config | — |
 | `src/index.ts` | Public exports | — |
 | `src/types/index.ts` | Type barrel | — |
 | `src/types/source-status.ts` | `SourceStatus` view-only enum + schema. Not a DB column — see §5.1. | `service-card.tsx` line 26 (POC's `ServiceStatus`) |
-| `src/types/source-card.ts` | `SourceCard` schema built as `DatasourceSchema.pick(...).extend(view-only fields)`. Persistent columns come from `@guepard/domain/entities`; view-only fields are `status`, `volumeLabel`, `defaultBranchLabel`. No `provider` enum — the existing `datasource_provider: text` column is free-form. | `service-card.tsx` lines 29–39 (visual reference only — naming aligns to `Datasource` entity, not POC's `Service`) |
+| `src/types/source-card.ts` | `SourceCard` schema built as `DatasourceSchema.pick(...).extend(view-only fields)`. Persistent columns come from `@qlm/domain/entities`; view-only fields are `status`, `volumeLabel`, `defaultBranchLabel`. No `provider` enum — the existing `datasource_provider: text` column is free-form. | `service-card.tsx` lines 29–39 (visual reference only — naming aligns to `Datasource` entity, not POC's `Service`) |
 | `src/types/source-detail.ts` | `SourceDetail` schema built as `DatasourceSchema.extend(view-only fields)`. Inherits `description`, `config`, `createdAt`/`updatedAt`/`createdBy`/`updatedBy`, `isPublic`, `remixedFrom`, `datasource_driver`, `datasource_kind`, `datasource_provider`, and (once Story 004 lands) `is_source`. Adds view-only `status`, `volumeLabel`, `defaultBranchLabel`, `connectionStringMasked` (derived from `config.connectionString`). | — |
 | `src/types/volume-detail.ts` | `VolumeDetail` schema + type | — |
 | `src/types/clone-detail.ts` | `CloneDetail` schema + type | — |
@@ -570,7 +570,7 @@ Visual reference column below lists the POC file each target file should visuall
 | `src/components/inspector-slots/volume-slots.tsx` | Volume-selection slots | — |
 | `src/components/inspector-slots/clone-slots.tsx` | Clone-selection slots | — |
 | `src/components/inspector-slots/branch-slots.tsx` | Branch-selection slots | — |
-| `src/components/primitives/status-chip.tsx` | Shared status chip (or thin wrapper on `@guepard/ui/badge`) | `service-card.tsx` lines 98–131 (`StatusDot`, `StatusLabel`) |
+| `src/components/primitives/status-chip.tsx` | Shared status chip (or thin wrapper on `@qlm/ui/badge`) | `service-card.tsx` lines 98–131 (`StatusDot`, `StatusLabel`) |
 | `src/components/primitives/status-chip.stories.tsx` | Stories: one per status | — |
 | `src/components/primitives/connection-string-field.tsx` | Masked connection string + copy button | `service-right-panel.tsx` lines 76–109 (`ConnectionBox`) |
 | `src/components/primitives/connection-string-field.stories.tsx` | Stories | — |
@@ -583,7 +583,7 @@ Tests colocated: each component gets a `foo.test.tsx` next to `foo.tsx` for any 
 
 ### 7.6 Shell app (`packages/apps/environments`)
 
-**New package.** Mirror `packages/apps/notebook`. Dependencies: `@guepard/environments`, `@guepard/shell-contracts`, `@guepard/shell-runtime` (only for types at this point), `@tanstack/react-router`, `react`, `react-dom`.
+**New package.** Mirror `packages/apps/notebook`. Dependencies: `@qlm/environments`, `@qlm/shell-contracts`, `@qlm/shell-runtime` (only for types at this point), `@tanstack/react-router`, `react`, `react-dom`.
 
 | File | Role |
 |---|---|
@@ -609,7 +609,7 @@ Minimal changes — the Vite-glob registry picks up the new plugin automatically
 | File | Change |
 |---|---|
 | `apps/web/src/config/paths.config.ts` | Add `createEnvironmentsPath(projectSlug: string)` and `createEnvironmentFlatPath(sourceSlug: string)` helpers |
-| `apps/web/package.json` | Add `@guepard/environments` and `@guepard/apps-environments` to dependencies |
+| `apps/web/package.json` | Add `@qlm/environments` and `@qlm/apps-environments` to dependencies |
 
 No route file additions (the plugin's `routeBase` handles project-contextual routing; the flat route uses the existing catch-all mechanism).
 
@@ -635,7 +635,7 @@ Story 004 also extends the domain entity in the same change so the entity and th
 
 ### 7.10 Storybook tooling
 
-Storybook is already configured at the repo level. New stories land in the feature package and are picked up by the existing Storybook run. Verify by running whatever command the repo uses (`pnpm --filter @guepard/environments storybook` or similar — check `tooling/storybook` for the actual script) and confirming stories render.
+Storybook is already configured at the repo level. New stories land in the feature package and are picked up by the existing Storybook run. Verify by running whatever command the repo uses (`pnpm --filter @qlm/environments storybook` or similar — check `tooling/storybook` for the actual script) and confirming stories render.
 
 ## 8. Permissions and RLS
 
@@ -667,7 +667,7 @@ This entire section is **zero delta** against the existing database security mod
 ### 10.1 Static checks
 
 ```bash
-pnpm typecheck    # must pass across @guepard/environments, @guepard/apps-environments, apps/web
+pnpm typecheck    # must pass across @qlm/environments, @qlm/apps-environments, apps/web
 pnpm lint         # must pass; ESLint rule against react-i18next/Trans must not fire
 pnpm format:fix   # Prettier — no diff expected after running
 ```
@@ -680,7 +680,7 @@ Also:
 
 ### 10.2 Unit tests
 
-- **`@guepard/environments`**: Vitest + @testing-library/react.
+- **`@qlm/environments`**: Vitest + @testing-library/react.
   - `source-card.test.tsx` — renders every status variant, renders with/without volume/branch, calls `onClick`.
   - `layer-1-view.test.tsx` — renders Ready / Empty / Loading / Error states; clicking a card calls `onSelectSource`.
   - `layer-2-view.test.tsx` — renders Ready with fixture graph; selecting a clone invokes `onSelectNode` with correct payload.
@@ -736,8 +736,8 @@ Step-by-step for a human reviewer:
 14. Click "Clone to node" on the source — node picker opens, pick a fixture node, confirm. A new clone appears in `provisioning`, transitions through `ingesting` to `healthy` over ~1.6s.
 15. Click "Create branch" on a healthy clone — dialog opens, confirm. A new branch chip appears under the clone and a tick appears on the time axis.
 16. Click "Back to Canvas" (or the shell's back navigation) — returns to Layer 1.
-17. Run `pnpm --filter @guepard/environments storybook` (or whatever the feature-local Storybook command is). Every component renders its loading / empty / ready / error stories without errors.
-18. Visually compare each Storybook story against the corresponding POC screen (`/Users/hani.chalouati/Documents/work/guepard/mock-v3/.../environments-workspace.stories.tsx` served by its own Storybook). Every shipped component should visually match its POC counterpart, minus the deferred slots (masking, branch history, metric tiles, replication chips, lineage, context menus, infra footer, env-tabs navbar, ⌘K palette, extra inspector tabs).
+17. Run `pnpm --filter @qlm/environments storybook` (or whatever the feature-local Storybook command is). Every component renders its loading / empty / ready / error stories without errors.
+18. Visually compare each Storybook story against the corresponding POC screen (`/Users/hani.chalouati/Documents/work/qlm/mock-v3/.../environments-workspace.stories.tsx` served by its own Storybook). Every shipped component should visually match its POC counterpart, minus the deferred slots (masking, branch history, metric tiles, replication chips, lineage, context menus, infra footer, env-tabs navbar, ⌘K palette, extra inspector tabs).
 19. Hit `/env/postgres-primary` directly in the address bar. Layer 2 renders via the flat route without requiring a prior Layer 1 visit.
 
 If any step above fails, the phase-1 spec has not shipped.

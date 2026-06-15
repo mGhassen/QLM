@@ -22,7 +22,7 @@ Per spec §10.3: spawn the compiled sidecar binary against a `wiremock` Supabase
   1. Build the sidecar binary first (test emits a `println!("run `pnpm --filter server build:desktop` before `cargo test --test boot`")` fail-early if the binary is missing).
   2. Start a `wiremock::MockServer` responding to `POST /auth/v1/token?grant_type=refresh_token` with `{ access_token, refresh_token, expires_at }`.
   3. Start an in-process keyring-IPC HTTP stub (reuse `ipc::start` from `src/ipc.rs` with an `on_request` backed by `Arc<Mutex<HashMap<String,String>>>` pre-seeded with `refresh_token:<MOCK_SUPABASE_URL>`).
-  4. `Command::new(".../binaries/api-server-<triple>")` with env: `GUEPARD_RUNTIME=desktop`, `GUEPARD_SERVER_URL=<mock-url>`, `GUEPARD_REFRESH_TOKEN=seed-token`, `GUEPARD_KEYRING_PORT`, `GUEPARD_KEYRING_TOKEN`, `SERVER_PORT=<free-port>`, `HOSTNAME=127.0.0.1`.
+  4. `Command::new(".../binaries/api-server-<triple>")` with env: `QLM_RUNTIME=desktop`, `QLM_SERVER_URL=<mock-url>`, `QLM_REFRESH_TOKEN=seed-token`, `QLM_KEYRING_PORT`, `QLM_KEYRING_TOKEN`, `SERVER_PORT=<free-port>`, `HOSTNAME=127.0.0.1`.
   5. Poll `GET http://127.0.0.1:<port>/health` until 200 (timeout 15s).
   6. Assert `wiremock` saw the refresh request exactly once.
   7. Assert the keyring stub contains the **new** refresh token (key-rotated after refresh).

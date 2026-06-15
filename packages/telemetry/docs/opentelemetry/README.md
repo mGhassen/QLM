@@ -1,6 +1,6 @@
 # OpenTelemetry Telemetry Package
 
-This package provides OpenTelemetry-based telemetry for **CLI, Web, Desktop, and Agent** applications in the Guepard monorepo. The implementation focuses on **distributed tracing with spans** for observability and billing, with experimental metrics support for monitoring.
+This package provides OpenTelemetry-based telemetry for **CLI, Web, Desktop, and Agent** applications in the QLM monorepo. The implementation focuses on **distributed tracing with spans** for observability and billing, with experimental metrics support for monitoring.
 
 ## 📚 Documentation
 
@@ -14,7 +14,7 @@ This package provides OpenTelemetry-based telemetry for **CLI, Web, Desktop, and
 ### CLI
 
 ```typescript
-import { withActionSpan } from '@guepard/telemetry/otel/utils';
+import { withActionSpan } from '@qlm/telemetry/otel/utils';
 
 await withActionSpan(
   telemetry,
@@ -34,7 +34,7 @@ await withActionSpan(
 ### Web/Desktop (React)
 
 ```typescript
-import { TelemetryProvider, useTelemetry } from '@guepard/telemetry/otel';
+import { TelemetryProvider, useTelemetry } from '@qlm/telemetry/otel';
 
 function App() {
   return (
@@ -193,7 +193,7 @@ OTEL_SDK_DISABLED=true
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 
 # Service Name (optional)
-OTEL_SERVICE_NAME=guepard-web-server
+OTEL_SERVICE_NAME=qlm-web-server
 
 # Log Level (optional)
 OTEL_LOG_LEVEL=info
@@ -221,12 +221,12 @@ QWERY_TELEMETRY_DEBUG=true
 
 ```typescript
 // Main exports
-export { TelemetryManager } from '@guepard/telemetry/otel';
-export { OtelClientService } from '@guepard/telemetry/otel';
-export { OtelNullTelemetryService } from '@guepard/telemetry/otel';
+export { TelemetryManager } from '@qlm/telemetry/otel';
+export { OtelClientService } from '@qlm/telemetry/otel';
+export { OtelNullTelemetryService } from '@qlm/telemetry/otel';
 
 // React context
-export { TelemetryProvider, useTelemetry } from '@guepard/telemetry/otel';
+export { TelemetryProvider, useTelemetry } from '@qlm/telemetry/otel';
 
 // Utilities
 export {
@@ -237,7 +237,7 @@ export {
   recordTokenUsage,
   type ActionContext,
   type WorkspaceContext,
-} from '@guepard/telemetry/otel/utils';
+} from '@qlm/telemetry/otel/utils';
 
 // Agent helpers
 export {
@@ -249,14 +249,14 @@ export {
   withActorTelemetry,
   endActorSpanWithEvent,
   extractTokenUsage,
-} from '@guepard/telemetry/otel/agent-helpers';
+} from '@qlm/telemetry/otel/agent-helpers';
 
 // Event constants
 export { 
   CLI_EVENTS,
 WEB_EVENTS,
 DESKTOP_EVENTS,
-AGENT_EVENTS } from '@guepard/telemetry';
+AGENT_EVENTS } from '@qlm/telemetry';
 ```
 
 **Note:** Both `/otel` and `/opentelemetry` subpath exports are available for backward compatibility.

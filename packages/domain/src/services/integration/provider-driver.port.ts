@@ -30,7 +30,7 @@ export type RevealedCredentials =
 
 /**
  * Port implemented once per cloud provider. Concrete drivers live in the
- * server-only `@guepard/integrations-drivers` package (step 7) and import
+ * server-only `@qlm/integrations-drivers` package (step 7) and import
  * the provider SDKs. Nothing in `packages/domain` imports an SDK.
  *
  * Phase 1 exposes only `testConnection` and `listRegions`. Phases 2 and 3

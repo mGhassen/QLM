@@ -19,13 +19,13 @@ Build the desktop "Server" Settings pane. The component reads the current server
 
 - [ ] `apps/web/src/features/desktop-server/server-pane.tsx` exports `<ServerPane />` (props: `Readonly<{}>` — host has no overrides). Internally:
   - Loads `getAppConfig()` once on mount via `useQuery` (key: `['desktop', 'app-config']`); shows a skeleton until ready.
-  - Renders the current URL (mono font), with the `mdmBadge` chip only when `config.GUEPARD_SERVER_MDM_DEFAULT === config.GUEPARD_SERVER_URL`.
+  - Renders the current URL (mono font), with the `mdmBadge` chip only when `config.QLM_SERVER_MDM_DEFAULT === config.QLM_SERVER_URL`.
   - Renders the `tlsInsecureBanner` `<Alert variant="warning">` only when `config.allowInsecureTls === 'true'`.
   - "Change server" button → `<AlertDialog>` with the warning title/body/confirm/cancel keys.
   - On confirm, opens an `<Input>` for the new URL with HTTPS validation (re-uses `isHttpsUrl` shared with the first-run picker — extract to `apps/web/src/lib/url.ts` if not already shared, but inline-extract is fine for a single caller).
-  - On submit: `await fetch('/auth/sign-out', { method: 'POST', credentials: 'include' })` (best-effort; ignore non-2xx) → `await setAppConfig({ GUEPARD_SERVER_URL: <new> })` → `await restartSidecar()` → `window.location.assign('/')`.
+  - On submit: `await fetch('/auth/sign-out', { method: 'POST', credentials: 'include' })` (best-effort; ignore non-2xx) → `await setAppConfig({ QLM_SERVER_URL: <new> })` → `await restartSidecar()` → `window.location.assign('/')`.
   - All visible strings via `t('desktop.settings.server.*')`.
-- [ ] `server-pane.stories.tsx` covers four states: `cloud-connected`, `on-prem-connected`, `mdm-default`, `allow-insecure-tls`. Each story stubs `getAppConfig` via a `Provider` shim or a Storybook decorator that mocks `@guepard/shell-runtime`.
+- [ ] `server-pane.stories.tsx` covers four states: `cloud-connected`, `on-prem-connected`, `mdm-default`, `allow-insecure-tls`. Each story stubs `getAppConfig` via a `Provider` shim or a Storybook decorator that mocks `@qlm/shell-runtime`.
 - [ ] `apps/web/__tests__/features/desktop-server/server-pane.test.tsx` covers:
   - Renders current URL + opens dialog on "Change server".
   - Cancel button closes dialog without calling `setAppConfig` / `restartSidecar`.
@@ -37,6 +37,6 @@ Build the desktop "Server" Settings pane. The component reads the current server
 
 ## Notes
 
-- Reuse `Alert`, `Button`, `AlertDialog`, `Input`, `Label`, `Card` from `@guepard/ui/*`.
+- Reuse `Alert`, `Button`, `AlertDialog`, `Input`, `Label`, `Card` from `@qlm/ui/*`.
 - Storybook validation is mandatory per `.claude/rules/testing.md` — the human-approval gate will run `pnpm --filter web storybook` to eyeball all four states.
 - Spec anchor: `#75-presentation-appsweb` (Settings dialog → "Server" pane bullet).

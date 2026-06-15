@@ -3,18 +3,18 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
+import { Trans } from '@qlm/ui/trans';
 
 import { useCaptcha } from '../captcha/client';
 

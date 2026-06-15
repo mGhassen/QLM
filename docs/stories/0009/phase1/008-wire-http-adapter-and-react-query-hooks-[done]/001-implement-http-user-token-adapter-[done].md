@@ -27,7 +27,7 @@ Build `HttpUserTokenRepository` that calls the Story-006 server endpoints, and w
 
 ## Acceptance
 
-- [ ] `HttpUserTokenRepository` extends `IUserTokenRepository` from `@guepard/domain/repositories`.
+- [ ] `HttpUserTokenRepository` extends `IUserTokenRepository` from `@qlm/domain/repositories`.
 - [ ] `create` does NOT send `account_id` over the wire (verified by reading the request payload in a unit test).
 - [ ] `revoke(id, _)` issues `POST /user-tokens/${id}/revoke` with an empty JSON body.
 - [ ] `repositories-factory.ts` includes `userToken: new HttpUserTokenRepository()` and a comment explaining why `jwtSigner` is intentionally absent on the browser side.
@@ -46,5 +46,5 @@ N/A — pure HTTP adapter; no rendered surface.
 ## Notes
 
 - Pattern mirrors `apps/web/src/lib/repositories/notebook.repository.ts` — same `apiGet` / `apiPost` helpers, same constructor-less class.
-- `CreateUserTokenOutput` from `@guepard/domain/usecases` includes `{ row, rawJwt }` — the adapter returns it as-is so the calling hook can plumb `rawJwt` into the reveal-once pane.
+- `CreateUserTokenOutput` from `@qlm/domain/usecases` includes `{ row, rawJwt }` — the adapter returns it as-is so the calling hook can plumb `rawJwt` into the reveal-once pane.
 - The shape mismatch with the base port (`create(entity: T)` vs `create(input: CreateUserTokenRow)`) is the same one already absorbed by the Story-005 supabase adapter — TS compatibility holds because the derived `IUserTokenRepository.create` overrides the base abstract method.

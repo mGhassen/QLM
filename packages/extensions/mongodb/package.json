@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-mongodb",
+  "name": "@qlm/extension-mongodb",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "mongodb": "^6.9.0",
     "zod": "catalog:"
   },

@@ -24,7 +24,7 @@ One-time JWT reveal — the only place in the entire app where `rawJwt` is shown
     - Heading `tokens:pane.reveal.heading`.
     - Warning banner (yellow): `tokens:pane.reveal.warning`.
     - JWT field — read-only `<input>` filled with `rawJwt`, monospace font, with a Copy button (`tokens:pane.reveal.copyJwt`). Copy button uses `navigator.clipboard.writeText(rawJwt)`. After copy: button label flips to `tokens:pane.reveal.copied` for 2 s, then back to the copy label.
-    - curl snippet field — multiline `<pre>` with `curl -H "Authorization: Bearer <jwt>" <publicApiUrl>/health` (or similar — see notes for canonical example) with another Copy button. `publicApiUrl` resolves from `import.meta.env.VITE_GUEPARD_PUBLIC_API_URL` with a sensible fallback (`https://api.guepard.run`).
+    - curl snippet field — multiline `<pre>` with `curl -H "Authorization: Bearer <jwt>" <publicApiUrl>/health` (or similar — see notes for canonical example) with another Copy button. `publicApiUrl` resolves from `import.meta.env.VITE_QLM_PUBLIC_API_URL` with a sensible fallback (`https://api.qlm.run`).
     - Close button (`tokens:pane.reveal.close`) — fires `onClose`.
 - `src/components/reveal-token-view.stories.tsx`:
   - `Initial`, `Copied` (mock the post-copy state), `LongJwt` (verify the readonly input handles a long token without breaking layout).
@@ -40,7 +40,7 @@ One-time JWT reveal — the only place in the entire app where `rawJwt` is shown
 ## Acceptance
 
 - [ ] No `Dialog` import.
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` + `test` pass.
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` + `test` pass.
 - [ ] `Readonly<Props>` on the component.
 - [ ] All copy localized via `tokens:pane.reveal.*` keys.
 - [ ] Closing fires `onClose` exactly once.
@@ -49,13 +49,13 @@ One-time JWT reveal — the only place in the entire app where `rawJwt` is shown
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles**: `UserTokens / RevealTokenView / Initial`, `… / Copied`, `… / Long Jwt`
 - **Expected visual outcome**: yellow warning banner at top, readonly monospace input with the JWT, multiline `<pre>` with the curl example, primary Close button at the bottom. Copy buttons swap label briefly when clicked.
 

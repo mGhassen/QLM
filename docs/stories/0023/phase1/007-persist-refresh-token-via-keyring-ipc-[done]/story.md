@@ -19,15 +19,15 @@ Wire `apps/server` (running as the desktop sidecar) to rehydrate sessions on boo
 ## Scope
 
 **In scope**
-- Sidecar boot path: read `GUEPARD_REFRESH_TOKEN` env var; if present, call Supabase refresh; on success, `keyringClient.set('refresh_token:' + GUEPARD_SERVER_URL, newRefreshToken)` before serving the first request.
-- Sidecar sign-in handler: after Supabase response, `keyringClient.set('refresh_token:' + GUEPARD_SERVER_URL, refreshToken)`.
-- Sidecar sign-out handler: after Supabase `signOut`, `keyringClient.delete('refresh_token:' + GUEPARD_SERVER_URL)`.
-- Tauri shell `lib.rs` change: read `refresh_token:<GUEPARD_SERVER_URL>` from keychain at spawn time and pass as `GUEPARD_REFRESH_TOKEN` env var to the sidecar.
+- Sidecar boot path: read `QLM_REFRESH_TOKEN` env var; if present, call Supabase refresh; on success, `keyringClient.set('refresh_token:' + QLM_SERVER_URL, newRefreshToken)` before serving the first request.
+- Sidecar sign-in handler: after Supabase response, `keyringClient.set('refresh_token:' + QLM_SERVER_URL, refreshToken)`.
+- Sidecar sign-out handler: after Supabase `signOut`, `keyringClient.delete('refresh_token:' + QLM_SERVER_URL)`.
+- Tauri shell `lib.rs` change: read `refresh_token:<QLM_SERVER_URL>` from keychain at spawn time and pass as `QLM_REFRESH_TOKEN` env var to the sidecar.
 - Refresh debouncing in the sidecar — single in-flight refresh per session (per spec §5.3).
 - Sidecar startup retry budget on Supabase failure (3 attempts, exponential backoff) before serving without a refreshed session (webview lands on sign-in).
 
 **Out of scope**
-- First-run picker (story 008) — this story assumes `GUEPARD_SERVER_URL` is already set.
+- First-run picker (story 008) — this story assumes `QLM_SERVER_URL` is already set.
 - Server switcher pane / `restart_sidecar` (story 009).
 - Cross-platform CI (story 010).
 
@@ -55,7 +55,7 @@ pnpm --filter desktop tauri:dev
 pnpm --filter desktop tauri:dev
 # Lands on home, no sign-in screen.
 # Sign out → relaunch → sign-in screen returns.
-security find-generic-password -s run.guepard.desktop -a "refresh_token:https://api.guepard.com"
+security find-generic-password -s run.qlm.desktop -a "refresh_token:https://api.qlm.com"
 ```
 
 ## Questions surfaced
@@ -66,7 +66,7 @@ security find-generic-password -s run.guepard.desktop -a "refresh_token:https://
 
 - 002 — `/auth` routes are mounted only when `sidecarAuthSupabase` is provided to `createApp` — keeps the cloud server unchanged. Keyring writes are best-effort (logged + dropped on failure).
 - 003 — `index.ts` awaits `rehydrateSession` before `Bun.serve` only when `desktopRuntime` is set; refresh adapter classifies Supabase error messages into `expired` vs `transient` for the retry/cleanup branches.
-- 004 — Refresh-token keychain lookup happens *after* CONFIG_KEYS injection so it can namespace by the resolved `GUEPARD_SERVER_URL`; absent / NoEntry collapse to one `desktop:refresh_token=missing` log line.
+- 004 — Refresh-token keychain lookup happens *after* CONFIG_KEYS injection so it can namespace by the resolved `QLM_SERVER_URL`; absent / NoEntry collapse to one `desktop:refresh_token=missing` log line.
 
 ## Spec-accuracy check
 

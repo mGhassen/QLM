@@ -22,12 +22,12 @@ Unit-test the `convertMessages` helper (ported from qwery-enterprise in story 00
 - [ ] `convertMessages([])` returns `[]`.
 - [ ] Modern message (content with `parts` + `role`) → preserves `id`, normalizes role via `normalizeUIRole`, merges `content.metadata + rootMetadata + { createdAt }`, passes `parts` through.
 - [ ] Legacy message (content is `{ text: '...' }` or plain string) → reconstructs a single `{ type: 'text', text }` part; role mapped via `messageRoleToUIRole`.
-- [ ] `pnpm --filter @guepard/qwery-agent test` passes with the new tests green.
+- [ ] `pnpm --filter @qlm/qwery-agent test` passes with the new tests green.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent test convert-messages
+pnpm --filter @qlm/qwery-agent test convert-messages
 ```
 
 ## Notes

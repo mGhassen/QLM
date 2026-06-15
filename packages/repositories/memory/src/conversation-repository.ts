@@ -1,7 +1,7 @@
-import type { Nullable } from '@guepard/domain/common';
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Conversation } from '@guepard/domain/entities';
-import { IConversationRepository } from '@guepard/domain/repositories';
+import type { Nullable } from '@qlm/domain/common';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Conversation } from '@qlm/domain/entities';
+import { IConversationRepository } from '@qlm/domain/repositories';
 
 export class ConversationRepository extends IConversationRepository {
   private conversations = new Map<string, Conversation>();

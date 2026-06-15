@@ -4,11 +4,11 @@ import { useCallback, useRef, useState } from 'react';
 
 import { CheckCircledIcon } from '@radix-ui/react-icons';
 
-import { useAppEvents } from '@guepard/shared/events';
-import { useSignUpWithEmailAndPassword } from '@guepard/supabase/hooks/use-sign-up-with-email-password';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+import { useAppEvents } from '@qlm/shared/events';
+import { useSignUpWithEmailAndPassword } from '@qlm/supabase/hooks/use-sign-up-with-email-password';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { useCaptcha } from '../captcha/client';
 import { AuthErrorAlert } from './auth-error-alert';

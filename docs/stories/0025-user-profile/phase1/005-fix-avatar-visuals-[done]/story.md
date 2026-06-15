@@ -45,7 +45,7 @@ A signed-in user opens **Settings → Profile** and sees a single, properly-size
 - [x] Card titles ("Your Profile Picture", "Your Name") visibly larger and bolder than their descriptions on the same card. *`<CardTitle className="text-base">` applied to both.*
 - [x] All button labels in `PictureCard` route through `t('userProfile.picture.*')` — no hardcoded English.
 - [x] Selecting a non-image file or an image >2 MB still rejects client-side with an inline alert (regression-tested). *Two existing tests carry forward; alert role asserted.*
-- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @guepard/user-profile test` (11/11), `pnpm --filter @guepard/domain test` (302/3 skipped) all pass.
+- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @qlm/user-profile test` (11/11), `pnpm --filter @qlm/domain test` (302/3 skipped) all pass.
 
 ## Tasks
 

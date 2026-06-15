@@ -102,7 +102,7 @@ export type UpdateIntegrationCredentialsInput = {
 // ── Driver result DTOs ────────────────────────────────────────────────────
 // Used by the provider-driver port in step 7 and returned verbatim to the
 // browser by POST /:id/test and GET /:id/regions. Kept here (and not in the
-// driver package) so the features package depends on @guepard/domain only
+// driver package) so the features package depends on @qlm/domain only
 // for every shape it needs.
 
 export type TestResultErrorCode =

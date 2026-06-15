@@ -66,7 +66,7 @@
   "billing": {
     "pageTitle": "Billing",
     "creditBalanceTitle": "Credit balance",
-    "creditBalanceDescription": "Your credit balance is consumed as you use Rasm. You can buy credits at any time.",
+    "creditBalanceDescription": "Your credit balance is consumed as you use QLM. You can buy credits at any time.",
     "chargedTo": "Charged to",
     "remainingBalance": "You still have {{balance}} credits left.",
     "insufficientCreditsHint": "You don't have enough credits to continue. Please add credits to your organization.",
@@ -84,7 +84,7 @@
       "processing": "Processing...",
       "continueToPayment": "Continue to payment",
       "buyAmountOfCredits": "Buy {{amount}} of credits",
-      "termsByClicking": "By clicking \"{{action}}\" you agree to Rasm's",
+      "termsByClicking": "By clicking \"{{action}}\" you agree to QLM's",
       "creditTerms": "Credit Terms",
       "paymentMethodSaved": "Your payment method will be saved for future purchases.",
       "loadingPaymentMethod": "Loading payment method form...",

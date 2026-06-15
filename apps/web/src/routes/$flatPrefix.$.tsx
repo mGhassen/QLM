@@ -8,9 +8,9 @@ import {
   decodeTabId,
   deriveTabTitle,
   makeFlatTabId,
-} from '@guepard/shell-contracts';
-import { FlatRouteProvider } from '@guepard/shell-runtime';
-import { GetProjectService } from '@guepard/domain/services';
+} from '@qlm/shell-contracts';
+import { FlatRouteProvider } from '@qlm/shell-runtime';
+import { GetProjectService } from '@qlm/domain/services';
 
 import { getAppRegistry } from '@/shell/app-registry';
 import { ProjectShellHost } from '@/shell/project-shell-host';

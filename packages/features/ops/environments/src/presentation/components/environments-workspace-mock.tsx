@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import {
   CmdKPalette,

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 export type LastSeenDotProps = Readonly<{
   /** ISO string or undefined for nodes that have never phoned home. */

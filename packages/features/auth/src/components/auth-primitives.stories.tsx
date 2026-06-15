@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 
 import { AuthErrorAlert } from './auth-error-alert';
 import { AuthProviderButton } from './auth-provider-button';

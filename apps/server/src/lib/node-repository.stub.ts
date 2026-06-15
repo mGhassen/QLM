@@ -5,13 +5,13 @@ import type {
   NodeDrain,
   NodeEligibility,
   NodeLifecycleState,
-} from '@guepard/domain/entities';
-import { INodeRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import { INodeRepository } from '@qlm/domain/repositories';
 import type {
   BulkResult,
   ListNodesInput,
   ListNodesRepositoryResult,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 const UNSUPPORTED =
   'Server-side NodeRepository is not implemented — nodes are a frontend-only feature in Phase 1–7 (mocked via MSW). Add a real adapter when the backend ships.';

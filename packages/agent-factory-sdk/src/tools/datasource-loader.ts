@@ -1,7 +1,7 @@
-import type { Datasource } from '@guepard/domain/entities';
-import type { IDatasourceRepository } from '@guepard/domain/repositories';
+import type { Datasource } from '@qlm/domain/entities';
+import type { IDatasourceRepository } from '@qlm/domain/repositories';
 
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 /**
  * Load datasources from conversation.datasources array

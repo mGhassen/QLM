@@ -1,5 +1,5 @@
 // TODO: Fix vitest ESM + TypeScript issue with extensions-sdk imports
-// The driver imports from @guepard/extensions-sdk which causes Node.js to try to load .ts files directly
+// The driver imports from @qlm/extensions-sdk which causes Node.js to try to load .ts files directly
 // This is a known issue with vitest + ESM + TypeScript when importing from workspace packages that export .ts files
 // 
 // Temporary workaround: Comment out the test until we can fix the vitest configuration

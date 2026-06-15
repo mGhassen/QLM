@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
 /**
- * `UserTokenScope` — duplicated here instead of importing from `@guepard/domain`
- * so `@guepard/auth-shared` stays a standalone package portable to
- * `guepard-public-api` without pulling the domain graph with it. The three
+ * `UserTokenScope` — duplicated here instead of importing from `@qlm/domain`
+ * so `@qlm/auth-shared` stays a standalone package portable to
+ * `qlm-public-api` without pulling the domain graph with it. The three
  * values are the same as in `packages/domain/src/entities/user-token-scope.ts`.
  */
 export type UserTokenScope = 'read' | 'write' | 'admin';
@@ -58,7 +58,7 @@ export type BearerTokenLookupResult = {
  *
  * Why `lookup` is injected instead of the module owning the DB call: this
  * package is meant to be consumed by both the v3 server and
- * `guepard-public-api`, and they have different DB clients. Injecting the
+ * `qlm-public-api`, and they have different DB clients. Injecting the
  * lookup keeps the module portable and testable with an in-memory Map.
  *
  * Rejection precedence (matters for the revoked-AND-expired case): revoked
@@ -118,7 +118,7 @@ export async function verifyBearerToken(
  * - `write` → POST / PUT / DELETE only (mutation methods).
  *
  * Multiple scopes on one token are OR'd — if any scope permits the method,
- * the call goes through. This mirrors v1's `guepard-public-api` behavior so
+ * the call goes through. This mirrors v1's `qlm-public-api` behavior so
  * existing tokens keep working.
  */
 export function scopePermitsMethod(

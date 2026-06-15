@@ -21,7 +21,7 @@ Inline status pill rendered by `TokenRow` (and reused later by the create-pane p
 - `packages/features/user-tokens/src/components/primitives/status-chip.tsx`:
   - `<StatusChip status={UserTokenStatus} />`. Color mapping: `active` → green (`text-green-600` / `bg-green-500/10` / `border-green-500/20`), `expired` → muted (`text-muted-foreground` / `bg-muted` / `border-border`), `revoked` → red (`text-red-600` / `bg-red-500/10` / `border-red-500/20`).
   - Label via `t('tokens:status.<value>')`.
-  - Compose `@guepard/ui/badge` with `variant="outline"` + `cn(...)` to layer the colour classes.
+  - Compose `@qlm/ui/badge` with `variant="outline"` + `cn(...)` to layer the colour classes.
   - `Readonly<Props>`.
 - `packages/features/user-tokens/src/components/story-helpers.tsx` — shared decorator + i18n init for all user-tokens stories. Mirrors `packages/features/auth/src/components/story-helpers.tsx`. Loads inline translations for `tokens.*` and `settings.*` namespaces (from `apps/web/src/lib/i18n/locales/en/{tokens,settings}.json`). Exports `withUserTokensProviders` decorator.
 - `packages/features/user-tokens/src/components/primitives/status-chip.stories.tsx`:
@@ -33,8 +33,8 @@ Inline status pill rendered by `TokenRow` (and reused later by the create-pane p
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/user-tokens typecheck` passes.
-- [ ] `pnpm --filter @guepard/user-tokens test` passes (new tests included).
+- [ ] `pnpm --filter @qlm/user-tokens typecheck` passes.
+- [ ] `pnpm --filter @qlm/user-tokens test` passes (new tests included).
 - [ ] No hardcoded English strings in `status-chip.tsx`.
 - [ ] All chip colours come from Tailwind tokens — no hex.
 - [ ] `Readonly<Props>` on the component.
@@ -42,13 +42,13 @@ Inline status pill rendered by `TokenRow` (and reused later by the create-pane p
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens typecheck
-pnpm --filter @guepard/user-tokens test
+pnpm --filter @qlm/user-tokens typecheck
+pnpm --filter @qlm/user-tokens test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles to inspect**: `UserTokens / Primitives / StatusChip / Active`, `… / Expired`, `… / Revoked`, `… / All Three`
 - **Expected visual outcome**: three pills in a row — green ✓Active, muted ⏰Expired, red ⛔Revoked. Labels read from i18n exactly as in `tokens.status.*`.
 

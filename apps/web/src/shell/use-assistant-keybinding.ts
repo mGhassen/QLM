@@ -1,6 +1,6 @@
 import { useEffect, type Dispatch, type SetStateAction } from 'react';
 
-import type { ActivePanel } from '@guepard/ui/layout';
+import type { ActivePanel } from '@qlm/ui/layout';
 
 /**
  * Toggle the assistant panel via CMD/CTRL + L. Mirrors the established

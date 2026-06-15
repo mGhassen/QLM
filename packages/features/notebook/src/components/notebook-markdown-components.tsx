@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'react';
 
 import type { Components } from 'react-markdown';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 type MarkdownCodeProps = HTMLAttributes<HTMLElement> & {
   inline?: boolean;

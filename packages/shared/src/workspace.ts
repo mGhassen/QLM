@@ -1,8 +1,8 @@
 'use client';
 
-import type { Workspace } from '@guepard/domain/entities';
+import type { Workspace } from '@qlm/domain/entities';
 
-const WORKSPACE_STORAGE_KEY = 'guepard-workspace';
+const WORKSPACE_STORAGE_KEY = 'qlm-workspace';
 
 export function getWorkspaceFromLocalStorage(): Workspace {
   const defaultWorkspace = {} as Workspace;

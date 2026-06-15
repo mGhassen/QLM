@@ -4,8 +4,8 @@ import Stripe from 'stripe';
 import { BillingWebhookHandlerService } from '../ports/billing-webhook-handler.service';
 import { PlanTypeMap } from '../types/create-billing-schema';
 
-import { getLogger } from '@guepard/shared/logger';
-import { Database, Enums } from '@guepard/supabase/database';
+import { getLogger } from '@qlm/shared/logger';
+import { Database, Enums } from '@qlm/supabase/database';
 
 import { StripeServerEnvSchema } from '../schema/stripe-server-env.schema';
 import { createStripeClient } from './stripe-sdk';

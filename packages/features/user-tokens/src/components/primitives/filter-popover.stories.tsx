@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { UserTokenStatus } from '@guepard/domain/entities';
+import type { UserTokenStatus } from '@qlm/domain/entities';
 
 import { withUserTokensProviders } from '../story-helpers';
 import { FilterPopover } from './filter-popover';

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/shared",
+  "name": "@qlm/shared",
   "private": true,
   "version": "0.1.0",
   "scripts": {
@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "validate:error-keys": "vitest run __tests__/validate-error-i18n.test.ts"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "exports": {
     "./logger": "./src/logger/index.ts",
     "./model-cost": "./src/model-cost/index.ts",
@@ -30,10 +30,10 @@
     "./sql-string-literal": "./src/sql-string-literal.ts"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/papaparse": "^5.5.2",
     "@types/react": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
@@ -42,7 +42,7 @@
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
+    "@qlm/domain": "workspace:*",
     "papaparse": "^5.5.3",
     "pino": "^10.1.0",
     "pino-pretty": "^13.1.3",

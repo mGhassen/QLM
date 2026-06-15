@@ -48,7 +48,7 @@ Create the three new i18n namespaces (`shell`, `project-settings`, `org-settings
 ## Demo / verification
 
 ```
-pnpm --filter @guepard/i18n test
+pnpm --filter @qlm/i18n test
 pnpm typecheck
 ```
 

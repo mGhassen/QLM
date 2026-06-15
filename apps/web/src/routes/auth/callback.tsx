@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { createAuthCallbackService } from '@guepard/supabase/auth';
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
+import { createAuthCallbackService } from '@qlm/supabase/auth';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 import pathsConfig from '@/config/paths.config';
 

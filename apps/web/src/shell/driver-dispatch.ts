@@ -1,14 +1,14 @@
-import type { DatasourceMetadata } from '@guepard/domain/entities';
+import type { DatasourceMetadata } from '@qlm/domain/entities';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
   type DriverExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
 import type {
   GetDatasourceMetadataFn,
   TestConnectionFn,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { driverCommand } from '@/lib/repositories/api-client';
 
@@ -17,7 +17,7 @@ import { driverCommand } from '@/lib/repositories/api-client';
  * metadata fetch) to the right runtime:
  *
  *   - **browser** drivers (`duckdb-wasm`, `pglite`, `csv-online`, ...)
- *     are loaded client-side via `@guepard/extensions-loader`'s
+ *     are loaded client-side via `@qlm/extensions-loader`'s
  *     `getDriverInstance` and called in-process. No network hop.
  *
  *   - **node** drivers (`postgresql`, `mysql`, `clickhouse-node`, ...)

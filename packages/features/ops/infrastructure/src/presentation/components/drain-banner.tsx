@@ -1,9 +1,9 @@
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { NodeDrain } from '@guepard/domain/entities';
-import { Button } from '@guepard/ui/button';
-import { cn } from '@guepard/ui/utils';
+import type { NodeDrain } from '@qlm/domain/entities';
+import { Button } from '@qlm/ui/button';
+import { cn } from '@qlm/ui/utils';
 
 export type DrainBannerProps = Readonly<{
   drain: NodeDrain;

@@ -2,8 +2,8 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import { getLogger } from '@guepard/shared/logger';
-import { Database } from '@guepard/supabase/database';
+import { getLogger } from '@qlm/shared/logger';
+import { Database } from '@qlm/supabase/database';
 
 export function createDeletePersonalAccountService() {
   return new DeletePersonalAccountService();
@@ -107,8 +107,8 @@ class DeletePersonalAccountService {
     const emailSettings = this.getEmailSettings();
 
     const { renderAccountDeleteEmail } =
-      await import('@guepard/email-templates');
-    const { getMailer } = await import('@guepard/mailers');
+      await import('@qlm/email-templates');
+    const { getMailer } = await import('@qlm/mailers');
 
     const mailer = await getMailer();
 

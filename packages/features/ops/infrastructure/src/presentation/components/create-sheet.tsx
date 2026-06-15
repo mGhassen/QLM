@@ -2,47 +2,47 @@ import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Cpu, Database, Loader2, Plus } from 'lucide-react';
-import { toast } from '@guepard/ui/sonner';
+import { toast } from '@qlm/ui/sonner';
 import { z } from 'zod';
 
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-} from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
-import { FormLabel, FormMessage } from '@guepard/ui/form';
+} from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
+import { FormLabel, FormMessage } from '@qlm/ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
-import { UnifiedSelector } from '@guepard/ui/unified-selector';
+} from '@qlm/ui/select';
+import { UnifiedSelector } from '@qlm/ui/unified-selector';
 import {
   EntitySheet,
   EntitySheetBody,
   EntitySheetFooter,
   EntitySheetHeader,
-} from '@guepard/ui/entity-sheet';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/entity-sheet';
+import { cn } from '@qlm/ui/utils';
 import {
   INPUT_CLASS,
   LABEL_CLASS,
   MESSAGE_CLASS,
   SELECT_TRIGGER_CLASS,
   TagInput,
-} from '@guepard/ui/form-primitives';
+} from '@qlm/ui/form-primitives';
 
 import {
   NODE_KINDS,
   NODE_PROVIDERS,
   NODE_REGIONS,
-} from '@guepard/domain/entities';
-import type { CreateNodeInput as DomainCreateNodeInput } from '@guepard/domain/usecases';
+} from '@qlm/domain/entities';
+import type { CreateNodeInput as DomainCreateNodeInput } from '@qlm/domain/usecases';
 
 export type CreateNodeInput = Omit<DomainCreateNodeInput, 'projectId'>;
 

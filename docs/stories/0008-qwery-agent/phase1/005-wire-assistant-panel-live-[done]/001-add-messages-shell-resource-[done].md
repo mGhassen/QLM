@@ -16,7 +16,7 @@ Expose `useShell().messages.getByConversationSlug(slug)` so the panel/tab can lo
 
 ## Files
 
-- `packages/shell-runtime/src/resources/messages.ts` — **new**. `createMessagesResource(repository, queryClient)` returning `{ keys: { all, byConversationSlug(slug) }, getByConversationSlug, invalidate: { all, byConversationSlug } }`. Wraps `GetMessagesByConversationSlugService` from `@guepard/domain/services`.
+- `packages/shell-runtime/src/resources/messages.ts` — **new**. `createMessagesResource(repository, queryClient)` returning `{ keys: { all, byConversationSlug(slug) }, getByConversationSlug, invalidate: { all, byConversationSlug } }`. Wraps `GetMessagesByConversationSlugService` from `@qlm/domain/services`.
 - `packages/shell-runtime/src/client.ts` — add `messages: MessagesResource` to `ShellClient`, compose in `useMemo` passing `repositories.message` (already on `Repositories` type).
 - `packages/shell-runtime/src/index.ts` — re-export `MessagesResource` type.
 

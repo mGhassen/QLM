@@ -39,7 +39,7 @@ Ship the shared primitives (`StatusChip`, `ConnectionStringField`, `InlineError`
   - Props: `source: SourceCard`, `onClick`, `onExpand`, `selected`.
   - Anatomy: provider icon + name, status dot + status label, optional volume stripe, optional default-branch stripe. Hover border highlight + box shadow.
   - Stories: every `SourceStatus` variant, with/without volume, with/without branch, hover, selected.
-- All components use `Readonly<Props>`, compose `@guepard/ui` primitives (`Card`, `Badge`, `Button`, `Tooltip`, `Skeleton`), use Tailwind tokens, go through `t(...)` or `<Trans>` for every user-facing string.
+- All components use `Readonly<Props>`, compose `@qlm/ui` primitives (`Card`, `Badge`, `Button`, `Tooltip`, `Skeleton`), use Tailwind tokens, go through `t(...)` or `<Trans>` for every user-facing string.
 - Provider icon mapping: inline `<ProviderIcon provider={datasource_provider} />` component that maps known strings (`postgres`, `mysql`, `mongo`, `redis`) to a `lucide-react` icon or short SVG with a generic fallback. No emoji.
 
 **Out of scope** (forces honest slicing)
@@ -58,8 +58,8 @@ Ship the shared primitives (`StatusChip`, `ConnectionStringField`, `InlineError`
 - [ ] `ConnectionStringField` masks password segments via regex; a unit test confirms `onCopy` receives the masked string.
 - [ ] No hardcoded English strings in any new file (grep `>[A-Z][a-z]+ ` on JSX text nodes returns zero hits).
 - [ ] All new components declare their props as `Readonly<...>`.
-- [ ] `pnpm --filter @guepard/environments storybook` serves all new stories without errors or warnings.
-- [ ] `pnpm --filter @guepard/environments test` passes with ≥80% line coverage on touched files.
+- [ ] `pnpm --filter @qlm/environments storybook` serves all new stories without errors or warnings.
+- [ ] `pnpm --filter @qlm/environments test` passes with ≥80% line coverage on touched files.
 
 ## Tasks
 
@@ -71,15 +71,15 @@ Populated by `/start-story`.
 
 ```bash
 # Run Storybook and visually confirm
-pnpm --filter @guepard/environments storybook
+pnpm --filter @qlm/environments storybook
 # Browse: Environments/Primitives/StatusChip (6 stories)
 # Browse: Environments/Primitives/ConnectionStringField
 # Browse: Environments/Primitives/InlineError
 # Browse: Environments/SourceCard (all variants)
 
 # Run tests
-pnpm --filter @guepard/environments test
-pnpm --filter @guepard/environments test -- --coverage
+pnpm --filter @qlm/environments test
+pnpm --filter @qlm/environments test -- --coverage
 ```
 
 ## Questions surfaced

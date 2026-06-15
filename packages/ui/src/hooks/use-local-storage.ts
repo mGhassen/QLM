@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
  * localStorage-backed state with SSR safety and cross-tab sync.
  *
  * Intended for table preferences (filters, sort, visible columns). Keys
- * should be namespaced like `guepard:<feature>:<setting>` to avoid
+ * should be namespaced like `qlm:<feature>:<setting>` to avoid
  * collisions across apps.
  */
 export function useLocalStorage<T>(

@@ -2,13 +2,13 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Database } from 'lucide-react';
 
-import { Checkbox } from '@guepard/ui/checkbox';
-import { RowActionMenu } from '@guepard/ui/action';
-import type { Action } from '@guepard/ui/action';
-import { DbProviderIcon } from '@guepard/ui/db-provider-icon';
-import { cn } from '@guepard/ui/utils';
+import { Checkbox } from '@qlm/ui/checkbox';
+import { RowActionMenu } from '@qlm/ui/action';
+import type { Action } from '@qlm/ui/action';
+import { DbProviderIcon } from '@qlm/ui/db-provider-icon';
+import { cn } from '@qlm/ui/utils';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
 
 import { PROVIDER_STYLES, STATUS_BADGE } from '../../application/constants';
 import { DbProviderBadge } from '../cells/db-provider-badge';

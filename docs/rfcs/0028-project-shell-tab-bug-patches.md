@@ -72,7 +72,7 @@ Three primitives, each with one user-visible failure mode:
 No layering changes. `packages/shell-contracts` still owns the identity protocol, `packages/ui` still owns the tab-bar component, `apps/web` still owns the host. The diffs are localized:
 
 - `packages/shell-contracts/src/tab-key.ts` — fallback branch.
-- `packages/ui/src/guepard/shell/project-shell-tab-bar.tsx` — DnD activator scope.
+- `packages/ui/src/qlm/shell/project-shell-tab-bar.tsx` — DnD activator scope.
 - `apps/web/src/shell/project-shell-host.tsx` — split effects + debounced href + click short-circuit.
 
 No domain change, no port change, no schema change, no API change, no i18n change.

@@ -27,7 +27,7 @@ Make the editor's header render the title with an inline-editable pencil and an 
   - Wrap the editor's return tree in `<TooltipProvider delayDuration={200}>`.
   - Render a small yellow `Unsaved changes` dot next to the title when the new `hasUnsavedChanges?: boolean` prop is true.
   - Render a hover-revealed pencil and delete trigger next to the title (the title is inline-editable via the existing `Input` swap on click).
-  - Add `import { TooltipProvider } from '@guepard/ui/tooltip';`.
+  - Add `import { TooltipProvider } from '@qlm/ui/tooltip';`.
 - `packages/apps/notebook/src/plugin-root.tsx`
   - Pass `hasUnsavedChanges={updateNotebookMutation.isPending}` to `<NotebookUI>` so the dot reflects an in-flight save.
 
@@ -41,7 +41,7 @@ Make the editor's header render the title with an inline-editable pencil and an 
 - [x] The notebook editor wraps its return tree in `<TooltipProvider delayDuration={200}>` so cell tooltips render without `Tooltip` must be used within `TooltipProvider` errors.
 - [x] Editing the title or any cell triggers the `update` mutation; while it's in flight, a yellow dot appears next to the title; it disappears once the mutation settles.
 - [x] The title pencil is visible at rest at 60% opacity and 100% on hover (matching the cell-header pencil from story 003).
-- [x] `pnpm --filter @guepard/notebook typecheck` is clean.
+- [x] `pnpm --filter @qlm/notebook typecheck` is clean.
 
 ## Tasks
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@guepard/ui/dialog';
+} from '@qlm/ui/dialog';
 import {
   Form,
   FormControl,
@@ -17,12 +17,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { formatCurrency } from '@guepard/shared/utils';
+import { formatCurrency } from '@qlm/shared/utils';
 import {
   PaymentElement,
   useStripe,

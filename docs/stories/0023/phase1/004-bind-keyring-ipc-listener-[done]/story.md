@@ -22,9 +22,9 @@ Bind a per-launch HTTP keyring-IPC listener in the Rust shell so the Bun sidecar
 **In scope**
 - New `apps/desktop/src-tauri/src/ipc.rs` HTTP server (small crate: `tiny_http` or `hyper`) bound on a random `127.0.0.1:<port>` at app start.
 - Endpoints `POST /keyring/set` (`{ key, value }`), `GET /keyring/get?key=…`, `DELETE /keyring/{key}`.
-- Bearer-token auth: `Authorization: Bearer <GUEPARD_KEYRING_TOKEN>`. Token generated once per launch via `rand`. 401 on missing/wrong token.
+- Bearer-token auth: `Authorization: Bearer <QLM_KEYRING_TOKEN>`. Token generated once per launch via `rand`. 401 on missing/wrong token.
 - Rate cap (100 req/s per token) + clock-skew guard (drop `Date` headers >5s skew).
-- Pass `GUEPARD_KEYRING_PORT` and `GUEPARD_KEYRING_TOKEN` to the sidecar at spawn (extends `lib.rs` env block).
+- Pass `QLM_KEYRING_PORT` and `QLM_KEYRING_TOKEN` to the sidecar at spawn (extends `lib.rs` env block).
 - `apps/server` `keyringClient` module (`set` / `get` / `delete`) reading those env vars and calling the IPC. Used in subsequent stories.
 - Sanity logging via `append_log_line` — never log the token or values.
 
@@ -52,7 +52,7 @@ Bind a per-launch HTTP keyring-IPC listener in the Rust shell so the Bun sidecar
 
 ```
 pnpm --filter desktop tauri:dev
-# tail desktop.log to see GUEPARD_KEYRING_PORT logged at startup
+# tail desktop.log to see QLM_KEYRING_PORT logged at startup
 # from another terminal, drive the IPC manually:
 PORT=<from log> TOKEN=<from log> \
   curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \

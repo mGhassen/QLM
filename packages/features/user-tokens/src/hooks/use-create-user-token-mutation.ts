@@ -7,7 +7,7 @@ import {
 import type {
   CreateUserTokenInput,
   CreateUserTokenOutput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 import { useUserTokensApi } from './user-tokens-api-context';
 import { USER_TOKENS_LIST_QUERY_KEY } from './use-user-tokens-query';

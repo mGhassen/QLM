@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { RevealedCredentials } from '@guepard/domain/services';
+import type { RevealedCredentials } from '@qlm/domain/services';
 
 import { AwsDriver, type AwsClientFactories } from '../src/aws/aws-driver';
 
@@ -63,7 +63,7 @@ function makeFactories(opts: {
 describe('AwsDriver.testConnection', () => {
   it('returns ok=true with the caller ARN on success', async () => {
     const { factories, stsConfigs } = makeFactories({
-      stsSend: async () => ({ Arn: 'arn:aws:iam::123456789012:user/guepard' }),
+      stsSend: async () => ({ Arn: 'arn:aws:iam::123456789012:user/qlm' }),
     });
     const driver = new AwsDriver(factories);
 
@@ -71,7 +71,7 @@ describe('AwsDriver.testConnection', () => {
 
     expect(result).toEqual({
       ok: true,
-      identity: 'arn:aws:iam::123456789012:user/guepard',
+      identity: 'arn:aws:iam::123456789012:user/qlm',
     });
     // Config forwarded to STSClient
     expect(stsConfigs).toHaveLength(1);

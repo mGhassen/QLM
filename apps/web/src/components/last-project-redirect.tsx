@@ -5,10 +5,10 @@ import { Loader2 } from 'lucide-react';
 import {
   GetLastProjectService,
   GetOrganizationsService,
-} from '@guepard/domain/services';
-import { getLogger } from '@guepard/shared/logger';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/domain/services';
+import { getLogger } from '@qlm/shared/logger';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { Trans } from '@qlm/ui/trans';
 
 import pathsConfig, { createProjectAppPath } from '@/config/paths.config';
 import { useWorkspace } from '@/lib/context/workspace-context';

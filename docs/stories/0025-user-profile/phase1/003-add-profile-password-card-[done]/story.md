@@ -50,7 +50,7 @@ A signed-in user with an email identity can update their password by entering th
 - [x] Submitting with the correct current password + a valid new password persists the change. *Logic-verified through adapter + service flow; not browser-tested in this run.*
 - [x] All i18n strings route through `userProfile.password.*`; no hardcoded user-facing text.
 - [x] The card does not re-prompt for the current password on render — only on submit (open question #2).
-- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @guepard/domain test` (308 tests), `pnpm --filter @guepard/user-profile test` (18/18) all pass.
+- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @qlm/domain test` (308 tests), `pnpm --filter @qlm/user-profile test` (18/18) all pass.
 
 ## Tasks
 
@@ -68,7 +68,7 @@ Populated by `/start-story`. Each entry links to a sibling task file in this fol
 4. Submit with the correct current + a new valid password. Confirm success toast.
 5. Sign out, sign back in with the new password. Confirm access.
 6. Sign in as a Google-OAuth seeded user (no `email` identity). Confirm the card renders the warning banner and no form.
-7. `pnpm --filter @guepard/i18n build` — confirm no missing-key warnings.
+7. `pnpm --filter @qlm/i18n build` — confirm no missing-key warnings.
 
 ## Questions surfaced
 

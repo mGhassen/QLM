@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-import { tool } from '@guepard/agent-factory-sdk';
-import type { Repositories } from '@guepard/domain/repositories';
+import { tool } from '@qlm/agent-factory-sdk';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
-import { getLogger } from '@guepard/shared/logger';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
+import { getLogger } from '@qlm/shared/logger';
 
 // Heuristic SELECT-only guardrail. Rejects any statement whose first
 // non-comment, non-whitespace token isn't SELECT/WITH/SHOW/EXPLAIN, and

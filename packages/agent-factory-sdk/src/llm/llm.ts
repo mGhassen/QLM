@@ -8,7 +8,7 @@ import {
 import type { Model } from './provider';
 import { Provider } from './provider';
 import { SystemPrompt } from './system';
-import type { Message } from '@guepard/domain/entities';
+import type { Message } from '@qlm/domain/entities';
 import { Messages } from './message';
 
 /**

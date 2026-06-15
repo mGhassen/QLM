@@ -10,10 +10,10 @@ import {
   type PromptSource,
   type NotebookCellType,
   type UIMessage,
-} from '@guepard/agent-factory-sdk';
-import { normalizeUIRole } from '@guepard/shared/message-role-utils';
-import type { Repositories } from '@guepard/domain/repositories';
-import type { IOrganizationRepository } from '@guepard/domain/repositories';
+} from '@qlm/agent-factory-sdk';
+import { normalizeUIRole } from '@qlm/shared/message-role-utils';
+import type { Repositories } from '@qlm/domain/repositories';
+import type { IOrganizationRepository } from '@qlm/domain/repositories';
 import { getTelemetry } from '../lib/telemetry';
 import { resolveChatDatasources } from '../helpers/chat-helper';
 

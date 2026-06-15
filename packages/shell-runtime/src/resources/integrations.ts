@@ -5,7 +5,7 @@ import type {
   IntegrationConnectionOutput,
   Region,
   TestResult,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 /**
  * Structural shape of the browser-side integrations HTTP client. The

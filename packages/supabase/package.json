@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/supabase",
+  "name": "@qlm/supabase",
   "private": true,
   "version": "0.1.0",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "exports": {
     "./server-client": "./src/clients/server-client.server.ts",
     "./server-admin-client": "./src/clients/server-admin-client.server.ts",
@@ -22,10 +22,10 @@
     "./database": "./src/database.types.ts"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "catalog:",
     "@tanstack/react-query": "catalog:",

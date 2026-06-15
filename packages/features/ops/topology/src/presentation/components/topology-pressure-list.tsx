@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight, Cpu, Database, ServerOff } from 'lucide-react';
 
-import type { PressurePoint } from '@guepard/domain/usecases';
-import { cn } from '@guepard/ui/utils';
+import type { PressurePoint } from '@qlm/domain/usecases';
+import { cn } from '@qlm/ui/utils';
 
 export type TopologyPressureListProps = Readonly<{
   points: readonly PressurePoint[];

@@ -78,10 +78,10 @@ async function createAdminUser({ email, password, firstName, lastName, remote })
 }
 
 const args = parseArgs(process.argv);
-const email = args.email || process.env.ADMIN_EMAIL || 'admin@rasm.ai';
-const password = args.password || process.env.ADMIN_PASSWORD || 'Rasm2026!';
+const email = args.email || process.env.ADMIN_EMAIL || 'admin@qlm.dev';
+const password = args.password || process.env.ADMIN_PASSWORD || 'QLM2026!';
 const firstName = args.first_name || process.env.ADMIN_FIRST_NAME || 'Admin';
-const lastName = args.last_name || process.env.ADMIN_LAST_NAME || 'Rasm';
+const lastName = args.last_name || process.env.ADMIN_LAST_NAME || 'QLM';
 
 if (!email || !password) {
   console.error(

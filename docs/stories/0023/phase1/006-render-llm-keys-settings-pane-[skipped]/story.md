@@ -24,7 +24,7 @@ Add a runtime-gated "LLM keys" pane to the existing Settings dialog so a desktop
 **In scope**
 - New `SettingsSection` registered in `apps/web/src/components/settings-dialog-mount.tsx` only when `useRuntime() === 'desktop'`.
 - Pane component (`apps/web/src/features/desktop-llm-keys/llm-keys-pane.tsx` or similar) — table with one row per `MANAGED_KEYS` entry. Columns: provider name, key status (set / not set), action (set / replace / delete).
-- Set / replace modal with masked password input and Save → calls `saveProviderKey` from `@guepard/shell-runtime`.
+- Set / replace modal with masked password input and Save → calls `saveProviderKey` from `@qlm/shell-runtime`.
 - Delete confirm dialog → calls `deleteProviderKey`.
 - "Restart sidecar to apply" hint after save (no actual restart yet — that lands in story 009).
 - New i18n namespace `apps/web/src/lib/i18n/locales/en/desktop.json` with the `settings.llmKeys` keys from spec §11.
@@ -36,10 +36,10 @@ Add a runtime-gated "LLM keys" pane to the existing Settings dialog so a desktop
 
 ## Acceptance criteria
 
-- [ ] `pnpm typecheck` and `pnpm lint` are green; ESLint `@guepard/ui/trans` rule respected.
+- [ ] `pnpm typecheck` and `pnpm lint` are green; ESLint `@qlm/ui/trans` rule respected.
 - [ ] All visible strings flow through `t(...)` against the new `desktop` namespace.
 - [ ] `runtime === 'web'` users do not see the pane (manual check in `pnpm --filter web dev`).
-- [ ] **Build + UI check (mandatory):** `pnpm --filter desktop tauri:dev`, open Settings → LLM keys pane visible. Save `OPENAI_API_KEY=sk-test`, status flips to `Set`, `security find-generic-password -s run.guepard.desktop -a OPENAI_API_KEY` returns the value, delete clears it. No console errors.
+- [ ] **Build + UI check (mandatory):** `pnpm --filter desktop tauri:dev`, open Settings → LLM keys pane visible. Save `OPENAI_API_KEY=sk-test`, status flips to `Set`, `security find-generic-password -s run.qlm.desktop -a OPENAI_API_KEY` returns the value, delete clears it. No console errors.
 - [ ] Storybook story added for the pane covering empty / partially-set / fully-set states (per `.claude/rules/testing.md`).
 - [ ] All Settings-dialog interactions remain reachable via keyboard.
 
@@ -54,7 +54,7 @@ pnpm --filter desktop tauri:dev
 # Open Settings (existing menu) → click "LLM keys".
 # Set OPENAI_API_KEY=sk-test, click Save, see status flip.
 # Verify keychain via:
-security find-generic-password -s run.guepard.desktop -a OPENAI_API_KEY
+security find-generic-password -s run.qlm.desktop -a OPENAI_API_KEY
 # Click Delete, confirm, status flips back to "Not set".
 ```
 

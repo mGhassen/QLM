@@ -24,7 +24,7 @@ Removes the `nodes.status.*` namespace, `topology.pressure.down`,
 - [ ] `topology.pressure.down` gone.
 - [ ] `topology.status.*` keys gone.
 - [ ] Sweep grep returns zero hits in `packages` + `apps` (excluding this story file + node_modules + .turbo).
-- [ ] `pnpm typecheck && pnpm --filter @guepard/domain test && pnpm --filter server test && pnpm --filter @guepard/infrastructure test` all green.
+- [ ] `pnpm typecheck && pnpm --filter @qlm/domain test && pnpm --filter server test && pnpm --filter @qlm/infrastructure test` all green.
 - [ ] `pnpm build` green.
 
 ## Notes

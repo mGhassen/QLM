@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ChevronRight, Gauge, Tag } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 
 import { PROVIDER_LABELS, PROVIDER_STYLES } from '../../application/constants';
 import { ProfileStatusBadge } from '../cells/profile-status-badge';

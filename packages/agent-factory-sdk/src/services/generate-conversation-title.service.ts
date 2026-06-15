@@ -1,6 +1,6 @@
 import { generateText } from 'ai';
 import { resolveModel, getDefaultModel } from './model-resolver';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 const GENERATE_TITLE_PROMPT = (userMessage: string, agentResponse?: string) => {
   const basePrompt = `Based on the following conversation exchange, generate a concise, descriptive title for this conversation. The title should be:

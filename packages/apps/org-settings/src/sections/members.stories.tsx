@@ -4,11 +4,11 @@ import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { fn } from 'storybook/test';
 
-import type { TeamMember } from '@guepard/domain/entities';
+import type { TeamMember } from '@qlm/domain/entities';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { OrgSettingsMembersSection } from './members';
 
@@ -55,8 +55,8 @@ storybookI18n.use(initReactI18next).init({
 
 const organization = {
   id: 'o-1',
-  slug: 'guepard',
-  name: 'Rasm',
+  slug: 'qlm',
+  name: 'QLM',
   userId: 'u-1',
 };
 
@@ -69,7 +69,7 @@ const members: TeamMember[] = [
     roleHierarchyLevel: 0,
     primaryOwnerUserId: 'u-1',
     name: 'Hani Chalouati',
-    email: 'hani@rasm.ai',
+    email: 'hani@qlm.dev',
     pictureUrl: null,
     createdAt: new Date('2026-01-01T00:00:00Z'),
     updatedAt: new Date('2026-01-01T00:00:00Z'),
@@ -82,7 +82,7 @@ const members: TeamMember[] = [
     roleHierarchyLevel: 1,
     primaryOwnerUserId: 'u-1',
     name: 'Teammate',
-    email: 'teammate@rasm.ai',
+    email: 'teammate@qlm.dev',
     pictureUrl: null,
     createdAt: new Date('2026-02-01T00:00:00Z'),
     updatedAt: new Date('2026-02-01T00:00:00Z'),
@@ -99,7 +99,7 @@ function makeShellValue(
   const asAny = (v: unknown) => v as never;
   return {
     projectId: 'p-1',
-    projectSlug: 'guepard-console',
+    projectSlug: 'qlm-console',
     orgSlug: organization.slug,
     currentUserId: 'u-1',
     repositories: asAny({

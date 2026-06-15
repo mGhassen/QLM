@@ -5,7 +5,7 @@ import type { DocTheme } from "#/lib/types";
 
 export const THEME_PRESETS: { name: string; theme: DocTheme }[] = [
   {
-    name: "Guepard",
+    name: "QLM",
     theme: { brand: "#ffcb51", ink: "#161616", surface: "#ffffff", bg: "#f2f2f2", eyebrow: "#6a9955" },
   },
   {

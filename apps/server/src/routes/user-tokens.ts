@@ -2,13 +2,13 @@ import { zValidator } from '../lib/zod-validator.js';
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   CreateUserTokenService,
   ListUserTokensService,
   RevokeUserTokenService,
-} from '@guepard/domain/services';
-import { CreateUserTokenInputSchema } from '@guepard/domain/usecases';
+} from '@qlm/domain/services';
+import { CreateUserTokenInputSchema } from '@qlm/domain/usecases';
 
 import { getCurrentAccountId } from '../lib/current-account';
 import { handleDomainException } from '../lib/http-utils';

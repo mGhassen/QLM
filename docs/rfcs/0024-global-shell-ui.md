@@ -61,7 +61,7 @@ Each bullet is an observable exit criterion.
 - `New project` and `New organization` in the submenus open an inline modal dialog over the current shell. On success, context switches to the newly-created entity and the dialog closes.
 - The existing `/organizations` grid/list route is removed; `/organizations` redirects into the active org's default project, and all org navigation flows through the dropdown switcher.
 - Pressing Escape or clicking outside closes any open menu without navigating.
-- All user-facing strings in the dropdown, both settings apps, and the two create dialogs go through `t()` / `@guepard/ui/trans`.
+- All user-facing strings in the dropdown, both settings apps, and the two create dialogs go through `t()` / `@qlm/ui/trans`.
 
 ### 3.2 Non-goals (phase 1)
 

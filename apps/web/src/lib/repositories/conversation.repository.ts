@@ -1,6 +1,6 @@
-import { RepositoryFindOptions } from '@guepard/domain/common';
-import type { Conversation } from '@guepard/domain/entities';
-import { IConversationRepository } from '@guepard/domain/repositories';
+import { RepositoryFindOptions } from '@qlm/domain/common';
+import type { Conversation } from '@qlm/domain/entities';
+import { IConversationRepository } from '@qlm/domain/repositories';
 import { apiDelete, apiGet, apiPost, apiPut } from './api-client';
 
 /**

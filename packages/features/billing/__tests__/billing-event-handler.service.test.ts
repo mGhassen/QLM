@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@guepard/supabase/database';
+import type { Database } from '@qlm/supabase/database';
 
 import type { BillingWebhookHandlerService } from '../src/ports/billing-webhook-handler.service';
 import { createBillingEventHandlerService } from '../src/services/billing-event-handler.service';
 
-vi.mock('@guepard/shared/logger', () => ({
+vi.mock('@qlm/shared/logger', () => ({
   getLogger: vi.fn().mockResolvedValue({
     info: vi.fn(),
     warn: vi.fn(),

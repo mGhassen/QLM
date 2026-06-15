@@ -1,8 +1,8 @@
 import { Copy, Download, ExternalLink, Eye, Trash2 } from 'lucide-react';
 
-import type { DatabaseOutput } from '@guepard/domain/usecases';
-import type { Action } from '@guepard/ui/action';
-import type { BulkAction } from '@guepard/ui/data-table-advanced';
+import type { DatabaseOutput } from '@qlm/domain/usecases';
+import type { Action } from '@qlm/ui/action';
+import type { BulkAction } from '@qlm/ui/data-table-advanced';
 
 // Cast helpers — Action<T> is contravariant in T; cast to Action<unknown>
 // so the return value can be assigned to AdvancedColumn / RowActionMenu which

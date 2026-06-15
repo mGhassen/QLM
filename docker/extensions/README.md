@@ -36,18 +36,18 @@ docker compose -f docker/extensions/docker-compose.extensions.yml down -v
 - Host: `localhost`
 - Port: `55432`
 - Database: `extensions`
-- User: `guepard`
-- Password: `guepard`
-- URL: `postgresql://guepard:guepard@localhost:55432/extensions`
+- User: `qlm`
+- Password: `qlm`
+- URL: `postgresql://qlm:qlm@localhost:55432/extensions`
 
 ### MySQL
 
 - Host: `localhost`
 - Port: `53306`
 - Database: `extensions`
-- User: `guepard`
-- Password: `guepard`
-- URL: `mysql://guepard:guepard@localhost:53306/extensions`
+- User: `qlm`
+- Password: `qlm`
+- URL: `mysql://qlm:qlm@localhost:53306/extensions`
 
 ### MongoDB
 
@@ -64,9 +64,9 @@ docker compose -f docker/extensions/docker-compose.extensions.yml down -v
 - HTTP Port: `18123`
 - Native Port: `19090`
 - Database: `extensions`
-- User: `guepard`
-- Password: `guepard`
-- URL: `http://guepard:guepard@localhost:18123/extensions`
+- User: `qlm`
+- Password: `qlm`
+- URL: `http://qlm:qlm@localhost:18123/extensions`
 
 ### MinIO (S3)
 

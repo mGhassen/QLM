@@ -4,7 +4,7 @@ import {
   type UseMutationResult,
 } from '@tanstack/react-query';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { useUserTokensApi } from './user-tokens-api-context';
 import { USER_TOKENS_LIST_QUERY_KEY } from './use-user-tokens-query';

@@ -1,5 +1,5 @@
 -- Predictions (RFC 0030 — phase 1)
--- Three append-only tables backing the @guepard/app-predictions UI:
+-- Three append-only tables backing the @qlm/app-predictions UI:
 --   public.prediction_schema_snapshots — versioned per datasource
 --   public.prediction_agent_conversations — chat sessions pinned to a snapshot
 --   public.prediction_agent_messages     — append-only chat history

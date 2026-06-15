@@ -60,12 +60,12 @@ Stop deriving fleet aggregates inline in React hooks. New `FleetAggregateService
 
 ```
 pnpm typecheck
-pnpm --filter @guepard/domain test
+pnpm --filter @qlm/domain test
 pnpm dev
 # Open http://localhost:3000/prj/<slug>/topology
 # Fleet summary aside renders identical numbers to pre-refactor.
 # A new "Pressure points" section appears above the attention CTA when any node is over 85% CPU or memory.
-# pnpm --filter @guepard/topology storybook → topology-fleet-summary story renders with FleetSummary args.
+# pnpm --filter @qlm/topology storybook → topology-fleet-summary story renders with FleetSummary args.
 ```
 
 ## Questions surfaced

@@ -3,22 +3,22 @@ import { User } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Database } from '@guepard/supabase/database';
-import { Button } from '@guepard/ui/button';
+import { Database } from '@qlm/supabase/database';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
+} from '@qlm/ui/form';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@guepard/ui/input-group';
-import { toast } from '@guepard/ui/sonner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/input-group';
+import { toast } from '@qlm/ui/sonner';
+import { Trans } from '@qlm/ui/trans';
 
 import { useUpdateAccountData } from '../../hooks/use-update-account';
 import { AccountDetailsSchema } from '../../schema/account-details.schema';

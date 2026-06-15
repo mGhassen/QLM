@@ -1,8 +1,8 @@
 import type {
   UserPreferences,
   UserPreferencesPayload,
-} from '@guepard/domain/entities';
-import { IUserPreferencesRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/entities';
+import { IUserPreferencesRepository } from '@qlm/domain/repositories';
 
 import { apiGet, apiPatch } from './api-client';
 

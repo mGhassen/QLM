@@ -44,34 +44,34 @@ import { AlertCircle } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useTranslation } from 'react-i18next';
 
-import type { CellType } from '@guepard/domain/enums';
-import type { DatasourceResultSet } from '@guepard/domain/entities';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import type { CellType } from '@qlm/domain/enums';
+import type { DatasourceResultSet } from '@qlm/domain/entities';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/dropdown-menu';
+import { Input } from '@qlm/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@guepard/ui/tabs';
-import { Textarea } from '@guepard/ui/textarea';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@guepard/ui/tooltip';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/select';
+import { Tabs, TabsList, TabsTrigger } from '@qlm/ui/tabs';
+import { Textarea } from '@qlm/ui/textarea';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@qlm/ui/tooltip';
+import { cn } from '@qlm/ui/utils';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@guepard/ui/collapsible';
-import { ReportRenderer, ResultReportView } from '@guepard/ui/guepard/report';
+} from '@qlm/ui/collapsible';
+import { ReportRenderer, ResultReportView } from '@qlm/ui/qlm/report';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { IProjectRepository } from '@guepard/domain/repositories';
-import { GetProjectsByOrganizationIdService } from '@guepard/domain/services';
+import type { IProjectRepository } from '@qlm/domain/repositories';
+import { GetProjectsByOrganizationIdService } from '@qlm/domain/services';
 
 export function getProjectsByOrganizationIdKey(organizationId: string) {
   return ['projects', organizationId] as const;

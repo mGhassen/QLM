@@ -1,7 +1,7 @@
 import { AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 
 export type CreditsBannerProps = {
   /** Active organization slug — used to build the billing top-up URL. */

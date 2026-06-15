@@ -14,11 +14,11 @@ files:
 
 ## Purpose
 
-Make `/user/tokens` reachable from the account dropdown, render a localized placeholder page, and add the routing helper + dependency — so the `@guepard/user-tokens` package scaffolded in task 001 is actually connected to the running web app.
+Make `/user/tokens` reachable from the account dropdown, render a localized placeholder page, and add the routing helper + dependency — so the `@qlm/user-tokens` package scaffolded in task 001 is actually connected to the running web app.
 
 ## Files
 
-- `apps/web/package.json` — add `@guepard/user-tokens` to `dependencies` (workspace protocol, matching the pattern of other feature deps).
+- `apps/web/package.json` — add `@qlm/user-tokens` to `dependencies` (workspace protocol, matching the pattern of other feature deps).
 - `apps/web/src/config/paths.config.ts` — export `createUserTokensPath()` returning `'/user/tokens'`. Add near the other `create*Path` helpers.
 - `apps/web/src/routes/user/route.tsx` — pass-through layout route. Renders `<Outlet />` from `@tanstack/react-router`. Only create this file if `/user/*` needs a parent route per the repo's TanStack Router conventions (mirror how `/prj/$projectSlug/route.tsx` is handled — skip the file if a flat `user/tokens.tsx` alone is sufficient).
 - `apps/web/src/routes/user/tokens.tsx` — the placeholder page. Uses `createFileRoute('/user/tokens')` from `@tanstack/react-router`. Renders a single heading. String source:
@@ -29,7 +29,7 @@ Make `/user/tokens` reachable from the account dropdown, render a localized plac
 ## Acceptance
 
 - [ ] `pnpm install` succeeds after the dep is added.
-- [ ] `pnpm typecheck` passes across `apps/web` and `@guepard/user-tokens`.
+- [ ] `pnpm typecheck` passes across `apps/web` and `@qlm/user-tokens`.
 - [ ] `createUserTokensPath()` is exported from `apps/web/src/config/paths.config.ts`.
 - [ ] The account dropdown in the running app (`pnpm web:dev`) shows an "Access tokens" item.
 - [ ] Clicking the item navigates to `/user/tokens` and the placeholder page renders — no console errors, no missing-translation warnings (a `TODO(003)` marker on the literal string is acceptable; it gets cleaned up in Story 003).
@@ -51,5 +51,5 @@ pnpm web:dev
 ## Notes
 
 - If the account dropdown menu is driven by a config / enum (not a list of JSX children), add the new entry in the config rather than hardcoding JSX.
-- Do NOT import anything from `@guepard/user-tokens/types` / `hooks` / `components` yet — those barrels are empty until Stories 002 / 008 / 009 land. Importing the package root (`@guepard/user-tokens`) is fine if you need the dep resolved.
+- Do NOT import anything from `@qlm/user-tokens/types` / `hooks` / `components` yet — those barrels are empty until Stories 002 / 008 / 009 land. Importing the package root (`@qlm/user-tokens`) is fine if you need the dep resolved.
 - The `TODO(003)` comment must be a grep-visible literal string so Story 003 can locate and replace it deterministically.

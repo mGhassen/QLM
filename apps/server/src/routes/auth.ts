@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { zValidator } from '../lib/zod-validator.js';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 import type { KeyringClient } from '../lib/keyring-client';
 
@@ -34,11 +34,11 @@ export interface SidecarAuthSupabase {
 export interface CreateAuthRoutesOptions {
   supabase: SidecarAuthSupabase;
   keyring: Pick<KeyringClient, 'set' | 'delete' | 'isAvailable'>;
-  /** Reads `GUEPARD_SERVER_URL` so the keyring key is namespaced per server. */
+  /** Reads `QLM_SERVER_URL` so the keyring key is namespaced per server. */
   env?: NodeJS.ProcessEnv;
 }
 
-const SESSION_COOKIE = 'guepard-session';
+const SESSION_COOKIE = 'qlm-session';
 const SESSION_COOKIE_OPTIONS = 'Path=/; HttpOnly; SameSite=Lax';
 
 const signInSchema = z.object({
@@ -47,7 +47,7 @@ const signInSchema = z.object({
 });
 
 function keyringKey(env: NodeJS.ProcessEnv): string | null {
-  const url = env.GUEPARD_SERVER_URL?.trim();
+  const url = env.QLM_SERVER_URL?.trim();
   return url ? `refresh_token:${url}` : null;
 }
 

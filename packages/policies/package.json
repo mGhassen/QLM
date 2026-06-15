@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/policies",
+  "name": "@qlm/policies",
   "private": true,
   "version": "0.1.0",
   "exports": {
@@ -19,11 +19,11 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/shared": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/shared": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "zod": "catalog:"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

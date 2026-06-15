@@ -35,23 +35,23 @@ import {
   X,
 } from 'lucide-react';
 
-import type { DatasourceResultSet, Notebook } from '@guepard/domain/entities';
-import { WorkspaceModeEnum, type CellType } from '@guepard/domain/enums';
-import { Button } from '@guepard/ui/button';
+import type { DatasourceResultSet, Notebook } from '@qlm/domain/entities';
+import { WorkspaceModeEnum, type CellType } from '@qlm/domain/enums';
+import { Button } from '@qlm/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@guepard/ui/dropdown-menu';
-import { Popover, PopoverContent, PopoverTrigger } from '@guepard/ui/popover';
+} from '@qlm/ui/dropdown-menu';
+import { Popover, PopoverContent, PopoverTrigger } from '@qlm/ui/popover';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@guepard/ui/dialog';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/dialog';
+import { Input } from '@qlm/ui/input';
 
 import { CellDivider } from './cell-divider';
 import {
@@ -66,11 +66,11 @@ import { oneDark } from '@codemirror/theme-one-dark';
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView, placeholder } from '@codemirror/view';
 import { useTheme } from 'next-themes';
-import { Textarea } from '@guepard/ui/textarea';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
+import { Textarea } from '@qlm/ui/textarea';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
 import { AlertCircle } from 'lucide-react';
-import { cn } from '@guepard/ui/utils';
-import { TooltipProvider } from '@guepard/ui/tooltip';
+import { cn } from '@qlm/ui/utils';
+import { TooltipProvider } from '@qlm/ui/tooltip';
 
 interface NotebookUIProps {
   notebook?: Notebook;

@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-Codify key management for auth: the Better Auth `secret`, JWT signing key, MFA TOTP encryption key, password-reset/OTP signing key, SES credentials. Store in AWS Secrets Manager (Guepard-managed), document custody, and define rotation cadence. Independent of the migration — ships against the current stack too.
+Codify key management for auth: the Better Auth `secret`, JWT signing key, MFA TOTP encryption key, password-reset/OTP signing key, SES credentials. Store in AWS Secrets Manager (QLM-managed), document custody, and define rotation cadence. Independent of the migration — ships against the current stack too.
 
 Phase 1 ships:
 

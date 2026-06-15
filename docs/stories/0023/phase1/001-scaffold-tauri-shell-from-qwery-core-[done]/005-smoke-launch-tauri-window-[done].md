@@ -17,7 +17,7 @@ Manually verify that the freshly scaffolded Tauri shell launches a window, write
 ## Done when
 
 - [ ] `pnpm --filter desktop tauri:dev` builds and opens a Tauri window on the dev host (macOS / Linux / Windows — at least the host triple).
-- [ ] First launch creates `<app_config_dir>/desktop.log` (e.g. `~/Library/Application Support/run.guepard.desktop/desktop.log` on macOS) with a `desktop: starting` line.
+- [ ] First launch creates `<app_config_dir>/desktop.log` (e.g. `~/Library/Application Support/run.qlm.desktop/desktop.log` on macOS) with a `desktop: starting` line.
 - [ ] No `panic`, no Rust assertion failure, no Tauri runtime error visible in the terminal during launch.
 - [ ] Closing the window terminates the process cleanly (PID file removed if present).
 - [ ] Relaunch within the same minute does not leave a zombie process (kill-previous works).

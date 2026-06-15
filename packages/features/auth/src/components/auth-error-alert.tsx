@@ -1,7 +1,7 @@
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Trans } from '@guepard/ui/trans';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Trans } from '@qlm/ui/trans';
 
 /**
  * @name AuthErrorAlert

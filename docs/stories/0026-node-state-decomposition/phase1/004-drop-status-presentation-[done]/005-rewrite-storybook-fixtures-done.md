@@ -20,11 +20,11 @@ validation:
 - [ ] `details-sheet.stories.tsx` arg shapes match the new fixture shape.
 - [ ] `metrics-sparkline.stories.tsx` arg shapes match.
 - [ ] `plugin-root.stories.tsx` arg shapes match.
-- [ ] `pnpm --filter @guepard/infrastructure typecheck` is fully green (zero errors).
+- [ ] `pnpm --filter @qlm/infrastructure typecheck` is fully green (zero errors).
 - [ ] `pnpm typecheck` (whole repo) is green — closes story 004's primary acceptance criterion.
 
 ## Notes
 
 - Mirror the seed-kind helper in `apps/web/src/lib/msw/fixtures/nodes.ts` (committed story 003): a local `SeedKind` literal type drives lifecycle / orchestration / eligibility / drain / health derivation. No `NodeStatus` import.
 - Storybook stories don't need every fixture variant — keep what's already there; just translate axis values.
-- Run the per-pkg storybook to eyeball the badge colors after rewrite: `pnpm --filter @guepard/infrastructure storybook`.
+- Run the per-pkg storybook to eyeball the badge colors after rewrite: `pnpm --filter @qlm/infrastructure storybook`.

@@ -24,7 +24,7 @@ Register a global `keydown` listener inside `ProjectShellHost` that toggles `act
 - [x] Browser default suppressed via `event.preventDefault()` inside the handler — only fires when our condition matches.
 - [x] Hook never registers on `/org/*` or `/auth/*` — `ProjectShellHost` doesn't render there.
 - [x] CodeMirror passthrough — handler bails (no `preventDefault`, no toggle) when `event.target.closest('[data-codemirror-root]')` returns truthy.
-- [⚠] `pnpm --filter @guepard/qwery-agent typecheck` passes; my new file `apps/web/src/shell/use-assistant-keybinding.ts` compiles cleanly. Repo-wide `pnpm typecheck` fails on `apps/web` and `apps/server` because of an **unrelated** parallel-session change (added `userToken` and `jwtSigner` to the `Repositories` domain type but the factories haven't been updated yet — same pattern as the billing-customer cleanup that landed mid-session earlier). Will go green once the auth-work session updates the factories.
+- [⚠] `pnpm --filter @qlm/qwery-agent typecheck` passes; my new file `apps/web/src/shell/use-assistant-keybinding.ts` compiles cleanly. Repo-wide `pnpm typecheck` fails on `apps/web` and `apps/server` because of an **unrelated** parallel-session change (added `userToken` and `jwtSigner` to the `Repositories` domain type but the factories haven't been updated yet — same pattern as the billing-customer cleanup that landed mid-session earlier). Will go green once the auth-work session updates the factories.
 
 ## Test plan
 

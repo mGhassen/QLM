@@ -7,10 +7,10 @@ import type {
   SignInWithOAuthCredentials,
 } from '@supabase/supabase-js';
 
-import { useSignInWithProvider } from '@guepard/supabase/hooks/use-sign-in-with-provider';
-import { If } from '@guepard/ui/if';
-import { LoadingOverlay } from '@guepard/ui/loading-overlay';
-import { Trans } from '@guepard/ui/trans';
+import { useSignInWithProvider } from '@qlm/supabase/hooks/use-sign-in-with-provider';
+import { If } from '@qlm/ui/if';
+import { LoadingOverlay } from '@qlm/ui/loading-overlay';
+import { Trans } from '@qlm/ui/trans';
 
 import { AuthErrorAlert } from './auth-error-alert';
 import { AuthProviderButton } from './auth-provider-button';

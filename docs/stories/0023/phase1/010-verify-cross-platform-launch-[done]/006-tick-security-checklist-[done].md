@@ -17,7 +17,7 @@ Spec §9 has 11 unchecked security boxes. Walk each one against the shipped impl
 
 - [ ] Spec §9 boxes 1–11 are each either `[x]` with no change, or `[x]` with an inline note pointing to the Changelog entry that clarifies the caveat. The specific mapping:
   1. Same-origin webview ↔ sidecar → shipped (story 002). `[x]`.
-  2. Sidecar binds `127.0.0.1` when `GUEPARD_RUNTIME=desktop` → shipped (story 007 `desktop-runtime.ts`). `[x]`.
+  2. Sidecar binds `127.0.0.1` when `QLM_RUNTIME=desktop` → shipped (story 007 `desktop-runtime.ts`). `[x]`.
   3. Per-launch bearer token, never logged → shipped (story 004 `ipc.rs` + `lib.rs` redaction). `[x]`.
   4. Rate-cap + clock-skew → shipped (story 004). `[x]`.
   5. Refresh token + LLM keys redacted from logs → shipped (story 004 redactor). `[x]`. Caveat: `MANAGED_KEYS` values — redaction is defensive (we never log them), see story 010 Changelog entry.

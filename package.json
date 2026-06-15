@@ -1,13 +1,13 @@
 {
-  "name": "rasm",
-  "description": "The console for the Rasm Platform",
-  "homepage": "https://rasm.ai",
+  "name": "qlm",
+  "description": "The console for the QLM Platform",
+  "homepage": "https://qlm.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rasm-ai/rasm"
+    "url": "https://github.com/mGhassen/QLM"
   },
   "bugs": {
-    "url": "https://github.com/rasm-ai/rasm/issues"
+    "url": "https://github.com/mGhassen/QLM/issues"
   },
   "keywords": [
     "ai",
@@ -30,8 +30,8 @@
     "node": ">=22.x"
   },
   "author": {
-    "url": "https://rasm.ai",
-    "name": "Rasm Inc."
+    "url": "https://qlm.dev",
+    "name": "QLM"
   },
   "scripts": {
     "pretest": "pnpm exec playwright install chromium firefox webkit || true",
@@ -46,8 +46,8 @@
     "lint:fix": "turbo lint --cache-dir=.turbo --continue -- --fix --cache --cache-location \"node_modules/.cache/.eslintcache\" && manypkg fix",
     "typecheck": "turbo typecheck --cache-dir=.turbo",
     "test": "turbo test --cache-dir=.turbo",
-    "storybook": "pnpm --filter @guepard/storybook-config storybook",
-    "build-storybook": "pnpm --filter @guepard/storybook-config build-storybook",
+    "storybook": "pnpm --filter @qlm/storybook-config storybook",
+    "build-storybook": "pnpm --filter @qlm/storybook-config build-storybook",
     "extensions:build": "node tooling/extensions/build.js",
     "update": "pnpm update -r",
     "syncpack:list": "pnpm dlx syncpack list-mismatches",
@@ -56,7 +56,7 @@
     "supabase:web:stop": "pnpm --filter web supabase:stop",
     "supabase:web:typegen": "pnpm --filter web supabase:typegen",
     "supabase:web:reset": "pnpm --filter web supabase:reset",
-    "stripe:listen": "pnpm --filter '@guepard/billing' start",
+    "stripe:listen": "pnpm --filter '@qlm/billing' start",
     "supabase:web:test": "pnpm --filter web supabase:test",
     "env:generate": "turbo gen env",
     "env:validate": "turbo gen validate-env",
@@ -83,7 +83,7 @@
     "docker:build": "docker buildx build --platform linux/amd64 -t gueparf-enterprise -f Dockerfile .",
     "docker:run": "docker run -p 3000:3000 --env-file apps/server/.env gueparf-enterprise"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "packageManager": "pnpm@10.18.1",
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -114,7 +114,7 @@
     }
   },
   "devDependencies": {
-    "@guepard/prettier-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
     "@manypkg/cli": "^0.25.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@turbo/gen": "^2.6.0",

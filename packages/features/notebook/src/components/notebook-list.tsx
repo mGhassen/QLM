@@ -7,7 +7,7 @@ import {
   Loader2,
 } from 'lucide-react';
 
-import type { Notebook } from '@guepard/domain/entities';
+import type { Notebook } from '@qlm/domain/entities';
 import {
   EntityListPage,
   EntityListOptionsMenu,
@@ -19,8 +19,8 @@ import {
   type EntityListDisplayMode,
   type EntityListSortDirection,
   type EntityListSortOption,
-} from '@guepard/ui/entity-list';
-import { NotebookCard } from '@guepard/ui/notebook';
+} from '@qlm/ui/entity-list';
+import { NotebookCard } from '@qlm/ui/notebook';
 
 /**
  * A summarized notebook shape for the list view — matches both the raw

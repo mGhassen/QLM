@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/domain",
+  "name": "@qlm/domain",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -36,15 +36,15 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "eslint": "^9.39.0",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

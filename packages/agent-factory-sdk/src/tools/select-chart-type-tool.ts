@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Tool } from './tool';
 import { selectChartType } from '../agents/tools/generate-chart';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 const DESCRIPTION = `Analyzes query results to determine the best chart type (bar, line, or pie) based on the data structure and user intent. 
   Use this before generating a chart to select the most appropriate visualization type.`;

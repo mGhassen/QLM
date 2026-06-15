@@ -22,12 +22,12 @@ Cover the two behavioural guarantees the resource adds on top of the underlying 
 - [ ] `getBySlug('missing')` rejects (matches `GetConversationBySlugService` not-found semantics).
 - [ ] `getDefaultForProject()` called twice in sequence returns the same conversation slug both times.
 - [ ] `mockRepo.create` is invoked **exactly once** across both `getDefaultForProject()` calls (proves idempotency: second call uses the conversation just created).
-- [ ] `pnpm --filter @guepard/shell-runtime test` passes; new file appears in coverage output.
+- [ ] `pnpm --filter @qlm/shell-runtime test` passes; new file appears in coverage output.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/shell-runtime test conversations.test.ts
+pnpm --filter @qlm/shell-runtime test conversations.test.ts
 ```
 
 ## Notes
@@ -38,4 +38,4 @@ pnpm --filter @guepard/shell-runtime test conversations.test.ts
 
 ## Skipped because
 
-`@guepard/shell-runtime` has no Vitest infrastructure today (no `test` script, no `vitest.config`, no devDep). Adding it solely for these tests is real scope creep, and **story 010 (`add-qwery-agent-tests`)** explicitly covers "Vitest unit tests for the feature package + `conversations` resource" with the broader test setup. Folding this task into 010 avoids duplicate effort and keeps story 003 strictly scoped to the resource implementation.
+`@qlm/shell-runtime` has no Vitest infrastructure today (no `test` script, no `vitest.config`, no devDep). Adding it solely for these tests is real scope creep, and **story 010 (`add-qwery-agent-tests`)** explicitly covers "Vitest unit tests for the feature package + `conversations` resource" with the broader test setup. Folding this task into 010 avoids duplicate effort and keeps story 003 strictly scoped to the resource implementation.

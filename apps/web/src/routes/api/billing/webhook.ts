@@ -5,9 +5,9 @@ import { z } from 'zod';
 import {
   getBillingEventHandlerService,
   getPlanTypesMap,
-} from '@guepard/billing/services';
-import { getLogger } from '@guepard/shared/logger';
-import type { Database } from '@guepard/supabase/database';
+} from '@qlm/billing/services';
+import { getLogger } from '@qlm/shared/logger';
+import type { Database } from '@qlm/supabase/database';
 
 import billingConfig from '@/config/billing.config';
 

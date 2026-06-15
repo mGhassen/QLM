@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import type { TeamMember } from '@guepard/domain/entities';
+import type { TeamMember } from '@qlm/domain/entities';
 import {
   CreateOrganizationService,
   DeleteOrganizationService,
@@ -13,8 +13,8 @@ import {
   RemoveTeamMemberService,
   UpdateOrganizationService,
   UpdateTeamMemberRoleService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   handleDomainException,
   parseLimit,

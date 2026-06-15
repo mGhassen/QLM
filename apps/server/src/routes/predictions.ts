@@ -3,11 +3,11 @@ import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
 
-import { stepCountIs, streamText } from '@guepard/agent-factory-sdk';
-import { Provider } from '@guepard/agent-factory-sdk/llm';
+import { stepCountIs, streamText } from '@qlm/agent-factory-sdk';
+import { Provider } from '@qlm/agent-factory-sdk/llm';
 import { makeGetSchemaSectionTool } from '../lib/predictions/get-schema-section-tool';
 import { makeRunQueryTool } from '../lib/predictions/run-query-tool';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   AppendAgentMessageService,
   CreateAgentConversationService,
@@ -15,13 +15,13 @@ import {
   ListAgentMessagesService,
   ListSnapshotsByDatasourceService,
   TakeSnapshotService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
-import { DatasourceMetadataZodSchema } from '@guepard/domain/entities';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
+import { DatasourceMetadataZodSchema } from '@qlm/domain/entities';
 
 import { handleDomainException } from '../lib/http-utils';
 import { buildSystemPrompt } from '../lib/predictions/build-system-prompt';

@@ -4,12 +4,12 @@ import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { fn } from 'storybook/test';
 
-import type { Order } from '@guepard/domain/entities';
-import type { OrganizationBillingData } from '@guepard/domain/usecases';
+import type { Order } from '@qlm/domain/entities';
+import type { OrganizationBillingData } from '@qlm/domain/usecases';
 import {
   ShellAppProvider,
   type ShellAppContextValue,
-} from '@guepard/shell-runtime';
+} from '@qlm/shell-runtime';
 
 import { OrgSettingsBillingSection } from './billing';
 
@@ -29,7 +29,7 @@ const organizationsEn = {
   billing: {
     creditBalanceTitle: 'Credit balance',
     creditBalanceDescription:
-      'Your credit balance is consumed as you use Rasm. You can buy credits at any time.',
+      'Your credit balance is consumed as you use QLM. You can buy credits at any time.',
     remainingBalance: 'You still have {{balance}} credits left.',
     buyCredits: { triggerButton: 'Buy credits' },
     invoiceHistory: {
@@ -78,8 +78,8 @@ storybookI18n.use(initReactI18next).init({
 
 const organization = {
   id: 'o-1',
-  slug: 'guepard',
-  name: 'Rasm',
+  slug: 'qlm',
+  name: 'QLM',
   userId: 'u-1',
 };
 
@@ -126,7 +126,7 @@ function makeShellValue(overrides: RepoOverride = {}): ShellAppContextValue {
   const asAny = (v: unknown) => v as never;
   return {
     projectId: 'p-1',
-    projectSlug: 'guepard-console',
+    projectSlug: 'qlm-console',
     orgSlug: organization.slug,
     currentUserId: 'u-1',
     repositories: asAny({

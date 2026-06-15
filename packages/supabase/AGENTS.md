@@ -117,7 +117,7 @@ CREATE POLICY "notes_manage" ON public.notes FOR ALL
 ## Type Generation
 
 ```typescript
-import { Tables } from '@guepard/supabase/database';
+import { Tables } from '@qlm/supabase/database';
 
 type Account = Tables<'accounts'>;
 ```
@@ -127,7 +127,7 @@ Always prefer inferring types from generated Database types.
 ### Admin Client (Use with Extreme Caution) ⚠️
 
 ```typescript
-import { getSupabaseServerAdminClient } from '@guepard/supabase/server-admin-client';
+import { getSupabaseServerAdminClient } from '@qlm/supabase/server-admin-client';
 
 async function adminFunction() {
   const adminClient = getSupabaseServerAdminClient();
@@ -149,7 +149,7 @@ async function adminFunction() {
 ### Multi-Factor Authentication
 
 ```typescript
-import { checkRequiresMultiFactorAuthentication } from '@guepard/supabase/check-requires-mfa';
+import { checkRequiresMultiFactorAuthentication } from '@qlm/supabase/check-requires-mfa';
 
 const requiresMultiFactorAuthentication =
   await checkRequiresMultiFactorAuthentication(supabase);
@@ -168,17 +168,17 @@ Storage buckets must validate access using account_id in the path structure:
 create policy account_image on storage.objects for all using (
   bucket_id = 'account_image'
   and (
-    guepard.get_storage_filename_as_uuid(name) = auth.uid()
-    or public.has_role_on_organization(guepard.get_storage_filename_as_uuid(name))
+    qlm.get_storage_filename_as_uuid(name) = auth.uid()
+    or public.has_role_on_organization(qlm.get_storage_filename_as_uuid(name))
   )
 )
 with check (
   bucket_id = 'account_image'
   and (
-    guepard.get_storage_filename_as_uuid(name) = auth.uid()
+    qlm.get_storage_filename_as_uuid(name) = auth.uid()
     or public.has_permission(
       auth.uid(),
-      guepard.get_storage_filename_as_uuid(name),
+      qlm.get_storage_filename_as_uuid(name),
       'settings.manage'
     )
   )
@@ -232,7 +232,7 @@ create index if not exists ix_notes_created_at on public.notes (created_at);
 ## Error Handling
 
 ```typescript
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 
 async function databaseOperation() {
   const logger = await getLogger();

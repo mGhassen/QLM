@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 export type HeatBarProps = Readonly<{
   /** Current value (unbounded — compared against `max` for fill ratio). */

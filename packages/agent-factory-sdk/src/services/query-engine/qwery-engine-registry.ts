@@ -1,4 +1,4 @@
-import { AbstractQueryEngine } from '@guepard/domain/ports';
+import { AbstractQueryEngine } from '@qlm/domain/ports';
 
 const engines = new Map<string, AbstractQueryEngine>();
 

@@ -1,4 +1,4 @@
-import type { TestResult } from '@guepard/domain/usecases';
+import type { TestResult } from '@qlm/domain/usecases';
 
 /**
  * A successful connection test result for an AWS integration — what the
@@ -6,7 +6,7 @@ import type { TestResult } from '@guepard/domain/usecases';
  */
 export const testResultSuccessAwsFixture: TestResult = {
   ok: true,
-  identity: 'arn:aws:iam::123456789012:user/guepard',
+  identity: 'arn:aws:iam::123456789012:user/qlm',
 };
 
 /**
@@ -14,5 +14,5 @@ export const testResultSuccessAwsFixture: TestResult = {
  */
 export const testResultSuccessGcpFixture: TestResult = {
   ok: true,
-  identity: 'guepard-runtime@guepard-analytics-prod.iam.gserviceaccount.com',
+  identity: 'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
 };

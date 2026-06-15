@@ -9,9 +9,9 @@ import {
   User,
 } from 'lucide-react';
 
-import type { Datasource } from '@guepard/domain/entities';
-import type { DatasourceExtension } from '@guepard/extensions-sdk';
-import { DatasourceCard } from '@guepard/ui/guepard/datasource';
+import type { Datasource } from '@qlm/domain/entities';
+import type { DatasourceExtension } from '@qlm/extensions-sdk';
+import { DatasourceCard } from '@qlm/ui/qlm/datasource';
 import {
   EntityArrowCell,
   EntityDateCell,
@@ -23,7 +23,7 @@ import {
   type EntityListDisplayMode,
   type EntityListSortDirection,
   type EntityListSortOption,
-} from '@guepard/ui/entity-list';
+} from '@qlm/ui/entity-list';
 
 /**
  * A summarized datasource shape for the list view — matches both the raw

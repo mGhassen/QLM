@@ -9,8 +9,8 @@ import {
   GetConversationService,
   GetConversationsByProjectIdService,
   UpdateConversationService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException, isUUID } from '../lib/http-utils';
 
 const TUI_PROJECT_ID = '550e8400-e29b-41d4-a716-446655440000';

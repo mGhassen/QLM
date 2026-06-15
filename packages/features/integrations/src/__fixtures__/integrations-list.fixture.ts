@@ -1,6 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
-import { IntegrationConnectionOutput } from '@guepard/domain/usecases';
+import { IntegrationConnectionOutput } from '@qlm/domain/usecases';
 
 import { awsIntegrationFixture } from './aws-integration.fixture';
 import { gcpIntegrationFixture } from './gcp-integration.fixture';

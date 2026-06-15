@@ -1,4 +1,4 @@
-import type { MetricsPoint, Node, NodeHealth } from '@guepard/domain/entities';
+import type { MetricsPoint, Node, NodeHealth } from '@qlm/domain/entities';
 
 const NAMES = [
   'api-gateway',
@@ -33,11 +33,11 @@ const CLUSTERS = [
   'edge-apac',
 ];
 const OWNERS = [
-  'alice@rasm.ai',
-  'bob@rasm.ai',
-  'carol@rasm.ai',
-  'ops-team@rasm.ai',
-  'platform@rasm.ai',
+  'alice@qlm.dev',
+  'bob@qlm.dev',
+  'carol@qlm.dev',
+  'ops-team@qlm.dev',
+  'platform@qlm.dev',
 ];
 const PROVIDERS = ['aws', 'gcp', 'azure', 'on-premise'] as const;
 

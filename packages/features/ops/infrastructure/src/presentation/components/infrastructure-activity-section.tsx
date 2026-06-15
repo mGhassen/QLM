@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 import type { ActivitySource, ActivityRange, DataPoint } from '../../application/use-activity-data';
 import { useActivityData } from '../../application/use-activity-data';

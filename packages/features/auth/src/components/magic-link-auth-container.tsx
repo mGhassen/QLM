@@ -7,19 +7,19 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { useAppEvents } from '@guepard/shared/events';
-import { useSignInWithOtp } from '@guepard/supabase/hooks/use-sign-in-with-otp';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useAppEvents } from '@qlm/shared/events';
+import { useSignInWithOtp } from '@qlm/supabase/hooks/use-sign-in-with-otp';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Trans } from '@qlm/ui/trans';
 
 import { useCaptcha } from '../captcha/client';
 import { EmailInput } from './email-input';

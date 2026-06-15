@@ -1,4 +1,4 @@
-import { DomainException } from '@guepard/domain/exceptions';
+import { DomainException } from '@qlm/domain/exceptions';
 import { getErrorCategory, getErrorCategoryFromStatus } from './codes';
 
 export type UserFacingErrorKey =

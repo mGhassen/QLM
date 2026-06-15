@@ -1,6 +1,6 @@
-import type { UIMessage } from '@guepard/agent-factory-sdk';
-import { normalizeUIRole } from '@guepard/shared/message-role-utils';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { UIMessage } from '@qlm/agent-factory-sdk';
+import { normalizeUIRole } from '@qlm/shared/message-role-utils';
+import type { Repositories } from '@qlm/domain/repositories';
 
 /**
  * Resolves datasources for a chat request: body first, then last user message metadata, then conversation.

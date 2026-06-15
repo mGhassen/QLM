@@ -18,7 +18,7 @@ Add a `useRuntime()` hook + thin Tauri-command wrappers to `packages/shell-runti
 ## Scope
 
 **In scope**
-- `useRuntime()` hook returning `'web' | 'desktop'`. Reads `window.__TAURI__` presence + optional `window.__GUEPARD_RUNTIME` injection.
+- `useRuntime()` hook returning `'web' | 'desktop'`. Reads `window.__TAURI__` presence + optional `window.__QLM_RUNTIME` injection.
 - Thin `invoke(...)` wrappers for `saveProviderKey` / `getProviderKey` / `deleteProviderKey` / `getAppConfig` / `setAppConfig` / `restartSidecar`. Each guards on `runtime === 'desktop'` and throws otherwise.
 - Type definitions exported from `packages/shared/src/desktop/index.ts` (extend existing `DesktopApi`).
 - Unit tests via `renderHook` covering both runtimes (mock `window.__TAURI__`).
@@ -30,10 +30,10 @@ Add a `useRuntime()` hook + thin Tauri-command wrappers to `packages/shell-runti
 
 ## Acceptance criteria
 
-- [x] `pnpm --filter @guepard/shell-runtime test` is green — 41/41 tests pass, 100% coverage on `runtime.ts`. `useRuntime()` correctly distinguishes web vs desktop (2 dedicated tests).
+- [x] `pnpm --filter @qlm/shell-runtime test` is green — 41/41 tests pass, 100% coverage on `runtime.ts`. `useRuntime()` correctly distinguishes web vs desktop (2 dedicated tests).
 - [x] `pnpm typecheck` stays green across the monorepo (51/51).
 - [x] Wrappers throw a typed `DesktopApiUnavailableError` (verified by 14 tests — 7 wrappers × 2 cases each).
-- [x] `apps/web` consumers can `import { useRuntime, saveProviderKey, ..., DesktopApiUnavailableError } from '@guepard/shell-runtime'` — re-exported from `index.ts`.
+- [x] `apps/web` consumers can `import { useRuntime, saveProviderKey, ..., DesktopApiUnavailableError } from '@qlm/shell-runtime'` — re-exported from `index.ts`.
 - [x] **Build + UI check:** deferred per user instruction (same precedent as story 003 close); `useRuntime()` desktop branch is fully unit-tested with the same `__TAURI_INTERNALS__` detection the renderer uses at runtime, so the contract is verified.
 
 ## Tasks
@@ -45,10 +45,10 @@ Add a `useRuntime()` hook + thin Tauri-command wrappers to `packages/shell-runti
 ## Demo / verification
 
 ```
-pnpm --filter @guepard/shell-runtime test
+pnpm --filter @qlm/shell-runtime test
 pnpm --filter desktop tauri:dev
 # In Tauri devtools, verify:
-import('@guepard/shell-runtime').then(m => console.log(m.useRuntime?.()));
+import('@qlm/shell-runtime').then(m => console.log(m.useRuntime?.()));
 # Should print "desktop"; in a regular browser running pnpm --filter web dev it prints "web".
 ```
 

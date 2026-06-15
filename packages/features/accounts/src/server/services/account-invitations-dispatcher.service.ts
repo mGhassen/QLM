@@ -2,8 +2,8 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import { getLogger } from '@guepard/shared/logger';
-import { Database, Tables } from '@guepard/supabase/database';
+import { getLogger } from '@qlm/shared/logger';
+import { Database, Tables } from '@qlm/supabase/database';
 
 type Invitation = Tables<'invitations'>;
 
@@ -192,8 +192,8 @@ class AccountInvitationsDispatchService {
       name: this.namespace,
     };
 
-    const { renderInviteEmail } = await import('@guepard/email-templates');
-    const { getMailer } = await import('@guepard/mailers');
+    const { renderInviteEmail } = await import('@qlm/email-templates');
+    const { getMailer } = await import('@qlm/mailers');
 
     const mailer = await getMailer();
 

@@ -1,5 +1,5 @@
-import { getSupabaseServerClient } from '@guepard/supabase/server-client';
-import { recoverFromStaleAuthSession } from '@guepard/supabase/stale-auth-session';
+import { getSupabaseServerClient } from '@qlm/supabase/server-client';
+import { recoverFromStaleAuthSession } from '@qlm/supabase/stale-auth-session';
 
 export async function requireCmsUser(request: Request) {
   const { client, headers } = getSupabaseServerClient(request);

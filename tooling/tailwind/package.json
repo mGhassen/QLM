@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/tailwind-config",
+  "name": "@qlm/tailwind-config",
   "version": "0.1.0",
   "main": "index.ts",
   "type": "module",
@@ -18,10 +18,10 @@
     "tailwindcss": "4.1.16"
   },
   "devDependencies": {
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "prettier": "^3.6.2",
     "typescript": "catalog:"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

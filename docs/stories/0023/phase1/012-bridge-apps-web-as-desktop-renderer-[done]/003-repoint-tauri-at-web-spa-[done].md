@@ -12,7 +12,7 @@ validation:
 
 # Repoint Tauri at web SPA
 
-With tasks 001 + 002 landed, Tauri can load `apps/web` directly instead of the placeholder SPA in `apps/desktop/src/`. This task rewires `tauri.conf.json` + the `tauri:dev` / `tauri:build` scripts so the whole Guepard console ships inside the `.app`.
+With tasks 001 + 002 landed, Tauri can load `apps/web` directly instead of the placeholder SPA in `apps/desktop/src/`. This task rewires `tauri.conf.json` + the `tauri:dev` / `tauri:build` scripts so the whole QLM console ships inside the `.app`.
 
 ## Done when
 

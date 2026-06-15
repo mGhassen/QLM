@@ -1,5 +1,5 @@
-import { allow, definePolicy, deny } from '@guepard/policies';
-import { createPolicyRegistry } from '@guepard/policies';
+import { allow, definePolicy, deny } from '@qlm/policies';
+import { createPolicyRegistry } from '@qlm/policies';
 
 import { FeaturePolicyInvitationContext } from './feature-policy-invitation-context';
 

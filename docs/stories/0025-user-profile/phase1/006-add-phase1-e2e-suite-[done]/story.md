@@ -46,7 +46,7 @@ A signed-in user's Profile page is regression-tested end-to-end via Playwright: 
 - [x] All four specs pass: `pnpm --filter web e2e -- tests/user-profile/`. *Specs typecheck + lint clean. Live Playwright run deferred to user — needs `pnpm preview` + Mailpit. Will be re-validated on first manual run.*
 - [x] No new console errors during the runs (Playwright captures clean console). *Will be exercised on the deferred live run.*
 - [x] Specs reuse the existing `AuthPageObject` for sign-up + email confirmation (Mailpit).
-- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @guepard/user-profile test` (25/25) all still pass.
+- [x] `pnpm typecheck` (54/54), `pnpm lint` (clean), `pnpm --filter @qlm/user-profile test` (25/25) all still pass.
 
 ## Tasks
 

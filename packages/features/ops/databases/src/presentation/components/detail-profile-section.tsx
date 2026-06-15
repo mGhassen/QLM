@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DatabaseZap, Globe, Key, Network, ShieldCheck, Tag } from 'lucide-react';
 
-import type { Database } from '@guepard/domain/entities';
-import { DataRow, EntitySection } from '@guepard/ui/entity-primitives';
+import type { Database } from '@qlm/domain/entities';
+import { DataRow, EntitySection } from '@qlm/ui/entity-primitives';
 
 export type DetailProfileSectionProps = Readonly<{ database: Database }>;
 

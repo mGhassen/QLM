@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   CreateOrUpdateTodoService,
   GetTodoByConversationService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import { Tool } from './tool';
 import { TodoWritePrompt } from './prompts/todowrite.prompt';
 import { TODOREAD_DESCRIPTION } from './prompts/todoread.prompt';

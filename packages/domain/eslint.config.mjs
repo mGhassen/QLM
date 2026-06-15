@@ -1,4 +1,4 @@
-import baseConfig from '@guepard/eslint-config/base.js';
+import baseConfig from '@qlm/eslint-config/base.js';
 
 // Domain is pure: no React, no HTTP clients, no Supabase, no runtime/adapters.
 // See .claude/rules/hexagonal-architecture.md.
@@ -13,14 +13,14 @@ const BANNED_PATTERNS = [
   'next/*',
   'hono',
   'hono/*',
-  '@guepard/repository-supabase',
-  '@guepard/repository-*',
-  '@guepard/shell-runtime',
-  '@guepard/shell-runtime/*',
-  '@guepard/supabase',
-  '@guepard/supabase/*',
-  '@guepard/ui',
-  '@guepard/ui/*',
+  '@qlm/repository-supabase',
+  '@qlm/repository-*',
+  '@qlm/shell-runtime',
+  '@qlm/shell-runtime/*',
+  '@qlm/supabase',
+  '@qlm/supabase/*',
+  '@qlm/ui',
+  '@qlm/ui/*',
 ];
 
 export default [

@@ -1,5 +1,5 @@
-import { DbProviderIcon } from '@guepard/ui/db-provider-icon';
-import { cn } from '@guepard/ui/utils';
+import { DbProviderIcon } from '@qlm/ui/db-provider-icon';
+import { cn } from '@qlm/ui/utils';
 import { PROVIDER_LABELS, PROVIDER_STYLES } from '../../application/constants';
 
 type DbProviderBadgeProps = Readonly<{

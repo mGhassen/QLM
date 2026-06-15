@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import { getNodeDisplayState } from '../src/presentation/lib/get-node-display-state';
 

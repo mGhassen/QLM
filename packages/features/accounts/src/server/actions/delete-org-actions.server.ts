@@ -4,9 +4,9 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 import { z } from 'zod';
 
-import { createOtpApi } from '@guepard/otp';
-import { Database } from '@guepard/supabase/database';
-import { requireUser } from '@guepard/supabase/require-user';
+import { createOtpApi } from '@qlm/otp';
+import { Database } from '@qlm/supabase/database';
+import { requireUser } from '@qlm/supabase/require-user';
 
 import { DeleteOrganizationSchema } from '../../schema';
 import { createDeleteOrganizationService } from '../services/delete-organization.service';

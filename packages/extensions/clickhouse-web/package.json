@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-clickhouse-web",
+  "name": "@qlm/extension-clickhouse-web",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@clickhouse/client-web": "^0.2.10",
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

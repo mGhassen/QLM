@@ -1,5 +1,5 @@
-import { Button } from '@guepard/ui/button';
-import { OauthProviderLogoImage } from '@guepard/ui/oauth-provider-logo-image';
+import { Button } from '@qlm/ui/button';
+import { OauthProviderLogoImage } from '@qlm/ui/oauth-provider-logo-image';
 
 export function AuthProviderButton({
   providerId,

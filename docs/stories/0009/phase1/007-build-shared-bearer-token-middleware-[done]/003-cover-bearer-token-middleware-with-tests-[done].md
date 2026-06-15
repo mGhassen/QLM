@@ -32,15 +32,15 @@ Vitest suite that exercises every branch of `verifyBearerToken` (6 rejection + 1
 ## Acceptance
 
 - [ ] All 7 `verifyBearerToken` branches + 12 `scopePermitsMethod` cases pass.
-- [ ] `pnpm --filter @guepard/auth-shared test` is green end-to-end.
+- [ ] `pnpm --filter @qlm/auth-shared test` is green end-to-end.
 - [ ] ≥ 90 % line + branch coverage on `packages/auth-shared/src/`.
 - [ ] No test hits a real DB, network, or Supabase client.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/auth-shared test
-pnpm --filter @guepard/auth-shared exec vitest run --coverage --coverage.include='src/*'
+pnpm --filter @qlm/auth-shared test
+pnpm --filter @qlm/auth-shared exec vitest run --coverage --coverage.include='src/*'
 ```
 
 ## Storybook validation
@@ -50,5 +50,5 @@ N/A — not a UI task.
 ## Notes
 
 - The `revoked` vs `expired` ordering test (case 6) documents the precedence decision: revoked beats expired.
-- The injected `lookup` mock makes this portable to `guepard-public-api` — same test pattern works there.
+- The injected `lookup` mock makes this portable to `qlm-public-api` — same test pattern works there.
 - Keep the helpers in-file; no shared fixture file is warranted for a single-file suite.

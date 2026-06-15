@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import type { CloneForestNode } from "../../environment-clone-tree";
 import type { CanvasCardLayoutMode } from "./canvas-card-layout";

@@ -2,10 +2,10 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import { InitWorkspaceService } from '@guepard/domain/services';
-import { WorkspaceRuntimeEnum } from '@guepard/domain/enums';
-import type { Repositories } from '@guepard/domain/repositories';
-import type { WorkspaceRuntimeUseCase } from '@guepard/domain/usecases';
+import { InitWorkspaceService } from '@qlm/domain/services';
+import { WorkspaceRuntimeEnum } from '@qlm/domain/enums';
+import type { Repositories } from '@qlm/domain/repositories';
+import type { WorkspaceRuntimeUseCase } from '@qlm/domain/usecases';
 import { handleDomainException } from '../lib/http-utils';
 
 const initBodySchema = z.object({

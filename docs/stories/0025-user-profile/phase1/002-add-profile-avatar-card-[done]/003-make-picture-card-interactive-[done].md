@@ -26,10 +26,10 @@ Replace the read-only `PictureCard` with an `ImageUploader` + Clear button bound
 - [ ] Toast keys: `userProfile.picture.updating` (loading), `userProfile.picture.updated` (success), `userProfile.picture.error` (failure).
 - [ ] Storybook stories: `Idle`, `Uploading`, `Error`. Component tests cover state transitions.
 - [ ] All writes go through `useShell()`; no `client.storage.from(...)` import in the feature package.
-- [ ] `pnpm typecheck` + `pnpm --filter @guepard/user-profile test` pass.
+- [ ] `pnpm typecheck` + `pnpm --filter @qlm/user-profile test` pass.
 
 ## Notes
 
-- `ImageUploader` already exists in `@guepard/ui/image-uploader` (used by the legacy console reference).
+- `ImageUploader` already exists in `@qlm/ui/image-uploader` (used by the legacy console reference).
 - File-size gate is enforced in the `onValueChange` handler before calling `uploadAvatar`.
 - Spec anchors: [§3.3 F2/F3](../../../specs/0025-user-profile-phase1.md#33-user-flows-happy-paths), [§9 security checklist](../../../specs/0025-user-profile-phase1.md#9-security-checklist).

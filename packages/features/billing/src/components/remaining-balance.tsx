@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Card, CardContent } from '@guepard/ui/card';
-import { cn } from '@guepard/ui/utils';
-import { formatCurrency } from '@guepard/shared/utils';
+import { Card, CardContent } from '@qlm/ui/card';
+import { cn } from '@qlm/ui/utils';
+import { formatCurrency } from '@qlm/shared/utils';
 
 type RemainingBalanceProps = {
   balance: number;

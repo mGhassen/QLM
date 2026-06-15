@@ -39,13 +39,13 @@ Ship the three domain services (`CreateUserTokenService`, `RevokeUserTokenServic
 - [ ] `CreateUserTokenService.execute(...)` returns `{ row, rawJwt }` — structurally matches `CreateUserTokenOutputSchema`.
 - [ ] `RevokeUserTokenService.execute({ id, accountId })` throws `tokenNotFoundException(id)` when `repo.revoke` returns null.
 - [ ] `ListUserTokensService.execute({ accountId })` delegates to `repo.findByAccountId(accountId)` unchanged.
-- [ ] `pnpm --filter @guepard/domain typecheck` passes.
+- [ ] `pnpm --filter @qlm/domain typecheck` passes.
 - [ ] No `jsonwebtoken`, `@supabase/*`, `react`, or `@tanstack/*` import anywhere in the new service files.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain typecheck
 # Runtime tests ship in task 002 of this story.
 ```
 

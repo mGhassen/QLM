@@ -4,8 +4,8 @@
   "pageFormat": "a4",
   "chrome": {
     "headerLeft": "IA agentique",
-    "headerRight": "Guepard Strategic Research",
-    "footerLeft": "guepard.run",
+    "headerRight": "QLM Strategic Research",
+    "footerLeft": "qlm.run",
     "footerRight": "Page {{page}}",
     "showOnCover": false
   },
@@ -1391,7 +1391,7 @@
           "type": "alert",
           "props": {
             "variant": "insight",
-            "tag": "Guepard Strategic Research",
+            "tag": "QLM Strategic Research",
             "big": false
           },
           "contentRef": "sections/alert-150.md"

@@ -2,8 +2,8 @@ import { zValidator } from '../lib/zod-validator.js';
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 
-import { UserPreferencesPayloadSchema } from '@guepard/domain/entities';
-import type { Repositories } from '@guepard/domain/repositories';
+import { UserPreferencesPayloadSchema } from '@qlm/domain/entities';
+import type { Repositories } from '@qlm/domain/repositories';
 
 import { getCurrentUserId } from '../lib/current-account';
 import { handleDomainException } from '../lib/http-utils';

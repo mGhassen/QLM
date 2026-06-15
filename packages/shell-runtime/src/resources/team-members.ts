@@ -1,19 +1,19 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { TeamMember } from '@guepard/domain/entities';
-import type { ITeamMemberRepository } from '@guepard/domain/repositories';
+import type { TeamMember } from '@qlm/domain/entities';
+import type { ITeamMemberRepository } from '@qlm/domain/repositories';
 import {
   GetTeamMembersService,
   InviteTeamMemberService,
   RemoveTeamMemberService,
   UpdateTeamMemberRoleService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   InviteTeamMemberInput,
   InviteTeamMemberOutput,
   RemoveTeamMemberInput,
   UpdateTeamMemberRoleInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export function createTeamMembersResource(
   repository: ITeamMemberRepository,

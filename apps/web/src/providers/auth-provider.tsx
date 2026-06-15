@@ -4,10 +4,10 @@ import { useCallback } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { useTelemetry } from '@guepard/telemetry';
-import { useAppEvents } from '@guepard/shared/events';
-import { useAuthChangeListener } from '@guepard/supabase/hooks/use-auth-change-listener';
-import { USER_QUERY_KEY } from '@guepard/supabase/hooks/use-user';
+import { useTelemetry } from '@qlm/telemetry';
+import { useAppEvents } from '@qlm/shared/events';
+import { useAuthChangeListener } from '@qlm/supabase/hooks/use-auth-change-listener';
+import { USER_QUERY_KEY } from '@qlm/supabase/hooks/use-user';
 
 export function AuthProvider(props: React.PropsWithChildren) {
   const queryClient = useQueryClient();

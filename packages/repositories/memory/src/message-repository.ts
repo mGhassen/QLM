@@ -1,11 +1,11 @@
-import type { Nullable } from '@guepard/domain/common';
+import type { Nullable } from '@qlm/domain/common';
 import type {
   RepositoryFindOptions,
   PaginationOptions,
   PaginatedResult,
-} from '@guepard/domain/common';
-import type { Message } from '@guepard/domain/entities';
-import { IMessageRepository } from '@guepard/domain/repositories';
+} from '@qlm/domain/common';
+import type { Message } from '@qlm/domain/entities';
+import { IMessageRepository } from '@qlm/domain/repositories';
 
 export class MessageRepository extends IMessageRepository {
   private messages = new Map<string, Message>();

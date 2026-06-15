@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { tool } from '@guepard/agent-factory-sdk';
-import type { DatasourceMetadata } from '@guepard/domain/entities';
+import { tool } from '@qlm/agent-factory-sdk';
+import type { DatasourceMetadata } from '@qlm/domain/entities';
 
 type TableLike = {
   schema?: string;

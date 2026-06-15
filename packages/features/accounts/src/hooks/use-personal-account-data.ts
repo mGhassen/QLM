@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
 
 interface PartialAccount {
   id: string | null;

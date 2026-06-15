@@ -1,7 +1,7 @@
 import { useCallback, useId, useState } from "react";
 import { X, Copy, ExternalLink, ChevronRight } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import type { ServiceRightPanelUrlTab } from "../../environment-url-path";
 import type { Service } from "./service-card";
@@ -143,7 +143,7 @@ function connectionString(service: Service) {
     case "mysql":
       return `mysql://admin@${service.name.toLowerCase()}-primary.internal:3306/main`;
     case "external_datasource":
-      return `https://connect.rasm.ai/datasources/${service.id}`;
+      return `https://connect.qlm.dev/datasources/${service.id}`;
     default:
       return `http://${service.name.toLowerCase()}.internal:8080`;
   }
@@ -324,7 +324,7 @@ function SchemaPanel() {
       </div>
       <div className="mt-4">
         <div className="mb-2 text-xs font-semibold text-foreground">Connection</div>
-        <ConnectionBox value="postgres://staging-db.rasm.ai:5432/main" />
+        <ConnectionBox value="postgres://staging-db.qlm.dev:5432/main" />
       </div>
     </div>
   );

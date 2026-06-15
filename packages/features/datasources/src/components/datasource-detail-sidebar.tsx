@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Database, Settings, Table2, Workflow } from 'lucide-react';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 export type DatasourceDetailSection = 'schema' | 'tables' | 'settings';
 

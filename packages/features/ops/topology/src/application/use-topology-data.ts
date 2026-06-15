@@ -8,9 +8,9 @@ import {
   type NodeLifecycleState,
   type NodeProvider,
   type Pool,
-} from '@guepard/domain/entities';
-import type { FleetSummary, PressurePoint } from '@guepard/domain/usecases';
-import { useShell } from '@guepard/shell-runtime';
+} from '@qlm/domain/entities';
+import type { FleetSummary, PressurePoint } from '@qlm/domain/usecases';
+import { useShell } from '@qlm/shell-runtime';
 
 export type TopologyPool = Readonly<{
   /** Logical pool key — provider + region + cluster (or fallback). */

@@ -1,19 +1,19 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { Column, Table } from '@guepard/domain/entities';
-import type { DatasourceMetadata } from '@guepard/extensions-sdk';
+import type { Column, Table } from '@qlm/domain/entities';
+import type { DatasourceMetadata } from '@qlm/extensions-sdk';
 import {
   Tables,
   type TableListItem,
-} from '@guepard/ui/guepard/datasource/tables';
+} from '@qlm/ui/qlm/datasource/tables';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
+} from '@qlm/ui/select';
 
 export interface DatasourceTablesPanelProps {
   metadata: DatasourceMetadata | null | undefined;

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/app-dashboard",
+  "name": "@qlm/app-dashboard",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,10 +8,10 @@
     "./manifest": "./src/manifest.ts"
   },
   "dependencies": {
-    "@guepard/shell-contracts": "workspace:*"
+    "@qlm/shell-contracts": "workspace:*"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "react": "catalog:",
     "typescript": "catalog:"

@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@guepard/ui/button';
+import { Button } from '@qlm/ui/button';
 import {
   Table,
   TableBody,
@@ -8,9 +8,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@guepard/ui/table';
-import { cn } from '@guepard/ui/utils';
-import { formatCurrency } from '@guepard/shared/utils';
+} from '@qlm/ui/table';
+import { cn } from '@qlm/ui/utils';
+import { formatCurrency } from '@qlm/shared/utils';
 import { DownloadIcon, ExternalLinkIcon } from 'lucide-react';
 
 export type InvoiceType =

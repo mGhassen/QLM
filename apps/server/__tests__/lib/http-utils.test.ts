@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { Code } from '@guepard/domain/common';
-import { DomainException } from '@guepard/domain/exceptions';
+import { Code } from '@qlm/domain/common';
+import { DomainException } from '@qlm/domain/exceptions';
 
 import {
   handleDomainException,

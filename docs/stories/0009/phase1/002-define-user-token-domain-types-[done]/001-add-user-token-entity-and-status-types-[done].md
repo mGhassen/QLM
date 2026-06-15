@@ -33,13 +33,13 @@ Ship the core type surface for a user token: the `UserTokenScope` enum, the view
 - [ ] `deriveUserTokenStatus({ revoked: false, expires_at: <future> })` returns `'active'`.
 - [ ] `deriveUserTokenStatus` accepts an optional `nowUnix` arg for deterministic testing.
 - [ ] `UserTokenEntity` is decorated such that `plainToClass(UserTokenEntity, row)` round-trips every field (following `DatasourceEntity` as the reference).
-- [ ] `pnpm --filter @guepard/domain typecheck` passes.
+- [ ] `pnpm --filter @qlm/domain typecheck` passes.
 - [ ] No imports of `jsonwebtoken`, `@supabase/*`, or `react` inside any new file.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/domain typecheck
+pnpm --filter @qlm/domain typecheck
 # No runtime tests in this task — they ship in task 004 of this story.
 ```
 

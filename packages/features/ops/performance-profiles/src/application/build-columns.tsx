@@ -1,12 +1,12 @@
 import type { TFunction } from 'i18next';
 
-import { RowActionMenu } from '@guepard/ui/action';
-import type { Action } from '@guepard/ui/action';
-import type { AdvancedColumn } from '@guepard/ui/data-table-advanced';
-import { DbProviderIcon } from '@guepard/ui/db-provider-icon';
+import { RowActionMenu } from '@qlm/ui/action';
+import type { Action } from '@qlm/ui/action';
+import type { AdvancedColumn } from '@qlm/ui/data-table-advanced';
+import { DbProviderIcon } from '@qlm/ui/db-provider-icon';
 import { MoreHorizontal } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
+import type { PerformanceProfile } from '@qlm/domain/entities';
 
 import { PROVIDER_LABELS, PROVIDER_STYLES } from './constants';
 import { ProfileStatusBadge } from '../presentation/cells/profile-status-badge';

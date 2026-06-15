@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-import { tool } from '@guepard/agent-factory-sdk';
-import type { Datasource } from '@guepard/domain/entities';
+import { tool } from '@qlm/agent-factory-sdk';
+import type { Datasource } from '@qlm/domain/entities';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
   type IDataSourceDriver,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
-import { getLogger } from '@guepard/shared/logger';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
+import { getLogger } from '@qlm/shared/logger';
 
 // Same SELECT-only guardrail used by the Predictions runQuery tool.
 const ALLOWED_LEADING =

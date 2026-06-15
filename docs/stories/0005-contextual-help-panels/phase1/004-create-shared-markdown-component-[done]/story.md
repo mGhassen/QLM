@@ -1,7 +1,7 @@
 ---
 spec: docs/specs/0005-contextual-help-panels-phase1.md
 spec_sections:
-  - "#54-guepardui-markdown-api"
+  - "#54-qlmui-markdown-api"
   - "#74-shared-markdown-packagesui"
 status: done
 started: 2026-04-11
@@ -15,14 +15,14 @@ blocked_by: []
 
 ## Goal
 
-Add a `@guepard/ui/markdown` subpath export — a thin wrapper around `react-markdown` + `remark-gfm` with default prose classes — so help pages (and any future package needing rich text) can render markdown uniformly without reconfiguring `react-markdown` themselves.
+Add a `@qlm/ui/markdown` subpath export — a thin wrapper around `react-markdown` + `remark-gfm` with default prose classes — so help pages (and any future package needing rich text) can render markdown uniformly without reconfiguring `react-markdown` themselves.
 
 ## Scope
 
 **In scope**
 - `Markdown` component with props `Readonly<{ source: string; className?: string; components?: ReactMarkdownComponents }>`
 - Default class chain: `prose prose-sm dark:prose-invert max-w-none` + targeted code-block overrides (`prose-pre:my-3`, `prose-pre:bg-muted/50`, `prose-code:text-xs`, `prose-code:before:content-[''] prose-code:after:content-['']`)
-- `@guepard/ui/markdown` subpath export in `packages/ui/package.json`
+- `@qlm/ui/markdown` subpath export in `packages/ui/package.json`
 - Storybook stories covering every GFM primitive and a narrow-container fixture matching the docs panel width
 
 **Out of scope**
@@ -32,8 +32,8 @@ Add a `@guepard/ui/markdown` subpath export — a thin wrapper around `react-mar
 
 ## Acceptance criteria
 
-- [x] `import { Markdown } from '@guepard/ui/markdown'` works in a consumer package
-- [x] `pnpm --filter @guepard/ui typecheck` green (modulo the pre-existing `reasoning.tsx` baseline error)
+- [x] `import { Markdown } from '@qlm/ui/markdown'` works in a consumer package
+- [x] `pnpm --filter @qlm/ui typecheck` green (modulo the pre-existing `reasoning.tsx` baseline error)
 - [x] Storybook renders every story (`HelpPage`, `AllFeatures`, `NarrowContainer`, `Empty`)
 - [x] Narrow-container story (360px wide) shows long code blocks scrolling horizontally and tables scrolling without breaking layout
 
@@ -41,15 +41,15 @@ Add a `@guepard/ui/markdown` subpath export — a thin wrapper around `react-mar
 
 Shipped files:
 
-- `packages/ui/src/guepard/markdown.tsx` — **new**. `ReactMarkdown` + `remarkGfm` wrapper with default prose classes
-- `packages/ui/src/guepard/markdown.stories.tsx` — **new**. 4 stories (`HelpPage`, `AllFeatures`, `NarrowContainer`, `Empty`)
-- `packages/ui/package.json` — add `"./markdown": "./src/guepard/markdown.tsx"` entry to `exports`
+- `packages/ui/src/qlm/markdown.tsx` — **new**. `ReactMarkdown` + `remarkGfm` wrapper with default prose classes
+- `packages/ui/src/qlm/markdown.stories.tsx` — **new**. 4 stories (`HelpPage`, `AllFeatures`, `NarrowContainer`, `Empty`)
+- `packages/ui/package.json` — add `"./markdown": "./src/qlm/markdown.tsx"` entry to `exports`
 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/ui typecheck
-pnpm --filter @guepard/ui storybook
+pnpm --filter @qlm/ui typecheck
+pnpm --filter @qlm/ui storybook
 ```
 
 Walk `Design System / Markdown / *` — every story renders; narrow-container story fits inside its 360px frame.

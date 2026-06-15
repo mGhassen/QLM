@@ -52,4 +52,4 @@ N/A — not a UI task.
 
 - `getJwtSecret()` from `apps/server/src/lib/repositories.ts` is the cached JWT_SECRET reader from Story 005 task 003.
 - `current-account.ts` is intentionally minimal — see story Questions for the broader "centralized current-user middleware" follow-up.
-- `rawJwt` log redaction is tracked in story Questions; a centralized logger redaction list does not exist today on apps/server (only `getLogger()` from `@guepard/shared/logger` returns Pino with default config).
+- `rawJwt` log redaction is tracked in story Questions; a centralized logger redaction list does not exist today on apps/server (only `getLogger()` from `@qlm/shared/logger` returns Pino with default config).

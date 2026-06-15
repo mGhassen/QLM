@@ -5,7 +5,7 @@ import {
   SettingsLayout,
   type SettingsSection,
   type SettingsSectionKey,
-} from '@guepard/settings-shell';
+} from '@qlm/settings-shell';
 
 import { ProjectSettingsGeneralSection } from './sections/general';
 

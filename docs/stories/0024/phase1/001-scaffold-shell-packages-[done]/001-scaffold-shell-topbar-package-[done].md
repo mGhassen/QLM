@@ -16,13 +16,13 @@ Create an empty `packages/features/shell-topbar` package with barrel exports, ts
 
 ## Done when
 
-- [ ] `packages/features/shell-topbar/package.json` declares name `@guepard/shell-topbar` and the usual workspace fields.
+- [ ] `packages/features/shell-topbar/package.json` declares name `@qlm/shell-topbar` and the usual workspace fields.
 - [ ] `tsconfig.json`, `eslint.config.mjs`, `vitest.config.ts`, and Storybook config exist and mirror `packages/features/accounts`.
 - [ ] `src/index.ts` re-exports at least one placeholder component.
-- [ ] `pnpm --filter @guepard/shell-topbar typecheck` passes.
+- [ ] `pnpm --filter @qlm/shell-topbar typecheck` passes.
 - [ ] Monorepo-wide `pnpm typecheck` stays green.
 
 ## Notes
 
 - Mirror `packages/features/accounts` structure exactly; it's the canonical template for feature packages with Storybook.
-- Storybook scaffold needs at least one story (even if empty) so `pnpm --filter @guepard/shell-topbar storybook` launches.
+- Storybook scaffold needs at least one story (even if empty) so `pnpm --filter @qlm/shell-topbar storybook` launches.

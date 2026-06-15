@@ -18,20 +18,20 @@ Add a minimal Storybook CSF3 story for `AssistantPanelBody` so the component ren
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 - [ ] Running Storybook (`pnpm --filter <storybook-host> storybook` or whatever entrypoint the repo uses) loads the story without runtime errors.
 - [ ] The story shows header, placeholder thread / empty-state area, and prompt input in a narrow column.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 # Open Storybook and navigate to: Features / QweryAgent / AssistantPanelBody.
 ```
 
 ## Notes
 
-- Mirror the shape of sibling feature-package stories (e.g. `packages/ui/src/guepard/ai/conversation-content.stories.tsx`) — don't invent a new convention.
+- Mirror the shape of sibling feature-package stories (e.g. `packages/ui/src/qlm/ai/conversation-content.stories.tsx`) — don't invent a new convention.
 - Wrap in a fixed-width div (360 px) so the story reflects how the component actually renders inside `RightSidebar`.
 - No need to parameterize the story — a single `Default` export is enough for phase 1 smoke.
 

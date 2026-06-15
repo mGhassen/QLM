@@ -12,9 +12,9 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@playwright/test": "^1.56.1",
     "@types/node": "catalog:",
     "eslint": "^9.39.0",

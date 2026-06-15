@@ -1,5 +1,5 @@
-import type { PredictionSchemaSnapshot } from '@guepard/domain/entities';
-import { IPredictionSchemaSnapshotRepository } from '@guepard/domain/repositories';
+import type { PredictionSchemaSnapshot } from '@qlm/domain/entities';
+import { IPredictionSchemaSnapshotRepository } from '@qlm/domain/repositories';
 
 import { apiGet, apiPost } from './api-client';
 

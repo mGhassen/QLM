@@ -26,7 +26,7 @@ Replace the disabled placeholder with a working RHF form. Wire `useUserIdentitie
 - [ ] OAuth-only branch still renders the warning banner; no form input or submit affordance.
 - [ ] Storybook variants: `Linked`, `OauthOnly`, `WrongCurrent` (renders an inline error mock), `Submitting` (disabled fields).
 - [ ] Component tests cover: linked-render-form, oauth-only-render-banner, valid-submit-calls-mutation, wrong-current-shows-inline-error, mismatch-shows-inline-error.
-- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @guepard/user-profile test` all pass.
+- [ ] `pnpm typecheck`, `pnpm lint`, `pnpm --filter @qlm/user-profile test` all pass.
 
 ## Notes
 

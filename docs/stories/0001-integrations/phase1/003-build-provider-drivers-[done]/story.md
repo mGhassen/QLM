@@ -14,7 +14,7 @@ blocked_by:
 
 ## Goal
 
-Create the server-only `@guepard/integrations-drivers` package that implements `IIntegrationProviderDriver` for AWS and GCP, with a registry that resolves a driver by provider id. Keep the domain layer pure — all SDK imports live in this package.
+Create the server-only `@qlm/integrations-drivers` package that implements `IIntegrationProviderDriver` for AWS and GCP, with a registry that resolves a driver by provider id. Keep the domain layer pure — all SDK imports live in this package.
 
 ## Scope
 
@@ -34,7 +34,7 @@ Create the server-only `@guepard/integrations-drivers` package that implements `
 
 - [x] `packages/integrations-drivers` builds clean, no imports from `packages/domain` at runtime (only type imports)
 - [x] Both drivers accept factory-injected clients so tests can stub them without touching the network
-- [x] `pnpm --filter @guepard/integrations-drivers test` runs 28 passing tests
+- [x] `pnpm --filter @qlm/integrations-drivers test` runs 28 passing tests
 - [x] `IntegrationProviderDriverRegistry.get('aws' | 'gcp')` returns the right driver; unknown providers throw
 
 ## Tasks
@@ -55,8 +55,8 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/integrations-drivers test
-pnpm --filter @guepard/integrations-drivers typecheck
+pnpm --filter @qlm/integrations-drivers test
+pnpm --filter @qlm/integrations-drivers typecheck
 ```
 
 28 tests green. No network traffic (all SDK clients stubbed).

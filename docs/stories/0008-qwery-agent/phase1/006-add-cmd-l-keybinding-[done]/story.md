@@ -42,7 +42,7 @@ Register a global CMD/CTRL + L keybinding in `apps/web/src/shell/project-shell-h
 - [x] CMD+L on `/org/<slug>` / `/auth/*` is a no-op — `ProjectShellHost` (and therefore the hook) doesn't mount on those routes.
 - [x] CodeMirror passthrough — handler bails before `preventDefault` when target ancestor matches `[data-codemirror-root]`.
 - [x] `event.preventDefault()` suppresses the browser's "select address bar" default inside the shell.
-- [⚠] `pnpm --filter @guepard/qwery-agent typecheck` clean. Repo-wide `pnpm typecheck` blocked on a pre-existing parallel-session issue: `Repositories` type gained `userToken` and `jwtSigner` fields but `apps/web/src/lib/repositories/repositories-factory.ts` and `apps/server/src/lib/repositories.ts` haven't been updated yet. Unrelated to this story; expected to be fixed by the parallel auth-work session.
+- [⚠] `pnpm --filter @qlm/qwery-agent typecheck` clean. Repo-wide `pnpm typecheck` blocked on a pre-existing parallel-session issue: `Repositories` type gained `userToken` and `jwtSigner` fields but `apps/web/src/lib/repositories/repositories-factory.ts` and `apps/server/src/lib/repositories.ts` haven't been updated yet. Unrelated to this story; expected to be fixed by the parallel auth-work session.
 
 ## Tasks
 

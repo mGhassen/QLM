@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { I18nextProvider } from 'react-i18next';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { RevealTokenView } from '../src/components/reveal-token-view';
 import { storybookI18n } from '../src/components/story-helpers';

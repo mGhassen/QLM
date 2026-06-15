@@ -26,7 +26,7 @@ Expose user preferences and `organizations.switchTo` through `useShell()` so the
 - `packages/shell-runtime/src/resources/organizations.ts` — add `switchTo(orgId)` that resolves the last project and returns `{ slug }`; caller performs `router.navigate` (keeps shell-runtime router-agnostic, story 008 wires the actual nav).
 - `packages/shell-runtime/src/client.ts` — expose `shell.userPreferences`.
 - `packages/shell-runtime/src/context.tsx` — on route enter for a project, call `setLastProject(orgSlug, projectId)` (fire-and-forget; errors logged, never thrown).
-- Scaffold vitest + `@testing-library/react` in `packages/shell-runtime` — the package has no test infra today; story Demo requires `pnpm --filter @guepard/shell-runtime test`.
+- Scaffold vitest + `@testing-library/react` in `packages/shell-runtime` — the package has no test infra today; story Demo requires `pnpm --filter @qlm/shell-runtime test`.
 - Unit tests for the user-preferences resource, for `organizations.switchTo`, and for the on-enter write path.
 
 **Pre-landed (story 005)**
@@ -39,7 +39,7 @@ Expose user preferences and `organizations.switchTo` through `useShell()` so the
 
 ## Acceptance criteria
 
-- [x] `pnpm --filter @guepard/shell-runtime test` passes.
+- [x] `pnpm --filter @qlm/shell-runtime test` passes.
 - [x] `useShell().userPreferences.getLastProject(orgId)` returns the org's default project when the server returns `{}`.
 - [x] `organizations.switchTo(orgId)` resolves last project, navigates, and the trigger label updates via re-render.
 - [x] Fire-and-forget write on route-enter does not block render; error is logged but does not throw.
@@ -54,7 +54,7 @@ Expose user preferences and `organizations.switchTo` through `useShell()` so the
 ## Demo / verification
 
 ```
-pnpm --filter @guepard/shell-runtime test
+pnpm --filter @qlm/shell-runtime test
 pnpm --filter web test  # ensure the new HTTP adapter + factory wiring stay green
 ```
 

@@ -31,12 +31,12 @@ files:
   - `SettingsDialog` consumes this internally to gate close.
 - `packages/features/settings-shell/src/components/settings-sidebar.tsx`:
   - Props: `{ sections: SettingsSection[]; activeKey: SettingsSectionKey; onSelect: (key: SettingsSectionKey) => void }`. `Readonly<Props>`.
-  - Renders a `<nav>` with `<ul>` of `<li>` entries — each is a `@guepard/ui/button` with `variant="ghost"` and a left-icon slot. Active entry uses `bg-accent text-accent-foreground`.
+  - Renders a `<nav>` with `<ul>` of `<li>` entries — each is a `@qlm/ui/button` with `variant="ghost"` and a left-icon slot. Active entry uses `bg-accent text-accent-foreground`.
   - No internal state — fully controlled by parent.
 - `packages/features/settings-shell/src/components/settings-dialog.tsx`:
   - Props: `{ open: boolean; onOpenChange: (next: boolean) => void; sections: SettingsSection[]; defaultSectionKey?: SettingsSectionKey; titleKey?: string; closeAriaLabelKey?: string; discardGuardKey?: string }`. `Readonly<Props>`.
   - Internal state: `activeKey` (defaults to `defaultSectionKey ?? sections[0].key`).
-  - Layout: `@guepard/ui/dialog` Root → DialogContent (two-column flex: left 240px sidebar, right outlet).
+  - Layout: `@qlm/ui/dialog` Root → DialogContent (two-column flex: left 240px sidebar, right outlet).
   - Title slot uses `titleKey` (default `'settings:dialog.title'`) via `t(...)`.
   - Close button (X) at top-right uses `closeAriaLabelKey` (default `'settings:dialog.close'`).
   - `onOpenChange(false)` (X / Esc / overlay click) consults `useSettingsDirtyState().isDirty()` — if true, fires a synchronous `confirm(t(discardGuardKey))` (default `'settings:dialog.discardGuard'`); only proceeds when the user confirms. Synchronous `confirm()` keeps the implementation tiny and matches what spec §3.2.1 calls out as acceptable.
@@ -47,8 +47,8 @@ files:
 
 ## Acceptance
 
-- [ ] `pnpm --filter @guepard/settings-shell typecheck` passes.
-- [ ] `pnpm --filter @guepard/settings-shell test` passes (≥ 80 % coverage on the new files).
+- [ ] `pnpm --filter @qlm/settings-shell typecheck` passes.
+- [ ] `pnpm --filter @qlm/settings-shell test` passes (≥ 80 % coverage on the new files).
 - [ ] No hardcoded English strings in dialog/sidebar source files.
 - [ ] All components are `Readonly<Props>`.
 - [ ] Dirty-state guard only triggers `confirm()` when at least one section is dirty.
@@ -56,13 +56,13 @@ files:
 ## Test plan
 
 ```
-pnpm --filter @guepard/settings-shell typecheck
-pnpm --filter @guepard/settings-shell test
+pnpm --filter @qlm/settings-shell typecheck
+pnpm --filter @qlm/settings-shell test
 ```
 
 ## Storybook validation
 
-- **Command**: `pnpm --filter @guepard/storybook-config storybook`
+- **Command**: `pnpm --filter @qlm/storybook-config storybook`
 - **Story titles to inspect**: `SettingsShell / SettingsSidebar / Empty | One Item | Three Items | With Icons`, `SettingsShell / SettingsDialog / One Section | Three Sections | Discard Guard Clean | Discard Guard Dirty`.
 - **Expected visual outcome**: dialog opens in a centered modal; left rail shows sections; clicking a sidebar entry switches the right outlet content; clicking X / Escape closes immediately when clean and shows a browser-native confirm("Discard unsaved changes?") when dirty.
 

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/app-org-settings",
+  "name": "@qlm/app-org-settings",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,13 +8,13 @@
     "./manifest": "./src/manifest.ts"
   },
   "dependencies": {
-    "@guepard/accounts": "workspace:*",
-    "@guepard/billing": "workspace:*",
-    "@guepard/domain": "workspace:*",
-    "@guepard/settings-shell": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/accounts": "workspace:*",
+    "@qlm/billing": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/settings-shell": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "catalog:",
     "lucide-react": "^0.552.0",
@@ -27,7 +27,7 @@
     "react": "catalog:"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@storybook/react": "catalog:",
     "@types/react": "catalog:",
     "i18next": "^25.6.0",

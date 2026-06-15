@@ -19,7 +19,7 @@ repository, runs `execute(input)`, and invalidates the right query keys.
 - [ ] All four mutations exposed under `shell.nodes` with promise return types matching `NodeOutput`.
 - [ ] After every mutation, the runtime invalidates: `nodes.detail`, `nodes.list`, `fleet.summary`, `fleet.pools`, `fleet.pressure`.
 - [ ] Project context auto-injected (no caller passes `projectId` / `orgSlug`).
-- [ ] `pnpm --filter @guepard/shell-runtime typecheck` green.
+- [ ] `pnpm --filter @qlm/shell-runtime typecheck` green.
 
 ## Notes
 

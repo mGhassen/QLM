@@ -1,5 +1,5 @@
-import type { EnrollTotpOutput, MfaFactor } from '@guepard/domain/entities';
-import { IMfaRepository } from '@guepard/domain/repositories';
+import type { EnrollTotpOutput, MfaFactor } from '@qlm/domain/entities';
+import { IMfaRepository } from '@qlm/domain/repositories';
 
 import type { SupabaseClientType } from './types';
 

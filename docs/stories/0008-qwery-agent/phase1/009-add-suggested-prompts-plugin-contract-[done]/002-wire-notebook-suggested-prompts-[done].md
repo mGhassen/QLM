@@ -19,13 +19,13 @@ First consumer of the `SuggestedPrompts` contract. Exports 3 notebook-centric pr
 ## Acceptance
 
 - [ ] `SuggestedPrompts` exported from `packages/apps/notebook/src/plugin-root.tsx`.
-- [ ] `pnpm --filter @guepard/notebook typecheck` passes.
+- [ ] `pnpm --filter @qlm/notebook typecheck` passes.
 - [ ] `registry.getSuggestedPrompts('notebook')` returns the 3 notebook prompts (via the mechanism added in task 001).
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/notebook typecheck
+pnpm --filter @qlm/notebook typecheck
 ```
 
 ## Notes

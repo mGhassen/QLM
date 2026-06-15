@@ -1,9 +1,9 @@
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { Region } from '@guepard/domain/usecases';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import type { Region } from '@qlm/domain/usecases';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 
 export type IntegrationRegionsPanelProps = Readonly<{
   regions: Region[] | null;

@@ -54,7 +54,7 @@ Today's enum mixes them: `running` is both "operator wants it up" AND "orchestra
 - Health computed, never stale.
 - Topology stops mixing operator intent into pool aggregations.
 
-Phase 1 (RFC 0025) is the structural prerequisite — typed `Pool`, `shell.fleet`, and the merged `@guepard/infrastructure` pkg. Phase 2 lands on top.
+Phase 1 (RFC 0025) is the structural prerequisite — typed `Pool`, `shell.fleet`, and the merged `@qlm/infrastructure` pkg. Phase 2 lands on top.
 
 ## 3. Goals and non-goals
 

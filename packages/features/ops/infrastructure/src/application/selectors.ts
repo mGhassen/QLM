@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 /** Max CPU/memory across the visible set — drives HeatBar normalization. */
 export function useMaxResources(rows: readonly Node[]): { maxCpu: number; maxMem: number } {

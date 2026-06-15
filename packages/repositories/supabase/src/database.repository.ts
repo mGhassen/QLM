@@ -1,5 +1,5 @@
-import type { Database as DatabaseEntity } from '@guepard/domain/entities';
-import { IDatabaseRepository } from '@guepard/domain/repositories';
+import type { Database as DatabaseEntity } from '@qlm/domain/entities';
+import { IDatabaseRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 type JoinedPerformanceProfile = {

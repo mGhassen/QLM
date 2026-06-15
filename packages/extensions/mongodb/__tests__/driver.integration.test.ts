@@ -12,11 +12,11 @@ import { driverFactory } from '../src/driver';
  * Integration test: boots a real MongoDB 7 container via testcontainers,
  * seeds two collections, and exercises the driver end-to-end.
  *
- * Requires Docker on the host. Run via `pnpm --filter @guepard/extension-mongodb test:integration`.
+ * Requires Docker on the host. Run via `pnpm --filter @qlm/extension-mongodb test:integration`.
  */
 
 const MONGO_IMAGE = 'mongo:7';
-const DB_NAME = 'guepard_test';
+const DB_NAME = 'qlm_test';
 
 describe('mongodb driver (integration)', () => {
   let container: StartedTestContainer;

@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Gauge, Tag, Database, Cpu, HardDrive, FileCode, Star, Globe, Layers, Check, Copy } from 'lucide-react';
 
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { EntitySheetBody, EntitySheetHeader, EntitySheetFooter } from '@guepard/ui/entity-sheet';
-import { BadgeItem, EntitySection, ResourceCard, DataRow } from '@guepard/ui/entity-primitives';
-import { Button } from '@guepard/ui/button';
-import { cn } from '@guepard/ui/utils';
-import { toast } from '@guepard/ui/sonner';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { EntitySheetBody, EntitySheetHeader, EntitySheetFooter } from '@qlm/ui/entity-sheet';
+import { BadgeItem, EntitySection, ResourceCard, DataRow } from '@qlm/ui/entity-primitives';
+import { Button } from '@qlm/ui/button';
+import { cn } from '@qlm/ui/utils';
+import { toast } from '@qlm/ui/sonner';
 
 import { PROVIDER_LABELS, PROVIDER_STYLES } from '../../application/constants';
 import { ProfileStatusBadge } from '../cells/profile-status-badge';

@@ -21,9 +21,9 @@ Agents available to `/finish`: `ui-validator` (runs UI smoke + e2e, fixes inline
 
 ## Non-negotiable principles
 
-1. **Hexagonal architecture** — `packages/domain` is pure. Adapters implement ports. Apps use `useShell()` from `@guepard/shell-runtime`, never domain services directly. See `@.claude/rules/hexagonal-architecture.md`.
+1. **Hexagonal architecture** — `packages/domain` is pure. Adapters implement ports. Apps use `useShell()` from `@qlm/shell-runtime`, never domain services directly. See `@.claude/rules/hexagonal-architecture.md`.
 2. **Clean code** — meaningful names, small functions, no dead code, no speculative abstractions. See `@.claude/rules/clean-code.md`.
-3. **i18n everywhere** — no hardcoded user-facing strings. Use `t(...)` and `@guepard/ui/trans`. See `@.claude/rules/i18n.md`.
+3. **i18n everywhere** — no hardcoded user-facing strings. Use `t(...)` and `@qlm/ui/trans`. See `@.claude/rules/i18n.md`.
 4. **Row Level Security always** — every new table has RLS enabled with explicit policies. See `@.claude/rules/database.md`.
 5. **Run `pnpm typecheck` after every change** — catches most issues before runtime. See `@.claude/rules/commands.md`.
 6. **Security by design** — respect SOC 2 / ISO rules when touching auth, identity, secrets, or data lifecycle. Compliance evidence lives in Vanta, not in this repo. See `@.claude/rules/security.md`.

@@ -3,18 +3,18 @@ import * as React from 'react';
 import { Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import type { TestResult } from '@guepard/domain/usecases';
-import { Button } from '@guepard/ui/button';
-import { Input } from '@guepard/ui/input';
-import { Label } from '@guepard/ui/label';
-import { SecretInput } from '@guepard/ui/secret-input';
+import type { TestResult } from '@qlm/domain/usecases';
+import { Button } from '@qlm/ui/button';
+import { Input } from '@qlm/ui/input';
+import { Label } from '@qlm/ui/label';
+import { SecretInput } from '@qlm/ui/secret-input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@guepard/ui/select';
+} from '@qlm/ui/select';
 
 import { TestResultBanner } from './test-result-banner';
 

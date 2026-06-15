@@ -2,8 +2,8 @@ import {
   createCheckoutSession,
   createPaymentIntent,
   createSetupIntent,
-} from '@guepard/billing/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/billing/services';
+import type { Repositories } from '@qlm/domain/repositories';
 
 import appConfig from '@/config/app.config';
 import pathsConfig from '@/config/paths.config';

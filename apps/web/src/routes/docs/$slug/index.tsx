@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { DocsPreviewPage } from '@guepard/docs-studio/pages';
+import { DocsPreviewPage } from '@qlm/docs-studio/pages';
 
 export const Route = createFileRoute('/docs/$slug/')({
   head: ({ params }) => ({

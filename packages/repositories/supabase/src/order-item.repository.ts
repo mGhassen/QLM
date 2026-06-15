@@ -1,6 +1,6 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import type { OrderItem } from '@guepard/domain/entities';
-import { IOrderItemRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import type { OrderItem } from '@qlm/domain/entities';
+import { IOrderItemRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 export class OrderItemRepository extends IOrderItemRepository {

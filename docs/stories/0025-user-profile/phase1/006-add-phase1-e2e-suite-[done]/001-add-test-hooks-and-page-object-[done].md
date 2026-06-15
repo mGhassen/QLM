@@ -36,7 +36,7 @@ Sprinkle stable `data-test` attributes across the four profile cards (and the tw
   - `uploadAvatar(filepath, mime)`, `clearAvatar()`, `expectAvatarVisible(boolean)`, `expectAvatarRejection(reason)`.
   - `setPassword({current, next, confirm})`, `submitPassword()`, `expectPasswordError(message)`, `expectPasswordSuccessToast()`.
   - `expectTopbarName(name)` — reads the topbar avatar dropdown trigger.
-- [ ] `pnpm typecheck` + `pnpm --filter @guepard/user-profile test` + `pnpm --filter e2e typecheck` all pass.
+- [ ] `pnpm typecheck` + `pnpm --filter @qlm/user-profile test` + `pnpm --filter e2e typecheck` all pass.
 
 ## Notes
 

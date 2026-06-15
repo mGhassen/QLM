@@ -10,7 +10,7 @@ const meta: Meta<typeof TopbarTrigger> = {
   args: {
     orgInitial: 'G',
     orgColor: '#f59e0b',
-    projectName: 'Rasm Console',
+    projectName: 'QLM Console',
     isOpen: false,
     onOpen: fn(),
   },

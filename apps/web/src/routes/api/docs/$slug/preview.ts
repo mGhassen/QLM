@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { handlePreviewDoc } from '@guepard/docs-studio/server';
+import { handlePreviewDoc } from '@qlm/docs-studio/server';
 
 export const Route = createFileRoute('/api/docs/$slug/preview')({
   server: {

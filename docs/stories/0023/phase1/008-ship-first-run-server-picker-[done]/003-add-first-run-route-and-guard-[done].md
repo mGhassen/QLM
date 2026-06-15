@@ -13,17 +13,17 @@ validation:
 
 # Add first-run route and guard
 
-Wire the picker component into a TanStack file-based route at `/desktop/first-run` and add a routing guard at the root that redirects to it when `runtime === 'desktop'` AND `getAppConfig()` lacks `GUEPARD_SERVER_URL`.
+Wire the picker component into a TanStack file-based route at `/desktop/first-run` and add a routing guard at the root that redirects to it when `runtime === 'desktop'` AND `getAppConfig()` lacks `QLM_SERVER_URL`.
 
 ## Done when
 
 - [ ] New file `apps/web/src/routes/desktop/first-run.tsx`:
   - `createFileRoute('/desktop/first-run')` exports a `Route` whose `component` mounts `<DesktopFirstRunPicker>` from task 002.
-  - The route's container `useEffect` (or a `loader` if simpler) reads `getAppConfig()` from `@guepard/shell-runtime` once on mount to surface a `mdmDefaultUrl` to the picker if `config.json` was MDM-delivered. MDM-delivery detection: presence of `GUEPARD_SERVER_URL` in config when first-run-marker file is absent. (If marker logic is too complex for this story, just pass `mdmDefaultUrl={undefined}` for now and add the marker in a follow-up — the picker still works, MDM just won't pre-select.)
-  - On `onSubmit(url)` → `setAppConfig({ GUEPARD_SERVER_URL: url })` → `restartSidecar()` → navigate to `/`. Errors surfaced via `sonner` toast (`t('desktop.errors.*')` keys can land in story 009 — for now, a generic `t('common.errorGeneric')` if available, else inline `console.error` + a stable English fallback documented as TODO for the i18n stretch in story 009).
+  - The route's container `useEffect` (or a `loader` if simpler) reads `getAppConfig()` from `@qlm/shell-runtime` once on mount to surface a `mdmDefaultUrl` to the picker if `config.json` was MDM-delivered. MDM-delivery detection: presence of `QLM_SERVER_URL` in config when first-run-marker file is absent. (If marker logic is too complex for this story, just pass `mdmDefaultUrl={undefined}` for now and add the marker in a follow-up — the picker still works, MDM just won't pre-select.)
+  - On `onSubmit(url)` → `setAppConfig({ QLM_SERVER_URL: url })` → `restartSidecar()` → navigate to `/`. Errors surfaced via `sonner` toast (`t('desktop.errors.*')` keys can land in story 009 — for now, a generic `t('common.errorGeneric')` if available, else inline `console.error` + a stable English fallback documented as TODO for the i18n stretch in story 009).
   - Route is `runtime === 'web'`-aware: if reached from a regular browser, redirects to `/` (TanStack `redirect()` from `beforeLoad`).
 - [ ] New file `apps/web/src/lib/desktop-server-url-guard.ts`:
-  - Exports `requireServerUrlOrRedirect(): Promise<void>` — a small async helper that checks `useRuntime()`-equivalent (`isDesktopApp()` directly since this runs outside React) AND `getAppConfig()` for `GUEPARD_SERVER_URL`. If desktop AND missing → `throw redirect({ to: '/desktop/first-run' })` from `@tanstack/react-router`.
+  - Exports `requireServerUrlOrRedirect(): Promise<void>` — a small async helper that checks `useRuntime()`-equivalent (`isDesktopApp()` directly since this runs outside React) AND `getAppConfig()` for `QLM_SERVER_URL`. If desktop AND missing → `throw redirect({ to: '/desktop/first-run' })` from `@tanstack/react-router`.
 - [ ] `apps/web/src/routes/__root.tsx` adds the guard call inside the `beforeLoad` hook of the existing `createRootRouteWithContext`. Skip the guard when the requested route is already `/desktop/first-run` to avoid an infinite loop.
 - [ ] `pnpm typecheck` + `pnpm lint` green.
 

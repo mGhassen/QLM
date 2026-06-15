@@ -22,7 +22,7 @@ const stripeStub = {
   },
 };
 
-vi.mock('@guepard/shared/logger', () => ({
+vi.mock('@qlm/shared/logger', () => ({
   getLogger: vi.fn().mockResolvedValue({
     info: vi.fn(),
     warn: vi.fn(),

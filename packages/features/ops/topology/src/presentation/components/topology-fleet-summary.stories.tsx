@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import type { FleetSummary, PressurePoint } from '@guepard/domain/usecases';
+import type { FleetSummary, PressurePoint } from '@qlm/domain/usecases';
 
 import { TopologyFleetSummary } from './topology-fleet-summary';
 

@@ -16,7 +16,7 @@ import {
  * that component inside the panel body.
  *
  * This file intentionally contains only state — no registry lookup,
- * no component rendering — so `@guepard/shell-runtime` doesn't take a
+ * no component rendering — so `@qlm/shell-runtime` doesn't take a
  * dependency on the host's app-registry shape. The host
  * (`apps/web/src/shell/project-shell-host.tsx`) owns both the provider
  * instance AND the registry-lookup logic that derives the rendered
@@ -86,7 +86,7 @@ export function DocsPanelProvider(
  * Hook for plugins to drive the docs panel. Throws when called outside
  * a `DocsPanelProvider` so tests and Storybook stories that render
  * plugin components must wrap them in the provider (or a no-op one —
- * see the story helpers in `@guepard/integrations`).
+ * see the story helpers in `@qlm/integrations`).
  */
 export function useDocsPanel(): DocsPanelContextValue {
   const ctx = useContext(DocsPanelContext);

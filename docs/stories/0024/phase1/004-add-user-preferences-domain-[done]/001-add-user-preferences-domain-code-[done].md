@@ -33,7 +33,7 @@ Ship the pure-domain contract for per-user preferences so stories 005 (adapter +
 - [x] `GetLastProjectService` resolves `last_project_by_org[orgId]`; falls back to `null` when unset.
 - [x] `SetLastProjectService` produces the patch `{ last_project_by_org: { [orgId]: projectId } }` and calls `repo.patch`.
 - [x] Unit tests cover: valid parse, invalid parse (non-uuid), missing `last_project_by_org` → null fallback, partial patch preserves sibling keys.
-- [x] Domain tests green via `pnpm --filter @guepard/domain test`.
+- [x] Domain tests green via `pnpm --filter @qlm/domain test`.
 - [x] Monorepo-wide `pnpm typecheck` green.
 
 ## Notes

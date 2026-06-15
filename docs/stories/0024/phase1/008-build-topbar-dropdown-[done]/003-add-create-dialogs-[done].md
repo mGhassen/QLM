@@ -26,12 +26,12 @@ Two modal dialogs driving project / organization creation. Fields: `name` (requi
 - [ ] `create-org-dialog.tsx` exports `CreateOrgDialog` with the same prop shape.
 - [ ] Validation: `name` non-empty (`.min(1)`), `slug` matches `^[a-z0-9-]+$` and non-empty. Auto-derive `slug` from `name` via a small `slugify(name)` helper inside the module (`lowercase → replace [^a-z0-9] with '-' → trim '-' → truncate 48 chars`). Stop auto-deriving the moment the user edits the slug field.
 - [ ] Submit disabled while invalid OR while `isSubmitting`. Show spinner on submit button. Server error (via `serverError` prop) renders as inline alert above the submit row.
-- [ ] Dialog uses `@guepard/ui` Shadcn `Dialog` + `react-hook-form` + `@hookform/resolvers/zod`. All labels / placeholders / errors go through `useTranslation('shell')` — reuse the existing keys from story 002 (add only what's strictly missing).
+- [ ] Dialog uses `@qlm/ui` Shadcn `Dialog` + `react-hook-form` + `@hookform/resolvers/zod`. All labels / placeholders / errors go through `useTranslation('shell')` — reuse the existing keys from story 002 (add only what's strictly missing).
 - [ ] Storybook stories: `Idle`, `Submitting`, `ServerError`, `PrefilledFromTrigger` (seed `defaultValues`).
-- [ ] `pnpm typecheck` green; `pnpm --filter @guepard/shell-topbar test` green (no new tests required here — behavior is mostly react-hook-form + Zod, which the host covers in 004).
+- [ ] `pnpm typecheck` green; `pnpm --filter @qlm/shell-topbar test` green (no new tests required here — behavior is mostly react-hook-form + Zod, which the host covers in 004).
 
 ## Notes
 
 - The dialog doesn't know about `shell.projects.create` / `shell.organizations.create`. Keep `onSubmit` as the single contract; the composite wires it to the mutation.
 - When submission succeeds, the parent closes the dialog by flipping `open` → `false`. No internal auto-close after `onSubmit` resolves — keeps the close decision with the caller (they may want to chain a navigation first).
-- Don't add ESLint disables to force `react-i18next/Trans` — use `@guepard/ui/trans` if any rich-text copy is needed. Pure `t()` calls are fine via `react-i18next`.
+- Don't add ESLint disables to force `react-i18next/Trans` — use `@qlm/ui/trans` if any rich-text copy is needed. Pure `t()` calls are fine via `react-i18next`.

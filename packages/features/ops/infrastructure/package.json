@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/infrastructure",
+  "name": "@qlm/infrastructure",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -12,17 +12,17 @@
     "./types": "./src/application/types.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/ui": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "date-fns": "catalog:",
     "react-hook-form": "^7.66.0",
     "react-virtuoso": "^4.17.0"
   },
   "devDependencies": {
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@storybook/react-vite": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "catalog:",

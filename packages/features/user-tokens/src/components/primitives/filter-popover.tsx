@@ -1,9 +1,9 @@
 import { ChevronDown } from 'lucide-react';
 
-import { Badge } from '@guepard/ui/badge';
-import { Button } from '@guepard/ui/button';
-import { Checkbox } from '@guepard/ui/checkbox';
-import { Popover, PopoverContent, PopoverTrigger } from '@guepard/ui/popover';
+import { Badge } from '@qlm/ui/badge';
+import { Button } from '@qlm/ui/button';
+import { Checkbox } from '@qlm/ui/checkbox';
+import { Popover, PopoverContent, PopoverTrigger } from '@qlm/ui/popover';
 
 export type FilterPopoverProps<T extends string> = {
   label: string;
@@ -14,7 +14,7 @@ export type FilterPopoverProps<T extends string> = {
 
 /**
  * Generic multi-select popover used by the toolbar's Status + Scopes
- * filters. Lives here (not `@guepard/ui`) because phase 1 has only one
+ * filters. Lives here (not `@qlm/ui`) because phase 1 has only one
  * consumer; if a second appears we promote it.
  *
  * - Fully controlled: `selected` is the source of truth, `onChange` emits

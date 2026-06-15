@@ -1,5 +1,5 @@
-import type { UserToken } from '@guepard/domain/entities';
-import type { CreateUserTokenOutput } from '@guepard/domain/usecases';
+import type { UserToken } from '@qlm/domain/entities';
+import type { CreateUserTokenOutput } from '@qlm/domain/usecases';
 
 /**
  * Discriminated union of pane states per RFC 0009 spec §3.2.6.

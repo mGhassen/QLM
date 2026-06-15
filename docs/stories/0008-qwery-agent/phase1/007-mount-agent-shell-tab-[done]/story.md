@@ -29,10 +29,10 @@ Add the flat route `apps/web/src/routes/agent/$conversationSlug.tsx`, the `creat
   - Loads the conversation via `useShell().conversations.getBySlug(slug)`.
   - Resolves the project context from the conversation's `projectId` (calls the existing `resolveProjectContext` pattern used by other flat routes like `/notebook/$slug`).
   - Mounts the page under `ProjectShellHost`, passing a `virtualTab = { id: 'agent:<slug>', title: <conversationTitle>, href }` so the shell tab bar shows it.
-  - Renders `<AgentTabBody conversationSlug={slug} />` from `@guepard/qwery-agent`.
+  - Renders `<AgentTabBody conversationSlug={slug} />` from `@qlm/qwery-agent`.
   - Handles the "conversation not found" state with a minimal empty view + "Back to project" action.
 - New helper `createAgentPath(conversationSlug: string): string` in `apps/web/src/config/paths.config.ts` returning `/agent/<slug>`.
-- New hook `useOpenConversationInTab(slug)` inside `@guepard/qwery-agent` that (a) ensures the shell tab for the conversation exists by calling the host-level virtual-tab upsert path, (b) navigates to `createAgentPath(slug)`.
+- New hook `useOpenConversationInTab(slug)` inside `@qlm/qwery-agent` that (a) ensures the shell tab for the conversation exists by calling the host-level virtual-tab upsert path, (b) navigates to `createAgentPath(slug)`.
 - Wire the "Open in new tab" button in `AssistantPanelBody` (header) to call the hook with the current panel conversation's slug — so clicking it opens the same conversation as a shell tab (same slug, per RFC Amendment A1).
 - `project-shell-host.tsx` accepts the optional `virtualTab` for agent slugs and upserts it into `openTabs` following the existing mechanism for flat routes (the same hook used by `/notebook/$slug`).
 
@@ -49,7 +49,7 @@ Add the flat route `apps/web/src/routes/agent/$conversationSlug.tsx`, the `creat
 - [⚠] Direct navigation to `/agent/<slug>` mounts the project shell. The new route does this via `<ProjectShellHost>`. Live smoke pending.
 - [⚠] Two concurrent agent tabs in the same project — follows naturally from the shell's existing multi-tab support; both slugs produce distinct `virtualTab` ids. Live smoke pending.
 - [x] Bad slug renders a not-found placeholder (not a blank screen or crash). The route returns `<NotFound />` when `findBySlug` returns null.
-- [⚠] `pnpm --filter @guepard/qwery-agent typecheck` passes. Repo-wide `pnpm typecheck` still blocked on the parallel auth-work issue (`userToken` / `jwtSigner` fields missing from factories) — unrelated to this story.
+- [⚠] `pnpm --filter @qlm/qwery-agent typecheck` passes. Repo-wide `pnpm typecheck` still blocked on the parallel auth-work issue (`userToken` / `jwtSigner` fields missing from factories) — unrelated to this story.
 
 ## Tasks
 
@@ -73,7 +73,7 @@ pnpm dev
 ## Notes
 
 - 001: mirrored `$flatPrefix.$.tsx` but kept it dedicated — no plugin manifest, no entry in the app registry. The `virtualTab` mechanism already does the heavy lifting; the route itself is ~80 lines.
-- 002: no `createAgentPath` helper introduced — features package can't import from `apps/web/src/config/paths.config.ts`, and the inline string `'/agent/' + slug` is simple enough. Added `@tanstack/react-router` as a runtime dep on `@guepard/qwery-agent` so `useNavigate` resolves.
+- 002: no `createAgentPath` helper introduced — features package can't import from `apps/web/src/config/paths.config.ts`, and the inline string `'/agent/' + slug` is simple enough. Added `@tanstack/react-router` as a runtime dep on `@qlm/qwery-agent` so `useNavigate` resolves.
 - No close-button wiring — the `onClose` prop is there as a hook but deferred (phase 2 or polish story). Phase 1 closes the panel via the topbar toggle / CMD+L, not from inside the header.
 
 ## Spec-accuracy check

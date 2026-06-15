@@ -9,7 +9,7 @@ import * as React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
 
 import { MagicLinkAuthContainer } from './magic-link-auth-container';
 import { ResendAuthLinkForm } from './resend-auth-link-form';

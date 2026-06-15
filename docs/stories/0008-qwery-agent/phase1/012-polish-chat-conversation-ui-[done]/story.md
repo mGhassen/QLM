@@ -33,11 +33,11 @@ Make the assistant panel + full-tab view feel like a chat instead of a terminal:
   - Submission hits the existing `POST /api/feedback` route (already live — see `apps/server/src/routes/feedback.ts`).
   - Hook the `onSubmitFeedback` callback on `<QweryAgentUI>` in both `AssistantPanelBody` and `AgentTabBody`.
 - Prompt input text uses the same sans-serif body font (placeholder + typed text).
-- Storybook stories for any updated `packages/ui/src/guepard/ai/*` primitives reflect the new typography + feedback affordance.
+- Storybook stories for any updated `packages/ui/src/qlm/ai/*` primitives reflect the new typography + feedback affordance.
 
 **Out of scope**
 
-- Full chat-theming tokens / dark-mode palette redesign — tokens live in `tooling/tailwind/*`; keep changes scoped to `packages/ui/src/guepard/ai/*` unless a token is clearly mis-scoped.
+- Full chat-theming tokens / dark-mode palette redesign — tokens live in `tooling/tailwind/*`; keep changes scoped to `packages/ui/src/qlm/ai/*` unless a token is clearly mis-scoped.
 - Rich message composition (code editor, slash menus, attachment upload) — orthogonal.
 - Agent response performance / streaming improvements — not a UX concern for this story.
 - Any change to `packages/features/qwery-agent` beyond passing the new `onSubmitFeedback` prop from the two bodies.
@@ -45,7 +45,7 @@ Make the assistant panel + full-tab view feel like a chat instead of a terminal:
 
 ## Acceptance criteria
 
-- [x] User message text renders in the app's sans-serif body font, sized at the app's body scale; user bubble is right-aligned with a muted background and a max-width that wraps at ~52ch. **Deferred to story 013** — Guepard brand keeps monospace app-wide (intentional); right-alignment + prose size still needs DOM-level investigation.
+- [x] User message text renders in the app's sans-serif body font, sized at the app's body scale; user bubble is right-aligned with a muted background and a max-width that wraps at ~52ch. **Deferred to story 013** — QLM brand keeps monospace app-wide (intentional); right-alignment + prose size still needs DOM-level investigation.
 - [x] Assistant message text renders in the app's sans-serif body font, sized at the app's body scale; code blocks + inline code + tool-call regions remain monospace. **Deferred to story 013** — Streamdown's own prose rules override wrapper-level size overrides.
 - [x] Prompt input placeholder + typed text render in the sans-serif body font. **Deferred to story 013** — same constraint.
 - [x] Every assistant message in the panel and the `/agent/$slug` tab shows the feedback button; clicking it opens the dialog; submitting calls `POST /api/feedback` successfully. Runtime-verified — toast fires, thumbs refresh without reload (fix in `agent-ui.tsx` metadata-sync branch).
@@ -64,7 +64,7 @@ Make the assistant panel + full-tab view feel like a chat instead of a terminal:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/ui storybook
+pnpm --filter @qlm/ui storybook
 # Open conversation-content story → confirm sans-serif body font, bubble
 # alignment, feedback button visible on assistant messages.
 

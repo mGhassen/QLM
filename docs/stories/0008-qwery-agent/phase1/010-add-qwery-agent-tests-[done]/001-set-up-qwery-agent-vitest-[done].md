@@ -12,7 +12,7 @@ files:
 
 ## Purpose
 
-Add Vitest infrastructure to `@guepard/qwery-agent` so the feature package can be tested. Mirrors `packages/features/accounts` setup.
+Add Vitest infrastructure to `@qlm/qwery-agent` so the feature package can be tested. Mirrors `packages/features/accounts` setup.
 
 ## Files
 
@@ -23,14 +23,14 @@ Add Vitest infrastructure to `@guepard/qwery-agent` so the feature package can b
 ## Acceptance
 
 - [ ] `pnpm install` runs clean.
-- [ ] `pnpm --filter @guepard/qwery-agent test` executes (zero tests is fine until task 002 adds some).
-- [ ] `pnpm --filter @guepard/qwery-agent typecheck` still passes.
+- [ ] `pnpm --filter @qlm/qwery-agent test` executes (zero tests is fine until task 002 adds some).
+- [ ] `pnpm --filter @qlm/qwery-agent typecheck` still passes.
 
 ## Test plan
 
 ```
 pnpm install
-pnpm --filter @guepard/qwery-agent test
+pnpm --filter @qlm/qwery-agent test
 ```
 
 ## Notes

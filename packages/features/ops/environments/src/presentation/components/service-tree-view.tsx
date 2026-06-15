@@ -5,7 +5,7 @@ import {
   ChevronRight, ArrowLeft, X,
   Shield, MoreHorizontal,
 } from "lucide-react";
-import { cn } from "@guepard/ui/utils";
+import { cn } from "@qlm/ui/utils";
 
 import {
   appendChildCloneUnderTreeId,

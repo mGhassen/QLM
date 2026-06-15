@@ -6,11 +6,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 
-import { useFetchAuthFactors } from '@guepard/supabase/hooks/use-fetch-mfa-factors';
-import { useSignOut } from '@guepard/supabase/hooks/use-sign-out';
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useFetchAuthFactors } from '@qlm/supabase/hooks/use-fetch-mfa-factors';
+import { useSignOut } from '@qlm/supabase/hooks/use-sign-out';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -18,17 +18,17 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { Heading } from '@guepard/ui/heading';
-import { If } from '@guepard/ui/if';
+} from '@qlm/ui/form';
+import { Heading } from '@qlm/ui/heading';
+import { If } from '@qlm/ui/if';
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from '@guepard/ui/input-otp';
-import { Spinner } from '@guepard/ui/spinner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/input-otp';
+import { Spinner } from '@qlm/ui/spinner';
+import { Trans } from '@qlm/ui/trans';
 
 export function MultiFactorChallengeContainer({
   paths,

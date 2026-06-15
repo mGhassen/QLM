@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import type { Database } from '@guepard/domain/entities';
-import { IDatabaseRepository, type Repositories } from '@guepard/domain/repositories';
-import { ShellAppProvider } from '@guepard/shell-runtime';
+import type { Database } from '@qlm/domain/entities';
+import { IDatabaseRepository, type Repositories } from '@qlm/domain/repositories';
+import { ShellAppProvider } from '@qlm/shell-runtime';
 
 import { STORY_DATABASES } from '../story-fixtures';
 import { DatabaseListPage } from './list-page';
@@ -53,7 +53,7 @@ function Frame({
   if (displayMode) {
     // Pre-seed the versioned preference so the list page opens in the desired mode.
     localStorage.setItem(
-      'guepard:databases:displayMode',
+      'qlm:databases:displayMode',
       JSON.stringify({ v: 1, data: displayMode }),
     );
   }
@@ -98,7 +98,7 @@ export const GridModeNarrow: Story = {
   decorators: [
     (Story) => {
       localStorage.setItem(
-        'guepard:databases:gridCols',
+        'qlm:databases:gridCols',
         JSON.stringify({ v: 1, data: 1 }),
       );
       return <Story />;

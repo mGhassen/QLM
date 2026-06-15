@@ -2,8 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import type { Database } from '@guepard/supabase/database';
-import { getSupabaseServerAdminClient } from '@guepard/supabase/server-admin-client';
+import type { Database } from '@qlm/supabase/database';
+import { getSupabaseServerAdminClient } from '@qlm/supabase/server-admin-client';
 
 import pathsConfig from '@/config/paths.config';
 

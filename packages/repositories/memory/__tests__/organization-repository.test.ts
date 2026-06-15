@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import type { Organization } from '@guepard/domain/entities';
+import type { Organization } from '@qlm/domain/entities';
 
 import { OrganizationRepository } from '../src/organization-repository';
 

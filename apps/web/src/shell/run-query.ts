@@ -1,4 +1,4 @@
-import type { DatasourceResultSet } from '@guepard/domain/entities';
+import type { DatasourceResultSet } from '@qlm/domain/entities';
 
 import { apiPost } from '@/lib/repositories/api-client';
 

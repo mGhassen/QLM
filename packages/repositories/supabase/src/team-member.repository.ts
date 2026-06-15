@@ -1,7 +1,7 @@
-import { Code } from '@guepard/domain/common';
-import type { TeamMember } from '@guepard/domain/entities';
-import { DomainException } from '@guepard/domain/exceptions';
-import { ITeamMemberRepository } from '@guepard/domain/repositories';
+import { Code } from '@qlm/domain/common';
+import type { TeamMember } from '@qlm/domain/entities';
+import { DomainException } from '@qlm/domain/exceptions';
+import { ITeamMemberRepository } from '@qlm/domain/repositories';
 import type {
   GetTeamMembersInput,
   GetTeamMembersOutput,
@@ -15,7 +15,7 @@ import type {
   LeaveTeamOutput,
   GetRolesOutput,
   Role,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 import type { SupabaseClientType } from './types';
 
 export class TeamMemberRepository extends ITeamMemberRepository {

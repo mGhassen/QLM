@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Trans } from '../guepard/trans';
+import { Trans } from '../qlm/trans';
 import {
   Table,
   TableBody,

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { NODE_PROVIDERS, type NodeProvider } from '@guepard/domain/entities';
+import { NODE_PROVIDERS, type NodeProvider } from '@qlm/domain/entities';
 
 /**
  * Discriminated union of every "virtual tab" identifier that the project

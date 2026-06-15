@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ChevronDown, Bell, Settings2, Zap } from "lucide-react";
 
-import { cn } from "@guepard/ui/utils";
-import { Separator } from "@guepard/ui/separator";
+import { cn } from "@qlm/ui/utils";
+import { Separator } from "@qlm/ui/separator";
 
 interface EnvironmentsWorkspaceNavbarProps {
   orgName: string;

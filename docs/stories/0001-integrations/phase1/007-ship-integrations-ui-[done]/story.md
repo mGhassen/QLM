@@ -25,7 +25,7 @@ Deliver the full phase-1 integrations user surface: the pure-presentation `featu
 
 **In scope**
 - New package `packages/features/integrations` with components + Storybook stories + fixtures, validated under the stage-A review gate before any backend code ships
-- `IntegrationsUI` built on top of `EntityListPage` from `@guepard/ui/entity-list` (search / sort / grid-vs-table toggle) — see spec Changelog for the design-review deviation from §3.2
+- `IntegrationsUI` built on top of `EntityListPage` from `@qlm/ui/entity-list` (search / sort / grid-vs-table toggle) — see spec Changelog for the design-review deviation from §3.2
 - Three-column `ProviderPicker` with a disabled "More providers coming soon" card — see spec Changelog
 - `IntegrationDetailSummary` accepting `createdByName?: string | null` — see spec Changelog
 - New plugin app `packages/apps/integrations` — manifest + plugin-root wiring mutations through `shell.integrations.*` with cache invalidation + toasts
@@ -40,8 +40,8 @@ Deliver the full phase-1 integrations user surface: the pure-presentation `featu
 
 - [x] Every component in spec §3.2 has a Storybook story rendering from fixtures
 - [x] Stage-A review gate cleared (user walked the story matrix before any backend code shipped)
-- [x] `pnpm --filter @guepard/features-integrations test` green
-- [x] `pnpm --filter @guepard/features-integrations typecheck` + `pnpm --filter @guepard/integrations typecheck` + `pnpm --filter web typecheck` all green on top of the pre-existing baseline
+- [x] `pnpm --filter @qlm/features-integrations test` green
+- [x] `pnpm --filter @qlm/features-integrations typecheck` + `pnpm --filter @qlm/integrations typecheck` + `pnpm --filter web typecheck` all green on top of the pre-existing baseline
 - [x] `integrations.json` locale covers every `list / new / form / detail / test / regions / rotate / rename / delete / toast / perm / provider` key group
 - [x] With `VITE_FEATURE_INTEGRATIONS=false`, the plugin manifest reports `enabled: false` and the app is hidden from the sidebar + server routes return 404
 
@@ -83,8 +83,8 @@ Shipped files:
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/features-integrations test
-pnpm --filter @guepard/features-integrations storybook
+pnpm --filter @qlm/features-integrations test
+pnpm --filter @qlm/features-integrations storybook
 pnpm --filter web dev  # with VITE_FEATURE_INTEGRATIONS=true
 ```
 

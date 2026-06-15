@@ -2,12 +2,12 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { zValidator } from '../lib/zod-validator.js';
 import { z } from 'zod';
-import type { CreateUsageInput } from '@guepard/domain/usecases';
+import type { CreateUsageInput } from '@qlm/domain/usecases';
 import {
   CreateUsageService,
   GetUsageByConversationSlugService,
-} from '@guepard/domain/services';
-import type { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/domain/services';
+import type { Repositories } from '@qlm/domain/repositories';
 import { handleDomainException } from '../lib/http-utils';
 
 const usageQuerySchema = z.object({

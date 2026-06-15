@@ -9,7 +9,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@guepard/ui/input-group';
+} from '@qlm/ui/input-group';
 
 const DEFAULT_PLACEHOLDER = 'your@email.com';
 

@@ -6,24 +6,24 @@ import { Mail } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useUpdateUser } from '@guepard/supabase/hooks/use-update-user-mutation';
-import { Alert, AlertDescription, AlertTitle } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useUpdateUser } from '@qlm/supabase/hooks/use-update-user-mutation';
+import { Alert, AlertDescription, AlertTitle } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@guepard/ui/input-group';
-import { toast } from '@guepard/ui/sonner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/input-group';
+import { toast } from '@qlm/ui/sonner';
+import { Trans } from '@qlm/ui/trans';
 
 import { UpdateEmailSchema } from '../../../schema/update-email.schema';
 

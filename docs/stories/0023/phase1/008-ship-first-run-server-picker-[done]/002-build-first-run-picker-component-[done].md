@@ -20,8 +20,8 @@ Build the presentational picker component that the route in task 003 will mount.
 - [ ] Selecting "Custom server URL" reveals a Shadcn `Input` with a TLS validator firing on `onBlur` (and on form submit). HTTPS-only check: `new URL(value).protocol === 'https:'`. Empty / non-URL → inline `urlInvalid` error.
 - [ ] When `mdmDefaultUrl` is provided, the matching radio option is pre-selected and a Shadcn `Alert` (or muted banner div) shows `t('desktop.firstRun.mdmBanner')`.
 - [ ] "Continue" CTA disabled until selection is valid (Cloud always valid; Custom requires non-empty + HTTPS); on click → `onSubmit(serverUrl)`. CTA shows the disabled state when `isSubmitting === true`.
-- [ ] All visible strings use `t('desktop.firstRun.*')` from task 001's namespace via `useTranslation()`. ESLint rule `@guepard/ui/trans` respected.
-- [ ] Component uses Shadcn primitives from `@guepard/ui` (Card, RadioGroup, Input, Button, Alert) and `cn` from `@guepard/ui/utils`. No raw HTML for interactive elements.
+- [ ] All visible strings use `t('desktop.firstRun.*')` from task 001's namespace via `useTranslation()`. ESLint rule `@qlm/ui/trans` respected.
+- [ ] Component uses Shadcn primitives from `@qlm/ui` (Card, RadioGroup, Input, Button, Alert) and `cn` from `@qlm/ui/utils`. No raw HTML for interactive elements.
 - [ ] `pnpm typecheck` stays green; `pnpm lint` stays green for `apps/web`.
 
 ## Notes

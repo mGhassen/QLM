@@ -24,7 +24,7 @@ Vitest + `@testing-library/react` coverage for each hook against a mocked `IUser
 
 ## Acceptance
 
-- [ ] All three test files run green via `pnpm --filter @guepard/user-tokens test`.
+- [ ] All three test files run green via `pnpm --filter @qlm/user-tokens test`.
 - [ ] Each mutation test directly verifies the post-success invalidation by spying on `queryClient.invalidateQueries`.
 - [ ] No real network / Supabase / DOM hits beyond what `@testing-library/react`'s `jsdom` provides.
 - [ ] Coverage ≥ 90 % on `src/hooks/*`.
@@ -32,8 +32,8 @@ Vitest + `@testing-library/react` coverage for each hook against a mocked `IUser
 ## Test plan
 
 ```
-pnpm --filter @guepard/user-tokens test
-pnpm --filter @guepard/user-tokens exec vitest run --coverage --coverage.include='src/hooks/*'
+pnpm --filter @qlm/user-tokens test
+pnpm --filter @qlm/user-tokens exec vitest run --coverage --coverage.include='src/hooks/*'
 ```
 
 ## Storybook validation

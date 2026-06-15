@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import type { DatasourceExtension } from '@guepard/extensions-sdk';
-import { Sheet, SheetContent, SheetTitle } from '@guepard/ui/sheet';
+import type { DatasourceExtension } from '@qlm/extensions-sdk';
+import { Sheet, SheetContent, SheetTitle } from '@qlm/ui/sheet';
 
 import {
   DatasourceConnectForm,

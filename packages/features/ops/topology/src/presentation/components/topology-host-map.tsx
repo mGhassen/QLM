@@ -1,14 +1,14 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { Node, NodeHealth } from '@guepard/domain/entities';
+import type { Node, NodeHealth } from '@qlm/domain/entities';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@guepard/ui/tooltip';
-import { cn } from '@guepard/ui/utils';
+} from '@qlm/ui/tooltip';
+import { cn } from '@qlm/ui/utils';
 
 export type TopologyHostMapProps = Readonly<{
   rows: Node[];

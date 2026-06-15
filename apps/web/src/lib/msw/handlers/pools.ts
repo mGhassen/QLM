@@ -5,8 +5,8 @@ import type {
   Pool,
   PoolProvider,
   NodeRegion,
-} from '@guepard/domain/entities';
-import { POOL_UNCLUSTERED_NAME } from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
+import { POOL_UNCLUSTERED_NAME } from '@qlm/domain/entities';
 
 import { seedNodes } from '../fixtures/nodes';
 

@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
 import { z } from 'zod';
 
-import { useRequestResetPassword } from '@guepard/supabase/hooks/use-request-reset-password';
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { useRequestResetPassword } from '@qlm/supabase/hooks/use-request-reset-password';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -15,10 +15,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { If } from '@guepard/ui/if';
-import { Input } from '@guepard/ui/input';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/form';
+import { If } from '@qlm/ui/if';
+import { Input } from '@qlm/ui/input';
+import { Trans } from '@qlm/ui/trans';
 
 import { useCaptcha } from '../captcha/client';
 import { AuthErrorAlert } from './auth-error-alert';

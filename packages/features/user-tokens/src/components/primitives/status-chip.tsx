@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import type { UserTokenStatus } from '@guepard/domain/entities';
-import { Badge } from '@guepard/ui/badge';
-import { cn } from '@guepard/ui/utils';
+import type { UserTokenStatus } from '@qlm/domain/entities';
+import { Badge } from '@qlm/ui/badge';
+import { cn } from '@qlm/ui/utils';
 
 const STATUS_CLASSES: Record<UserTokenStatus, string> = {
   active:

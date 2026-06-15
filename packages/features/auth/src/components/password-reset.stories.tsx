@@ -11,8 +11,8 @@ import * as React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Alert, AlertDescription } from '@guepard/ui/alert';
-import { Button } from '@guepard/ui/button';
+import { Alert, AlertDescription } from '@qlm/ui/alert';
+import { Button } from '@qlm/ui/button';
 
 import { PasswordResetRequestContainer } from './password-reset-request-container';
 import { withAuthProviders } from './story-helpers';

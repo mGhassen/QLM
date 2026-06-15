@@ -2,8 +2,8 @@ import { preloadedI18nResources } from '@/lib/i18n/i18n.preloaded-resources';
 import { i18nResolver } from '@/lib/i18n/i18n.resolver';
 import { getI18nSettings } from '@/lib/i18n/i18n.settings';
 import pathsConfig from '@/config/paths.config';
-import { I18nProvider } from '@guepard/i18n/provider';
-import { Toaster } from '@guepard/ui/sonner';
+import { I18nProvider } from '@qlm/i18n/provider';
+import { Toaster } from '@qlm/ui/sonner';
 import type { QueryClient } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
 import React, { lazy, Suspense, useEffect, useMemo, useState } from 'react';
@@ -19,11 +19,11 @@ const RouterDevtoolsLazy = lazy(async () => {
 });
 import { ReactQueryProvider } from './react-query-provider';
 import { Navigate, useLocation } from '@tanstack/react-router';
-import { useUser } from '@guepard/supabase/hooks/use-user';
+import { useUser } from '@qlm/supabase/hooks/use-user';
 import { AuthProvider } from './auth-provider';
 import { WorkspaceProvider } from './workspace-provider';
-import { AppEventsProvider } from '@guepard/shared/events';
-import { TelemetryProvider } from '@guepard/telemetry';
+import { AppEventsProvider } from '@qlm/shared/events';
+import { TelemetryProvider } from '@qlm/telemetry';
 import { Loader2 } from 'lucide-react';
 
 type Theme = 'light' | 'dark' | 'system';

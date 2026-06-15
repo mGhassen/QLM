@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'guepard:pinned-app-ids';
+const STORAGE_KEY = 'qlm:pinned-app-ids';
 
 export const DEFAULT_PINNED_APP_IDS = ['studio'] as const;
 

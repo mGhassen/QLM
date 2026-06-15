@@ -1,7 +1,7 @@
 import { Cloud, CloudCog } from 'lucide-react';
 
-import type { IntegrationProvider } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { IntegrationProvider } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 
 export type ProviderLogoProps = Readonly<{
   provider: IntegrationProvider;

@@ -4,7 +4,7 @@ import { fn } from 'storybook/test';
 import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import type { UserToken } from '@guepard/domain/entities';
+import type { UserToken } from '@qlm/domain/entities';
 
 import { UserTokensApiProvider, type UserTokensApi } from '../hooks';
 import { RevokeConfirmInline } from './revoke-confirm-inline';

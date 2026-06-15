@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 
-import { FormRenderer } from '../src/guepard/form-renderer';
+import { FormRenderer } from '../src/qlm/form-renderer';
 
 const simpleSchema = z.object({
   name: z.string(),

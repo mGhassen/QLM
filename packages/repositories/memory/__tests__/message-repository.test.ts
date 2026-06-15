@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { MessageRole } from '@guepard/domain/entities';
-import type { Message } from '@guepard/domain/entities';
+import { MessageRole } from '@qlm/domain/entities';
+import type { Message } from '@qlm/domain/entities';
 
 import { MessageRepository } from '../src/message-repository';
 

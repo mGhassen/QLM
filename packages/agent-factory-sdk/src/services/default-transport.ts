@@ -1,5 +1,5 @@
 import { DefaultChatTransport } from 'ai';
-import { normalizeUIRole } from '@guepard/shared/message-role-utils';
+import { normalizeUIRole } from '@qlm/shared/message-role-utils';
 
 export interface DefaultTransportOptions {
   getHeaders?: () => Record<string, string> | Promise<Record<string, string>>;

@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extension-postgresql",
+  "name": "@qlm/extension-postgresql",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -198,7 +198,7 @@
     ]
   },
   "dependencies": {
-    "@guepard/extensions-sdk": "workspace:*",
+    "@qlm/extensions-sdk": "workspace:*",
     "pg": "^8.13.1",
     "zod": "catalog:"
   },

@@ -6,7 +6,7 @@ import tsEsLint from 'typescript-eslint';
 import reactConfig from './react.js';
 import noOrchestrationWrite from './rules/no-orchestration-write.js';
 
-const guepardLocalPlugin = {
+const qlmLocalPlugin = {
   rules: {
     'no-orchestration-write': noOrchestrationWrite,
   },
@@ -19,7 +19,7 @@ export default defineConfig(
   {
     plugins: {
       turbo,
-      'guepard-local': guepardLocalPlugin,
+      'qlm-local': qlmLocalPlugin,
     },
     settings: {
       react: {
@@ -42,7 +42,7 @@ export default defineConfig(
       'import/no-unused-modules': 'off',
       'import/no-deprecated': 'off',
       'turbo/no-undeclared-env-vars': 'off',
-      'guepard-local/no-orchestration-write': 'error',
+      'qlm-local/no-orchestration-write': 'error',
       '@typescript-eslint/array-type': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
@@ -62,7 +62,7 @@ export default defineConfig(
             {
               name: 'react-i18next',
               importNames: ['Trans'],
-              message: 'Please use `@guepard/ui/trans` instead',
+              message: 'Please use `@qlm/ui/trans` instead',
             },
           ],
         },

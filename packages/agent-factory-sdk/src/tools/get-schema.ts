@@ -3,10 +3,10 @@ import { Tool } from './tool';
 import {
   ExtensionsRegistry,
   type DatasourceExtension,
-} from '@guepard/extensions-sdk';
-import { getDriverInstance } from '@guepard/extensions-loader';
-import { getLogger } from '@guepard/shared/logger';
-import { Repositories } from '@guepard/domain/repositories';
+} from '@qlm/extensions-sdk';
+import { getDriverInstance } from '@qlm/extensions-loader';
+import { getLogger } from '@qlm/shared/logger';
+import { Repositories } from '@qlm/domain/repositories';
 
 const DESCRIPTION = `Get schema information (columns, data types) for a datasource using its native driver.
 Returns column names and types for all tables/views in the datasource.`;

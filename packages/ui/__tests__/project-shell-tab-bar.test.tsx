@@ -4,7 +4,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   ProjectShellTabBar,
   type TabItem,
-} from '../src/guepard/shell/project-shell-tab-bar';
+} from '../src/qlm/shell/project-shell-tab-bar';
 
 // JSDOM does not implement scrollIntoView; the tab bar calls it on mount.
 beforeAll(() => {

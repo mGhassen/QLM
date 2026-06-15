@@ -4,7 +4,7 @@ import { useNavigate, useSearch } from '@tanstack/react-router';
 import type {
   FilterRule,
   SortState,
-} from '../guepard/data-table-advanced/types';
+} from '../qlm/data-table-advanced/types';
 
 export type TableUrlState = Readonly<{
   filters: FilterRule[];

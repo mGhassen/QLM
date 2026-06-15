@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import type { Order } from '@guepard/domain/entities';
+import type { Order } from '@qlm/domain/entities';
 import {
   GetOrdersByOrganizationIdService,
   GetOrganizationBillingService,
   GetOrganizationBySlugService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 
 import { createServerRepositories } from '@/lib/repositories-factory.server';
 

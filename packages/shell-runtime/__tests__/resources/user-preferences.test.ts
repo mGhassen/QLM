@@ -4,11 +4,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   UserPreferences,
   UserPreferencesPayload,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   IProjectRepository,
   IUserPreferencesRepository,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 
 import { createUserPreferencesResource } from '../../src/resources/user-preferences';
 

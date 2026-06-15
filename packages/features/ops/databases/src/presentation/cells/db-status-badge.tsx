@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import type { DatabaseStatus } from '@guepard/domain/entities';
-import { cn } from '@guepard/ui/utils';
+import type { DatabaseStatus } from '@qlm/domain/entities';
+import { cn } from '@qlm/ui/utils';
 import { STATUS_BADGE } from '../../application/constants';
 
 type DbStatusBadgeProps = Readonly<{

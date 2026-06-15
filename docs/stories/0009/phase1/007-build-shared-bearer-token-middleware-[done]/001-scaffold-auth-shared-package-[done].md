@@ -13,27 +13,27 @@ files:
 
 ## Purpose
 
-Create an empty `@guepard/auth-shared` workspace package so task 002 has a home for the bearer-token module and its tests.
+Create an empty `@qlm/auth-shared` workspace package so task 002 has a home for the bearer-token module and its tests.
 
 ## Files
 
 - `packages/auth-shared/package.json` — workspace package manifest; deps `zod` + `jsonwebtoken` + types; scripts for `test` / `typecheck` / `lint`; no framework deps.
-- `packages/auth-shared/tsconfig.json` — extends `@guepard/tsconfig/base.json`; includes `src` + `__tests__`.
+- `packages/auth-shared/tsconfig.json` — extends `@qlm/tsconfig/base.json`; includes `src` + `__tests__`.
 - `packages/auth-shared/vitest.config.ts` — node env, istanbul coverage, `src` alias; mirrors `packages/domain/vitest.config.ts`.
 - `packages/auth-shared/src/index.ts` — empty barrel (re-export target for task 002); single `export {}` until task 002 populates it.
 
 ## Acceptance
 
 - [ ] `pnpm install` from repo root succeeds with the new package present.
-- [ ] `pnpm --filter @guepard/auth-shared typecheck` passes on the empty package.
+- [ ] `pnpm --filter @qlm/auth-shared typecheck` passes on the empty package.
 - [ ] `package.json` declares no imports of Hono, Express, `@supabase/*`, React, or any framework-specific package.
-- [ ] Package name is `@guepard/auth-shared` (spec §7.4 naming).
+- [ ] Package name is `@qlm/auth-shared` (spec §7.4 naming).
 
 ## Test plan
 
 ```
 pnpm install
-pnpm --filter @guepard/auth-shared typecheck
+pnpm --filter @qlm/auth-shared typecheck
 ```
 
 ## Storybook validation

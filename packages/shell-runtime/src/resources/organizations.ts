@@ -3,7 +3,7 @@ import type { QueryClient } from '@tanstack/react-query';
 import type {
   IOrganizationRepository,
   IProjectRepository,
-} from '@guepard/domain/repositories';
+} from '@qlm/domain/repositories';
 import {
   CreateOrganizationService,
   DeleteOrganizationService,
@@ -11,13 +11,13 @@ import {
   GetOrganizationBySlugService,
   GetOrganizationsService,
   UpdateOrganizationService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateOrganizationInput,
   OrganizationBillingData,
   OrganizationOutput,
   UpdateOrganizationInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 /**
  * Narrow structural dependency for `switchTo`. Avoids importing

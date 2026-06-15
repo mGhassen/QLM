@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Database, Loader2 } from 'lucide-react';
 
-import { useFlatRoute, useShell } from '@guepard/shell-runtime';
+import { useFlatRoute, useShell } from '@qlm/shell-runtime';
 
 import { DatabaseDetailPage } from './components/detail-page';
 

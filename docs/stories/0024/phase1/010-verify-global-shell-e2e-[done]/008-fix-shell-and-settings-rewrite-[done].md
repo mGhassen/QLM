@@ -38,7 +38,7 @@ Live testing of story 010 surfaced a pile of regressions in the dropdown feature
 
 ## Fixes
 
-- **Radix DropdownMenu rewrite** of `shell-topbar.tsx`: replaced the hand-rolled Popover + state machine + outside-click + keyboard nav with `DropdownMenu` / `DropdownMenuSub` / `DropdownMenuContent` / `DropdownMenuSubContent` / `DropdownMenuItem` from `@guepard/ui/dropdown-menu`. Native: portal (beats overflow-hidden), cascade anchor (submenu flies out from the row), keyboard nav, outside-click, typeahead.
+- **Radix DropdownMenu rewrite** of `shell-topbar.tsx`: replaced the hand-rolled Popover + state machine + outside-click + keyboard nav with `DropdownMenu` / `DropdownMenuSub` / `DropdownMenuContent` / `DropdownMenuSubContent` / `DropdownMenuItem` from `@qlm/ui/dropdown-menu`. Native: portal (beats overflow-hidden), cascade anchor (submenu flies out from the row), keyboard nav, outside-click, typeahead.
 - **Search input restored** inside each submenu via a `SearchInput` subcomponent. Keydowns are `stopPropagation()`'d so Radix's typeahead doesn't hijack typing; Escape still bubbles so it closes the menu. State resets when the outer dropdown closes.
 - **Trigger forwardRef** — `TopbarTrigger` now accepts rest props + ref so `DropdownMenuTrigger asChild` can attach its handlers.
 - **Trigger polish** — dropped the border-rectangle; added `hover:bg-accent`.

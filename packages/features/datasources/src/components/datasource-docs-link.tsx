@@ -1,7 +1,7 @@
 import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { cn } from '@guepard/ui/utils';
+import { cn } from '@qlm/ui/utils';
 
 export interface DatasourceDocsLinkProps {
   docsUrl: string | null | undefined;

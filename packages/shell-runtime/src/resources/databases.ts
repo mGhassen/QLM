@@ -1,18 +1,18 @@
 import type { QueryClient } from '@tanstack/react-query';
 
-import type { IDatabaseRepository } from '@guepard/domain/repositories';
+import type { IDatabaseRepository } from '@qlm/domain/repositories';
 import {
   CreateDatabaseService,
   DeleteDatabaseService,
   GetDatabaseService,
   ListDatabasesService,
   UpdateDatabaseService,
-} from '@guepard/domain/services';
+} from '@qlm/domain/services';
 import type {
   CreateDatabaseInput,
   DatabaseOutput,
   UpdateDatabaseInput,
-} from '@guepard/domain/usecases';
+} from '@qlm/domain/usecases';
 
 export function createDatabasesResource(
   repository: IDatabaseRepository,

@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { datasources } from '@guepard/extensions-sdk';
-import type { DriverContext, IDataSourceDriver } from '@guepard/extensions-sdk';
-import { ExtensionScope, ExtensionsRegistry } from '@guepard/extensions-sdk';
+import { datasources } from '@qlm/extensions-sdk';
+import type { DriverContext, IDataSourceDriver } from '@qlm/extensions-sdk';
+import { ExtensionScope, ExtensionsRegistry } from '@qlm/extensions-sdk';
 
 import { getDriverInstance, getNodeDriverIds } from '../src/index';
 

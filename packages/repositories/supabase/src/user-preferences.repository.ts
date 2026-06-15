@@ -2,9 +2,9 @@ import {
   UserPreferencesSchema,
   type UserPreferences,
   type UserPreferencesPayload,
-} from '@guepard/domain/entities';
-import { IUserPreferencesRepository } from '@guepard/domain/repositories';
-import type { Json } from '@guepard/supabase/database';
+} from '@qlm/domain/entities';
+import { IUserPreferencesRepository } from '@qlm/domain/repositories';
+import type { Json } from '@qlm/supabase/database';
 
 import type { SupabaseClientType } from './types';
 

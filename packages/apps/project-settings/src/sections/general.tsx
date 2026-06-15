@@ -6,8 +6,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { useShell, useShellApp } from '@guepard/shell-runtime';
-import { Button } from '@guepard/ui/button';
+import { useShell, useShellApp } from '@qlm/shell-runtime';
+import { Button } from '@qlm/ui/button';
 import {
   Form,
   FormControl,
@@ -15,8 +15,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@guepard/ui/form';
-import { Input } from '@guepard/ui/input';
+} from '@qlm/ui/form';
+import { Input } from '@qlm/ui/input';
 
 const schema = z.object({
   name: z.string().min(1).max(255),

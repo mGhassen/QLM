@@ -27,7 +27,7 @@ Two presentational submenus: `ProjectSwitcherSubmenu` and `OrgSwitcherSubmenu`. 
 - [ ] Keyboard: `↑` / `↓` cycles through list items (including the `+ New X` row); `Enter` fires `onSelect(id)` or `onCreate()`; `Esc` fires `onClose`. Wrap at edges.
 - [ ] Storybook stories per component: `Default`, `EmptyFilter` (search excludes everything), `ManyRows` (50+ items scrolling), `SingleItem`, `WithError` (optional inline error slot).
 - [ ] Unit tests: search filter excludes non-matches + always keeps the `+ New X` row; keyboard nav moves selection + wraps + `Enter` fires the right callback; `Esc` calls `onClose`.
-- [ ] `pnpm typecheck` green; `pnpm --filter @guepard/shell-topbar test` green.
+- [ ] `pnpm typecheck` green; `pnpm --filter @qlm/shell-topbar test` green.
 
 ## Notes
 

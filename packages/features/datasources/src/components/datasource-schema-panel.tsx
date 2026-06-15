@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import type { DatasourceMetadata } from '@guepard/extensions-sdk';
-import { SchemaGraph } from '@guepard/ui/schema-graph';
+import type { DatasourceMetadata } from '@qlm/extensions-sdk';
+import { SchemaGraph } from '@qlm/ui/schema-graph';
 
 export interface DatasourceSchemaPanelProps {
   metadata: DatasourceMetadata | null | undefined;

@@ -45,4 +45,4 @@ export SB_POP3=$((SB_BASE + 5))
 export SB_SHADOW=$((SB_BASE + 6))
 export SB_ANALYTICS=$((SB_BASE + 7))
 
-export SUPABASE_PROJECT_ID="guepard-sdd-${NNN_RAW}"
+export SUPABASE_PROJECT_ID="qlm-sdd-${NNN_RAW}"

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { MessageOutput } from '@guepard/domain/usecases';
+import type { MessageOutput } from '@qlm/domain/usecases';
 
 import { convertMessages } from '../src/utils/convert-messages';
 

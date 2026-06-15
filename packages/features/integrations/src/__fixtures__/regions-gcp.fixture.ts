@@ -1,4 +1,4 @@
-import type { Region } from '@guepard/domain/usecases';
+import type { Region } from '@qlm/domain/usecases';
 
 /**
  * A representative GCP region list — what compute.regions.list would return

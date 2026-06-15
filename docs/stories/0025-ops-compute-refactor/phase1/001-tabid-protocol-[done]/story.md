@@ -15,14 +15,14 @@ blocked_by: []
 
 ## Goal
 
-Replace inline `tid:` string parsing across routes and emitters with a Zod-discriminated `TabId` union owned by `@guepard/shell-contracts`, with backwards-compat for legacy `nc:` / `np:` / `topology:*` URLs.
+Replace inline `tid:` string parsing across routes and emitters with a Zod-discriminated `TabId` union owned by `@qlm/shell-contracts`, with backwards-compat for legacy `nc:` / `np:` / `topology:*` URLs.
 
 ## Scope
 
 **In scope**
 
 - Add `packages/shell-contracts/src/tab-id.ts` with `TabIdSchema`, `encodeTabId`, `decodeTabId`, `deriveTabTitle`.
-- Add `zod` as a runtime dep on `@guepard/shell-contracts` (currently dep-free).
+- Add `zod` as a runtime dep on `@qlm/shell-contracts` (currently dep-free).
 - Add round-trip tests for every variant + every legacy form.
 - Replace inline parsing in `apps/web/src/routes/prj/$projectSlug/$routeBase.tsx`.
 - Replace string emission in topology pkg, infrastructure (dying) pkg, nodes pkg — every `tid: ...` construction site.
@@ -42,7 +42,7 @@ Replace inline `tid:` string parsing across routes and emitters with a Zod-discr
 - [ ] `apps/web/src/routes/prj/$projectSlug/$routeBase.tsx` no longer has any `tid.startsWith(...)` branches; uses `decodeTabId` + `deriveTabTitle`.
 - [ ] `grep -rn "tid: \`topology:\|tid: \`nc:\|tid: \`np:\|tid: \`node:" packages apps` returns zero hits.
 - [ ] `grep -rn "as never" packages/features/ops packages/apps` returns zero hits in any `navigate({to, search})` block.
-- [ ] `pnpm typecheck` green; `pnpm test` green; `pnpm --filter @guepard/shell-contracts test` covers the new tests.
+- [ ] `pnpm typecheck` green; `pnpm test` green; `pnpm --filter @qlm/shell-contracts test` covers the new tests.
 - [ ] Bookmarked URL `?tid=topology:aws:us-east-1:default` still produces a virtual tab with the same title as the canonical form `?tid=topology-pool:aws:us-east-1:default`.
 
 ## Tasks
@@ -58,7 +58,7 @@ Populated by `/start-story`. Each entry links to a sibling task file in this fol
 
 ```
 pnpm typecheck
-pnpm --filter @guepard/shell-contracts test
+pnpm --filter @qlm/shell-contracts test
 pnpm dev
 # Open http://localhost:3000/prj/<slug>/topology
 # Click any pool card → "Drill into" → URL contains tid=topology-pool:...

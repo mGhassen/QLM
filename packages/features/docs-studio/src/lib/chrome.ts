@@ -42,8 +42,8 @@ export function defaultDocChrome(title: string): DocChrome {
     footerEnabled: true,
     showOnCover: false,
     headerLeft: title,
-    headerRight: "Rasm Strategic Research",
-    footerLeft: "rasm.ai",
+    headerRight: "QLM Strategic Research",
+    footerLeft: "qlm.dev",
     footerRight: "Page {{page}}",
   };
 }

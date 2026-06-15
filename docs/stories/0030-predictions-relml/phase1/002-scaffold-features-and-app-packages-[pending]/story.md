@@ -15,7 +15,7 @@ blocked_by: []
 
 ## Goal
 
-Stand up empty `@guepard/features-predictions` and `@guepard/app-predictions` packages so the Predictions sidebar entry appears in the project shell with a placeholder view.
+Stand up empty `@qlm/features-predictions` and `@qlm/app-predictions` packages so the Predictions sidebar entry appears in the project shell with a placeholder view.
 
 ## Scope
 

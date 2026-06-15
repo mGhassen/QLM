@@ -1,4 +1,4 @@
-import { initializeServerI18n } from '@guepard/i18n/server';
+import { initializeServerI18n } from '@qlm/i18n/server';
 
 export function initializeEmailI18n(params: {
   language: string | undefined;

@@ -1,6 +1,6 @@
 
 // This file is bundled for browser use
-// All dependencies including @guepard/extensions-sdk and @guepard/domain are bundled
+// All dependencies including @qlm/extensions-sdk and @qlm/domain are bundled
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;

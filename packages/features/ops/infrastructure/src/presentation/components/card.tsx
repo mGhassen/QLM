@@ -15,17 +15,17 @@ import {
   Trash2,
 } from 'lucide-react';
 
-import { Button } from '@guepard/ui/button';
-import { Checkbox } from '@guepard/ui/checkbox';
-import { RowActionMenu, type Action } from '@guepard/ui/action';
-import { HeatSegmentBar } from '@guepard/ui/heat-segment-bar';
-import { cn } from '@guepard/ui/utils';
+import { Button } from '@qlm/ui/button';
+import { Checkbox } from '@qlm/ui/checkbox';
+import { RowActionMenu, type Action } from '@qlm/ui/action';
+import { HeatSegmentBar } from '@qlm/ui/heat-segment-bar';
+import { cn } from '@qlm/ui/utils';
 
 import type {
   Node,
   NodeLifecycleState,
   NodeProvider,
-} from '@guepard/domain/entities';
+} from '@qlm/domain/entities';
 import {
   DISPLAY_BADGE_CLASSES,
   PROVIDER_STYLES,

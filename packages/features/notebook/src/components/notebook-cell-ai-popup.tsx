@@ -3,10 +3,10 @@
 import type { Dispatch, RefObject, SetStateAction } from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowUp, GripVertical, X } from 'lucide-react';
-import { Button } from '@guepard/ui/button';
-import { Textarea } from '@guepard/ui/textarea';
-import { Loader, PromptInputSubmit, Shimmer } from '@guepard/ui/ai-elements';
-import { cn } from '@guepard/ui/utils';
+import { Button } from '@qlm/ui/button';
+import { Textarea } from '@qlm/ui/textarea';
+import { Loader, PromptInputSubmit, Shimmer } from '@qlm/ui/ai-elements';
+import { cn } from '@qlm/ui/utils';
 
 import { splitNotebookStream } from './notebook-stream-utils';
 

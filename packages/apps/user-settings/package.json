@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/app-user-settings",
+  "name": "@qlm/app-user-settings",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -15,13 +15,13 @@
     "./manifest": "./src/manifest.ts"
   },
   "dependencies": {
-    "@guepard/domain": "workspace:*",
-    "@guepard/settings-shell": "workspace:*",
-    "@guepard/shell-contracts": "workspace:*",
-    "@guepard/shell-runtime": "workspace:*",
-    "@guepard/supabase": "workspace:*",
-    "@guepard/user-profile": "workspace:*",
-    "@guepard/user-tokens": "workspace:*",
+    "@qlm/domain": "workspace:*",
+    "@qlm/settings-shell": "workspace:*",
+    "@qlm/shell-contracts": "workspace:*",
+    "@qlm/shell-runtime": "workspace:*",
+    "@qlm/supabase": "workspace:*",
+    "@qlm/user-profile": "workspace:*",
+    "@qlm/user-tokens": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "react-i18next": "^16.2.3",
     "sonner": "^2.0.7"
@@ -30,13 +30,13 @@
     "react": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "eslint": "^9.39.0",
     "react": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@guepard/prettier-config"
+  "prettier": "@qlm/prettier-config"
 }

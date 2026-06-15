@@ -1,5 +1,5 @@
 import type { Context } from 'hono';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import {
   DatabaseRepository,
   PerformanceProfileRepository,
@@ -27,8 +27,8 @@ import {
   PredictionSchemaSnapshotRepository,
   PredictionAgentConversationRepository,
   PredictionAgentMessageRepository,
-} from '@guepard/repository-supabase';
-import { JwtSigner } from '@guepard/repository-supabase/jwt-signer';
+} from '@qlm/repository-supabase';
+import { JwtSigner } from '@qlm/repository-supabase/jwt-signer';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { getAccessTokenFromRequest, getSupabaseClient } from './supabase';
 

@@ -1,6 +1,6 @@
 import { type UIMessage, convertToModelMessages, validateUIMessages } from 'ai';
 import { v4 as uuidv4 } from 'uuid';
-import type { Repositories } from '@guepard/domain/repositories';
+import type { Repositories } from '@qlm/domain/repositories';
 import { insertReminders } from './insert-reminders';
 import { Registry } from '../tools/registry';
 import type { AskRequest, ToolContext, ToolMetadataInput } from '../tools/tool';
@@ -9,17 +9,17 @@ import type { Message } from '../llm/message';
 import {
   messageRoleToUIRole,
   uiRoleToMessageRole,
-} from '@guepard/shared/message-role-utils';
+} from '@qlm/shared/message-role-utils';
 import { Provider } from '../llm/provider';
 import {
   MessagePersistenceService,
   type PersistMessageOptions,
 } from '../services/message-persistence.service';
 import { UsagePersistenceService } from '../services/usage-persistence.service';
-import { getLogger } from '@guepard/shared/logger';
+import { getLogger } from '@qlm/shared/logger';
 import { getDefaultModel } from '../services/model-resolver';
 import { loadDatasources } from '../tools/datasource-loader';
-import type { Datasource } from '@guepard/domain/entities';
+import type { Datasource } from '@qlm/domain/entities';
 
 export type RunAgentToCompletionInput = {
   conversationId: string;

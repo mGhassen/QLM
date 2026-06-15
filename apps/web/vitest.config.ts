@@ -46,7 +46,7 @@ export default defineConfig({
     ],
     server: {
       deps: {
-        inline: ['@guepard/ui', 'react', 'react-dom'],
+        inline: ['@qlm/ui', 'react', 'react-dom'],
       },
     },
     pool: 'vmThreads',

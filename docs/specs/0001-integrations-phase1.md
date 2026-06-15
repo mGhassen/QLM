@@ -163,7 +163,7 @@ The textarea is `type="password"` equivalent: the field is rendered monospace bu
 ┌── prod-aws ─────────────── [Test] [Rotate credentials] [⋮] ┐
 │                                                             │
 │  Provider        AWS                                         │
-│  Account         arn:aws:iam::123456789012:user/guepard      │
+│  Account         arn:aws:iam::123456789012:user/qlm      │
 │  Default region  us-east-1                                   │
 │  Status          ✅ Connected (last tested 2 min ago)        │
 │  Created by      Hani · 2026-04-11                            │
@@ -192,7 +192,7 @@ The textarea is `type="password"` equivalent: the field is rendered monospace bu
 4. Fills in name (*"prod-aws"*), access key, secret key, region (*us-east-1*).
 5. Clicks **Test connection**.
    - Spinner for up to ~5 s.
-   - Success → inline green banner *"Connected as arn:aws:iam::123456789012:user/guepard"*. Save button becomes primary-emphasised.
+   - Success → inline green banner *"Connected as arn:aws:iam::123456789012:user/qlm"*. Save button becomes primary-emphasised.
 6. Clicks **Save**.
 7. Toast *"Integration created"*. Navigates to `/integrations/prod-aws`.
 
@@ -326,7 +326,7 @@ Server → DeleteIntegrationConnectionService
 
 Two packages, following the existing convention set by `packages/features/notebook` + `packages/apps/notebook`:
 
-- **`packages/features/integrations`** — **presentational only**. Every component accepts data and callbacks via props. Zero imports from `@guepard/shell-runtime`, zero React Query, zero repository access, zero network calls. Every component has a `.stories.tsx` file covering every meaningful state (empty, loading, success, error, disabled-by-permission). This is what gets validated in Storybook before any backend work lands.
+- **`packages/features/integrations`** — **presentational only**. Every component accepts data and callbacks via props. Zero imports from `@qlm/shell-runtime`, zero React Query, zero repository access, zero network calls. Every component has a `.stories.tsx` file covering every meaningful state (empty, loading, success, error, disabled-by-permission). This is what gets validated in Storybook before any backend work lands.
 - **`packages/apps/integrations`** — **thin plugin shell**. `manifest.ts` + `plugin-root.tsx` + pages. Pages import the feature components and wire them to `useShell().integrations` via React Query. No JSX logic of its own beyond glue.
 
 This split is mandatory — not optional — because it is what lets the UI be validated and iterated independently of the domain/server work, which is the whole point of step 1 in §12.
@@ -387,7 +387,7 @@ src/
 └─ index.ts
 ```
 
-The app package imports from `@guepard/features-integrations` and adds only the data layer: React Query hooks, mutation handlers, cache invalidation, toast side-effects. If you find yourself writing JSX in `apps/integrations` that isn't one of (a) `useShell()` call, (b) React Query hook, (c) passing props/callbacks into a feature component, it belongs in the feature package instead.
+The app package imports from `@qlm/features-integrations` and adds only the data layer: React Query hooks, mutation handlers, cache invalidation, toast side-effects. If you find yourself writing JSX in `apps/integrations` that isn't one of (a) `useShell()` call, (b) React Query hook, (c) passing props/callbacks into a feature component, it belongs in the feature package instead.
 
 #### 4.6.3 Storybook fixtures
 
@@ -683,7 +683,7 @@ Unit tests (Vitest, node env) next to each service. Mock `IIntegrationConnection
 
 ### 7.2 Drivers (`packages/integrations-drivers`) — new package
 
-1. `package.json` — name `@guepard/integrations-drivers`, private, server-only (no browser build).
+1. `package.json` — name `@qlm/integrations-drivers`, private, server-only (no browser build).
 2. `src/registry.ts` — `class IntegrationProviderDriverRegistry` implementing the domain abstract class, constructing drivers lazily on first `resolve()`.
 3. `src/aws/aws-driver.ts`
    - `@aws-sdk/client-sts` for `testConnection` (`GetCallerIdentityCommand` → map ARN into `TestResult.identity`).
@@ -728,18 +728,18 @@ Unit tests (Vitest, node env) next to each service. Mock `IIntegrationConnection
 
 ### 7.8 Presentational UI package (`packages/features/integrations`) — new package, **built and validated first**
 
-This is the first package to land, per §12 step 1. It has **zero runtime dependencies** on the domain/server/shell layers — only on `@guepard/ui` primitives and on the domain types (`@guepard/domain`) for prop shapes. That lets it be built, rendered in Storybook, and visually validated by the user before any backend work begins.
+This is the first package to land, per §12 step 1. It has **zero runtime dependencies** on the domain/server/shell layers — only on `@qlm/ui` primitives and on the domain types (`@qlm/domain`) for prop shapes. That lets it be built, rendered in Storybook, and visually validated by the user before any backend work begins.
 
-1. `package.json` — name `@guepard/features-integrations`, private. Dependencies: `@guepard/ui`, `@guepard/domain` (types only), `@guepard/i18n`, `react`, `lucide-react`. **No** `@guepard/shell-runtime`, **no** `@tanstack/react-query`, **no** repository packages. DevDependencies add `@storybook/react` per the existing `packages/features/notebook` setup.
+1. `package.json` — name `@qlm/features-integrations`, private. Dependencies: `@qlm/ui`, `@qlm/domain` (types only), `@qlm/i18n`, `react`, `lucide-react`. **No** `@qlm/shell-runtime`, **no** `@tanstack/react-query`, **no** repository packages. DevDependencies add `@storybook/react` per the existing `packages/features/notebook` setup.
 2. `tsconfig.json` / `eslint.config.mjs` — copy from `packages/features/notebook`.
 3. `src/index.ts` — barrel re-exporting every component + every prop type.
 4. `src/integrations-ui.tsx` — top-level composed view (`IntegrationsUI`) per the data contract in §4.6.1.
 5. `src/components/*.tsx` — every component from the tree in §4.6.1. Each one is a `function Foo(props: Readonly<FooProps>)` with no internal state beyond UI-local concerns (dialog open/close, form input values). All fetching-shaped state (`isLoading`, `error`, `testResult`, `regions`) arrives as props.
-6. `src/__fixtures__/*.fixture.ts` — the fixtures listed in §4.6.3. Typed against the DTO types from `@guepard/domain`.
+6. `src/__fixtures__/*.fixture.ts` — the fixtures listed in §4.6.3. Typed against the DTO types from `@qlm/domain`.
 7. `src/integrations-ui.stories.tsx` — top-level stories (`Empty`, `Populated`, `ReadOnlyMember`, `Loading`, `Error`) composing the full view from fixtures.
 8. `src/components/*.stories.tsx` — one file per component, covering the stories listed in the §4.6.4 matrix. Titles under `Features/Integrations/<ComponentName>`, matching `packages/features/notebook/src/notebook.stories.tsx`.
 9. **Copy discipline**: every string goes through `t('integrations.…')` / `<Trans i18nKey='integrations.…' />`. Story files may use hand-written i18n wrappers or the existing Storybook i18n decorator — match whatever `packages/features/notebook` does. No bare string literals in JSX, ever. See `.claude/rules/i18n.md`.
-10. **Styling**: `@guepard/ui/*` primitives (`Button`, `Dialog`, `Table`, `Input`, `Select`, `DropdownMenu`, `Card`) + Tailwind utility classes via `cn()`. No hand-rolled HTML, no hardcoded colours — use `bg-background`, `text-foreground`, `bg-muted` etc.
+10. **Styling**: `@qlm/ui/*` primitives (`Button`, `Dialog`, `Table`, `Input`, `Select`, `DropdownMenu`, `Card`) + Tailwind utility classes via `cn()`. No hand-rolled HTML, no hardcoded colours — use `bg-background`, `text-foreground`, `bg-muted` etc.
 11. **Unit tests** (`@testing-library/react`): one smoke test per component asserting it renders in its default story state without throwing. Thorough interaction tests (user clicking Save, form validation) live here too — because the components are pure, the tests need no mocking of shell/React Query.
 
 **Exit criteria for this package** (enforced in §12 step 1): Storybook builds, every story in the §4.6.4 matrix renders, the user has walked through the Storybook output and either approved the visual design or flagged changes. No work on the `packages/apps/integrations` package or any backend layer begins until this exit gate is met.
@@ -748,7 +748,7 @@ This is the first package to land, per §12 step 1. It has **zero runtime depend
 
 This is deliberately thin. Zero UI logic beyond wiring.
 
-1. `package.json` — name `@guepard/app-integrations`, private. Depends on `@guepard/features-integrations` (for the components) and `@guepard/shell-runtime` (for data).
+1. `package.json` — name `@qlm/app-integrations`, private. Depends on `@qlm/features-integrations` (for the components) and `@qlm/shell-runtime` (for data).
 2. `src/manifest.ts` — `PluginManifest`:
    - `id: 'integrations'`
    - `displayName: 'Integrations'`
@@ -823,8 +823,8 @@ RLS enforces the same contract at the DB level. The server layer exists to: (a) 
 
 ### 10.2 Unit tests
 
-- `pnpm --filter @guepard/domain test` — services in `services/integration/*`, entity validation, DTO serialisation (confirm `secret_ref` is excluded).
-- `pnpm --filter @guepard/integrations-drivers test` — AWS and GCP drivers with SDK / fetch mocks. Cover: success, `invalid_credentials`, `permission_denied`, `network`.
+- `pnpm --filter @qlm/domain test` — services in `services/integration/*`, entity validation, DTO serialisation (confirm `secret_ref` is excluded).
+- `pnpm --filter @qlm/integrations-drivers test` — AWS and GCP drivers with SDK / fetch mocks. Cover: success, `invalid_credentials`, `permission_denied`, `network`.
 - `pnpm --filter server test __tests__/routes/integrations.test.ts` — Hono route handlers with mocked repositories, mocked vault, mocked driver registry. Cover: happy paths, 401, 403, 404, 429 (rate limit), 400 validation.
 - `pnpm --filter web test` — React component tests for the create form (Zod validation, "Test connection" button) and the detail page (regions panel loading / error states).
 
@@ -977,9 +977,9 @@ Each bullet is an atomic commit-sized unit. `pnpm typecheck` runs green after ev
 1. **Domain types only** — land the *type-level* bits of §7.1 and §7.12 that the UI package depends on:
    - `packages/domain/src/entities/integration-connection.type.ts` (Zod schemas + inferred types)
    - `packages/domain/src/usecases/dto/integration-usecase-dto.ts` (`IntegrationConnectionOutput`, `CredentialsInput`, `TestResult`, `Region`)
-   - Barrel exports from `@guepard/domain`.
+   - Barrel exports from `@qlm/domain`.
    - **Not yet**: repository port, services, `Repositories` interface changes, `ISecretVault.forget?`. Those land in stage B.
-   - Verification: `pnpm --filter @guepard/domain build` passes, the new types are importable from a dummy file in the feature package (next step).
+   - Verification: `pnpm --filter @qlm/domain build` passes, the new types are importable from a dummy file in the feature package (next step).
 2. **`packages/features/integrations` scaffolding** — create the package, copy `tsconfig`/`eslint`/`package.json` from `packages/features/notebook`, land `src/index.ts`, the empty `src/integrations-ui.tsx`, and `src/__fixtures__/*.fixture.ts` typed against the stage-1 DTOs. Storybook discovers the package.
 3. **Components + stories** — implement every component from §4.6.1 and every story from §4.6.4. Interaction tests for forms (`AwsCredentialsForm`, `GcpCredentialsForm`) land here too (`@testing-library/react` against the pure components — no mocks needed). At the end of this step, Storybook shows the full phase-1 UI driven by fixtures.
 
@@ -1001,7 +1001,7 @@ Each bullet is an atomic commit-sized unit. `pnpm typecheck` runs green after ev
 
 10. **HTTP adapter** — `apps/web/src/lib/repositories/integration-connection.repository.ts`. Wire into `repositories-factory.ts`.
 11. **Shell runtime resource** — `packages/shell-runtime/src/resources/integrations.ts`, export on `ShellClient`.
-12. **`packages/apps/integrations` plugin app** — §7.9. Imports the already-validated components from `@guepard/features-integrations`; adds only the `useShell()` + React Query wiring + cache invalidation + toasts. Because the components have been visually validated in stage A, this step should reduce to glue.
+12. **`packages/apps/integrations` plugin app** — §7.9. Imports the already-validated components from `@qlm/features-integrations`; adds only the `useShell()` + React Query wiring + cache invalidation + toasts. Because the components have been visually validated in stage A, this step should reduce to glue.
 
 ### Stage E — polish & verification
 
@@ -1013,7 +1013,7 @@ Each bullet is an atomic commit-sized unit. `pnpm typecheck` runs green after ev
 **Hard rules for this sequencing**
 
 - No work in stage B begins until the stage-A review gate is passed.
-- Nothing in `packages/features/integrations` ever imports from `@guepard/shell-runtime`, `@tanstack/react-query`, or any repository package. If such an import becomes tempting, the data flow has slipped into the wrong layer — move it up to `packages/apps/integrations`.
+- Nothing in `packages/features/integrations` ever imports from `@qlm/shell-runtime`, `@tanstack/react-query`, or any repository package. If such an import becomes tempting, the data flow has slipped into the wrong layer — move it up to `packages/apps/integrations`.
 - Stories in stage A are written against the *same* fixtures the component tests use, so a props-shape change in stage B fails both the story and the test at once and nothing drifts.
 
 ---
@@ -1032,9 +1032,9 @@ Each bullet is an atomic commit-sized unit. `pnpm typecheck` runs green after ev
 
 One line per deviation from this spec discovered during implementation. Populated retroactively on 2026-04-11 from the SDD reconciliation pass.
 
-- 2026-04-11 — 007 — `IntegrationsUI` rewritten on top of `EntityListPage` from `@guepard/ui/entity-list` after design review. §3.2 screen sketch showed a bespoke header + grid pair; the shipped list page uses the shared entity-list wrapper (search / sort / grid-vs-table toggle) to stay consistent with datasources, notebooks, and nodes.
+- 2026-04-11 — 007 — `IntegrationsUI` rewritten on top of `EntityListPage` from `@qlm/ui/entity-list` after design review. §3.2 screen sketch showed a bespoke header + grid pair; the shipped list page uses the shared entity-list wrapper (search / sort / grid-vs-table toggle) to stay consistent with datasources, notebooks, and nodes.
 - 2026-04-11 — 007 — Provider picker is a 3-column grid with a disabled "More providers coming soon" card next to AWS and GCP. §3.2 originally showed a 2-column picker. No behaviour change — only AWS and GCP are clickable.
 - 2026-04-11 — 007 — `IntegrationDetailSummary` accepts an optional `createdByName?: string | null` resolved by the plugin app so the detail view renders a display name instead of the raw `created_by` uuid from the DTO. No port or DTO change.
 - 2026-04-11 — 005 — Server `__tests__/integrations.test.ts` bypasses `server.ts` and imports `createIntegrationsRoutes` directly because the `@mlc-ai/web-llm` ESM `require()` error in the wider import chain blocks loading the full server in tests. Pre-existing toolchain issue, orthogonal to this spec.
 - 2026-04-11 — 009 — `ISecretVault.forget` shipped as a boot-time console-warn stub against the stateless `AesGcmSecretVault` (handles are self-describing `enc:v1:...` strings). Deletion still calls `forget(ref)` via the port, so the contract is honoured. RFC §13.1 / Spec §1 row 1 flagged this as a real possibility; documenting here for completeness.
-- 2026-04-11 — 008 — **Contextual help panels** (plugin `HelpPages` export, `useDocsPanel` hook, `@guepard/ui/markdown`, auto-open effect in `IntegrationsNewView`) were implemented during this phase but the contract itself belongs to the shell, not integrations. That work was lifted into [RFC 0005 — Contextual help panels](../rfcs/0005-contextual-help-panels.md). This spec only consumes the contract: two markdown files under `packages/apps/integrations/src/help/` and a `HelpPages` export in `plugin-root.tsx`.
+- 2026-04-11 — 008 — **Contextual help panels** (plugin `HelpPages` export, `useDocsPanel` hook, `@qlm/ui/markdown`, auto-open effect in `IntegrationsNewView`) were implemented during this phase but the contract itself belongs to the shell, not integrations. That work was lifted into [RFC 0005 — Contextual help panels](../rfcs/0005-contextual-help-panels.md). This spec only consumes the contract: two markdown files under `packages/apps/integrations/src/help/` and a `HelpPages` export in `plugin-root.tsx`.

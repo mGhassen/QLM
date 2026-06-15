@@ -7,11 +7,11 @@ import type {
   DriverContext,
   IDataSourceDriver,
   DatasourceResultSet,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 import {
   DatasourceMetadataZodSchema,
   getQueryEngineConnection,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import type { z } from 'zod';
 

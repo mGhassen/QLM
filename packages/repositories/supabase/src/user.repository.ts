@@ -1,7 +1,7 @@
-import type { RepositoryFindOptions } from '@guepard/domain/common';
-import { Roles } from '@guepard/domain/common';
-import type { User } from '@guepard/domain/entities';
-import { IUserRepository } from '@guepard/domain/repositories';
+import type { RepositoryFindOptions } from '@qlm/domain/common';
+import { Roles } from '@qlm/domain/common';
+import type { User } from '@qlm/domain/entities';
+import { IUserRepository } from '@qlm/domain/repositories';
 import type { SupabaseClientType } from './types';
 
 export class UserRepository extends IUserRepository {

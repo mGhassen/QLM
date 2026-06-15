@@ -11,7 +11,7 @@ files:
 
 ## Purpose
 
-Create the `AssistantPanelBody` component — a static, unwired composition of `@guepard/ui/ai` primitives that will later become the live in-panel conversation view in story 005.
+Create the `AssistantPanelBody` component — a static, unwired composition of `@qlm/ui/ai` primitives that will later become the live in-panel conversation view in story 005.
 
 ## Files
 
@@ -20,15 +20,15 @@ Create the `AssistantPanelBody` component — a static, unwired composition of `
 
 ## Acceptance
 
-- [x] `AssistantPanelBody` exported from `@guepard/qwery-agent`.
+- [x] `AssistantPanelBody` exported from `@qlm/qwery-agent`.
 - [x] Component renders statically with no `useShell()`, no API calls, no Suspense boundaries.
-- [x] Composition reuses primitives from `@guepard/ui/ai` (`QweryPromptInput`, `QweryConversationContent`).
-- [x] `pnpm --filter @guepard/qwery-agent typecheck` passes.
+- [x] Composition reuses primitives from `@qlm/ui/ai` (`QweryPromptInput`, `QweryConversationContent`).
+- [x] `pnpm --filter @qlm/qwery-agent typecheck` passes.
 
 ## Test plan
 
 ```
-pnpm --filter @guepard/qwery-agent typecheck
+pnpm --filter @qlm/qwery-agent typecheck
 ```
 
 Visual smoke will land in task 005 (Storybook); for now a typecheck is the gate.

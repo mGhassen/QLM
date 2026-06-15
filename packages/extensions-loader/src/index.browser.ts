@@ -6,7 +6,7 @@ import {
   type DriverContext,
   type DriverExtension,
   type DriverFactory,
-} from '@guepard/extensions-sdk';
+} from '@qlm/extensions-sdk';
 
 import registryJson from './registry.json';
 

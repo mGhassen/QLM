@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { NodeSchema } from '@guepard/domain/entities';
+import { NodeSchema } from '@qlm/domain/entities';
 
 import { generateMetrics24h, seedNodes } from '../nodes';
 

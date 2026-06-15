@@ -1,6 +1,6 @@
-import type { HeatSegmentBarTone } from '@guepard/ui/heat-segment-bar';
+import type { HeatSegmentBarTone } from '@qlm/ui/heat-segment-bar';
 
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 import { getNodeDisplayState } from './get-node-display-state';
 

@@ -11,7 +11,7 @@
 
 This document is the implementation spec for RFC 0009 phase 1. The RFC establishes the *why* and *shape*; this spec defines the *what* and *how*: resolved open questions, exact data shapes, functional flows, file-by-file work items, and a verification plan.
 
-Scope is strict to phase 1 of RFC 0009 as amended by **AM-1 (2026-04-14)**: a **Settings dialog** opened from the account-menu "Settings" entry, with a two-pane shell whose left nav contains "Personal tokens" (the only section in phase 1) and whose right outlet renders the tokens UI as **inline panes** (no nested dialogs). Plus the three session-gated `/user-tokens/*` endpoints on `apps/server`, the Bearer-token validation middleware intended for the public-API surface (delivered here as a reusable middleware module; its deployment in `guepard-public-api` is cross-repo coordination per §1 Q2), the domain entity + Zod schemas + repository port, and the i18n namespaces (`tokens.*` + `settings.*`). Everything else is deferred to RFC 0009 phase 2–4 or to other RFCs.
+Scope is strict to phase 1 of RFC 0009 as amended by **AM-1 (2026-04-14)**: a **Settings dialog** opened from the account-menu "Settings" entry, with a two-pane shell whose left nav contains "Personal tokens" (the only section in phase 1) and whose right outlet renders the tokens UI as **inline panes** (no nested dialogs). Plus the three session-gated `/user-tokens/*` endpoints on `apps/server`, the Bearer-token validation middleware intended for the public-API surface (delivered here as a reusable middleware module; its deployment in `qlm-public-api` is cross-repo coordination per §1 Q2), the domain entity + Zod schemas + repository port, and the i18n namespaces (`tokens.*` + `settings.*`). Everything else is deferred to RFC 0009 phase 2–4 or to other RFCs.
 
 **Pointer to the amendment**: RFC 0009 `## Amendments` §AM-1 overrides the RFC body wherever the two disagree. The body still says "Route `/user/tokens`"; AM-1 reroutes that to a Settings dialog. This spec follows AM-1.
 
@@ -24,9 +24,9 @@ Scope is strict to phase 1 of RFC 0009 as amended by **AM-1 (2026-04-14)**: a **
 | # | Question (from RFC §11) | Resolution for phase 1 |
 |---|---|---|
 | 1 | Revoke endpoint shape | **`POST /user-tokens/:id/revoke`** — verb-as-path. Surfaces the soft-revoke semantics in the URL. Request body empty. Response: the updated `UserToken` row. |
-| 2 | Cross-repo coordination with `guepard-public-api` | **Coordinated release.** `guepard-public-api` ships a one-line query update (from `guepard.gp_user_tokens` to `public.user_tokens`) in the same release window as v3 phase 1. Column names (`account_id`, `token_name`, `scopes`, `expires_at`, `revoked`) are identical so only the schema-qualified table name changes. No dual-reading or flag window is needed. The coordination is tracked as a follow-up ticket in `guepard-public-api` linked from this spec. |
+| 2 | Cross-repo coordination with `qlm-public-api` | **Coordinated release.** `qlm-public-api` ships a one-line query update (from `qlm.gp_user_tokens` to `public.user_tokens`) in the same release window as v3 phase 1. Column names (`account_id`, `token_name`, `scopes`, `expires_at`, `revoked`) are identical so only the schema-qualified table name changes. No dual-reading or flag window is needed. The coordination is tracked as a follow-up ticket in `qlm-public-api` linked from this spec. |
 | 3 | Sidebar entry point for token management | **Account-menu "Settings" entry opens a Settings dialog.** Per RFC 0009 AM-1 (2026-04-14), the token UI is not a standalone route in phase 1. The account menu (present in both `UserProfileMenu` for the organizations layout and `ShellUserProfileMenu` for the project shell) shows a **"Settings"** item. Clicking it opens a Radix `Dialog` with a two-pane layout: left nav listing sections (only "Personal tokens" in phase 1), right outlet rendering the selected section. No `/user/tokens` or `/user/settings` route is added. |
-| 4 | Curl example in post-creation reveal dialog | **Yes — one copyable example.** After a token is created the reveal dialog shows both the raw JWT and a `curl -H "Authorization: Bearer <token>" https://<public-api-host>/...` one-liner with a copy button. The host placeholder comes from an env-provided config value (`VITE_GUEPARD_PUBLIC_API_URL` or equivalent — spec does not add a new env var; it reuses whatever value is already exposed to the web app). |
+| 4 | Curl example in post-creation reveal dialog | **Yes — one copyable example.** After a token is created the reveal dialog shows both the raw JWT and a `curl -H "Authorization: Bearer <token>" https://<public-api-host>/...` one-liner with a copy button. The host placeholder comes from an env-provided config value (`VITE_QLM_PUBLIC_API_URL` or equivalent — spec does not add a new env var; it reuses whatever value is already exposed to the web app). |
 | 5 | `revoked` column nullability handling | **Tolerate at the read-path, harden later.** The landed DB has `revoked boolean default false` with no `NOT NULL`. Phase 1 Zod read-schemas normalise `null` → `false` via `.nullable().transform(v => v ?? false)` so service code treats `revoked` as strictly boolean. A hardening migration (`ALTER COLUMN revoked SET NOT NULL`) is filed as a phase-2 follow-up (RFC 0009 §10 rollout, phase-2 row). Phase 1 **does not** add a migration. |
 
 ## 2. User stories
@@ -37,10 +37,10 @@ Scope is strict to phase 1 of RFC 0009 as amended by **AM-1 (2026-04-14)**: a **
 - **As a signed-in user**, I can click "Generate Token" to open a creation dialog with a required Name field, Read / Write / Admin scope checkboxes (at least one required), and an expiration date picker (default 90 days from today, max 365 days). A live preview panel on the right reflects my choices.
 - **As a signed-in user**, when I submit the creation form I see the raw JWT exactly once in a reveal view with a copy-button and an unmissable "this token will not be shown again" warning. The reveal view also shows a copyable curl snippet I can paste into a terminal.
 - **As a signed-in user**, I can revoke any active token I own via the revoke icon on its row. A confirmation dialog warns me that processes using it will stop working. On confirm the row flips to Revoked status with a timestamp; the row stays visible as an audit record.
-- **As a CLI / CI / script caller**, I can present my JWT as `Authorization: Bearer <jwt>` against any `guepard-public-api` endpoint and have it verified — signature (HS256 against shared `JWT_SECRET`), DB revocation check (row in `public.user_tokens` by `token_id` claim, `revoked` must be `false` and `expires_at > now()`), and method-based scope enforcement (`admin` → any method, `read` → GET only, `write` → POST/PUT/DELETE only).
+- **As a CLI / CI / script caller**, I can present my JWT as `Authorization: Bearer <jwt>` against any `qlm-public-api` endpoint and have it verified — signature (HS256 against shared `JWT_SECRET`), DB revocation check (row in `public.user_tokens` by `token_id` claim, `revoked` must be `false` and `expires_at > now()`), and method-based scope enforcement (`admin` → any method, `read` → GET only, `write` → POST/PUT/DELETE only).
 - **As a user whose `auth.users` row is deleted**, all my tokens are automatically purged (via the cascade chain `auth.users → public.accounts → public.user_tokens`).
 - **As a developer running `pnpm web:dev`**, I can click through the full create → reveal → copy → revoke flow end-to-end against a real local database (because the schema is already landed).
-- **As a developer of `guepard-public-api`**, I can drop in the Bearer-token middleware module this spec delivers and the only code change on my side is a one-line SQL-query update.
+- **As a developer of `qlm-public-api`**, I can drop in the Bearer-token middleware module this spec delivers and the only code change on my side is a one-line SQL-query update.
 
 ## 3. Functional flow
 
@@ -57,7 +57,7 @@ Per RFC 0009 AM-1 (2026-04-14), phase 1 **adds no new route**. The token UI live
 
 #### 3.2.1 Settings dialog — shell
 
-- **Opens from** both account-menu components (`UserProfileMenu`, `ShellUserProfileMenu`) via a new `onSettingsClick` handler. The existing (unused) gear-icon `onSettingsClick` prop on both components is **renamed to `onProfileSettingsIconClick`** to free the name — a one-commit change in `@guepard/ui`. Both menus get a new "Settings" nav-item button (distinct from the unused gear icon) that calls the new handler.
+- **Opens from** both account-menu components (`UserProfileMenu`, `ShellUserProfileMenu`) via a new `onSettingsClick` handler. The existing (unused) gear-icon `onSettingsClick` prop on both components is **renamed to `onProfileSettingsIconClick`** to free the name — a one-commit change in `@qlm/ui`. Both menus get a new "Settings" nav-item button (distinct from the unused gear icon) that calls the new handler.
 - **Layout**: Radix `Dialog` with `max-w-4xl` (roughly). Two columns:
   - **Left nav (`~220px`)**: vertical list of section items. Phase 1 has exactly one item: "Personal tokens" (from `settings.nav.personalTokens`). Active state on the currently-selected section. Scrollable if sections overflow (won't in phase 1).
   - **Right outlet**: renders the currently-selected section's content component. In phase 1 this is `<TokensSettingsPane />`. The outlet fills remaining width.
@@ -118,7 +118,7 @@ Replaces the pane's "create" state after a successful POST. Content-only — `<R
 - **Pane header**: title `tokens.dialog.reveal.heading`.
 - **Banner**: `tokens.dialog.reveal.warning` — styled prominently.
 - **Raw JWT field**: monospace read-only input with copy button. Toast success via `tokens.dialog.reveal.copied`.
-- **Curl example field**: monospace read-only input containing `curl -H "Authorization: Bearer <jwt>" ${publicApiUrl}` with the real JWT substituted inline. `publicApiUrl` from `VITE_GUEPARD_PUBLIC_API_URL`.
+- **Curl example field**: monospace read-only input containing `curl -H "Authorization: Bearer <jwt>" ${publicApiUrl}` with the real JWT substituted inline. `publicApiUrl` from `VITE_QLM_PUBLIC_API_URL`.
 - **Footer**: a single Close button `tokens.dialog.reveal.close` that swaps pane state back to `"list"`. Closing the outer Settings dialog also transitions back to `"list"` first (so re-opening the dialog never re-shows the JWT).
 - **Security**: closing drops the `rawJwt` from pane state; it is never persisted anywhere (no clipboard, no sessionStorage, no URL).
 
@@ -181,7 +181,7 @@ Exactly one pane state is visible at a time. Transitions are driven by a `useRed
 4. Client POSTs `/user-tokens/:id/revoke`. Server flips `revoked = true`, `revoked_at = now()`, returns the updated row.
 5. Pane state swaps `"revoke-confirm"` → `"list"`. List invalidates and re-fetches. The row now shows Status = Revoked, Revoked At = a timestamp.
 
-**Flow C — non-interactive validation (out of this repo, in `guepard-public-api`)**:
+**Flow C — non-interactive validation (out of this repo, in `qlm-public-api`)**:
 
 1. CLI sends `GET /some-endpoint` with `Authorization: Bearer <jwt>`.
 2. The public-API's Bearer middleware verifies HS256 against `JWT_SECRET`.
@@ -260,7 +260,7 @@ SupabaseUserTokenRepository
 HTTP 200 with updated row, or 404 / 409
 ```
 
-**Sequence — validate a Bearer token (in `guepard-public-api`, after the middleware module lands there)**:
+**Sequence — validate a Bearer token (in `qlm-public-api`, after the middleware module lands there)**:
 
 ```
 Incoming request: Authorization: Bearer <jwt>
@@ -295,7 +295,7 @@ bearerTokenMiddleware (module from this spec)
 
 ### 5.1 Data shapes
 
-All types live in `packages/domain/src/entities/` and `packages/domain/src/usecases/dto/`, exported from `@guepard/domain/entities` / `@guepard/domain/usecases`.
+All types live in `packages/domain/src/entities/` and `packages/domain/src/usecases/dto/`, exported from `@qlm/domain/entities` / `@qlm/domain/usecases`.
 
 ```ts
 // packages/domain/src/entities/user-token-scope.ts
@@ -439,7 +439,7 @@ Payload: {
 }
 ```
 
-Signed HS256 with shared `JWT_SECRET` (env, not in code, not in this spec). Compatible with v1 + existing `guepard-public-api` validator + existing `guepard-cli` consumer.
+Signed HS256 with shared `JWT_SECRET` (env, not in code, not in this spec). Compatible with v1 + existing `qlm-public-api` validator + existing `qlm-cli` consumer.
 
 ## 7. File-by-file work items
 
@@ -483,7 +483,7 @@ Grouped by hexagonal layer, top-down. This section feeds `/spec-to-stories`.
 - `src/server.ts` — register the new route factory under path prefix `/user-tokens`.
 - `src/lib/auth.ts` (or equivalent — existing helper to extract the current user/account from the Hono context). The handlers use it to obtain `accountId` for the caller. No new helper is created; reuses whatever the other routes already use (`conversations`, `notebooks`, etc.).
 - **Response-body logging redaction**: add `rawJwt` to the existing server-side log redaction list so the JWT never ends up in logs. If no such list exists today, file a follow-up (not a blocker for phase 1).
-- **Bearer-token middleware module (shared)**: `packages/auth-shared/src/bearer-token-middleware.ts` (new thin package) exports `verifyBearerToken(authHeader, jwtSecret, dbClient): Promise<{ accountId, scopes } | null>` and `scopePermitsMethod(scopes, method): boolean`. The v3 server imports these but does **not** apply them to `/user-tokens/*` routes. The package exists so `guepard-public-api` can depend on it once cross-repo coordination happens.
+- **Bearer-token middleware module (shared)**: `packages/auth-shared/src/bearer-token-middleware.ts` (new thin package) exports `verifyBearerToken(authHeader, jwtSecret, dbClient): Promise<{ accountId, scopes } | null>` and `scopePermitsMethod(scopes, method): boolean`. The v3 server imports these but does **not** apply them to `/user-tokens/*` routes. The package exists so `qlm-public-api` can depend on it once cross-repo coordination happens.
 
 ### 7.5 Presentation — feature package (`packages/features/user-tokens`)
 
@@ -504,14 +504,14 @@ New package. Mirror the layout of `packages/features/datasources` or similar. **
 
 ### 7.6 Settings-shell package (`packages/features/settings-shell`)
 
-**New, introduced by AM-1.** Thin generic package for the Settings dialog shell — kept separate from `@guepard/user-tokens` so future settings sections (profile, notifications, …) can be added without coupling to tokens.
+**New, introduced by AM-1.** Thin generic package for the Settings dialog shell — kept separate from `@qlm/user-tokens` so future settings sections (profile, notifications, …) can be added without coupling to tokens.
 
 - `package.json`, `tsconfig.json`, `vitest.config.ts`, `src/index.ts`.
 - `src/components/settings-dialog.tsx` + stories + tests — the `<SettingsDialog>` component. Props per §3.2.1 (`open`, `onOpenChange`, `initialSection?`). Renders a Radix `Dialog` with the two-pane shell.
 - `src/components/settings-sidebar.tsx` + stories — the left-nav list component. Takes a `sections: SettingsSection[]` array and an `activeSectionKey`. Each section is `{ key: string; label: string; icon?: IconComponent; content: ReactNode }`.
 - `src/types/settings-section.ts` — `SettingsSection` and `SettingsSectionKey` types.
 - `src/index.ts` — public exports.
-- **Does not depend on `@guepard/user-tokens`.** The consumer (`apps/web`) imports both packages and composes them: `<SettingsDialog sections={[{ key: 'personal-tokens', label: t('settings.nav.personalTokens'), content: <TokensSettingsPane /> }]} />`.
+- **Does not depend on `@qlm/user-tokens`.** The consumer (`apps/web`) imports both packages and composes them: `<SettingsDialog sections={[{ key: 'personal-tokens', label: t('settings.nav.personalTokens'), content: <TokensSettingsPane /> }]} />`.
 
 ### 7.7 Shell app
 
@@ -531,15 +531,15 @@ New package. Mirror the layout of `packages/features/datasources` or similar. **
 - ~~`createUserTokensPath()` in `paths.config.ts`~~ — removed by task 003.
 
 **Added**:
-- `src/components/settings-dialog-mount.tsx` — a thin host-app component that owns the `open` boolean state for the Settings dialog and exposes an imperative opener via context. Rendered once near the app root (e.g. in `__root.tsx` or the organizations layout and the project-shell host — wherever it needs to be reachable). Composes `<SettingsDialog>` from `@guepard/settings-shell` with `<TokensSettingsPane>` from `@guepard/user-tokens`.
-- `src/components/account-menu/*` (existing — exact path confirmed during implementation) — rename the existing unused gear-icon `onSettingsClick` prop to `onProfileSettingsIconClick` **in `@guepard/ui`**, then add a new "Settings" nav-item button with its own `onSettingsClick` handler that calls the settings-dialog-mount opener.
+- `src/components/settings-dialog-mount.tsx` — a thin host-app component that owns the `open` boolean state for the Settings dialog and exposes an imperative opener via context. Rendered once near the app root (e.g. in `__root.tsx` or the organizations layout and the project-shell host — wherever it needs to be reachable). Composes `<SettingsDialog>` from `@qlm/settings-shell` with `<TokensSettingsPane>` from `@qlm/user-tokens`.
+- `src/components/account-menu/*` (existing — exact path confirmed during implementation) — rename the existing unused gear-icon `onSettingsClick` prop to `onProfileSettingsIconClick` **in `@qlm/ui`**, then add a new "Settings" nav-item button with its own `onSettingsClick` handler that calls the settings-dialog-mount opener.
 - `src/config/paths.config.ts` — **no new helpers in phase 1**. Any future `/user/settings/*` routes would add `createUserSettingsPath` helpers; phase 1 does not.
-- `package.json` — add `@guepard/user-tokens` AND `@guepard/settings-shell` as workspace deps.
+- `package.json` — add `@qlm/user-tokens` AND `@qlm/settings-shell` as workspace deps.
 
 ### 7.10 Cross-repo coordination (NOT in this repo, tracked here)
 
-- **`guepard-public-api`** — update query from `guepard.gp_user_tokens` to `public.user_tokens` (schema prefix only; column names unchanged). Optionally adopt the `packages/auth-shared/src/bearer-token-middleware.ts` module delivered by this spec — if it is published as a standalone package or vendored across.
-- **`guepard-cli`** — no change. Existing JWT-paste flow continues to work against v3-issued tokens because the JWT shape is unchanged.
+- **`qlm-public-api`** — update query from `qlm.gp_user_tokens` to `public.user_tokens` (schema prefix only; column names unchanged). Optionally adopt the `packages/auth-shared/src/bearer-token-middleware.ts` module delivered by this spec — if it is published as a standalone package or vendored across.
+- **`qlm-cli`** — no change. Existing JWT-paste flow continues to work against v3-issued tokens because the JWT shape is unchanged.
 
 ## 8. Permissions and RLS
 
@@ -628,7 +628,7 @@ Walk against `pnpm web:dev`:
 5. Click Generate Token in the pane toolbar. Pane flips to `"create"` — still inside the same dialog, no new dialog opens.
 6. Fill the form (Read + Write + Admin, 30-day expiration). Click Create Token. Pane flips to `"reveal"`; copy JWT; click Close. Pane flips back to `"list"`.
 7. Verify the new row shows in the table with correct status and scopes.
-8. Paste the copied curl command against a running `guepard-public-api` dev instance (if running locally), confirm 200 / 403 / etc. per scope.
+8. Paste the copied curl command against a running `qlm-public-api` dev instance (if running locally), confirm 200 / 403 / etc. per scope.
 9. Click the revoke icon on the row. Pane flips to `"revoke-confirm"` — inline block, no second dialog. Click Revoke. Pane flips back to `"list"`; the row shows Revoked status.
 10. Try to use the revoked token via curl — expect 401.
 11. Close the Settings dialog (X / Escape / overlay). Verify focus returns to the account-menu "Settings" button.
@@ -742,8 +742,8 @@ Per AM-1, dialog-shaped keys are reshaped for inline panes. `tokens.dialog.*` �
 **Stage A — types and UI scaffolding**
 
 - Domain: entity + port + Zod schemas + DTOs.
-- `@guepard/user-tokens` feature package scaffolded (empty `src/`, `package.json`, Vitest config).
-- `@guepard/settings-shell` package scaffolded (empty `src/`, `package.json`, Vitest config).
+- `@qlm/user-tokens` feature package scaffolded (empty `src/`, `package.json`, Vitest config).
+- `@qlm/settings-shell` package scaffolded (empty `src/`, `package.json`, Vitest config).
 - `tokens.*` and `settings.*` i18n namespace JSON files in every locale.
 - Host-app account-menu entry "Settings" added (opens a stub Settings dialog via the mount component). No `/user/tokens` route.
 - Account-menu item added (links to `/user/tokens`; route renders the placeholder for now).
@@ -761,14 +761,14 @@ Per AM-1, dialog-shaped keys are reshaped for inline panes. `tokens.dialog.*` �
 - `apps/server/src/routes/user-tokens.ts` with 3 handlers.
 - Register in `apps/server/src/server.ts`.
 - Route-level integration tests.
-- **Parallel work item**: publish the shared `packages/auth-shared/src/bearer-token-middleware.ts` module (intended for `guepard-public-api` adoption in a separate ticket).
+- **Parallel work item**: publish the shared `packages/auth-shared/src/bearer-token-middleware.ts` module (intended for `qlm-public-api` adoption in a separate ticket).
 
 **Stage D — web wiring**
 
 - `HttpUserTokenRepository` + wire into `apps/web/src/lib/repositories-factory.ts`.
 - TanStack Query hooks in `packages/features/user-tokens/src/hooks`.
-- **Settings-shell components** (`<SettingsDialog>`, `<SettingsSidebar>`) in `@guepard/settings-shell` + Storybook stories.
-- **Tokens-pane components** (`<TokensSettingsPane>`, `<TokenListView>` inline, `<GenerateTokenForm>`, `<RevealTokenView>`, `<RevokeConfirmInline>`, `<TokenRow>`, primitives) in `@guepard/user-tokens` + Storybook stories.
+- **Settings-shell components** (`<SettingsDialog>`, `<SettingsSidebar>`) in `@qlm/settings-shell` + Storybook stories.
+- **Tokens-pane components** (`<TokensSettingsPane>`, `<TokenListView>` inline, `<GenerateTokenForm>`, `<RevealTokenView>`, `<RevokeConfirmInline>`, `<TokenRow>`, primitives) in `@qlm/user-tokens` + Storybook stories.
 - `<SettingsDialogMount>` in the host app composes the shell + the tokens pane via props.
 - Replace the account-menu "Settings" stub (from Story 001 task 003) with the real opener via context.
 - Unit tests for every component, including the pane-state `useReducer`.
@@ -781,7 +781,7 @@ Per AM-1, dialog-shaped keys are reshaped for inline panes. `tokens.dialog.*` �
 - Playwright smoke spec `apps/e2e/tests/user-tokens/settings-dialog-create-reveal-revoke.spec.ts` (renamed from the pre-amendment path).
 - Manual smoke walk per §10.5.
 - `pnpm check` green from a clean working tree.
-- File the `guepard-public-api` coordination ticket (cross-repo, not in this repo's PR).
+- File the `qlm-public-api` coordination ticket (cross-repo, not in this repo's PR).
 - File the `ALTER COLUMN revoked SET NOT NULL` follow-up (tracked in RFC §10 phase-2 row).
 
 ## 13. Follow-ups (deferred, not in this phase)
@@ -810,10 +810,10 @@ One line per deviation from this spec discovered during implementation. Populate
 
 - 2026-04-14 — RFC 0009 AM-1 — settings-dialog entry point. The spec's §1 Q3, §3.1 IA, §3.2 screen-by-screen, §3.3 user flows, §7.5 feature package, §7.6 (new) settings-shell package, §7.8 i18n, §7.9 host app, §10.1 static checks, §10.4 Playwright smoke filename, §10.5 manual smoke, §11 i18n key map (new `settings.*` namespace; `tokens.dialog.*` renamed to `tokens.pane.*`), and §12 Stage A/D were all updated to reflect the dialog + inline-pane-state architecture. Story 001 gains task 003 (undo the direct-route wiring). A new story between 009 and 010 ("build settings dialog shell") is added. Stories 010 and 011 are rescoped.
 - 2026-04-15 — Story 002 — three cosmetic deviations from §7.1 domain file layout, chosen to match existing repo conventions. (a) The three DTOs (`CreateUserTokenInputSchema`, `CreateUserTokenOutputSchema`, `RevokeUserTokenOutputSchema`) shipped in a single file `src/usecases/dto/user-token-usecase-dto.ts` (matching `<entity>-usecase-dto.ts` pattern — see `datasource-usecase-dto.ts`, `notebook-usecase-dto.ts`) rather than three separate files. (b) Exception filenames are `token-not-found.exception.ts` / `token-already-revoked.exception.ts` / `token-expiration-invalid.exception.ts` — without the `user-token-` prefix §7.1 prescribed. (c) Exception API shape is factory functions (`tokenNotFoundException(tokenId)`, `tokenAlreadyRevokedException(tokenId)`, `tokenExpirationInvalidException(reason, expiresAt)`) returning `DomainException.new(...)` rather than class-style names — matching how `DomainException.new({ code: Code.X })` is actually called throughout the existing services. Functional contract identical; types, schemas, codes (3000–3002) all match §5.1 + §7.1 exactly. No downstream impact on Stories 004 / 005 / 006 / 008.
-- 2026-04-15 — Story 003 — four deviations from §7.8 / §11 i18n location + scope. (a) Locale JSON files live at `apps/web/src/lib/i18n/locales/{locale}/{namespace}.json` (actual repo convention — see `datasources.json`, `integrations.json` etc.), not at `packages/i18n/src/locales/` as §7.8 prescribed. (b) Spec §11 included a spurious `tokens.events.*` section copied from RFC 0003's environments spec; dropped because token management has no lifecycle-event concept. (c) TODO(story-003) markers in `@guepard/ui` menu components were resolved by removing the comments and keeping the "Settings" literal — matching the surrounding "Home Page" / "Help" / "Log Out" literals, which are the existing `@guepard/ui` convention — rather than hoisting to a t()-called prop. (d) "Non-English locale files" criterion from the original story is N/A because the repo only has `en/` today; when a non-English locale lands, any later story in phase 1 (or a follow-up RFC) is responsible for mirroring the `settings.*` + `tokens.*` key structure. Functional contract (every spec §11 key shipped with real English copy; both namespaces registered) is exactly what the spec asked for.
+- 2026-04-15 — Story 003 — four deviations from §7.8 / §11 i18n location + scope. (a) Locale JSON files live at `apps/web/src/lib/i18n/locales/{locale}/{namespace}.json` (actual repo convention — see `datasources.json`, `integrations.json` etc.), not at `packages/i18n/src/locales/` as §7.8 prescribed. (b) Spec §11 included a spurious `tokens.events.*` section copied from RFC 0003's environments spec; dropped because token management has no lifecycle-event concept. (c) TODO(story-003) markers in `@qlm/ui` menu components were resolved by removing the comments and keeping the "Settings" literal — matching the surrounding "Home Page" / "Help" / "Log Out" literals, which are the existing `@qlm/ui` convention — rather than hoisting to a t()-called prop. (d) "Non-English locale files" criterion from the original story is N/A because the repo only has `en/` today; when a non-English locale lands, any later story in phase 1 (or a follow-up RFC) is responsible for mirroring the `settings.*` + `tokens.*` key structure. Functional contract (every spec §11 key shipped with real English copy; both namespaces registered) is exactly what the spec asked for.
 - 2026-04-16 — Story 005 — one adapter-level deviation from §7.2. Spec described `JwtSigner` taking the secret in its constructor (`new JwtSigner(JWT_SECRET)`); actual implementation is stateless and the secret travels via `JwtSignerOptions.secret` on every `sign(...)` call (matching the `IJwtSigner` port shape from Story 002). The route layer (Story 006) calls `getJwtSecret()` once per request and passes it into `new CreateUserTokenService(repo, signer, secret)`. Functional contract identical; the bind point shifts one layer up, removing a duplicate source of truth for the secret.
 - 2026-04-16 — Story 006 — three route-level deviations from §5.2 / §3.4 / §7.4. (a) Routes mount at `/api/user-tokens`, `/api/user-tokens` (POST), `/api/user-tokens/:id/revoke` rather than the spec's root-relative paths — matches the existing v3 server convention (every other route already lives under `/api/*`). (b) Phase-1 does NOT differentiate "already revoked" from "not found": both return 404 with `code = USER_TOKEN_NOT_FOUND_ERROR` (3000). The spec's 409-for-already-revoked branch is intentionally deferred — the repo's revoke-narrowed-by-`revoked = false` returns null in both cases, and adding a second findById round-trip just to refine the status code is not worth phase-1 complexity. The `USER_TOKEN_ALREADY_REVOKED_ERROR` (3001) code stays declared in `Code` for a later story to use. (c) Auth: instead of a centralised "current user" Hono middleware (which doesn't exist on apps/server today), Story 006 ships a one-off `apps/server/src/lib/current-account.ts` helper. Tests inject a stub via the new `CreateAppOptions.getCurrentAccountId` field, prod uses the helper. A future auth RFC owns rolling out a single per-request user-resolution middleware. Two follow-ups recorded in the story's Questions section: (i) centralised current-user middleware, (ii) `rawJwt` + sensitive-field log redaction (Pino `redact:` not configured today on apps/server).
 - 2026-04-16 — Story 008 — two structural deviations from §7.2 / §4.2 hook surface. (a) `HttpUserTokenRepository` exposes a non-port method `createAndIssueJwt(input): Promise<CreateUserTokenOutput>` returning `{ row, rawJwt }`. The domain port's `create(input): Promise<UserToken>` cannot carry `rawJwt` (signing is a server concern not represented in `IUserTokenRepository`). The base `create` is implemented for port-shape conformance and delegates to `createAndIssueJwt` while dropping `rawJwt`; the create-mutation hook uses `createAndIssueJwt` directly. (b) Hooks read dependencies via a new `UserTokensApiProvider`/`useUserTokensApi` context inside the feature package, not via `useShell()` as §7.2 implied. `useShell()` is project-scoped and user tokens are account-scoped — the bespoke context is the right shape. The host (apps/web) wraps with the provider once at app root in Story 010; tests pass a stub `UserTokensApi`. Functional contract identical: a hook still returns `{ data, isLoading, error }` / `{ mutateAsync, isPending, error }`, both mutations still invalidate `['user-tokens', 'list']` on success.
-- 2026-04-16 — Story 010 — one wiring deviation from §3.2.1 / §7.9. Spec implied two opener call-site wirings (`UserProfileMenu` in `apps/web/src/routes/organizations.tsx` + `ShellUserProfileMenu` in `apps/web/src/shell/project-shell-host.tsx`). Reality: FOUR call sites exist, all needing the wiring — the two named plus `apps/web/src/routes/org/$slug.tsx` (org-detail layout via `RootLayout`) and `apps/web/src/routes/org/$slug/project/$projectSlug.tsx` (per-project layout with inline `<ShellUserProfileMenu>`). All four now call `useSettingsDialog().open()`. The miss surfaced during user visual validation on `/org/guepard`; fixed before story-finish. Future RFC should consider centralising user-menu rendering to a single component to avoid this drift.
+- 2026-04-16 — Story 010 — one wiring deviation from §3.2.1 / §7.9. Spec implied two opener call-site wirings (`UserProfileMenu` in `apps/web/src/routes/organizations.tsx` + `ShellUserProfileMenu` in `apps/web/src/shell/project-shell-host.tsx`). Reality: FOUR call sites exist, all needing the wiring — the two named plus `apps/web/src/routes/org/$slug.tsx` (org-detail layout via `RootLayout`) and `apps/web/src/routes/org/$slug/project/$projectSlug.tsx` (per-project layout with inline `<ShellUserProfileMenu>`). All four now call `useSettingsDialog().open()`. The miss surfaced during user visual validation on `/org/qlm`; fixed before story-finish. Future RFC should consider centralising user-menu rendering to a single component to avoid this drift.
 - 2026-04-16 — Story 012 — §10.4 Playwright steps 2, 3, 9 amended in place. The spec's original wording predated RFC 0009 AM-1 and referenced a `/user/tokens` URL that never shipped. The post-AM-1 flow enters the token surface via the Settings dialog (account menu → Settings), and the "close" step stays inside the dialog's `list` pane-state rather than navigating away. Step count stays at 13; only the entry points and the close semantics change.
 - 2026-04-16 — Story 012 — one production-affecting schema bug surfaced by the live e2e run and fixed in `packages/domain/src/entities/user-token.type.ts`. The entity schema used `z.string().datetime()` for `created_at` / `updated_at` / `revoked_at` — Zod v4's default `.datetime()` requires a trailing `Z`, but Supabase/Postgres emits ISO-8601 with a `+00:00` offset, so every round-trip through `UserTokenSchema.parse(...)` failed validation and `useCreateUserTokenMutation` rejected on success responses. Fix: `.datetime({ offset: true })` on all three fields. Unit-test fixtures used `Z`-terminated strings so this was invisible to the domain suite; the e2e run against a real Supabase caught it. No production impact since phase 1 hasn't shipped yet.

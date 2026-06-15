@@ -1,5 +1,5 @@
 {
-  "name": "@guepard/extensions-sdk",
+  "name": "@qlm/extensions-sdk",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -19,19 +19,19 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@guepard/domain": "workspace:*",
+    "@qlm/domain": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@guepard/eslint-config": "workspace:*",
-    "@guepard/prettier-config": "workspace:*",
-    "@guepard/tailwind-config": "workspace:*",
-    "@guepard/tsconfig": "workspace:*",
+    "@qlm/eslint-config": "workspace:*",
+    "@qlm/prettier-config": "workspace:*",
+    "@qlm/tailwind-config": "workspace:*",
+    "@qlm/tsconfig": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "eslint": "^9.39.0",
     "vitest": "catalog:"
   },
-  "prettier": "@guepard/prettier-config",
+  "prettier": "@qlm/prettier-config",
   "typesVersions": {
     "*": {
       "*": [

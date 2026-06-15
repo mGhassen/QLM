@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { useNavigate, useRouterState } from '@tanstack/react-router';
 
-import { useSupabase } from '@guepard/supabase/hooks/use-supabase';
+import { useSupabase } from '@qlm/supabase/hooks/use-supabase';
 
 function AuthLinkRedirect(props: { redirectPath?: string }) {
   const searchStr = useRouterState({ select: (s) => s.location.searchStr });

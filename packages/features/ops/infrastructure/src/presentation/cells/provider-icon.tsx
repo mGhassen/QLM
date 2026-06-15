@@ -1,13 +1,13 @@
-import type { NodeProvider } from '@guepard/domain/entities';
+import type { NodeProvider } from '@qlm/domain/entities';
 
 import {
   CloudProviderIcon,
   type CloudProviderIconProps,
-} from '@guepard/ui/cloud-provider-icon';
+} from '@qlm/ui/cloud-provider-icon';
 
 /**
  * Thin re-export under the legacy name. New consumers should import
- * `CloudProviderIcon` directly from `@guepard/ui/cloud-provider-icon`.
+ * `CloudProviderIcon` directly from `@qlm/ui/cloud-provider-icon`.
  */
 export function ProviderIcon(
   props: Readonly<{

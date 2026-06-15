@@ -1,12 +1,12 @@
 import { generateText } from 'ai';
-import type { Repositories } from '@guepard/domain/repositories';
-import { MessageRole } from '@guepard/domain/entities';
-import { getLogger } from '@guepard/shared/logger';
+import type { Repositories } from '@qlm/domain/repositories';
+import { MessageRole } from '@qlm/domain/entities';
+import { getLogger } from '@qlm/shared/logger';
 import type { Message, MessageContentPart } from '../llm/message';
 import { Provider } from '../llm/provider';
 import { Messages } from '../llm/message';
 import { MessagePersistenceService } from '../services/message-persistence.service';
-import { CreateMessageService } from '@guepard/domain/services';
+import { CreateMessageService } from '@qlm/domain/services';
 import { Registry } from '../tools/registry';
 import { COMPACTION_PROMPT } from './prompts/compaction.prompt';
 import { v4 as uuidv4 } from 'uuid';

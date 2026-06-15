@@ -21,7 +21,7 @@ blocked_by:
 
 ## Goal
 
-Ship the domain entity, Zod schemas, input/output DTOs, repository + JWT-signer ports, and domain exceptions for user tokens — the typed contract every later story (services, adapters, server, hooks, components) reads from `@guepard/domain/entities`, `@guepard/domain/usecases`, and `@guepard/domain/repositories`.
+Ship the domain entity, Zod schemas, input/output DTOs, repository + JWT-signer ports, and domain exceptions for user tokens — the typed contract every later story (services, adapters, server, hooks, components) reads from `@qlm/domain/entities`, `@qlm/domain/usecases`, and `@qlm/domain/repositories`.
 
 ## Scope
 
@@ -54,13 +54,13 @@ Ship the domain entity, Zod schemas, input/output DTOs, repository + JWT-signer 
 - [x] `deriveUserTokenStatus({ revoked: true, ... })` returns `'revoked'`; `{ revoked: false, expires_at: past }` returns `'expired'`; `{ revoked: false, expires_at: future }` returns `'active'` — covered by `__tests__/user-token/user-token-status.test.ts` truth table.
 - [x] `IUserTokenRepository` and `IJwtSigner` are abstract classes (cannot be `new`'d directly) following the existing repository-port convention.
 - [x] `Repositories` in `packages/domain/src/repositories/repositories.ts` has new `userToken` and `jwtSigner` fields.
-- [x] `pnpm --filter @guepard/domain typecheck` passes (exit 0).
-- [x] `pnpm --filter @guepard/domain test` passes with ≥ 90 % line coverage on the new files — **100 %** statement / branch / function / line on all four user-token source files.
+- [x] `pnpm --filter @qlm/domain typecheck` passes (exit 0).
+- [x] `pnpm --filter @qlm/domain test` passes with ≥ 90 % line coverage on the new files — **100 %** statement / branch / function / line on all four user-token source files.
 - [x] No runtime import of `jsonwebtoken`, `@supabase/*`, or `react` inside `packages/domain`.
 
 ## Tasks
 
-1. [001-add-user-token-entity-and-status-types](001-add-user-token-entity-and-status-types-[done].md) ✅ — domain layer. Scope enum + view-only `UserTokenStatus` + `deriveUserTokenStatus` helper + `UserTokenSchema` + `UserTokenEntity` class matching `public.user_tokens` exactly. Re-exported from `@guepard/domain/entities`. `pnpm --filter @guepard/domain typecheck` green.
+1. [001-add-user-token-entity-and-status-types](001-add-user-token-entity-and-status-types-[done].md) ✅ — domain layer. Scope enum + view-only `UserTokenStatus` + `deriveUserTokenStatus` helper + `UserTokenSchema` + `UserTokenEntity` class matching `public.user_tokens` exactly. Re-exported from `@qlm/domain/entities`. `pnpm --filter @qlm/domain typecheck` green.
 2. [002-add-user-token-dtos-and-exceptions](002-add-user-token-dtos-and-exceptions-[done].md) ✅ — domain layer. `CreateUserTokenInputSchema` (with expiry refinement), `CreateUserTokenOutputSchema`, `RevokeUserTokenOutputSchema` in a single `user-token-usecase-dto.ts` (repo convention over the 3-separate-files plan). Three exception factory files (`token-not-found.exception.ts` + 2 siblings) wrapping `DomainException.new(...)` with `Code.USER_TOKEN_*` codes at `3000-3002`.
 3. [003-add-user-token-and-jwt-signer-ports](003-add-user-token-and-jwt-signer-ports-[done].md) ✅ — domain layer. `IUserTokenRepository` abstract port (extends `RepositoryPort<UserToken, string>`, with `findByAccountId` / `create` / `revoke`), `IJwtSigner` abstract port + `JwtSignerPayload` / `JwtSignerOptions` literal-typed types, extended `Repositories` type with `userToken` + `jwtSigner`. Workspace-typecheck failure confined to 2 factory files (`apps/server/src/lib/repositories.ts:24`, `apps/web/src/lib/repositories/repositories-factory.ts:50`) — both resolve in Stories 005 (Supabase adapter) + 008 (HTTP adapter).
 4. [004-cover-user-token-domain-with-tests](004-cover-user-token-domain-with-tests-[done].md) ✅ — tests. 5 Vitest files, 47 passing tests. **100 %** statement / branch / function / line coverage on `user-token-scope.ts`, `user-token-status.ts`, `user-token.type.ts`, `user-token-usecase-dto.ts` (way over the 90 % target). Fake-timer boundary tests verify the refinement at `now`, `now+1s`, `now+365d`, `now+365d+1s`.
@@ -68,11 +68,11 @@ Ship the domain entity, Zod schemas, input/output DTOs, repository + JWT-signer 
 ## Demo / verification
 
 ```bash
-pnpm --filter @guepard/domain typecheck
-pnpm --filter @guepard/domain test -- user-token
+pnpm --filter @qlm/domain typecheck
+pnpm --filter @qlm/domain test -- user-token
 # Optional: in a scratch test file, import and log
 # import { UserTokenSchema, CreateUserTokenInputSchema, deriveUserTokenStatus }
-#   from '@guepard/domain/entities';
+#   from '@qlm/domain/entities';
 ```
 
 ## Questions surfaced

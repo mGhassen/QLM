@@ -28,7 +28,7 @@ Single mount point that owns dialog open/close state, exposes a `useSettingsDial
 - `apps/web/src/routes/__root.tsx` — wrap the existing root content with `<SettingsDialogMount>`.
 - `apps/web/src/routes/organizations.tsx` — replace the Story-001 task-003 stub `onSettingsClick` handler with a `const dialog = useSettingsDialog(); ...; onSettingsClick={() => dialog.open()}` call.
 - `apps/web/src/shell/project-shell-host.tsx` — same replacement on the shell-context account menu.
-- `apps/web/package.json` — add `@guepard/settings-shell: "workspace:*"`.
+- `apps/web/package.json` — add `@qlm/settings-shell: "workspace:*"`.
 
 ## Acceptance
 
@@ -53,6 +53,6 @@ N/A — wiring task. The `<SettingsDialog>` itself is visually validated in task
 
 ## Notes
 
-- The placeholder pane is intentionally trivial — Story 011 swaps in `<TokensSettingsPane>` from `@guepard/user-tokens/components` without changing this file's structure.
+- The placeholder pane is intentionally trivial — Story 011 swaps in `<TokensSettingsPane>` from `@qlm/user-tokens/components` without changing this file's structure.
 - If `useUser()` is missing on a page that hosts the menu (so the opener can't fire), prefer rendering nothing for "Settings" rather than a no-op handler.
 - The Story-001 TODO(story-010) comments in `organizations.tsx` and `project-shell-host.tsx` are the search anchors for the replacement.

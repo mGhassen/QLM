@@ -6,10 +6,10 @@ import { useLocation } from '@tanstack/react-router';
 
 import type { Provider, UserIdentity } from '@supabase/supabase-js';
 
-import { useLinkIdentityWithProvider } from '@guepard/supabase/hooks/use-link-identity-with-provider';
-import { useUnlinkUserIdentity } from '@guepard/supabase/hooks/use-unlink-user-identity';
-import { useUser } from '@guepard/supabase/hooks/use-user';
-import { useUserIdentities } from '@guepard/supabase/hooks/use-user-identities';
+import { useLinkIdentityWithProvider } from '@qlm/supabase/hooks/use-link-identity-with-provider';
+import { useUnlinkUserIdentity } from '@qlm/supabase/hooks/use-unlink-user-identity';
+import { useUser } from '@qlm/supabase/hooks/use-user';
+import { useUserIdentities } from '@qlm/supabase/hooks/use-user-identities';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,8 +20,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@guepard/ui/alert-dialog';
-import { Button } from '@guepard/ui/button';
+} from '@qlm/ui/alert-dialog';
+import { Button } from '@qlm/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -29,8 +29,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@guepard/ui/dialog';
-import { If } from '@guepard/ui/if';
+} from '@qlm/ui/dialog';
+import { If } from '@qlm/ui/if';
 import {
   Item,
   ItemActions,
@@ -39,12 +39,12 @@ import {
   ItemHeader,
   ItemMedia,
   ItemTitle,
-} from '@guepard/ui/item';
-import { OauthProviderLogoImage } from '@guepard/ui/oauth-provider-logo-image';
-import { Separator } from '@guepard/ui/separator';
-import { toast } from '@guepard/ui/sonner';
-import { Spinner } from '@guepard/ui/spinner';
-import { Trans } from '@guepard/ui/trans';
+} from '@qlm/ui/item';
+import { OauthProviderLogoImage } from '@qlm/ui/oauth-provider-logo-image';
+import { Separator } from '@qlm/ui/separator';
+import { toast } from '@qlm/ui/sonner';
+import { Spinner } from '@qlm/ui/spinner';
+import { Trans } from '@qlm/ui/trans';
 
 import { UpdateEmailForm } from '../email/update-email-form';
 import { UpdatePasswordForm } from '../password/update-password-form';

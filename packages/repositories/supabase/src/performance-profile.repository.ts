@@ -1,6 +1,6 @@
-import type { PerformanceProfile } from '@guepard/domain/entities';
-import { IPerformanceProfileRepository } from '@guepard/domain/repositories';
-import type { Tables } from '@guepard/supabase/database';
+import type { PerformanceProfile } from '@qlm/domain/entities';
+import { IPerformanceProfileRepository } from '@qlm/domain/repositories';
+import type { Tables } from '@qlm/supabase/database';
 import type { SupabaseClientType } from './types';
 
 const PROFILE_SELECT = `

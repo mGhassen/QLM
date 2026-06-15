@@ -1,4 +1,4 @@
-import type { Node } from '@guepard/domain/entities';
+import type { Node } from '@qlm/domain/entities';
 
 /**
  * UI-only abstraction over the five-axis state. NEVER persisted, NEVER
