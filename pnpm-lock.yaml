@@ -89,12 +89,12 @@ importers:
 
   .:
     devDependencies:
-      '@qlm/prettier-config':
-        specifier: workspace:*
-        version: link:tooling/prettier
       '@manypkg/cli':
         specifier: ^0.25.1
         version: 0.25.1
+      '@qlm/prettier-config':
+        specifier: workspace:*
+        version: link:tooling/prettier
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^5.2.2
         version: 5.2.2(prettier@3.8.3)
@@ -137,6 +137,9 @@ importers:
 
   apps/e2e:
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.56.1
+        version: 1.59.1
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -146,9 +149,6 @@ importers:
       '@qlm/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@playwright/test':
-        specifier: ^1.56.1
-        version: 1.59.1
       '@types/node':
         specifier: 'catalog:'
         version: 24.12.3
@@ -161,6 +161,12 @@ importers:
 
   apps/server:
     dependencies:
+      '@hono/zod-validator':
+        specifier: ^0.4.2
+        version: 0.4.3(hono@4.12.18)(zod@4.4.3)
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.12.0
+        version: 1.29.0(zod@4.4.3)
       '@qlm/agent-factory-sdk':
         specifier: workspace:*
         version: link:../../packages/agent-factory-sdk
@@ -188,12 +194,6 @@ importers:
       '@qlm/telemetry':
         specifier: workspace:*
         version: link:../../packages/telemetry
-      '@hono/zod-validator':
-        specifier: ^0.4.2
-        version: 0.4.3(hono@4.12.18)(zod@4.4.3)
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.12.0
-        version: 1.29.0(zod@4.4.3)
       '@supabase/supabase-js':
         specifier: 'catalog:'
         version: 2.105.4
@@ -270,6 +270,39 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
+      '@marsidev/react-turnstile':
+        specifier: ^1.3.1
+        version: 1.5.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@opentelemetry/api':
+        specifier: ^1.9.0
+        version: 1.9.1
+      '@opentelemetry/exporter-metrics-otlp-http':
+        specifier: ^0.208.0
+        version: 0.208.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/exporter-trace-otlp-http':
+        specifier: ^0.208.0
+        version: 0.208.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources':
+        specifier: ^2.2.0
+        version: 2.7.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-metrics':
+        specifier: ^2.2.0
+        version: 2.7.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-node':
+        specifier: ^0.217.0
+        version: 0.217.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-base':
+        specifier: ^2.2.0
+        version: 2.7.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-node':
+        specifier: ^2.2.0
+        version: 2.7.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/semantic-conventions':
+        specifier: ^1.38.0
+        version: 1.40.0
       '@qlm/accounts':
         specifier: workspace:*
         version: link:../../packages/features/accounts
@@ -336,39 +369,6 @@ importers:
       '@qlm/user-tokens':
         specifier: workspace:*
         version: link:../../packages/features/user-tokens
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
-      '@marsidev/react-turnstile':
-        specifier: ^1.3.1
-        version: 1.5.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@opentelemetry/api':
-        specifier: ^1.9.0
-        version: 1.9.1
-      '@opentelemetry/exporter-metrics-otlp-http':
-        specifier: ^0.208.0
-        version: 0.208.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/exporter-trace-otlp-http':
-        specifier: ^0.208.0
-        version: 0.208.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources':
-        specifier: ^2.2.0
-        version: 2.7.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-metrics':
-        specifier: ^2.2.0
-        version: 2.7.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-node':
-        specifier: ^0.217.0
-        version: 0.217.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-base':
-        specifier: ^2.2.0
-        version: 2.7.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-node':
-        specifier: ^2.2.0
-        version: 2.7.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/semantic-conventions':
-        specifier: ^1.38.0
-        version: 1.40.0
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -480,7 +480,7 @@ importers:
         version: 4.1.16(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))
       '@tanstack/devtools-vite':
         specifier: latest
-        version: 0.7.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))
+        version: 0.7.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -613,6 +613,12 @@ importers:
       '@duckdb/node-api':
         specifier: 1.4.2-r.1
         version: 1.4.2-r.1
+      '@mlc-ai/web-llm':
+        specifier: ^0.2.79
+        version: 0.2.83
+      '@opentelemetry/api':
+        specifier: ^1.9.0
+        version: 1.9.1
       '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
@@ -628,12 +634,6 @@ importers:
       '@qlm/telemetry':
         specifier: workspace:*
         version: link:../telemetry
-      '@mlc-ai/web-llm':
-        specifier: ^0.2.79
-        version: 0.2.83
-      '@opentelemetry/api':
-        specifier: ^1.9.0
-        version: 1.9.1
       ai:
         specifier: 'catalog:'
         version: 6.0.150(zod@4.4.3)
@@ -659,6 +659,9 @@ importers:
         specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
@@ -680,9 +683,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -762,6 +762,9 @@ importers:
 
   packages/apps/org-settings:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/accounts':
         specifier: workspace:*
         version: link:../../features/accounts
@@ -783,9 +786,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.100.9(react@19.2.6)
@@ -829,6 +829,9 @@ importers:
 
   packages/apps/project-settings:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/settings-shell':
         specifier: workspace:*
         version: link:../../features/settings-shell
@@ -841,9 +844,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.100.9(react@19.2.6)
@@ -1364,7 +1364,7 @@ importers:
         version: link:../../extensions-sdk
       mysql2:
         specifier: ^3.15.3
-        version: 3.22.3(@types/node@25.6.2)
+        version: 3.22.3(@types/node@24.12.3)
       zod:
         specifier: 'catalog:'
         version: 4.4.3
@@ -1374,7 +1374,7 @@ importers:
         version: 4.1.5(vitest@4.1.5)
       vitest:
         specifier: 'catalog:'
-        version: 4.1.5(@opentelemetry/api@1.9.1)(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.5)(jsdom@27.4.0)(msw@2.14.5(@types/node@25.6.2)(typescript@5.9.3))(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))
+        version: 4.1.5(@opentelemetry/api@1.9.1)(@types/node@24.12.3)(@vitest/coverage-istanbul@4.1.5)(jsdom@27.4.0)(msw@2.14.5(@types/node@24.12.3)(typescript@5.9.3))(vite@7.3.3(@types/node@24.12.3)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))
 
   packages/extensions/parquet-online:
     dependencies:
@@ -1489,6 +1489,9 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/csrf':
         specifier: workspace:*
         version: link:../../csrf
@@ -1528,9 +1531,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -1616,6 +1616,12 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
+      '@marsidev/react-turnstile':
+        specifier: ^1.3.1
+        version: 1.5.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -1640,12 +1646,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
-      '@marsidev/react-turnstile':
-        specifier: ^1.3.1
-        version: 1.5.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -1713,6 +1713,9 @@ importers:
         specifier: ^5.1.6
         version: 5.1.11
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -1734,9 +1737,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -1801,6 +1801,9 @@ importers:
         specifier: workspace:*
         version: link:../../extensions-sdk
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -1822,9 +1825,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -1896,7 +1896,7 @@ importers:
         version: 3.26.0(@tiptap/pm@3.26.0)
       '@tiptap/extension-color':
         specifier: 3.26.0
-        version: 3.26.0(@tiptap/extension-text-style@3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0)))
+        version: 3.26.0(@tiptap/extension-text-style@3.26.1(@tiptap/core@3.26.0(@tiptap/pm@3.26.0)))
       '@tiptap/extension-image':
         specifier: 3.26.0
         version: 3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
@@ -1910,8 +1910,8 @@ importers:
         specifier: 3.26.0
         version: 3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
       '@tiptap/extension-text-style':
-        specifier: 3.26.0
-        version: 3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
+        specifier: 3.26.1
+        version: 3.26.1(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
       '@tiptap/extension-underline':
         specifier: 3.26.0
         version: 3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
@@ -1989,6 +1989,9 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -2010,9 +2013,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@storybook/react':
         specifier: 'catalog:'
         version: 10.3.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@5.9.3)
@@ -2101,6 +2101,9 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -2122,9 +2125,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -2295,6 +2295,9 @@ importers:
 
   packages/features/ops/infrastructure:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/domain':
         specifier: workspace:*
         version: link:../../../domain
@@ -2307,9 +2310,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       date-fns:
         specifier: 'catalog:'
         version: 4.1.0
@@ -2691,6 +2691,9 @@ importers:
 
   packages/features/shell-topbar:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/domain':
         specifier: workspace:*
         version: link:../../domain
@@ -2700,9 +2703,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.100.9(react@19.2.6)
@@ -2862,6 +2862,9 @@ importers:
         specifier: workspace:*
         version: link:../settings-shell
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/eslint-config':
         specifier: workspace:*
         version: link:../../../tooling/eslint
@@ -2883,9 +2886,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@storybook/react':
         specifier: 'catalog:'
         version: 10.3.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@5.9.3)
@@ -3107,6 +3107,9 @@ importers:
 
   packages/otp:
     devDependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/email-templates':
         specifier: workspace:*
         version: link:../email-templates
@@ -3131,9 +3134,6 @@ importers:
       '@qlm/ui':
         specifier: workspace:*
         version: link:../ui
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-icons':
         specifier: ^1.3.2
         version: 1.3.2(react@19.2.6)
@@ -3542,6 +3542,9 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.6)
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@qlm/domain':
         specifier: workspace:*
         version: link:../domain
@@ -3551,9 +3554,6 @@ importers:
       '@qlm/shell-contracts':
         specifier: workspace:*
         version: link:../shell-contracts
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.75.0(react@19.2.6))
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -3845,7 +3845,7 @@ importers:
         version: 9.6.1
       eslint-config-turbo:
         specifier: ^2.6.0
-        version: 2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.10)
+        version: 2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.18)
       eslint-plugin-react:
         specifier: ^7.37.5
         version: 7.37.5(eslint@9.39.4(jiti@2.7.0))
@@ -4303,6 +4303,10 @@ packages:
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/code-frame@7.29.7':
+    resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/compat-data@7.29.3':
     resolution: {integrity: sha512-LIVqM46zQWZhj17qA8wb4nW/ixr2y1Nw+r1etiAWgRM6U1IqP+LNhL1yg440jYZR72jCWcWbLWzIosH+uP1fqg==}
     engines: {node: '>=6.9.0'}
@@ -4343,6 +4347,10 @@ packages:
 
   '@babel/helper-validator-identifier@7.28.5':
     resolution: {integrity: sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/helper-validator-identifier@7.29.7':
+    resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-option@7.27.1':
@@ -4622,6 +4630,9 @@ packages:
 
   '@emnapi/runtime@1.10.0':
     resolution: {integrity: sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==}
+
+  '@emnapi/runtime@1.11.1':
+    resolution: {integrity: sha512-vgj7R3y3Wgx24IQaGPA/R6YFXLHVMOZ0uVEyIQPaWs+rd1AzfEMXlAC22FYwO1XkKR6NPsq7mUandH8oIRdZFw==}
 
   '@emnapi/wasi-threads@1.2.1':
     resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
@@ -8108,10 +8119,10 @@ packages:
     peerDependencies:
       '@tiptap/core': 3.26.0
 
-  '@tiptap/extension-text-style@3.26.0':
-    resolution: {integrity: sha512-4IeIdiubF5/Em9AodaLkCKUNwkQaK3KuwnneXS61x4Yoyr0zK21i3kZAFK7ils7jUwSrRdGdM1FglBnB4tK8nA==}
+  '@tiptap/extension-text-style@3.26.1':
+    resolution: {integrity: sha512-V8t7qOyLH7IBR2HjjJVZ9rUHTnuFToJx07L9PN9PpgQLhz9q8Jah4gAwmjLBXDRG2YaXImGK0RwKKCU/yHhwOg==}
     peerDependencies:
-      '@tiptap/core': 3.26.0
+      '@tiptap/core': 3.26.1
 
   '@tiptap/extension-text@3.26.0':
     resolution: {integrity: sha512-yZXdevp3/8omGbb40Z52VfvID+tsRNhPQ1GNUToD56XSr2BjdJyAzAb9rWGgDKgVMUPLgJ26yT0O278RFqOKhA==}
@@ -8178,8 +8189,18 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  '@turbo/darwin-64@2.9.18':
+    resolution: {integrity: sha512-9f27peFu16ur8c0v9nUFUEyBnbKuuFsUTjHFWfmwGfzySBXbHwzU44QhZon6Mznz0cHsIr3984NQj/bVrnGSRw==}
+    cpu: [x64]
+    os: [darwin]
+
   '@turbo/darwin-arm64@2.9.10':
     resolution: {integrity: sha512-MwaJl+vsxlkkDJYWN87GWKYD64kOvZFFlrDtGmCDeEx/488Kola5TVgS0VQkEUwnbDPjaDIB7kBMIzdzJRElbg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@turbo/darwin-arm64@2.9.18':
+    resolution: {integrity: sha512-9A6TMRq/Ib+QnbhLlgkhOm+624wO4pzSQ/yQviQfWHOlFvaYxdnIAYmu2H6TS6y7kSVL0DvzNe04NbESTOzFVQ==}
     cpu: [arm64]
     os: [darwin]
 
@@ -8192,8 +8213,18 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@turbo/linux-64@2.9.18':
+    resolution: {integrity: sha512-zCdIDtz69AnbYh913elJRRoF3QY5aa2HNnf+4rAkc7bQ+tWujiDkCNV7stazOUPggaDvhKIf2Z87qHftTeXSkw==}
+    cpu: [x64]
+    os: [linux]
+
   '@turbo/linux-arm64@2.9.10':
     resolution: {integrity: sha512-edJINoZcDn4g1zkOZHFrGtLX0EWTryoNJSlZK5SEVux4hITT6hTCzugVGtOUmdI+PuJ/xRRL3jKGa+JgjSoq5A==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@turbo/linux-arm64@2.9.18':
+    resolution: {integrity: sha512-Va1kXI04naMgYwqv/5Dfa36dTDx8015U7oaQAjrXa45ua9OoFjSV4OmvkML4EmXvUclQHCiBRbY8bvd0jV7eAg==}
     cpu: [arm64]
     os: [linux]
 
@@ -8202,8 +8233,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@turbo/windows-64@2.9.18':
+    resolution: {integrity: sha512-m0kDhZANxSNz9ck1ybogFscHabriAsp4eDFNrN/1H5WrgTF7b3VlcPZnhuO3v2+E2KnCbeAc+UUT10BZZHdDKw==}
+    cpu: [x64]
+    os: [win32]
+
   '@turbo/windows-arm64@2.9.10':
     resolution: {integrity: sha512-cblXqub7uABXKNMzvPB1IyOuSQpeMo7zZHSREB2C0mtIVn4lUSd2CfaGBtOrDqmkC9dsan3itxY4IejChQvfpg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@turbo/windows-arm64@2.9.18':
+    resolution: {integrity: sha512-nUdR8WqoomUys9iIQmG45TMiizJ+5BV8egSeLLZba/AWblyp3fVBcIH1kSE58OtK4g2YzbMJEth6Ttv9w5rqMA==}
     cpu: [arm64]
     os: [win32]
 
@@ -12041,6 +12082,10 @@ packages:
     resolution: {integrity: sha512-oI+GC9iPxrQEr6wragljFKH46/r3rNsm6eg7F2fp6kBUMnf6/mesDRdBuF4gK+OyaKJ8N4C1B9s9cCeYdqFikg==}
     engines: {node: '>=12.0.0'}
 
+  protobufjs@8.6.3:
+    resolution: {integrity: sha512-alQyzT0j401LGBtwsqu6uprjR6pfNH1UJf9N6GBFMjIcd+HzTe0/HrjAbFCqun+zvnfLarrxAtMM2xvZ+kFZ5A==}
+    engines: {node: '>=12.0.0'}
+
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
@@ -12474,6 +12519,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.8.4:
+    resolution: {integrity: sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@1.2.1:
     resolution: {integrity: sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==}
     engines: {node: '>= 18'}
@@ -12622,6 +12672,11 @@ packages:
 
   srvx@0.11.15:
     resolution: {integrity: sha512-iXsux0UcOjdvs0LCMa2Ws3WwcDUozA3JN3BquNXkaFPP7TpRqgunKdEgoZ/uwb1J6xaYHfxtz9Twlh6yzwM6Tg==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
+  srvx@0.11.16:
+    resolution: {integrity: sha512-bp07zRuycfTY43IjAvvTFnmnJi8ikW0VFiHwOhhYcVW/L4xQ1XY4PAd4Nuum1rsA17C39zL7x+CDhrn5AL32Rw==}
     engines: {node: '>=20.16.0'}
     hasBin: true
 
@@ -12966,6 +13021,7 @@ packages:
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
     engines: {node: ^18 || >=20}
+    deprecated: unmaintained
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -12990,6 +13046,10 @@ packages:
 
   turbo@2.9.10:
     resolution: {integrity: sha512-YBLeNT0wLoysGgQEkvBWE2GA1liGGZ1j13wa7xHTwELJx4ZhM+c2szeXj6wUOUGO86BmyhY0Q/ELWwU3WDXzZA==}
+    hasBin: true
+
+  turbo@2.9.18:
+    resolution: {integrity: sha512-bwabv6PupzeavybzEoArBAkwq5fnzwf8OFnRtpHwnviFWuwJPFxtyH+aVp36TmIqK3aYYgtTJ3J0m2ysxxSzQg==}
     hasBin: true
 
   turndown@7.2.4:
@@ -14501,6 +14561,12 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
+  '@babel/code-frame@7.29.7':
+    dependencies:
+      '@babel/helper-validator-identifier': 7.29.7
+      js-tokens: 4.0.0
+      picocolors: 1.1.1
+
   '@babel/compat-data@7.29.3': {}
 
   '@babel/core@7.29.0':
@@ -14562,6 +14628,8 @@ snapshots:
   '@babel/helper-string-parser@7.27.1': {}
 
   '@babel/helper-validator-identifier@7.28.5': {}
+
+  '@babel/helper-validator-identifier@7.29.7': {}
 
   '@babel/helper-validator-option@7.27.1': {}
 
@@ -14888,6 +14956,11 @@ snapshots:
     optional: true
 
   '@emnapi/runtime@1.10.0':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
+
+  '@emnapi/runtime@1.11.1':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -15275,7 +15348,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.5':
     dependencies:
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/runtime': 1.11.1
     optional: true
 
   '@img/sharp-win32-arm64@0.34.5':
@@ -15767,10 +15840,10 @@ snapshots:
       '@tybys/wasm-util': 0.10.2
     optional: true
 
-  '@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+  '@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)':
     dependencies:
       '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/runtime': 1.11.1
       '@tybys/wasm-util': 0.10.2
     optional: true
 
@@ -16214,9 +16287,9 @@ snapshots:
   '@oxc-parser/binding-openharmony-arm64@0.120.0':
     optional: true
 
-  '@oxc-parser/binding-wasm32-wasi@0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+  '@oxc-parser/binding-wasm32-wasi@0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)':
     dependencies:
-      '@napi-rs/wasm-runtime': 1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@napi-rs/wasm-runtime': 1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -17916,14 +17989,14 @@ snapshots:
 
   '@tanstack/devtools-event-client@0.4.3': {}
 
-  '@tanstack/devtools-vite@0.7.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))':
+  '@tanstack/devtools-vite@0.7.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)(vite@7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4))':
     dependencies:
       '@tanstack/devtools-client': 0.0.6
       '@tanstack/devtools-event-bus': 0.4.1
       chalk: 5.6.2
       launch-editor: 2.13.2
       magic-string: 0.30.21
-      oxc-parser: 0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      oxc-parser: 0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)
       picomatch: 4.0.4
       vite: 7.3.3(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.4)
     transitivePeerDependencies:
@@ -18177,7 +18250,7 @@ snapshots:
 
   '@testing-library/dom@10.4.1':
     dependencies:
-      '@babel/code-frame': 7.29.0
+      '@babel/code-frame': 7.29.7
       '@babel/runtime': 7.29.2
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
@@ -18241,9 +18314,9 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.26.0(@tiptap/pm@3.26.0)
 
-  '@tiptap/extension-color@3.26.0(@tiptap/extension-text-style@3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0)))':
+  '@tiptap/extension-color@3.26.0(@tiptap/extension-text-style@3.26.1(@tiptap/core@3.26.0(@tiptap/pm@3.26.0)))':
     dependencies:
-      '@tiptap/extension-text-style': 3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
+      '@tiptap/extension-text-style': 3.26.1(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))
 
   '@tiptap/extension-document@3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))':
     dependencies:
@@ -18324,7 +18397,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.26.0(@tiptap/pm@3.26.0)
 
-  '@tiptap/extension-text-style@3.26.0(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))':
+  '@tiptap/extension-text-style@3.26.1(@tiptap/core@3.26.0(@tiptap/pm@3.26.0))':
     dependencies:
       '@tiptap/core': 3.26.0(@tiptap/pm@3.26.0)
 
@@ -18424,7 +18497,13 @@ snapshots:
   '@turbo/darwin-64@2.9.10':
     optional: true
 
+  '@turbo/darwin-64@2.9.18':
+    optional: true
+
   '@turbo/darwin-arm64@2.9.10':
+    optional: true
+
+  '@turbo/darwin-arm64@2.9.18':
     optional: true
 
   '@turbo/gen@2.9.10(@types/node@24.12.3)':
@@ -18437,13 +18516,25 @@ snapshots:
   '@turbo/linux-64@2.9.10':
     optional: true
 
+  '@turbo/linux-64@2.9.18':
+    optional: true
+
   '@turbo/linux-arm64@2.9.10':
+    optional: true
+
+  '@turbo/linux-arm64@2.9.18':
     optional: true
 
   '@turbo/windows-64@2.9.10':
     optional: true
 
+  '@turbo/windows-64@2.9.18':
+    optional: true
+
   '@turbo/windows-arm64@2.9.10':
+    optional: true
+
+  '@turbo/windows-arm64@2.9.18':
     optional: true
 
   '@tybys/wasm-util@0.10.2':
@@ -20399,11 +20490,11 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-turbo@2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.10):
+  eslint-config-turbo@2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.18):
     dependencies:
       eslint: 9.39.4(jiti@2.7.0)
-      eslint-plugin-turbo: 2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.10)
-      turbo: 2.9.10
+      eslint-plugin-turbo: 2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.18)
+      turbo: 2.9.18
 
   eslint-import-context@0.1.9(unrs-resolver@1.11.1):
     dependencies:
@@ -20524,11 +20615,11 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-turbo@2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.10):
+  eslint-plugin-turbo@2.9.10(eslint@9.39.4(jiti@2.7.0))(turbo@2.9.18):
     dependencies:
       dotenv: 16.0.3
       eslint: 9.39.4(jiti@2.7.0)
-      turbo: 2.9.10
+      turbo: 2.9.18
 
   eslint-scope@8.4.0:
     dependencies:
@@ -20928,7 +21019,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.7.4
+      semver: 7.8.4
       serialize-error: 7.0.1
 
   globals@14.0.0: {}
@@ -21008,7 +21099,7 @@ snapshots:
   h3@2.0.1-rc.20:
     dependencies:
       rou3: 0.8.1
-      srvx: 0.11.15
+      srvx: 0.11.16
 
   hachure-fill@0.5.2: {}
 
@@ -22348,9 +22439,9 @@ snapshots:
 
   mute-stream@3.0.0: {}
 
-  mysql2@3.22.3(@types/node@25.6.2):
+  mysql2@3.22.3(@types/node@24.12.3):
     dependencies:
-      '@types/node': 25.6.2
+      '@types/node': 24.12.3
       aws-ssl-profiles: 1.1.2
       denque: 2.1.0
       generate-function: 2.3.1
@@ -22503,7 +22594,7 @@ snapshots:
       long: 5.3.2
       onnxruntime-common: 1.24.0-dev.20251116-b39e144322
       platform: 1.3.6
-      protobufjs: 8.2.0
+      protobufjs: 8.6.3
 
   open@10.2.0:
     dependencies:
@@ -22531,7 +22622,7 @@ snapshots:
       object-keys: 1.1.1
       safe-push-apply: 1.0.0
 
-  oxc-parser@0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
+  oxc-parser@0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1):
     dependencies:
       '@oxc-project/types': 0.120.0
     optionalDependencies:
@@ -22551,7 +22642,7 @@ snapshots:
       '@oxc-parser/binding-linux-x64-gnu': 0.120.0
       '@oxc-parser/binding-linux-x64-musl': 0.120.0
       '@oxc-parser/binding-openharmony-arm64': 0.120.0
-      '@oxc-parser/binding-wasm32-wasi': 0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@oxc-parser/binding-wasm32-wasi': 0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.11.1)
       '@oxc-parser/binding-win32-arm64-msvc': 0.120.0
       '@oxc-parser/binding-win32-ia32-msvc': 0.120.0
       '@oxc-parser/binding-win32-x64-msvc': 0.120.0
@@ -22918,6 +23009,10 @@ snapshots:
   protobufjs@8.2.0:
     dependencies:
       '@types/node': 25.6.2
+      long: 5.3.2
+
+  protobufjs@8.6.3:
+    dependencies:
       long: 5.3.2
 
   proxy-addr@2.0.7:
@@ -23499,6 +23594,8 @@ snapshots:
 
   semver@7.7.4: {}
 
+  semver@7.8.4: {}
+
   send@1.2.1:
     dependencies:
       debug: 4.4.3
@@ -23574,7 +23671,7 @@ snapshots:
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
-      semver: 7.7.4
+      semver: 7.8.4
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.5
       '@img/sharp-darwin-x64': 0.34.5
@@ -23693,6 +23790,8 @@ snapshots:
       nearley: 2.20.1
 
   srvx@0.11.15: {}
+
+  srvx@0.11.16: {}
 
   ssh-remote-port-forward@1.0.4:
     dependencies:
@@ -24153,6 +24252,15 @@ snapshots:
       '@turbo/linux-arm64': 2.9.10
       '@turbo/windows-64': 2.9.10
       '@turbo/windows-arm64': 2.9.10
+
+  turbo@2.9.18:
+    optionalDependencies:
+      '@turbo/darwin-64': 2.9.18
+      '@turbo/darwin-arm64': 2.9.18
+      '@turbo/linux-64': 2.9.18
+      '@turbo/linux-arm64': 2.9.18
+      '@turbo/windows-64': 2.9.18
+      '@turbo/windows-arm64': 2.9.18
 
   turndown@7.2.4:
     dependencies:
