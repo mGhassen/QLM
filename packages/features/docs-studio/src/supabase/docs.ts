@@ -109,11 +109,16 @@ export async function saveDocToSupabase(
   }
 
   for (const upload of uploads) {
-    const { error } = await supabase.storage.from(BUCKET).upload(upload.path, upload.body, {
-      contentType: upload.contentType,
-      upsert: true,
-    });
-    if (error) throw new Error(`Storage upload failed (${upload.path}): ${error.message}`);
+    const { error } = await supabase.storage
+      .from(BUCKET)
+      .upload(upload.path, upload.body, {
+        contentType: upload.contentType,
+        upsert: true,
+      });
+    if (error)
+      throw new Error(
+        `Storage upload failed (${upload.path}): ${error.message}`,
+      );
   }
 
   const { error: updateError } = await supabase
@@ -159,19 +164,26 @@ export async function deleteDocFromSupabase(slug: string): Promise<void> {
 
   const prefix = (row?.storage_prefix as string | undefined) ?? slug;
 
-  const { data: files } = await supabase.storage.from(BUCKET).list(prefix, { limit: 1000 });
+  const { data: files } = await supabase.storage
+    .from(BUCKET)
+    .list(prefix, { limit: 1000 });
   if (files?.length) {
     const paths = files.map((f) => `${prefix}/${f.name}`);
-    const { data: nested } = await supabase.storage.from(BUCKET).list(`${prefix}/sections`, {
-      limit: 1000,
-    });
+    const { data: nested } = await supabase.storage
+      .from(BUCKET)
+      .list(`${prefix}/sections`, {
+        limit: 1000,
+      });
     if (nested?.length) {
       paths.push(...nested.map((f) => `${prefix}/sections/${f.name}`));
     }
     await supabase.storage.from(BUCKET).remove(paths);
   }
 
-  const { error } = await supabase.from('doc_documents').delete().eq('slug', slug);
+  const { error } = await supabase
+    .from('doc_documents')
+    .delete()
+    .eq('slug', slug);
   if (error) throw new Error(`Failed to delete doc record: ${error.message}`);
 }
 
@@ -188,6 +200,7 @@ export async function uploadDocAssets(
         contentType: file.contentType,
         upsert: true,
       });
-    if (error) throw new Error(`Asset upload failed (${file.path}): ${error.message}`);
+    if (error)
+      throw new Error(`Asset upload failed (${file.path}): ${error.message}`);
   }
 }

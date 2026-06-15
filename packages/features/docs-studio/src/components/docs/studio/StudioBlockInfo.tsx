@@ -1,16 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { Info } from "lucide-react";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import type { BlockType } from "#/lib/types";
+import { useEffect, useRef, useState } from 'react';
+import { Info } from 'lucide-react';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import type { BlockType } from '#/lib/types';
 
 interface StudioBlockInfoProps {
   blockId: string;
   type: BlockType;
 }
 
-export default function StudioBlockInfo({ blockId, type }: StudioBlockInfoProps) {
+export default function StudioBlockInfo({
+  blockId,
+  type,
+}: StudioBlockInfoProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const label = BLOCK_LABELS[type] ?? type;
@@ -18,14 +21,19 @@ export default function StudioBlockInfo({ blockId, type }: StudioBlockInfoProps)
   useEffect(() => {
     if (!open) return;
     function close(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     }
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
   }, [open]);
 
   return (
-    <div ref={ref} className="studio-block-info" onClick={(e) => e.stopPropagation()}>
+    <div
+      ref={ref}
+      className="studio-block-info"
+      onClick={(e) => e.stopPropagation()}
+    >
       <button
         type="button"
         title="Block info"

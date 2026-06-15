@@ -5,10 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import type { Column, Table } from '@qlm/domain/entities';
 import type { DatasourceMetadata } from '@qlm/extensions-sdk';
 import { Button } from '@qlm/ui/button';
-import {
-  Columns,
-  type ColumnListItem,
-} from '@qlm/ui/qlm/datasource/columns';
+import { Columns, type ColumnListItem } from '@qlm/ui/qlm/datasource/columns';
 
 export interface DatasourceColumnsPanelProps {
   metadata: DatasourceMetadata | null | undefined;

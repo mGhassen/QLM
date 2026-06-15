@@ -1,4 +1,4 @@
-import type { DocDocument } from "../types";
+import type { DocDocument } from '../types';
 
 export type ImportAsset = {
   filename: string;
@@ -13,4 +13,4 @@ export type ImportResult = {
   assets: ImportAsset[];
 };
 
-export const IMPORT_ASSET_PREFIX = "__import__/";
+export const IMPORT_ASSET_PREFIX = '__import__/';

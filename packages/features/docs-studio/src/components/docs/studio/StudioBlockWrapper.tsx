@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useRef, type ReactNode } from "react";
-import { blockAppearanceProps } from "#/lib/block-appearance";
-import { canAcceptChildren } from "#/lib/block-schema";
-import type { StudioTransform } from "#/lib/studio-transform";
-import type { BlockNode } from "#/lib/types";
-import StudioBlockChrome from "./StudioBlockChrome";
+import { useRef, type ReactNode } from 'react';
+import { blockAppearanceProps } from '#/lib/block-appearance';
+import { canAcceptChildren } from '#/lib/block-schema';
+import type { StudioTransform } from '#/lib/studio-transform';
+import type { BlockNode } from '#/lib/types';
+import StudioBlockChrome from './StudioBlockChrome';
 
 interface StudioBlockWrapperProps {
   block: BlockNode;
@@ -37,7 +37,7 @@ interface StudioBlockWrapperProps {
   onInsertBefore?: (block: BlockNode) => void;
   dragBlockId?: string | null;
   dropTargetBlockId?: string | null;
-  dropTargetPosition?: "before" | "after" | "inside" | null;
+  dropTargetPosition?: 'before' | 'after' | 'inside' | null;
   dropTargetValid?: boolean;
 }
 
@@ -74,26 +74,31 @@ export default function StudioBlockWrapper({
     !!dragBlockId &&
     dragBlockId !== block.id &&
     dropTargetBlockId === block.id &&
-    dropTargetPosition === "inside";
+    dropTargetPosition === 'inside';
   const shellClass = [
-    "studio-block",
+    'studio-block',
     appearance.className,
-    isContainer ? "studio-container" : "",
-    selected ? "studio-selected" : "",
-    editText && !selected ? "studio-selected-inline" : "",
-    multiSelected ? "studio-multi-selected" : "",
-    hovered ? "studio-hovered" : "",
-    isDragging ? "studio-dragging" : "",
-    isDropInside && dropTargetValid ? "studio-drop-target" : "",
-    isDropInside && !dropTargetValid ? "studio-drop-target-invalid" : "",
+    isContainer ? 'studio-container' : '',
+    selected ? 'studio-selected' : '',
+    editText && !selected ? 'studio-selected-inline' : '',
+    multiSelected ? 'studio-multi-selected' : '',
+    hovered ? 'studio-hovered' : '',
+    isDragging ? 'studio-dragging' : '',
+    isDropInside && dropTargetValid ? 'studio-drop-target' : '',
+    isDropInside && !dropTargetValid ? 'studio-drop-target-invalid' : '',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   function isInteractiveTarget(target: EventTarget | null) {
-    const el = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
+    const el =
+      target instanceof Element
+        ? target
+        : target instanceof Node
+          ? target.parentElement
+          : null;
     return el?.closest(
-      ".studio-block-chrome-dock, .studio-transform-handle, .studio-transform-move, .studio-transform-link, .studio-grid-col-handle, .studio-grid-empty-cell, .resize-handle, .studio-spacing-handle, .studio-spacing-edge-zone, .studio-spacing-drag, .studio-spacing-input, .studio-spacing-link, .studio-block-toolbar, .studio-canvas-drag-handle, .studio-insert-edge-zone, .studio-inline-insert, .studio-inline-insert-toolbar, .studio-insert-menu, .studio-block-info",
+      '.studio-block-chrome-dock, .studio-transform-handle, .studio-transform-move, .studio-transform-link, .studio-grid-col-handle, .studio-grid-empty-cell, .resize-handle, .studio-spacing-handle, .studio-spacing-edge-zone, .studio-spacing-drag, .studio-spacing-input, .studio-spacing-link, .studio-block-toolbar, .studio-canvas-drag-handle, .studio-insert-edge-zone, .studio-inline-insert, .studio-inline-insert-toolbar, .studio-insert-menu, .studio-block-info',
     );
   }
 
@@ -112,7 +117,9 @@ export default function StudioBlockWrapper({
   function handlePointerSelect(e: React.MouseEvent) {
     if (isInteractiveTarget(e.target)) return;
     const eventEl = eventElement(e.target);
-    const clickedId = eventEl?.closest("[data-block-id]")?.getAttribute("data-block-id");
+    const clickedId = eventEl
+      ?.closest('[data-block-id]')
+      ?.getAttribute('data-block-id');
     if (!clickedId || clickedId !== block.id) return;
     const onText = isTextTarget(e.target);
     if (onText && editText) return;
@@ -147,16 +154,18 @@ export default function StudioBlockWrapper({
         }}
         onMouseDown={handlePointerSelect}
         data-block-id={block.id}
-        {...(selected ? { "data-studio-selected": true } : {})}
-        {...(editText && !selected ? { "data-studio-text-editing": true } : {})}
-        {...(multiSelected ? { "data-studio-multi-selected": true } : {})}
-        {...(hovered ? { "data-studio-hovered": true } : {})}
+        {...(selected ? { 'data-studio-selected': true } : {})}
+        {...(editText && !selected ? { 'data-studio-text-editing': true } : {})}
+        {...(multiSelected ? { 'data-studio-multi-selected': true } : {})}
+        {...(hovered ? { 'data-studio-hovered': true } : {})}
       >
         <div className="studio-block-content">{children}</div>
 
         {isDropInside && (
-          <div className={`studio-drop-hint${dropTargetValid ? "" : " invalid"}`}>
-            {dropTargetValid ? "Drop here to nest inside" : "Cannot nest here"}
+          <div
+            className={`studio-drop-hint${dropTargetValid ? '' : ' invalid'}`}
+          >
+            {dropTargetValid ? 'Drop here to nest inside' : 'Cannot nest here'}
           </div>
         )}
       </div>

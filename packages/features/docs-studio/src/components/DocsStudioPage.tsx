@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 
-import { createNewDocAction, deleteDocAction, importDocAction } from '#/actions';
+import {
+  createNewDocAction,
+  deleteDocAction,
+  importDocAction,
+} from '#/actions';
 import { useStudioShell } from '#/studio-shell-context';
 import DocStudio from '#/components/docs/studio/DocStudio';
 import type { LoadedDoc } from '#/lib/types';
@@ -15,7 +19,11 @@ type DocsStudioPageProps = {
 export function DocsStudioPage({ slug }: DocsStudioPageProps) {
   const { syncDocTitle } = useStudioShell();
 
-  const { data: doc, isPending, isError } = useQuery({
+  const {
+    data: doc,
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ['doc-studio', slug],
     queryFn: async () => {
       const res = await fetch(docsPaths.api.doc(slug));

@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import { createPortal } from "react-dom";
-import { useEffect, useRef, useState } from "react";
+import { createPortal } from 'react-dom';
+import { useEffect, useRef, useState } from 'react';
 import {
   SPACING_UNITS,
   type SpacingUnit,
   spacingSliderConfig,
-} from "#/lib/spacing-unit";
+} from '#/lib/spacing-unit';
 
-const SIDE_ICONS: Record<"top" | "right" | "bottom" | "left", string> = {
-  top: "↓",
-  right: "←",
-  bottom: "↑",
-  left: "→",
+const SIDE_ICONS: Record<'top' | 'right' | 'bottom' | 'left', string> = {
+  top: '↓',
+  right: '←',
+  bottom: '↑',
+  left: '→',
 };
 
 interface SpacingValuePopoverProps {
   open: boolean;
   anchor: DOMRect | null;
-  side: "top" | "right" | "bottom" | "left";
-  layer: "margin" | "padding";
+  side: 'top' | 'right' | 'bottom' | 'left';
+  layer: 'margin' | 'padding';
   value: number;
   unit: SpacingUnit;
   onValueChange: (value: number | undefined) => void;
@@ -59,17 +59,18 @@ export default function SpacingValuePopover({
     function onPointerUp(e: PointerEvent) {
       const target = e.target as Node | null;
       if (panelRef.current?.contains(target)) return;
-      if (target instanceof Element && target.closest("[data-spacing-side]")) return;
+      if (target instanceof Element && target.closest('[data-spacing-side]'))
+        return;
       onClose();
     }
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === 'Escape') onClose();
     }
-    document.addEventListener("pointerup", onPointerUp);
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('pointerup', onPointerUp);
+    document.addEventListener('keydown', onKeyDown);
     return () => {
-      document.removeEventListener("pointerup", onPointerUp);
-      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener('pointerup', onPointerUp);
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, [open, onClose]);
 
@@ -127,7 +128,7 @@ export default function SpacingValuePopover({
             onChange={(e) => setDraft(e.target.value)}
             onBlur={() => commitDraft(draft)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
+              if (e.key === 'Enter') {
                 commitDraft(draft);
                 onClose();
               }
@@ -147,13 +148,15 @@ export default function SpacingValuePopover({
                   <button
                     key={u}
                     type="button"
-                    className={`wf-spacing-popover-unit-opt${u === unit ? " active" : ""}`}
+                    className={`wf-spacing-popover-unit-opt${u === unit ? ' active' : ''}`}
                     onClick={() => {
                       onUnitChange(u);
                       setUnitOpen(false);
                     }}
                   >
-                    {u === unit && <span className="wf-spacing-popover-check">✓</span>}
+                    {u === unit && (
+                      <span className="wf-spacing-popover-check">✓</span>
+                    )}
                     {u.toUpperCase()}
                   </button>
                 ))}
@@ -167,7 +170,7 @@ export default function SpacingValuePopover({
           <button
             key={preset}
             type="button"
-            className={`wf-spacing-popover-preset${value === preset ? " active" : ""}`}
+            className={`wf-spacing-popover-preset${value === preset ? ' active' : ''}`}
             onClick={() => commitValue(preset)}
           >
             {preset}

@@ -1,33 +1,38 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import { FileText } from "lucide-react";
-import type { ChromeZoneId, ChromeZoneStyle, DocChrome, DocPageSetup } from "#/lib/types";
+import { useEffect, useMemo, useState } from 'react';
+import { FileText } from 'lucide-react';
+import type {
+  ChromeZoneId,
+  ChromeZoneStyle,
+  DocChrome,
+  DocPageSetup,
+} from '#/lib/types';
 import {
   defaultDocChrome,
   getZoneRawContent,
   resolveDocChrome,
   setZoneContent,
-} from "#/lib/chrome";
-import type { ResolvedPageSetup } from "#/lib/page-setup";
-import WysiwygEditor from "./WysiwygEditor";
-import ColorPicker from "./ColorPicker";
+} from '#/lib/chrome';
+import type { ResolvedPageSetup } from '#/lib/page-setup';
+import WysiwygEditor from './WysiwygEditor';
+import ColorPicker from './ColorPicker';
 
 const ZONES: { id: ChromeZoneId; label: string }[] = [
-  { id: "headerLeft", label: "Header L" },
-  { id: "headerRight", label: "Header R" },
-  { id: "footerLeft", label: "Footer L" },
-  { id: "footerRight", label: "Footer R" },
+  { id: 'headerLeft', label: 'Header L' },
+  { id: 'headerRight', label: 'Header R' },
+  { id: 'footerLeft', label: 'Footer L' },
+  { id: 'footerRight', label: 'Footer R' },
 ];
 
 const TOKENS = [
-  { label: "Title", value: "{{title}}" },
-  { label: "Page", value: "{{page}}" },
-  { label: "Total", value: "{{total}}" },
+  { label: 'Title', value: '{{title}}' },
+  { label: 'Page', value: '{{page}}' },
+  { label: 'Total', value: '{{total}}' },
 ];
 
 const INPUT =
-  "w-full rounded-none border border-border bg-background px-2.5 py-1.5 text-sm focus:ring-2 focus:ring-primary/40 focus:outline-none";
+  'w-full rounded-none border border-border bg-background px-2.5 py-1.5 text-sm focus:ring-2 focus:ring-primary/40 focus:outline-none';
 
 interface ChromeEditorPanelProps {
   title: string;
@@ -39,11 +44,8 @@ interface ChromeEditorPanelProps {
   onPageSetupChange: (setup: DocPageSetup) => void;
 }
 
-function zoneStyle(
-  chrome: DocChrome,
-  zone: ChromeZoneId,
-): ChromeZoneStyle {
-  const band = zone.startsWith("header") ? "header" : "footer";
+function zoneStyle(chrome: DocChrome, zone: ChromeZoneId): ChromeZoneStyle {
+  const band = zone.startsWith('header') ? 'header' : 'footer';
   return {
     ...chrome.style?.[band],
     ...chrome.style?.[zone],
@@ -74,7 +76,7 @@ export default function ChromeEditorPanel({
   onPageSetupChange,
 }: ChromeEditorPanelProps) {
   const chromeValues = { ...defaultDocChrome(title), ...chrome };
-  const [activeZone, setActiveZone] = useState<ChromeZoneId>("headerLeft");
+  const [activeZone, setActiveZone] = useState<ChromeZoneId>('headerLeft');
   const currentZone = selectedZone ?? activeZone;
 
   useEffect(() => {
@@ -86,7 +88,8 @@ export default function ChromeEditorPanel({
     [chrome, title],
   );
 
-  const patchChrome = (p: Partial<DocChrome>) => onChromeChange({ ...chrome, ...p });
+  const patchChrome = (p: Partial<DocChrome>) =>
+    onChromeChange({ ...chrome, ...p });
   const patchSetup = (p: Partial<DocPageSetup>) =>
     onPageSetupChange({ ...pageSetup, ...p });
 
@@ -98,14 +101,14 @@ export default function ChromeEditorPanel({
   }
 
   function insertToken(token: string) {
-    const plain = zoneContent.replace(/<[^>]+>/g, "").trim();
+    const plain = zoneContent.replace(/<[^>]+>/g, '').trim();
     const next = plain ? `${plain} ${token}` : token;
     handleZoneContent(`<p>${next}</p>`);
   }
 
   return (
     <div className="space-y-3" data-chrome-editor>
-      <label className="flex items-center gap-2 text-sm text-muted-foreground/70">
+      <label className="text-muted-foreground/70 flex items-center gap-2 text-sm">
         <input
           type="checkbox"
           checked={chromeValues.headerEnabled !== false}
@@ -114,7 +117,7 @@ export default function ChromeEditorPanel({
         Header
       </label>
 
-      <label className="flex items-center gap-2 text-sm text-muted-foreground/70">
+      <label className="text-muted-foreground/70 flex items-center gap-2 text-sm">
         <input
           type="checkbox"
           checked={chromeValues.footerEnabled !== false}
@@ -123,7 +126,7 @@ export default function ChromeEditorPanel({
         Footer
       </label>
 
-      <label className="flex items-center gap-2 text-sm text-muted-foreground/70">
+      <label className="text-muted-foreground/70 flex items-center gap-2 text-sm">
         <input
           type="checkbox"
           checked={!!chromeValues.showOnCover}
@@ -134,31 +137,39 @@ export default function ChromeEditorPanel({
 
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">Header zone</label>
+          <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
+            Header zone
+          </label>
           <div className="flex items-center gap-1.5">
             <input
               type="number"
               value={resolvedSetup.headerHeightMm}
               min={8}
               max={30}
-              onChange={(e) => patchSetup({ headerHeightMm: Number(e.target.value) })}
+              onChange={(e) =>
+                patchSetup({ headerHeightMm: Number(e.target.value) })
+              }
               className={`${INPUT} font-mono text-xs`}
             />
-            <span className="text-[10px] text-muted-foreground/35">mm</span>
+            <span className="text-muted-foreground/35 text-[10px]">mm</span>
           </div>
         </div>
         <div>
-          <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">Footer zone</label>
+          <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
+            Footer zone
+          </label>
           <div className="flex items-center gap-1.5">
             <input
               type="number"
               value={resolvedSetup.footerHeightMm}
               min={8}
               max={30}
-              onChange={(e) => patchSetup({ footerHeightMm: Number(e.target.value) })}
+              onChange={(e) =>
+                patchSetup({ footerHeightMm: Number(e.target.value) })
+              }
               className={`${INPUT} font-mono text-xs`}
             />
-            <span className="text-[10px] text-muted-foreground/35">mm</span>
+            <span className="text-muted-foreground/35 text-[10px]">mm</span>
           </div>
         </div>
       </div>
@@ -170,10 +181,10 @@ export default function ChromeEditorPanel({
             type="button"
             data-chrome-zone-tab={z.id}
             onClick={() => setActiveZone(z.id)}
-            className={`text-[10px] px-2 py-1 rounded-sm border transition-colors ${
+            className={`rounded-sm border px-2 py-1 text-[10px] transition-colors ${
               currentZone === z.id
-                ? "border-primary/50 bg-primary/20 text-foreground"
-                : "border-border text-muted-foreground hover:bg-accent"
+                ? 'border-primary/50 bg-primary/20 text-foreground'
+                : 'border-border text-muted-foreground hover:bg-accent'
             }`}
           >
             {z.label}
@@ -182,28 +193,28 @@ export default function ChromeEditorPanel({
       </div>
 
       <div>
-        <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">
+        <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
           {ZONES.find((z) => z.id === currentZone)?.label} content
         </label>
         <div className="border-border bg-card overflow-hidden rounded-none border">
           <WysiwygEditor
             key={currentZone}
-            content={zoneContent || "<p></p>"}
+            content={zoneContent || '<p></p>'}
             onChange={handleZoneContent}
             singleLine
             htmlOutput
             showToolbar
             placeholder="Zone text…"
-            className="px-2.5 py-1.5 text-xs min-h-[32px]"
+            className="min-h-[32px] px-2.5 py-1.5 text-xs"
           />
         </div>
-        <div className="flex flex-wrap gap-1 mt-2">
+        <div className="mt-2 flex flex-wrap gap-1">
           {TOKENS.map((t) => (
             <button
               key={t.value}
               type="button"
               onClick={() => insertToken(t.value)}
-              className="text-[10px] px-2 py-0.5 rounded border border-border/10 text-muted-foreground/50 hover:bg-black/5 font-mono"
+              className="border-border/10 text-muted-foreground/50 rounded border px-2 py-0.5 font-mono text-[10px] hover:bg-black/5"
             >
               {t.label}
             </button>
@@ -213,7 +224,9 @@ export default function ChromeEditorPanel({
 
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">Font size</label>
+          <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
+            Font size
+          </label>
           <div className="flex items-center gap-1.5">
             <input
               type="number"
@@ -222,19 +235,29 @@ export default function ChromeEditorPanel({
               max={14}
               step={0.5}
               onChange={(e) =>
-                onChromeChange(patchZoneStyle(chrome, currentZone, { fontSizePt: Number(e.target.value) }))
+                onChromeChange(
+                  patchZoneStyle(chrome, currentZone, {
+                    fontSizePt: Number(e.target.value),
+                  }),
+                )
               }
               className={`${INPUT} font-mono text-xs`}
             />
-            <span className="text-[10px] text-muted-foreground/35">pt</span>
+            <span className="text-muted-foreground/35 text-[10px]">pt</span>
           </div>
         </div>
         <div>
-          <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">Weight</label>
+          <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
+            Weight
+          </label>
           <select
             value={currentStyle.fontWeight ?? 400}
             onChange={(e) =>
-              onChromeChange(patchZoneStyle(chrome, currentZone, { fontWeight: Number(e.target.value) }))
+              onChromeChange(
+                patchZoneStyle(chrome, currentZone, {
+                  fontWeight: Number(e.target.value),
+                }),
+              )
             }
             className={INPUT}
           >
@@ -248,28 +271,38 @@ export default function ChromeEditorPanel({
 
       <ColorPicker
         label="Color"
-        value={currentStyle.color ?? "#8a8a8a"}
-        onChange={(color) => onChromeChange(patchZoneStyle(chrome, currentZone, { color }))}
+        value={currentStyle.color ?? '#8a8a8a'}
+        onChange={(color) =>
+          onChromeChange(patchZoneStyle(chrome, currentZone, { color }))
+        }
         variant="panel"
       />
 
       <div>
-        <label className="text-[11px] font-medium text-muted-foreground/50 mb-1 flex items-center gap-1.5">
+        <label className="text-muted-foreground/50 mb-1 flex items-center gap-1.5 text-[11px] font-medium">
           <FileText size={12} />
           Preview (page 2)
         </label>
         <div className="border-border bg-muted text-muted-foreground space-y-1 rounded-none border px-3 py-2 text-[8pt]">
           {preview.showHeader && (
-            <div className="flex justify-between gap-4 border-b border-border/5 pb-1">
-              <span dangerouslySetInnerHTML={{ __html: preview.headerLeftHtml }} />
-              <span dangerouslySetInnerHTML={{ __html: preview.headerRightHtml }} />
+            <div className="border-border/5 flex justify-between gap-4 border-b pb-1">
+              <span
+                dangerouslySetInnerHTML={{ __html: preview.headerLeftHtml }}
+              />
+              <span
+                dangerouslySetInnerHTML={{ __html: preview.headerRightHtml }}
+              />
             </div>
           )}
           <div className="h-4" />
           {preview.showFooter && (
-            <div className="flex justify-between gap-4 border-t border-border/5 pt-1">
-              <span dangerouslySetInnerHTML={{ __html: preview.footerLeftHtml }} />
-              <span dangerouslySetInnerHTML={{ __html: preview.footerRightHtml }} />
+            <div className="border-border/5 flex justify-between gap-4 border-t pt-1">
+              <span
+                dangerouslySetInnerHTML={{ __html: preview.footerLeftHtml }}
+              />
+              <span
+                dangerouslySetInnerHTML={{ __html: preview.footerRightHtml }}
+              />
             </div>
           )}
         </div>

@@ -51,10 +51,12 @@ async function upsertDocRecord(
   title: string,
   locale: string,
 ) {
-  const { error } = await supabase.from('doc_documents').upsert(
-    { slug, title, locale, storage_prefix: slug, published: false },
-    { onConflict: 'slug' },
-  );
+  const { error } = await supabase
+    .from('doc_documents')
+    .upsert(
+      { slug, title, locale, storage_prefix: slug, published: false },
+      { onConflict: 'slug' },
+    );
   if (error) throw new Error(`DB upsert failed for ${slug}: ${error.message}`);
 }
 
@@ -130,10 +132,7 @@ async function uploadSlug(supabase: SupabaseClient, slug: string) {
   return files.length;
 }
 
-async function uploadDocsToSupabase(
-  supabase: SupabaseClient,
-  slugs: string[],
-) {
+async function uploadDocsToSupabase(supabase: SupabaseClient, slugs: string[]) {
   let totalFiles = 0;
   for (const slug of slugs) {
     totalFiles += await uploadSlug(supabase, slug);
@@ -209,7 +208,9 @@ async function seedData() {
   console.log(`   - Documents: ${slugs.length}`);
   console.log(`   - Content files uploaded: ${totalFiles}`);
   console.log(`\n🔗 Preview: /docs/${slugs[0]}`);
-  console.log(`🔗 Studio:  /prj/<project>/studio?tid=studio-doc:${encodeURIComponent(slugs[0]!)}`);
+  console.log(
+    `🔗 Studio:  /prj/<project>/studio?tid=studio-doc:${encodeURIComponent(slugs[0]!)}`,
+  );
 }
 
 const isMain = process.argv[1]?.includes('seed-data');

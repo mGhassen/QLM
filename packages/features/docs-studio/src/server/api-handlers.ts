@@ -40,7 +40,11 @@ const IMPORT_PDF_TYPES = ['application/pdf'];
 
 function detectImportType(file: File): 'html' | 'pdf' | null {
   const ext = path.extname(file.name).toLowerCase();
-  if (IMPORT_HTML_TYPES.includes(file.type) || ext === '.html' || ext === '.htm') {
+  if (
+    IMPORT_HTML_TYPES.includes(file.type) ||
+    ext === '.html' ||
+    ext === '.htm'
+  ) {
     return 'html';
   }
   if (IMPORT_PDF_TYPES.includes(file.type) || ext === '.pdf') {
@@ -114,7 +118,11 @@ export async function handleSaveDoc(request: Request, slug: string) {
   };
 
   if (!document || !sections) {
-    return jsonWithCookies({ error: 'Invalid payload' }, { status: 400 }, headers);
+    return jsonWithCookies(
+      { error: 'Invalid payload' },
+      { status: 400 },
+      headers,
+    );
   }
 
   await saveDoc(slug, document, sections, meta);
@@ -145,7 +153,11 @@ export async function handleUploadDocAsset(request: Request, slug: string) {
   const file = formData.get('file');
 
   if (!(file instanceof File)) {
-    return jsonWithCookies({ error: 'No file provided' }, { status: 400 }, headers);
+    return jsonWithCookies(
+      { error: 'No file provided' },
+      { status: 400 },
+      headers,
+    );
   }
 
   if (!ALLOWED_TYPES.includes(file.type)) {
@@ -194,7 +206,11 @@ export async function handleImportDoc(request: Request) {
   const titleField = formData.get('title');
 
   if (!(file instanceof File)) {
-    return jsonWithCookies({ error: 'No file provided' }, { status: 400 }, headers);
+    return jsonWithCookies(
+      { error: 'No file provided' },
+      { status: 400 },
+      headers,
+    );
   }
 
   if (file.size > IMPORT_MAX_SIZE) {
@@ -222,7 +238,8 @@ export async function handleImportDoc(request: Request) {
         ? importHtml(buffer.toString('utf-8'), file.name)
         : await importPdf(buffer, file.name);
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Failed to parse document';
+    const message =
+      err instanceof Error ? err.message : 'Failed to parse document';
     return jsonWithCookies({ error: message }, { status: 400 }, headers);
   }
 
@@ -235,7 +252,8 @@ export async function handleImportDoc(request: Request) {
   try {
     await createImportedDoc(slug, title, 'fr', parsed);
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Failed to import document';
+    const message =
+      err instanceof Error ? err.message : 'Failed to import document';
     if (message === 'Slug already exists') {
       return jsonWithCookies({ error: message }, { status: 409 }, headers);
     }

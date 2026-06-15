@@ -33,5 +33,9 @@ export function jsonWithCookies(
 }
 
 export function unauthorized(cookieHeaders?: Headers) {
-  return jsonWithCookies({ error: 'Unauthorized' }, { status: 401 }, cookieHeaders);
+  return jsonWithCookies(
+    { error: 'Unauthorized' },
+    { status: 401 },
+    cookieHeaders,
+  );
 }

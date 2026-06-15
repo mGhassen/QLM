@@ -1,6 +1,6 @@
-import type { FlexAlign, FlexDirection, FlexJustify } from "./block-schema";
+import type { FlexAlign, FlexDirection, FlexJustify } from './block-schema';
 
-import type { SpacingUnit } from "./spacing-unit";
+import type { SpacingUnit } from './spacing-unit';
 
 export interface BlockStyleProps {
   spacingUnit?: SpacingUnit;
@@ -13,7 +13,7 @@ export interface BlockStyleProps {
   paddingRight?: number;
   paddingBottom?: number;
   paddingLeft?: number;
-  display?: "block" | "flex" | "grid";
+  display?: 'block' | 'flex' | 'grid';
   direction?: FlexDirection;
   align?: FlexAlign;
   justify?: FlexJustify;
@@ -35,8 +35,8 @@ export interface BlockStyleProps {
   maxWidth?: string;
   maxHeight?: string;
   minWidth?: string;
-  overflow?: "visible" | "hidden" | "auto" | "scroll";
-  position?: "static" | "relative" | "absolute";
+  overflow?: 'visible' | 'hidden' | 'auto' | 'scroll';
+  position?: 'static' | 'relative' | 'absolute';
   top?: string;
   right?: string;
   bottom?: string;
@@ -56,9 +56,11 @@ export interface BlockStyleProps {
   fontWeight?: number | string;
   fontSize?: string;
   lineHeight?: string | number;
-  textAlign?: "left" | "center" | "right" | "justify";
+  textAlign?: 'left' | 'center' | 'right' | 'justify';
 }
 
-export function readBlockStyle(props: Record<string, unknown> | undefined): BlockStyleProps {
+export function readBlockStyle(
+  props: Record<string, unknown> | undefined,
+): BlockStyleProps {
   return (props ?? {}) as BlockStyleProps;
 }

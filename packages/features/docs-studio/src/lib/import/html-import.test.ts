@@ -1,30 +1,49 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 
-import { importHtml } from "./html-import";
-import { resolveImportAssetPaths } from "./resolve-asset-paths";
-import { slugify } from "./slugify";
-import { IMPORT_ASSET_PREFIX } from "./types";
+import { importHtml } from './html-import';
+import { resolveImportAssetPaths } from './resolve-asset-paths';
+import { slugify } from './slugify';
+import { IMPORT_ASSET_PREFIX } from './types';
 
-function findBlocksByType(blocks: Array<{ type: string; children?: unknown[] }>, type: string) {
-  const found: Array<{ type: string; content?: string; props?: Record<string, unknown> }> = [];
+function findBlocksByType(
+  blocks: Array<{ type: string; children?: unknown[] }>,
+  type: string,
+) {
+  const found: Array<{
+    type: string;
+    content?: string;
+    props?: Record<string, unknown>;
+  }> = [];
   for (const block of blocks) {
-    if (block.type === type) found.push(block as { type: string; content?: string; props?: Record<string, unknown> });
+    if (block.type === type)
+      found.push(
+        block as {
+          type: string;
+          content?: string;
+          props?: Record<string, unknown>;
+        },
+      );
     if (block.children) {
-      found.push(...findBlocksByType(block.children as Array<{ type: string; children?: unknown[] }>, type));
+      found.push(
+        ...findBlocksByType(
+          block.children as Array<{ type: string; children?: unknown[] }>,
+          type,
+        ),
+      );
     }
   }
   return found;
 }
 
-describe("slugify", () => {
-  it("normalizes titles into URL-safe slugs", () => {
-    expect(slugify("Hello World!")).toBe("hello-world");
-    expect(slugify("  État des lieux  ")).toBe("etat-des-lieux");
+describe('slugify', () => {
+  it('normalizes titles into URL-safe slugs', () => {
+    expect(slugify('Hello World!')).toBe('hello-world');
+    expect(slugify('  État des lieux  ')).toBe('etat-des-lieux');
   });
 });
 
-describe("importHtml", () => {
-  it("maps headings, paragraphs, lists, tables, quotes, and images", () => {
+describe('importHtml', () => {
+  it('maps headings, paragraphs, lists, tables, quotes, and images', () => {
     const html = `<!DOCTYPE html>
 <html>
 <head><title>Sample Report</title></head>
@@ -43,50 +62,57 @@ describe("importHtml", () => {
 </body>
 </html>`;
 
-    const result = importHtml(html, "sample.html");
-    expect(result.title).toBe("Sample Report");
+    const result = importHtml(html, 'sample.html');
+    expect(result.title).toBe('Sample Report');
     expect(result.assets).toHaveLength(1);
 
-    const openers = findBlocksByType(result.document.blocks, "opener");
-    const subheadings = findBlocksByType(result.document.blocks, "subheading");
-    const paragraphs = findBlocksByType(result.document.blocks, "paragraph");
-    const quotes = findBlocksByType(result.document.blocks, "quote");
-    const tables = findBlocksByType(result.document.blocks, "table");
-    const figures = findBlocksByType(result.document.blocks, "figure");
+    const openers = findBlocksByType(result.document.blocks, 'opener');
+    const subheadings = findBlocksByType(result.document.blocks, 'subheading');
+    const paragraphs = findBlocksByType(result.document.blocks, 'paragraph');
+    const quotes = findBlocksByType(result.document.blocks, 'quote');
+    const tables = findBlocksByType(result.document.blocks, 'table');
+    const figures = findBlocksByType(result.document.blocks, 'figure');
 
-    expect(openers[0]?.content).toBe("Main Title");
-    expect(subheadings[0]?.content).toBe("Section Two");
-    expect(paragraphs.some((block) => block.content?.includes("Intro paragraph"))).toBe(true);
-    expect(paragraphs.some((block) => block.content?.includes("- First item"))).toBe(true);
-    expect(quotes[0]?.content).toBe("A quoted line");
-    expect(tables[0]?.content).toContain("A | B");
+    expect(openers[0]?.content).toBe('Main Title');
+    expect(subheadings[0]?.content).toBe('Section Two');
+    expect(
+      paragraphs.some((block) => block.content?.includes('Intro paragraph')),
+    ).toBe(true);
+    expect(
+      paragraphs.some((block) => block.content?.includes('- First item')),
+    ).toBe(true);
+    expect(quotes[0]?.content).toBe('A quoted line');
+    expect(tables[0]?.content).toContain('A | B');
     expect(figures[0]?.content).toContain(`${IMPORT_ASSET_PREFIX}figure-1.png`);
   });
 
-  it("falls back to filename when title and h1 are missing", () => {
-    const result = importHtml("<html><body><p>Only text</p></body></html>", "my-report.html");
-    expect(result.title).toBe("my report");
+  it('falls back to filename when title and h1 are missing', () => {
+    const result = importHtml(
+      '<html><body><p>Only text</p></body></html>',
+      'my-report.html',
+    );
+    expect(result.title).toBe('my report');
   });
 
-  it("creates a starter page for empty bodies", () => {
-    const result = importHtml("<html><body></body></html>", "empty.html");
+  it('creates a starter page for empty bodies', () => {
+    const result = importHtml('<html><body></body></html>', 'empty.html');
     expect(result.document.blocks.length).toBeGreaterThan(0);
   });
 });
 
-describe("resolveImportAssetPaths", () => {
-  it("rewrites import asset placeholders to public doc paths", () => {
+describe('resolveImportAssetPaths', () => {
+  it('rewrites import asset placeholders to public doc paths', () => {
     const blocks = resolveImportAssetPaths(
       [
         {
-          id: "figure-1",
-          type: "figure",
+          id: 'figure-1',
+          type: 'figure',
           content: `src: ${IMPORT_ASSET_PREFIX}figure-1.png\ncaption: Chart`,
         },
       ],
-      "sample-doc",
+      'sample-doc',
     );
 
-    expect(blocks[0]?.content).toContain("src: /docs/sample-doc/figure-1.png");
+    expect(blocks[0]?.content).toContain('src: /docs/sample-doc/figure-1.png');
   });
 });

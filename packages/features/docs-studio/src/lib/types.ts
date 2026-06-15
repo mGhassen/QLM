@@ -1,42 +1,42 @@
 export type BlockType =
-  | "page"
-  | "cover"
-  | "brand"
-  | "coverBody"
-  | "coverSubt"
-  | "coverToc"
-  | "section"
-  | "seclabel"
-  | "opener"
-  | "split"
-  | "main"
-  | "rail"
-  | "flow"
-  | "grid"
-  | "box"
-  | "card"
-  | "alert"
-  | "hero"
-  | "kpiband"
-  | "kpi"
-  | "table"
-  | "figure"
-  | "quote"
-  | "phase"
-  | "levels"
-  | "level"
-  | "lvlcol"
-  | "vm"
-  | "vmcol"
-  | "lcard"
-  | "pat"
-  | "engines"
-  | "subheading"
-  | "paragraph"
-  | "pull"
-  | "cquote"
-  | "raw"
-  | "break";
+  | 'page'
+  | 'cover'
+  | 'brand'
+  | 'coverBody'
+  | 'coverSubt'
+  | 'coverToc'
+  | 'section'
+  | 'seclabel'
+  | 'opener'
+  | 'split'
+  | 'main'
+  | 'rail'
+  | 'flow'
+  | 'grid'
+  | 'box'
+  | 'card'
+  | 'alert'
+  | 'hero'
+  | 'kpiband'
+  | 'kpi'
+  | 'table'
+  | 'figure'
+  | 'quote'
+  | 'phase'
+  | 'levels'
+  | 'level'
+  | 'lvlcol'
+  | 'vm'
+  | 'vmcol'
+  | 'lcard'
+  | 'pat'
+  | 'engines'
+  | 'subheading'
+  | 'paragraph'
+  | 'pull'
+  | 'cquote'
+  | 'raw'
+  | 'break';
 
 export interface BlockNode {
   id: string;
@@ -55,18 +55,22 @@ export interface DocTheme {
   eyebrow?: string;
 }
 
-export type DocLayoutMode = "paginated" | "web";
+export type DocLayoutMode = 'paginated' | 'web';
 
-export type DocPageFormat = import("./page-format").DocPageFormat;
-export type DocPageSetup = import("./page-setup").DocPageSetup;
+export type DocPageFormat = import('./page-format').DocPageFormat;
+export type DocPageSetup = import('./page-setup').DocPageSetup;
 
-export type ChromeZoneId = "headerLeft" | "headerRight" | "footerLeft" | "footerRight";
+export type ChromeZoneId =
+  | 'headerLeft'
+  | 'headerRight'
+  | 'footerLeft'
+  | 'footerRight';
 
 export interface ChromeZoneStyle {
   fontSizePt?: number;
   color?: string;
   fontWeight?: number;
-  textAlign?: "left" | "right" | "center";
+  textAlign?: 'left' | 'right' | 'center';
 }
 
 export interface DocChromeStyle {

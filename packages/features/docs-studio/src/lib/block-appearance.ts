@@ -1,8 +1,8 @@
-import type { CSSProperties } from "react";
-import { formatSpacingValue, resolveSpacingUnit } from "./spacing-unit";
-import type { BlockType } from "./types";
+import type { CSSProperties } from 'react';
+import { formatSpacingValue, resolveSpacingUnit } from './spacing-unit';
+import type { BlockType } from './types';
 
-const NO_BLEED_TYPES = new Set<BlockType>(["cover", "section"]);
+const NO_BLEED_TYPES = new Set<BlockType>(['cover', 'section']);
 
 export interface BlockAppearance {
   className: string;
@@ -17,7 +17,9 @@ export interface PaddingSides {
   right: number;
 }
 
-export function resolvePaddingSides(props: Record<string, unknown> | undefined): PaddingSides {
+export function resolvePaddingSides(
+  props: Record<string, unknown> | undefined,
+): PaddingSides {
   const fallback = (props?.padding as number) ?? 0;
   return {
     top: (props?.paddingTop as number) ?? fallback,
@@ -47,7 +49,7 @@ export function blockAppearanceProps(
   type: BlockType,
   props: Record<string, unknown> | undefined,
 ): BlockAppearance {
-  if (!props) return { className: "", style: {}, dataAttrs: {} };
+  if (!props) return { className: '', style: {}, dataAttrs: {} };
 
   const style: CSSProperties = {};
   const classes: string[] = [];
@@ -55,18 +57,18 @@ export function blockAppearanceProps(
 
   const bg = props.backgroundColor as string | undefined;
   if (bg) {
-    dataAttrs["data-block-bg"] = "true";
-    (style as Record<string, string>)["--block-bg"] = bg;
+    dataAttrs['data-block-bg'] = 'true';
+    (style as Record<string, string>)['--block-bg'] = bg;
   }
 
   const canBleed = !NO_BLEED_TYPES.has(type);
   if (canBleed && props.bgFullWidth) {
-    dataAttrs["data-bg-full-width"] = "true";
-    classes.push("block-bg-full-x");
+    dataAttrs['data-bg-full-width'] = 'true';
+    classes.push('block-bg-full-x');
   }
   if (canBleed && props.bgFullHeight) {
-    dataAttrs["data-bg-full-height"] = "true";
-    classes.push("block-bg-full-y");
+    dataAttrs['data-bg-full-height'] = 'true';
+    classes.push('block-bg-full-y');
   }
 
   if (props.color) style.color = props.color as string;
@@ -76,18 +78,30 @@ export function blockAppearanceProps(
   const spacingUnit = resolveSpacingUnit(props);
   applyPaddingSides(style, resolvePaddingSides(props), spacingUnit);
   if (props.marginTop != null) {
-    style.marginTop = formatSpacingValue(props.marginTop as number, spacingUnit);
-    dataAttrs["data-block-mt"] = "true";
+    style.marginTop = formatSpacingValue(
+      props.marginTop as number,
+      spacingUnit,
+    );
+    dataAttrs['data-block-mt'] = 'true';
   }
   if (props.marginBottom != null) {
-    style.marginBottom = formatSpacingValue(props.marginBottom as number, spacingUnit);
-    dataAttrs["data-block-mb"] = "true";
+    style.marginBottom = formatSpacingValue(
+      props.marginBottom as number,
+      spacingUnit,
+    );
+    dataAttrs['data-block-mb'] = 'true';
   }
   if (props.marginLeft != null) {
-    style.marginLeft = formatSpacingValue(props.marginLeft as number, spacingUnit);
+    style.marginLeft = formatSpacingValue(
+      props.marginLeft as number,
+      spacingUnit,
+    );
   }
   if (props.marginRight != null) {
-    style.marginRight = formatSpacingValue(props.marginRight as number, spacingUnit);
+    style.marginRight = formatSpacingValue(
+      props.marginRight as number,
+      spacingUnit,
+    );
   }
   if (props.maxWidth) style.maxWidth = props.maxWidth as string;
   if (props.maxHeight) style.maxHeight = props.maxHeight as string;
@@ -95,9 +109,12 @@ export function blockAppearanceProps(
   if (props.fontSize) style.fontSize = props.fontSize as string;
   if (props.fontWeight) style.fontWeight = props.fontWeight as number | string;
   if (props.lineHeight) style.lineHeight = props.lineHeight as string | number;
-  if (props.textAlign) style.textAlign = props.textAlign as CSSProperties["textAlign"];
-  if (props.overflow) style.overflow = props.overflow as CSSProperties["overflow"];
-  if (props.position) style.position = props.position as CSSProperties["position"];
+  if (props.textAlign)
+    style.textAlign = props.textAlign as CSSProperties['textAlign'];
+  if (props.overflow)
+    style.overflow = props.overflow as CSSProperties['overflow'];
+  if (props.position)
+    style.position = props.position as CSSProperties['position'];
   if (props.zIndex != null) style.zIndex = props.zIndex as number;
   if (props.gridColumn) style.gridColumn = String(props.gridColumn);
   if (props.gridRow) style.gridRow = String(props.gridRow);
@@ -105,8 +122,8 @@ export function blockAppearanceProps(
   if (props.gridRowSpan) style.gridRow = `span ${props.gridRowSpan}`;
   if (props.width) {
     style.width = props.width as string;
-    style.flex = "0 0 auto";
-    dataAttrs["data-has-width"] = "true";
+    style.flex = '0 0 auto';
+    dataAttrs['data-has-width'] = 'true';
   }
   if (props.height) style.height = props.height as string;
   if (props.minHeight) style.minHeight = props.minHeight as string;
@@ -117,13 +134,13 @@ export function blockAppearanceProps(
   if (tx || ty) style.transform = `translate(${tx}px, ${ty}px)`;
 
   if (props.width || props.height || tx || ty) {
-    style.position = "relative";
-    style.boxSizing = "border-box";
+    style.position = 'relative';
+    style.boxSizing = 'border-box';
   }
 
   if (!bg && (props.borderColor || props.backgroundColor)) {
-    style.borderStyle = (props.borderStyle as string) ?? "solid";
-    style.borderWidth = (props.borderWidth as string) ?? "1px";
+    style.borderStyle = (props.borderStyle as string) ?? 'solid';
+    style.borderWidth = (props.borderWidth as string) ?? '1px';
   }
 
   if (bg && !canBleed) {
@@ -131,7 +148,7 @@ export function blockAppearanceProps(
   }
 
   return {
-    className: classes.join(" "),
+    className: classes.join(' '),
     style,
     dataAttrs,
   };
@@ -141,6 +158,6 @@ export function hasBlockAppearance(appearance: BlockAppearance): boolean {
   return (
     !!appearance.className ||
     Object.keys(appearance.style).length > 0 ||
-    !!appearance.dataAttrs["data-block-bg"]
+    !!appearance.dataAttrs['data-block-bg']
   );
 }

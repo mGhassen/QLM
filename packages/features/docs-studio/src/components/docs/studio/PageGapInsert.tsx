@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { PAGE_END_INSERT_ITEMS } from "#/lib/palette";
-import type { BlockNode } from "#/lib/types";
-import InlineInsertMenu from "./InlineInsertMenu";
+import { PAGE_END_INSERT_ITEMS } from '#/lib/palette';
+import type { BlockNode } from '#/lib/types';
+import InlineInsertMenu from './InlineInsertMenu';
 
 interface PageGapInsertProps {
   onInsert: (block: BlockNode) => void;

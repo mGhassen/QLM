@@ -7,10 +7,7 @@ import {
   CollapsibleTrigger,
 } from '../shadcn/collapsible';
 import { cn } from '../lib/utils';
-import {
-  toToolError,
-  toUserFacingError,
-} from '../qlm/ai/user-facing-error';
+import { toToolError, toUserFacingError } from '../qlm/ai/user-facing-error';
 import type { ToolUIPart } from 'ai';
 import { useTranslation } from 'react-i18next';
 import { getUserFriendlyToolName } from '../qlm/ai/utils/tool-name';

@@ -20,7 +20,10 @@ export function fragmentItemKey(blockId: string, index: number): string {
 }
 
 /** Ensure a layout-item key is unique among existing keys. */
-export function uniqueLayoutItemKey(preferred: string, reserved: ReadonlySet<string>): string {
+export function uniqueLayoutItemKey(
+  preferred: string,
+  reserved: ReadonlySet<string>,
+): string {
   if (!reserved.has(preferred)) return preferred;
   let n = 1;
   while (reserved.has(`${preferred}~${n}`)) n++;
@@ -36,8 +39,8 @@ export function fragmentDataAttrs(
 ): Record<string, string | undefined> {
   if (!fragment || fragment.total <= 1) return {};
   return {
-    "data-page-fragment": `${fragment.index + 1}/${fragment.total}`,
-    "data-page-fragment-continued": fragment.index > 0 ? "true" : undefined,
+    'data-page-fragment': `${fragment.index + 1}/${fragment.total}`,
+    'data-page-fragment-continued': fragment.index > 0 ? 'true' : undefined,
   };
 }
 

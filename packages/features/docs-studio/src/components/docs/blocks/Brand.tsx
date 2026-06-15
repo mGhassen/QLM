@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
+import StudioPopover from '../studio/StudioPopover';
 
 interface BrandProps {
   content?: string;
@@ -11,38 +11,41 @@ interface BrandProps {
 }
 
 function escapeHtml(value: string): string {
-  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function brandContentToHtml(content: string): string {
   const trimmed = content.trim();
-  if (!trimmed) return "<p></p>";
-  const space = trimmed.indexOf(" ");
+  if (!trimmed) return '<p></p>';
+  const space = trimmed.indexOf(' ');
   if (space === -1) return `<p>${escapeHtml(trimmed)}</p>`;
   return `<p>${escapeHtml(trimmed.slice(0, space))} <span class="brand-sub">${escapeHtml(trimmed.slice(space + 1))}</span></p>`;
 }
 
 function brandHtmlToContent(html: string): string {
   return html
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<\/p>/gi, " ")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/p>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
 function parseBrand(content: string) {
   const trimmed = content.trim();
-  const space = trimmed.indexOf(" ");
+  const space = trimmed.indexOf(' ');
   return {
     main: space === -1 ? trimmed : trimmed.slice(0, space),
-    sub: space === -1 ? "" : trimmed.slice(space + 1),
+    sub: space === -1 ? '' : trimmed.slice(space + 1),
   };
 }
 
 export default function Brand({
-  content = "QLM STRATEGIC RESEARCH",
+  content = 'QLM STRATEGIC RESEARCH',
   editable,
   editing,
   onChange,
@@ -55,7 +58,7 @@ export default function Brand({
       {brandMain}
       {brandSub && (
         <>
-          {" "}
+          {' '}
           <span>{brandSub}</span>
         </>
       )}

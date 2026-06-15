@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface AlertProps {
-  variant?: "read" | "insight" | "warn" | "predict";
+  variant?: 'read' | 'insight' | 'warn' | 'predict';
   tag?: string;
   content?: string;
   big?: boolean;
@@ -19,13 +19,13 @@ function serializeAlert(tag: string, body: string): string {
   const lines: string[] = [];
   if (tag) lines.push(`## ${tag}`);
   if (body) lines.push(body);
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 export default function Alert({
-  variant = "read",
+  variant = 'read',
   tag,
-  content = "",
+  content = '',
   big,
   editable,
   editing,
@@ -33,14 +33,17 @@ export default function Alert({
   onPropChange,
   onActivate,
 }: AlertProps) {
-  const lines = content.split("\n");
-  const tagLine = lines.find((l) => l.startsWith("## "));
-  const alertTag = tag ?? tagLine?.replace("## ", "") ?? "Note";
-  const body = lines.filter((l) => !l.startsWith("## ")).join("\n").trim();
+  const lines = content.split('\n');
+  const tagLine = lines.find((l) => l.startsWith('## '));
+  const alertTag = tag ?? tagLine?.replace('## ', '') ?? 'Note';
+  const body = lines
+    .filter((l) => !l.startsWith('## '))
+    .join('\n')
+    .trim();
 
   function updateTag(newTag: string) {
     if (onPropChange) {
-      onPropChange("tag", newTag);
+      onPropChange('tag', newTag);
     } else {
       onChange?.(serializeAlert(newTag, body));
     }

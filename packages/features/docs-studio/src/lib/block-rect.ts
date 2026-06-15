@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useLayoutEffect, useState, type RefObject } from "react";
+import { useLayoutEffect, useState, type RefObject } from 'react';
 
-const CANVAS_SELECTOR = ".doc-studio .studio-canvas";
+const CANVAS_SELECTOR = '.doc-studio .studio-canvas';
 
 function getCanvas(): HTMLElement | null {
   return document.querySelector<HTMLElement>(CANVAS_SELECTOR);
@@ -27,7 +27,7 @@ function attachCanvasListeners() {
   const canvas = getCanvas();
   if (!canvas) return;
   canvasScrollAttached = true;
-  canvas.addEventListener("scroll", scheduleCanvasListeners, { passive: true });
+  canvas.addEventListener('scroll', scheduleCanvasListeners, { passive: true });
   const ro = new ResizeObserver(scheduleCanvasListeners);
   ro.observe(canvas);
 }
@@ -120,13 +120,13 @@ export function useBlockRect(blockRef: RefObject<HTMLElement | null>) {
     mo.observe(root, { childList: true, subtree: true, attributes: true });
 
     const offCanvas = subscribeCanvasUpdates(update);
-    window.addEventListener("resize", update);
+    window.addEventListener('resize', update);
 
     return () => {
       ro.disconnect();
       mo.disconnect();
       offCanvas();
-      window.removeEventListener("resize", update);
+      window.removeEventListener('resize', update);
     };
   }, [blockRef]);
 

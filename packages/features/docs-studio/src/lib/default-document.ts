@@ -1,20 +1,26 @@
-import type { BlockNode, DocDocument } from "./types";
-import { DOC_VERSION_FLOW } from "./flow-doc";
-import { createStarterPage } from "./studio-document";
-import { isCoverSection } from "./section-variant";
+import type { BlockNode, DocDocument } from './types';
+import { DOC_VERSION_FLOW } from './flow-doc';
+import { createStarterPage } from './studio-document';
+import { isCoverSection } from './section-variant';
 
 function updateCoverTitleIfMatches(
   block: BlockNode,
   prevTitle: string,
   nextTitle: string,
 ): BlockNode {
-  if (block.type === "subheading" && block.props?.level === 1 && block.content === prevTitle) {
+  if (
+    block.type === 'subheading' &&
+    block.props?.level === 1 &&
+    block.content === prevTitle
+  ) {
     return { ...block, content: nextTitle };
   }
   if (block.children) {
     return {
       ...block,
-      children: block.children.map((child) => updateCoverTitleIfMatches(child, prevTitle, nextTitle)),
+      children: block.children.map((child) =>
+        updateCoverTitleIfMatches(child, prevTitle, nextTitle),
+      ),
     };
   }
   return block;
@@ -25,7 +31,7 @@ function updateCoverSectionTitle(
   prevTitle: string,
   nextTitle: string,
 ): BlockNode {
-  if (block.type === "page" && block.children) {
+  if (block.type === 'page' && block.children) {
     return {
       ...block,
       children: block.children.map((child) =>
@@ -35,7 +41,7 @@ function updateCoverSectionTitle(
       ),
     };
   }
-  if (block.type === "cover") {
+  if (block.type === 'cover') {
     return updateCoverTitleIfMatches(block, prevTitle, nextTitle);
   }
   return block;
@@ -54,7 +60,9 @@ export function applyDocTitle(
   return {
     ...document,
     chrome,
-    blocks: document.blocks.map((block) => updateCoverSectionTitle(block, prevTitle, nextTitle)),
+    blocks: document.blocks.map((block) =>
+      updateCoverSectionTitle(block, prevTitle, nextTitle),
+    ),
   };
 }
 
@@ -65,8 +73,8 @@ export function createDefaultDocument(_title: string): {
   return {
     document: {
       version: DOC_VERSION_FLOW,
-      layoutMode: "paginated",
-      pageFormat: "a4",
+      layoutMode: 'paginated',
+      pageFormat: 'a4',
       chrome: {
         headerEnabled: false,
         footerEnabled: false,

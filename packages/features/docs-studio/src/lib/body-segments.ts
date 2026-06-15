@@ -1,33 +1,33 @@
-import { breakVariantToSectionProps, type BreakVariant } from "./breaks";
-import { parseMarkdoc, type MarkdocNode } from "./markdoc";
-import type { LayoutItem, SectionContext } from "./layout-items";
-import { blocksToLayoutItems } from "./layout-items";
-import { isCoverPageBlock } from "./section-variant";
-import type { BlockNode, BlockType, DocDocument } from "./types";
-import { isFlowDoc } from "./flow-doc";
+import { breakVariantToSectionProps, type BreakVariant } from './breaks';
+import { parseMarkdoc, type MarkdocNode } from './markdoc';
+import type { LayoutItem, SectionContext } from './layout-items';
+import { blocksToLayoutItems } from './layout-items';
+import { isCoverPageBlock } from './section-variant';
+import type { BlockNode, BlockType, DocDocument } from './types';
+import { isFlowDoc } from './flow-doc';
 
 export interface BodySegment {
   key: string;
-  kind: "prose" | "design" | "break";
+  kind: 'prose' | 'design' | 'break';
   block: BlockNode;
   markdown: string;
 }
 
 const DESIGN_TAGS = new Set([
-  "card",
-  "hero",
-  "alert",
-  "figure",
-  "table",
-  "quote",
-  "phase",
-  "pat",
-  "kpi",
-  "kpiband",
-  "levels",
-  "engines",
-  "vm",
-  "flow",
+  'card',
+  'hero',
+  'alert',
+  'figure',
+  'table',
+  'quote',
+  'phase',
+  'pat',
+  'kpi',
+  'kpiband',
+  'levels',
+  'engines',
+  'vm',
+  'flow',
 ]);
 
 const BLOCK_TAG_RE = /\{%\s*(\/?)(\w+)([^%]*?)%\}/g;
@@ -36,7 +36,7 @@ function parseBlockTags(md: string): MarkdocNode[] {
   const parts: MarkdocNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
-  const re = new RegExp(BLOCK_TAG_RE.source, "g");
+  const re = new RegExp(BLOCK_TAG_RE.source, 'g');
 
   while ((match = re.exec(md)) !== null) {
     if (match.index > lastIndex) {
@@ -44,23 +44,25 @@ function parseBlockTags(md: string): MarkdocNode[] {
       if (text.trim()) parts.push(...parseMarkdoc(text));
     }
 
-    const closing = match[1] === "/";
+    const closing = match[1] === '/';
     const tag = match[2];
 
     if (!closing && DESIGN_TAGS.has(tag)) {
       const attrs = parseTagAttrs(match[3]);
-      const closeRe = new RegExp(`\\{%\\s*/${tag}\\s*%\}`, "g");
+      const closeRe = new RegExp(`\\{%\\s*/${tag}\\s*%\}`, 'g');
       closeRe.lastIndex = re.lastIndex;
       const closeMatch = closeRe.exec(md);
-      const inner = closeMatch ? md.slice(re.lastIndex, closeMatch.index).trim() : "";
-      parts.push({ type: "tag", tag, attrs, content: inner });
+      const inner = closeMatch
+        ? md.slice(re.lastIndex, closeMatch.index).trim()
+        : '';
+      parts.push({ type: 'tag', tag, attrs, content: inner });
       lastIndex = closeMatch ? closeRe.lastIndex : re.lastIndex;
       re.lastIndex = lastIndex;
       continue;
     }
 
     if (!closing) {
-      parts.push({ type: "tag", tag, attrs: parseTagAttrs(match[3]) });
+      parts.push({ type: 'tag', tag, attrs: parseTagAttrs(match[3]) });
     }
     lastIndex = re.lastIndex;
   }
@@ -86,50 +88,54 @@ function parseTagAttrs(str: string): Record<string, string> {
 
 function nodeToMarkdown(node: MarkdocNode): string {
   switch (node.type) {
-    case "heading": {
-      const prefix = "#".repeat(node.level ?? 2);
-      return `${prefix} ${node.content ?? ""}`;
+    case 'heading': {
+      const prefix = '#'.repeat(node.level ?? 2);
+      return `${prefix} ${node.content ?? ''}`;
     }
-    case "paragraph":
-      return node.content ?? "";
-    case "list": {
+    case 'paragraph':
+      return node.content ?? '';
+    case 'list': {
       const items = node.children ?? [];
       return items
         .map((item, i) =>
-          node.ordered ? `${i + 1}. ${item.content ?? ""}` : `- ${item.content ?? ""}`,
+          node.ordered
+            ? `${i + 1}. ${item.content ?? ''}`
+            : `- ${item.content ?? ''}`,
         )
-        .join("\n");
+        .join('\n');
     }
     default:
-      return node.content ?? "";
+      return node.content ?? '';
   }
 }
 
 function proseBlockType(node: MarkdocNode): BlockType {
-  if (node.type === "heading") {
+  if (node.type === 'heading') {
     const level = node.level ?? 2;
-    return "subheading";
+    return 'subheading';
   }
-  if (node.type === "list") return "paragraph";
-  return "paragraph";
+  if (node.type === 'list') return 'paragraph';
+  return 'paragraph';
 }
 
-function proseBlockProps(node: MarkdocNode): Record<string, unknown> | undefined {
-  if (node.type === "heading") {
+function proseBlockProps(
+  node: MarkdocNode,
+): Record<string, unknown> | undefined {
+  if (node.type === 'heading') {
     return { level: node.level ?? 2 };
   }
   return undefined;
 }
 
 function designBlockFromTag(node: MarkdocNode, index: number): BlockNode {
-  const tag = node.tag ?? "card";
-  const content = node.content ?? "";
+  const tag = node.tag ?? 'card';
+  const content = node.content ?? '';
   const props: Record<string, unknown> = { ...(node.attrs ?? {}) };
 
-  if (tag === "subheading" && props.level) {
+  if (tag === 'subheading' && props.level) {
     return {
       id: `body-seg-${index}`,
-      type: "subheading",
+      type: 'subheading',
       props,
       content,
     };
@@ -154,13 +160,13 @@ export function parseBodyToSegments(body: string): BodySegment[] {
   segmentCounter = 0;
   const trimmed = body.trim();
   if (!trimmed) {
-    const id = nextSegmentId("body-empty");
+    const id = nextSegmentId('body-empty');
     return [
       {
         key: id,
-        kind: "prose",
-        block: { id, type: "paragraph", content: "" },
-        markdown: "",
+        kind: 'prose',
+        block: { id, type: 'paragraph', content: '' },
+        markdown: '',
       },
     ];
   }
@@ -169,41 +175,41 @@ export function parseBodyToSegments(body: string): BodySegment[] {
   const segments: BodySegment[] = [];
 
   for (const node of nodes) {
-    if (node.type === "tag") {
-      const tag = node.tag ?? "";
-      if (tag === "break") {
-        const id = nextSegmentId("body-break");
+    if (node.type === 'tag') {
+      const tag = node.tag ?? '';
+      if (tag === 'break') {
+        const id = nextSegmentId('body-break');
         segments.push({
           key: id,
-          kind: "break",
+          kind: 'break',
           block: {
             id,
-            type: "break",
-            props: { variant: node.attrs?.variant ?? "page" },
+            type: 'break',
+            props: { variant: node.attrs?.variant ?? 'page' },
           },
-          markdown: "",
+          markdown: '',
         });
         continue;
       }
       if (DESIGN_TAGS.has(tag)) {
-        const id = nextSegmentId("body-design");
+        const id = nextSegmentId('body-design');
         const block = designBlockFromTag(node, segments.length);
         block.id = id;
         segments.push({
           key: id,
-          kind: "design",
+          kind: 'design',
           block,
-          markdown: node.content ?? "",
+          markdown: node.content ?? '',
         });
         continue;
       }
     }
 
     const md = nodeToMarkdown(node);
-    const id = nextSegmentId("body-prose");
+    const id = nextSegmentId('body-prose');
     segments.push({
       key: id,
-      kind: "prose",
+      kind: 'prose',
       block: {
         id,
         type: proseBlockType(node),
@@ -219,8 +225,8 @@ export function parseBodyToSegments(body: string): BodySegment[] {
 
 function isSectionTitleSegment(seg: BodySegment): boolean {
   return (
-    seg.kind === "prose" &&
-    seg.block.type === "subheading" &&
+    seg.kind === 'prose' &&
+    seg.block.type === 'subheading' &&
     (seg.block.props?.level as number) === 1
   );
 }
@@ -236,25 +242,27 @@ function flowSectionContext(
   return {
     id: sectionId,
     pageBreak: isFirst ? (breakProps.pageBreak ?? defaultPageBreak) : false,
-    continuation: isFirst ? breakProps.continuation : (breakProps.continuation ?? true),
+    continuation: isFirst
+      ? breakProps.continuation
+      : (breakProps.continuation ?? true),
   };
 }
 
 function makeFlowSectionBlocks(
   sectionNum: number,
-  openerTitle = "",
+  openerTitle = '',
 ): { sectionId: string; seclabel: BlockNode; opener: BlockNode } {
   const sectionId = `flow-section-${sectionNum}`;
   return {
     sectionId,
     seclabel: {
       id: `${sectionId}-seclabel`,
-      type: "seclabel",
-      content: `Section ${String(sectionNum).padStart(2, "0")}`,
+      type: 'seclabel',
+      content: `Section ${String(sectionNum).padStart(2, '0')}`,
     },
     opener: {
       id: `${sectionId}-opener`,
-      type: "opener",
+      type: 'opener',
       props: { number: String(sectionNum) },
       content: openerTitle,
     },
@@ -269,7 +277,7 @@ export function segmentsToLayoutItems(segments: BodySegment[]): LayoutItem[] {
   let sectionId: string | null = null;
   let sliceIndex = 0;
 
-  const openSection = (openerTitle = "") => {
+  const openSection = (openerTitle = '') => {
     sectionNum += 1;
     sectionId = `flow-section-${sectionNum}`;
     sliceIndex = 0;
@@ -279,7 +287,12 @@ export function segmentsToLayoutItems(segments: BodySegment[]): LayoutItem[] {
     items.push({
       key: seclabel.id,
       block: seclabel,
-      section: flowSectionContext(sectionId, sliceIndex++, defaultPageBreak, pendingVariant),
+      section: flowSectionContext(
+        sectionId,
+        sliceIndex++,
+        defaultPageBreak,
+        pendingVariant,
+      ),
       forceBreakBefore: forceNext,
     });
     forceNext = false;
@@ -297,17 +310,25 @@ export function segmentsToLayoutItems(segments: BodySegment[]): LayoutItem[] {
       ? segments
       : [
           {
-            key: "body-empty-1",
-            kind: "prose" as const,
-            block: { id: "body-empty-1", type: "paragraph" as const, content: "" },
-            markdown: "",
+            key: 'body-empty-1',
+            kind: 'prose' as const,
+            block: {
+              id: 'body-empty-1',
+              type: 'paragraph' as const,
+              content: '',
+            },
+            markdown: '',
           },
         ];
 
   for (const seg of workingSegments) {
-    if (seg.kind === "break") {
-      items.push({ key: `break:${seg.block.id}`, block: seg.block, isBreak: true });
-      pendingVariant = (seg.block.props?.variant as BreakVariant) ?? "page";
+    if (seg.kind === 'break') {
+      items.push({
+        key: `break:${seg.block.id}`,
+        block: seg.block,
+        isBreak: true,
+      });
+      pendingVariant = (seg.block.props?.variant as BreakVariant) ?? 'page';
       forceNext = true;
       sectionId = null;
       continue;
@@ -327,7 +348,11 @@ export function segmentsToLayoutItems(segments: BodySegment[]): LayoutItem[] {
     items.push({
       key: seg.key,
       block: seg.block,
-      section: flowSectionContext(activeSectionId, sliceIndex++, sectionNum === 1),
+      section: flowSectionContext(
+        activeSectionId,
+        sliceIndex++,
+        sectionNum === 1,
+      ),
       forceBreakBefore: forceNext,
     });
     forceNext = false;
@@ -339,9 +364,9 @@ export function segmentsToLayoutItems(segments: BodySegment[]): LayoutItem[] {
 export function flowSectionHeaderBlocks(blocks: BlockNode[]): BlockNode[] {
   const headers: BlockNode[] = [];
   for (const block of blocks) {
-    if (block.type !== "section") continue;
+    if (block.type !== 'section') continue;
     for (const child of block.children ?? []) {
-      if (child.type === "seclabel" || child.type === "opener") {
+      if (child.type === 'seclabel' || child.type === 'opener') {
         headers.push(child);
       } else {
         return headers;
@@ -353,7 +378,7 @@ export function flowSectionHeaderBlocks(blocks: BlockNode[]): BlockNode[] {
 }
 
 export function flowWritingPageHasSectionBreak(blocks: BlockNode[]): boolean {
-  const section = blocks.find((block) => block.type === "section");
+  const section = blocks.find((block) => block.type === 'section');
   if (!section) return blocks.length === 0;
   return !!(section.props?.pageBreak && !section.props?.continuation);
 }
@@ -362,22 +387,29 @@ export function flowDocumentToLayoutItems(document: DocDocument): LayoutItem[] {
   const items: LayoutItem[] = [];
 
   for (const block of document.blocks) {
-    if (block.type === "cover") {
-      items.push({ key: block.id, block, isCover: true, forceBreakBefore: true });
+    if (block.type === 'cover') {
+      items.push({
+        key: block.id,
+        block,
+        isCover: true,
+        forceBreakBefore: true,
+      });
     }
   }
 
   if (isFlowDoc(document)) {
-    items.push(...segmentsToLayoutItems(parseBodyToSegments(document.body ?? "")));
+    items.push(
+      ...segmentsToLayoutItems(parseBodyToSegments(document.body ?? '')),
+    );
     const contentPages = document.blocks.filter(
-      (b) => b.type === "page" && !isCoverPageBlock(b),
+      (b) => b.type === 'page' && !isCoverPageBlock(b),
     );
     if (contentPages.length > 0) {
       items.push(...blocksToLayoutItems(contentPages));
     }
   } else {
     const contentBlocks = document.blocks.filter(
-      (b) => b.type !== "cover" && !(b.type === "page" && isCoverPageBlock(b)),
+      (b) => b.type !== 'cover' && !(b.type === 'page' && isCoverPageBlock(b)),
     );
     items.push(...blocksToLayoutItems(contentBlocks));
   }
@@ -385,10 +417,12 @@ export function flowDocumentToLayoutItems(document: DocDocument): LayoutItem[] {
   return items;
 }
 
-export function extractBodyHeadings(body: string): { level: number; text: string }[] {
+export function extractBodyHeadings(
+  body: string,
+): { level: number; text: string }[] {
   const headings: { level: number; text: string }[] = [];
   for (const seg of parseBodyToSegments(body)) {
-    if (seg.block.type === "subheading") {
+    if (seg.block.type === 'subheading') {
       headings.push({
         level: (seg.block.props?.level as number) ?? 2,
         text: seg.markdown,

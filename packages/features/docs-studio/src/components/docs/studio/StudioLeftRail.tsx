@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ListTree, Plus, Settings } from "lucide-react";
-import { cn } from "@qlm/ui/utils";
+import { ListTree, Plus, Settings } from 'lucide-react';
+import { cn } from '@qlm/ui/utils';
 
-export type StudioLeftPanel = "add" | "outline" | null;
+export type StudioLeftPanel = 'add' | 'outline' | null;
 
 interface StudioLeftRailProps {
   active: StudioLeftPanel;
@@ -16,20 +16,24 @@ const RAIL_ITEMS: {
   icon: typeof Plus;
   label: string;
 }[] = [
-  { id: "add", icon: Plus, label: "Insert" },
-  { id: "outline", icon: ListTree, label: "Outline" },
+  { id: 'add', icon: Plus, label: 'Insert' },
+  { id: 'outline', icon: ListTree, label: 'Outline' },
 ];
 
 function railButtonClass(active: boolean) {
   return cn(
-    "flex h-9 w-9 items-center justify-center rounded-md transition-colors",
+    'flex h-9 w-9 items-center justify-center rounded-md transition-colors',
     active
-      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-      : "text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+      ? 'bg-sidebar-accent text-sidebar-accent-foreground'
+      : 'text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
   );
 }
 
-export default function StudioLeftRail({ active, onChange, onOpenSettings }: StudioLeftRailProps) {
+export default function StudioLeftRail({
+  active,
+  onChange,
+  onOpenSettings,
+}: StudioLeftRailProps) {
   return (
     <nav
       data-studio-chrome

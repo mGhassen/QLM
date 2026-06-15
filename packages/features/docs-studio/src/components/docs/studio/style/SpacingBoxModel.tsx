@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { resolvePaddingSides } from "#/lib/block-appearance";
-import { trackPointerDrag } from "#/lib/fluid-drag";
+import { useRef, useState } from 'react';
+import { resolvePaddingSides } from '#/lib/block-appearance';
+import { trackPointerDrag } from '#/lib/fluid-drag';
 import {
   commitSpacingValue,
   resolveSpacingUnit,
   spacingDragValue,
   type SpacingUnit,
-} from "#/lib/spacing-unit";
-import SpacingValuePopover from "./SpacingValuePopover";
+} from '#/lib/spacing-unit';
+import SpacingValuePopover from './SpacingValuePopover';
 
 interface SpacingBoxModelProps {
   props: Record<string, unknown>;
   onPropsChange: (props: Record<string, unknown>) => void;
 }
 
-type Side = "top" | "right" | "bottom" | "left";
-type Layer = "margin" | "padding";
+type Side = 'top' | 'right' | 'bottom' | 'left';
+type Layer = 'margin' | 'padding';
 
 type ActiveField = {
   layer: Layer;
@@ -26,21 +26,21 @@ type ActiveField = {
 };
 
 const MARGIN_KEYS: Record<Side, string> = {
-  top: "marginTop",
-  right: "marginRight",
-  bottom: "marginBottom",
-  left: "marginLeft",
+  top: 'marginTop',
+  right: 'marginRight',
+  bottom: 'marginBottom',
+  left: 'marginLeft',
 };
 
 const PADDING_KEYS: Record<Side, string> = {
-  top: "paddingTop",
-  right: "paddingRight",
-  bottom: "paddingBottom",
-  left: "paddingLeft",
+  top: 'paddingTop',
+  right: 'paddingRight',
+  bottom: 'paddingBottom',
+  left: 'paddingLeft',
 };
 
 function dragCursor(side: Side) {
-  return side === "left" || side === "right" ? "ew-resize" : "ns-resize";
+  return side === 'left' || side === 'right' ? 'ew-resize' : 'ns-resize';
 }
 
 function SideZone({
@@ -79,7 +79,14 @@ function SideZone({
       onMove(ev) {
         const dx = ev.clientX - startRef.current.x;
         const dy = ev.clientY - startRef.current.y;
-        const next = spacingDragValue(startRef.current.value, side, layer, unit, dx, dy);
+        const next = spacingDragValue(
+          startRef.current.value,
+          side,
+          layer,
+          unit,
+          dx,
+          dy,
+        );
         lastRef.current = commitSpacingValue(next);
         onDrag(next);
       },
@@ -94,7 +101,7 @@ function SideZone({
       ref={btnRef}
       type="button"
       data-spacing-side=""
-      className={`wf-spacing-side ${layer} ${side}${active ? " active" : ""}`}
+      className={`wf-spacing-side ${layer} ${side}${active ? ' active' : ''}`}
       onPointerDown={onPointerDown}
     >
       <span className="wf-spacing-value">{value}</span>
@@ -102,7 +109,10 @@ function SideZone({
   );
 }
 
-export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxModelProps) {
+export default function SpacingBoxModel({
+  props,
+  onPropsChange,
+}: SpacingBoxModelProps) {
   const padding = resolvePaddingSides(props);
   const unit = resolveSpacingUnit(props);
   const [active, setActive] = useState<ActiveField | null>(null);
@@ -113,7 +123,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
     onPropsChange({ ...props, [key]: value, padding: undefined });
 
   function openField(layer: Layer, side: Side, rect: DOMRect) {
-    const propKey = layer === "margin" ? MARGIN_KEYS[side] : PADDING_KEYS[side];
+    const propKey = layer === 'margin' ? MARGIN_KEYS[side] : PADDING_KEYS[side];
     setActive({ layer, side, propKey });
     setAnchor(rect);
     setDragPreview(null);
@@ -126,7 +136,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
   }
 
   function storedValue(propKey: string, side: Side): number {
-    if (propKey.startsWith("margin")) return (props[propKey] as number) ?? 0;
+    if (propKey.startsWith('margin')) return (props[propKey] as number) ?? 0;
     return padding[side];
   }
 
@@ -145,7 +155,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
     <div className="wf-spacing">
       <div className="wf-spacing-margin">
         <span className="wf-spacing-tag">MARGIN</span>
-        {(["top", "right", "bottom", "left"] as const).map((side) => {
+        {(['top', 'right', 'bottom', 'left'] as const).map((side) => {
           const propKey = MARGIN_KEYS[side];
           return (
             <SideZone
@@ -155,7 +165,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
               unit={unit}
               value={displayValue(propKey, side)}
               active={active?.propKey === propKey}
-              onActivate={(rect) => openField("margin", side, rect)}
+              onActivate={(rect) => openField('margin', side, rect)}
               onDrag={setDragPreview}
               onDragEnd={(v) => {
                 setDragPreview(null);
@@ -167,7 +177,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
 
         <div className="wf-spacing-padding">
           <span className="wf-spacing-tag">PADDING</span>
-          {(["top", "right", "bottom", "left"] as const).map((side) => {
+          {(['top', 'right', 'bottom', 'left'] as const).map((side) => {
             const propKey = PADDING_KEYS[side];
             return (
               <SideZone
@@ -177,7 +187,7 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
                 unit={unit}
                 value={displayValue(propKey, side)}
                 active={active?.propKey === propKey}
-                onActivate={(rect) => openField("padding", side, rect)}
+                onActivate={(rect) => openField('padding', side, rect)}
                 onDrag={setDragPreview}
                 onDragEnd={(v) => {
                   setDragPreview(null);
@@ -193,8 +203,8 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
       <SpacingValuePopover
         open={!!active}
         anchor={anchor}
-        side={active?.side ?? "top"}
-        layer={active?.layer ?? "padding"}
+        side={active?.side ?? 'top'}
+        layer={active?.layer ?? 'padding'}
         value={activeValue()}
         unit={unit}
         onValueChange={(v) => {
@@ -203,7 +213,10 @@ export default function SpacingBoxModel({ props, onPropsChange }: SpacingBoxMode
           setProp(active.propKey, v);
         }}
         onUnitChange={(next: SpacingUnit) => {
-          onPropsChange({ ...props, spacingUnit: next === "mm" ? undefined : next });
+          onPropsChange({
+            ...props,
+            spacingUnit: next === 'mm' ? undefined : next,
+          });
         }}
         onClose={closeField}
       />

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { ArrowDown, ArrowUp, BoxSelect, Copy, Trash2 } from "lucide-react";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import { titleWithShortcut } from "#/lib/studio-shortcuts";
-import type { BlockNode, BlockType } from "#/lib/types";
-import CanvasDragHandle from "./CanvasDragHandle";
-import InlineInsertMenu from "./InlineInsertMenu";
-import StudioBlockInfo from "./StudioBlockInfo";
+import { ArrowDown, ArrowUp, BoxSelect, Copy, Trash2 } from 'lucide-react';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import { titleWithShortcut } from '#/lib/studio-shortcuts';
+import type { BlockNode, BlockType } from '#/lib/types';
+import CanvasDragHandle from './CanvasDragHandle';
+import InlineInsertMenu from './InlineInsertMenu';
+import StudioBlockInfo from './StudioBlockInfo';
 
 interface StudioBlockToolbarProps {
   blockId: string;
@@ -46,31 +46,52 @@ export default function StudioBlockToolbar({
       {onToggleSpacing && (
         <button
           type="button"
-          title={showSpacing ? "Hide spacing controls" : "Show spacing controls"}
-          className={showSpacing ? "active" : undefined}
+          title={
+            showSpacing ? 'Hide spacing controls' : 'Show spacing controls'
+          }
+          className={showSpacing ? 'active' : undefined}
           onClick={onToggleSpacing}
         >
           <BoxSelect size={12} />
         </button>
       )}
-      {onInsertAfter && <InlineInsertMenu variant="toolbar" onInsert={onInsertAfter} />}
+      {onInsertAfter && (
+        <InlineInsertMenu variant="toolbar" onInsert={onInsertAfter} />
+      )}
       {onMoveUp && (
-        <button type="button" title={titleWithShortcut("Move up", "Alt+↑")} onClick={onMoveUp}>
+        <button
+          type="button"
+          title={titleWithShortcut('Move up', 'Alt+↑')}
+          onClick={onMoveUp}
+        >
           <ArrowUp size={12} />
         </button>
       )}
       {onMoveDown && (
-        <button type="button" title={titleWithShortcut("Move down", "Alt+↓")} onClick={onMoveDown}>
+        <button
+          type="button"
+          title={titleWithShortcut('Move down', 'Alt+↓')}
+          onClick={onMoveDown}
+        >
           <ArrowDown size={12} />
         </button>
       )}
       {onDuplicate && (
-        <button type="button" title={titleWithShortcut("Duplicate", "Mod+D")} onClick={onDuplicate}>
+        <button
+          type="button"
+          title={titleWithShortcut('Duplicate', 'Mod+D')}
+          onClick={onDuplicate}
+        >
           <Copy size={12} />
         </button>
       )}
       {onDelete && (
-        <button type="button" title={titleWithShortcut("Delete", "Delete")} className="danger" onClick={onDelete}>
+        <button
+          type="button"
+          title={titleWithShortcut('Delete', 'Delete')}
+          className="danger"
+          onClick={onDelete}
+        >
           <Trash2 size={12} />
         </button>
       )}

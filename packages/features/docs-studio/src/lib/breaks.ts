@@ -1,17 +1,17 @@
-export type BreakVariant = "page" | "section" | "continue";
+export type BreakVariant = 'page' | 'section' | 'continue';
 
-export const BREAK_VARIANTS: BreakVariant[] = ["page", "section", "continue"];
+export const BREAK_VARIANTS: BreakVariant[] = ['page', 'section', 'continue'];
 
 export const BREAK_LABELS: Record<BreakVariant, string> = {
-  page: "Page break",
-  section: "Section break",
-  continue: "Continue break",
+  page: 'Page break',
+  section: 'Section break',
+  continue: 'Continue break',
 };
 
 export const BREAK_DESCRIPTIONS: Record<BreakVariant, string> = {
-  page: "Start a new page without section spacing.",
-  section: "Start a new page with section top spacing.",
-  continue: "Continue on a new page without section spacing.",
+  page: 'Start a new page without section spacing.',
+  section: 'Start a new page with section top spacing.',
+  continue: 'Continue on a new page without section spacing.',
 };
 
 export function breakVariantToSectionProps(variant: BreakVariant | undefined): {
@@ -20,11 +20,11 @@ export function breakVariantToSectionProps(variant: BreakVariant | undefined): {
 } {
   if (!variant) return {};
   switch (variant) {
-    case "section":
+    case 'section':
       return { pageBreak: true, continuation: false };
-    case "continue":
+    case 'continue':
       return { pageBreak: false, continuation: true };
-    case "page":
+    case 'page':
       return { pageBreak: false, continuation: false };
   }
 }

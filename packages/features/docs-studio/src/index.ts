@@ -1,4 +1,8 @@
-export { createNewDocAction, deleteDocAction, importDocAction } from './actions';
+export {
+  createNewDocAction,
+  deleteDocAction,
+  importDocAction,
+} from './actions';
 export { docsPaths, projectStudioRoute } from './paths';
 export {
   StudioShellProvider,

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
+import StudioPopover from '../studio/StudioPopover';
 import {
   parseCoverToc,
   serializeCoverToc,
   type TocEntry,
-} from "#/lib/cover-toc";
+} from '#/lib/cover-toc';
 
 interface CoverTocProps {
   title?: string;
@@ -16,11 +16,11 @@ interface CoverTocProps {
   onActivate?: () => void;
 }
 
-const DEFAULT_TITLE = "Au sommaire";
+const DEFAULT_TITLE = 'Au sommaire';
 
 export default function CoverToc({
   title = DEFAULT_TITLE,
-  content = "",
+  content = '',
   editable,
   onChange,
   onPropChange,
@@ -39,8 +39,8 @@ export default function CoverToc({
   }
 
   function addEntry() {
-    const num = String(entries.length + 1).padStart(2, "0");
-    update([...entries, { num, label: "New section", href: "#" }]);
+    const num = String(entries.length + 1).padStart(2, '0');
+    update([...entries, { num, label: 'New section', href: '#' }]);
   }
 
   function removeEntry(index: number) {
@@ -48,12 +48,14 @@ export default function CoverToc({
   }
 
   return (
-    <div className={`cover-panel-block cover-toc-wrap${editable ? " studio-toc-zone" : ""}`}>
+    <div
+      className={`cover-panel-block cover-toc-wrap${editable ? ' studio-toc-zone' : ''}`}
+    >
       {(title || editable) && (
         <StudioPopover
           editable={editable}
           value={title}
-          onChange={(v) => onPropChange?.("title", v)}
+          onChange={(v) => onPropChange?.('title', v)}
           singleLine
           onActivate={onActivate}
         >
@@ -62,7 +64,10 @@ export default function CoverToc({
       )}
       <ol className="cover-toc">
         {entries.map((item, i) => (
-          <li key={`${item.href}-${i}`} className={editable ? "studio-toc-item" : undefined}>
+          <li
+            key={`${item.href}-${i}`}
+            className={editable ? 'studio-toc-item' : undefined}
+          >
             <a
               href={item.href}
               onClick={editable ? (e) => e.preventDefault() : undefined}

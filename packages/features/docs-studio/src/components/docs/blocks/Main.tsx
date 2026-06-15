@@ -1,5 +1,5 @@
-import MarkdownContent from "./MarkdownContent";
-import type { BlockNode } from "#/lib/types";
+import MarkdownContent from './MarkdownContent';
+import type { BlockNode } from '#/lib/types';
 
 interface MainProps {
   content?: string;

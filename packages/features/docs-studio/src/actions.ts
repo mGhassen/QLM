@@ -27,7 +27,11 @@ export async function importDocAction(formData: FormData) {
     body: formData,
   });
 
-  const data = (await res.json()) as { slug?: string; title?: string; error?: string };
+  const data = (await res.json()) as {
+    slug?: string;
+    title?: string;
+    error?: string;
+  };
   if (!res.ok) {
     throw new Error(data.error ?? 'Failed to import document');
   }

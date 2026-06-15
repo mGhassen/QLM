@@ -1,8 +1,8 @@
-import { resolveBlockContent } from "./content";
-import { splitContentSegments } from "./content-segments";
-import { makeSegmentUnit } from "./flow-unit-segments";
-import type { FlowUnit } from "./flow-units";
-import { getSplittableChild, isSplittableBlockType } from "./splittable";
+import { resolveBlockContent } from './content';
+import { splitContentSegments } from './content-segments';
+import { makeSegmentUnit } from './flow-unit-segments';
+import type { FlowUnit } from './flow-units';
+import { getSplittableChild, isSplittableBlockType } from './splittable';
 
 export function expandSplittableUnits(
   units: FlowUnit[],

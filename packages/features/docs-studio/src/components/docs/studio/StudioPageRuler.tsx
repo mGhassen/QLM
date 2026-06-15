@@ -1,6 +1,6 @@
-import { useMemo, type CSSProperties } from "react";
-import type { ResolvedPageSetup } from "#/lib/page-setup";
-import { pageSetupToStyle } from "#/lib/page-setup";
+import { useMemo, type CSSProperties } from 'react';
+import type { ResolvedPageSetup } from '#/lib/page-setup';
+import { pageSetupToStyle } from '#/lib/page-setup';
 
 interface StudioPageRulerProps {
   setup: ResolvedPageSetup;
@@ -10,9 +10,12 @@ interface StudioPageRulerProps {
 const TICK_STEP_MM = 5;
 const LABEL_STEP_MM = 20;
 
-type TickKind = "major" | "minor";
+type TickKind = 'major' | 'minor';
 
-export default function StudioPageRuler({ setup, style }: StudioPageRulerProps) {
+export default function StudioPageRuler({
+  setup,
+  style,
+}: StudioPageRulerProps) {
   const { widthMm, margins } = setup;
 
   const ticks = useMemo(() => {
@@ -22,7 +25,7 @@ export default function StudioPageRuler({ setup, style }: StudioPageRulerProps) 
       const showLabel = mm % LABEL_STEP_MM === 0 || mm === widthMm;
       out.push({
         mm,
-        kind: isMajor ? "major" : "minor",
+        kind: isMajor ? 'major' : 'minor',
         label: showLabel ? String(mm / 10) : null,
       });
     }
@@ -62,7 +65,9 @@ export default function StudioPageRuler({ setup, style }: StudioPageRulerProps) 
             className={`studio-ruler-tick studio-ruler-tick-${kind}`}
             style={{ left: `${mm}mm` }}
           >
-            {label != null && <span className="studio-ruler-label">{label}</span>}
+            {label != null && (
+              <span className="studio-ruler-label">{label}</span>
+            )}
           </span>
         ))}
       </div>

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
 import {
   SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import {
   GripVertical,
   ChevronRight,
@@ -15,15 +15,19 @@ import {
   IndentDecrease,
   IndentIncrease,
   Type,
-} from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { getAncestorIds } from "#/lib/canvas-drop";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import { isCoverPageBlock, isCoverSection } from "#/lib/section-variant";
-import { blockHasEditableText, parseTreeSelection, toTextNodeId } from "#/lib/block-text";
-import { scrollTreeItemIntoView } from "#/lib/page-blocks";
-import { cn } from "@qlm/ui/utils";
-import type { BlockNode } from "#/lib/types";
+} from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { getAncestorIds } from '#/lib/canvas-drop';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import { isCoverPageBlock, isCoverSection } from '#/lib/section-variant';
+import {
+  blockHasEditableText,
+  parseTreeSelection,
+  toTextNodeId,
+} from '#/lib/block-text';
+import { scrollTreeItemIntoView } from '#/lib/page-blocks';
+import { cn } from '@qlm/ui/utils';
+import type { BlockNode } from '#/lib/types';
 
 interface BlockTreeProps {
   blocks: BlockNode[];
@@ -56,16 +60,19 @@ function TextTreeItem({
     <div
       data-tree-id={textId}
       className={cn(
-        "flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors",
+        'flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors',
         selected
-          ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-          : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground",
+          ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+          : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground',
       )}
       onClick={() => onSelect(textId)}
     >
       <span className="w-[18px] shrink-0" />
-      <span style={{ paddingLeft: depth * 12 }} className="flex items-center gap-1.5 flex-1 min-w-0">
-        <Type size={11} className="shrink-0 text-muted-foreground/40" />
+      <span
+        style={{ paddingLeft: depth * 12 }}
+        className="flex min-w-0 flex-1 items-center gap-1.5"
+      >
+        <Type size={11} className="text-muted-foreground/40 shrink-0" />
         <span className="truncate">Text</span>
       </span>
     </div>
@@ -73,16 +80,24 @@ function TextTreeItem({
 }
 
 function blockTreeLabel(block: BlockNode): string {
-  if (block.type === "page") return isCoverPageBlock(block) ? "Cover page" : "Page";
-  if (isCoverSection(block)) return "Cover section";
+  if (block.type === 'page')
+    return isCoverPageBlock(block) ? 'Cover page' : 'Page';
+  if (isCoverSection(block)) return 'Cover section';
   return BLOCK_LABELS[block.type] ?? block.type;
 }
 
-function treeItemClass(blockId: string, selectedId: string | null, selectedIds: string[], hoveredId?: string | null) {
-  if (selectedId === blockId) return "bg-sidebar-accent text-sidebar-accent-foreground font-medium";
-  if (selectedIds.includes(blockId)) return "bg-primary/15 text-foreground";
-  if (hoveredId === blockId) return "bg-sidebar-accent/70 text-sidebar-foreground";
-  return "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground";
+function treeItemClass(
+  blockId: string,
+  selectedId: string | null,
+  selectedIds: string[],
+  hoveredId?: string | null,
+) {
+  if (selectedId === blockId)
+    return 'bg-sidebar-accent text-sidebar-accent-foreground font-medium';
+  if (selectedIds.includes(blockId)) return 'bg-primary/15 text-foreground';
+  if (hoveredId === blockId)
+    return 'bg-sidebar-accent/70 text-sidebar-foreground';
+  return 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground';
 }
 
 function SortableItem({
@@ -118,9 +133,16 @@ function SortableItem({
   canIndent?: (blockId: string) => boolean;
   canOutdent?: (blockId: string) => boolean;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
     id: block.id,
-    data: { blockId: block.id, source: "tree" },
+    data: { blockId: block.id, source: 'tree' },
   });
 
   const style = {
@@ -138,7 +160,7 @@ function SortableItem({
       style={style}
       data-tree-id={block.id}
       className={cn(
-        "group flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors",
+        'group flex cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors',
         treeItemClass(block.id, selectedId, selectedIds, hoveredId),
       )}
       onClick={(e) => onSelect(block.id, e.metaKey || e.ctrlKey || e.shiftKey)}
@@ -151,22 +173,34 @@ function SortableItem({
       >
         <GripVertical size={12} />
       </button>
-      <span style={{ paddingLeft: depth * 12 }} className="flex items-center gap-1 flex-1 min-w-0">
+      <span
+        style={{ paddingLeft: depth * 12 }}
+        className="flex min-w-0 flex-1 items-center gap-1"
+      >
         {expandable ? (
-          <button type="button" onClick={(e) => { e.stopPropagation(); onToggle(); }} className="p-0">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggle();
+            }}
+            className="p-0"
+          >
             {expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
           </button>
         ) : (
           <span className="w-3" />
         )}
         <span className="truncate">{blockTreeLabel(block)}</span>
-        <span className="text-muted-foreground/30 truncate font-mono text-[10px]">{block.id}</span>
+        <span className="text-muted-foreground/30 truncate font-mono text-[10px]">
+          {block.id}
+        </span>
       </span>
       {highlighted && onOutdent && canOutdent?.(block.id) && (
         <button
           type="button"
           title="Move out (Alt+←)"
-          className="shrink-0 p-1 rounded text-muted-foreground/30 hover:text-muted-foreground/70 hover:bg-accent"
+          className="text-muted-foreground/30 hover:text-muted-foreground/70 hover:bg-accent shrink-0 rounded p-1"
           onClick={(e) => {
             e.stopPropagation();
             onOutdent(block.id);
@@ -179,7 +213,7 @@ function SortableItem({
         <button
           type="button"
           title="Move in (Alt+→)"
-          className="shrink-0 p-1 rounded text-muted-foreground/30 hover:text-muted-foreground/70 hover:bg-accent"
+          className="text-muted-foreground/30 hover:text-muted-foreground/70 hover:bg-accent shrink-0 rounded p-1"
           onClick={(e) => {
             e.stopPropagation();
             onIndent(block.id);
@@ -192,7 +226,7 @@ function SortableItem({
         <button
           type="button"
           title="Delete block"
-          className="shrink-0 p-1 rounded opacity-0 group-hover:opacity-100 text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 transition-opacity"
+          className="text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 shrink-0 rounded p-1 opacity-0 transition-opacity group-hover:opacity-100"
           onClick={(e) => {
             e.stopPropagation();
             onDelete(block.id);
@@ -235,7 +269,10 @@ function TreeLevel({
   canOutdent?: (blockId: string) => boolean;
 }) {
   return (
-    <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
+    <SortableContext
+      items={blocks.map((b) => b.id)}
+      strategy={verticalListSortingStrategy}
+    >
       {blocks.map((block) => {
         const hasChildren = !!(block.children && block.children.length > 0);
         const hasText = blockHasEditableText(block);
@@ -333,7 +370,7 @@ export default function BlockTree({
           changed = true;
         }
       }
-      if (selectedId.startsWith("text:") && prev[blockId] === false) {
+      if (selectedId.startsWith('text:') && prev[blockId] === false) {
         next[blockId] = true;
         changed = true;
       }
@@ -418,20 +455,26 @@ function BlockTreeStatic({
             <div
               data-tree-id={block.id}
               className={cn(
-                "group flex w-full cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors",
+                'group flex w-full cursor-pointer items-center gap-1 rounded-md px-2 py-1.5 text-xs transition-colors',
                 treeItemClass(block.id, selectedId, selectedIds, hoveredId),
               )}
               style={{ paddingLeft: 8 + depth * 12 }}
-              onClick={(e) => onSelect(block.id, e.metaKey || e.ctrlKey || e.shiftKey)}
+              onClick={(e) =>
+                onSelect(block.id, e.metaKey || e.ctrlKey || e.shiftKey)
+              }
             >
               <span className="w-3 shrink-0" />
-              <span className="capitalize truncate flex-1 min-w-0">{block.type}</span>
-              <span className="text-muted-foreground/30 truncate font-mono text-[10px]">{block.id}</span>
+              <span className="min-w-0 flex-1 truncate capitalize">
+                {block.type}
+              </span>
+              <span className="text-muted-foreground/30 truncate font-mono text-[10px]">
+                {block.id}
+              </span>
               {onDelete && (
                 <button
                   type="button"
                   title="Delete block"
-                  className="shrink-0 p-1 rounded opacity-0 group-hover:opacity-100 text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 transition-opacity"
+                  className="text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 shrink-0 rounded p-1 opacity-0 transition-opacity group-hover:opacity-100"
                   onClick={(e) => {
                     e.stopPropagation();
                     onDelete(block.id);

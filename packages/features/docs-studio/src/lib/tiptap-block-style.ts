@@ -1,7 +1,7 @@
-import { Extension } from "@tiptap/core";
+import { Extension } from '@tiptap/core';
 
 export const BlockStyle = Extension.create({
-  name: "blockStyle",
+  name: 'blockStyle',
 
   addGlobalAttributes() {
     const spacingAttrs = {
@@ -21,7 +21,9 @@ export const BlockStyle = Extension.create({
         default: null,
         parseHTML: (el: HTMLElement) => el.style.marginBottom || null,
         renderHTML: (attrs: Record<string, unknown>) =>
-          attrs.marginBottom ? { style: `margin-bottom: ${attrs.marginBottom}` } : {},
+          attrs.marginBottom
+            ? { style: `margin-bottom: ${attrs.marginBottom}` }
+            : {},
       },
     };
 
@@ -30,7 +32,9 @@ export const BlockStyle = Extension.create({
         default: null,
         parseHTML: (el: HTMLElement) => el.style.paddingLeft || null,
         renderHTML: (attrs: Record<string, unknown>) =>
-          attrs.paddingLeft ? { style: `padding-left: ${attrs.paddingLeft}` } : {},
+          attrs.paddingLeft
+            ? { style: `padding-left: ${attrs.paddingLeft}` }
+            : {},
       },
       paddingTop: {
         default: null,
@@ -42,15 +46,17 @@ export const BlockStyle = Extension.create({
         default: null,
         parseHTML: (el: HTMLElement) => el.style.paddingBottom || null,
         renderHTML: (attrs: Record<string, unknown>) =>
-          attrs.paddingBottom ? { style: `padding-bottom: ${attrs.paddingBottom}` } : {},
+          attrs.paddingBottom
+            ? { style: `padding-bottom: ${attrs.paddingBottom}` }
+            : {},
       },
       marginTop: spacingAttrs.marginTop,
       marginBottom: spacingAttrs.marginBottom,
     };
 
     return [
-      { types: ["paragraph", "heading"], attributes: spacingAttrs },
-      { types: ["bulletList", "orderedList"], attributes: listAttrs },
+      { types: ['paragraph', 'heading'], attributes: spacingAttrs },
+      { types: ['bulletList', 'orderedList'], attributes: listAttrs },
     ];
   },
 });

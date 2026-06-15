@@ -131,11 +131,7 @@ export function RootProviders(
   );
 
   return (
-    <Suspense
-      fallback={
-        <AuthLoadingShell />
-      }
-    >
+    <Suspense fallback={<AuthLoadingShell />}>
       <I18nProvider
         settings={settings}
         resolver={i18nResolver}

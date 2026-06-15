@@ -1,9 +1,9 @@
-import type { BlockNode } from "./types";
-import { canBlockResize, layoutSize } from "./studio-transform";
+import type { BlockNode } from './types';
+import { canBlockResize, layoutSize } from './studio-transform';
 
-export type AlignDimension = "width" | "height" | "both";
+export type AlignDimension = 'width' | 'height' | 'both';
 
-export function canAlignBlock(type: BlockNode["type"]): boolean {
+export function canAlignBlock(type: BlockNode['type']): boolean {
   return canBlockResize(type);
 }
 
@@ -12,7 +12,7 @@ export function getMeasuredBlockSize(
   block: BlockNode,
 ): { width: number; height: number } {
   const el =
-    typeof document !== "undefined"
+    typeof document !== 'undefined'
       ? document.querySelector<HTMLElement>(`[data-block-id="${blockId}"]`)
       : null;
   const props = block.props ?? {};
@@ -28,10 +28,10 @@ export function buildAlignProps(
   existing: Record<string, unknown>,
 ): Record<string, unknown> {
   const props = { ...existing };
-  if (dimension === "width" || dimension === "both") {
+  if (dimension === 'width' || dimension === 'both') {
     props.width = `${Math.round(target.width)}px`;
   }
-  if (dimension === "height" || dimension === "both") {
+  if (dimension === 'height' || dimension === 'both') {
     const h = Math.round(target.height);
     props.height = `${h}px`;
     props.minHeight = `${h}px`;

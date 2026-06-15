@@ -1,18 +1,30 @@
-import type { BlockType } from "./types";
+import type { BlockType } from './types';
 
 const LAYOUT_CONTAINER_TYPES = new Set<BlockType>([
-  "break",
-  "page",
-  "section",
-  "cover",
-  "split",
-  "grid",
-  "levels",
+  'break',
+  'page',
+  'section',
+  'cover',
+  'split',
+  'grid',
+  'levels',
 ]);
 
-const ALL_RESIZE_HANDLES: ResizeHandle[] = ["nw", "n", "ne", "e", "se", "s", "sw", "w"];
+const ALL_RESIZE_HANDLES: ResizeHandle[] = [
+  'nw',
+  'n',
+  'ne',
+  'e',
+  'se',
+  's',
+  'sw',
+  'w',
+];
 
-export function canBlockResize(type: BlockType, _props: Record<string, unknown> = {}): boolean {
+export function canBlockResize(
+  type: BlockType,
+  _props: Record<string, unknown> = {},
+): boolean {
   return !LAYOUT_CONTAINER_TYPES.has(type);
 }
 
@@ -20,10 +32,16 @@ export function resizeHandlesFor(_type: BlockType): ResizeHandle[] {
   return ALL_RESIZE_HANDLES;
 }
 
-export function shouldCommitResize(handle: ResizeHandle, dx: number, dy: number, threshold = 3): boolean {
-  if (handle === "e" || handle === "w") return Math.abs(dx) >= threshold;
-  if (handle === "n" || handle === "s") return Math.abs(dy) >= threshold;
-  if (handle === "move") return Math.abs(dx) >= threshold || Math.abs(dy) >= threshold;
+export function shouldCommitResize(
+  handle: ResizeHandle,
+  dx: number,
+  dy: number,
+  threshold = 3,
+): boolean {
+  if (handle === 'e' || handle === 'w') return Math.abs(dx) >= threshold;
+  if (handle === 'n' || handle === 's') return Math.abs(dy) >= threshold;
+  if (handle === 'move')
+    return Math.abs(dx) >= threshold || Math.abs(dy) >= threshold;
   return Math.abs(dx) >= threshold || Math.abs(dy) >= threshold;
 }
 
@@ -35,14 +53,31 @@ export interface StudioTransform {
   translateY?: number;
 }
 
-export type ResizeHandle = "move" | "n" | "s" | "e" | "w" | "ne" | "nw" | "se" | "sw";
+export type ResizeHandle =
+  | 'move'
+  | 'n'
+  | 's'
+  | 'e'
+  | 'w'
+  | 'ne'
+  | 'nw'
+  | 'se'
+  | 'sw';
 
-const TRANSFORM_STYLE_KEYS = ["width", "height", "minHeight", "transform", "position", "boxSizing", "flex"] as const;
+const TRANSFORM_STYLE_KEYS = [
+  'width',
+  'height',
+  'minHeight',
+  'transform',
+  'position',
+  'boxSizing',
+  'flex',
+] as const;
 
 export function parsePx(value: unknown, fallback: number): number {
-  if (typeof value === "number") return value;
-  if (typeof value === "string") {
-    if (value.endsWith("%")) return fallback;
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string') {
+    if (value.endsWith('%')) return fallback;
     const n = parseFloat(value);
     if (!Number.isNaN(n)) return n;
   }
@@ -50,7 +85,7 @@ export function parsePx(value: unknown, fallback: number): number {
 }
 
 export function layoutSize(value: unknown, measured: number): number {
-  if (typeof value === "string" && value.endsWith("%")) return measured;
+  if (typeof value === 'string' && value.endsWith('%')) return measured;
   return parsePx(value, measured);
 }
 
@@ -73,7 +108,7 @@ export function computeTransform(
   const snapValues = options?.snap ?? true;
   const ratio = options?.aspectRatio ?? null;
 
-  if (handle === "move") {
+  if (handle === 'move') {
     return {
       translateX: snap(start.translateX + dx, snapValues),
       translateY: snap(start.translateY + dy, snapValues),
@@ -85,14 +120,14 @@ export function computeTransform(
   let translateX = start.translateX;
   let translateY = start.translateY;
 
-  if (handle.includes("e")) width = start.width + dx;
-  if (handle.includes("w")) width = start.width - dx;
-  if (handle.includes("s")) height = start.height + dy;
-  if (handle.includes("n")) height = start.height - dy;
+  if (handle.includes('e')) width = start.width + dx;
+  if (handle.includes('w')) width = start.width - dx;
+  if (handle.includes('s')) height = start.height + dy;
+  if (handle.includes('n')) height = start.height - dy;
 
   if (ratio && ratio > 0) {
-    const isHorizontal = handle === "e" || handle === "w";
-    const isVertical = handle === "n" || handle === "s";
+    const isHorizontal = handle === 'e' || handle === 'w';
+    const isVertical = handle === 'n' || handle === 's';
     if (isHorizontal) {
       height = width / ratio;
     } else if (isVertical) {
@@ -104,15 +139,15 @@ export function computeTransform(
     }
   }
 
-  const affectsWidth = handle.includes("e") || handle.includes("w");
-  const affectsHeight = handle.includes("n") || handle.includes("s");
+  const affectsWidth = handle.includes('e') || handle.includes('w');
+  const affectsHeight = handle.includes('n') || handle.includes('s');
 
   const result: StudioTransform = {};
 
   if (affectsWidth) {
     width = Math.max(40, snap(width, snapValues));
     result.width = `${width}px`;
-    if (handle.includes("w")) {
+    if (handle.includes('w')) {
       translateX = start.translateX + (start.width - width);
     }
   }
@@ -121,43 +156,51 @@ export function computeTransform(
     height = Math.max(16, snap(height, snapValues));
     result.height = `${height}px`;
     result.minHeight = `${height}px`;
-    if (handle.includes("n")) {
+    if (handle.includes('n')) {
       translateY = start.translateY + (start.height - height);
     }
   }
 
-  if (handle.includes("w")) {
+  if (handle.includes('w')) {
     result.translateX = snap(translateX, snapValues);
   }
-  if (handle.includes("n")) {
+  if (handle.includes('n')) {
     result.translateY = snap(translateY, snapValues);
   }
 
   return result;
 }
 
-export function applyTransformStyle(el: HTMLElement, patch: StudioTransform): void {
+export function applyTransformStyle(
+  el: HTMLElement,
+  patch: StudioTransform,
+): void {
   if (patch.width) {
     el.style.width = patch.width;
-    el.style.flex = "0 0 auto";
+    el.style.flex = '0 0 auto';
   }
   if (patch.height) el.style.height = patch.height;
   if (patch.minHeight) el.style.minHeight = patch.minHeight;
 
   const tx = patch.translateX ?? 0;
   const ty = patch.translateY ?? 0;
-  el.style.transform = tx || ty ? `translate(${tx}px, ${ty}px)` : "";
-  el.style.position = "relative";
-  el.style.boxSizing = "border-box";
+  el.style.transform = tx || ty ? `translate(${tx}px, ${ty}px)` : '';
+  el.style.position = 'relative';
+  el.style.boxSizing = 'border-box';
 }
 
 export function clearTransformStyle(el: HTMLElement): void {
   for (const key of TRANSFORM_STYLE_KEYS) {
-    el.style.removeProperty(key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`));
+    el.style.removeProperty(
+      key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`),
+    );
   }
 }
 
-export function restoreTransformFromProps(el: HTMLElement, props: Record<string, unknown>): void {
+export function restoreTransformFromProps(
+  el: HTMLElement,
+  props: Record<string, unknown>,
+): void {
   clearTransformStyle(el);
   const patch: StudioTransform = {};
   if (props.width) patch.width = props.width as string;
@@ -178,7 +221,9 @@ export function snapTransform(patch: StudioTransform): StudioTransform {
     result.height = `${h}px`;
     result.minHeight = `${h}px`;
   }
-  if (patch.translateX != null) result.translateX = Math.round(patch.translateX);
-  if (patch.translateY != null) result.translateY = Math.round(patch.translateY);
+  if (patch.translateX != null)
+    result.translateX = Math.round(patch.translateX);
+  if (patch.translateY != null)
+    result.translateY = Math.round(patch.translateY);
   return result;
 }

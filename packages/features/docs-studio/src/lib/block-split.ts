@@ -1,17 +1,17 @@
-import { resolveBlockContent } from "./content";
-import { splitSplittableParts } from "./content-segments";
-import type { BlockNode, BlockType } from "./types";
+import { resolveBlockContent } from './content';
+import { splitSplittableParts } from './content-segments';
+import type { BlockNode, BlockType } from './types';
 
 const DEFAULT_SPLITTABLE_TYPES = new Set<BlockType>([
-  "flow",
-  "paragraph",
-  "main",
-  "engines",
-  "quote",
-  "pull",
-  "cquote",
-  "subheading",
-  "raw",
+  'flow',
+  'paragraph',
+  'main',
+  'engines',
+  'quote',
+  'pull',
+  'cquote',
+  'subheading',
+  'raw',
 ]);
 
 export function hasBlockText(block: BlockNode): boolean {
@@ -24,7 +24,7 @@ export function isSplittableBlockType(type: BlockType): boolean {
 }
 
 export function getSplittableChild(unitBlock: BlockNode): BlockNode | null {
-  if (unitBlock.type === "section") {
+  if (unitBlock.type === 'section') {
     return unitBlock.children?.[0] ?? null;
   }
   if (isSplittableBlockType(unitBlock.type)) {
@@ -54,6 +54,13 @@ export function splitBlockContentAtPartCount(
 ): [string, string] {
   const parts = splitSplittableParts(content);
   const clamped = Math.max(1, Math.min(partCount, parts.length - 1));
-  const joiner = content.includes("\n\n") ? "\n\n" : content.includes("\n") ? "\n" : " ";
-  return [parts.slice(0, clamped).join(joiner), parts.slice(clamped).join(joiner)];
+  const joiner = content.includes('\n\n')
+    ? '\n\n'
+    : content.includes('\n')
+      ? '\n'
+      : ' ';
+  return [
+    parts.slice(0, clamped).join(joiner),
+    parts.slice(clamped).join(joiner),
+  ];
 }

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { NodeViewWrapper } from "@tiptap/react";
-import type { NodeViewProps } from "@tiptap/react";
-import { blockRegistry } from "#/lib/blockRegistry";
-import type { BlockNode } from "#/lib/types";
+import { NodeViewWrapper } from '@tiptap/react';
+import type { NodeViewProps } from '@tiptap/react';
+import { blockRegistry } from '#/lib/blockRegistry';
+import type { BlockNode } from '#/lib/types';
 
 export default function DesignBlockNodeView({ node, selected }: NodeViewProps) {
   const blockType = node.attrs.blockType as string;
@@ -17,7 +17,7 @@ export default function DesignBlockNodeView({ node, selected }: NodeViewProps) {
 
   const block: BlockNode = {
     id: node.attrs.blockId as string,
-    type: blockType as BlockNode["type"],
+    type: blockType as BlockNode['type'],
     props,
     content,
   };
@@ -25,7 +25,9 @@ export default function DesignBlockNodeView({ node, selected }: NodeViewProps) {
   const Component = blockRegistry[block.type];
   if (!Component) {
     return (
-      <NodeViewWrapper className={`design-block-node${selected ? " selected" : ""}`}>
+      <NodeViewWrapper
+        className={`design-block-node${selected ? ' selected' : ''}`}
+      >
         <div className="design-block-fallback">[{blockType}]</div>
       </NodeViewWrapper>
     );
@@ -33,7 +35,7 @@ export default function DesignBlockNodeView({ node, selected }: NodeViewProps) {
 
   return (
     <NodeViewWrapper
-      className={`design-block-node${selected ? " selected" : ""}`}
+      className={`design-block-node${selected ? ' selected' : ''}`}
       data-design-block-view
     >
       <Component {...(props as Record<string, unknown>)} content={content} />

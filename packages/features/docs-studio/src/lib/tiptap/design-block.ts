@@ -1,6 +1,6 @@
-import { Node, mergeAttributes } from "@tiptap/core";
-import { ReactNodeViewRenderer } from "@tiptap/react";
-import DesignBlockNodeView from "#/components/docs/studio/DesignBlockNodeView";
+import { Node, mergeAttributes } from '@tiptap/core';
+import { ReactNodeViewRenderer } from '@tiptap/react';
+import DesignBlockNodeView from '#/components/docs/studio/DesignBlockNodeView';
 
 export interface DesignBlockAttrs {
   blockType: string;
@@ -10,18 +10,18 @@ export interface DesignBlockAttrs {
 }
 
 export const DesignBlock = Node.create({
-  name: "designBlock",
-  group: "block",
+  name: 'designBlock',
+  group: 'block',
   atom: true,
   draggable: true,
   selectable: true,
 
   addAttributes() {
     return {
-      blockType: { default: "card" },
-      blockId: { default: "" },
-      propsJson: { default: "{}" },
-      content: { default: "" },
+      blockType: { default: 'card' },
+      blockId: { default: '' },
+      propsJson: { default: '{}' },
+      content: { default: '' },
     };
   },
 
@@ -30,13 +30,13 @@ export const DesignBlock = Node.create({
       {
         tag: 'div[data-design-block="true"]',
         getAttrs: (el) => {
-          if (typeof el === "string") return false;
+          if (typeof el === 'string') return false;
           const node = el as HTMLElement;
           return {
-            blockType: node.getAttribute("data-block-type") ?? "card",
-            blockId: node.getAttribute("data-block-id") ?? "",
-            propsJson: node.getAttribute("data-props-json") ?? "{}",
-            content: node.getAttribute("data-content") ?? "",
+            blockType: node.getAttribute('data-block-type') ?? 'card',
+            blockId: node.getAttribute('data-block-id') ?? '',
+            propsJson: node.getAttribute('data-props-json') ?? '{}',
+            content: node.getAttribute('data-content') ?? '',
           };
         },
       },
@@ -45,13 +45,13 @@ export const DesignBlock = Node.create({
 
   renderHTML({ node, HTMLAttributes }) {
     return [
-      "div",
+      'div',
       mergeAttributes(HTMLAttributes, {
-        "data-design-block": "true",
-        "data-block-type": node.attrs.blockType,
-        "data-block-id": node.attrs.blockId,
-        "data-props-json": node.attrs.propsJson,
-        "data-content": node.attrs.content,
+        'data-design-block': 'true',
+        'data-block-type': node.attrs.blockType,
+        'data-block-id': node.attrs.blockId,
+        'data-props-json': node.attrs.propsJson,
+        'data-content': node.attrs.content,
       }),
     ];
   },

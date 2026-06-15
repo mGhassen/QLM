@@ -3,10 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { Column, Table } from '@qlm/domain/entities';
 import type { DatasourceMetadata } from '@qlm/extensions-sdk';
-import {
-  Tables,
-  type TableListItem,
-} from '@qlm/ui/qlm/datasource/tables';
+import { Tables, type TableListItem } from '@qlm/ui/qlm/datasource/tables';
 import {
   Select,
   SelectContent,

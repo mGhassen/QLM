@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
+import StudioPopover from '../studio/StudioPopover';
 
 interface OpenerProps {
   title?: string;
@@ -15,15 +15,15 @@ interface OpenerProps {
 
 function parseTitle(content: string, titleProp?: string): string {
   if (titleProp) return titleProp;
-  const titleLine = content.split("\n").find((l) => l.startsWith("title: "));
-  if (titleLine) return titleLine.replace("title: ", "");
+  const titleLine = content.split('\n').find((l) => l.startsWith('title: '));
+  if (titleLine) return titleLine.replace('title: ', '');
   return content.trim();
 }
 
 export default function Opener({
   title: titleProp,
   number,
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
@@ -39,8 +39,8 @@ export default function Opener({
           {(number || editable) && (
             <StudioPopover
               editable={editable}
-              value={number ?? ""}
-              onChange={(v) => onPropChange?.("number", v)}
+              value={number ?? ''}
+              onChange={(v) => onPropChange?.('number', v)}
               singleLine
               editing={editing}
               onActivate={onActivate}

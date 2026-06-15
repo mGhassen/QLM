@@ -16,8 +16,7 @@ export const gcpIntegrationFixture = plainToClass(IntegrationConnectionOutput, {
     accountHint: 'qlm-analytics-prod',
   },
   testStatus: 'success',
-  testIdentity:
-    'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
+  testIdentity: 'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
   testError: null,
   testedAt: new Date('2026-04-11T09:45:00.000Z'),
   createdAt: new Date('2026-04-10T14:20:00.000Z'),

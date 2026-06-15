@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface HeroProps {
   tag?: string;
@@ -18,23 +18,26 @@ function serializeHero(tag: string, stmt: string, rest: string): string {
   if (tag) lines.push(`## ${tag}`);
   if (stmt) lines.push(`# ${stmt}`);
   if (rest) lines.push(rest);
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 export default function Hero({
   tag,
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
   onPropChange,
   onActivate,
 }: HeroProps) {
-  const lines = content.split("\n").filter(Boolean);
-  const tagLine = lines.find((l) => l.startsWith("## "));
-  const heroTag = tag ?? tagLine?.replace("## ", "") ?? "";
-  const stmt = lines.find((l) => l.startsWith("# "))?.replace("# ", "") ?? lines[0] ?? "";
-  const rest = lines.filter((l) => !l.startsWith("#") && !l.startsWith("## ")).join("\n");
+  const lines = content.split('\n').filter(Boolean);
+  const tagLine = lines.find((l) => l.startsWith('## '));
+  const heroTag = tag ?? tagLine?.replace('## ', '') ?? '';
+  const stmt =
+    lines.find((l) => l.startsWith('# '))?.replace('# ', '') ?? lines[0] ?? '';
+  const rest = lines
+    .filter((l) => !l.startsWith('#') && !l.startsWith('## '))
+    .join('\n');
 
   function updateStmt(newStmt: string) {
     onChange?.(serializeHero(heroTag, newStmt, rest));
@@ -46,7 +49,11 @@ export default function Hero({
         <StudioPopover
           editable={editable}
           value={heroTag}
-          onChange={(v) => (onPropChange ? onPropChange("tag", v) : onChange?.(serializeHero(v, stmt, rest)))}
+          onChange={(v) =>
+            onPropChange
+              ? onPropChange('tag', v)
+              : onChange?.(serializeHero(v, stmt, rest))
+          }
           singleLine
           onActivate={onActivate}
         >

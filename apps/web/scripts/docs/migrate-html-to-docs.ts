@@ -75,11 +75,7 @@ function parseOpener($: cheerio.CheerioAPI, el: cheerio.Element): BlockNode[] {
   const number = $el.find('h1 .n').text().trim();
   const title =
     $el.find('h1').clone().children().remove().end().text().trim() ||
-    $el
-      .find('h1')
-      .text()
-      .replace(number, '')
-      .trim();
+    $el.find('h1').text().replace(number, '').trim();
   const blocks: BlockNode[] = [];
   if (label) {
     const labelId = uid('seclabel');
@@ -338,11 +334,17 @@ function parseFigure($: cheerio.CheerioAPI, el: cheerio.Element): BlockNode {
   const caption = $el.find('.cap').text().trim();
   const wide = ($el.attr('class') ?? '').includes('wide');
   const id = uid('figure');
-  const contentRef = writeSection(`${id}.md`, `src: ${src}\ncaption: ${caption}`);
+  const contentRef = writeSection(
+    `${id}.md`,
+    `src: ${src}\ncaption: ${caption}`,
+  );
   return { id, type: 'figure', props: { src, caption, wide }, contentRef };
 }
 
-function parseSubheading($: cheerio.CheerioAPI, el: cheerio.Element): BlockNode {
+function parseSubheading(
+  $: cheerio.CheerioAPI,
+  el: cheerio.Element,
+): BlockNode {
   const tag = 'tagName' in el && el.tagName ? el.tagName.toLowerCase() : 'h2';
   const level = tag === 'h3' ? 3 : 2;
   const text = textOf($, el);
@@ -505,8 +507,11 @@ function parseCover($: cheerio.CheerioAPI): BlockNode {
   });
 
   const footLeft =
-    cover.find('.foot > div').first().html()?.replace(/<br\s*\/?>/gi, '<br>') ??
-    '';
+    cover
+      .find('.foot > div')
+      .first()
+      .html()
+      ?.replace(/<br\s*\/?>/gi, '<br>') ?? '';
   const footRight = cover.find('.foot > div').last().text().trim();
 
   const subt = [
@@ -602,9 +607,10 @@ export type MigrateHtmlOptions = {
   source?: string;
 };
 
-export function migrateHtmlToDocs(
-  options: MigrateHtmlOptions = {},
-): { slug: string; migrated: boolean } {
+export function migrateHtmlToDocs(options: MigrateHtmlOptions = {}): {
+  slug: string;
+  migrated: boolean;
+} {
   const htmlPath = options.source ?? HTML_PATH;
   const docJsonPath = path.join(OUT_DIR, 'document.json');
   const hasContent = fs.existsSync(docJsonPath);

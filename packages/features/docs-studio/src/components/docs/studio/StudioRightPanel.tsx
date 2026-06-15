@@ -1,19 +1,34 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUp, Copy, Trash2, X } from "lucide-react";
-import type { BlockNode, BlockType, ChromeZoneId, DocChrome, DocLayoutMode, DocPageFormat, DocPageSetup, DocTheme } from "#/lib/types";
-import PageSetupPanel from "./PageSetupPanel";
-import StylePanel from "./style/StylePanel";
-import MultiSelectAlignPanel from "./MultiSelectAlignPanel";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import { isConvertibleTextBlock } from "#/lib/convert-block-type";
-import type { AlignDimension } from "#/lib/block-align";
-import { titleWithShortcut } from "#/lib/studio-shortcuts";
-import { WfField, WfHint, WfInput, WfCheckRow, WfSelect } from "./style/WfControls";
-import "./style/studio-style-panel.css";
+import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowUp, Copy, Trash2, X } from 'lucide-react';
+import type {
+  BlockNode,
+  BlockType,
+  ChromeZoneId,
+  DocChrome,
+  DocLayoutMode,
+  DocPageFormat,
+  DocPageSetup,
+  DocTheme,
+} from '#/lib/types';
+import PageSetupPanel from './PageSetupPanel';
+import StylePanel from './style/StylePanel';
+import MultiSelectAlignPanel from './MultiSelectAlignPanel';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import { isConvertibleTextBlock } from '#/lib/convert-block-type';
+import type { AlignDimension } from '#/lib/block-align';
+import { titleWithShortcut } from '#/lib/studio-shortcuts';
+import {
+  WfField,
+  WfHint,
+  WfInput,
+  WfCheckRow,
+  WfSelect,
+} from './style/WfControls';
+import './style/studio-style-panel.css';
 
-type PanelMode = "style" | "settings" | "document";
+type PanelMode = 'style' | 'settings' | 'document';
 
 interface StudioRightPanelProps {
   slug: string;
@@ -45,7 +60,7 @@ interface StudioRightPanelProps {
   onClose?: () => void;
 }
 
-const INLINE_HINT = "Click text on the page to edit inline.";
+const INLINE_HINT = 'Click text on the page to edit inline.';
 
 function BlockSettings({
   block,
@@ -56,58 +71,84 @@ function BlockSettings({
 }) {
   const props = block.props ?? {};
   const childCount = block.children?.length ?? 0;
-  const setProp = (key: string, value: unknown) => onPropsChange({ ...props, [key]: value });
+  const setProp = (key: string, value: unknown) =>
+    onPropsChange({ ...props, [key]: value });
 
   switch (block.type) {
-    case "cover":
+    case 'cover':
       return (
         <>
           <WfField label="Anchor ID">
-            <WfInput value={(props.id as string) ?? block.id} onChange={(v) => setProp("id", v)} />
+            <WfInput
+              value={(props.id as string) ?? block.id}
+              onChange={(v) => setProp('id', v)}
+            />
           </WfField>
-          <WfCheckRow label="Page break before" checked={!!props.pageBreak} onChange={(v) => setProp("pageBreak", v)} />
+          <WfCheckRow
+            label="Page break before"
+            checked={!!props.pageBreak}
+            onChange={(v) => setProp('pageBreak', v)}
+          />
           <WfHint>Cover is always the first page.</WfHint>
         </>
       );
 
-    case "coverBody":
-    case "brand":
+    case 'coverBody':
+    case 'brand':
       return <WfHint>{INLINE_HINT}</WfHint>;
 
-    case "coverSubt":
+    case 'coverSubt':
       return <WfHint>{INLINE_HINT}</WfHint>;
 
-    case "coverToc":
+    case 'coverToc':
       return <WfHint>Edit the table of contents on the cover page.</WfHint>;
 
-    case "page":
+    case 'page':
       return (
         <>
-          <WfHint>Editorial page boundary. Add sections inside this page from the canvas or outline.</WfHint>
-          {childCount > 0 && <WfHint>{`${childCount} section${childCount > 1 ? "s" : ""}`}</WfHint>}
+          <WfHint>
+            Editorial page boundary. Add sections inside this page from the
+            canvas or outline.
+          </WfHint>
+          {childCount > 0 && (
+            <WfHint>{`${childCount} section${childCount > 1 ? 's' : ''}`}</WfHint>
+          )}
         </>
       );
 
-    case "section":
+    case 'section':
       return (
         <>
           <WfField label="Anchor ID">
-            <WfInput value={(props.id as string) ?? block.id} onChange={(v) => setProp("id", v)} placeholder="s1" />
+            <WfInput
+              value={(props.id as string) ?? block.id}
+              onChange={(v) => setProp('id', v)}
+              placeholder="s1"
+            />
           </WfField>
-          {props.variant === "cover" ? (
+          {props.variant === 'cover' ? (
             <WfHint>Cover section — first page of the document.</WfHint>
           ) : (
-            <WfCheckRow label="Page break before" checked={!!props.pageBreak} onChange={(v) => setProp("pageBreak", v)} />
+            <WfCheckRow
+              label="Page break before"
+              checked={!!props.pageBreak}
+              onChange={(v) => setProp('pageBreak', v)}
+            />
           )}
-          {childCount > 0 && <WfHint>{`${childCount} child block${childCount > 1 ? "s" : ""}`}</WfHint>}
+          {childCount > 0 && (
+            <WfHint>{`${childCount} child block${childCount > 1 ? 's' : ''}`}</WfHint>
+          )}
         </>
       );
 
-    case "break":
+    case 'break':
       return (
         <>
           <WfField label="Break type">
-            <WfSelect value={(props.variant as string) ?? "page"} onChange={(v) => setProp("variant", v)}>
+            <WfSelect
+              value={(props.variant as string) ?? 'page'}
+              onChange={(v) => setProp('variant', v)}
+            >
               <option value="page">Page break</option>
               <option value="section">Section break</option>
               <option value="continue">Continue break</option>
@@ -117,47 +158,53 @@ function BlockSettings({
         </>
       );
 
-    case "grid":
-    case "box":
-    case "split":
+    case 'grid':
+    case 'box':
+    case 'split':
       return (
         <WfHint>
-          Layout is in the Style tab. {childCount > 0 ? `${childCount} children.` : "Empty container."}
+          Layout is in the Style tab.{' '}
+          {childCount > 0 ? `${childCount} children.` : 'Empty container.'}
         </WfHint>
       );
 
-    case "card":
-    case "alert":
-    case "rail":
+    case 'card':
+    case 'alert':
+    case 'rail':
       return <WfHint>{INLINE_HINT}</WfHint>;
 
-    case "figure":
-      return <WfHint>Upload an image or edit URL and caption on the page.</WfHint>;
+    case 'figure':
+      return (
+        <WfHint>Upload an image or edit URL and caption on the page.</WfHint>
+      );
 
-    case "table":
+    case 'table':
       return <WfHint>Click the table on the page to edit inline.</WfHint>;
 
-    case "subheading":
-    case "lvlcol":
-    case "lcard":
+    case 'subheading':
+    case 'lvlcol':
+    case 'lcard':
       return <WfHint>{INLINE_HINT}</WfHint>;
 
-    case "level":
+    case 'level':
       return (
         <WfHint>
-          {INLINE_HINT} {childCount > 0 ? `${childCount} column${childCount > 1 ? "s" : ""}.` : ""}
+          {INLINE_HINT}{' '}
+          {childCount > 0
+            ? `${childCount} column${childCount > 1 ? 's' : ''}.`
+            : ''}
         </WfHint>
       );
 
-    case "levels":
+    case 'levels':
       return (
         <WfHint>
-          {`Matrix — ${childCount} row${childCount === 1 ? "" : "s"}. Column widths are shared across all rows — edit on this block.`}
+          {`Matrix — ${childCount} row${childCount === 1 ? '' : 's'}. Column widths are shared across all rows — edit on this block.`}
         </WfHint>
       );
 
-    case "kpiband":
-    case "vm":
+    case 'kpiband':
+    case 'vm':
       return <WfHint>{`Container — ${childCount} children.`}</WfHint>;
 
     default:
@@ -192,18 +239,20 @@ export default function StudioRightPanel({
   onMoveDown,
   onClose,
 }: StudioRightPanelProps) {
-  const [mode, setMode] = useState<PanelMode>(selectedBlock || textEditBlock ? "style" : "document");
+  const [mode, setMode] = useState<PanelMode>(
+    selectedBlock || textEditBlock ? 'style' : 'document',
+  );
 
   useEffect(() => {
-    if (selectedBlock) setMode("style");
+    if (selectedBlock) setMode('style');
   }, [selectedBlock?.id]);
 
   useEffect(() => {
-    if (textEditBlock) setMode("style");
+    if (textEditBlock) setMode('style');
   }, [textEditBlock?.id]);
 
   useEffect(() => {
-    if (selectedChromeZone) setMode("document");
+    if (selectedChromeZone) setMode('document');
   }, [selectedChromeZone]);
 
   const blockLabel = selectedBlock
@@ -213,28 +262,31 @@ export default function StudioRightPanel({
   const panelTarget = selectedBlock ?? textEditBlock;
 
   return (
-    <aside data-studio-chrome className="wf-panel border-border w-[272px] shrink-0 flex min-h-0 flex-col border-l">
+    <aside
+      data-studio-chrome
+      className="wf-panel border-border flex min-h-0 w-[272px] shrink-0 flex-col border-l"
+    >
       <div className="wf-tabs">
         <button
           type="button"
           disabled={!panelTarget}
-          className={`wf-tab${mode === "style" && panelTarget ? " active" : ""}`}
-          onClick={() => setMode("style")}
+          className={`wf-tab${mode === 'style' && panelTarget ? ' active' : ''}`}
+          onClick={() => setMode('style')}
         >
           Style
         </button>
         <button
           type="button"
           disabled={!selectedBlock}
-          className={`wf-tab${mode === "settings" && selectedBlock ? " active" : ""}`}
-          onClick={() => setMode("settings")}
+          className={`wf-tab${mode === 'settings' && selectedBlock ? ' active' : ''}`}
+          onClick={() => setMode('settings')}
         >
           Settings
         </button>
         <button
           type="button"
-          className={`wf-tab${mode === "document" ? " active" : ""}`}
-          onClick={() => setMode("document")}
+          className={`wf-tab${mode === 'document' ? ' active' : ''}`}
+          onClick={() => setMode('document')}
         >
           Doc
         </button>
@@ -251,35 +303,55 @@ export default function StudioRightPanel({
         )}
       </div>
 
-      {textEditBlock && !selectedBlock && mode !== "document" && (
+      {textEditBlock && !selectedBlock && mode !== 'document' && (
         <div className="wf-element-header">
           <p className="wf-element-name">Text</p>
           <p className="wf-element-id">{textEditBlock.id}</p>
         </div>
       )}
 
-      {selectedBlock && mode !== "document" && !multiSelect && (
+      {selectedBlock && mode !== 'document' && !multiSelect && (
         <div className="wf-element-header">
           <p className="wf-element-name">{blockLabel}</p>
           <p className="wf-element-id">{selectedBlock.id}</p>
           <div className="wf-element-actions">
             {onMoveUp && (
-              <button type="button" className="wf-icon-btn" title={titleWithShortcut("Move up", "Alt+↑")} onClick={onMoveUp}>
+              <button
+                type="button"
+                className="wf-icon-btn"
+                title={titleWithShortcut('Move up', 'Alt+↑')}
+                onClick={onMoveUp}
+              >
                 <ArrowUp size={13} />
               </button>
             )}
             {onMoveDown && (
-              <button type="button" className="wf-icon-btn" title={titleWithShortcut("Move down", "Alt+↓")} onClick={onMoveDown}>
+              <button
+                type="button"
+                className="wf-icon-btn"
+                title={titleWithShortcut('Move down', 'Alt+↓')}
+                onClick={onMoveDown}
+              >
                 <ArrowDown size={13} />
               </button>
             )}
             {onDuplicate && (
-              <button type="button" className="wf-icon-btn" title={titleWithShortcut("Duplicate", "Mod+D")} onClick={onDuplicate}>
+              <button
+                type="button"
+                className="wf-icon-btn"
+                title={titleWithShortcut('Duplicate', 'Mod+D')}
+                onClick={onDuplicate}
+              >
                 <Copy size={13} />
               </button>
             )}
             {onDelete && (
-              <button type="button" className="wf-icon-btn danger ml-auto" title={titleWithShortcut("Delete", "Delete")} onClick={onDelete}>
+              <button
+                type="button"
+                className="wf-icon-btn danger ml-auto"
+                title={titleWithShortcut('Delete', 'Delete')}
+                onClick={onDelete}
+              >
                 <Trash2 size={13} />
               </button>
             )}
@@ -288,11 +360,14 @@ export default function StudioRightPanel({
       )}
 
       <div className="wf-scroll-area">
-        {mode === "style" && multiSelect && onAlignBlocks && (
-          <MultiSelectAlignPanel count={selectedIds.length} onAlign={onAlignBlocks} />
+        {mode === 'style' && multiSelect && onAlignBlocks && (
+          <MultiSelectAlignPanel
+            count={selectedIds.length}
+            onAlign={onAlignBlocks}
+          />
         )}
 
-        {mode === "style" && selectedBlock && !multiSelect && (
+        {mode === 'style' && selectedBlock && !multiSelect && (
           <StylePanel
             block={selectedBlock}
             onPropsChange={onPropsChange}
@@ -300,8 +375,11 @@ export default function StudioRightPanel({
           />
         )}
 
-        {mode === "style" && textEditBlock && !selectedBlock && !multiSelect && (
-          isConvertibleTextBlock(textEditBlock.type) && onBlockChange ? (
+        {mode === 'style' &&
+          textEditBlock &&
+          !selectedBlock &&
+          !multiSelect &&
+          (isConvertibleTextBlock(textEditBlock.type) && onBlockChange ? (
             <StylePanel
               block={textEditBlock}
               onPropsChange={onPropsChange}
@@ -311,25 +389,32 @@ export default function StudioRightPanel({
             <div className="wf-section-body" style={{ paddingTop: 10 }}>
               <WfHint>{INLINE_HINT}</WfHint>
             </div>
-          )
-        )}
+          ))}
 
-        {mode === "settings" && selectedBlock && (
+        {mode === 'settings' && selectedBlock && (
           <div className="wf-section-body" style={{ paddingTop: 10 }}>
-            <BlockSettings block={selectedBlock} onPropsChange={onPropsChange} />
+            <BlockSettings
+              block={selectedBlock}
+              onPropsChange={onPropsChange}
+            />
           </div>
         )}
 
-        {mode !== "document" && !selectedBlock && !textEditBlock && (
+        {mode !== 'document' && !selectedBlock && !textEditBlock && (
           <div className="wf-empty-state">
             <p>Select a block on the page or in the tree.</p>
-            <button type="button" className="wf-tab" style={{ marginTop: 12, border: "none" }} onClick={() => setMode("document")}>
+            <button
+              type="button"
+              className="wf-tab"
+              style={{ marginTop: 12, border: 'none' }}
+              onClick={() => setMode('document')}
+            >
               Document settings →
             </button>
           </div>
         )}
 
-        {mode === "document" && (
+        {mode === 'document' && (
           <div className="wf-doc-panel">
             <PageSetupPanel
               slug={slug}

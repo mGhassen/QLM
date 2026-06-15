@@ -1,8 +1,5 @@
 import * as React from 'react';
-import type {
-  ColumnHeader,
-  DatasourceResultSet,
-} from '@qlm/domain/entities';
+import type { ColumnHeader, DatasourceResultSet } from '@qlm/domain/entities';
 import { VegaChart } from './vega-chart';
 
 const VEGA_LITE_SCHEMA = 'https://vega.github.io/schema/vega-lite/v5.json';

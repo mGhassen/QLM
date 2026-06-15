@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { Upload } from "lucide-react";
-import { docsPaths } from "#/paths";
+import { useRef, useState } from 'react';
+import { Upload } from 'lucide-react';
+import { docsPaths } from '#/paths';
 
 interface StudioImageUploadProps {
   slug: string;
@@ -10,7 +10,11 @@ interface StudioImageUploadProps {
   label?: string;
 }
 
-export default function StudioImageUpload({ slug, onUploaded, label = "Upload image" }: StudioImageUploadProps) {
+export default function StudioImageUpload({
+  slug,
+  onUploaded,
+  label = 'Upload image',
+}: StudioImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -20,13 +24,16 @@ export default function StudioImageUpload({ slug, onUploaded, label = "Upload im
     setError(null);
     try {
       const formData = new FormData();
-      formData.append("file", file);
-      const res = await fetch(docsPaths.api.upload(slug), { method: "POST", body: formData });
+      formData.append('file', file);
+      const res = await fetch(docsPaths.api.upload(slug), {
+        method: 'POST',
+        body: formData,
+      });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Upload failed");
+      if (!res.ok) throw new Error(data.error ?? 'Upload failed');
       onUploaded(data.url);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Upload failed");
+      setError(e instanceof Error ? e.message : 'Upload failed');
     } finally {
       setUploading(false);
     }
@@ -42,7 +49,7 @@ export default function StudioImageUpload({ slug, onUploaded, label = "Upload im
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) handleFile(file);
-          e.target.value = "";
+          e.target.value = '';
         }}
       />
       <button
@@ -52,7 +59,7 @@ export default function StudioImageUpload({ slug, onUploaded, label = "Upload im
         onClick={() => inputRef.current?.click()}
       >
         <Upload size={12} />
-        {uploading ? "Uploading…" : label}
+        {uploading ? 'Uploading…' : label}
       </button>
       {error && <p className="studio-image-upload-error">{error}</p>}
     </div>

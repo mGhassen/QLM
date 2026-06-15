@@ -1,24 +1,48 @@
-"use client";
+'use client';
 
-import ColorPicker from "./ColorPicker";
-import type { DocTheme } from "#/lib/types";
+import ColorPicker from './ColorPicker';
+import type { DocTheme } from '#/lib/types';
 
 export const THEME_PRESETS: { name: string; theme: DocTheme }[] = [
   {
-    name: "QLM",
-    theme: { brand: "#ffcb51", ink: "#161616", surface: "#ffffff", bg: "#f2f2f2", eyebrow: "#6a9955" },
+    name: 'QLM',
+    theme: {
+      brand: '#ffcb51',
+      ink: '#161616',
+      surface: '#ffffff',
+      bg: '#f2f2f2',
+      eyebrow: '#6a9955',
+    },
   },
   {
-    name: "Midnight",
-    theme: { brand: "#6366f1", ink: "#f8fafc", surface: "#1e1e2e", bg: "#11111b", eyebrow: "#a6e3a1" },
+    name: 'Midnight',
+    theme: {
+      brand: '#6366f1',
+      ink: '#f8fafc',
+      surface: '#1e1e2e',
+      bg: '#11111b',
+      eyebrow: '#a6e3a1',
+    },
   },
   {
-    name: "Forest",
-    theme: { brand: "#2f7d4f", ink: "#1a2e1a", surface: "#f8faf5", bg: "#e8f0e8", eyebrow: "#4a7c59" },
+    name: 'Forest',
+    theme: {
+      brand: '#2f7d4f',
+      ink: '#1a2e1a',
+      surface: '#f8faf5',
+      bg: '#e8f0e8',
+      eyebrow: '#4a7c59',
+    },
   },
   {
-    name: "Slate",
-    theme: { brand: "#64748b", ink: "#0f172a", surface: "#ffffff", bg: "#f1f5f9", eyebrow: "#475569" },
+    name: 'Slate',
+    theme: {
+      brand: '#64748b',
+      ink: '#0f172a',
+      surface: '#ffffff',
+      bg: '#f1f5f9',
+      eyebrow: '#475569',
+    },
   },
 ];
 
@@ -28,11 +52,17 @@ interface ThemeSettingsProps {
   className?: string;
 }
 
-export default function ThemeSettings({ theme, onChange, className }: ThemeSettingsProps) {
+export default function ThemeSettings({
+  theme,
+  onChange,
+  className,
+}: ThemeSettingsProps) {
   return (
-    <div className={className ?? "p-4 space-y-4"}>
+    <div className={className ?? 'space-y-4 p-4'}>
       <div>
-        <div className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">Presets</div>
+        <div className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
+          Presets
+        </div>
         <div className="flex flex-wrap gap-1.5">
           {THEME_PRESETS.map((p) => (
             <button

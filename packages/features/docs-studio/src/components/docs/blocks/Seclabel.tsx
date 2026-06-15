@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
+import StudioPopover from '../studio/StudioPopover';
 
 interface SeclabelProps {
   text?: string;
@@ -11,7 +11,14 @@ interface SeclabelProps {
   onActivate?: () => void;
 }
 
-export default function Seclabel({ text, content = "", editable, editing, onChange, onActivate }: SeclabelProps) {
+export default function Seclabel({
+  text,
+  content = '',
+  editable,
+  editing,
+  onChange,
+  onActivate,
+}: SeclabelProps) {
   const value = text ?? content.trim();
 
   return (

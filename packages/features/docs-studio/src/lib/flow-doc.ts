@@ -1,4 +1,4 @@
-import type { DocDocument } from "./types";
+import type { DocDocument } from './types';
 
 export const DOC_VERSION_FLOW = 2;
 
@@ -7,5 +7,5 @@ export function isFlowDoc(document: DocDocument): boolean {
 }
 
 export function docBody(document: DocDocument): string {
-  return document.body ?? "";
+  return document.body ?? '';
 }

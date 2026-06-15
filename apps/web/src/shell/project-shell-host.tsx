@@ -8,10 +8,7 @@ import {
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 
-import {
-  OrganizationOutput,
-  ProjectOutput,
-} from '@qlm/domain/usecases';
+import { OrganizationOutput, ProjectOutput } from '@qlm/domain/usecases';
 import { useUser } from '@qlm/supabase/hooks/use-user';
 import { useSignOut } from '@qlm/supabase/hooks/use-sign-out';
 import {
@@ -252,7 +249,6 @@ export function ProjectShellHost({
       }),
     [pinnedItems, activeTabId],
   );
-
 
   // ── Right sidebar / docs panel ─────────────────────────────────────────
   const [activePanel, setActivePanel] = useState<ActivePanel>(null);

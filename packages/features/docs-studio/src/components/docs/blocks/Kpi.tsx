@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import StudioPopover from "../studio/StudioPopover";
+import StudioPopover from '../studio/StudioPopover';
 
 interface KpiProps {
   value?: string;
@@ -10,14 +10,20 @@ interface KpiProps {
   onActivate?: () => void;
 }
 
-export default function Kpi({ value, label, editable, onPropChange, onActivate }: KpiProps) {
+export default function Kpi({
+  value,
+  label,
+  editable,
+  onPropChange,
+  onActivate,
+}: KpiProps) {
   return (
     <div className="kpi">
       {(value || editable) && (
         <StudioPopover
           editable={editable}
-          value={value ?? ""}
-          onChange={(v) => onPropChange?.("value", v)}
+          value={value ?? ''}
+          onChange={(v) => onPropChange?.('value', v)}
           singleLine
           onActivate={onActivate}
         >
@@ -27,8 +33,8 @@ export default function Kpi({ value, label, editable, onPropChange, onActivate }
       {(label || editable) && (
         <StudioPopover
           editable={editable}
-          value={label ?? ""}
-          onChange={(v) => onPropChange?.("label", v)}
+          value={label ?? ''}
+          onChange={(v) => onPropChange?.('label', v)}
           singleLine
           onActivate={onActivate}
         >

@@ -1,10 +1,10 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties } from 'react';
 import {
   PAGE_FORMATS,
   resolvePageFormat,
   type DocPageFormat,
   type PageDimensions,
-} from "./page-format";
+} from './page-format';
 
 export interface DocMargins {
   top: number;
@@ -13,13 +13,13 @@ export interface DocMargins {
   left: number;
 }
 
-export type DocPageSetupFormat = DocPageFormat | "custom";
+export type DocPageSetupFormat = DocPageFormat | 'custom';
 
 export interface DocPageSetup {
   format?: DocPageSetupFormat;
   customWidthMm?: number;
   customHeightMm?: number;
-  orientation?: "portrait" | "landscape";
+  orientation?: 'portrait' | 'landscape';
   margins?: Partial<DocMargins>;
   printMargins?: Partial<DocMargins>;
   webMaxWidthPx?: number;
@@ -36,7 +36,7 @@ export interface DocPageSetup {
 
 export interface ResolvedPageSetup {
   format: DocPageSetupFormat;
-  orientation: "portrait" | "landscape";
+  orientation: 'portrait' | 'landscape';
   widthMm: number;
   heightMm: number;
   printSize: string;
@@ -70,13 +70,16 @@ export const MARGIN_PRESETS: Record<string, DocMargins> = {
 };
 
 export const WEB_WIDTH_PRESETS = [
-  { label: "Compact", px: 720 },
-  { label: "Standard", px: 900 },
-  { label: "Wide", px: 1100 },
-  { label: "Full", px: 1400 },
+  { label: 'Compact', px: 720 },
+  { label: 'Standard', px: 900 },
+  { label: 'Wide', px: 1100 },
+  { label: 'Full', px: 1400 },
 ] as const;
 
-function mergeMargins(base: DocMargins, patch?: Partial<DocMargins>): DocMargins {
+function mergeMargins(
+  base: DocMargins,
+  patch?: Partial<DocMargins>,
+): DocMargins {
   return { ...base, ...patch };
 }
 
@@ -84,16 +87,16 @@ function resolveDimensions(
   setup: DocPageSetup | undefined,
   legacyFormat?: DocPageFormat,
 ): PageDimensions & { format: DocPageSetupFormat } {
-  const format = setup?.format ?? legacyFormat ?? "a4";
+  const format = setup?.format ?? legacyFormat ?? 'a4';
 
-  if (format === "custom") {
+  if (format === 'custom') {
     const widthMm = setup?.customWidthMm ?? 210;
     const heightMm = setup?.customHeightMm ?? 297;
     return {
-      format: "custom",
+      format: 'custom',
       widthMm,
       heightMm,
-      label: "Custom",
+      label: 'Custom',
       printSize: `${widthMm}mm ${heightMm}mm`,
     };
   }
@@ -107,9 +110,9 @@ export function resolvePageSetup(
   legacyFormat?: DocPageFormat,
 ): ResolvedPageSetup {
   const dims = resolveDimensions(setup, legacyFormat);
-  const orientation = setup?.orientation ?? "portrait";
-  const widthMm = orientation === "landscape" ? dims.heightMm : dims.widthMm;
-  const heightMm = orientation === "landscape" ? dims.widthMm : dims.heightMm;
+  const orientation = setup?.orientation ?? 'portrait';
+  const widthMm = orientation === 'landscape' ? dims.heightMm : dims.widthMm;
+  const heightMm = orientation === 'landscape' ? dims.widthMm : dims.heightMm;
 
   const margins = mergeMargins(DEFAULT_MARGINS, setup?.margins);
   const printMargins = mergeMargins(margins, setup?.printMargins);
@@ -139,42 +142,44 @@ export function resolvePageSetup(
 export function pageSetupToStyle(setup: ResolvedPageSetup): CSSProperties {
   const { margins: m, printMargins: pm } = setup;
   const printSize =
-    setup.format === "custom" ? `${setup.widthMm}mm ${setup.heightMm}mm` : setup.printSize;
+    setup.format === 'custom'
+      ? `${setup.widthMm}mm ${setup.heightMm}mm`
+      : setup.printSize;
   return {
-    "--doc-page-width": `${setup.widthMm}mm`,
-    "--doc-page-height": `${setup.heightMm}mm`,
-    "--doc-margin-top": `${m.top}mm`,
-    "--doc-margin-right": `${m.right}mm`,
-    "--doc-margin-bottom": `${m.bottom}mm`,
-    "--doc-margin-left": `${m.left}mm`,
-    "--doc-zone-pad-x": `${m.left}mm`,
-    "--doc-web-max-width": `${setup.webMaxWidthPx}px`,
-    "--doc-web-padding": `${setup.webPaddingPx}px`,
-    "--doc-web-content-padding": `${setup.webContentPaddingPx}px`,
-    "--doc-font-size": `${setup.fontSizePt}pt`,
-    "--doc-line-height": String(setup.lineHeight),
-    "--doc-chrome-header-h": `${setup.headerHeightMm}mm`,
-    "--doc-chrome-footer-h": `${setup.footerHeightMm}mm`,
-    "--doc-page-gap": `${setup.pageGapPx}px`,
-    "--doc-section-break-top": `${setup.sectionBreakTopMm}mm`,
-    "--doc-print-size": printSize,
-    "--doc-print-margin-top": `${pm.top}mm`,
-    "--doc-print-margin-right": `${pm.right}mm`,
-    "--doc-print-margin-bottom": `${pm.bottom}mm`,
-    "--doc-print-margin-left": `${pm.left}mm`,
+    '--doc-page-width': `${setup.widthMm}mm`,
+    '--doc-page-height': `${setup.heightMm}mm`,
+    '--doc-margin-top': `${m.top}mm`,
+    '--doc-margin-right': `${m.right}mm`,
+    '--doc-margin-bottom': `${m.bottom}mm`,
+    '--doc-margin-left': `${m.left}mm`,
+    '--doc-zone-pad-x': `${m.left}mm`,
+    '--doc-web-max-width': `${setup.webMaxWidthPx}px`,
+    '--doc-web-padding': `${setup.webPaddingPx}px`,
+    '--doc-web-content-padding': `${setup.webContentPaddingPx}px`,
+    '--doc-font-size': `${setup.fontSizePt}pt`,
+    '--doc-line-height': String(setup.lineHeight),
+    '--doc-chrome-header-h': `${setup.headerHeightMm}mm`,
+    '--doc-chrome-footer-h': `${setup.footerHeightMm}mm`,
+    '--doc-page-gap': `${setup.pageGapPx}px`,
+    '--doc-section-break-top': `${setup.sectionBreakTopMm}mm`,
+    '--doc-print-size': printSize,
+    '--doc-print-margin-top': `${pm.top}mm`,
+    '--doc-print-margin-right': `${pm.right}mm`,
+    '--doc-print-margin-bottom': `${pm.bottom}mm`,
+    '--doc-print-margin-left': `${pm.left}mm`,
   } as CSSProperties;
 }
 
 export function pageSetupPrintCss(setup: ResolvedPageSetup): string {
   const { printMargins: m } = setup;
   const size =
-    setup.format === "custom"
+    setup.format === 'custom'
       ? `${setup.widthMm}mm ${setup.heightMm}mm`
       : setup.printSize;
 
   return `
   @page {
-    size: ${size}${setup.orientation === "landscape" ? " landscape" : ""};
+    size: ${size}${setup.orientation === 'landscape' ? ' landscape' : ''};
     margin: ${m.top}mm ${m.right}mm ${m.bottom}mm ${m.left}mm;
   }
 `;

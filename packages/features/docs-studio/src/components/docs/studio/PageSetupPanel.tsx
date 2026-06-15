@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useMemo } from "react";
+import { useMemo } from 'react';
 import {
   LayoutGrid,
   Globe,
@@ -9,9 +9,14 @@ import {
   Type,
   Ruler,
   ChevronDown,
-} from "lucide-react";
-import type { ChromeZoneId, DocChrome, DocLayoutMode, DocPageSetup } from "#/lib/types";
-import ChromeEditorPanel from "./ChromeEditorPanel";
+} from 'lucide-react';
+import type {
+  ChromeZoneId,
+  DocChrome,
+  DocLayoutMode,
+  DocPageSetup,
+} from '#/lib/types';
+import ChromeEditorPanel from './ChromeEditorPanel';
 import {
   MARGIN_PRESETS,
   PAGE_FORMATS,
@@ -19,23 +24,37 @@ import {
   formatDimensionsLabel,
   resolvePageSetup,
   type DocPageSetupFormat,
-} from "#/lib/page-setup";
-import type { DocPageFormat } from "#/lib/page-format";
-import ThemeSettings from "./ThemeSettings";
-import KeyboardShortcutsPanel from "./KeyboardShortcutsPanel";
-import type { DocTheme } from "#/lib/types";
+} from '#/lib/page-setup';
+import type { DocPageFormat } from '#/lib/page-format';
+import ThemeSettings from './ThemeSettings';
+import KeyboardShortcutsPanel from './KeyboardShortcutsPanel';
+import type { DocTheme } from '#/lib/types';
 
 const INPUT =
-  "w-full rounded-none border border-border bg-background px-2.5 py-1.5 text-sm focus:ring-2 focus:ring-primary/40 focus:outline-none";
+  'w-full rounded-none border border-border bg-background px-2.5 py-1.5 text-sm focus:ring-2 focus:ring-primary/40 focus:outline-none';
 
 const NUM = `${INPUT} font-mono text-xs`;
 
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <label className="text-[11px] font-medium text-muted-foreground/50 block mb-1">{label}</label>
+      <label className="text-muted-foreground/50 mb-1 block text-[11px] font-medium">
+        {label}
+      </label>
       {children}
-      {hint && <p className="text-[10px] text-muted-foreground/35 mt-1 leading-relaxed">{hint}</p>}
+      {hint && (
+        <p className="text-muted-foreground/35 mt-1 text-[10px] leading-relaxed">
+          {hint}
+        </p>
+      )}
     </div>
   );
 }
@@ -52,11 +71,17 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <details open={defaultOpen} className="group border-t border-border-subtle/5 pt-4">
-      <summary className="flex items-center gap-2 cursor-pointer list-none text-[11px] font-medium text-muted-foreground/45 uppercase tracking-wide select-none">
+    <details
+      open={defaultOpen}
+      className="group border-border-subtle/5 border-t pt-4"
+    >
+      <summary className="text-muted-foreground/45 flex cursor-pointer list-none items-center gap-2 text-[11px] font-medium tracking-wide uppercase select-none">
         <Icon size={13} className="text-muted-foreground/35" />
         <span className="flex-1">{title}</span>
-        <ChevronDown size={14} className="text-muted-foreground/30 transition-transform group-open:rotate-180" />
+        <ChevronDown
+          size={14}
+          className="text-muted-foreground/30 transition-transform group-open:rotate-180"
+        />
       </summary>
       <div className="mt-3 space-y-3">{children}</div>
     </details>
@@ -92,7 +117,11 @@ function NumField({
           onChange={(e) => onChange(Number(e.target.value))}
           className={NUM}
         />
-        {unit && <span className="text-[10px] text-muted-foreground/35 shrink-0">{unit}</span>}
+        {unit && (
+          <span className="text-muted-foreground/35 shrink-0 text-[10px]">
+            {unit}
+          </span>
+        )}
       </div>
     </Field>
   );
@@ -131,10 +160,14 @@ export default function PageSetupPanel({
   onThemeChange,
   onChromeChange,
 }: PageSetupPanelProps) {
-  const resolved = useMemo(() => resolvePageSetup(pageSetup, pageFormat), [pageSetup, pageFormat]);
+  const resolved = useMemo(
+    () => resolvePageSetup(pageSetup, pageFormat),
+    [pageSetup, pageFormat],
+  );
 
-  const patch = (p: Partial<DocPageSetup>) => onPageSetupChange({ ...pageSetup, ...p });
-  const patchMargins = (p: Partial<(typeof resolved)["margins"]>) =>
+  const patch = (p: Partial<DocPageSetup>) =>
+    onPageSetupChange({ ...pageSetup, ...p });
+  const patchMargins = (p: Partial<(typeof resolved)['margins']>) =>
     patch({ margins: { ...resolved.margins, ...p } });
 
   const formatOptions: { id: DocPageSetupFormat; label: string }[] = [
@@ -142,7 +175,7 @@ export default function PageSetupPanel({
       id: f as DocPageSetupFormat,
       label: PAGE_FORMATS[f].label,
     })),
-    { id: "custom", label: "Custom" },
+    { id: 'custom', label: 'Custom' },
   ];
 
   const activeMarginPreset =
@@ -152,19 +185,23 @@ export default function PageSetupPanel({
         m.right === resolved.margins.right &&
         m.bottom === resolved.margins.bottom &&
         m.left === resolved.margins.left,
-    )?.[0] ?? "custom";
+    )?.[0] ?? 'custom';
 
   return (
-    <div className="p-4 space-y-1">
+    <div className="space-y-1 p-4">
       <div>
-        <div className="text-[11px] font-medium text-muted-foreground/45 uppercase tracking-wide mb-1">Document</div>
+        <div className="text-muted-foreground/45 mb-1 text-[11px] font-medium tracking-wide uppercase">
+          Document
+        </div>
         <div className="text-sm font-semibold">{title}</div>
-        <div className="text-xs text-muted-foreground/35 font-mono">/{slug}</div>
-        <div className="flex gap-3 mt-3 text-xs text-muted-foreground/45">
+        <div className="text-muted-foreground/35 font-mono text-xs">
+          /{slug}
+        </div>
+        <div className="text-muted-foreground/45 mt-3 flex gap-3 text-xs">
           <span>
             <strong className="text-foreground">{blockCount}</strong> blocks
           </span>
-          {layoutMode === "paginated" && (
+          {layoutMode === 'paginated' && (
             <span>
               <strong className="text-foreground">{pageCount}</strong> pages
             </span>
@@ -174,34 +211,38 @@ export default function PageSetupPanel({
 
       <Section icon={LayoutGrid} title="Layout mode">
         <div className="grid grid-cols-2 gap-2">
-          {(["paginated", "web"] as const).map((mode) => (
+          {(['paginated', 'web'] as const).map((mode) => (
             <button
               key={mode}
               type="button"
               onClick={() => onLayoutModeChange(mode)}
-              className={`px-3 py-2.5 rounded-sm border text-xs font-medium capitalize transition-colors ${
+              className={`rounded-sm border px-3 py-2.5 text-xs font-medium capitalize transition-colors ${
                 layoutMode === mode
-                  ? "border-primary bg-primary/15 text-foreground"
-                  : "border-border text-muted-foreground hover:bg-accent"
+                  ? 'border-primary bg-primary/15 text-foreground'
+                  : 'border-border text-muted-foreground hover:bg-accent'
               }`}
             >
               <div className="flex items-center justify-center gap-1.5">
-                {mode === "paginated" ? <LayoutGrid size={13} /> : <Globe size={13} />}
+                {mode === 'paginated' ? (
+                  <LayoutGrid size={13} />
+                ) : (
+                  <Globe size={13} />
+                )}
                 {mode}
               </div>
             </button>
           ))}
         </div>
-        <p className="text-[10px] text-muted-foreground/35">
-          {layoutMode === "paginated"
-            ? "Fixed-size sheets with page breaks — like a print document."
-            : "Continuous scroll — like a web article."}
+        <p className="text-muted-foreground/35 text-[10px]">
+          {layoutMode === 'paginated'
+            ? 'Fixed-size sheets with page breaks — like a print document.'
+            : 'Continuous scroll — like a web article.'}
         </p>
       </Section>
 
-      {layoutMode === "paginated" && (
+      {layoutMode === 'paginated' && (
         <Section icon={Ruler} title="Canvas">
-          <label className="flex items-center gap-2 text-sm text-foreground">
+          <label className="text-foreground flex items-center gap-2 text-sm">
             <input
               type="checkbox"
               checked={resolved.showMarginGuides}
@@ -209,13 +250,13 @@ export default function PageSetupPanel({
             />
             Ruler
           </label>
-          <p className="text-[10px] text-muted-foreground/35 leading-relaxed">
+          <p className="text-muted-foreground/35 text-[10px] leading-relaxed">
             Compact ruler overlay and margin guides on page sheets.
           </p>
         </Section>
       )}
 
-      {layoutMode === "paginated" && (
+      {layoutMode === 'paginated' && (
         <Section icon={FileText} title="Paper">
           <Field label="Paper size">
             <div className="grid grid-cols-2 gap-1.5">
@@ -224,10 +265,10 @@ export default function PageSetupPanel({
                   key={id}
                   type="button"
                   onClick={() => patch({ format: id })}
-                  className={`px-2 py-1.5 rounded-sm border text-[11px] font-medium transition-colors ${
+                  className={`rounded-sm border px-2 py-1.5 text-[11px] font-medium transition-colors ${
                     resolved.format === id
-                      ? "border-primary bg-primary/15 text-foreground"
-                      : "border-border text-muted-foreground hover:bg-accent"
+                      ? 'border-primary bg-primary/15 text-foreground'
+                      : 'border-border text-muted-foreground hover:bg-accent'
                   }`}
                 >
                   {label}
@@ -236,7 +277,7 @@ export default function PageSetupPanel({
             </div>
           </Field>
 
-          {resolved.format === "custom" && (
+          {resolved.format === 'custom' && (
             <div className="grid grid-cols-2 gap-2">
               <NumField
                 label="Width"
@@ -259,15 +300,15 @@ export default function PageSetupPanel({
 
           <Field label="Orientation">
             <div className="grid grid-cols-2 gap-2">
-              {(["portrait", "landscape"] as const).map((o) => (
+              {(['portrait', 'landscape'] as const).map((o) => (
                 <button
                   key={o}
                   type="button"
                   onClick={() => patch({ orientation: o })}
-                  className={`px-3 py-2 rounded-sm border text-xs font-medium capitalize transition-colors ${
+                  className={`rounded-sm border px-3 py-2 text-xs font-medium capitalize transition-colors ${
                     resolved.orientation === o
-                      ? "border-primary bg-primary/15 text-foreground"
-                      : "border-border text-muted-foreground hover:bg-accent"
+                      ? 'border-primary bg-primary/15 text-foreground'
+                      : 'border-border text-muted-foreground hover:bg-accent'
                   }`}
                 >
                   {o}
@@ -276,11 +317,13 @@ export default function PageSetupPanel({
             </div>
           </Field>
 
-          <p className="text-[10px] text-muted-foreground/35 font-mono">{formatDimensionsLabel(resolved)}</p>
+          <p className="text-muted-foreground/35 font-mono text-[10px]">
+            {formatDimensionsLabel(resolved)}
+          </p>
         </Section>
       )}
 
-      {layoutMode === "paginated" && (
+      {layoutMode === 'paginated' && (
         <Section icon={Ruler} title="Margins">
           <Field label="Preset">
             <div className="grid grid-cols-4 gap-1.5">
@@ -289,10 +332,10 @@ export default function PageSetupPanel({
                   key={key}
                   type="button"
                   onClick={() => patch({ margins: MARGIN_PRESETS[key] })}
-                  className={`px-1.5 py-1.5 rounded-sm border text-[10px] font-medium capitalize transition-colors ${
+                  className={`rounded-sm border px-1.5 py-1.5 text-[10px] font-medium capitalize transition-colors ${
                     activeMarginPreset === key
-                      ? "border-primary bg-primary/15 text-foreground"
-                      : "border-border text-muted-foreground hover:bg-accent"
+                      ? 'border-primary bg-primary/15 text-foreground'
+                      : 'border-border text-muted-foreground hover:bg-accent'
                   }`}
                 >
                   {key}
@@ -302,19 +345,51 @@ export default function PageSetupPanel({
           </Field>
 
           <div className="grid grid-cols-2 gap-2">
-            <NumField label="Top" value={resolved.margins.top} onChange={(v) => patchMargins({ top: v })} min={0} max={50} unit="mm" />
-            <NumField label="Bottom" value={resolved.margins.bottom} onChange={(v) => patchMargins({ bottom: v })} min={0} max={50} unit="mm" />
-            <NumField label="Left" value={resolved.margins.left} onChange={(v) => patchMargins({ left: v })} min={0} max={50} unit="mm" />
-            <NumField label="Right" value={resolved.margins.right} onChange={(v) => patchMargins({ right: v })} min={0} max={50} unit="mm" />
+            <NumField
+              label="Top"
+              value={resolved.margins.top}
+              onChange={(v) => patchMargins({ top: v })}
+              min={0}
+              max={50}
+              unit="mm"
+            />
+            <NumField
+              label="Bottom"
+              value={resolved.margins.bottom}
+              onChange={(v) => patchMargins({ bottom: v })}
+              min={0}
+              max={50}
+              unit="mm"
+            />
+            <NumField
+              label="Left"
+              value={resolved.margins.left}
+              onChange={(v) => patchMargins({ left: v })}
+              min={0}
+              max={50}
+              unit="mm"
+            />
+            <NumField
+              label="Right"
+              value={resolved.margins.right}
+              onChange={(v) => patchMargins({ right: v })}
+              min={0}
+              max={50}
+              unit="mm"
+            />
           </div>
 
-          <details className="text-[10px] text-muted-foreground/40">
-            <summary className="cursor-pointer hover:text-muted-foreground/60">Print margins (PDF export)</summary>
-            <div className="grid grid-cols-2 gap-2 mt-2">
+          <details className="text-muted-foreground/40 text-[10px]">
+            <summary className="hover:text-muted-foreground/60 cursor-pointer">
+              Print margins (PDF export)
+            </summary>
+            <div className="mt-2 grid grid-cols-2 gap-2">
               <NumField
                 label="Print top"
                 value={resolved.printMargins.top}
-                onChange={(v) => patch({ printMargins: { ...resolved.printMargins, top: v } })}
+                onChange={(v) =>
+                  patch({ printMargins: { ...resolved.printMargins, top: v } })
+                }
                 min={0}
                 max={50}
                 unit="mm"
@@ -322,7 +397,11 @@ export default function PageSetupPanel({
               <NumField
                 label="Print bottom"
                 value={resolved.printMargins.bottom}
-                onChange={(v) => patch({ printMargins: { ...resolved.printMargins, bottom: v } })}
+                onChange={(v) =>
+                  patch({
+                    printMargins: { ...resolved.printMargins, bottom: v },
+                  })
+                }
                 min={0}
                 max={50}
                 unit="mm"
@@ -330,7 +409,9 @@ export default function PageSetupPanel({
               <NumField
                 label="Print left"
                 value={resolved.printMargins.left}
-                onChange={(v) => patch({ printMargins: { ...resolved.printMargins, left: v } })}
+                onChange={(v) =>
+                  patch({ printMargins: { ...resolved.printMargins, left: v } })
+                }
                 min={0}
                 max={50}
                 unit="mm"
@@ -338,7 +419,11 @@ export default function PageSetupPanel({
               <NumField
                 label="Print right"
                 value={resolved.printMargins.right}
-                onChange={(v) => patch({ printMargins: { ...resolved.printMargins, right: v } })}
+                onChange={(v) =>
+                  patch({
+                    printMargins: { ...resolved.printMargins, right: v },
+                  })
+                }
                 min={0}
                 max={50}
                 unit="mm"
@@ -348,19 +433,19 @@ export default function PageSetupPanel({
         </Section>
       )}
 
-      {layoutMode === "web" && (
+      {layoutMode === 'web' && (
         <Section icon={Monitor} title="Web layout">
           <Field label="Max width">
-            <div className="grid grid-cols-2 gap-1.5 mb-2">
+            <div className="mb-2 grid grid-cols-2 gap-1.5">
               {WEB_WIDTH_PRESETS.map(({ label, px }) => (
                 <button
                   key={px}
                   type="button"
                   onClick={() => patch({ webMaxWidthPx: px })}
-                  className={`px-2 py-1.5 rounded-sm border text-[11px] font-medium transition-colors ${
+                  className={`rounded-sm border px-2 py-1.5 text-[11px] font-medium transition-colors ${
                     resolved.webMaxWidthPx === px
-                      ? "border-primary bg-primary/15 text-foreground"
-                      : "border-border text-muted-foreground hover:bg-accent"
+                      ? 'border-primary bg-primary/15 text-foreground'
+                      : 'border-border text-muted-foreground hover:bg-accent'
                   }`}
                 >
                   {label} ({px}px)
@@ -421,7 +506,7 @@ export default function PageSetupPanel({
         </div>
       </Section>
 
-      {layoutMode === "paginated" && (
+      {layoutMode === 'paginated' && (
         <Section icon={Ruler} title="Page spacing" defaultOpen={false}>
           <div className="grid grid-cols-2 gap-2">
             <NumField
@@ -444,7 +529,7 @@ export default function PageSetupPanel({
         </Section>
       )}
 
-      {layoutMode === "paginated" && (
+      {layoutMode === 'paginated' && (
         <Section icon={FileText} title="Header & footer" defaultOpen>
           <ChromeEditorPanel
             title={title}
@@ -459,13 +544,18 @@ export default function PageSetupPanel({
       )}
 
       <Section icon={Type} title="Theme" defaultOpen={false}>
-        <ThemeSettings theme={theme} onChange={onThemeChange} className="space-y-4" />
+        <ThemeSettings
+          theme={theme}
+          onChange={onThemeChange}
+          className="space-y-4"
+        />
       </Section>
 
       <KeyboardShortcutsPanel />
 
-      <p className="text-[10px] text-muted-foreground/35 pt-3 leading-relaxed">
-        Tip: insert a <strong>break</strong> block (page, section, or continue) or toggle &quot;Page break before&quot; on a section.
+      <p className="text-muted-foreground/35 pt-3 text-[10px] leading-relaxed">
+        Tip: insert a <strong>break</strong> block (page, section, or continue)
+        or toggle &quot;Page break before&quot; on a section.
       </p>
     </div>
   );

@@ -12,10 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@qlm/ui/dialog';
-import {
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from '@qlm/ui/dropdown-menu';
+import { DropdownMenuItem, DropdownMenuSeparator } from '@qlm/ui/dropdown-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@qlm/ui/tabs';
 
 export type AppsPickerMenuProps = {
@@ -136,7 +133,11 @@ function AppsPickerDialogBody({
 }
 
 /** Single org-menu entry (collapsed sidebar) — opens the apps dialog. */
-export function AppsPickerCollapsedMenuItem({ onOpen }: { onOpen: () => void }) {
+export function AppsPickerCollapsedMenuItem({
+  onOpen,
+}: {
+  onOpen: () => void;
+}) {
   const { t } = useTranslation('shell');
 
   return (

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Children,
@@ -9,15 +9,27 @@ import {
   useState,
   type ElementType,
   type ReactNode,
-} from "react";
-import WysiwygEditor from "./WysiwygEditor";
+} from 'react';
+import WysiwygEditor from './WysiwygEditor';
 
-const INLINE_TAGS = new Set(["span", "label", "a", "em", "strong", "b", "i", "small", "sub", "sup", "code"]);
-const HEADING_TAGS = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
+const INLINE_TAGS = new Set([
+  'span',
+  'label',
+  'a',
+  'em',
+  'strong',
+  'b',
+  'i',
+  'small',
+  'sub',
+  'sup',
+  'code',
+]);
+const HEADING_TAGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
 function resolveShell(tag: string, isSingle: boolean): string {
-  if (!tag) return "div";
-  if (isSingle && INLINE_TAGS.has(tag)) return "span";
+  if (!tag) return 'div';
+  if (isSingle && INLINE_TAGS.has(tag)) return 'span';
   return tag;
 }
 
@@ -64,10 +76,14 @@ export default function StudioPopover({
     onClick?: (e: React.MouseEvent) => void;
     style?: React.CSSProperties;
   };
-  const tag = typeof child.type === "string" ? child.type : "";
-  const isSingle = singleLine ?? (INLINE_TAGS.has(tag) || HEADING_TAGS.has(tag) || tag === "p");
+  const tag = typeof child.type === 'string' ? child.type : '';
+  const isSingle =
+    singleLine ??
+    (INLINE_TAGS.has(tag) || HEADING_TAGS.has(tag) || tag === 'p');
   const Shell = resolveShell(tag, isSingle) as ElementType;
-  const shellClass = [childProps.className, "studio-inline-field"].filter(Boolean).join(" ");
+  const shellClass = [childProps.className, 'studio-inline-field']
+    .filter(Boolean)
+    .join(' ');
 
   function activate() {
     onActivate?.();
@@ -101,11 +117,15 @@ export default function StudioPopover({
 
   if (!isEditing) {
     return cloneElement(child, {
-      className: [childProps.className, "studio-inline-field", "studio-inline-field-idle"]
+      className: [
+        childProps.className,
+        'studio-inline-field',
+        'studio-inline-field-idle',
+      ]
         .filter(Boolean)
-        .join(" "),
+        .join(' '),
       style: childProps.style,
-      ...(tag ? { "data-as": tag } : {}),
+      ...(tag ? { 'data-as': tag } : {}),
     } as Record<string, unknown>);
   }
 
@@ -113,7 +133,7 @@ export default function StudioPopover({
     <Shell
       className={shellClass}
       style={childProps.style}
-      {...(tag ? { "data-as": tag } : {})}
+      {...(tag ? { 'data-as': tag } : {})}
     >
       <WysiwygEditor
         content={value}

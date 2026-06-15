@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEditorState, type Editor } from "@tiptap/react";
+import { useEditorState, type Editor } from '@tiptap/react';
 import {
   AlignCenter,
   AlignJustify,
@@ -16,15 +16,15 @@ import {
   ListOrdered,
   Link2,
   Unlink,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   LINE_HEIGHTS,
   LIST_PADDING,
   VERTICAL_SPACING,
   selectToolbarState,
   setBlockAttr,
-} from "#/lib/tiptap-toolbar";
-import { titleWithShortcut } from "#/lib/studio-shortcuts";
+} from '#/lib/tiptap-toolbar';
+import { titleWithShortcut } from '#/lib/studio-shortcuts';
 
 interface EditorToolbarProps {
   editor: Editor;
@@ -52,7 +52,9 @@ function Btn({
         onClick();
       }}
       className={`rounded-none p-1.5 transition-colors ${
-        active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-accent hover:text-foreground"
+        active
+          ? 'bg-primary text-primary-foreground'
+          : 'text-muted-foreground hover:bg-accent hover:text-foreground'
       }`}
     >
       {children}
@@ -88,18 +90,22 @@ function MiniSelect({
   );
 }
 
-export default function EditorToolbar({ editor, floating, anchored }: EditorToolbarProps) {
+export default function EditorToolbar({
+  editor,
+  floating,
+  anchored,
+}: EditorToolbarProps) {
   const state = useEditorState({ editor, selector: selectToolbarState });
 
   function setLink() {
-    const prev = editor.getAttributes("link").href as string | undefined;
-    const url = window.prompt("URL", prev ?? "https://");
+    const prev = editor.getAttributes('link').href as string | undefined;
+    const url = window.prompt('URL', prev ?? 'https://');
     if (url === null) return;
-    if (url === "") {
-      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
       return;
     }
-    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }
 
   const {
@@ -127,40 +133,40 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
   } = state;
 
   const shellClass = [
-    "studio-editor-toolbar flex items-center gap-0.5",
-    anchored || floating ? "flex-nowrap shrink-0 w-max" : "flex-wrap",
+    'studio-editor-toolbar flex items-center gap-0.5',
+    anchored || floating ? 'flex-nowrap shrink-0 w-max' : 'flex-wrap',
     anchored
-      ? "anchored border-border bg-popover rounded-none border px-1 py-0.5 shadow-lg"
+      ? 'anchored border-border bg-popover rounded-none border px-1 py-0.5 shadow-lg'
       : floating
-        ? "floating border-border bg-popover rounded-none border px-1 py-0.5 shadow-lg"
-        : "border-border bg-muted/35 border-b px-2 py-1",
-  ].join(" ");
+        ? 'floating border-border bg-popover rounded-none border px-1 py-0.5 shadow-lg'
+        : 'border-border bg-muted/35 border-b px-2 py-1',
+  ].join(' ');
 
   return (
     <div className={shellClass} onClick={(e) => e.stopPropagation()}>
       <Btn
-        title={titleWithShortcut("Bold", "Mod+B")}
+        title={titleWithShortcut('Bold', 'Mod+B')}
         active={isBold}
         onClick={() => editor.chain().focus().toggleBold().run()}
       >
         <Bold size={14} />
       </Btn>
       <Btn
-        title={titleWithShortcut("Italic", "Mod+I")}
+        title={titleWithShortcut('Italic', 'Mod+I')}
         active={isItalic}
         onClick={() => editor.chain().focus().toggleItalic().run()}
       >
         <Italic size={14} />
       </Btn>
       <Btn
-        title={titleWithShortcut("Underline", "Mod+U")}
+        title={titleWithShortcut('Underline', 'Mod+U')}
         active={isUnderline}
         onClick={() => editor.chain().focus().toggleUnderline().run()}
       >
         <Underline size={14} />
       </Btn>
       <Btn
-        title={titleWithShortcut("Strikethrough", "Mod+Shift+S")}
+        title={titleWithShortcut('Strikethrough', 'Mod+Shift+S')}
         active={isStrike}
         onClick={() => editor.chain().focus().toggleStrike().run()}
       >
@@ -206,28 +212,28 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
       <Btn
         title="Align left"
         active={isAlignLeft}
-        onClick={() => editor.chain().focus().setTextAlign("left").run()}
+        onClick={() => editor.chain().focus().setTextAlign('left').run()}
       >
         <AlignLeft size={14} />
       </Btn>
       <Btn
         title="Align center"
         active={isAlignCenter}
-        onClick={() => editor.chain().focus().setTextAlign("center").run()}
+        onClick={() => editor.chain().focus().setTextAlign('center').run()}
       >
         <AlignCenter size={14} />
       </Btn>
       <Btn
         title="Align right"
         active={isAlignRight}
-        onClick={() => editor.chain().focus().setTextAlign("right").run()}
+        onClick={() => editor.chain().focus().setTextAlign('right').run()}
       >
         <AlignRight size={14} />
       </Btn>
       <Btn
         title="Justify"
         active={isAlignJustify}
-        onClick={() => editor.chain().focus().setTextAlign("justify").run()}
+        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
       >
         <AlignJustify size={14} />
       </Btn>
@@ -239,7 +245,7 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
           title="Line height"
           value={lineHeight}
           options={LINE_HEIGHTS}
-          onChange={(v) => setBlockAttr(editor, "lineHeight", v)}
+          onChange={(v) => setBlockAttr(editor, 'lineHeight', v)}
         />
       )}
       {inList && (
@@ -248,19 +254,19 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
             title="List indent"
             value={paddingLeft}
             options={LIST_PADDING}
-            onChange={(v) => setBlockAttr(editor, "paddingLeft", v)}
+            onChange={(v) => setBlockAttr(editor, 'paddingLeft', v)}
           />
           <MiniSelect
             title="List pad top"
             value={paddingTop}
             options={VERTICAL_SPACING}
-            onChange={(v) => setBlockAttr(editor, "paddingTop", v)}
+            onChange={(v) => setBlockAttr(editor, 'paddingTop', v)}
           />
           <MiniSelect
             title="List pad bottom"
             value={paddingBottom}
             options={VERTICAL_SPACING}
-            onChange={(v) => setBlockAttr(editor, "paddingBottom", v)}
+            onChange={(v) => setBlockAttr(editor, 'paddingBottom', v)}
           />
         </>
       )}
@@ -268,13 +274,13 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
         title="Space before"
         value={marginTop}
         options={VERTICAL_SPACING}
-        onChange={(v) => setBlockAttr(editor, "marginTop", v)}
+        onChange={(v) => setBlockAttr(editor, 'marginTop', v)}
       />
       <MiniSelect
         title="Space after"
         value={marginBottom}
         options={VERTICAL_SPACING}
-        onChange={(v) => setBlockAttr(editor, "marginBottom", v)}
+        onChange={(v) => setBlockAttr(editor, 'marginBottom', v)}
       />
 
       <span className="bg-border mx-0.5 h-4 w-px" />
@@ -282,12 +288,15 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
       <input
         type="color"
         title="Text color"
-        className="w-6 h-6 p-0 border-0 rounded cursor-pointer bg-transparent"
+        className="h-6 w-6 cursor-pointer rounded border-0 bg-transparent p-0"
         value={textColor}
         onMouseDown={(e) => e.stopPropagation()}
         onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
       />
-      <Btn title="Clear color" onClick={() => editor.chain().focus().unsetColor().run()}>
+      <Btn
+        title="Clear color"
+        onClick={() => editor.chain().focus().unsetColor().run()}
+      >
         <span className="text-[10px] font-medium">A</span>
       </Btn>
 
@@ -297,7 +306,10 @@ export default function EditorToolbar({ editor, floating, anchored }: EditorTool
         <Link2 size={14} />
       </Btn>
       {isLink && (
-        <Btn title="Remove link" onClick={() => editor.chain().focus().unsetLink().run()}>
+        <Btn
+          title="Remove link"
+          onClick={() => editor.chain().focus().unsetLink().run()}
+        >
           <Unlink size={14} />
         </Btn>
       )}

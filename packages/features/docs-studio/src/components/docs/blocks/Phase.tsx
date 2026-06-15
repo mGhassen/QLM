@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface PhaseProps {
   title?: string;
@@ -15,33 +15,38 @@ interface PhaseProps {
 
 export default function Phase({
   title,
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
   onPropChange,
   onActivate,
 }: PhaseProps) {
-  const lines = content.split("\n").filter(Boolean);
-  const phaseTitle = title ?? lines[0]?.replace(/^#+\s*/, "") ?? "";
-  const listContent = title !== undefined ? content : lines.slice(1).join("\n");
+  const lines = content.split('\n').filter(Boolean);
+  const phaseTitle = title ?? lines[0]?.replace(/^#+\s*/, '') ?? '';
+  const listContent = title !== undefined ? content : lines.slice(1).join('\n');
 
   function updateTitle(newTitle: string) {
     if (onPropChange) {
-      onPropChange("title", newTitle);
+      onPropChange('title', newTitle);
       return;
     }
-    onChange?.([newTitle, listContent].filter(Boolean).join("\n"));
+    onChange?.([newTitle, listContent].filter(Boolean).join('\n'));
   }
 
   function updateBody(newBody: string) {
-    onChange?.([phaseTitle, newBody].filter(Boolean).join("\n"));
+    onChange?.([phaseTitle, newBody].filter(Boolean).join('\n'));
   }
 
   return (
     <div className="phase">
       {(phaseTitle || editable) && (
-        <StudioPopover editable={editable} value={phaseTitle} onChange={updateTitle} onActivate={onActivate}>
+        <StudioPopover
+          editable={editable}
+          value={phaseTitle}
+          onChange={updateTitle}
+          onActivate={onActivate}
+        >
           <div className="ph">{phaseTitle}</div>
         </StudioPopover>
       )}

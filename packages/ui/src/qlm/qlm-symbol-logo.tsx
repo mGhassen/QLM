@@ -15,36 +15,35 @@ export type QLMSymbolLogoProps = SVGAttributes<SVGSVGElement> & {
  * Pair with `group` + `group-hover:` on an ancestor for a light specular lift (`brightness` on the SVG).
  * ViewBox includes padding so the glyph does not fill edge-to-edge in fixed icon slots (e.g. `size-8`).
  */
-export const QLMSymbolLogo = forwardRef<
-  SVGSVGElement,
-  QLMSymbolLogoProps
->(function QLMSymbolLogo(
-  {
-    className,
-    symbolFill = '#ffcb51',
-    role,
-    'aria-label': ariaLabel = 'QLM',
-    'aria-hidden': ariaHidden,
-    ...props
+export const QLMSymbolLogo = forwardRef<SVGSVGElement, QLMSymbolLogoProps>(
+  function QLMSymbolLogo(
+    {
+      className,
+      symbolFill = '#ffcb51',
+      role,
+      'aria-label': ariaLabel = 'QLM',
+      'aria-hidden': ariaHidden,
+      ...props
+    },
+    ref,
+  ) {
+    const decorative = ariaHidden === true;
+    return (
+      <svg
+        ref={ref}
+        role={decorative ? 'presentation' : (role ?? 'img')}
+        aria-label={decorative ? undefined : ariaLabel}
+        aria-hidden={ariaHidden}
+        viewBox="-22 -18 156 164"
+        xmlns="http://www.w3.org/2000/svg"
+        className={cn(
+          'shrink-0 transition-[filter] duration-200 ease-out group-hover:brightness-110 group-data-[state=open]:brightness-110',
+          className,
+        )}
+        {...props}
+      >
+        <path fill={symbolFill} d={SYMBOL_PATH} />
+      </svg>
+    );
   },
-  ref,
-) {
-  const decorative = ariaHidden === true;
-  return (
-    <svg
-      ref={ref}
-      role={decorative ? 'presentation' : (role ?? 'img')}
-      aria-label={decorative ? undefined : ariaLabel}
-      aria-hidden={ariaHidden}
-      viewBox="-22 -18 156 164"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        'shrink-0 transition-[filter] duration-200 ease-out group-hover:brightness-110 group-data-[state=open]:brightness-110',
-        className,
-      )}
-      {...props}
-    >
-      <path fill={symbolFill} d={SYMBOL_PATH} />
-    </svg>
-  );
-});
+);

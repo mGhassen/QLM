@@ -1,4 +1,4 @@
-import type { ResolvedPageSetup } from "./page-setup";
+import type { ResolvedPageSetup } from './page-setup';
 
 export function mmToPx(mm: number): number {
   return mm * (96 / 25.4);
@@ -9,7 +9,10 @@ export function getPageContentWidthPx(setup: ResolvedPageSetup): number {
 }
 
 /** Inner width for blocks inside `.doc-section` (zone padding on both sides). */
-export function getSectionChildWidthPx(pageContentWidthPx: number, zonePadMm = 16): number {
+export function getSectionChildWidthPx(
+  pageContentWidthPx: number,
+  zonePadMm = 16,
+): number {
   return Math.max(0, pageContentWidthPx - 2 * mmToPx(zonePadMm));
 }
 

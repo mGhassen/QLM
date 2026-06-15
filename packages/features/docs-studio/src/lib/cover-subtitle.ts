@@ -11,17 +11,17 @@ function lineValue(lines: string[], key: string): string | undefined {
 
 export function parseCoverSubtitle(content: string): CoverSubtitleData {
   const trimmed = content.trim();
-  const lines = trimmed.split("\n");
+  const lines = trimmed.split('\n');
 
-  const subtitleUp = lineValue(lines, "subtitleUp");
-  const subtitleOr = lineValue(lines, "subtitleOr");
-  const subtitleDown = lineValue(lines, "subtitleDown");
+  const subtitleUp = lineValue(lines, 'subtitleUp');
+  const subtitleOr = lineValue(lines, 'subtitleOr');
+  const subtitleDown = lineValue(lines, 'subtitleDown');
 
   if (subtitleUp || subtitleOr || subtitleDown) {
     return { subtitleUp, subtitleOr, subtitleDown };
   }
 
-  const md = trimmed.replace(/\n/g, " ");
+  const md = trimmed.replace(/\n/g, ' ');
   const match = md.match(/^\*\*(.+?)\*\*\s*\*(.+?)\*\s*(.+)$/);
   if (match) {
     return {
@@ -36,12 +36,18 @@ export function parseCoverSubtitle(content: string): CoverSubtitleData {
 
 export function serializeCoverSubtitle(data: CoverSubtitleData): string {
   const lines: string[] = [];
-  if (data.subtitleUp?.trim()) lines.push(`subtitleUp: ${data.subtitleUp.trim()}`);
-  if (data.subtitleOr?.trim()) lines.push(`subtitleOr: ${data.subtitleOr.trim()}`);
-  if (data.subtitleDown?.trim()) lines.push(`subtitleDown: ${data.subtitleDown.trim()}`);
-  return lines.join("\n");
+  if (data.subtitleUp?.trim())
+    lines.push(`subtitleUp: ${data.subtitleUp.trim()}`);
+  if (data.subtitleOr?.trim())
+    lines.push(`subtitleOr: ${data.subtitleOr.trim()}`);
+  if (data.subtitleDown?.trim())
+    lines.push(`subtitleDown: ${data.subtitleDown.trim()}`);
+  return lines.join('\n');
 }
 
-export function patchCoverSubtitle(content: string, patch: Partial<CoverSubtitleData>): string {
+export function patchCoverSubtitle(
+  content: string,
+  patch: Partial<CoverSubtitleData>,
+): string {
   return serializeCoverSubtitle({ ...parseCoverSubtitle(content), ...patch });
 }

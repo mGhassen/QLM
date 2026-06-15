@@ -269,8 +269,7 @@ function QweryAgentUIContent(props: QweryAgentUIProps) {
     let webSearch = false;
     if (typeof window !== 'undefined') {
       try {
-        webSearch =
-          localStorage.getItem('qlm-web-search-enabled') === 'true';
+        webSearch = localStorage.getItem('qlm-web-search-enabled') === 'true';
       } catch {
         /* ignore */
       }
@@ -336,10 +335,7 @@ function QweryAgentUIContent(props: QweryAgentUIProps) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      localStorage.setItem(
-        'qlm-web-search-enabled',
-        String(state.webSearch),
-      );
+      localStorage.setItem('qlm-web-search-enabled', String(state.webSearch));
     } catch {
       /* ignore */
     }

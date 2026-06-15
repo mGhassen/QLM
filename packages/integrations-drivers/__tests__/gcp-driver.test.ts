@@ -9,8 +9,7 @@ const VALID_SERVICE_ACCOUNT = JSON.stringify({
   project_id: 'qlm-analytics-prod',
   private_key_id: '1234567890abcdef',
   private_key: '-----BEGIN PRIVATE KEY-----\nfake\n-----END PRIVATE KEY-----\n',
-  client_email:
-    'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
+  client_email: 'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
 });
 
 const GCP_CREDS: RevealedCredentials = {
@@ -48,8 +47,7 @@ describe('GcpDriver.testConnection', () => {
 
     expect(result).toEqual({
       ok: true,
-      identity:
-        'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
+      identity: 'qlm-runtime@qlm-analytics-prod.iam.gserviceaccount.com',
     });
     expect(calls).toHaveLength(1);
     expect(calls[0]).toBe(

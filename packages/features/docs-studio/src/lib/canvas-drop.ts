@@ -1,8 +1,12 @@
-import { canAcceptChildren, canNestChildIn, isDescendant } from "./block-schema";
-import { findBlockById } from "./serialize";
-import type { BlockNode, BlockType } from "./types";
+import {
+  canAcceptChildren,
+  canNestChildIn,
+  isDescendant,
+} from './block-schema';
+import { findBlockById } from './serialize';
+import type { BlockNode, BlockType } from './types';
 
-export type DropPosition = "before" | "after" | "inside";
+export type DropPosition = 'before' | 'after' | 'inside';
 
 export interface CanvasDropTarget {
   blockId: string;
@@ -20,7 +24,9 @@ function blockElementsAtPoint(clientX: number, clientY: number): HTMLElement[] {
   const result: HTMLElement[] = [];
 
   for (const el of document.elementsFromPoint(clientX, clientY)) {
-    const blockEl = (el as HTMLElement).closest?.("[data-block-id]") as HTMLElement | null;
+    const blockEl = (el as HTMLElement).closest?.(
+      '[data-block-id]',
+    ) as HTMLElement | null;
     if (blockEl && !seen.has(blockEl)) {
       seen.add(blockEl);
       result.push(blockEl);
@@ -42,13 +48,19 @@ function gridCellFromPoint(
   cols: number,
   rows: number,
 ): number | undefined {
-  const gridInner = el.querySelector(".studio-grid") as HTMLElement | null;
+  const gridInner = el.querySelector('.studio-grid') as HTMLElement | null;
   const target = gridInner ?? el;
   const rect = target.getBoundingClientRect();
   if (rect.width <= 0 || rect.height <= 0) return undefined;
 
-  const col = Math.min(cols - 1, Math.max(0, Math.floor(((clientX - rect.left) / rect.width) * cols)));
-  const row = Math.min(rows - 1, Math.max(0, Math.floor(((clientY - rect.top) / rect.height) * rows)));
+  const col = Math.min(
+    cols - 1,
+    Math.max(0, Math.floor(((clientX - rect.left) / rect.width) * cols)),
+  );
+  const row = Math.min(
+    rows - 1,
+    Math.max(0, Math.floor(((clientY - rect.top) / rect.height) * rows)),
+  );
   return row * cols + col;
 }
 
@@ -62,15 +74,15 @@ function resolveDropPosition(
   const midY = rect.top + rect.height / 2;
 
   if (isContainer) {
-    if (clientY <= topBand + MAGNET_PX) return "before";
-    if (clientY >= bottomBand - MAGNET_PX) return "after";
-    if (clientY > topBand && clientY < bottomBand) return "inside";
-    return clientY < midY ? "before" : "after";
+    if (clientY <= topBand + MAGNET_PX) return 'before';
+    if (clientY >= bottomBand - MAGNET_PX) return 'after';
+    if (clientY > topBand && clientY < bottomBand) return 'inside';
+    return clientY < midY ? 'before' : 'after';
   }
 
-  if (clientY <= midY + MAGNET_PX / 2) return "before";
-  if (clientY >= midY - MAGNET_PX / 2) return "after";
-  return clientY < midY ? "before" : "after";
+  if (clientY <= midY + MAGNET_PX / 2) return 'before';
+  if (clientY >= midY - MAGNET_PX / 2) return 'after';
+  return clientY < midY ? 'before' : 'after';
 }
 
 export function findCanvasDropTarget(
@@ -88,9 +100,13 @@ export function findCanvasDropTarget(
   if (!dragged) return null;
 
   for (const el of blockElementsAtPoint(clientX, clientY)) {
-    const blockId = el.getAttribute("data-block-id");
+    const blockId = el.getAttribute('data-block-id');
     if (!blockId) continue;
-    if (!paletteType && (blockId === dragBlockId || isDescendant(blocks, dragBlockId, blockId))) continue;
+    if (
+      !paletteType &&
+      (blockId === dragBlockId || isDescendant(blocks, dragBlockId, blockId))
+    )
+      continue;
 
     const block = findBlockById(blocks, blockId);
     if (!block) continue;
@@ -102,13 +118,13 @@ export function findCanvasDropTarget(
     const canNest = dragged && canNestChildIn(block, dragged.type as BlockType);
     let position = resolveDropPosition(clientY, rect, isContainer);
 
-    if (reorderOnly && position === "inside") {
-      position = clientY < rect.top + rect.height / 2 ? "before" : "after";
+    if (reorderOnly && position === 'inside') {
+      position = clientY < rect.top + rect.height / 2 ? 'before' : 'after';
     }
 
-    if (position === "inside") {
+    if (position === 'inside') {
       let index = dropIndexForInside(block);
-      if (block.type === "grid") {
+      if (block.type === 'grid') {
         const cols = (block.props?.cols as number) ?? 2;
         const rows = (block.props?.rows as number) ?? 1;
         const cell = gridCellFromPoint(el, clientX, clientY, cols, rows);
@@ -116,7 +132,7 @@ export function findCanvasDropTarget(
       }
       return {
         blockId,
-        position: "inside",
+        position: 'inside',
         index,
         rect,
         valid: !!canNest,
@@ -138,7 +154,8 @@ export function getAncestorIds(blocks: BlockNode[], id: string): string[] {
         path.push(...ancestors);
         return true;
       }
-      if (node.children && walk(node.children, [...ancestors, node.id])) return true;
+      if (node.children && walk(node.children, [...ancestors, node.id]))
+        return true;
     }
     return false;
   }
@@ -147,13 +164,17 @@ export function getAncestorIds(blocks: BlockNode[], id: string): string[] {
   return path;
 }
 
-export function parseStudioDragId(
-  dragId: string | number,
-): { blockId: string | null; source: "tree" | "canvas" | "palette"; paletteType?: string } {
+export function parseStudioDragId(dragId: string | number): {
+  blockId: string | null;
+  source: 'tree' | 'canvas' | 'palette';
+  paletteType?: string;
+} {
   const id = String(dragId);
-  if (id.startsWith("canvas:")) return { blockId: id.slice(7), source: "canvas" };
-  if (id.startsWith("palette:")) return { blockId: null, source: "palette", paletteType: id.slice(8) };
-  return { blockId: id, source: "tree" };
+  if (id.startsWith('canvas:'))
+    return { blockId: id.slice(7), source: 'canvas' };
+  if (id.startsWith('palette:'))
+    return { blockId: null, source: 'palette', paletteType: id.slice(8) };
+  return { blockId: id, source: 'tree' };
 }
 
 export function canvasDragId(blockId: string) {

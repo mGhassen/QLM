@@ -1,15 +1,18 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { Input } from "@qlm/ui/input";
-import { cn } from "@qlm/ui/utils";
+import { useEffect, useRef, useState } from 'react';
+import { Input } from '@qlm/ui/input';
+import { cn } from '@qlm/ui/utils';
 
 interface StudioDocTitleProps {
   title: string;
   onChange: (title: string) => void;
 }
 
-export default function StudioDocTitle({ title, onChange }: StudioDocTitleProps) {
+export default function StudioDocTitle({
+  title,
+  onChange,
+}: StudioDocTitleProps) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -27,7 +30,7 @@ export default function StudioDocTitle({ title, onChange }: StudioDocTitleProps)
 
   function commit() {
     setEditing(false);
-    const trimmed = draft.trim() || "New Doc";
+    const trimmed = draft.trim() || 'New Doc';
     setDraft(trimmed);
     if (trimmed !== title) onChange(trimmed);
   }
@@ -40,11 +43,11 @@ export default function StudioDocTitle({ title, onChange }: StudioDocTitleProps)
         onChange={(e) => setDraft(e.target.value)}
         onBlur={commit}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             e.preventDefault();
             commit();
           }
-          if (e.key === "Escape") {
+          if (e.key === 'Escape') {
             setDraft(title);
             setEditing(false);
           }
@@ -59,7 +62,7 @@ export default function StudioDocTitle({ title, onChange }: StudioDocTitleProps)
       type="button"
       onClick={() => setEditing(true)}
       className={cn(
-        "hover:bg-accent -mx-1 max-w-[24rem] truncate px-1 text-left text-sm font-medium transition-colors",
+        'hover:bg-accent -mx-1 max-w-[24rem] truncate px-1 text-left text-sm font-medium transition-colors',
       )}
       title="Rename document"
     >

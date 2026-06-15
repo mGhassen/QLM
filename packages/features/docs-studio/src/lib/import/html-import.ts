@@ -1,77 +1,85 @@
-import * as cheerio from "cheerio";
-import type { Element } from "domhandler";
+import * as cheerio from 'cheerio';
+import type { Element } from 'domhandler';
 
-import { DOC_VERSION_FLOW } from "../flow-doc";
-import { generateId } from "../serialize";
-import type { BlockNode, DocDocument } from "../types";
-import { titleFromFilename } from "./slugify";
-import { IMPORT_ASSET_PREFIX, type ImportAsset, type ImportResult } from "./types";
+import { DOC_VERSION_FLOW } from '../flow-doc';
+import { generateId } from '../serialize';
+import type { BlockNode, DocDocument } from '../types';
+import { titleFromFilename } from './slugify';
+import {
+  IMPORT_ASSET_PREFIX,
+  type ImportAsset,
+  type ImportResult,
+} from './types';
 
 type CheerioRoot = cheerio.CheerioAPI;
 
 type HtmlElement = Element;
 
 function textOf($: CheerioRoot, el: HtmlElement): string {
-  return $(el).text().replace(/\s+/g, " ").trim();
+  return $(el).text().replace(/\s+/g, ' ').trim();
 }
 
 function inlineHtmlToMarkdown($: CheerioRoot, el: HtmlElement): string {
-  let html = $(el).html() ?? "";
+  let html = $(el).html() ?? '';
   html = html
-    .replace(/<strong>(.*?)<\/strong>/gi, "**$1**")
-    .replace(/<b>(.*?)<\/b>/gi, "**$1**")
-    .replace(/<em>(.*?)<\/em>/gi, "*$1*")
-    .replace(/<i>(.*?)<\/i>/gi, "*$1*")
-    .replace(/<a[^>]+href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi, "[$2]($1)")
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/<\/p>\s*<p>/gi, "\n\n")
-    .replace(/<p>/gi, "")
-    .replace(/<\/p>/gi, "\n")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&#160;/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
+    .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
+    .replace(/<b>(.*?)<\/b>/gi, '**$1**')
+    .replace(/<em>(.*?)<\/em>/gi, '*$1*')
+    .replace(/<i>(.*?)<\/i>/gi, '*$1*')
+    .replace(/<a[^>]+href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi, '[$2]($1)')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>\s*<p>/gi, '\n\n')
+    .replace(/<p>/gi, '')
+    .replace(/<\/p>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&#160;/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
     .trim();
   return html;
 }
 
-function listToMarkdown($: CheerioRoot, el: HtmlElement, ordered: boolean): string {
+function listToMarkdown(
+  $: CheerioRoot,
+  el: HtmlElement,
+  ordered: boolean,
+): string {
   const items: string[] = [];
   $(el)
-    .children("li")
+    .children('li')
     .each((index, li) => {
-      const prefix = ordered ? `${index + 1}.` : "-";
+      const prefix = ordered ? `${index + 1}.` : '-';
       items.push(`${prefix} ${inlineHtmlToMarkdown($, li)}`);
     });
-  return items.join("\n");
+  return items.join('\n');
 }
 
 function tableToContent($: CheerioRoot, table: HtmlElement): string {
   const rows: string[] = [];
   $(table)
-    .find("tr")
+    .find('tr')
     .each((_, row) => {
       const cells: string[] = [];
       $(row)
-        .find("th, td")
+        .find('th, td')
         .each((__, cell) => {
           cells.push(textOf($, cell));
         });
       if (cells.length > 0) {
-        rows.push(cells.join(" | "));
+        rows.push(cells.join(' | '));
       }
     });
-  return rows.join("\n");
+  return rows.join('\n');
 }
 
 function resolveRoot($: CheerioRoot): cheerio.Cheerio<HtmlElement> {
-  const main = $("main").first();
+  const main = $('main').first();
   if (main.length > 0) return main;
-  const article = $("article").first();
+  const article = $('article').first();
   if (article.length > 0) return article;
-  return $("body");
+  return $('body');
 }
 
 class HtmlDocBuilder {
@@ -83,7 +91,7 @@ class HtmlDocBuilder {
   private ensureSection(pageBreak = false): BlockNode[] {
     let page = this.pages[this.pages.length - 1];
     if (!page || pageBreak) {
-      page = { id: generateId("page"), type: "page", children: [] };
+      page = { id: generateId('page'), type: 'page', children: [] };
       this.pages.push(page);
     }
 
@@ -92,8 +100,8 @@ class HtmlDocBuilder {
     if (!lastSection || pageBreak) {
       this.sectionNum += 1;
       const section: BlockNode = {
-        id: generateId("section"),
-        type: "section",
+        id: generateId('section'),
+        type: 'section',
         props: {
           id: `section-${this.sectionNum}`,
           ...(pageBreak ? { pageBreak: true } : {}),
@@ -115,17 +123,17 @@ class HtmlDocBuilder {
   addHeading(level: 1 | 2 | 3 | 4, text: string) {
     if (level === 1) {
       this.pages.push({
-        id: generateId("page"),
-        type: "page",
+        id: generateId('page'),
+        type: 'page',
         children: [
           {
-            id: generateId("section"),
-            type: "section",
+            id: generateId('section'),
+            type: 'section',
             props: { id: `section-${++this.sectionNum}` },
             children: [
               {
-                id: generateId("opener"),
-                type: "opener",
+                id: generateId('opener'),
+                type: 'opener',
                 content: text,
               },
             ],
@@ -138,8 +146,8 @@ class HtmlDocBuilder {
     if (level === 2) {
       this.pushBlock(
         {
-          id: generateId("subheading"),
-          type: "subheading",
+          id: generateId('subheading'),
+          type: 'subheading',
           props: { level: 2 },
           content: text,
         },
@@ -149,8 +157,8 @@ class HtmlDocBuilder {
     }
 
     this.pushBlock({
-      id: generateId("subheading"),
-      type: "subheading",
+      id: generateId('subheading'),
+      type: 'subheading',
       props: { level },
       content: text,
     });
@@ -159,53 +167,53 @@ class HtmlDocBuilder {
   addParagraph(text: string) {
     if (!text.trim()) return;
     this.pushBlock({
-      id: generateId("paragraph"),
-      type: "paragraph",
+      id: generateId('paragraph'),
+      type: 'paragraph',
       content: text,
     });
   }
 
   addQuote(text: string) {
     this.pushBlock({
-      id: generateId("quote"),
-      type: "quote",
+      id: generateId('quote'),
+      type: 'quote',
       content: text,
     });
   }
 
   addTable(content: string) {
     this.pushBlock({
-      id: generateId("table"),
-      type: "table",
+      id: generateId('table'),
+      type: 'table',
       content,
     });
   }
 
-  addFigure(src: string, alt = "") {
+  addFigure(src: string, alt = '') {
     this.pushBlock({
-      id: generateId("figure"),
-      type: "figure",
+      id: generateId('figure'),
+      type: 'figure',
       content: `src: ${src}\ncaption: ${alt}`,
     });
   }
 
   addBreak() {
-    this.pushBlock({ id: generateId("break"), type: "break" });
+    this.pushBlock({ id: generateId('break'), type: 'break' });
   }
 
   addImage($: CheerioRoot, el: HtmlElement) {
-    const src = $(el).attr("src") ?? "";
-    const alt = $(el).attr("alt") ?? "";
+    const src = $(el).attr('src') ?? '';
+    const alt = $(el).attr('alt') ?? '';
     if (!src) return;
 
     const dataUriMatch = src.match(/^data:image\/(\w+);base64,(.+)$/);
     if (dataUriMatch) {
-      const ext = dataUriMatch[1] === "jpeg" ? "jpg" : dataUriMatch[1];
+      const ext = dataUriMatch[1] === 'jpeg' ? 'jpg' : dataUriMatch[1];
       this.imgCounter += 1;
       const filename = `figure-${this.imgCounter}.${ext}`;
       this.assets.push({
         filename,
-        buffer: Buffer.from(dataUriMatch[2], "base64"),
+        buffer: Buffer.from(dataUriMatch[2], 'base64'),
         contentType: `image/${dataUriMatch[1]}`,
       });
       this.addFigure(`${IMPORT_ASSET_PREFIX}${filename}`, alt);
@@ -220,16 +228,16 @@ class HtmlDocBuilder {
   buildDocument(): DocDocument {
     if (this.pages.length === 0) {
       this.pushBlock({
-        id: generateId("paragraph"),
-        type: "paragraph",
-        content: "",
+        id: generateId('paragraph'),
+        type: 'paragraph',
+        content: '',
       });
     }
 
     return {
       version: DOC_VERSION_FLOW,
-      layoutMode: "paginated",
-      pageFormat: "a4",
+      layoutMode: 'paginated',
+      pageFormat: 'a4',
       chrome: {
         headerEnabled: false,
         footerEnabled: false,
@@ -240,22 +248,30 @@ class HtmlDocBuilder {
 }
 
 const BLOCK_TAGS = new Set([
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "p",
-  "ul",
-  "ol",
-  "blockquote",
-  "table",
-  "img",
-  "pre",
-  "code",
-  "hr",
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'p',
+  'ul',
+  'ol',
+  'blockquote',
+  'table',
+  'img',
+  'pre',
+  'code',
+  'hr',
 ]);
 
-const CONTAINER_TAGS = new Set(["div", "section", "article", "main", "body", "header", "footer"]);
+const CONTAINER_TAGS = new Set([
+  'div',
+  'section',
+  'article',
+  'main',
+  'body',
+  'header',
+  'footer',
+]);
 
 function walkNode($: CheerioRoot, node: HtmlElement, builder: HtmlDocBuilder) {
   const tag = node.tagName?.toLowerCase();
@@ -265,10 +281,10 @@ function walkNode($: CheerioRoot, node: HtmlElement, builder: HtmlDocBuilder) {
     $(node)
       .contents()
       .each((_, child) => {
-        if (child.type === "tag") {
+        if (child.type === 'tag') {
           walkNode($, child, builder);
-        } else if (child.type === "text") {
-          const text = (child.data ?? "").replace(/\s+/g, " ").trim();
+        } else if (child.type === 'text') {
+          const text = (child.data ?? '').replace(/\s+/g, ' ').trim();
           if (text) builder.addParagraph(text);
         }
       });
@@ -278,45 +294,45 @@ function walkNode($: CheerioRoot, node: HtmlElement, builder: HtmlDocBuilder) {
   if (!BLOCK_TAGS.has(tag)) return;
 
   switch (tag) {
-    case "h1":
+    case 'h1':
       builder.addHeading(1, textOf($, node));
       break;
-    case "h2":
+    case 'h2':
       builder.addHeading(2, textOf($, node));
       break;
-    case "h3":
+    case 'h3':
       builder.addHeading(3, textOf($, node));
       break;
-    case "h4":
+    case 'h4':
       builder.addHeading(4, textOf($, node));
       break;
-    case "p":
+    case 'p':
       builder.addParagraph(inlineHtmlToMarkdown($, node));
       break;
-    case "ul":
+    case 'ul':
       builder.addParagraph(listToMarkdown($, node, false));
       break;
-    case "ol":
+    case 'ol':
       builder.addParagraph(listToMarkdown($, node, true));
       break;
-    case "blockquote":
+    case 'blockquote':
       builder.addQuote(inlineHtmlToMarkdown($, node));
       break;
-    case "table":
+    case 'table':
       builder.addTable(tableToContent($, node));
       break;
-    case "img":
+    case 'img':
       builder.addImage($, node);
       break;
-    case "pre":
+    case 'pre':
       builder.addParagraph(`\`\`\`\n${$(node).text()}\n\`\`\``);
       break;
-    case "code":
-      if ($(node).parents("pre").length === 0) {
+    case 'code':
+      if ($(node).parents('pre').length === 0) {
         builder.addParagraph(`\`${$(node).text()}\``);
       }
       break;
-    case "hr":
+    case 'hr':
       builder.addBreak();
       break;
     default:
@@ -326,17 +342,17 @@ function walkNode($: CheerioRoot, node: HtmlElement, builder: HtmlDocBuilder) {
 
 export function importHtml(html: string, filename?: string): ImportResult {
   const $ = cheerio.load(html);
-  $("script, style, noscript").remove();
+  $('script, style, noscript').remove();
 
   const title =
-    $("title").first().text().trim() ||
-    $("h1").first().text().trim() ||
-    (filename ? titleFromFilename(filename) : "Imported document");
+    $('title').first().text().trim() ||
+    $('h1').first().text().trim() ||
+    (filename ? titleFromFilename(filename) : 'Imported document');
 
   const builder = new HtmlDocBuilder();
   const root = resolveRoot($);
   root.contents().each((_, node) => {
-    if (node.type === "tag") {
+    if (node.type === 'tag') {
       walkNode($, node, builder);
     }
   });

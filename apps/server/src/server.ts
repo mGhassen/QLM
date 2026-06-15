@@ -173,10 +173,7 @@ export function createApp(options?: CreateAppOptions) {
     '/user-tokens',
     createUserTokensRoutes(getRepos, options?.getCurrentAccountId),
   );
-  api.route(
-    '/me/preferences',
-    createUserPreferencesRoutes(getRepos),
-  );
+  api.route('/me/preferences', createUserPreferencesRoutes(getRepos));
   app.route('/api', api);
 
   app.get('/api/openapi.json', (c) => c.json(getOpenAPISpec()));

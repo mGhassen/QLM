@@ -1,12 +1,12 @@
-import type { BlockNode } from "./types";
+import type { BlockNode } from './types';
 
 export const PLACEMENT_KEYS = [
-  "gridColumn",
-  "gridRow",
-  "gridColumnSpan",
-  "gridRowSpan",
-  "translateX",
-  "translateY",
+  'gridColumn',
+  'gridRow',
+  'gridColumnSpan',
+  'gridRowSpan',
+  'translateX',
+  'translateY',
 ] as const;
 
 export type PlacementKey = (typeof PLACEMENT_KEYS)[number];
@@ -43,7 +43,7 @@ export function normalizeBlockAfterReparent(
   parentBlock?: BlockNode | null,
   cellIndex?: number,
 ): BlockNode {
-  if (parentBlock?.type === "grid" && cellIndex != null) {
+  if (parentBlock?.type === 'grid' && cellIndex != null) {
     const cols = (parentBlock.props?.cols as number) ?? 2;
     const rows = (parentBlock.props?.rows as number) ?? 1;
     return {
@@ -70,7 +70,12 @@ export function normalizeBlockPlacementInTree(
     if (block.children) {
       return {
         ...block,
-        children: normalizeBlockPlacementInTree(block.children, blockId, parentBlock, cellIndex),
+        children: normalizeBlockPlacementInTree(
+          block.children,
+          blockId,
+          parentBlock,
+          cellIndex,
+        ),
       };
     }
     return block;

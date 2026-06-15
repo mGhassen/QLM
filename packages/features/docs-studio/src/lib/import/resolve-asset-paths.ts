@@ -1,7 +1,10 @@
-import type { BlockNode } from "../types";
-import { IMPORT_ASSET_PREFIX } from "./types";
+import type { BlockNode } from '../types';
+import { IMPORT_ASSET_PREFIX } from './types';
 
-function rewriteContent(content: string | undefined, slug: string): string | undefined {
+function rewriteContent(
+  content: string | undefined,
+  slug: string,
+): string | undefined {
   if (!content) return content;
   return content.replaceAll(IMPORT_ASSET_PREFIX, `/docs/${slug}/`);
 }
@@ -14,6 +17,9 @@ function walkBlocks(blocks: BlockNode[], slug: string): BlockNode[] {
   }));
 }
 
-export function resolveImportAssetPaths(blocks: BlockNode[], slug: string): BlockNode[] {
+export function resolveImportAssetPaths(
+  blocks: BlockNode[],
+  slug: string,
+): BlockNode[] {
   return walkBlocks(blocks, slug);
 }

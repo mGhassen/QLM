@@ -1,5 +1,5 @@
-import MarkdownContent from "./MarkdownContent";
-import type { BlockNode } from "#/lib/types";
+import MarkdownContent from './MarkdownContent';
+import type { BlockNode } from '#/lib/types';
 
 interface FlowProps {
   content?: string;
@@ -12,7 +12,7 @@ interface FlowProps {
 }
 
 export default function Flow({
-  content = "",
+  content = '',
   editable,
   editing,
   blockId,

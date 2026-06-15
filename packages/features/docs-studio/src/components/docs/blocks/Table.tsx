@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { extractTableData } from "#/lib/markdoc";
-import WysiwygEditor from "../studio/WysiwygEditor";
-import StudioPopover from "../studio/StudioPopover";
+import { useState } from 'react';
+import { extractTableData } from '#/lib/markdoc';
+import WysiwygEditor from '../studio/WysiwygEditor';
+import StudioPopover from '../studio/StudioPopover';
 
 interface TableProps {
   title?: string;
@@ -38,8 +38,8 @@ function TablePreview({
       {(title || editable) && (
         <StudioPopover
           editable={editable}
-          value={title ?? ""}
-          onChange={(v) => onPropChange?.("title", v)}
+          value={title ?? ''}
+          onChange={(v) => onPropChange?.('title', v)}
           singleLine
           editing={editing}
           onActivate={onActivate}
@@ -58,12 +58,18 @@ function TablePreview({
           </thead>
           <tbody>
             {data.rows.map((row, ri) => (
-              <tr key={ri} className={row[0]?.startsWith("**") ? "bf" : undefined}>
+              <tr
+                key={ri}
+                className={row[0]?.startsWith('**') ? 'bf' : undefined}
+              >
                 {row.map((cell, ci) => (
                   <td
                     key={ci}
                     dangerouslySetInnerHTML={{
-                      __html: cell.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>"),
+                      __html: cell.replace(
+                        /\*\*(.+?)\*\*/g,
+                        '<strong>$1</strong>',
+                      ),
                     }}
                   />
                 ))}
@@ -78,8 +84,8 @@ function TablePreview({
 
 export default function Table({
   title,
-  variant = "",
-  content = "",
+  variant = '',
+  content = '',
   editable,
   editing,
   onChange,
@@ -89,7 +95,7 @@ export default function Table({
   const [active, setActive] = useState(false);
   const isEditing = active || !!editing;
   const data = extractTableData(content);
-  const variantClass = variant ? ` ${variant}` : "";
+  const variantClass = variant ? ` ${variant}` : '';
 
   if (!data && !editable) return null;
 
@@ -111,9 +117,12 @@ export default function Table({
 
   return (
     <div
-      className={["studio-table-edit", !isEditing ? "studio-inline-field studio-inline-field-idle" : ""]
+      className={[
+        'studio-table-edit',
+        !isEditing ? 'studio-inline-field studio-inline-field-idle' : '',
+      ]
         .filter(Boolean)
-        .join(" ")}
+        .join(' ')}
       onMouseDown={(e) => {
         if (isEditing) e.stopPropagation();
       }}

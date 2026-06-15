@@ -1,6 +1,6 @@
-import { joinContentSegments } from "./content-segments";
-import { breakVariantToSectionProps, type BreakVariant } from "./breaks";
-import type { BlockNode } from "./types";
+import { joinContentSegments } from './content-segments';
+import { breakVariantToSectionProps, type BreakVariant } from './breaks';
+import type { BlockNode } from './types';
 
 export interface FlowUnit {
   key: string;
@@ -38,7 +38,9 @@ function sectionSlice(
 function sectionToUnits(section: BlockNode, breakBefore: boolean): FlowUnit[] {
   const children = section.children ?? [];
   if (children.length === 0) {
-    return [{ key: section.id, blocks: [section], forceBreakBefore: breakBefore }];
+    return [
+      { key: section.id, blocks: [section], forceBreakBefore: breakBefore },
+    ];
   }
 
   const units: FlowUnit[] = [];
@@ -47,10 +49,10 @@ function sectionToUnits(section: BlockNode, breakBefore: boolean): FlowUnit[] {
   let sliceIndex = 0;
 
   for (const child of children) {
-    if (child.type === "break") {
+    if (child.type === 'break') {
       units.push({ key: `break:${child.id}`, blocks: [child], isBreak: true });
       forceNext = true;
-      nextVariant = (child.props?.variant as BreakVariant) ?? "page";
+      nextVariant = (child.props?.variant as BreakVariant) ?? 'page';
       continue;
     }
 
@@ -72,27 +74,37 @@ export function blocksToFlowUnits(blocks: BlockNode[]): FlowUnit[] {
   let pendingVariant: BreakVariant | undefined;
 
   for (const block of blocks) {
-    if (block.type === "break") {
+    if (block.type === 'break') {
       units.push({ key: `break:${block.id}`, blocks: [block], isBreak: true });
-      pendingVariant = (block.props?.variant as BreakVariant) ?? "page";
+      pendingVariant = (block.props?.variant as BreakVariant) ?? 'page';
       continue;
     }
 
-    if (block.type === "cover") {
+    if (block.type === 'cover') {
       pendingVariant = undefined;
       if (units.length > 0) {
-        units[units.length - 1].forceBreakBefore = units[units.length - 1].forceBreakBefore ?? false;
+        units[units.length - 1].forceBreakBefore =
+          units[units.length - 1].forceBreakBefore ?? false;
       }
-      units.push({ key: block.id, blocks: [block], isCover: true, forceBreakBefore: true });
+      units.push({
+        key: block.id,
+        blocks: [block],
+        isCover: true,
+        forceBreakBefore: true,
+      });
       continue;
     }
 
-    if (block.type === "section") {
+    if (block.type === 'section') {
       const sectionUnits = sectionToUnits(block, !!block.props?.pageBreak);
-      if (pendingVariant && sectionUnits.length > 0 && !sectionUnits[0].isBreak) {
+      if (
+        pendingVariant &&
+        sectionUnits.length > 0 &&
+        !sectionUnits[0].isBreak
+      ) {
         sectionUnits[0].forceBreakBefore = true;
         const firstBlock = sectionUnits[0].blocks[0];
-        if (firstBlock.type === "section") {
+        if (firstBlock.type === 'section') {
           sectionUnits[0].blocks = [
             {
               ...firstBlock,
@@ -121,8 +133,8 @@ export function blocksToFlowUnits(blocks: BlockNode[]): FlowUnit[] {
 }
 
 function mergeSegmentChildren(left: BlockNode, right: BlockNode): BlockNode {
-  const leftText = (left.props?.segmentContent as string) ?? "";
-  const rightText = (right.props?.segmentContent as string) ?? "";
+  const leftText = (left.props?.segmentContent as string) ?? '';
+  const rightText = (right.props?.segmentContent as string) ?? '';
   const {
     contentSegment: _leftIndex,
     contentSegmentTotal: _leftTotal,
@@ -161,23 +173,23 @@ export function assemblePageBlocks(units: FlowUnit[]): BlockNode[] {
   for (const unit of units) {
     const block = unit.blocks[0];
 
-    if (block.type === "break") {
+    if (block.type === 'break') {
       blocks.push(block);
       continue;
     }
 
-    if (block.type !== "section") {
+    if (block.type !== 'section') {
       blocks.push(block);
       continue;
     }
 
-    const baseId = block.id.replace(/__p\d+$/, "");
+    const baseId = block.id.replace(/__p\d+$/, '');
     const child = block.children?.[0];
     if (!child) continue;
 
     const prev = blocks[blocks.length - 1];
 
-    if (prev?.type === "section" && prev.id === baseId) {
+    if (prev?.type === 'section' && prev.id === baseId) {
       blocks[blocks.length - 1] = appendSectionChild(prev, child);
       continue;
     }
@@ -185,7 +197,10 @@ export function assemblePageBlocks(units: FlowUnit[]): BlockNode[] {
     blocks.push({
       ...block,
       id: baseId,
-      props: { ...block.props, continuation: block.props?.continuation ?? undefined },
+      props: {
+        ...block.props,
+        continuation: block.props?.continuation ?? undefined,
+      },
     });
   }
 

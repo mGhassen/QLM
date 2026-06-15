@@ -1,9 +1,17 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type DragEvent } from "react";
-import type { CSSProperties } from "react";
-import type { BlockNode, ChromeZoneId, DocChrome } from "#/lib/types";
-import type { ResolvedPageSetup } from "#/lib/page-setup";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type DragEvent,
+} from 'react';
+import type { CSSProperties } from 'react';
+import type { BlockNode, ChromeZoneId, DocChrome } from '#/lib/types';
+import type { ResolvedPageSetup } from '#/lib/page-setup';
 import {
   blocksToLayoutItems,
   layoutItemsEqual,
@@ -12,35 +20,35 @@ import {
   syncItemBlocks,
   syncPackedPageBlocks,
   type PackedPage,
-} from "#/lib/layout-items";
-import { packLayoutItems } from "#/lib/pack-pages";
-import { resolveBlockContent } from "#/lib/content";
-import { splitBlockContentAtPartCount } from "#/lib/block-split";
+} from '#/lib/layout-items';
+import { packLayoutItems } from '#/lib/pack-pages';
+import { resolveBlockContent } from '#/lib/content';
+import { splitBlockContentAtPartCount } from '#/lib/block-split';
 import {
   blocksForItemMeasure,
   fragmentsForItemMeasure,
   fragmentsForPartMeasure,
   itemMeasureWidthPx,
-} from "#/lib/measure-layout-item";
-import { measureUnitBlocksHeight } from "#/lib/measure-unit-height";
-import { refineItemsOnce } from "#/lib/refine-layout-items";
-import type { PageBodyBudgetContext } from "#/lib/page-body-budget";
-import { getPageContentWidthPx } from "#/lib/page-metrics";
-import { pageHasCover, resolveDocChrome } from "#/lib/chrome";
-import { splitBlocksIntoPages } from "#/lib/pages";
-import { itemPackContentHeight } from "#/lib/item-pack-height";
-import { isDocLayoutPaused } from "#/lib/layout-pause";
-import { itemsNeedRepack } from "#/lib/pagination-props";
-import { flowDocumentToLayoutItems } from "#/lib/body-segments";
-import { DOC_VERSION_FLOW } from "#/lib/flow-doc";
-import type { DocDocument } from "#/lib/types";
-import FlowDocViewport from "./studio/FlowDocViewport";
-import DocRenderer from "./DocRenderer";
-import DocPageChrome from "./DocPageChrome";
-import StudioDocChrome from "./studio/StudioDocChrome";
-import PageGapInsert from "./studio/PageGapInsert";
-import StudioPageChrome from "./studio/StudioPageChrome";
-import { createBlock } from "#/lib/serialize";
+} from '#/lib/measure-layout-item';
+import { measureUnitBlocksHeight } from '#/lib/measure-unit-height';
+import { refineItemsOnce } from '#/lib/refine-layout-items';
+import type { PageBodyBudgetContext } from '#/lib/page-body-budget';
+import { getPageContentWidthPx } from '#/lib/page-metrics';
+import { pageHasCover, resolveDocChrome } from '#/lib/chrome';
+import { splitBlocksIntoPages } from '#/lib/pages';
+import { itemPackContentHeight } from '#/lib/item-pack-height';
+import { isDocLayoutPaused } from '#/lib/layout-pause';
+import { itemsNeedRepack } from '#/lib/pagination-props';
+import { flowDocumentToLayoutItems } from '#/lib/body-segments';
+import { DOC_VERSION_FLOW } from '#/lib/flow-doc';
+import type { DocDocument } from '#/lib/types';
+import FlowDocViewport from './studio/FlowDocViewport';
+import DocRenderer from './DocRenderer';
+import DocPageChrome from './DocPageChrome';
+import StudioDocChrome from './studio/StudioDocChrome';
+import PageGapInsert from './studio/PageGapInsert';
+import StudioPageChrome from './studio/StudioPageChrome';
+import { createBlock } from '#/lib/serialize';
 
 interface RendererProps {
   documentBlocks?: BlockNode[];
@@ -53,16 +61,20 @@ interface RendererProps {
   onPropsChange?: (blockId: string, props: Record<string, unknown>) => void;
   onDeleteBlock?: (id: string) => void;
   onDuplicateBlock?: (id: string) => void;
-  onMoveBlock?: (id: string, direction: "up" | "down") => void;
+  onMoveBlock?: (id: string, direction: 'up' | 'down') => void;
   onInsertBlock?: (
     targetId: string,
     block: BlockNode,
-    position: "before" | "after" | "inside",
+    position: 'before' | 'after' | 'inside',
     insideIndex?: number,
   ) => void;
   onNestBlock?: (blockId: string, targetParentId: string) => void;
   dragBlockId?: string | null;
-  onPageDrop?: (blockId: string, pageIndex: number, position: "start" | "end") => void;
+  onPageDrop?: (
+    blockId: string,
+    pageIndex: number,
+    position: 'start' | 'end',
+  ) => void;
   onPageInsert?: (pageIndex: number, block: BlockNode) => void;
   onPagesChange?: (pages: BlockNode[][]) => void;
 }
@@ -83,7 +95,13 @@ interface PaginatedDocLayoutProps extends RendererProps {
   onChromeZoneSelect?: (zone: ChromeZoneId) => void;
 }
 
-function pageChromeFlags(pageBlocks: BlockNode[], chrome: DocChrome | undefined, title: string, page: number, total: number) {
+function pageChromeFlags(
+  pageBlocks: BlockNode[],
+  chrome: DocChrome | undefined,
+  title: string,
+  page: number,
+  total: number,
+) {
   const isCover = pageHasCover(pageBlocks);
   const resolved = resolveDocChrome(chrome, { title, page, total });
   const onCover = isCover && !resolved.showOnCover;
@@ -114,29 +132,41 @@ export default function PaginatedDocLayout({
   const flowMode = Boolean(onBodyChange);
   const flowBodyRead = useMemo(() => {
     if (flowMode || !flowDocument?.body?.trim()) return false;
-    return !blocks.some((block) => block.type !== "cover" && block.type !== "break");
+    return !blocks.some(
+      (block) => block.type !== 'cover' && block.type !== 'break',
+    );
   }, [flowMode, flowDocument, blocks]);
   const useFlowLayout = flowMode || flowBodyRead;
   const docForItems = useMemo(
-    () => flowDocument ?? { version: DOC_VERSION_FLOW, blocks, body: body ?? "" },
+    () =>
+      flowDocument ?? { version: DOC_VERSION_FLOW, blocks, body: body ?? '' },
     [flowDocument, blocks, body],
   );
   const baseItems = useMemo(
-    () => (useFlowLayout ? flowDocumentToLayoutItems(docForItems) : blocksToLayoutItems(blocks)),
+    () =>
+      useFlowLayout
+        ? flowDocumentToLayoutItems(docForItems)
+        : blocksToLayoutItems(blocks),
     [useFlowLayout, docForItems, blocks],
   );
-  const baseStructureKey = useMemo(() => layoutStructureKey(baseItems), [baseItems]);
+  const baseStructureKey = useMemo(
+    () => layoutStructureKey(baseItems),
+    [baseItems],
+  );
   const [items, setItems] = useState(baseItems);
   const itemsRef = useRef(items);
   itemsRef.current = items;
   const structureKeyRef = useRef(baseStructureKey);
   const measureRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PackedPage[]>(() =>
-    splitBlocksIntoPages(blocks).map((pageBlocks) => ({ blocks: pageBlocks, fragments: {} })),
+    splitBlocksIntoPages(blocks).map((pageBlocks) => ({
+      blocks: pageBlocks,
+      fragments: {},
+    })),
   );
   const [pageDropTarget, setPageDropTarget] = useState<{
     page: number;
-    position: "start" | "end";
+    position: 'start' | 'end';
   } | null>(null);
   const onPagesChangeRef = useRef(rendererProps.onPagesChange);
   onPagesChangeRef.current = rendererProps.onPagesChange;
@@ -198,7 +228,9 @@ export default function PaginatedDocLayout({
     const readHeights = () => {
       const heights = new Map<string, number>();
       for (const item of itemsRef.current) {
-        const node = root.querySelector<HTMLElement>(`[data-layout-item="${CSS.escape(item.key)}"]`);
+        const node = root.querySelector<HTMLElement>(
+          `[data-layout-item="${CSS.escape(item.key)}"]`,
+        );
         const measured = node?.getBoundingClientRect().height ?? 0;
         if (measured > 0) {
           heights.set(item.key, itemPackContentHeight(item.block, measured));
@@ -207,8 +239,15 @@ export default function PaginatedDocLayout({
       return heights;
     };
 
-    const measurePartHeight = (item: (typeof items)[number], partCount: number) => {
-      const content = resolveBlockContent(item.block, rendererProps.sections, item.fragment);
+    const measurePartHeight = (
+      item: (typeof items)[number],
+      partCount: number,
+    ) => {
+      const content = resolveBlockContent(
+        item.block,
+        rendererProps.sections,
+        item.fragment,
+      );
       const [first] = splitBlockContentAtPartCount(content, partCount);
       return measureUnitBlocksHeight(
         blocksForItemMeasure(item),
@@ -267,12 +306,7 @@ export default function PaginatedDocLayout({
       onPageCountChange?.(packed.length);
       onPagesChangeRef.current?.(packed.map((page) => page.blocks));
     }
-  }, [
-    budgetCtx,
-    contentWidthPx,
-    onPageCountChange,
-    rendererProps.sections,
-  ]);
+  }, [budgetCtx, contentWidthPx, onPageCountChange, rendererProps.sections]);
 
   repaginateRef.current = repaginate;
 
@@ -285,7 +319,10 @@ export default function PaginatedDocLayout({
     });
   }, []);
 
-  const itemKeys = useMemo(() => items.map((item) => item.key).join("\0"), [items]);
+  const itemKeys = useMemo(
+    () => items.map((item) => item.key).join('\0'),
+    [items],
+  );
 
   useLayoutEffect(() => {
     onPagesChangeRef.current?.(pagesRef.current.map((page) => page.blocks));
@@ -301,7 +338,7 @@ export default function PaginatedDocLayout({
 
   useEffect(() => {
     const el = document.querySelector<HTMLElement>(
-      ".doc-shell.layout-paginated .doc-page-sheet.has-header .doc-page-body",
+      '.doc-shell.layout-paginated .doc-page-sheet.has-header .doc-page-body',
     );
     if (!el) return;
 
@@ -329,7 +366,9 @@ export default function PaginatedDocLayout({
       if (ignore) return;
       scheduleRepaginate();
     });
-    root.querySelectorAll("[data-layout-item]").forEach((node) => observer.observe(node));
+    root
+      .querySelectorAll('[data-layout-item]')
+      .forEach((node) => observer.observe(node));
     observer.observe(root);
     requestAnimationFrame(() => {
       ignore = false;
@@ -348,7 +387,11 @@ export default function PaginatedDocLayout({
     ? { activeZone: selectedChromeZone, onZoneSelect: onChromeZoneSelect }
     : {};
 
-  function handlePageDrop(e: DragEvent, pageIndex: number, position: "start" | "end") {
+  function handlePageDrop(
+    e: DragEvent,
+    pageIndex: number,
+    position: 'start' | 'end',
+  ) {
     e.preventDefault();
     setPageDropTarget(null);
     if (!dragBlockId || !onPageDrop) return;
@@ -369,11 +412,11 @@ export default function PaginatedDocLayout({
           aria-hidden
           style={{
             ...combinedStyle,
-            position: "fixed",
+            position: 'fixed',
             left: -10000,
             top: 0,
-            visibility: "hidden",
-            pointerEvents: "none",
+            visibility: 'hidden',
+            pointerEvents: 'none',
             width: contentWidthPx,
             zIndex: -1,
           }}
@@ -392,13 +435,15 @@ export default function PaginatedDocLayout({
         <div
           className="doc-shell layout-paginated layout-flow-doc"
           data-doc-title={title}
-          data-page-format={resolvedSetup.format === "custom" ? "custom" : resolvedSetup.format}
+          data-page-format={
+            resolvedSetup.format === 'custom' ? 'custom' : resolvedSetup.format
+          }
           data-page-orientation={resolvedSetup.orientation}
           style={setupStyle}
         >
           <FlowDocViewport
             title={title}
-            body={body ?? ""}
+            body={body ?? ''}
             onBodyChange={handleFlowBodyChange}
             blocks={blocks}
             sections={rendererProps.sections}
@@ -428,11 +473,11 @@ export default function PaginatedDocLayout({
         aria-hidden
         style={{
           ...combinedStyle,
-          position: "fixed",
+          position: 'fixed',
           left: -10000,
           top: 0,
-          visibility: "hidden",
-          pointerEvents: "none",
+          visibility: 'hidden',
+          pointerEvents: 'none',
           width: contentWidthPx,
           zIndex: -1,
         }}
@@ -451,10 +496,12 @@ export default function PaginatedDocLayout({
       <div
         className="doc-shell layout-paginated"
         data-doc-title={title}
-        data-page-format={resolvedSetup.format === "custom" ? "custom" : resolvedSetup.format}
+        data-page-format={
+          resolvedSetup.format === 'custom' ? 'custom' : resolvedSetup.format
+        }
         data-page-orientation={resolvedSetup.orientation}
         data-print-size={
-          resolvedSetup.format === "custom"
+          resolvedSetup.format === 'custom'
             ? `${resolvedSetup.widthMm}mm ${resolvedSetup.heightMm}mm`
             : resolvedSetup.printSize
         }
@@ -477,10 +524,10 @@ export default function PaginatedDocLayout({
 
           return (
             <div
-              key={`doc-page-${pageNum}-${page.blocks.map((b) => b.id).join("-")}`}
+              key={`doc-page-${pageNum}-${page.blocks.map((b) => b.id).join('-')}`}
               className="studio-page-unit"
               data-source-page-id={page.sourcePageId}
-              data-page-continuation={page.isContinuation ? "true" : undefined}
+              data-page-continuation={page.isContinuation ? 'true' : undefined}
             >
               {studioMode && (
                 <StudioPageChrome
@@ -488,49 +535,60 @@ export default function PaginatedDocLayout({
                   isContinuation={page.isContinuation}
                   onAddSection={
                     onPageInsert
-                      ? () => onPageInsert(i, createBlock("section"))
+                      ? () => onPageInsert(i, createBlock('section'))
                       : undefined
                   }
-                  onInsertBlock={onPageInsert ? (block) => onPageInsert(i, block) : undefined}
+                  onInsertBlock={
+                    onPageInsert ? (block) => onPageInsert(i, block) : undefined
+                  }
                 />
               )}
               <div
-                className={`doc-page doc-page-sheet${showHeader ? " has-header" : ""}${showFooter ? " has-footer" : ""}${isCover ? " is-cover-page" : ""}${showGuides ? " show-margin-guides" : ""}`}
+                className={`doc-page doc-page-sheet${showHeader ? ' has-header' : ''}${showFooter ? ' has-footer' : ''}${isCover ? ' is-cover-page' : ''}${showGuides ? ' show-margin-guides' : ''}`}
                 data-page={pageNum}
                 data-page-total={total}
                 style={combinedStyle}
               >
                 {showHeader && (
-                  <ChromeComponent chrome={resolved} position="header" {...chromeProps} />
+                  <ChromeComponent
+                    chrome={resolved}
+                    position="header"
+                    {...chromeProps}
+                  />
                 )}
                 <div className="doc-page-body">
                   {studioMode && dragBlockId && onPageDrop && (
                     <>
                       <div
                         className={`studio-page-drop studio-page-drop-top${
-                          pageDropTarget?.page === pageNum && pageDropTarget.position === "start"
-                            ? " active"
-                            : ""
+                          pageDropTarget?.page === pageNum &&
+                          pageDropTarget.position === 'start'
+                            ? ' active'
+                            : ''
                         }`}
                         onDragOver={(e) => {
                           e.preventDefault();
-                          setPageDropTarget({ page: pageNum, position: "start" });
+                          setPageDropTarget({
+                            page: pageNum,
+                            position: 'start',
+                          });
                         }}
                         onDragLeave={() => setPageDropTarget(null)}
-                        onDrop={(e) => handlePageDrop(e, pageNum - 1, "start")}
+                        onDrop={(e) => handlePageDrop(e, pageNum - 1, 'start')}
                       />
                       <div
                         className={`studio-page-drop studio-page-drop-bottom${
-                          pageDropTarget?.page === pageNum && pageDropTarget.position === "end"
-                            ? " active"
-                            : ""
+                          pageDropTarget?.page === pageNum &&
+                          pageDropTarget.position === 'end'
+                            ? ' active'
+                            : ''
                         }`}
                         onDragOver={(e) => {
                           e.preventDefault();
-                          setPageDropTarget({ page: pageNum, position: "end" });
+                          setPageDropTarget({ page: pageNum, position: 'end' });
                         }}
                         onDragLeave={() => setPageDropTarget(null)}
-                        onDrop={(e) => handlePageDrop(e, pageNum - 1, "end")}
+                        onDrop={(e) => handlePageDrop(e, pageNum - 1, 'end')}
                       />
                     </>
                   )}
@@ -538,7 +596,7 @@ export default function PaginatedDocLayout({
                     <button
                       type="button"
                       className="studio-empty-page-insert"
-                      onClick={() => onPageInsert(i, createBlock("paragraph"))}
+                      onClick={() => onPageInsert(i, createBlock('paragraph'))}
                     >
                       + Add content
                     </button>
@@ -551,7 +609,11 @@ export default function PaginatedDocLayout({
                   )}
                 </div>
                 {showFooter && (
-                  <ChromeComponent chrome={resolved} position="footer" {...chromeProps} />
+                  <ChromeComponent
+                    chrome={resolved}
+                    position="footer"
+                    {...chromeProps}
+                  />
                 )}
               </div>
               {studioMode && onPageInsert && (

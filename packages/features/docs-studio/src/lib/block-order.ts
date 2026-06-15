@@ -1,9 +1,13 @@
-import type { CanvasDropTarget } from "./canvas-drop";
-import { normalizeBlockPlacementInTree } from "./block-placement";
-import { canAcceptChildren, canNestChild, canNestChildIn } from "./block-schema";
-import { ensureCoverFirst, isRootCoverBlock } from "./cover";
-import { findBlockById, moveBlockInTree, moveBlockToParent } from "./serialize";
-import type { BlockNode } from "./types";
+import type { CanvasDropTarget } from './canvas-drop';
+import { normalizeBlockPlacementInTree } from './block-placement';
+import {
+  canAcceptChildren,
+  canNestChild,
+  canNestChildIn,
+} from './block-schema';
+import { ensureCoverFirst, isRootCoverBlock } from './cover';
+import { findBlockById, moveBlockInTree, moveBlockToParent } from './serialize';
+import type { BlockNode } from './types';
 
 export interface OrderEntry {
   id: string;
@@ -29,9 +33,9 @@ export function collectDocumentOrder(blocks: BlockNode[]): OrderEntry[] {
   const order: OrderEntry[] = [];
 
   for (const block of blocks) {
-    if (block.type === "cover") continue;
+    if (block.type === 'cover') continue;
 
-    if (block.type === "section") {
+    if (block.type === 'section') {
       for (const child of block.children ?? []) {
         order.push({ id: child.id, parentId: block.id });
       }
@@ -52,36 +56,38 @@ export function isGloballyMovable(blocks: BlockNode[], id: string): boolean {
   if (parentId === null) return true;
 
   const parent = findBlockById(blocks, parentId);
-  return parent?.type === "section";
+  return parent?.type === 'section';
 }
 
 function canMoveAsLocalSibling(
   blocks: BlockNode[],
   id: string,
-  direction: "up" | "down",
+  direction: 'up' | 'down',
 ): boolean {
   const parentId = getParentId(blocks, id);
   if (parentId === undefined) return false;
 
   const siblings =
-    parentId === null ? blocks : (findBlockById(blocks, parentId)?.children ?? []);
+    parentId === null
+      ? blocks
+      : (findBlockById(blocks, parentId)?.children ?? []);
   const idx = siblings.findIndex((b) => b.id === id);
   if (idx === -1) return false;
 
-  const newIdx = direction === "up" ? idx - 1 : idx + 1;
+  const newIdx = direction === 'up' ? idx - 1 : idx + 1;
   return newIdx >= 0 && newIdx < siblings.length;
 }
 
 export function canMoveBlock(
   blocks: BlockNode[],
   id: string,
-  direction: "up" | "down",
+  direction: 'up' | 'down',
 ): boolean {
   if (isGloballyMovable(blocks, id)) {
     const order = collectDocumentOrder(blocks);
     const idx = order.findIndex((entry) => entry.id === id);
     if (idx === -1) return false;
-    const newIdx = direction === "up" ? idx - 1 : idx + 1;
+    const newIdx = direction === 'up' ? idx - 1 : idx + 1;
     return newIdx >= 0 && newIdx < order.length;
   }
 
@@ -92,7 +98,7 @@ export function moveBlockRelativeTo(
   blocks: BlockNode[],
   sourceId: string,
   targetId: string,
-  position: "before" | "after",
+  position: 'before' | 'after',
 ): BlockNode[] {
   if (sourceId === targetId) return blocks;
 
@@ -119,11 +125,13 @@ export function moveBlockRelativeTo(
   function insert(nodes: BlockNode[]): BlockNode[] {
     const out: BlockNode[] = [];
     for (const node of nodes) {
-      if (position === "before" && node.id === targetId) {
+      if (position === 'before' && node.id === targetId) {
         out.push(moved!);
       }
-      out.push(node.children ? { ...node, children: insert(node.children) } : node);
-      if (position === "after" && node.id === targetId) {
+      out.push(
+        node.children ? { ...node, children: insert(node.children) } : node,
+      );
+      if (position === 'after' && node.id === targetId) {
         out.push(moved!);
       }
     }
@@ -134,15 +142,19 @@ export function moveBlockRelativeTo(
   return ensureCoverFirst(result);
 }
 
-export function moveBlockBefore(blocks: BlockNode[], sourceId: string, targetId: string): BlockNode[] {
-  return moveBlockRelativeTo(blocks, sourceId, targetId, "before");
+export function moveBlockBefore(
+  blocks: BlockNode[],
+  sourceId: string,
+  targetId: string,
+): BlockNode[] {
+  return moveBlockRelativeTo(blocks, sourceId, targetId, 'before');
 }
 
 export function reorderSiblingBlocks(
   blocks: BlockNode[],
   sourceId: string,
   targetId: string,
-  position: "before" | "after",
+  position: 'before' | 'after',
 ): BlockNode[] {
   if (sourceId === targetId) return blocks;
 
@@ -157,7 +169,9 @@ export function reorderSiblingBlocks(
 function getSiblings(blocks: BlockNode[], id: string): BlockNode[] | null {
   const parentId = getParentId(blocks, id);
   if (parentId === undefined) return null;
-  return parentId === null ? blocks : (findBlockById(blocks, parentId)?.children ?? []);
+  return parentId === null
+    ? blocks
+    : (findBlockById(blocks, parentId)?.children ?? []);
 }
 
 export function canOutdentBlock(blocks: BlockNode[], id: string): boolean {
@@ -191,7 +205,10 @@ export function canIndentBlock(blocks: BlockNode[], id: string): boolean {
   return canAcceptChildren(prev.type) && canNestChild(prev.type, block.type);
 }
 
-export function applyPlacementNormalize(blocks: BlockNode[], blockId: string): BlockNode[] {
+export function applyPlacementNormalize(
+  blocks: BlockNode[],
+  blockId: string,
+): BlockNode[] {
   const parentId = getParentId(blocks, blockId);
   const parent = parentId != null ? findBlockById(blocks, parentId) : null;
   return normalizeBlockPlacementInTree(blocks, blockId, parent ?? undefined);
@@ -214,14 +231,23 @@ export function reparentBlockAtTarget(
 ): BlockNode[] {
   if (!target.valid) return blocks;
 
-  if (target.position === "inside") {
+  if (target.position === 'inside') {
     const parentBlock = findBlockById(blocks, target.blockId);
     const sourceBlock = findBlockById(blocks, sourceId);
-    if (!parentBlock || !sourceBlock || !canNestChildIn(parentBlock, sourceBlock.type)) {
+    if (
+      !parentBlock ||
+      !sourceBlock ||
+      !canNestChildIn(parentBlock, sourceBlock.type)
+    ) {
       return blocks;
     }
 
-    const doc = moveBlockToParent({ version: 0, blocks }, sourceId, target.blockId, target.index);
+    const doc = moveBlockToParent(
+      { version: 0, blocks },
+      sourceId,
+      target.blockId,
+      target.index,
+    );
     if (doc.blocks === blocks) return blocks;
 
     let result = normalizeBlockPlacementInTree(
@@ -233,7 +259,7 @@ export function reparentBlockAtTarget(
     return ensureCoverFirst(result);
   }
 
-  const position = target.position === "before" ? "before" : "after";
+  const position = target.position === 'before' ? 'before' : 'after';
   const sourceParent = getParentId(blocks, sourceId);
   const targetParent = getParentId(blocks, target.blockId);
 
@@ -254,7 +280,7 @@ export function outdentBlock(blocks: BlockNode[], id: string): BlockNode[] {
   const parentId = getParentId(blocks, id);
   if (parentId === undefined || parentId === null) return blocks;
 
-  let result = moveBlockRelativeTo(blocks, id, parentId, "after");
+  let result = moveBlockRelativeTo(blocks, id, parentId, 'after');
   result = applyPlacementNormalize(result, id);
   return ensureCoverFirst(result);
 }
@@ -278,7 +304,7 @@ export function indentBlock(blocks: BlockNode[], id: string): BlockNode[] {
 export function moveInDocumentOrder(
   blocks: BlockNode[],
   id: string,
-  direction: "up" | "down",
+  direction: 'up' | 'down',
 ): BlockNode[] {
   if (!isGloballyMovable(blocks, id)) {
     return moveBlockInTree(blocks, id, direction);
@@ -288,10 +314,10 @@ export function moveInDocumentOrder(
   const idx = order.findIndex((entry) => entry.id === id);
   if (idx === -1) return blocks;
 
-  const newIdx = direction === "up" ? idx - 1 : idx + 1;
+  const newIdx = direction === 'up' ? idx - 1 : idx + 1;
   if (newIdx < 0 || newIdx >= order.length) return blocks;
 
   const neighbor = order[newIdx];
-  const position = direction === "up" ? "before" : "after";
+  const position = direction === 'up' ? 'before' : 'after';
   return moveBlockRelativeTo(blocks, id, neighbor.id, position);
 }

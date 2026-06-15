@@ -1,6 +1,6 @@
-import type { FlowUnit } from "./flow-units";
-import type { LayoutItem } from "./layout-items";
-import { mmToPx } from "./page-metrics";
+import type { FlowUnit } from './flow-units';
+import type { LayoutItem } from './layout-items';
+import { mmToPx } from './page-metrics';
 
 export const SECTION_BOTTOM_PAD_PX = mmToPx(6);
 export const SECTION_BREAK_TOP_PX = mmToPx(22);
@@ -13,7 +13,10 @@ export function sectionBottomReserve(bucket: LayoutItem[]): number {
   return bucket.some((item) => itemSectionId(item)) ? SECTION_BOTTOM_PAD_PX : 0;
 }
 
-export function sectionTopOverhead(item: LayoutItem, bucket: LayoutItem[]): number {
+export function sectionTopOverhead(
+  item: LayoutItem,
+  bucket: LayoutItem[],
+): number {
   if (bucket.length > 0) return 0;
   if (!item.section) return 0;
   if (item.section.pageBreak && !item.section.continuation) {
@@ -27,7 +30,9 @@ export function itemPackNeed(
   bucket: LayoutItem[],
   height: number,
 ): number {
-  return sectionTopOverhead(item, bucket) + height + sectionBottomReserve(bucket);
+  return (
+    sectionTopOverhead(item, bucket) + height + sectionBottomReserve(bucket)
+  );
 }
 
 export function unitPackNeed(

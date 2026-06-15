@@ -7,9 +7,5 @@ type DocsLayoutProps = {
 };
 
 export function DocsLayout({ children }: DocsLayoutProps) {
-  return (
-    <div className="bg-background min-h-screen">
-      {children}
-    </div>
-  );
+  return <div className="bg-background min-h-screen">{children}</div>;
 }

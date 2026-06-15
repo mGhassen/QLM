@@ -1,10 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { prepareStudioDocument } from '#/lib/studio-document';
-import {
-  getAllDocsFromSupabase,
-  loadDocFromSupabase,
-} from '#/supabase/docs';
+import { getAllDocsFromSupabase, loadDocFromSupabase } from '#/supabase/docs';
 import { getSupabaseServerClient } from '@qlm/supabase/server-client';
 
 export function getDocsSupabase(request: Request) {

@@ -52,7 +52,6 @@ export const Loading: Story = {
 export const Error: Story = {
   name: 'Error',
   args: {
-    error:
-      'Could not reach the QLM API (502 Bad Gateway). Retry in a moment.',
+    error: 'Could not reach the QLM API (502 Bad Gateway). Retry in a moment.',
   },
 };

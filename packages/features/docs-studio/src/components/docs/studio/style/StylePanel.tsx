@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import type { BlockNode, BlockType } from "#/lib/types";
-import { BLOCK_LABELS } from "#/lib/block-fields";
-import { getStylePanelSections } from "#/lib/block-style-config";
+import type { BlockNode, BlockType } from '#/lib/types';
+import { BLOCK_LABELS } from '#/lib/block-fields';
+import { getStylePanelSections } from '#/lib/block-style-config';
 import {
   CONVERTIBLE_TEXT_TYPES,
   convertBlockType,
   isConvertibleTextBlock,
-} from "#/lib/convert-block-type";
-import ColorPicker from "../ColorPicker";
-import BlockAppearancePanel from "../BlockAppearancePanel";
-import BlockTypeStyleFields from "./BlockTypeStyleFields";
-import LayoutSection from "./LayoutSection";
-import SpacingBoxModel from "./SpacingBoxModel";
-import { StyleSection } from "./StyleSection";
+} from '#/lib/convert-block-type';
+import ColorPicker from '../ColorPicker';
+import BlockAppearancePanel from '../BlockAppearancePanel';
+import BlockTypeStyleFields from './BlockTypeStyleFields';
+import LayoutSection from './LayoutSection';
+import SpacingBoxModel from './SpacingBoxModel';
+import { StyleSection } from './StyleSection';
 import {
   WfField,
   WfFieldRow,
@@ -21,8 +21,8 @@ import {
   WfInput,
   WfSelect,
   WfSegmented,
-} from "./WfControls";
-import "./studio-style-panel.css";
+} from './WfControls';
+import './studio-style-panel.css';
 
 interface StylePanelProps {
   block: BlockNode;
@@ -30,9 +30,14 @@ interface StylePanelProps {
   onBlockChange?: (block: BlockNode) => void;
 }
 
-export default function StylePanel({ block, onPropsChange, onBlockChange }: StylePanelProps) {
+export default function StylePanel({
+  block,
+  onPropsChange,
+  onBlockChange,
+}: StylePanelProps) {
   const props = block.props ?? {};
-  const setProp = (key: string, value: unknown) => onPropsChange({ ...props, [key]: value });
+  const setProp = (key: string, value: unknown) =>
+    onPropsChange({ ...props, [key]: value });
   const label = BLOCK_LABELS[block.type] ?? block.type;
   const sections = getStylePanelSections(block.type);
   const show = (id: (typeof sections)[number]) => sections.includes(id);
@@ -63,7 +68,9 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
           <WfField label="Type">
             <WfSelect
               value={block.type}
-              onChange={(value) => onBlockChange(convertBlockType(block, value as BlockType))}
+              onChange={(value) =>
+                onBlockChange(convertBlockType(block, value as BlockType))
+              }
             >
               {CONVERTIBLE_TEXT_TYPES.map((type) => (
                 <option key={type} value={type}>
@@ -75,7 +82,7 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
         </StyleSection>
       )}
 
-      {show("typePreset") && (
+      {show('typePreset') && (
         <StyleSection title="Block">
           <BlockTypeStyleFields
             block={block}
@@ -85,31 +92,39 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
         </StyleSection>
       )}
 
-      {show("layout") && (
-        <LayoutSection blockType={block.type} props={props} onPropsChange={onPropsChange} />
+      {show('layout') && (
+        <LayoutSection
+          blockType={block.type}
+          props={props}
+          onPropsChange={onPropsChange}
+        />
       )}
 
-      {show("spacing") && (
+      {show('spacing') && (
         <StyleSection title="Spacing">
           <SpacingBoxModel props={props} onPropsChange={onPropsChange} />
         </StyleSection>
       )}
 
-      {show("size") && (
+      {show('size') && (
         <StyleSection title="Size">
           <WfFieldRow>
             <WfField label="Width">
               <WfInput
-                value={(props.width as string) ?? "Auto"}
+                value={(props.width as string) ?? 'Auto'}
                 placeholder="Auto"
-                onChange={(v) => setProp("width", v === "Auto" || !v ? undefined : v)}
+                onChange={(v) =>
+                  setProp('width', v === 'Auto' || !v ? undefined : v)
+                }
               />
             </WfField>
             <WfField label="Height">
               <WfInput
-                value={(props.height as string) ?? "Auto"}
+                value={(props.height as string) ?? 'Auto'}
                 placeholder="Auto"
-                onChange={(v) => setProp("height", v === "Auto" || !v ? undefined : v)}
+                onChange={(v) =>
+                  setProp('height', v === 'Auto' || !v ? undefined : v)
+                }
               />
             </WfField>
           </WfFieldRow>
@@ -117,14 +132,18 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
             <WfFieldRow>
               <WfField label="Min W" labelTone="neutral">
                 <WfInput
-                  value={(props.minWidth as string) ?? "0"}
-                  onChange={(v) => setProp("minWidth", v === "0" ? undefined : v)}
+                  value={(props.minWidth as string) ?? '0'}
+                  onChange={(v) =>
+                    setProp('minWidth', v === '0' ? undefined : v)
+                  }
                 />
               </WfField>
               <WfField label="Min H" labelTone="neutral">
                 <WfInput
-                  value={(props.minHeight as string) ?? "0"}
-                  onChange={(v) => setProp("minHeight", v === "0" ? undefined : v)}
+                  value={(props.minHeight as string) ?? '0'}
+                  onChange={(v) =>
+                    setProp('minHeight', v === '0' ? undefined : v)
+                  }
                 />
               </WfField>
             </WfFieldRow>
@@ -133,42 +152,52 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
             <WfFieldRow>
               <WfField label="Max W" labelTone="neutral">
                 <WfInput
-                  value={(props.maxWidth as string) ?? "None"}
-                  onChange={(v) => setProp("maxWidth", v === "None" || !v ? undefined : v)}
+                  value={(props.maxWidth as string) ?? 'None'}
+                  onChange={(v) =>
+                    setProp('maxWidth', v === 'None' || !v ? undefined : v)
+                  }
                 />
               </WfField>
               <WfField label="Max H" labelTone="neutral">
                 <WfInput
-                  value={(props.maxHeight as string) ?? "None"}
-                  onChange={(v) => setProp("maxHeight", v === "None" || !v ? undefined : v)}
+                  value={(props.maxHeight as string) ?? 'None'}
+                  onChange={(v) =>
+                    setProp('maxHeight', v === 'None' || !v ? undefined : v)
+                  }
                 />
               </WfField>
             </WfFieldRow>
           </WfField>
           <WfField label="Overflow">
             <div className="wf-icon-row">
-              {(["visible", "hidden", "auto", "scroll"] as const).map((mode) => (
-                <button
-                  key={mode}
-                  type="button"
-                  className={`wf-icon-toggle${(props.overflow ?? "visible") === mode ? " active" : ""}`}
-                  onClick={() => setProp("overflow", mode === "visible" ? undefined : mode)}
-                  title={mode}
-                >
-                  {mode.slice(0, 1).toUpperCase()}
-                </button>
-              ))}
+              {(['visible', 'hidden', 'auto', 'scroll'] as const).map(
+                (mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    className={`wf-icon-toggle${(props.overflow ?? 'visible') === mode ? ' active' : ''}`}
+                    onClick={() =>
+                      setProp('overflow', mode === 'visible' ? undefined : mode)
+                    }
+                    title={mode}
+                  >
+                    {mode.slice(0, 1).toUpperCase()}
+                  </button>
+                ),
+              )}
             </div>
           </WfField>
         </StyleSection>
       )}
 
-      {show("position") && (
+      {show('position') && (
         <StyleSection title="Position" defaultOpen={false}>
           <WfField label="Position">
             <WfSelect
-              value={(props.position as string) ?? "static"}
-              onChange={(v) => setProp("position", v === "static" ? undefined : v)}
+              value={(props.position as string) ?? 'static'}
+              onChange={(v) =>
+                setProp('position', v === 'static' ? undefined : v)
+              }
             >
               <option value="static">Static</option>
               <option value="relative">Relative</option>
@@ -180,47 +209,53 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
               <WfInput
                 type="number"
                 value={(props.translateX as number) ?? 0}
-                onChange={(v) => setProp("translateX", parseFloat(v) || undefined)}
+                onChange={(v) =>
+                  setProp('translateX', parseFloat(v) || undefined)
+                }
               />
             </WfField>
             <WfField label="Y offset">
               <WfInput
                 type="number"
                 value={(props.translateY as number) ?? 0}
-                onChange={(v) => setProp("translateY", parseFloat(v) || undefined)}
+                onChange={(v) =>
+                  setProp('translateY', parseFloat(v) || undefined)
+                }
               />
             </WfField>
           </WfFieldRow>
           <WfField label="Z-index">
             <WfInput
               type="number"
-              value={(props.zIndex as number) ?? ""}
-              onChange={(v) => setProp("zIndex", parseInt(v) || undefined)}
+              value={(props.zIndex as number) ?? ''}
+              onChange={(v) => setProp('zIndex', parseInt(v) || undefined)}
             />
           </WfField>
         </StyleSection>
       )}
 
-      {show("typography") && (
+      {show('typography') && (
         <StyleSection title="Typography" defaultOpen={false}>
           <ColorPicker
             variant="panel"
             label="Color"
-            value={(props.color as string) ?? ""}
-            onChange={(c) => setProp("color", c || undefined)}
+            value={(props.color as string) ?? ''}
+            onChange={(c) => setProp('color', c || undefined)}
           />
           <WfFieldRow>
             <WfField label="Size">
               <WfInput
-                value={(props.fontSize as string) ?? ""}
+                value={(props.fontSize as string) ?? ''}
                 placeholder="—"
-                onChange={(v) => setProp("fontSize", v || undefined)}
+                onChange={(v) => setProp('fontSize', v || undefined)}
               />
             </WfField>
             <WfField label="Weight">
               <WfSelect
-                value={String(props.fontWeight ?? "400")}
-                onChange={(v) => setProp("fontWeight", v === "400" ? undefined : v)}
+                value={String(props.fontWeight ?? '400')}
+                onChange={(v) =>
+                  setProp('fontWeight', v === '400' ? undefined : v)
+                }
               >
                 <option value="400">400 Normal</option>
                 <option value="500">500 Medium</option>
@@ -231,15 +266,17 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
           </WfFieldRow>
           <WfField label="Align">
             <WfSegmented
-              options={["left", "center", "right"] as const}
-              value={(props.textAlign as "left" | "center" | "right") ?? "left"}
-              onChange={(v) => setProp("textAlign", v === "left" ? undefined : v)}
+              options={['left', 'center', 'right'] as const}
+              value={(props.textAlign as 'left' | 'center' | 'right') ?? 'left'}
+              onChange={(v) =>
+                setProp('textAlign', v === 'left' ? undefined : v)
+              }
             />
           </WfField>
         </StyleSection>
       )}
 
-      {show("background") && (
+      {show('background') && (
         <StyleSection title="Background" defaultOpen={false}>
           <BlockAppearancePanel
             blockType={block.type}
@@ -252,23 +289,25 @@ export default function StylePanel({ block, onPropsChange, onBlockChange }: Styl
             <WfField label="Border">
               <ColorPicker
                 variant="panel"
-                value={(props.borderColor as string) ?? ""}
-                onChange={(c) => setProp("borderColor", c || undefined)}
+                value={(props.borderColor as string) ?? ''}
+                onChange={(c) => setProp('borderColor', c || undefined)}
               />
             </WfField>
           </WfFieldRow>
           <WfField label="Border width">
             <WfInput
-              value={(props.borderWidth as string) ?? ""}
+              value={(props.borderWidth as string) ?? ''}
               placeholder="1px"
-              onChange={(v) => setProp("borderWidth", v || undefined)}
+              onChange={(v) => setProp('borderWidth', v || undefined)}
             />
           </WfField>
         </StyleSection>
       )}
 
-      {block.type === "card" && (
-        <WfHint>Card padding follows the spacing box above (inner padding).</WfHint>
+      {block.type === 'card' && (
+        <WfHint>
+          Card padding follows the spacing box above (inner padding).
+        </WfHint>
       )}
     </div>
   );

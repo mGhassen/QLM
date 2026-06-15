@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import MarkdownContent from "./MarkdownContent";
-import StudioPopover from "../studio/StudioPopover";
+import MarkdownContent from './MarkdownContent';
+import StudioPopover from '../studio/StudioPopover';
 
 interface PatProps {
   number?: string;
@@ -15,16 +15,16 @@ interface PatProps {
 
 export default function Pat({
   number,
-  content = "",
+  content = '',
   editable,
   editing,
   onChange,
   onPropChange,
   onActivate,
 }: PatProps) {
-  const lines = content.split("\n").filter(Boolean);
-  const num = number ?? lines[0]?.match(/^(\d+)/)?.[1] ?? "";
-  const body = lines.join("\n");
+  const lines = content.split('\n').filter(Boolean);
+  const num = number ?? lines[0]?.match(/^(\d+)/)?.[1] ?? '';
+  const body = lines.join('\n');
 
   return (
     <div className="pat">
@@ -32,7 +32,7 @@ export default function Pat({
         <StudioPopover
           editable={editable}
           value={num}
-          onChange={(v) => onPropChange?.("number", v)}
+          onChange={(v) => onPropChange?.('number', v)}
           singleLine
           onActivate={onActivate}
         >
