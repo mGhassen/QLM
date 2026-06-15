@@ -81,7 +81,7 @@ jobs:
           echo "✓ All required variables are set"
 
       - name: Build and push web Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
@@ -112,7 +112,7 @@ jobs:
             VITE_CHAT_API_URL=${{ vars.VITE_CHAT_API_URL }}
 
       - name: Build and push server Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./apps/server/Dockerfile
