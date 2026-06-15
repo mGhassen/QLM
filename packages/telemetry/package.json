@@ -38,7 +38,7 @@
     "@opentelemetry/sdk-trace-base": "^2.2.0",
     "@opentelemetry/sdk-trace-node": "^2.2.0",
     "@opentelemetry/semantic-conventions": "^1.38.0",
-    "@posthog/react": "^1.4.0",
+    "@posthog/react": "^1.10.2",
     "dotenv": "^17.4.2",
     "posthog-js": "^1.292.0",
     "sentry": "^0.1.2",
